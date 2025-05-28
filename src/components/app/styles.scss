@@ -1,0 +1,10 @@
+
+#nfd-next-steps-app {
+    .nfd-nextsteps-step-done {
+        text-decoration: line-through;
+    }
+    .nfd-nextsteps-step-dismissed {
+        color: #999;
+        text-decoration: line-through;
+    }
+}
