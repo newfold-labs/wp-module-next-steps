@@ -454,6 +454,81 @@ StoryComponent.displayName = "Spinner";
 
 /***/ }),
 
+/***/ "./node_modules/@newfold/ui-component-library/elements/title/index.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@newfold/ui-component-library/elements/title/index.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StoryComponent: () => (/* binding */ StoryComponent),
+/* harmony export */   classNameMap: () => (/* binding */ classNameMap),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+
+/* eslint-disable no-undefined */
+
+
+
+const classNameMap = {
+  size: {
+    1: "nfd-title--1",
+    2: "nfd-title--2",
+    3: "nfd-title--3",
+    4: "nfd-title--4",
+    5: "nfd-title--5"
+  }
+};
+
+/**
+ * @param {Object} props Props object.
+ * @returns {JSX.Element} Title component.
+ */
+const Title = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(({
+  children,
+  as: Component,
+  size,
+  className,
+  ...props
+}, ref) => {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Component, {
+    ref: ref,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("nfd-title", classNameMap.size[size || Component[1]], className),
+    ...props
+  }, children);
+});
+const propTypes = {
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node).isRequired,
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
+  size: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(Object.keys(classNameMap.size)),
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
+};
+Title.propTypes = propTypes;
+Title.defaultProps = {
+  as: "h1",
+  size: undefined,
+  className: ""
+};
+
+// eslint-disable-next-line require-jsdoc
+const StoryComponent = props => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Title, {
+  ...props
+});
+StoryComponent.propTypes = propTypes;
+StoryComponent.defaultProps = Title.defaultProps;
+StoryComponent.displayName = "Title";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Title);
+
+/***/ }),
+
 /***/ "./node_modules/@newfold/ui-component-library/hooks/use-svg-aria.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/@newfold/ui-component-library/hooks/use-svg-aria.js ***!
@@ -1793,7 +1868,7 @@ const postStatusUpdate = (id, status) => {
   });
 };
 const NextSteps = () => {
-  const [steps, setSteps] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(sortbyStatus(sortbyPriority(window.NewfoldNextSteps)));
+  const [steps, setSteps] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(sortbyStatus(sortbyPriority(window.NewfoldNextSteps.steps)));
   // group by category?
   // add listener for status change/checkbox
   const completeCallback = (id, status) => {
@@ -1842,7 +1917,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Step: () => (/* binding */ Step)
 /* harmony export */ });
 /* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/checkbox/index.js");
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/button/index.js");
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/title/index.js");
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/button/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
@@ -1877,83 +1953,117 @@ const Step = ({
   };
   const stepDoneRender = () => {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "nfd-nextsteps-step nfd-nextsteps-step-done",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        className: "nfd-nextsteps-step-checkbox",
-        description: description,
-        id: id,
-        label: title,
-        name: id,
-        value: id,
-        onChange: e => completeCallback(id, 'new'),
-        checked: true,
-        "data-nfd-click": "nextsteps_step_checkbox",
-        "data-nfd-event-key": id,
-        "data-nfd-event-category": "nextsteps_step"
+      className: "nfd-nextsteps-step-container",
+      id: id,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "nfd-nextsteps-step nfd-nextsteps-step-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          className: "nfd-nextsteps-step-checkbox",
+          description: description,
+          id: id,
+          name: id,
+          value: id,
+          onChange: e => completeCallback(id, 'new'),
+          checked: true,
+          "data-nfd-click": "nextsteps_step_checkbox",
+          "data-nfd-event-key": id,
+          "data-nfd-event-category": "nextsteps_step"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            as: "h4",
+            className: "nfd-nextsteps-step-title",
+            children: title
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            children: description
+          })]
+        })]
       })
     });
   };
   const stepNewRender = () => {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "nfd-nextsteps-step nfd-nextsteps-step-new nfd-flex nfd-flex-row nfd-justify-between nfd-items-center",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        className: "nfd-nextsteps-step-checkbox",
-        id: id,
-        label: title,
-        name: id,
-        value: id,
-        onChange: e => completeCallback(id, 'done'),
-        "data-nfd-click": "nextsteps_step_checkbox",
-        "data-nfd-event-key": id,
-        "data-nfd-event-category": "nextsteps_step"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "nfd-nextsteps-buttons",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          as: "a",
-          className: "nfd-nextsteps-step-link",
-          href: getHref(),
-          size: "small",
-          target: getTarget(),
-          variant: "secondary",
-          "data-nfd-click": "nextsteps_step_link",
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "nfd-nextsteps-step-container",
+      id: id,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "nfd-nextsteps-step nfd-nextsteps-step-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          className: "nfd-nextsteps-step-checkbox",
+          id: id,
+          name: id,
+          value: id,
+          onChange: e => completeCallback(id, 'done'),
+          "data-nfd-click": "nextsteps_step_checkbox",
           "data-nfd-event-key": id,
-          "data-nfd-event-category": "nextsteps_step",
-          title: description,
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Go', 'wp-module-next-steps')
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          className: "nfd-nextsteps-step-dismiss",
-          size: "small",
-          variant: "secondary",
-          "data-nfd-click": "nextsteps_step_dismiss",
-          "data-nfd-event-key": id,
-          "data-nfd-event-category": "nextsteps_step",
-          onClick: e => completeCallback(id, 'dismissed'),
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('x', 'wp-module-next-steps')
+          "data-nfd-event-category": "nextsteps_step"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            as: "h4",
+            className: "nfd-nextsteps-step-title",
+            children: title
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            children: description
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "nfd-nextsteps-buttons nfd-self-end",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            as: "a",
+            className: "nfd-nextsteps-step-link",
+            href: getHref(),
+            size: "small",
+            target: getTarget(),
+            variant: "secondary",
+            "data-nfd-click": "nextsteps_step_link",
+            "data-nfd-event-key": id,
+            "data-nfd-event-category": "nextsteps_step",
+            title: description,
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Go', 'wp-module-next-steps')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            className: "nfd-nextsteps-step-dismiss",
+            size: "small",
+            variant: "secondary",
+            "data-nfd-click": "nextsteps_step_dismiss",
+            "data-nfd-event-key": id,
+            "data-nfd-event-category": "nextsteps_step",
+            onClick: e => completeCallback(id, 'dismissed'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('x', 'wp-module-next-steps')
+          })]
         })]
-      })]
+      })
     });
   };
   const stepDismissedRender = () => {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "nfd-nextsteps-step nfd-nextsteps-step-dismissed",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        className: "nfd-nextsteps-step-checkbox",
-        description: description,
-        id: id,
-        label: title,
-        name: id,
-        value: id,
-        onChange: e => completeCallback(id, 'new'),
-        "data-nfd-click": "nextsteps_step_checkbox",
-        "data-nfd-event-key": id,
-        "data-nfd-event-category": "nextsteps_step"
+      className: "nfd-nextsteps-step-container",
+      id: id,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "nfd-nextsteps-step nfd-nextsteps-step-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          className: "nfd-nextsteps-step-checkbox",
+          description: description,
+          id: id,
+          name: id,
+          value: id,
+          onChange: e => completeCallback(id, 'new'),
+          "data-nfd-click": "nextsteps_step_checkbox",
+          "data-nfd-event-key": id,
+          "data-nfd-event-category": "nextsteps_step"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            as: "h4",
+            className: "nfd-nextsteps-step-title",
+            children: title
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            children: description
+          })]
+        })]
       })
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "nfd-nextsteps-step",
-    id: id,
-    children: [status === 'done' && stepDoneRender(), status === 'new' && stepNewRender(), status === 'dismissed' && stepDismissedRender()]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [status === 'new' && showNew && stepNewRender(), status === 'done' && showDone && stepDoneRender(), status === 'dismissed' && showDismissed && stepDismissedRender()]
   });
 };
 

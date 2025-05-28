@@ -55,7 +55,7 @@ const postStatusUpdate = ( id, status ) => {
 
 export const NextSteps = () => {
 	const [ steps, setSteps ] = useState(
-		sortbyStatus( sortbyPriority( window.NewfoldNextSteps ) )
+		sortbyStatus( sortbyPriority( window.NewfoldNextSteps.steps ) )
 	);
 	// group by category?
 	// add listener for status change/checkbox

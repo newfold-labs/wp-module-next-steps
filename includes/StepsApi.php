@@ -119,92 +119,100 @@ class StepsApi {
 	 */
 	public function get_steps() {
 		$next_steps = get_option( self::OPTION );
-		// $next_steps = false;
 
 		if ( false === $next_steps ) {
+		// 	$this->set_data( 
+		// 		array(
+		// 			'message' => 'Default steps.',
+		// 			'steps' => array(
+		// 				array(
+		// 					'id' => 'add_new_page',
+		// 					'title' => __( 'Add a new page', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Create a new page on your site.', 'wp-module-next-steps' ),
+		// 					'status' => 'new',
+		// 					'href' => '{siteUrl}/wp-admin/post-new.php?post_type=page',
+		// 					'priority' => 2,
+		// 				),
+		// 				array(
+		// 					'id' => 'upload_media',
+		// 					'title' => __( 'Add Media', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Upload a new image to your site.', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/media-new.php',
+		// 					'status' => 'done',
+		// 					'priority' => 2,
+		// 				),
+		// 				array(
+		// 					'id' => 'yoast_academy',
+		// 					'title' => __( 'Sign up for Yoast SEO Academy', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Master WordPress SEO with expert training.', 'wp-module-next-steps' ),
+		// 					'href' => 'https://yoast.com/academy/',
+		// 					'status' => 'new',
+		// 					'priority' => 4,
+		// 				),
+		// 				array(
+		// 					'id' => 'explore_addons',
+		// 					'title' => __( 'Explore the premium tools included in your solution', 'wp-module-next-steps' ),
+		// 					'description' => __( 'A bundle of features designed to elevate your online experience', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/admin.php?page=solutions&category=all',
+		// 					'status' => 'dismissed',
+		// 					'priority' => 1,
+		// 				),
+		// 				array(
+		// 					'id' => 'add_product',
+		// 					'title' => __( 'Add your first product', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Create or import a product and bring your store to life', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
+		// 					'status' => 'new',
+		// 					'priority' => 5,
+		// 				),
+		// 				array(
+		// 					'id' => 'store_info',
+		// 					'title' => __( 'Add your store info', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Build trust and present yourself in the best way to your customers', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
+		// 					'status' => 'new',
+		// 					'priority' => 3,
+		// 				),
+		// 				array(
+		// 					'id' => 'connect_payment_processor',
+		// 					'title' => __( 'Connect a payment processor', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Get ready to receive your first payments via PayPal or credit card', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
+		// 					'status' => 'new',
+		// 					'priority' => 4,
+		// 				),
+		// 				array(
+		// 					'id' => 'configure_tax',
+		// 					'title' => __( 'Configure tax settings', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Set up your tax options to start selling', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
+		// 					'status' => 'new',
+		// 					'priority' => 4,
+		// 				),
+		// 				array(
+		// 					'id' => 'jetpack_social',
+		// 					'title' => __( 'Enable Jetpack to connect to your social media accounts', 'wp-module-next-steps' ),
+		// 					'description' => __( '', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
+		// 					'status' => 'new',
+		// 					'priority' => 6,
+		// 				),
+		// 			),
+		// 		),
+		// 	);
 
 			// TODO: update response to be available without connection and return solutions categories and premium
 			// If there is no Hiive connection, bail.
-			if ( ! HiiveConnection::is_connected() ) {
-				// If no connection, give an empty response.
-				return new WP_REST_Response(
-					array(
-						array(
-							'id' => 'add_new_page',
-							'title' => __( 'Add a new page', 'wp-module-next-steps' ),
-							'description' => __( 'Create a new page on your site.', 'wp-module-next-steps' ),
-							'status' => 'new',
-							'href' => '{siteUrl}/wp-admin/post-new.php?post_type=page',
-							'priority' => 2,
-						),
-						array(
-							'id' => 'upload_media',
-							'title' => __( 'Add Media', 'wp-module-next-steps' ),
-							'description' => __( 'Upload a new image to your site.', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/media-new.php',
-							'status' => 'done',
-							'priority' => 2,
-						),
-						array(
-							'id' => 'yoast_academy',
-							'title' => __( 'Sign up for Yoast SEO Academy', 'wp-module-next-steps' ),
-							'description' => __( 'Master WordPress SEO with expert training.', 'wp-module-next-steps' ),
-							'href' => 'https://yoast.com/academy/',
-							'status' => 'new',
-							'priority' => 4,
-						),
-						array(
-							'id' => 'explore_addons',
-							'title' => __( 'Explore the premium tools included in your solution', 'wp-module-next-steps' ),
-							'description' => __( 'A bundle of features designed to elevate your online experience', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/admin.php?page=solutions&category=all',
-							'status' => 'dismissed',
-							'priority' => 1,
-						),
-						array(
-							'id' => 'add_product',
-							'title' => __( 'Add your first product', 'wp-module-next-steps' ),
-							'description' => __( 'Create or import a product and bring your store to life', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
-							'status' => 'new',
-							'priority' => 5,
-						),
-						array(
-							'id' => 'store_info',
-							'title' => __( 'Add your store info', 'wp-module-next-steps' ),
-							'description' => __( 'Build trust and present yourself in the best way to your customers', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
-							'status' => 'new',
-							'priority' => 3,
-						),
-						array(
-							'id' => 'connect_payment_processor',
-							'title' => __( 'Connect a payment processor', 'wp-module-next-steps' ),
-							'description' => __( 'Get ready to receive your first payments via PayPal or credit card', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
-							'status' => 'new',
-							'priority' => 4,
-						),
-						array(
-							'id' => 'configure_tax',
-							'title' => __( 'Configure tax settings', 'wp-module-next-steps' ),
-							'description' => __( 'Set up your tax options to start selling', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
-							'status' => 'new',
-							'priority' => 4,
-						),
-						array(
-							'id' => 'jetpack_social',
-							'title' => __( 'Enable Jetpack to connect to your social media accounts', 'wp-module-next-steps' ),
-							'description' => __( '', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
-							'status' => 'new',
-							'priority' => 6,
-						),
-					),
-					200
-				);
-			}
+			// if ( ! HiiveConnection::is_connected() ) {
+			// 	// If no connection, give an empty response.
+			// 	return new WP_REST_Response(
+			// 		array(
+			// 			'message' => __( 'No Hiive connection found. Please connect to Hiive to get the next steps.', 'wp-module-next-steps' ),
+			// 			'steps'   => array(),
+			// 		),
+			// 		200
+			// 	);
+			// }
 
 			// Get fresh entitlements data from Hiive API
 			$response = wp_remote_get(
@@ -259,7 +267,7 @@ class StepsApi {
 		}
 		// Find the step with the given ID and update its status
 		$step_found = false;
-		foreach ( $steps as &$step ) {
+		foreach ( $steps['steps'] as &$step ) {
 			if ( $step['id'] === $id ) {
 				$step['status'] = $status;
 				$step_found = true;
