@@ -118,96 +118,96 @@ class StepsApi {
 	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function get_steps() {
-		$next_steps = false; // dev mode - uncomment this to reset steps to default
-		if ( false === $next_steps ) {
-			$this->set_data( 
-				array(
-					'message' => 'Default steps.',
-					'steps' => array(
-						array(
-							'id' => 'add_new_page',
-							'title' => __( 'Add a new page', 'wp-module-next-steps' ),
-							'description' => __( 'Create a new page on your site.', 'wp-module-next-steps' ),
-							'status' => 'new',
-							'href' => '{siteUrl}/wp-admin/post-new.php?post_type=page',
-							'priority' => 2,
-						),
-						array(
-							'id' => 'upload_media',
-							'title' => __( 'Add Media', 'wp-module-next-steps' ),
-							'description' => __( 'Upload a new image to your site.', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/media-new.php',
-							'status' => 'done',
-							'priority' => 2,
-						),
-						array(
-							'id' => 'yoast_academy',
-							'title' => __( 'Sign up for Yoast SEO Academy', 'wp-module-next-steps' ),
-							'description' => __( 'Master WordPress SEO with expert training.', 'wp-module-next-steps' ),
-							'href' => 'https://yoast.com/academy/',
-							'status' => 'new',
-							'priority' => 4,
-						),
-						array(
-							'id' => 'explore_addons',
-							'title' => __( 'Explore the premium tools included in your solution', 'wp-module-next-steps' ),
-							'description' => __( 'A bundle of features designed to elevate your online experience', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/admin.php?page=solutions&category=all',
-							'status' => 'dismissed',
-							'priority' => 1,
-						),
-						array(
-							'id' => 'add_product',
-							'title' => __( 'Add your first product', 'wp-module-next-steps' ),
-							'description' => __( 'Create or import a product and bring your store to life', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
-							'status' => 'new',
-							'priority' => 5,
-						),
-						array(
-							'id' => 'store_info',
-							'title' => __( 'Add your store info', 'wp-module-next-steps' ),
-							'description' => __( 'Build trust and present yourself in the best way to your customers', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=details',
-							'status' => 'new',
-							'priority' => 3,
-						),
-						array(
-							'id' => 'connect_payment_processor',
-							'title' => __( 'Connect a payment processor', 'wp-module-next-steps' ),
-							'description' => __( 'Get ready to receive your first payments via PayPal or credit card', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/payments',
-							'status' => 'new',
-							'priority' => 4,
-						),
-						array(
-							'id' => 'configure_tax',
-							'title' => __( 'Configure tax settings', 'wp-module-next-steps' ),
-							'description' => __( 'Set up your tax options to start selling', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=tax',
-							'status' => 'new',
-							'priority' => 4,
-						),
-						array(
-							'id' => 'jetpack_social',
-							'title' => __( 'Enable Jetpack to connect to your social media accounts', 'wp-module-next-steps' ),
-							'description' => __( 'Enable Jetpack to connect to your social media accounts', 'wp-module-next-steps' ),
-							'href' => '{siteUrl}/wp-admin/admin.php?page=jetpack#/sharing',
-							'status' => 'new',
-							'priority' => 6,
-						),
-						array(
-							'id'          => 'setup_shipping',
-							'title'       => __( 'Setup shipping options', 'wp-module-next-steps' ),
-							'description' => __( 'Setup shipping options', 'wp-module-next-steps' ),
-							'status'      => 'new',
-							'href'        => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=shipping',
-							'priority'    => 7,
-						),
-					),
-				),
-			);
-		}
+		// $next_steps = false; // dev mode - uncomment this to reset steps to default
+		// if ( $next_steps && false === $next_steps ) {
+		// 	$this->set_data( 
+		// 		array(
+		// 			'message' => 'Default steps.',
+		// 			'steps' => array(
+		// 				array(
+		// 					'id' => 'add_new_page',
+		// 					'title' => __( 'Add a new page', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Create a new page on your site.', 'wp-module-next-steps' ),
+		// 					'status' => 'new',
+		// 					'href' => '{siteUrl}/wp-admin/post-new.php?post_type=page',
+		// 					'priority' => 2,
+		// 				),
+		// 				array(
+		// 					'id' => 'upload_media',
+		// 					'title' => __( 'Add Media', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Upload a new image to your site.', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/media-new.php',
+		// 					'status' => 'done',
+		// 					'priority' => 2,
+		// 				),
+		// 				array(
+		// 					'id' => 'yoast_academy',
+		// 					'title' => __( 'Sign up for Yoast SEO Academy', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Master WordPress SEO with expert training.', 'wp-module-next-steps' ),
+		// 					'href' => 'https://yoast.com/academy/',
+		// 					'status' => 'new',
+		// 					'priority' => 4,
+		// 				),
+		// 				array(
+		// 					'id' => 'explore_addons',
+		// 					'title' => __( 'Explore the premium tools included in your solution', 'wp-module-next-steps' ),
+		// 					'description' => __( 'A bundle of features designed to elevate your online experience', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/admin.php?page=solutions&category=all',
+		// 					'status' => 'dismissed',
+		// 					'priority' => 1,
+		// 				),
+		// 				array(
+		// 					'id' => 'add_product',
+		// 					'title' => __( 'Add your first product', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Create or import a product and bring your store to life', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/post-new.php?post_type=product',
+		// 					'status' => 'new',
+		// 					'priority' => 5,
+		// 				),
+		// 				array(
+		// 					'id' => 'store_info',
+		// 					'title' => __( 'Add your store info', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Build trust and present yourself in the best way to your customers', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=details',
+		// 					'status' => 'new',
+		// 					'priority' => 3,
+		// 				),
+		// 				array(
+		// 					'id' => 'connect_payment_processor',
+		// 					'title' => __( 'Connect a payment processor', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Get ready to receive your first payments via PayPal or credit card', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/payments',
+		// 					'status' => 'new',
+		// 					'priority' => 4,
+		// 				),
+		// 				array(
+		// 					'id' => 'configure_tax',
+		// 					'title' => __( 'Configure tax settings', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Set up your tax options to start selling', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=tax',
+		// 					'status' => 'new',
+		// 					'priority' => 4,
+		// 				),
+		// 				array(
+		// 					'id' => 'jetpack_social',
+		// 					'title' => __( 'Enable Jetpack to connect to your social media accounts', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Enable Jetpack to connect to your social media accounts', 'wp-module-next-steps' ),
+		// 					'href' => '{siteUrl}/wp-admin/admin.php?page=jetpack#/sharing',
+		// 					'status' => 'new',
+		// 					'priority' => 6,
+		// 				),
+		// 				array(
+		// 					'id'          => 'setup_shipping',
+		// 					'title'       => __( 'Setup shipping options', 'wp-module-next-steps' ),
+		// 					'description' => __( 'Setup shipping options', 'wp-module-next-steps' ),
+		// 					'status'      => 'new',
+		// 					'href'        => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=shipping',
+		// 					'priority'    => 7,
+		// 				),
+		// 			),
+		// 		),
+		// 	);
+		// }
 
 		$next_steps = get_option( self::OPTION );
 

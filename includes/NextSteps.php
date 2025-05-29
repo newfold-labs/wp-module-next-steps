@@ -31,8 +31,7 @@ class NextSteps {
 	 * @param Container $container The module container.
 	 */
 	public function __construct( Container $container ) {
-		include_once NFD_NEXTSTEPS_DIR . '/includes/Step.php';
-		include_once NFD_NEXTSTEPS_DIR . '/includes/StepRepository.php';
+		// includes until autoloading is set up
 		include_once NFD_NEXTSTEPS_DIR . '/includes/StepsApi.php';
 		include_once NFD_NEXTSTEPS_DIR . '/includes/NextStepsWidget.php';
 		include_once NFD_NEXTSTEPS_DIR . '/includes/I18nService.php';
