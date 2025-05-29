@@ -1,8 +1,8 @@
 /*!*******************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/app/styles.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************/
-#nfd-next-steps-app .nfd-nextsteps-step-container {
-  border: 1px solid #ddd;
+#nfd-next-steps-app .nfd-nextsteps-step {
+  border: 1px solid #BBBCBC;
   border-radius: 4px;
   padding: 10px;
   margin-bottom: 10px;
@@ -10,8 +10,39 @@
 }
 #nfd-next-steps-app .nfd-nextsteps-step-done {
   text-decoration: line-through;
+  opacity: 0.75;
+  background-color: #E6F0CD;
 }
 #nfd-next-steps-app .nfd-nextsteps-step-dismissed {
-  color: #999;
   text-decoration: line-through;
+  opacity: 0.5;
+}
+#nfd-next-steps-app .nfd-nextsteps-buttons {
+  margin-right: auto;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+#nfd-next-steps-app .nfd-nextsteps-button-link,
+#nfd-next-steps-app .nfd-nextsteps-button-dismiss {
+  display: inline-flex;
+  padding: 0.25rem 0.35rem;
+  background-color: #336AD7;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 1rem;
+  transition: background-color 0.3s ease;
+}
+#nfd-next-steps-app .nfd-nextsteps-button-link:hover,
+#nfd-next-steps-app .nfd-nextsteps-button-dismiss:hover {
+  background-color: #2851A3;
+}
+#nfd-next-steps-app .nfd-nextsteps-button-link svg,
+#nfd-next-steps-app .nfd-nextsteps-button-dismiss svg {
+  width: 1rem;
+}
+#nfd-next-steps-app .nfd-nextsteps-button-dismiss {
+  background-color: #aaa;
+}
+#nfd-next-steps-app .nfd-nextsteps-button-dismiss:hover {
+  background-color: #999;
 }

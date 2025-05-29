@@ -74,7 +74,7 @@ export const NextSteps = () => {
 	};
 
 	return (
-		<div className="nfd-nextsteps-steps nfd-grid nfd-gap-6 nfd-grid-cols-1">
+		<div className="nfd-nextsteps-steps nfd-grid nfd-gap-2 nfd-grid-cols-1">
 			{ steps.map( ( step, i ) => {
 				return (
 					<Step

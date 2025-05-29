@@ -10,7 +10,6 @@ export const Step = ( {
 	href,
 	completeCallback,
 } ) => {
-
 	const getHref = () => {
 		// replace {siteUrl} placeholder with the actual site URL
 		if ( href.includes( '{siteUrl}' ) ) {
@@ -28,7 +27,7 @@ export const Step = ( {
 		}
 		return '_blank';
 	};
-	const stepDoneRender = () => {
+	const renderDoneStep = () => {
 		return (
 			<div className="nfd-nextsteps-step-container" id={ id }>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center">
@@ -44,17 +43,12 @@ export const Step = ( {
 						data-nfd-event-key={ id }
 						data-nfd-event-category="nextsteps_step"
 					/>
-					<div className="nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between">
-						<Title as="h4" className="nfd-nextsteps-step-title">
-							{ title }
-						</Title>
-						<span>{ description }</span>
-					</div>
+					{ renderStepContent() }
 				</div>
 			</div>
 		);
 	};
-	const stepNewRender = () => {
+	const renderNewStep = () => {
 		return (
 			<div className="nfd-nextsteps-step-container" id={ id }>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center">
@@ -68,46 +62,69 @@ export const Step = ( {
 						data-nfd-event-key={ id }
 						data-nfd-event-category="nextsteps_step"
 					/>
-					<div className="nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between">
-						<Title as="h4" className="nfd-nextsteps-step-title">
-							{ title }
-						</Title>
-						<span>{ description }</span>
-					</div>
-					<div className="nfd-nextsteps-buttons nfd-self-end">
+					{ renderStepContent() }
+					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-justify-end">
 						<Button
 							as="a"
-							className="nfd-nextsteps-step-link"
+							className="nfd-nextsteps-button-link"
+							data-nfd-click="nextsteps_step_link"
+							data-nfd-event-category="nextsteps_step"
+							data-nfd-event-key={ id }
 							href={ getHref() }
 							size="small"
 							target={ getTarget() }
-							variant="secondary"
-							data-nfd-click="nextsteps_step_link"
-							data-nfd-event-key={ id }
-							data-nfd-event-category="nextsteps_step"
 							title={ description }
 						>
-							{ __( 'Go', 'wp-module-next-steps' ) }
+							<svg // https://heroicons.com/
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={ 1.5 }
+								stroke="currentColor"
+								className="size-6"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+								/>
+							</svg>
 						</Button>
 						<Button
-							className="nfd-nextsteps-step-dismiss"
-							size="small"
-							variant="secondary"
+							as="a"
+							className="nfd-nextsteps-button-dismiss"
 							data-nfd-click="nextsteps_step_dismiss"
-							data-nfd-event-key={ id }
 							data-nfd-event-category="nextsteps_step"
+							data-nfd-event-key={ id }
+							href="#"
 							onClick={ ( e ) =>
 								completeCallback( id, 'dismissed' )
 							}
+							size="small"
+							title={ __( 'Dismiss', 'newfold-labs-next-steps' ) }
+							variant="error"
 						>
-							{ __( 'x', 'wp-module-next-steps' ) }
+							<svg // https://heroicons.com/
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={ 1.5 }
+								stroke="currentColor"
+								className="size-6"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M6 18 18 6M6 6l12 12"
+								/>
+							</svg>
 						</Button>
 					</div>
 				</div>
 			</div>
 		);
 	};
-	const stepDismissedRender = () => {
+	const renderDismissedStep = () => {
 		return (
 			<div className="nfd-nextsteps-step-container" id={ id }>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center">
@@ -122,22 +139,27 @@ export const Step = ( {
 						data-nfd-event-key={ id }
 						data-nfd-event-category="nextsteps_step"
 					/>
-					<div className="nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between">
-						<Title as="h4" className="nfd-nextsteps-step-title">
-							{ title }
-						</Title>
-						<span>{ description }</span>
-					</div>
+					{ renderStepContent() }
 				</div>
+			</div>
+		);
+	};
+	const renderStepContent = () => {
+		return (
+			<div className="nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between">
+				<Title as="span" className="nfd-nextsteps-step-title">
+					{ title }
+				</Title>
+				<span>{ description }</span>
 			</div>
 		);
 	};
 
 	return (
 		<>
-			{ status === 'new' && showNew && stepNewRender() }
-			{ status === 'done' && showDone && stepDoneRender() }
-			{ status === 'dismissed' && showDismissed && stepDismissedRender() }
+			{ status === 'new' && renderNewStep() }
+			{ status === 'done' && renderDoneStep() }
+			{ status === 'dismissed' && renderDismissedStep() }
 		</>
 	);
 };

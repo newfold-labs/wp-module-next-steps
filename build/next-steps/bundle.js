@@ -1768,13 +1768,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   NextStepsApp: () => (/* binding */ NextStepsApp)
 /* harmony export */ });
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/components/page/index.js");
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/components/page/index.js");
 /* harmony import */ var _nextSteps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../nextSteps */ "./src/components/nextSteps/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles.scss */ "./src/components/app/styles.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles.scss */ "./src/components/app/styles.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -1782,9 +1785,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const NextStepsApp = () => {
   const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()('nfd-next-steps-app-container');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: classes,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_nextSteps__WEBPACK_IMPORTED_MODULE_0__.NextSteps, {})
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_nextSteps__WEBPACK_IMPORTED_MODULE_0__.NextSteps, {})
   });
 };
 
@@ -1888,7 +1891,7 @@ const NextSteps = () => {
     postStatusUpdate(id, status);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "nfd-nextsteps-steps nfd-grid nfd-gap-6 nfd-grid-cols-1",
+    className: "nfd-nextsteps-steps nfd-grid nfd-gap-2 nfd-grid-cols-1",
     children: steps.map((step, i) => {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_step__WEBPACK_IMPORTED_MODULE_1__.Step, {
         id: step.id,
@@ -1917,8 +1920,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Step: () => (/* binding */ Step)
 /* harmony export */ });
 /* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/checkbox/index.js");
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/title/index.js");
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/button/index.js");
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/button/index.js");
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/title/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
@@ -1951,7 +1954,7 @@ const Step = ({
     }
     return '_blank';
   };
-  const stepDoneRender = () => {
+  const renderDoneStep = () => {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "nfd-nextsteps-step-container",
       id: id,
@@ -1968,20 +1971,11 @@ const Step = ({
           "data-nfd-click": "nextsteps_step_checkbox",
           "data-nfd-event-key": id,
           "data-nfd-event-category": "nextsteps_step"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            as: "h4",
-            className: "nfd-nextsteps-step-title",
-            children: title
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            children: description
-          })]
-        })]
+        }), renderStepContent()]
       })
     });
   };
-  const stepNewRender = () => {
+  const renderNewStep = () => {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "nfd-nextsteps-step-container",
       id: id,
@@ -1996,44 +1990,63 @@ const Step = ({
           "data-nfd-click": "nextsteps_step_checkbox",
           "data-nfd-event-key": id,
           "data-nfd-event-category": "nextsteps_step"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between",
+        }), renderStepContent(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-justify-end",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            as: "h4",
-            className: "nfd-nextsteps-step-title",
-            children: title
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            children: description
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "nfd-nextsteps-buttons nfd-self-end",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__["default"], {
             as: "a",
-            className: "nfd-nextsteps-step-link",
+            className: "nfd-nextsteps-button-link",
+            "data-nfd-click": "nextsteps_step_link",
+            "data-nfd-event-category": "nextsteps_step",
+            "data-nfd-event-key": id,
             href: getHref(),
             size: "small",
             target: getTarget(),
-            variant: "secondary",
-            "data-nfd-click": "nextsteps_step_link",
-            "data-nfd-event-key": id,
-            "data-nfd-event-category": "nextsteps_step",
             title: description,
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Go', 'wp-module-next-steps')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__["default"], {
-            className: "nfd-nextsteps-step-dismiss",
-            size: "small",
-            variant: "secondary",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+              // https://heroicons.com/
+              xmlns: "http://www.w3.org/2000/svg",
+              fill: "none",
+              viewBox: "0 0 24 24",
+              strokeWidth: 1.5,
+              stroke: "currentColor",
+              className: "size-6",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                d: "M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            as: "a",
+            className: "nfd-nextsteps-button-dismiss",
             "data-nfd-click": "nextsteps_step_dismiss",
-            "data-nfd-event-key": id,
             "data-nfd-event-category": "nextsteps_step",
+            "data-nfd-event-key": id,
+            href: "#",
             onClick: e => completeCallback(id, 'dismissed'),
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('x', 'wp-module-next-steps')
+            size: "small",
+            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Dismiss', 'newfold-labs-next-steps'),
+            variant: "error",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+              // https://heroicons.com/
+              xmlns: "http://www.w3.org/2000/svg",
+              fill: "none",
+              viewBox: "0 0 24 24",
+              strokeWidth: 1.5,
+              stroke: "currentColor",
+              className: "size-6",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                d: "M6 18 18 6M6 6l12 12"
+              })
+            })
           })]
         })]
       })
     });
   };
-  const stepDismissedRender = () => {
+  const renderDismissedStep = () => {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "nfd-nextsteps-step-container",
       id: id,
@@ -2049,21 +2062,24 @@ const Step = ({
           "data-nfd-click": "nextsteps_step_checkbox",
           "data-nfd-event-key": id,
           "data-nfd-event-category": "nextsteps_step"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "nfd-nextsteps-content nfd-flex nfd-flex-col nfd-justify-between",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            as: "h4",
-            className: "nfd-nextsteps-step-title",
-            children: title
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            children: description
-          })]
-        })]
+        }), renderStepContent()]
       })
     });
   };
+  const renderStepContent = () => {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        as: "span",
+        className: "nfd-nextsteps-step-title",
+        children: title
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        children: description
+      })]
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [status === 'new' && showNew && stepNewRender(), status === 'done' && showDone && stepDoneRender(), status === 'dismissed' && showDismissed && stepDismissedRender()]
+    children: [status === 'new' && renderNewStep(), status === 'done' && renderDoneStep(), status === 'dismissed' && renderDismissedStep()]
   });
 };
 
