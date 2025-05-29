@@ -1,4 +1,6 @@
 import { useState } from '@wordpress/element';
+import { Button } from '@newfold/ui-component-library';
+import { __, sprintf } from '@wordpress/i18n';
 import { Step } from '../step';
 // sort steps by priority
 const sortbyPriority = ( steps ) => {
@@ -54,11 +56,15 @@ const postStatusUpdate = ( id, status ) => {
 };
 
 export const NextSteps = () => {
+	const [ showNew, setShowNew ] = useState( true );
+	const [ showDone, setShowDone ] = useState( false );
+	const [ showDismissed, setShowDismissed ] = useState( false );
 	const [ steps, setSteps ] = useState(
 		sortbyStatus( sortbyPriority( window.NewfoldNextSteps.steps ) )
 	);
 	// group by category?
-	// add listener for status change/checkbox
+
+	// listener for status change/checkbox
 	const completeCallback = ( id, status ) => {
 		// update status in steps
 		const updatedSteps = steps.map( ( step ) => {
@@ -73,22 +79,61 @@ export const NextSteps = () => {
 		postStatusUpdate( id, status );
 	};
 
+	const showAll = () => {
+		setShowNew( true );
+		setShowDone( true );
+		setShowDismissed( true );
+	};
+
 	return (
-		<div className="nfd-nextsteps-steps nfd-grid nfd-gap-2 nfd-grid-cols-1">
-			{ steps.map( ( step, i ) => {
-				return (
-					<Step
-						key={ i }
-						id={ step.id }
-						title={ step.title }
-						description={ step.description }
-						category={ step.category }
-						status={ step.status }
-						href={ step.href }
-						completeCallback={ completeCallback }
-					/>
-				);
-			} ) }
-		</div>
+		<>
+			<p>
+				{ __(
+					'To get the best experience, we recommend completing these onboarding steps',
+					'newfold-next-steps'
+				) }
+			</p>
+			<div className="nfd-nextsteps-steps nfd-grid nfd-gap-2 nfd-grid-cols-1">
+				{ steps.map( ( step, i ) => {
+					if (
+						( ! showNew && step.status === 'new' ) ||
+						( ! showDone && step.status === 'done' ) ||
+						( ! showDismissed && step.status === 'dismissed' )
+					) {
+						return null;
+					}
+					return (
+						<Step
+							key={ i }
+							id={ step.id }
+							title={ step.title }
+							description={ step.description }
+							category={ step.category }
+							status={ step.status }
+							href={ step.href }
+							completeCallback={ completeCallback }
+						/>
+					);
+				} ) }
+			</div>
+			<div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">
+				<Button
+					className="nfd-nextsteps-filter-button"
+					data-nfd-click="nextsteps_step_toggle"
+					data-nfd-event-category="nextsteps_toggle"
+					data-nfd-event-key="toggle"
+					onClick={ () => {
+						setShowNew( ! showNew );
+						setShowDone( ! showDone );
+						setShowDismissed( ! showDismissed );
+					} }
+					variant="secondary"
+				>
+					{ showDone
+						? __( 'View incomplete tasks', 'newfold-next-steps' )
+						: __( 'View completed tasks', 'newfold-next-steps' ) }
+				</Button>
+			</div>
+		</>
 	);
 };

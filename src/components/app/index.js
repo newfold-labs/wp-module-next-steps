@@ -1,7 +1,6 @@
 import { Page } from '@newfold/ui-component-library';
 import { NextSteps } from '../nextSteps';
 import classNames from 'classnames';
-import { useState } from '@wordpress/element';
 import './styles.scss';
 
 export const NextStepsApp = () => {
@@ -10,7 +9,6 @@ export const NextStepsApp = () => {
 	return (
 		<Page className={ classes }>
 			<NextSteps />
-
 		</Page>
 	);
 };

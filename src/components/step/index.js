@@ -63,7 +63,7 @@ export const Step = ( {
 						data-nfd-event-category="nextsteps_step"
 					/>
 					{ renderStepContent() }
-					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-justify-end">
+					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<Button
 							as="a"
 							className="nfd-nextsteps-button-link"
