@@ -117,10 +117,11 @@ class StepsApi {
 	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function get_steps() {
-		/* // dev mode - uncomment this to reset steps to default
+		// dev mode - uncomment this to reset steps to default
+		/* 
 		$next_steps = false;
 		if ( $next_steps && false === $next_steps ) {
-			$this->set_data( 
+			$this->set_data(
 				array(
 					'message' => 'Default steps.',
 					'steps' => array(
@@ -214,18 +215,20 @@ class StepsApi {
 
 		if ( false === $next_steps ) {
 
-			// TODO: update response to be available without connection and return solutions categories and premium
-			// If there is no Hiive connection, bail.
-			// if ( ! HiiveConnection::is_connected() ) {
-			// 	// If no connection, give an empty response.
-			// 	return new WP_REST_Response(
-			// 		array(
-			// 			'message' => __( 'No Hiive connection found. Please connect to Hiive to get the next steps.', 'wp-module-next-steps' ),
-			// 			'steps'   => array(),
-			// 		),
-			// 		200
-			// 	);
-			// }
+			//TODO: update response to be available without connection and return solutions categories and premium
+			//If there is no Hiive connection, bail.
+			/*
+			if ( ! HiiveConnection::is_connected() ) {
+				// If no connection, give an empty response.
+				return new WP_REST_Response(
+					array(
+						'message' => __( 'No Hiive connection found. Please connect to Hiive to get the next steps.', 'wp-module-next-steps' ),
+						'steps'   => array(),
+					),
+					200
+				);
+			}
+			*/
 
 			// Get fresh entitlements data from Hiive API
 			$response = wp_remote_get(
@@ -240,7 +243,7 @@ class StepsApi {
 			);
 
 			if ( is_wp_error( $response ) ) {
-				return new WP_REST_Response( 
+				return new WP_REST_Response(
 					array( 'message' => 'An error occurred with the next steps response.' ),
 					500
 				);
@@ -258,11 +261,10 @@ class StepsApi {
 	/**
 	 * Update a step status.
 	 *
-	 * @param string $id The ID of the step to update.
-	 * @param string $status The new status of the step.
+	 * @param string $request  The REST request object.
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 */
-	public function update_step_status(  \WP_REST_Request $request ) {
+	public function update_step_status( \WP_REST_Request $request ) {
 		$id     = $request->get_param( 'id' );
 		$status = $request->get_param( 'status' );
 		// validate parameters

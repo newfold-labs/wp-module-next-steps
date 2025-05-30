@@ -73,7 +73,7 @@ class NextStepsWidget {
 	 * @return string the URL with UTM params
 	 */
 	public static function add_utm_params( $url ) {
-		$data = array(
+		$data        = array(
 			'utm_source' => 'wp-admin/index.php?widget=next_steps_widget',
 			'utm_medium' => 'brand_plugin',
 		);
