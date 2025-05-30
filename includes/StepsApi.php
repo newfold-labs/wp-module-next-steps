@@ -118,7 +118,8 @@ class StepsApi {
 	 */
 	public function get_steps() {
 		// dev mode - uncomment this to reset steps to default
-		/* 
+
+		/*
 		$next_steps = false;
 		if ( $next_steps && false === $next_steps ) {
 			$this->set_data(
@@ -215,9 +216,10 @@ class StepsApi {
 
 		if ( false === $next_steps ) {
 
-			//TODO: update response to be available without connection and return solutions categories and premium
-			//If there is no Hiive connection, bail.
+			// If there is no Hiive connection, bail.
+
 			/*
+			// TODO: update response to be available without connection and return default steps
 			if ( ! HiiveConnection::is_connected() ) {
 				// If no connection, give an empty response.
 				return new WP_REST_Response(
@@ -261,7 +263,7 @@ class StepsApi {
 	/**
 	 * Update a step status.
 	 *
-	 * @param string $request  The REST request object.
+	 * @param WP_REST_Request $request  The REST request object.
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 */
 	public function update_step_status( \WP_REST_Request $request ) {
