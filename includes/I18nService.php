@@ -56,7 +56,6 @@ class I18nService {
 			'wp-module-next-steps',
 			NFD_NEXTSTEPS_DIR . '/languages'
 		);
-
 	}
 
 	/**
