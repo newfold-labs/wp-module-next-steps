@@ -25,7 +25,7 @@ class Step {
 		string $description,
 		int $priority,
 		string $status,
-		string $href,
+		string $href
 	) {}
 
 	/**

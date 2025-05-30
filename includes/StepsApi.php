@@ -263,7 +263,7 @@ class StepsApi {
 	/**
 	 * Update a step status.
 	 *
-	 * @param WP_REST_Request $request  The REST request object.
+	 * @param \WP_REST_Request $request  The REST request object.
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 */
 	public function update_step_status( \WP_REST_Request $request ) {
