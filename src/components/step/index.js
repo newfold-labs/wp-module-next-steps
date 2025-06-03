@@ -61,7 +61,7 @@ export const Step = ( {
 							onClick={ ( e ) => completeCallback( id, 'done' ) }
 							size="small"
 							title={ __(
-								'Complete Step',
+								'Mark Complete',
 								'newfold-labs-next-steps'
 							) }
 						>
@@ -156,10 +156,7 @@ export const Step = ( {
 							href="#"
 							onClick={ ( e ) => completeCallback( id, 'new' ) }
 							size="small"
-							title={ __(
-								'Redo Step',
-								'newfold-labs-next-steps'
-							) }
+							title={ __( 'Restart', 'newfold-labs-next-steps' ) }
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -196,10 +193,7 @@ export const Step = ( {
 							href="#"
 							onClick={ ( e ) => completeCallback( id, 'new' ) }
 							size="small"
-							title={ __(
-								'Redo Step',
-								'newfold-labs-next-steps'
-							) }
+							title={ __( 'Restart', 'newfold-labs-next-steps' ) }
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
