@@ -27,55 +27,22 @@ export const Step = ( {
 		}
 		return '_blank';
 	};
-	const renderDoneStep = () => {
+	const renderStepContent = ( href = false, target = '' ) => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id }>
-				<div className="nfd-nextsteps-step nfd-nextsteps-step-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
-					{ /* <Checkbox
-						className="nfd-nextsteps-step-checkbox"
-						description={ description }
-						id={ id }
-						name={ id }
-						value={ id }
-						onChange={ ( e ) => completeCallback( id, 'new' ) }
-						checked={ true }
-						data-nfd-click="nextsteps_step_checkbox"
-						data-nfd-event-key={ id }
-						data-nfd-event-category="nextsteps_step"
-					/> */ }
-					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end nfd-mr-4">
-						<Button
-							as="a"
-							className="nfd-nextsteps-button nfd-nextsteps-button-redo"
-							data-nfd-click="nextsteps_step_redo"
-							data-nfd-event-category="nextsteps_step"
-							data-nfd-event-key={ id }
-							href="#"
-							onClick={ ( e ) => completeCallback( id, 'new' ) }
-							size="small"
-							title={ __(
-								'Redo Step',
-								'newfold-labs-next-steps'
-							) }
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								strokeWidth={ 1.5 }
-								stroke="currentColor"
-								className="size-6"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="m4.5 12.75 6 6 9-13.5"
-								/>
-							</svg>
-						</Button>
-					</div>
-					{ renderStepContent() }
-				</div>
+			<div className="nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between">
+				{ href && (
+					<a href={ href } target={ target }>
+						<Title as="span" className="nfd-nextsteps-step-title">
+							{ title }
+						</Title>
+					</a>
+				) }
+				{ ! href && (
+					<Title as="span" className="nfd-nextsteps-step-title">
+						{ title }
+					</Title>
+				) }
+				<span>{ description }</span>
 			</div>
 		);
 	};
@@ -83,16 +50,6 @@ export const Step = ( {
 		return (
 			<div className="nfd-nextsteps-step-container" id={ id }>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
-					{ /* <Checkbox
-						className="nfd-nextsteps-step-checkbox"
-						id={ id }
-						name={ id }
-						value={ id }
-						onChange={ ( e ) => completeCallback( id, 'done' ) }
-						data-nfd-click="nextsteps_step_checkbox"
-						data-nfd-event-key={ id }
-						data-nfd-event-category="nextsteps_step"
-					/> */ }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<Button
 							as="a"
@@ -124,7 +81,7 @@ export const Step = ( {
 							</svg>
 						</Button>
 					</div>
-					{ renderStepContent() }
+					{ renderStepContent( getHref(), getTarget() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end nfd-ml-auto">
 						<Button
 							as="a"
@@ -135,7 +92,7 @@ export const Step = ( {
 							href={ getHref() }
 							size="small"
 							target={ getTarget() }
-							title={ description }
+							title={ title }
 						>
 							<svg // https://heroicons.com/
 								xmlns="http://www.w3.org/2000/svg"
@@ -185,21 +142,50 @@ export const Step = ( {
 			</div>
 		);
 	};
+	const renderDoneStep = () => {
+		return (
+			<div className="nfd-nextsteps-step-container" id={ id }>
+				<div className="nfd-nextsteps-step nfd-nextsteps-step-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end nfd-mr-4">
+						<Button
+							as="a"
+							className="nfd-nextsteps-button nfd-nextsteps-button-redo"
+							data-nfd-click="nextsteps_step_redo"
+							data-nfd-event-category="nextsteps_step"
+							data-nfd-event-key={ id }
+							href="#"
+							onClick={ ( e ) => completeCallback( id, 'new' ) }
+							size="small"
+							title={ __(
+								'Redo Step',
+								'newfold-labs-next-steps'
+							) }
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={ 1.5 }
+								stroke="currentColor"
+								className="size-6"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="m4.5 12.75 6 6 9-13.5"
+								/>
+							</svg>
+						</Button>
+					</div>
+					{ renderStepContent() }
+				</div>
+			</div>
+		);
+	};
 	const renderDismissedStep = () => {
 		return (
 			<div className="nfd-nextsteps-step-container" id={ id }>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
-					{ /* <Checkbox
-						className="nfd-nextsteps-step-checkbox"
-						description={ description }
-						id={ id }
-						name={ id }
-						value={ id }
-						onChange={ ( e ) => completeCallback( id, 'new' ) }
-						data-nfd-click="nextsteps_step_checkbox"
-						data-nfd-event-key={ id }
-						data-nfd-event-category="nextsteps_step"
-					/> */ }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end nfd-mr-4">
 						<Button
 							as="a"
@@ -233,16 +219,6 @@ export const Step = ( {
 					</div>
 					{ renderStepContent() }
 				</div>
-			</div>
-		);
-	};
-	const renderStepContent = () => {
-		return (
-			<div className="nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between">
-				<Title as="span" className="nfd-nextsteps-step-title">
-					{ title }
-				</Title>
-				<span>{ description }</span>
 			</div>
 		);
 	};
