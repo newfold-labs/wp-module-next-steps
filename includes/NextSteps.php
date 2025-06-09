@@ -99,7 +99,7 @@ class NextSteps {
 			NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps/bundle.js',
 			array_merge(
 				$asset['dependencies'],
-				array( 'nfd-installer' ),
+				array( 'newfold-hiive-events' ),
 			),
 			$asset['version'],
 			true
