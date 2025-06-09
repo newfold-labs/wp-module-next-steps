@@ -5,10 +5,6 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 const apps = [ 'next-steps' ];
 
-const alias = {
-	common: path.resolve( __dirname, '/src/common' ),
-};
-
 module.exports = apps.map( ( app ) =>
 	merge( wpScriptsConfig, {
 		entry: {
@@ -17,9 +13,6 @@ module.exports = apps.map( ( app ) =>
 		output: {
 			path: path.resolve( __dirname, `./build/${ app }` ),
 			filename: 'bundle.js',
-		},
-		resolve: {
-			alias,
 		},
 		module: {
 			rules: [
