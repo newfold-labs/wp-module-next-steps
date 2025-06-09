@@ -62,7 +62,7 @@ export const Step = ( {
 							size="small"
 							title={ __(
 								'Mark Complete',
-								'newfold-labs-next-steps'
+								'wp-module-next-steps'
 							) }
 						>
 							<svg
@@ -120,7 +120,7 @@ export const Step = ( {
 								completeCallback( id, 'dismissed' )
 							}
 							size="small"
-							title={ __( 'Dismiss', 'newfold-labs-next-steps' ) }
+							title={ __( 'Dismiss', 'wp-module-next-steps' ) }
 						>
 							<svg // https://heroicons.com/
 								xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +156,7 @@ export const Step = ( {
 							href="#"
 							onClick={ ( e ) => completeCallback( id, 'new' ) }
 							size="small"
-							title={ __( 'Restart', 'newfold-labs-next-steps' ) }
+							title={ __( 'Restart', 'wp-module-next-steps' ) }
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +193,7 @@ export const Step = ( {
 							href="#"
 							onClick={ ( e ) => completeCallback( id, 'new' ) }
 							size="small"
-							title={ __( 'Restart', 'newfold-labs-next-steps' ) }
+							title={ __( 'Restart', 'wp-module-next-steps' ) }
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

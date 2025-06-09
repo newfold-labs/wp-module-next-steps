@@ -6,11 +6,17 @@
         padding: 10px;
         margin-bottom: 10px;
         background-color: #f9f9f9;
+        transition: .2s all ease-in-out;
+
+        &:hover {
+            background-color: #EAF4FB;
+            border-color: #336AD7;
+        }
     }
 
     .nfd-nextsteps-step-done {
         text-decoration: line-through;
-        background-color: #F6FDE8;
+        background-color: #F6FDE8 !important;
     }
     .nfd-nextsteps-step-dismissed {
         text-decoration: line-through;

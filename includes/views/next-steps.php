@@ -18,6 +18,7 @@ $svg_64              = base64_encode( $clipboard_check_svg );
 
 ?>
 <style>
+	/* Next Steps Widget Header Style */
 	#nfd_next_steps_widget h2 {
 		justify-content: start;
 		gap: .5rem;

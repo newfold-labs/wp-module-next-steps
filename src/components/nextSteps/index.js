@@ -90,7 +90,7 @@ export const NextSteps = () => {
 			<p>
 				{ __(
 					'To get the best experience, we recommend completing these onboarding steps',
-					'newfold-next-steps'
+					'wp-module-next-steps'
 				) }
 			</p>
 			<div className="nfd-nextsteps-steps nfd-grid nfd-gap-2 nfd-grid-cols-1">
@@ -130,8 +130,8 @@ export const NextSteps = () => {
 					variant="secondary"
 				>
 					{ showDone
-						? __( 'View incomplete tasks', 'newfold-next-steps' )
-						: __( 'View completed tasks', 'newfold-next-steps' ) }
+						? __( 'View incomplete tasks', 'wp-module-next-steps' )
+						: __( 'View complete tasks', 'wp-module-next-steps' ) }
 				</Button>
 			</div>
 		</>
