@@ -88,8 +88,8 @@ export const NextSteps = () => {
 	};
 
 	return (
-		<div className='nfd-nextsteps'>
-			<p>
+		<div className="nfd-nextsteps" id="nfd-nextsteps">
+			<p className="nfd-pb-4">
 				{ __(
 					'To get the best experience, we recommend completing these onboarding steps',
 					'wp-module-next-steps'

@@ -109,7 +109,7 @@ class NextSteps {
 		\wp_register_style(
 			'next-steps-widget-style',
 			$build_dir . 'next-steps-widget.css',
-			null,
+			array( 'bluehost-style' ),
 			$asset['version']
 		);
 

@@ -57,7 +57,6 @@ export const Step = ( {
 							data-nfd-click="nextsteps_step_check"
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
-							href="#"
 							onClick={ ( e ) => completeCallback( id, 'done' ) }
 							size="small"
 							title={ __(
@@ -115,7 +114,6 @@ export const Step = ( {
 							data-nfd-click="nextsteps_step_dismiss"
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
-							href="#"
 							onClick={ ( e ) =>
 								completeCallback( id, 'dismissed' )
 							}
@@ -153,7 +151,6 @@ export const Step = ( {
 							data-nfd-click="nextsteps_step_redo"
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
-							href="#"
 							onClick={ ( e ) => completeCallback( id, 'new' ) }
 							size="small"
 							title={ __( 'Restart', 'wp-module-next-steps' ) }
@@ -190,7 +187,6 @@ export const Step = ( {
 							data-nfd-click="nextsteps_step_redo"
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
-							href="#"
 							onClick={ ( e ) => completeCallback( id, 'new' ) }
 							size="small"
 							title={ __( 'Restart', 'wp-module-next-steps' ) }
