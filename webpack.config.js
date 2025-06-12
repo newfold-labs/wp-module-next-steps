@@ -3,7 +3,7 @@ const { merge } = require( 'webpack-merge' );
 const wpScriptsConfig = require( '@wordpress/scripts/config/webpack.config' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
-const apps = [ 'next-steps' ];
+const apps = [ 'next-steps-fill', 'next-steps-widget' ];
 
 module.exports = apps.map( ( app ) =>
 	merge( wpScriptsConfig, {

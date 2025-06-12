@@ -40,9 +40,8 @@ class NextSteps {
 		self::$steps_api = new StepsApi( $hiive );
 		$this->container = $container;
 		\add_action( 'rest_api_init', array( $this, 'init_steps_apis' ) );
-		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_assets' ) );
-
-		\add_filter( 'nfd_plugin_subnav', array( $this, 'add_nfd_subnav' ) );
+		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_widget' ) );
+		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_fill' ) );
 
 		new I18nService( $container );
 		if ( is_admin() ) {
@@ -84,10 +83,12 @@ class NextSteps {
 	}
 
 	/**
-	 * Enqueue assets and set locals.
+	 * Enqueue widget app assets.
 	 */
-	public static function nextsteps_assets() {
-		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps/bundle.asset.php';
+	public static function nextsteps_widget() {
+		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-widget/bundle.asset.php';
+		$build_dir = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-widget/';
+
 		if ( is_readable( $asset_file ) ) {
 			$asset = include_once $asset_file;
 		} else {
@@ -95,8 +96,8 @@ class NextSteps {
 		}
 
 		\wp_register_script(
-			'nextsteps',
-			NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps/bundle.js',
+			'next-steps-widget',
+			$build_dir . 'bundle.js',
 			array_merge(
 				$asset['dependencies'],
 				array( 'newfold-hiive-events' ),
@@ -106,27 +107,81 @@ class NextSteps {
 		);
 
 		\wp_register_style(
-			'nextsteps-style',
-			NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps/next-steps.css',
+			'next-steps-widget-style',
+			$build_dir . 'next-steps-widget.css',
 			null,
 			$asset['version']
 		);
 
-		// Only enqueue on next-steps page
-		// $screen = \get_current_screen();
-		// if ( isset( $screen->id ) && false !== strpos( $screen->id, 'next-steps' ) ) {
-			\wp_enqueue_script( 'nextsteps' );
-			\wp_enqueue_style( 'nextsteps-style' );
+		// Only enqueue on dashboard page
+		$screen = \get_current_screen();
+		if ( isset( $screen->id ) && false !== strpos( $screen->id, 'dashboard' ) ) {
+			\wp_enqueue_script( 'next-steps-widget' );
+			\wp_enqueue_style( 'next-steps-widget-style' );
 
 			$next_steps_data = json_decode( \wp_json_encode( self::$steps_api->get_steps()->data ), true );
 
 			\wp_localize_script(
-				'nextsteps',
+				'next-steps-widget',
 				'NewfoldNextSteps',
 				array_merge(
 					$next_steps_data,
 				)
 			);
-		// }
+		}
+	}
+
+	/**
+	 * Enqueue Fill app assets.
+	 */
+	public static function nextsteps_fill() {
+		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-fill/bundle.asset.php';
+		$build_dir = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-fill/';
+
+		if ( is_readable( $asset_file ) ) {
+			$asset = include_once $asset_file;
+		} else {
+			return;
+		}
+
+		\wp_register_script(
+			'next-steps-fill',
+			$build_dir . 'bundle.js',
+			array_merge(
+				$asset['dependencies'],
+				array( 'newfold-hiive-events', 'bluehost-script', 'nfd-portal-registry' ),
+			),
+			$asset['version'],
+			true
+		);
+
+		\wp_register_style(
+			'next-steps-fill-style',
+			$build_dir . 'next-steps-fill.css',
+			null,
+			$asset['version']
+		);
+
+		// Only enqueue on plugin page
+		$screen = \get_current_screen();
+		if ( isset( $screen->id ) && 
+			( 
+				false !== strpos( $screen->id, 'bluehost' ) ||
+				false !== strpos( $screen->id, 'hostgator' )
+			)
+		) {
+			\wp_enqueue_script( 'next-steps-fill' );
+			\wp_enqueue_style( 'next-steps-fill-style' );
+
+			$next_steps_data = json_decode( \wp_json_encode( self::$steps_api->get_steps()->data ), true );
+
+			\wp_localize_script(
+				'next-steps-fill',
+				'NewfoldNextSteps',
+				array_merge(
+					$next_steps_data,
+				)
+			);
+		}
 	}
 }
