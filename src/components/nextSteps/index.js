@@ -1,7 +1,9 @@
 import { useState } from '@wordpress/element';
 import { Button } from '@newfold/ui-component-library';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { Step } from '../step';
+import './styles.scss';
+
 // sort steps by priority
 const sortbyPriority = ( steps ) => {
 	return steps.sort( ( a, b ) => {
@@ -86,7 +88,7 @@ export const NextSteps = () => {
 	};
 
 	return (
-		<>
+		<div className='nfd-nextsteps'>
 			<p>
 				{ __(
 					'To get the best experience, we recommend completing these onboarding steps',
@@ -134,6 +136,6 @@ export const NextSteps = () => {
 						: __( 'View complete tasks', 'wp-module-next-steps' ) }
 				</Button>
 			</div>
-		</>
+		</div>
 	);
 };

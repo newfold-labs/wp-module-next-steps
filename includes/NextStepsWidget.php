@@ -2,7 +2,7 @@
 /**
  * Next Steps Widget.
  *
- * @package WPPluginBluehost
+ * @package WPModuleNextSteps
  */
 
 namespace NewfoldLabs\WP\Module\NextSteps;
