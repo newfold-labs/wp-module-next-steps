@@ -2,7 +2,7 @@ import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
 import { NextStepsFillApp } from '../components/fill';
 
-const WP_NEXTSTEPS_FILL_ELEMENT = 'nfd-portal-app';
+const WP_NEXTSTEPS_FILL_ELEMENT = 'nfd-next-steps-portal';
 let root = null;
 
 const App = () => {
