@@ -59,7 +59,6 @@ class DefaultSteps {
                 self::get_default_store_data()
             );
         }
-
         return $defaults;
     }
 

@@ -62,7 +62,7 @@ export const NextSteps = () => {
 	const [ showDone, setShowDone ] = useState( false );
 	const [ showDismissed, setShowDismissed ] = useState( false );
 	const [ steps, setSteps ] = useState(
-		sortbyStatus( sortbyPriority( window.NewfoldNextSteps.steps ) )
+		sortbyStatus( sortbyPriority( window.NewfoldNextSteps ) )
 	);
 	// group by category?
 
