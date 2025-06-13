@@ -23,17 +23,35 @@ class DefaultSteps {
 	public function __construct() {
 		// Register the widget
 		\add_action( 'init', array( __CLASS__, 'load_default_steps' ), 1 );
+        \add_action( 'activated_plugin', array( __CLASS__, 'add_store_steps_on_woocommerce_activation' ), 10, 2 );
 	}
 
    /**
     * Default site steps.
     */
     public static function load_default_steps() {
+        // $next_steps = false; // useful for resetting while debugging
         // if no steps found
         if ( ! get_option( StepsApi::OPTION ) ) {
             // add default steps
             StepsApi::set_data( self::get_defaults() );
         }
+    }
+
+    /**
+     * If WooCommerce is activated, add store steps to next steps.
+     *
+     * @param string $plugin The plugin being activated.
+     * @param bool $network_wide Whether the plugin is being activated network-wide.
+     */
+    public static function add_store_steps_on_woocommerce_activation( $plugin, $network_wide ) {
+        // Only run if WooCommerce is being activated
+        if ( $plugin !== 'woocommerce/woocommerce.php' ) {
+            return;
+        }
+
+        // Add or update steps using StepsApi
+        StepsApi::add_steps( self::get_default_store_data() );
     }
 
    /**

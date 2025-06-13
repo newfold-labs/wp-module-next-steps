@@ -118,7 +118,6 @@ class StepsApi {
 	 */
 	public static function get_steps() {
 		$next_steps = get_option( self::OPTION );
-		$next_steps = false; // useful for resetting while debugging
 
 		// set default steps if none are found
 		if ( false === $next_steps ) {
