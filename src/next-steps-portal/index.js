@@ -1,15 +1,15 @@
 import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
-import { NextStepsFillApp } from '../components/fill';
+import { NextStepsPortalApp } from '../components/portal';
 
 const WP_NEXTSTEPS_FILL_ELEMENT = 'nfd-next-steps-portal';
 let root = null;
 
 const App = () => {
-	return <NextStepsFillApp />;
+	return <NextStepsPortalApp />;
 };
 
-const NextStepsFillAppRender = () => {
+const NextStepsPortalAppRender = () => {
 	const DOM_ELEMENT = document.getElementById( WP_NEXTSTEPS_FILL_ELEMENT );
 	if ( null !== DOM_ELEMENT ) {
 		if ( 'undefined' !== typeof createRoot ) {
@@ -21,5 +21,5 @@ const NextStepsFillAppRender = () => {
 	}
 };
 
-// window.addEventListener( 'nfd:slots-ready', NextStepsFillAppRender );
-domReady( NextStepsFillAppRender );
+// window.addEventListener( 'nfd:slots-ready', NextStepsPortalAppRender );
+domReady( NextStepsPortalAppRender );

@@ -1,7 +1,7 @@
 import { createPortal, useEffect, useState } from '@wordpress/element';
 import { NextSteps } from '../nextSteps';
 
-export const NextStepsFillApp = () => {
+export const NextStepsPortalApp = () => {
 	const [ container, setContainer ] = useState( null );
 
 	useEffect( () => {

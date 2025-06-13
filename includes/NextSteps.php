@@ -41,7 +41,7 @@ class NextSteps {
 		$this->container = $container;
 		\add_action( 'rest_api_init', array( $this, 'init_steps_apis' ) );
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_widget' ) );
-		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_fill' ) );
+		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_portal' ) );
 
 		new I18nService( $container );
 		if ( is_admin() ) {
@@ -134,9 +134,9 @@ class NextSteps {
 	/**
 	 * Enqueue Fill app assets.
 	 */
-	public static function nextsteps_fill() {
-		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-fill/bundle.asset.php';
-		$build_dir = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-fill/';
+	public static function nextsteps_portal() {
+		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-portal/bundle.asset.php';
+		$build_dir = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-portal/';
 
 		if ( is_readable( $asset_file ) ) {
 			$asset = include_once $asset_file;
@@ -145,7 +145,7 @@ class NextSteps {
 		}
 
 		\wp_register_script(
-			'next-steps-fill',
+			'next-steps-portal',
 			$build_dir . 'bundle.js',
 			array_merge(
 				$asset['dependencies'],
@@ -156,8 +156,8 @@ class NextSteps {
 		);
 
 		\wp_register_style(
-			'next-steps-fill-style',
-			$build_dir . 'next-steps-fill.css',
+			'next-steps-portal-style',
+			$build_dir . 'next-steps-portal.css',
 			null,
 			$asset['version']
 		);
@@ -170,13 +170,13 @@ class NextSteps {
 				false !== strpos( $screen->id, 'hostgator' )
 			)
 		) {
-			\wp_enqueue_script( 'next-steps-fill' );
-			\wp_enqueue_style( 'next-steps-fill-style' );
+			\wp_enqueue_script( 'next-steps-portal' );
+			\wp_enqueue_style( 'next-steps-portal-style' );
 
 			$next_steps_data = json_decode( \wp_json_encode( self::$steps_api->get_steps()->data ), true );
 
 			\wp_localize_script(
-				'next-steps-fill',
+				'next-steps-portal',
 				'NewfoldNextSteps',
 				array_merge(
 					$next_steps_data,
