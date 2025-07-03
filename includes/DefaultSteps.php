@@ -31,11 +31,11 @@ class DefaultSteps {
 		);
 	}
 
-   /**
+	/**
 	* Default site steps.
 	*/
 	public static function load_default_steps() {
-		// $next_steps = false; // useful for resetting while debugging
+		// $next_steps = false; // for resetting data while debugging
 		// if no steps found
 		if ( ! get_option( StepsApi::OPTION ) ) {
 			// add default steps
@@ -59,7 +59,7 @@ class DefaultSteps {
 		StepsApi::add_steps( self::get_default_store_data() );
 	}
 
-   /**
+	/**
 	* Get default steps based on site criteria.
 	*
 	* @return Array array of default step data
@@ -87,7 +87,7 @@ class DefaultSteps {
 
 	/**
 	 * Determine if site is blog
-	 * 
+	 *
 	 * @return Boolean
 	 */
 	public static function is_blog() {
@@ -99,7 +99,7 @@ class DefaultSteps {
 
 	/**
 	 * Determine if the site is a store
-	 * 
+	 *
 	 * @return Boolean
 	 */
 	public static function is_store() {
@@ -107,13 +107,14 @@ class DefaultSteps {
 			return true;
 		}
 		// check solutions data too?
+		// check for products post type?
 
 		return false;
 	}
 	
 	/**
 	 * Default site steps data.
-	 * 
+	 *
 	 * These apply to all sites
 	 */
 	public static function get_default_site_data() {
@@ -135,15 +136,6 @@ class DefaultSteps {
 				'status'      => 'new',
 				'priority'    => 20,
 				'source'      => 'wp-module-next-steps',
-				// 'autocomplete' => function () {
-				//     $query = new \WP_Query([
-				//         'post_type'      => 'page',
-				//         'post_status'    => 'publish',
-				//         'posts_per_page' => 1,
-				//         'fields'         => 'ids', // Faster, only fetch IDs
-				//     ]);
-				//     return $query->have_posts();
-				// },
 			),
 			array(
 				'id'          => 'upload_media',
@@ -153,16 +145,6 @@ class DefaultSteps {
 				'status'      => 'new',
 				'priority'    => 21,
 				'source'      => 'wp-module-next-steps',
-				// 'autocomplete' => function () {
-				//     $query = new \WP_Query([
-				//         'post_type'      => 'attachment',
-				//         'post_mime_type' => 'image',
-				//         'post_status'    => 'inherit',
-				//         'posts_per_page' => 1,
-				//         'fields'         => 'ids', // Faster, only fetch IDs
-				//     ]);
-				//     return $query->have_posts();
-				// },
 			),
 			array(
 				'id'          => 'yoast_academy',
