@@ -18,9 +18,7 @@ module.exports = apps.map( ( app ) =>
 			rules: [
 				{
 					test: /\.css$/,
-					include: [
-						path.resolve( __dirname, `src/${ app }` ),
-					],
+					include: [ path.resolve( __dirname, `src/${ app }` ) ],
 					use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
 				},
 			],
