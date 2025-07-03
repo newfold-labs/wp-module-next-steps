@@ -32,8 +32,8 @@ class DefaultSteps {
 	}
 
 	/**
-	* Default site steps.
-	*/
+	 * Default site steps.
+	 */
 	public static function load_default_steps() {
 		// $next_steps = false; // for resetting data while debugging
 		// if no steps found
@@ -50,26 +50,26 @@ class DefaultSteps {
 	 * @param bool $network_wide Whether the plugin is being activated network-wide.
 	 */
 	public static function add_store_steps_on_woocommerce_activation( $plugin, $network_wide ) {
-		// Only run if WooCommerce is being activated
-		if ( $plugin !== 'woocommerce/woocommerce.php' ) {
-			return;
+		// Only for WooCommerce
+		if ( 'woocommerce/woocommerce.php' === $plugin ) {
+			// Add or update steps using StepsApi
+			StepsApi::add_steps( self::get_default_store_data() );
 		}
 
-		// Add or update steps using StepsApi
-		StepsApi::add_steps( self::get_default_store_data() );
+		return;
 	}
 
 	/**
-	* Get default steps based on site criteria.
-	*
-	* @return Array array of default step data
-	*/
+	 * Get default steps based on site criteria.
+	 *
+	 * @return Array array of default step data
+	 */
 	public static function get_defaults() {
 		$defaults = self::get_default_site_data();
 
 		if ( self::is_blog() ) {
 			// add default blog steps
-			$defaults = array_merge( 
+			$defaults = array_merge(
 				$defaults,
 				self::get_default_blog_data()
 			);
@@ -77,7 +77,7 @@ class DefaultSteps {
 
 		if ( self::is_store() ) {
 			// add default store steps
-			$defaults = array_merge( 
+			$defaults = array_merge(
 				$defaults,
 				self::get_default_store_data()
 			);
@@ -111,7 +111,7 @@ class DefaultSteps {
 
 		return false;
 	}
-	
+
 	/**
 	 * Default site steps data.
 	 *
