@@ -1,0 +1,65 @@
+
+.nfd-nextsteps {
+    .nfd-nextsteps-step {
+        border: 1px solid #BBBCBC;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        transition: .2s all ease-in-out;
+
+        &:hover {
+            background-color: #EAF4FB;
+            border-color: #336AD7;
+        }
+    }
+
+    .nfd-nextsteps-step-done {
+        text-decoration: line-through;
+        background-color: #F6FDE8 !important;
+    }
+    .nfd-nextsteps-step-dismissed {
+        text-decoration: line-through;
+    }
+
+    .nfd-ml-auto {
+        margin-left: auto;
+    }
+    .nfd-nextsteps-button {
+        display: inline-flex;
+        padding: .25rem .35rem;
+        background-color: #336AD7;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 1rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #2851A3;
+        }
+        svg {
+            width: 1rem;
+            transition: opacity 0.3s ease;
+        }
+    }
+    .nfd-nextsteps-button-dismiss {
+        background-color: #aaa;
+
+        &:hover {
+            background-color: #999;
+        }
+    }
+    .nfd-nextsteps-button-redo,
+    .nfd-nextsteps-button-check {
+        background-color: #ABAE14;
+
+        &:hover {
+            background-color: #86880f;
+
+        }
+    }
+
+    .next-steps-spinner {
+        margin: 2rem auto;
+    }
+}

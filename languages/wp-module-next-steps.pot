@@ -1,0 +1,155 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: wp-module-next-steps\n"
+
+#: bootstrap.php:15
+#: includes/NextSteps.php:68
+#: includes/NextStepsWidget.php:39
+msgid "Next Steps"
+msgstr ""
+
+#: includes/DefaultSteps.php:124
+msgid "Explore the premium tools included in your solution"
+msgstr ""
+
+#: includes/DefaultSteps.php:125
+msgid "A bundle of features designed to elevate your online experience"
+msgstr ""
+
+#: includes/DefaultSteps.php:133
+msgid "Add a new page"
+msgstr ""
+
+#: includes/DefaultSteps.php:134
+msgid "Create a new page on your site."
+msgstr ""
+
+#: includes/DefaultSteps.php:142
+msgid "Add Media"
+msgstr ""
+
+#: includes/DefaultSteps.php:143
+msgid "Upload a new image to your site."
+msgstr ""
+
+#: includes/DefaultSteps.php:151
+msgid "Sign up for Yoast SEO Academy"
+msgstr ""
+
+#: includes/DefaultSteps.php:152
+msgid "Master WordPress SEO with expert training."
+msgstr ""
+
+#: includes/DefaultSteps.php:160
+#: includes/DefaultSteps.php:161
+msgid "Enable Jetpack to connect to your social media accounts"
+msgstr ""
+
+#: includes/DefaultSteps.php:177
+msgid "Add your first blog post"
+msgstr ""
+
+#: includes/DefaultSteps.php:178
+msgid "Create your first blog post and start sharing your thoughts"
+msgstr ""
+
+#: includes/DefaultSteps.php:186
+msgid "Configure your blog settings"
+msgstr ""
+
+#: includes/DefaultSteps.php:187
+msgid "Set up your blog settings to enhance your blogging experience"
+msgstr ""
+
+#: includes/DefaultSteps.php:203
+msgid "Add your store info"
+msgstr ""
+
+#: includes/DefaultSteps.php:204
+msgid "Build trust and present yourself in the best way to your customers"
+msgstr ""
+
+#: includes/DefaultSteps.php:212
+msgid "Add your first product"
+msgstr ""
+
+#: includes/DefaultSteps.php:213
+msgid "Create or import a product and bring your store to life"
+msgstr ""
+
+#: includes/DefaultSteps.php:221
+msgid "Connect a payment processor"
+msgstr ""
+
+#: includes/DefaultSteps.php:222
+msgid "Get ready to receive your first payments via PayPal or credit card"
+msgstr ""
+
+#: includes/DefaultSteps.php:230
+msgid "Configure tax settings"
+msgstr ""
+
+#: includes/DefaultSteps.php:231
+msgid "Set up your tax options to start selling"
+msgstr ""
+
+#: includes/DefaultSteps.php:239
+#: includes/DefaultSteps.php:240
+msgid "Setup shipping options"
+msgstr ""
+
+#: includes/StepsApi.php:210
+msgid "Invalid parameters provided."
+msgstr ""
+
+#: includes/StepsApi.php:213
+msgid "Invalid status provided."
+msgstr ""
+
+#: includes/StepsApi.php:219
+msgid "No steps found."
+msgstr ""
+
+#: includes/StepsApi.php:231
+msgid "Step not found."
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Mark Complete"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Dismiss"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Restart"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "To get the best experience, we recommend completing these onboarding steps"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "View incomplete tasks"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "View complete tasks"
+msgstr ""
