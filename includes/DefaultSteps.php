@@ -23,7 +23,12 @@ class DefaultSteps {
 	public function __construct() {
 		// Register the widget
 		\add_action( 'init', array( __CLASS__, 'load_default_steps' ), 1 );
-        \add_action( 'activated_plugin', array( __CLASS__, 'add_store_steps_on_woocommerce_activation' ), 10, 2 );
+        \add_action(
+            'activated_plugin',
+            array( __CLASS__, 'add_store_steps_on_woocommerce_activation' ),
+            10,
+            2
+        );
 	}
 
    /**
