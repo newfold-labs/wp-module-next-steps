@@ -35,9 +35,8 @@ class StepsApi {
 
 	/**
 	 * EntitilementsApi constructor.
-	 *
 	 */
-	public function __construct( ) {
+	public function __construct() {
 		$this->namespace = 'newfold-next-steps/v1';
 		$this->rest_base = '/steps';
 	}
@@ -172,7 +171,7 @@ class StepsApi {
 			}
 
 			// If existing step found
-			if ( $existing_index !== null ) {
+			if ( null !== $existing_index ) {
 				// Update allowed fields if the value is different.
 				foreach ( $sync_fields as $field ) {
 					if (

@@ -88,7 +88,7 @@ class NextSteps {
 	 */
 	public static function nextsteps_widget() {
 		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-widget/bundle.asset.php';
-		$build_dir = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-widget/';
+		$build_dir  = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-widget/';
 
 		if ( is_readable( $asset_file ) ) {
 			$asset = include_once $asset_file;
@@ -137,7 +137,7 @@ class NextSteps {
 	 */
 	public static function nextsteps_portal() {
 		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-portal/bundle.asset.php';
-		$build_dir = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-portal/';
+		$build_dir  = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-portal/';
 
 		if ( is_readable( $asset_file ) ) {
 			$asset = include_once $asset_file;
@@ -165,8 +165,8 @@ class NextSteps {
 
 		// Only enqueue on plugin page
 		$screen = \get_current_screen();
-		if ( isset( $screen->id ) && 
-			( 
+		if ( isset( $screen->id ) &&
+			(
 				false !== strpos( $screen->id, 'bluehost' ) ||
 				false !== strpos( $screen->id, 'hostgator' )
 			)
