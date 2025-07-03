@@ -47,7 +47,7 @@ class DefaultSteps {
 	 * If WooCommerce is activated, add store steps to next steps.
 	 *
 	 * @param string $plugin The plugin being activated.
-	 * @param bool $network_wide Whether the plugin is being activated network-wide.
+	 * @param bool   $network_wide Whether the plugin is being activated network-wide.
 	 */
 	public static function add_store_steps_on_woocommerce_activation( $plugin, $network_wide ) {
 		// Only for WooCommerce
