@@ -106,7 +106,7 @@ export const NextSteps = () => {
 					}
 					return (
 						<Step
-							key={ i }
+							key={ step.id }
 							id={ step.id }
 							title={ step.title }
 							description={ step.description }

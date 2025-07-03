@@ -26,7 +26,14 @@ class Step {
 		int $priority,
 		string $status,
 		string $href
-	) {}
+	) {
+		$this->id = $id;
+		$this->title = $title;
+		$this->description = $description;
+		$this->priority = $priority;
+		$this->status = $status;
+		$this->href = $href;
+	}
 
 	/**
 	 * Create a Step instance from an array.

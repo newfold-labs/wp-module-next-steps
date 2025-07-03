@@ -29,7 +29,7 @@ class StepRepository {
 	public function save_all( array $steps ): void {
 		$encoded = array_map(
 			function ( $s ) {
-				$s->to_array();
+				return $s->to_array();
 			},
 			$steps
 		);

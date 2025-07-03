@@ -93,14 +93,11 @@ class DefaultSteps {
     }
 
     /**
-     * Determine if site is story
+     * Determine if the site is a store
      * 
      * @return Boolean
      */
     public static function is_store() {
-        // if ( post_type_exists( 'product' ) ) {
-        //     return true;
-        // }
         if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
             return true;
         }

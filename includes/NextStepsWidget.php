@@ -36,7 +36,7 @@ class NextStepsWidget {
 		// Register the widget
 		\wp_add_dashboard_widget(
 			self::ID,
-			'Next Steps',
+			__( 'Next Steps', 'wp-module-next-steps' ),
 			array( __CLASS__, 'widget_render' ),
 			null,
 			null,
