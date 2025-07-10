@@ -2,6 +2,7 @@ import { useState } from '@wordpress/element';
 import { Button } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
 import { Step } from '../step';
+import { Track } from '../track';
 import './styles.scss';
 
 // sort steps by priority
@@ -64,6 +65,7 @@ export const NextSteps = () => {
 	const [ steps, setSteps ] = useState(
 		sortbyStatus( sortbyPriority( window.NewfoldNextSteps ) )
 	);
+	const [ plan, setPlan ] = useState( window.NewfoldNextSteps.plan );
 	// group by category?
 
 	// listener for status change/checkbox
@@ -89,6 +91,9 @@ export const NextSteps = () => {
 
 	return (
 		<div className="nfd-nextsteps" id="nfd-nextsteps">
+			{plan.tracks.map(track => (
+				<Track key={track.id} track={track} />
+			))}
 			<p className="nfd-pb-4">
 				{ __(
 					'To get the best experience, we recommend completing these onboarding steps',
