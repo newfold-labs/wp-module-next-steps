@@ -84,7 +84,7 @@ class StepsApi {
 					return current_user_can( 'manage_options' );
 				},
 				'args'                => array(
-					'plan'   => array(
+					'plan'    => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
@@ -96,19 +96,19 @@ class StepsApi {
 							return is_string( $value );
 						},
 					),
-					'section'   => array(
+					'section' => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'task'   => array(
+					'task'    => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'status' => array(
+					'status'  => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
