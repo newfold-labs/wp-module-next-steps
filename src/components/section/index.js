@@ -4,18 +4,17 @@ import { openCircle, closeCircle } from '../icons';
 import { Task } from '../task';
 
 export const Section = ( { section, index, taskUpdateCallback, track } ) => {
-	const [ open, setOpen ] = useState( true ); // Sections open by default
-
+	const isOpen = index === 0; // Open the first track by default
 	const completed = section.tasks.filter(
-		( task ) => task.status === 'done'
+		( task ) => task.status !== 'new'
 	).length;
 	const total = section.tasks.length;
 
 	return (
-		<details className="nfd-section">
+		<details className="nfd-section" open={ isOpen }>
 			<summary className="nfd-section-header">
 				<h3 className="mb-0">
-					<span className="nfd-section-header-icon">
+					<span className="nfd-section-header-icon nfd-header-icon">
 						<span className="nfd-section-header-icon-closed">
 							{ openCircle }
 						</span>

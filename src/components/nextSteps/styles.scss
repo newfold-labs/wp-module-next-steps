@@ -1,19 +1,39 @@
 
 .nfd-nextsteps {
 
+    .nfd-track {
+        border: 1px solid #336AD7;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        
+        &:hover {
+            background-color: #EAF4FB;
+        }
+
+        .nfd-track-header,
+        .nfd-track-sections {
+            padding: 1rem;
+        }
+
+        .nfd-track-title {
+            padding: 0 !important;
+        }
+    }
+
     .nfd-track-header,
     .nfd-section-header {
         align-items: center;
-        background-color: #f0f0f0;
-        border-bottom: 1px solid #ddd;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
-        padding: 10px;
         transition: background-color .2s ease-in-out;
+        
+        .nfd-header-icon {
+            transition: color .2s ease-in-out;
+        }
 
-        &:hover {
-            background-color: #e0e0e0;
+        &:hover .nfd-header-icon {
+            color: #336AD7
         }
     }
 
@@ -22,15 +42,33 @@
         width: 2rem;
         transform: rotate(180deg);
     }
-    .nfd-track[open] .nfd-track-header-icon {
-        transform: rotate(0deg);
+    .nfd-track[open] {
+        background-color: #EAF4FB;
+        
+        .nfd-track-header-icon {
+            transform: rotate(0deg);
+        }
     }
+
+    .nfd-section {
+        background-color: #ffffff;
+        border: 1px solid #D1E1FF;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        
+        .nfd-section-header,
+        .nfd-section-steps {
+            padding: 1rem;
+        }
+    }
+    
     .nfd-section-header h3 {
         display: flex;
         align-items: center;
         gap: 1rem;
         margin: 0 !important;
     }
+
     .nfd-section-header-icon,
     .nfd-section-header-icon-opened,
     .nfd-section-header-icon-closed {
@@ -45,12 +83,14 @@
             display: inline-block;
         }
     }
-    .nfd-section[open] .nfd-section-header-icon {
-        .nfd-section-header-icon-opened {
-            display: inline-block;
-        }
-        .nfd-section-header-icon-closed {
-            display: none;
+    .nfd-section[open] {
+        .nfd-section-header-icon {
+            .nfd-section-header-icon-opened {
+                display: inline-block;
+            }
+            .nfd-section-header-icon-closed {
+                display: none;
+            }
         }
     }
 
@@ -118,7 +158,7 @@
     
     .nfd-nextsteps-button-todo {
         width: 1.5rem;
-        
+
         &:hover {
             color: #ABAE14;
         }
