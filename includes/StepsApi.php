@@ -84,7 +84,25 @@ class StepsApi {
 					return current_user_can( 'manage_options' );
 				},
 				'args'                => array(
-					'id'     => array(
+					'plan'   => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'track'   => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'section'   => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'task'   => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
@@ -117,7 +135,7 @@ class StepsApi {
 	 */
 	public static function get_steps() {
 		$next_steps = get_option( self::OPTION );
-		$next_steps = false; // for resetting data while debugging
+		// $next_steps = false; // for resetting data while debugging
 		// set default steps if none are found
 		if ( false === $next_steps ) {
 			// get default steps
@@ -203,36 +221,52 @@ class StepsApi {
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 */
 	public static function update_step_status( \WP_REST_Request $request ) {
-		$id     = $request->get_param( 'id' );
-		$status = $request->get_param( 'status' );
+		$plan    = $request->get_param( 'plan' );
+		$track   = $request->get_param( 'track' );
+		$section = $request->get_param( 'section' );
+		$task    = $request->get_param( 'task' );
+		$status  = $request->get_param( 'status' );
 		// validate parameters
-		if ( empty( $id ) || empty( $status ) ) {
+		if ( empty( $track ) || empty( $section ) || empty( $task ) || empty( $status ) ) {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 		if ( ! in_array( $status, array( 'new', 'done', 'dismissed' ), true ) ) {
 			return new WP_Error( 'invalid_status', __( 'Invalid status provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 		// Get the current steps from the option
-		$steps = get_option( self::OPTION, array() );
+		$data = get_option( self::OPTION, array() );
 
-		if ( ! is_array( $steps ) || empty( $steps ) ) {
+		if ( ! is_array( $data ) || empty( $data ) ) {
 			return new WP_Error( 'no_steps', __( 'No steps found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
-		// Find the step with the given ID and update its status
+		// Find the step with the given track, section and task id and update its status
 		$step_found = false;
-		foreach ( $steps as &$step ) {
-			if ( $step['id'] === $id ) {
-				$step['status'] = $status;
-				$step_found     = true;
-				break;
+
+		foreach ( $data as &$plan_data ) {
+			if ( isset( $plan_data['id'] ) && $plan_data['id'] === $plan ) {
+				foreach ( $plan_data['tracks'] as &$track_data ) {
+					if ( isset( $track_data['id'] ) && $track_data['id'] === $track ) {
+						foreach ( $track_data['sections'] as &$section_data ) {
+							if ( isset( $section_data['id'] ) && $section_data['id'] === $section ) {
+								foreach ( $section_data['tasks'] as &$task_data ) {
+									if ( isset( $task_data['id'] ) && $task_data['id'] === $task ) {
+										$task_data['status'] = $status;
+										$step_found          = true;
+										break 3; // Break out of all loops
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 		if ( ! $step_found ) {
 			return new WP_Error( 'step_not_found', __( 'Step not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 		// Update the option with the modified steps
-		self::set_data( $steps );
+		self::set_data( $data );
 
-		return new WP_REST_Response( $steps, 200 );
+		return new WP_REST_Response( $data, 200 );
 	}
 }

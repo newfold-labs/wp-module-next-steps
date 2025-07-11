@@ -1,11 +1,87 @@
 
 .nfd-nextsteps {
+
+    .nfd-track-header,
+    .nfd-section-header {
+        align-items: center;
+        background-color: #f0f0f0;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        transition: background-color .2s ease-in-out;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+    }
+
+    .nfd-track-header-icon {
+        width: 2rem;
+        width: 2rem;
+        transform: rotate(180deg);
+    }
+    .nfd-track[open] .nfd-track-header-icon {
+        transform: rotate(0deg);
+    }
+    .nfd-section-header h3 {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0 !important;
+    }
+    .nfd-section-header-icon,
+    .nfd-section-header-icon-opened,
+    .nfd-section-header-icon-closed {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+    .nfd-section-header-icon {
+        .nfd-section-header-icon-opened {
+            display: none;
+        }
+        .nfd-section-header-icon-closed {
+            display: inline-block;
+        }
+    }
+    .nfd-section[open] .nfd-section-header-icon {
+        .nfd-section-header-icon-opened {
+            display: inline-block;
+        }
+        .nfd-section-header-icon-closed {
+            display: none;
+        }
+    }
+
+    .nfd-progress-bar {
+        background-color: #E0E8EED1;
+        border-radius: 1rem;
+        height: 1rem;
+        max-width: 50%;
+        position: relative;
+    }
+    .nfd-progress-bar-inner {
+        background-color: #336AD7A8;
+        border-radius: 1rem;
+        height: 1rem;
+        z-index: 1;
+    }
+    .nfd-progress-bar-label {
+        position: absolute;
+        top: 0;
+        right: 0.75rem;
+        color: #336AD7;
+        z-index: 2;
+        font-size: 11px;
+    }
+
+
     .nfd-nextsteps-step {
-        border: 1px solid #BBBCBC;
-        border-radius: 4px;
+        border: 1px solid #D7D7D7;
+        border-radius: 1rem;
         padding: 10px;
         margin-bottom: 10px;
-        background-color: #f9f9f9;
         transition: .2s all ease-in-out;
 
         &:hover {
@@ -15,8 +91,9 @@
     }
 
     .nfd-nextsteps-step-done {
-        text-decoration: line-through;
+        // text-decoration: line-through;
         background-color: #F6FDE8 !important;
+        border-color: #78AE144A;
     }
     .nfd-nextsteps-step-dismissed {
         text-decoration: line-through;
@@ -27,36 +104,34 @@
     }
     .nfd-nextsteps-button {
         display: inline-flex;
-        padding: .25rem .35rem;
-        background-color: #336AD7;
-        color: #fff;
+        color: #7E7E7E;
         text-decoration: none;
-        border-radius: 1rem;
-        transition: background-color 0.3s ease;
+        align-items: center;
 
         &:hover {
-            background-color: #2851A3;
+            color: #336AD7
         }
         svg {
-            width: 1rem;
-            transition: opacity 0.3s ease;
+            width: 100%;
+        }
+    }
+    
+    .nfd-nextsteps-button-todo {
+        width: 1.5rem;
+        
+        &:hover {
+            color: #ABAE14;
         }
     }
     .nfd-nextsteps-button-dismiss {
-        background-color: #aaa;
-
-        &:hover {
-            background-color: #999;
-        }
+        width: 1.5rem;
     }
-    .nfd-nextsteps-button-redo,
-    .nfd-nextsteps-button-check {
-        background-color: #ABAE14;
-
-        &:hover {
-            background-color: #86880f;
-
-        }
+    .nfd-nextsteps-button-link {
+        width: 2.5rem;
+    }
+    .nfd-nextsteps-button-redo {
+        width: 1.5rem;
+        color: #ABAE14;
     }
 
     .next-steps-spinner {

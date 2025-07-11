@@ -1,6 +1,4 @@
-
-
-const ProgressBar = ( { completed, total } ) => {
+export const ProgressBar = ( { completed, total } ) => {
 	const percent = total ? ( completed / total ) * 100 : 0;
 	return (
 		<div className="nfd-progress-bar">
@@ -14,5 +12,3 @@ const ProgressBar = ( { completed, total } ) => {
 		</div>
 	);
 };
-
-export default ProgressBar;

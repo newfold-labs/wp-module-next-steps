@@ -262,8 +262,10 @@ class DefaultSteps {
 						'id' => 'store_build_track',
 						'label' => __( 'Step 1: Build', 'wp-module-next-steps' ),
 						'sections' => array(
+						array(
 							'id' => 'basic_store_setup',
 							'label' => __( 'Basic Store Steup', 'wp-module-next-steps' ),
+							'description' => __( 'Complete the basic setup of your store', 'wp-module-next-steps' ),
 							'tasks' => array(
 								array(
 									'id'          => 'store_build_basic_quick_setup',
@@ -286,7 +288,7 @@ class DefaultSteps {
 									'title'       => __( 'Upload your logo', 'wp-module-next-steps' ),
 									'description' => __( 'Customize your store to match your brand', 'wp-module-next-steps' ),
 									'href'        => '{siteUrl}/wp-admin/customize.php',
-									'status'      => 'new',
+									'status'      => 'done',
 									'priority'    => 1,
 									'source'      => 'wp-module-next-steps',
 								),
@@ -295,7 +297,7 @@ class DefaultSteps {
 									'title'       => __( 'Choose colors and fonts', 'wp-module-next-steps' ),
 									'description' => __( 'Customize your store to match your brand', 'wp-module-next-steps' ),
 									'href'        => '{siteUrl}/wp-admin/customize.php',
-									'status'      => 'new',
+									'status'      => 'dismissed',
 									'priority'    => 2,
 									'source'      => 'wp-module-next-steps',
 								),
@@ -447,12 +449,12 @@ class DefaultSteps {
 									'source'      => 'wp-module-next-steps',
 								),
 							),
-						),
+						),),
 					),
 					array(
 						'id' => 'store_brand_track',
 						'label' => __( 'Step 2: Brand', 'wp-module-next-steps' ),
-						'sections' => array(
+						'sections' => array( array(
 							'id' => 'first_marketing_steps',
 							'label' => __( 'First Marketing Steps', 'wp-module-next-steps' ),
 							'description' => __( 'Get your store ready for marketing', 'wp-module-next-steps' ),
@@ -512,7 +514,7 @@ class DefaultSteps {
 									'source'      => 'wp-module-next-steps',
 								)
 							),
-						),
+						), ),
 					),
 				),
 			),

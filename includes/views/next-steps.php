@@ -19,11 +19,11 @@ $svg_64              = base64_encode( $clipboard_check_svg );
 ?>
 <style>
 	/* Next Steps Widget Header Style */
-	#nfd_next_steps_widget h2 {
+	#nfd_next_steps_widget .postbox-header h2 {
 		justify-content: start;
 		gap: .5rem;
 	}
-	#nfd_next_steps_widget h2:before {
+	#nfd_next_steps_widget .postbox-header h2:before {
 		content: url('data:image/svg+xml;base64,<?php echo esc_attr( $svg_64 ); ?>');
 		width: 24px;
 		height: 24px;

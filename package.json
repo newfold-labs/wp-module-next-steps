@@ -4,7 +4,7 @@
   "license": "GPL-2.0-or-later",
   "private": true,
   "author": "Evan Mullins",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "build": "wp-scripts build",
     "start": "wp-scripts start",
