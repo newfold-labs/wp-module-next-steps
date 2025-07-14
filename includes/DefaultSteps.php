@@ -527,7 +527,7 @@ class DefaultSteps
 										'status' => 'new',
 										'priority' => 6,
 										'source' => 'wp-module-next-steps',
-									)
+									),
 								),
 							),
 						),
