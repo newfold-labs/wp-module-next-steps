@@ -1,11 +1,11 @@
-
-.nfd-nextsteps {
+#nfd-next-steps-app .nfd-nextsteps {
 
     .nfd-track {
         border: 1px solid #336AD7;
         border-radius: 4px;
         margin-bottom: 1.5rem;
-        
+        transition: all .2s ease;
+
         &:hover {
             background-color: #EAF4FB;
         }
@@ -17,6 +17,8 @@
 
         .nfd-track-title {
             padding: 0 !important;
+            font-size: 1rem;
+            font-weight: 600;
         }
     }
 
@@ -25,15 +27,22 @@
         align-items: center;
         cursor: pointer;
         display: flex;
+        color: #121212;
         justify-content: space-between;
         transition: background-color .2s ease-in-out;
-        
+
         .nfd-header-icon {
             transition: color .2s ease-in-out;
         }
 
-        &:hover .nfd-header-icon {
-            color: #336AD7
+        &:hover {
+            .nfd-track-title {
+                color: #336AD7;
+            }
+
+            .nfd-header-icon {
+                color: #336AD7
+            }
         }
     }
 
@@ -42,9 +51,14 @@
         width: 2rem;
         transform: rotate(180deg);
     }
+
     .nfd-track[open] {
         background-color: #EAF4FB;
-        
+
+        .nfd-track-title {
+            color: #336AD7;
+        }
+
         .nfd-track-header-icon {
             transform: rotate(0deg);
         }
@@ -55,13 +69,17 @@
         border: 1px solid #D1E1FF;
         border-radius: 1rem;
         margin-bottom: 1rem;
-        
+
         .nfd-section-header,
         .nfd-section-steps {
             padding: 1rem;
         }
+
+        .nfd-section-header {
+            gap: 2rem;
+        }
     }
-    
+
     .nfd-section-header h3 {
         display: flex;
         align-items: center;
@@ -75,19 +93,23 @@
         width: 1.75rem;
         height: 1.75rem;
     }
+
     .nfd-section-header-icon {
         .nfd-section-header-icon-opened {
             display: none;
         }
+
         .nfd-section-header-icon-closed {
             display: inline-block;
         }
     }
+
     .nfd-section[open] {
         .nfd-section-header-icon {
             .nfd-section-header-icon-opened {
                 display: inline-block;
             }
+
             .nfd-section-header-icon-closed {
                 display: none;
             }
@@ -96,26 +118,47 @@
 
     .nfd-progress-bar {
         background-color: #E0E8EED1;
+        border: 1px solid #D7D7D7;
         border-radius: 1rem;
         height: 1rem;
         max-width: 50%;
         position: relative;
-    }
-    .nfd-progress-bar-inner {
-        background-color: #336AD7A8;
-        border-radius: 1rem;
-        height: 1rem;
-        z-index: 1;
-    }
-    .nfd-progress-bar-label {
-        position: absolute;
-        top: 0;
-        right: 0.75rem;
-        color: #336AD7;
-        z-index: 2;
-        font-size: 11px;
-    }
 
+        .nfd-progress-bar-inner {
+            background-color: #336AD7A8;
+            border-radius: 1rem;
+            height: calc(1rem - 2px);
+            z-index: 1;
+            transition: all .2s ease;
+        }
+
+        .nfd-progress-bar-label {
+            position: absolute;
+            top: -1px;
+            right: 0.75rem;
+            color: #336AD7;
+            z-index: 2;
+            font-size: 11px;
+        }
+
+        // empty style
+        &.nfd-progress-bar-0 {
+            .nfd-progress-bar-label {
+                color: #868686;
+            }
+        }
+
+        // complete style
+        &.nfd-progress-bar-100 {
+            .nfd-progress-bar-inner {
+                background-color: #A0C00F;
+            }
+
+            .nfd-progress-bar-label {
+                color: #fff;
+            }
+        }
+    }
 
     .nfd-nextsteps-step {
         border: 1px solid #D7D7D7;
@@ -127,6 +170,10 @@
         &:hover {
             background-color: #EAF4FB;
             border-color: #336AD7;
+
+            .nfd-nextsteps-button-dismiss {
+                opacity: 1;
+            }
         }
     }
 
@@ -134,7 +181,12 @@
         // text-decoration: line-through;
         background-color: #F6FDE8 !important;
         border-color: #78AE144A;
+
+        .nfd-nextsteps-step-title {
+            color: #9F9F9F;
+        }
     }
+
     .nfd-nextsteps-step-dismissed {
         text-decoration: line-through;
     }
@@ -142,20 +194,24 @@
     .nfd-ml-auto {
         margin-left: auto;
     }
+
     .nfd-nextsteps-button {
-        display: inline-flex;
-        color: #7E7E7E;
-        text-decoration: none;
         align-items: center;
+        color: #7E7E7E;
+        display: inline-flex;
+        text-decoration: none;
+        transition: all .2s ease;
 
         &:hover {
             color: #336AD7
         }
+
         svg {
             width: 100%;
+            height: auto;
         }
     }
-    
+
     .nfd-nextsteps-button-todo {
         width: 1.5rem;
 
@@ -163,18 +219,19 @@
             color: #ABAE14;
         }
     }
+
     .nfd-nextsteps-button-dismiss {
-        width: 1.5rem;
+        width: 1rem;
+        opacity: 0;
     }
+
     .nfd-nextsteps-button-link {
-        width: 2.5rem;
+        width: 2rem;
     }
+
     .nfd-nextsteps-button-redo {
         width: 1.5rem;
         color: #ABAE14;
     }
 
-    .next-steps-spinner {
-        margin: 2rem auto;
-    }
 }

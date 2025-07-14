@@ -1,6 +1,8 @@
+import { Button } from '@newfold/ui-component-library';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
+import { spinner, hideIcon } from '../icons';
 import { Track } from '../track';
 import './styles.scss';
 
@@ -30,6 +32,7 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 
 export const NextSteps = () => {
 	const [ plan, setPlan ] = useState( window.NewfoldNextSteps.plan );
+	const [ showDismissed, setShowDismissed ] = useState( false );
 
 	const taskUpdateCallback = ( track, section, id, status ) => {
 		const data = {
@@ -54,6 +57,7 @@ export const NextSteps = () => {
 
 	return (
 		<div className="nfd-nextsteps" id="nfd-nextsteps">
+			{ plan.tracks.length < 1 && spinner }
 			<p className="nfd-pb-4">{ plan.description }</p>
 			{ plan.tracks.map( ( track, i ) => (
 				<Track
@@ -61,8 +65,26 @@ export const NextSteps = () => {
 					track={ track }
 					index={ i }
 					taskUpdateCallback={ taskUpdateCallback }
+					showDismissed={ showDismissed }
 				/>
 			) ) }
+			<div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">
+				<Button
+					className="nfd-nextsteps-filter-button"
+					data-nfd-click="nextsteps_step_toggle"
+					data-nfd-event-category="nextsteps_toggle"
+					data-nfd-event-key="toggle"
+					onClick={ () => {
+						setShowDismissed( ! showDismissed );
+					} }
+					variant="secondary"
+				>{ hideIcon }
+					{ showDismissed
+						? __( 'Hide skipped tasks', 'wp-module-next-steps' )
+						: __( 'View skipped tasks', 'wp-module-next-steps' )
+					}
+				</Button>
+			</div>
 		</div>
 	);
 };

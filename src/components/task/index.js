@@ -11,6 +11,7 @@ export const Task = ( {
 	taskUpdateCallback,
 	track,
 	section,
+	showDismissed
 } ) => {
 	
 	const getHref = () => {
@@ -37,13 +38,13 @@ export const Task = ( {
 			<div className="nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
 					<a href={ href } target={ target }>
-						<Title as="span" className="nfd-nextsteps-step-title">
+						<Title as="span" className="nfd-nextsteps-step-title nfd-font-normal">
 							{ title }
 						</Title>
 					</a>
 				) }
 				{ ! href && (
-					<Title as="span" className="nfd-nextsteps-step-title">
+					<Title as="span" className="nfd-nextsteps-step-title nfd-font-normal">
 						{ title }
 					</Title>
 				) }
@@ -73,7 +74,7 @@ export const Task = ( {
 						</button>
 					</div>
 					{ renderStepContent( getHref(), getTarget() ) }
-					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end nfd-ml-auto">
+					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
 							data-nfd-click="nextsteps_step_dismiss"
@@ -149,7 +150,7 @@ export const Task = ( {
 						</button>
 					</div>
 					{ renderStepContent() }
-					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end nfd-ml-auto">
+					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
 							data-nfd-click="nextsteps_step_dismiss"
@@ -172,7 +173,7 @@ export const Task = ( {
 		<>
 			{ status === 'new' && renderNewStep() }
 			{ status === 'done' && renderDoneStep() }
-			{ status === 'dismissed' && renderDismissedStep() }
+			{ status === 'dismissed' && showDismissed && renderDismissedStep() }
 		</>
 	);
 };
