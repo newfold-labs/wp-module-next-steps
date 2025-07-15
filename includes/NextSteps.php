@@ -3,9 +3,7 @@
 namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\ModuleLoader\Container;
-use NewfoldLabs\WP\Module\NextSteps\I18nService;
 use NewfoldLabs\WP\Module\Data\HiiveConnection;
-use NewfoldLabs\WP\Module\Data\SiteCapabilities;
 
 /**
  * Manages all the functionalities for the module.
@@ -31,11 +29,7 @@ class NextSteps {
 	 * @param Container $container The module container.
 	 */
 	public function __construct( Container $container ) {
-		// includes until autoloading is set up
-		include_once NFD_NEXTSTEPS_DIR . '/includes/StepsApi.php';
-		include_once NFD_NEXTSTEPS_DIR . '/includes/NextStepsWidget.php';
-		include_once NFD_NEXTSTEPS_DIR . '/includes/I18nService.php';
-		include_once NFD_NEXTSTEPS_DIR . '/includes/PlanLoader.php';
+		// Autoloader handles class loading
 		new PlanLoader();
 		$hiive           = new HiiveConnection();
 		self::$steps_api = new StepsApi( $hiive );
@@ -87,6 +81,7 @@ class NextSteps {
 	 * Enqueue widget app assets.
 	 */
 	public static function nextsteps_widget() {
+		// Always register assets for extensibility (other modules might depend on them)
 		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-widget/bundle.asset.php';
 		$build_dir  = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-widget/';
 
@@ -114,14 +109,14 @@ class NextSteps {
 			$asset['version']
 		);
 
-		// Only enqueue on dashboard page
+		// Only enqueue on dashboard pages
 		$screen = \get_current_screen();
 		if ( isset( $screen->id ) && false !== strpos( $screen->id, 'dashboard' ) ) {
 			\wp_enqueue_script( 'next-steps-widget' );
 			\wp_enqueue_style( 'next-steps-widget-style' );
 
-			// Get current plan data using the new PlanManager API
-			$current_plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_current_plan();
+			// Get current plan data
+			$current_plan = PlanManager::get_current_plan();
 			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(
@@ -136,6 +131,7 @@ class NextSteps {
 	 * Enqueue Fill app assets.
 	 */
 	public static function nextsteps_portal() {
+		// Always register assets for extensibility (other modules might depend on them)
 		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-portal/bundle.asset.php';
 		$build_dir  = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-portal/';
 
@@ -163,7 +159,7 @@ class NextSteps {
 			$asset['version']
 		);
 
-		// Only enqueue on plugin page
+		// Only enqueue on plugin pages
 		$screen = \get_current_screen();
 		if ( isset( $screen->id ) &&
 			(
@@ -174,8 +170,8 @@ class NextSteps {
 			\wp_enqueue_script( 'next-steps-portal' );
 			\wp_enqueue_style( 'next-steps-portal-style' );
 
-			// Get current plan data using the new PlanManager API
-			$current_plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_current_plan();
+			// Get current plan data
+			$current_plan = PlanManager::get_current_plan();
 			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(

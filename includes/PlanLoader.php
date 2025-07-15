@@ -39,7 +39,7 @@ class PlanLoader {
 	public static function load_default_steps() {
 		// Load default steps only if no steps exist
 		if ( ! get_option( StepsApi::OPTION ) ) {
-			$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::load_default_plan();
+			$plan = PlanManager::load_default_plan();
 			StepsApi::set_data( $plan->to_array() );
 		}
 	}
@@ -53,7 +53,7 @@ class PlanLoader {
 	public static function on_solution_change( $old_value, $new_value ) {
 		// Only switch plan if the solution actually changed
 		if ( $old_value !== $new_value ) {
-			$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::switch_plan( $new_value );
+			$plan = PlanManager::switch_plan( $new_value );
 			if ( $plan ) {
 				StepsApi::set_data( $plan->to_array() );
 			}
@@ -70,7 +70,7 @@ class PlanLoader {
 		// Only for WooCommerce activation
 		if ( 'woocommerce/woocommerce.php' === $plugin ) {
 			// Switch to store plan when WooCommerce is activated
-			$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::switch_plan( 'ecommerce' );
+			$plan = PlanManager::switch_plan( 'ecommerce' );
 			if ( $plan ) {
 				StepsApi::set_data( $plan->to_array() );
 			}

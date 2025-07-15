@@ -2,6 +2,7 @@
 
 namespace NewfoldLabs\WP\Module\NextSteps;
 
+use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
 use WP_Error;
 use WP_HTTP_Response;
 use WP_REST_Controller;
@@ -214,7 +215,7 @@ class StepsApi {
 	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public static function get_steps() {
-		$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_current_plan();
+		$plan = PlanManager::get_current_plan();
 		
 		if ( ! $plan ) {
 			return new \WP_Error( 'no_plan', __( 'No plan found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
@@ -236,7 +237,7 @@ class StepsApi {
 	 */
 	public static function add_steps( $new_tasks ) {
 		// Get the current plan
-		$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_current_plan();
+		$plan = PlanManager::get_current_plan();
 		
 		if ( ! $plan ) {
 			return new \WP_Error( 'no_plan', __( 'No plan found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
@@ -262,7 +263,7 @@ class StepsApi {
 				continue;
 			}
 			
-			$task = \NewfoldLabs\WP\Module\NextSteps\DTOs\Task::from_array( $task_data );
+			$task = Task::from_array( $task_data );
 			
 			// Check if task already exists and update it
 			$existing_task = $first_section->get_task( $task->id );
@@ -281,7 +282,7 @@ class StepsApi {
 		}
 		
 		// Save the updated plan
-		\NewfoldLabs\WP\Module\NextSteps\PlanManager::save_plan( $plan );
+		PlanManager::save_plan( $plan );
 
 		return new \WP_REST_Response( $plan->to_array(), 200 );
 	}
@@ -310,14 +311,14 @@ class StepsApi {
 		}
 		
 		// Use PlanManager to update the task status
-		$success = \NewfoldLabs\WP\Module\NextSteps\PlanManager::update_task_status( $track, $section, $task, $status );
+		$success = PlanManager::update_task_status( $track, $section, $task, $status );
 		
 		if ( ! $success ) {
 			return new WP_Error( 'step_not_found', __( 'Step not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 		
 		// Get the updated plan
-		$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_current_plan();
+		$plan = PlanManager::get_current_plan();
 		
 		return new WP_REST_Response( $plan->to_array(), 200 );
 	}
@@ -328,7 +329,7 @@ class StepsApi {
 	 * @return WP_REST_Response
 	 */
 	public static function get_plan_stats() {
-		$stats = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_plan_stats();
+		$stats = PlanManager::get_plan_stats();
 		return new WP_REST_Response( $stats, 200 );
 	}
 
@@ -341,7 +342,7 @@ class StepsApi {
 	public static function switch_plan( \WP_REST_Request $request ) {
 		$plan_type = $request->get_param( 'plan_type' );
 		
-		$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::switch_plan( $plan_type );
+		$plan = PlanManager::switch_plan( $plan_type );
 		
 		if ( ! $plan ) {
 			return new WP_Error( 'invalid_plan_type', __( 'Invalid plan type provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
@@ -356,7 +357,7 @@ class StepsApi {
 	 * @return WP_REST_Response
 	 */
 	public static function reset_plan() {
-		$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::reset_plan();
+		$plan = PlanManager::reset_plan();
 		return new WP_REST_Response( $plan->to_array(), 200 );
 	}
 
@@ -371,15 +372,15 @@ class StepsApi {
 		$section_id = $request->get_param( 'section_id' );
 		$task_data  = $request->get_param( 'task' );
 		
-		$task = \NewfoldLabs\WP\Module\NextSteps\DTOs\Task::from_array( $task_data );
+		$task = Task::from_array( $task_data );
 		
-		$success = \NewfoldLabs\WP\Module\NextSteps\PlanManager::add_task( $track_id, $section_id, $task );
+		$success = PlanManager::add_task( $track_id, $section_id, $task );
 		
 		if ( ! $success ) {
 			return new WP_Error( 'add_task_failed', __( 'Failed to add task to section.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 		
-		$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_current_plan();
+		$plan = PlanManager::get_current_plan();
 		return new WP_REST_Response( $plan->to_array(), 200 );
 	}
 }
