@@ -19,11 +19,11 @@ $svg_64              = base64_encode( $clipboard_check_svg );
 ?>
 <style>
 	/* Next Steps Widget Header Style */
-	#nfd_next_steps_widget h2 {
+	#nfd_next_steps_widget .postbox-header h2 {
 		justify-content: start;
 		gap: .5rem;
 	}
-	#nfd_next_steps_widget h2:before {
+	#nfd_next_steps_widget .postbox-header h2:before {
 		content: url('data:image/svg+xml;base64,<?php echo esc_attr( $svg_64 ); ?>');
 		width: 24px;
 		height: 24px;
@@ -31,25 +31,27 @@ $svg_64              = base64_encode( $clipboard_check_svg );
 </style>
 <div class="nfd-root nfd-widget nfd-widget-next-steps">
 	<div id="nfd-next-steps-app">
-		<svg 
-			xmlns="http://www.w3.org/2000/svg/"
-			fill="none"
-			viewBox="0 0 24 24"
-			class="next-steps-spinner nfd-animate-spin nfd-w-8 nfd-h-8"
-			role="img"
-			aria-hidden="true"
-		>
-			<circle
-				class="nfd-opacity-25"
-				cx="12"
-				cy="12"
-				r="10"
-				stroke="currentColor"
-				stroke-width="4"></circle>
-			<path 
-				class="nfd-opacity-75"
-				fill="currentColor"
-				d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-		</svg>
+		<div class="nfd-flex nfd-flex-col nfd-items-center nfd-mt-8 nfd-mb-8">
+			<svg 
+				xmlns="http://www.w3.org/2000/svg/"
+				fill="none"
+				viewBox="0 0 24 24"
+				class="next-steps-spinner nfd-animate-spin nfd-w-8 nfd-h-8"
+				role="img"
+				aria-hidden="true"
+			>
+				<circle
+					class="nfd-opacity-25"
+					cx="12"
+					cy="12"
+					r="10"
+					stroke="currentColor"
+					stroke-width="4"></circle>
+				<path 
+					class="nfd-opacity-75"
+					fill="currentColor"
+					d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+			</svg>
+		</div>
 	</div>
 </div>

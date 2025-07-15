@@ -17,18 +17,19 @@ use function NewfoldLabs\WP\Context\getContext;
  */
 class DefaultSteps {
 
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		// Register the widget
 		\add_action( 'init', array( __CLASS__, 'load_default_steps' ), 1 );
-		\add_action(
-			'activated_plugin',
-			array( __CLASS__, 'add_store_steps_on_woocommerce_activation' ),
-			10,
-			2
-		);
+		// \add_action(
+		// 'activated_plugin',
+		// array( __CLASS__, 'add_store_steps_on_woocommerce_activation' ),
+		// 10,
+		// 2
+		// );
 	}
 
 	/**
@@ -65,24 +66,26 @@ class DefaultSteps {
 	 * @return Array array of default step data
 	 */
 	public static function get_defaults() {
-		$defaults = self::get_default_site_data();
+		// $defaults = self::get_default_site_data();
 
-		if ( self::is_blog() ) {
-			// add default blog steps
-			$defaults = array_merge(
-				$defaults,
-				self::get_default_blog_data()
-			);
-		}
+		// if ( self::is_blog() ) {
+		// add default blog steps
+		// $defaults = array_merge(
+		// $defaults,
+		// self::get_default_blog_data()
+		// );
+		// }
 
-		if ( self::is_store() ) {
-			// add default store steps
-			$defaults = array_merge(
-				$defaults,
-				self::get_default_store_data()
-			);
-		}
-		return $defaults;
+		// if ( self::is_store() ) {
+		// add default store steps
+		// $defaults = array_merge(
+		// $defaults,
+		// self::get_default_store_data()
+		// );
+		// }
+		// return $defaults;
+
+		return self::get_store_setup_data();
 	}
 
 	/**
@@ -242,6 +245,284 @@ class DefaultSteps {
 				'status'      => 'new',
 				'priority'    => 43,
 				'source'      => 'wp-module-next-steps',
+			),
+		);
+	}
+
+	/**
+	 * Store setup checklist.
+	 *
+	 * @return array
+	 */
+	public static function get_store_setup_data(): array {
+		return array(
+			'plan' => array(
+				'id'          => 'store_setup',
+				'label'       => __( 'Store Setup', 'wp-module-next-steps' ),
+				'description' => __( 'To get the best experience, we recommend completing your Store Setup:', 'wp-module-next-steps' ),
+				'tracks'      => array(
+					array(
+						'id'       => 'store_build_track',
+						'label'    => __( 'Step 1: Build', 'wp-module-next-steps' ),
+						'sections' => array(
+							array(
+								'id'          => 'basic_store_setup',
+								'label'       => __( 'Basic Store Steup', 'wp-module-next-steps' ),
+								'description' => __( 'Complete the basic setup of your store', 'wp-module-next-steps' ),
+								'tasks'       => array(
+									array(
+										'id'          => 'store_build_basic_quick_setup',
+										'title'       => __( 'Quick Setup', 'wp-module-next-steps' ),
+										'description' => __( 'Build trust and present yourself in the best way to your customers', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=details',
+										'status'      => 'new',
+										'priority'    => 1,
+										'source'      => 'wp-module-next-steps',
+									),
+								),
+							),
+							array(
+								'id'          => 'customize_store',
+								'label'       => __( 'Customize your store', 'wp-module-next-steps' ),
+								'description' => __( 'Customize your store to match your brand', 'wp-module-next-steps' ),
+								'tasks'       => array(
+									array(
+										'id'          => 'store_build_customize_logo',
+										'title'       => __( 'Upload your logo', 'wp-module-next-steps' ),
+										'description' => __( 'Customize your store to match your brand', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'done',
+										'priority'    => 1,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_customize_colors',
+										'title'       => __( 'Choose colors and fonts', 'wp-module-next-steps' ),
+										'description' => __( 'Customize your store to match your brand', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'dismissed',
+										'priority'    => 2,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_customize_header',
+										'title'       => __( 'Customize header', 'wp-module-next-steps' ),
+										'description' => __( 'Customize your store to match your brand', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_customize_footer',
+										'title'       => __( 'Customize footer', 'wp-module-next-steps' ),
+										'description' => __( 'Customize your store to match your brand', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 4,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_customize_home',
+										'title'       => __( 'Customize home page', 'wp-module-next-steps' ),
+										'description' => __( 'Customize your store to match your brand', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 5,
+										'source'      => 'wp-module-next-steps',
+									),
+								),
+							),
+							array(
+								'id'          => 'products',
+								'label'       => __( 'Set Up Products', 'wp-module-next-steps' ),
+								'description' => __( 'Add products to your store', 'wp-module-next-steps' ),
+								'tasks'       => array(
+									array(
+										'id'          => 'store_build_product_add',
+										'title'       => __( 'Add a product', 'wp-module-next-steps' ),
+										'description' => __( 'Create or import a product and bring your store to life', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=product',
+										'status'      => 'new',
+										'priority'    => 1,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_product_page',
+										'title'       => __( 'Customize the product page', 'wp-module-next-steps' ),
+										'description' => __( 'Customize the product page', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 2,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_product_shop',
+										'title'       => __( 'Customize the shop page', 'wp-module-next-steps' ),
+										'description' => __( 'Customize the shop page to showcase your products', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_product_cart',
+										'title'       => __( 'Customize the cart page', 'wp-module-next-steps' ),
+										'description' => __( 'Customize the cart page to showcase your products', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 4,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_product_checkout',
+										'title'       => __( 'Customize the checkout flow', 'wp-module-next-steps' ),
+										'description' => __( 'Customize the checkout flow to showcase your products', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 5,
+										'source'      => 'wp-module-next-steps',
+									),
+								),
+							),
+							array(
+								'id'          => 'payment_shipping',
+								'label'       => __( 'Set Up Payments and Shipping', 'wp-module-next-steps' ),
+								'description' => __( 'Add products to your store', 'wp-module-next-steps' ),
+								'tasks'       => array(
+									array(
+										'id'          => 'store_build_payment_setup',
+										'title'       => __( 'Set Up Payments', 'wp-module-next-steps' ),
+										'description' => __( 'Get ready to receive your first payments via PayPal or credit card', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=product',
+										'status'      => 'new',
+										'priority'    => 1,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_shipping_setup',
+										'title'       => __( 'Set Up Shipping', 'wp-module-next-steps' ),
+										'description' => __( 'Set up shipping options', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 2,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_tax_setup',
+										'title'       => __( 'Set Up Taxes', 'wp-module-next-steps' ),
+										'description' => __( 'Set up tax options to start selling', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+								),
+							),
+							array(
+								'id'          => 'legal',
+								'label'       => __( 'Set up Legal Pages', 'wp-module-next-steps' ),
+								'description' => __( 'Set up legal pages to comply with regulations', 'wp-module-next-steps' ),
+								'tasks'       => array(
+									array(
+										'id'          => 'store_build_legal_privacy',
+										'title'       => __( 'Set Up Privacy Policy', 'wp-module-next-steps' ),
+										'description' => __( 'Set up a privacy policy page to comply with regulations', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 1,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_legal_terms',
+										'title'       => __( 'Set Up Terms and Conditions', 'wp-module-next-steps' ),
+										'description' => __( 'Set up a terms and conditions page to comply with regulations', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 2,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_build_legal_returns',
+										'title'       => __( 'Set Up Returns Policy', 'wp-module-next-steps' ),
+										'description' => __( 'Set up a returns policy page to comply with regulations', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+								),
+							),
+						),
+					),
+					array(
+						'id'       => 'store_brand_track',
+						'label'    => __( 'Step 2: Brand', 'wp-module-next-steps' ),
+						'sections' => array(
+							array(
+								'id'          => 'first_marketing_steps',
+								'label'       => __( 'First Marketing Steps', 'wp-module-next-steps' ),
+								'description' => __( 'Get your store ready for marketing', 'wp-module-next-steps' ),
+								'tasks'       => array(
+									array(
+										'id'          => 'store_brand_marketing_social',
+										'title'       => __( 'Enable Social Login Register for your customers', 'wp-module-next-steps' ),
+										'description' => __( 'Enable Social Login Register for your customers', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 1,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_brand_marketing_discount',
+										'title'       => __( 'Configure Welcome Discount Popup', 'wp-module-next-steps' ),
+										'description' => __( 'Configure Welcome Discount Popup', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 2,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_brand_marketing_giftcard',
+										'title'       => __( 'Create a gift card to sell in your shop', 'wp-module-next-steps' ),
+										'description' => __( 'Create a gift card to sell in your shop', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_brand_marketing_abandoned',
+										'title'       => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
+										'description' => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 4,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_brand_marketing_emails',
+										'title'       => __( 'Customize your store emails', 'wp-module-next-steps' ),
+										'description' => __( 'Customize your store emails', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 5,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_brand_marketing_analytics',
+										'title'       => __( 'Add Google Analytics ', 'wp-module-next-steps' ),
+										'description' => __( 'Add Google Analytics ', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'status'      => 'new',
+										'priority'    => 6,
+										'source'      => 'wp-module-next-steps',
+									),
+								),
+							),
+						),
+					),
+				),
 			),
 		);
 	}
