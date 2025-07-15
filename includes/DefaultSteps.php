@@ -24,12 +24,12 @@ class DefaultSteps {
 	public function __construct() {
 		// Register the widget
 		\add_action( 'init', array( __CLASS__, 'load_default_steps' ), 1 );
-		// \add_action(
-		// 'activated_plugin',
-		// array( __CLASS__, 'add_store_steps_on_woocommerce_activation' ),
-		// 10,
-		// 2
-		// );
+		
+		// Hook into solution option changes
+		\add_action( 'update_option_nfd_solution', array( __CLASS__, 'on_solution_change' ), 10, 2 );
+		
+		// Hook into WooCommerce activation
+		\add_action( 'activated_plugin', array( __CLASS__, 'add_store_steps_on_woocommerce_activation' ), 10, 2 );
 	}
 
 	/**
@@ -39,8 +39,26 @@ class DefaultSteps {
 		// $next_steps = false; // for resetting data while debugging
 		// if no steps found
 		if ( ! get_option( StepsApi::OPTION ) ) {
-			// add default steps
-			StepsApi::set_data( self::get_defaults() );
+			// add default steps using PlanManager
+			$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::load_default_plan();
+			StepsApi::set_data( $plan->to_array() );
+		}
+	}
+
+	/**
+	 * Handle solution option changes
+	 *
+	 * @param string $old_value Old solution value
+	 * @param string $new_value New solution value
+	 */
+	public static function on_solution_change( $old_value, $new_value ) {
+		// Only switch plan if the solution actually changed
+		if ( $old_value !== $new_value ) {
+			// Switch to the new plan
+			$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::switch_plan( $new_value );
+			if ( $plan ) {
+				StepsApi::set_data( $plan->to_array() );
+			}
 		}
 	}
 
@@ -62,30 +80,14 @@ class DefaultSteps {
 
 	/**
 	 * Get default steps based on site criteria.
-	 *
+	 * 
+	 * @deprecated Use PlanManager::load_default_plan() instead
 	 * @return Array array of default step data
 	 */
 	public static function get_defaults() {
-		// $defaults = self::get_default_site_data();
-
-		// if ( self::is_blog() ) {
-		// add default blog steps
-		// $defaults = array_merge(
-		// $defaults,
-		// self::get_default_blog_data()
-		// );
-		// }
-
-		// if ( self::is_store() ) {
-		// add default store steps
-		// $defaults = array_merge(
-		// $defaults,
-		// self::get_default_store_data()
-		// );
-		// }
-		// return $defaults;
-
-		return self::get_store_setup_data();
+		// Legacy method - use PlanManager instead
+		$plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::load_default_plan();
+		return $plan->to_array();
 	}
 
 	/**
@@ -117,136 +119,35 @@ class DefaultSteps {
 
 	/**
 	 * Default site steps data.
-	 *
-	 * These apply to all sites
+	 * 
+	 * @deprecated Use PlanManager with plan-specific data instead
+	 * @return array
 	 */
 	public static function get_default_site_data() {
-		return array(
-			array(
-				'id'          => 'explore_addons',
-				'title'       => __( 'Explore the premium tools included in your solution', 'wp-module-next-steps' ),
-				'description' => __( 'A bundle of features designed to elevate your online experience', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/admin.php?page=solutions&category=all',
-				'status'      => 'new',
-				'priority'    => 10,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'add_new_page',
-				'title'       => __( 'Add a new page', 'wp-module-next-steps' ),
-				'description' => __( 'Create a new page on your site.', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=page',
-				'status'      => 'new',
-				'priority'    => 20,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'upload_media',
-				'title'       => __( 'Add Media', 'wp-module-next-steps' ),
-				'description' => __( 'Upload a new image to your site.', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/media-new.php',
-				'status'      => 'new',
-				'priority'    => 21,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'yoast_academy',
-				'title'       => __( 'Sign up for Yoast SEO Academy', 'wp-module-next-steps' ),
-				'description' => __( 'Master WordPress SEO with expert training.', 'wp-module-next-steps' ),
-				'href'        => 'https://yoast.com/academy/',
-				'status'      => 'new',
-				'priority'    => 40,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'jetpack_social',
-				'title'       => __( 'Enable Jetpack to connect to your social media accounts', 'wp-module-next-steps' ),
-				'description' => __( 'Enable Jetpack to connect to your social media accounts', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/admin.php?page=jetpack#/sharing',
-				'status'      => 'new',
-				'priority'    => 60,
-				'source'      => 'wp-module-next-steps',
-			),
-		);
+		// Legacy method - kept for backward compatibility
+		return array();
 	}
 
 	/**
 	 * Default blog steps data.
+	 * 
+	 * @deprecated Use PlanManager::get_blog_plan() instead
+	 * @return array
 	 */
 	public static function get_default_blog_data() {
-		return array(
-			array(
-				'id'          => 'add_new_post',
-				'title'       => __( 'Add your first blog post', 'wp-module-next-steps' ),
-				'description' => __( 'Create your first blog post and start sharing your thoughts', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=post',
-				'status'      => 'new',
-				'priority'    => 21,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'configure_blog_settings',
-				'title'       => __( 'Configure your blog settings', 'wp-module-next-steps' ),
-				'description' => __( 'Set up your blog settings to enhance your blogging experience', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/options-general.php',
-				'status'      => 'new',
-				'priority'    => 30,
-				'source'      => 'wp-module-next-steps',
-			),
-		);
+		// Legacy method - use PlanManager instead
+		return array();
 	}
 
 	/**
 	 * Default ecommerce steps data.
+	 * 
+	 * @deprecated Use PlanManager::get_ecommerce_plan() instead
+	 * @return array
 	 */
 	public static function get_default_store_data() {
-		return array(
-			array(
-				'id'          => 'store_info',
-				'title'       => __( 'Add your store info', 'wp-module-next-steps' ),
-				'description' => __( 'Build trust and present yourself in the best way to your customers', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=details',
-				'status'      => 'new',
-				'priority'    => 31,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'add_product',
-				'title'       => __( 'Add your first product', 'wp-module-next-steps' ),
-				'description' => __( 'Create or import a product and bring your store to life', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=product',
-				'status'      => 'new',
-				'priority'    => 32,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'connect_payment_processor',
-				'title'       => __( 'Connect a payment processor', 'wp-module-next-steps' ),
-				'description' => __( 'Get ready to receive your first payments via PayPal or credit card', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/payments',
-				'status'      => 'new',
-				'priority'    => 41,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'configure_tax',
-				'title'       => __( 'Configure tax settings', 'wp-module-next-steps' ),
-				'description' => __( 'Set up your tax options to start selling', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=tax',
-				'status'      => 'new',
-				'priority'    => 42,
-				'source'      => 'wp-module-next-steps',
-			),
-			array(
-				'id'          => 'setup_shipping',
-				'title'       => __( 'Setup shipping options', 'wp-module-next-steps' ),
-				'description' => __( 'Setup shipping options', 'wp-module-next-steps' ),
-				'href'        => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details?highlight=shipping',
-				'status'      => 'new',
-				'priority'    => 43,
-				'source'      => 'wp-module-next-steps',
-			),
-		);
+		// Legacy method - use PlanManager instead
+		return array();
 	}
 
 	/**

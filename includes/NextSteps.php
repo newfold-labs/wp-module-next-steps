@@ -120,14 +120,14 @@ class NextSteps {
 			\wp_enqueue_script( 'next-steps-widget' );
 			\wp_enqueue_style( 'next-steps-widget-style' );
 
-			$next_steps_data = json_decode( \wp_json_encode( self::$steps_api->get_steps()->data ), true );
+			// Get current plan data using the new PlanManager API
+			$current_plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_current_plan();
+			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(
 				'next-steps-widget',
 				'NewfoldNextSteps',
-				array_merge(
-					$next_steps_data,
-				)
+				$next_steps_data
 			);
 		}
 	}
@@ -174,14 +174,14 @@ class NextSteps {
 			\wp_enqueue_script( 'next-steps-portal' );
 			\wp_enqueue_style( 'next-steps-portal-style' );
 
-			$next_steps_data = json_decode( \wp_json_encode( self::$steps_api->get_steps()->data ), true );
+			// Get current plan data using the new PlanManager API
+			$current_plan = \NewfoldLabs\WP\Module\NextSteps\PlanManager::get_current_plan();
+			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(
 				'next-steps-portal',
 				'NewfoldNextSteps',
-				array_merge(
-					$next_steps_data,
-				)
+				$next_steps_data
 			);
 		}
 	}

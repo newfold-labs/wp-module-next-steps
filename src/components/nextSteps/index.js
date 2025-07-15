@@ -31,7 +31,7 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 };
 
 export const NextSteps = () => {
-	const [ plan, setPlan ] = useState( window.NewfoldNextSteps.plan );
+	const [ plan, setPlan ] = useState( window.NewfoldNextSteps );
 	const [ showDismissed, setShowDismissed ] = useState( false );
 
 	const taskUpdateCallback = ( track, section, id, status ) => {
