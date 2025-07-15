@@ -35,8 +35,8 @@ class NextSteps {
 		include_once NFD_NEXTSTEPS_DIR . '/includes/StepsApi.php';
 		include_once NFD_NEXTSTEPS_DIR . '/includes/NextStepsWidget.php';
 		include_once NFD_NEXTSTEPS_DIR . '/includes/I18nService.php';
-		include_once NFD_NEXTSTEPS_DIR . '/includes/DefaultSteps.php';
-		new DefaultSteps();
+		include_once NFD_NEXTSTEPS_DIR . '/includes/PlanLoader.php';
+		new PlanLoader();
 		$hiive           = new HiiveConnection();
 		self::$steps_api = new StepsApi( $hiive );
 		$this->container = $container;
