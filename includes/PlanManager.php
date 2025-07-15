@@ -40,7 +40,7 @@ class PlanManager {
 	 */
 	public static function get_current_plan(): ?Plan {
 		$plan_data = get_option( self::OPTION, array() );
-		$plan_data = false; // for resetting data while debugging
+		// $plan_data = false; // for resetting data while debugging
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on solution
 			return self::load_default_plan();

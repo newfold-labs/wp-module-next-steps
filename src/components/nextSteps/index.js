@@ -18,7 +18,7 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 		url:
 			window.NewfoldRuntime.restUrl +
 			'newfold-next-steps/v1/steps/status',
-		method: 'POST',
+		method: 'PUT',
 		data,
 	} )
 		.then( ( response ) => {
@@ -26,6 +26,7 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
+			console.error( 'Error from taskUpdateWrapper:', error );
 			passError( error );
 		} );
 };
@@ -49,15 +50,26 @@ export const NextSteps = () => {
 				console.error( 'Error updating step:', error );
 			},
 			( response ) => {
+				// The response is the full plan object, not wrapped in a plan property
+				console.log( 'Task update response:', response );
 				window.NewfoldNextSteps = response;
-				setPlan( response.plan );
+				setPlan( response );
 			}
 		);
 	};
 
+	// Handle case where plan might not be loaded yet
+	if ( ! plan || ! plan.tracks ) {
+		return (
+			<div className="nfd-nextsteps" id="nfd-nextsteps">
+				{ spinner }
+				<p>{ __( 'Loading next steps...', 'wp-module-next-steps' ) }</p>
+			</div>
+		);
+	}
+
 	return (
 		<div className="nfd-nextsteps" id="nfd-nextsteps">
-			{ plan.tracks.length < 1 && spinner }
 			<p className="nfd-pb-4">{ plan.description }</p>
 			{ plan.tracks.map( ( track, i ) => (
 				<Track
