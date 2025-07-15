@@ -2,7 +2,7 @@ import { Title } from '@newfold/ui-component-library';
 import { Section } from '../section';
 import { chevron } from '../icons';
 
-export const Track = ( { track, index, taskUpdateCallback, showDismissed } ) => {
+export const Track = ( { track, index, taskUpdateCallback, sectionOpenCallback, showDismissed } ) => {
 	const isOpen = index === 0; // Open the first track by default
 
 	return (
@@ -15,6 +15,7 @@ export const Track = ( { track, index, taskUpdateCallback, showDismissed } ) => 
 				{ track.sections.map( ( section, i ) => (
 					<Section
 						taskUpdateCallback={ taskUpdateCallback }
+						sectionOpenCallback={ sectionOpenCallback }
 						key={ section.id }
 						index={ i }
 						section={ section }

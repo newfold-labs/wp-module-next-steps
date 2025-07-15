@@ -1969,4 +1969,26 @@ class PlanManager {
 			'is_completed'             => $plan->is_completed(),
 		);
 	}
+
+	/**
+	 * Update section open state
+	 *
+	 * @param string $track_id Track ID
+	 * @param string $section_id Section ID
+	 * @param bool $open Open state
+	 * @return bool
+	 */
+	public static function update_section_status( string $track_id, string $section_id, bool $open ): bool {
+		$plan = self::get_current_plan();
+		if ( ! $plan ) {
+			return false;
+		}
+
+		$success = $plan->update_section_open_state( $track_id, $section_id, $open );
+		if ( $success ) {
+			self::save_plan( $plan );
+		}
+
+		return $success;
+	}
 } 

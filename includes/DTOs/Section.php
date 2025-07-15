@@ -31,6 +31,13 @@ class Section {
 	public $description;
 
 	/**
+	 * Section state (open or closed)
+	 *
+	 * @var boolean
+	 */
+	public $open;
+
+	/**
 	 * Section tasks
 	 *
 	 * @var Task[]
@@ -46,6 +53,7 @@ class Section {
 		$this->id          = $data['id'] ?? '';
 		$this->label       = $data['label'] ?? '';
 		$this->description = $data['description'] ?? '';
+		$this->open        = $data['open'] ?? false;
 		$this->tasks       = array();
 
 		// Convert task arrays to Task objects
@@ -70,6 +78,7 @@ class Section {
 			'id'          => $this->id,
 			'label'       => $this->label,
 			'description' => $this->description,
+			'open'        => $this->open,
 			'tasks'       => array_map( function ( Task $task ) {
 				return $task->to_array();
 			}, $this->tasks ),
@@ -214,6 +223,36 @@ class Section {
 	 */
 	public function get_total_tasks_count(): int {
 		return count( $this->tasks );
+	}
+
+	/**
+	 * Set section open state
+	 *
+	 * @param bool $open Open state
+	 * @return bool
+	 */
+	public function set_open( bool $open ): bool {
+		$this->open = $open;
+		return true;
+	}
+
+	/**
+	 * Check if section is open
+	 *
+	 * @return bool
+	 */
+	public function is_open(): bool {
+		return $this->open;
+	}
+
+	/**
+	 * Toggle section open state
+	 *
+	 * @return bool New open state
+	 */
+	public function toggle_open(): bool {
+		$this->open = ! $this->open;
+		return $this->open;
 	}
 
 	/**

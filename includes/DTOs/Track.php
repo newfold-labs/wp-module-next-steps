@@ -128,37 +128,6 @@ class Track {
 	}
 
 	/**
-	 * Update task status in any section
-	 *
-	 * @param string $section_id Section ID
-	 * @param string $task_id Task ID
-	 * @param string $status New status
-	 * @return bool
-	 */
-	public function update_task_status( string $section_id, string $task_id, string $status ): bool {
-		$section = $this->get_section( $section_id );
-		if ( $section ) {
-			return $section->update_task_status( $task_id, $status );
-		}
-		return false;
-	}
-
-	/**
-	 * Get task by section and task ID
-	 *
-	 * @param string $section_id Section ID
-	 * @param string $task_id Task ID
-	 * @return Task|null
-	 */
-	public function get_task( string $section_id, string $task_id ): ?Task {
-		$section = $this->get_section( $section_id );
-		if ( $section ) {
-			return $section->get_task( $task_id );
-		}
-		return null;
-	}
-
-	/**
 	 * Get all sections
 	 *
 	 * @return Section[]
@@ -251,6 +220,54 @@ class Track {
 	 */
 	public function get_total_sections_count(): int {
 		return count( $this->sections );
+	}
+
+	/**
+	 * Update task status
+	 *
+	 * @param string $section_id Section ID
+	 * @param string $task_id Task ID
+	 * @param string $status New status
+	 * @return bool
+	 */
+	public function update_task_status( string $section_id, string $task_id, string $status ): bool {
+		$section = $this->get_section( $section_id );
+		if ( ! $section ) {
+			return false;
+		}
+
+		return $section->update_task_status( $task_id, $status );
+	}
+
+	/**
+	 * Update section open state
+	 *
+	 * @param string $section_id Section ID
+	 * @param bool $open Open state
+	 * @return bool
+	 */
+	public function update_section_open_state( string $section_id, bool $open ): bool {
+		$section = $this->get_section( $section_id );
+		if ( ! $section ) {
+			return false;
+		}
+
+		return $section->set_open( $open );
+	}
+
+	/**
+	 * Get task by section and task ID
+	 *
+	 * @param string $section_id Section ID
+	 * @param string $task_id Task ID
+	 * @return Task|null
+	 */
+	public function get_task( string $section_id, string $task_id ): ?Task {
+		$section = $this->get_section( $section_id );
+		if ( $section ) {
+			return $section->get_task( $task_id );
+		}
+		return null;
 	}
 
 	/**

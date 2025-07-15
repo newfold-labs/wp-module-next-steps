@@ -137,23 +137,6 @@ class Plan {
 	}
 
 	/**
-	 * Update task status in any track/section
-	 *
-	 * @param string $track_id Track ID
-	 * @param string $section_id Section ID
-	 * @param string $task_id Task ID
-	 * @param string $status New status
-	 * @return bool
-	 */
-	public function update_task_status( string $track_id, string $section_id, string $task_id, string $status ): bool {
-		$track = $this->get_track( $track_id );
-		if ( $track ) {
-			return $track->update_task_status( $section_id, $task_id, $status );
-		}
-		return false;
-	}
-
-	/**
 	 * Get section by track and section ID
 	 *
 	 * @param string $track_id Track ID
@@ -316,6 +299,41 @@ class Plan {
 			$count += $track->get_total_sections_count();
 		}
 		return $count;
+	}
+
+	/**
+	 * Update task status
+	 *
+	 * @param string $track_id Track ID
+	 * @param string $section_id Section ID
+	 * @param string $task_id Task ID
+	 * @param string $status New status
+	 * @return bool
+	 */
+	public function update_task_status( string $track_id, string $section_id, string $task_id, string $status ): bool {
+		$track = $this->get_track( $track_id );
+		if ( ! $track ) {
+			return false;
+		}
+
+		return $track->update_task_status( $section_id, $task_id, $status );
+	}
+
+	/**
+	 * Update section open state
+	 *
+	 * @param string $track_id Track ID
+	 * @param string $section_id Section ID
+	 * @param bool $open Open state
+	 * @return bool
+	 */
+	public function update_section_open_state( string $track_id, string $section_id, bool $open ): bool {
+		$track = $this->get_track( $track_id );
+		if ( ! $track ) {
+			return false;
+		}
+
+		return $track->update_section_open_state( $section_id, $open );
 	}
 
 	/**

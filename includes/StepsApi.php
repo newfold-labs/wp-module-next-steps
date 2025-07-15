@@ -198,6 +198,45 @@ class StepsApi {
 				),
 			)
 		);
+
+		// Add route for updating section open state
+		register_rest_route(
+			$this->namespace,
+			$this->rest_base . '/section/open',
+			array(
+				'methods'             => \WP_REST_Server::EDITABLE,
+				'callback'            => array( $this, 'update_section_status' ),
+				'permission_callback' => function () {
+					return current_user_can( 'manage_options' );
+				},
+				'args'                => array(
+					'plan'    => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'track'   => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'section' => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'open'    => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_bool( $value );
+						},
+					),
+				),
+			)
+		);
 	}
 
 	/**
@@ -286,8 +325,6 @@ class StepsApi {
 
 		return new \WP_REST_Response( $plan->to_array(), 200 );
 	}
-	
-
 
 	/**
 	 * Update a step status.
@@ -321,6 +358,33 @@ class StepsApi {
 		$plan = PlanManager::get_current_plan();
 		
 		return new WP_REST_Response( $plan->to_array(), 200 );
+	}
+
+	/**
+	 * Update a section status.
+	 *
+	 * @param \WP_REST_Request $request  The REST request object.
+	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
+	 */
+	public static function update_section_status( \WP_REST_Request $request ) {
+		$plan    = $request->get_param( 'plan' );
+		$track   = $request->get_param( 'track' );
+		$section = $request->get_param( 'section' );
+		$open    = $request->get_param( 'open' ) ?? false;
+		
+		// validate parameters
+		if ( empty( $track ) || empty( $section ) ) {
+			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
+		}
+		
+		// Use PlanManager to update the section status
+		$success = PlanManager::update_section_status( $track, $section, $open );
+		
+		if ( ! $success ) {
+			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+		
+		return new WP_REST_Response( true, 200 );
 	}
 
 	/**
