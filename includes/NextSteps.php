@@ -155,18 +155,13 @@ class NextSteps {
 		\wp_register_style(
 			'next-steps-portal-style',
 			$build_dir . 'next-steps-portal.css',
-			null,
+			null, // still dependant on plugin styles but they are loaded on the plugin page
 			$asset['version']
 		);
 
 		// Only enqueue on plugin pages
 		$screen = \get_current_screen();
-		if ( isset( $screen->id ) &&
-			(
-				false !== strpos( $screen->id, 'bluehost' ) ||
-				false !== strpos( $screen->id, 'hostgator' )
-			)
-		) {
+		if ( isset( $screen->id ) && false !== strpos( $screen->id, 'bluehost' ) ) {
 			\wp_enqueue_script( 'next-steps-portal' );
 			\wp_enqueue_style( 'next-steps-portal-style' );
 
