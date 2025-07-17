@@ -18,16 +18,11 @@ export const Track = ( props ) => {
 		<details className="nfd-track" open={ isOpen } { ...restProps }>
 			<summary className="nfd-track-header">
 				<Title className="nfd-track-title mb-0" as="h2">
-					<span className="nfd-track-header-icon nfd-header-icon">
-						<span className="nfd-track-header-icon-closed">
-							{ chevron }
-						</span>
-						<span className="nfd-track-header-icon-opened">
-							{ chevron }
-						</span>
-					</span>
 					{ track.label }
 				</Title>
+				<span className="nfd-track-header-icon nfd-header-icon">
+					{ chevron }
+				</span>
 			</summary>
 			<div className="nfd-track-sections">
 				{ track.sections.map( ( section, sectionIndex ) => (
