@@ -4,7 +4,17 @@ import { ProgressBar } from '../progressBar';
 import { openCircle, closeCircle } from '../icons';
 import { Task } from '../task';
 
-export const Section = ( { section, index, taskUpdateCallback, sectionOpenCallback, track, showDismissed } ) => {
+export const Section = ( props ) => {
+	const {
+		section,
+		index,
+		taskUpdateCallback,
+		sectionOpenCallback,
+		track,
+		showDismissed,
+		...restProps
+	} = props;
+
 	// Use persisted open state from section data, fallback to passed-in open prop or default for first section
 	let isOpen = section.open !== undefined ? section.open : index === 0;
 	
@@ -21,7 +31,7 @@ export const Section = ( { section, index, taskUpdateCallback, sectionOpenCallba
 	}
 
 	return (
-		<details className="nfd-section" open={ isOpen }>
+		<details className="nfd-section" open={ isOpen } { ...restProps }>
 			<summary
 				className="nfd-section-header" 
 				onClick={ ( e ) => { sectionOpenCallback( section.id, !isOpen ); } }
