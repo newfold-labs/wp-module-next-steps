@@ -53,6 +53,7 @@ export const Section = ( { section, index, taskUpdateCallback, sectionOpenCallba
 						section={ section.id }
 						status={ step.status }
 						step={ step }
+						data_attributes={ step.data_attributes || {} }
 					/>
 				) ) }
 			</div>

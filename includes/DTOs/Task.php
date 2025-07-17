@@ -59,18 +59,26 @@ class Task {
 	public $source;
 
 	/**
+	 * Task data attributes for HTML elements
+	 *
+	 * @var array
+	 */
+	public $data_attributes;
+
+	/**
 	 * Task constructor
 	 *
 	 * @param array $data Task data
 	 */
 	public function __construct( array $data = array() ) {
-		$this->id          = $data['id'] ?? '';
-		$this->title       = $data['title'] ?? '';
-		$this->description = $data['description'] ?? '';
-		$this->href        = $data['href'] ?? '';
-		$this->status      = $data['status'] ?? 'new';
-		$this->priority    = $data['priority'] ?? 0;
-		$this->source      = $data['source'] ?? 'wp-module-next-steps';
+		$this->id              = $data['id'] ?? '';
+		$this->title           = $data['title'] ?? '';
+		$this->description     = $data['description'] ?? '';
+		$this->href            = $data['href'] ?? '';
+		$this->status          = $data['status'] ?? 'new';
+		$this->priority        = $data['priority'] ?? 0;
+		$this->source          = $data['source'] ?? 'wp-module-next-steps';
+		$this->data_attributes = $data['data_attributes'] ?? array();
 	}
 
 	/**
@@ -80,13 +88,14 @@ class Task {
 	 */
 	public function to_array(): array {
 		return array(
-			'id'          => $this->id,
-			'title'       => $this->title,
-			'description' => $this->description,
-			'href'        => $this->href,
-			'status'      => $this->status,
-			'priority'    => $this->priority,
-			'source'      => $this->source,
+			'id'              => $this->id,
+			'title'           => $this->title,
+			'description'     => $this->description,
+			'href'            => $this->href,
+			'status'          => $this->status,
+			'priority'        => $this->priority,
+			'source'          => $this->source,
+			'data_attributes' => $this->data_attributes,
 		);
 	}
 
@@ -138,6 +147,52 @@ class Task {
 
 		$this->status = $status;
 		return true;
+	}
+
+	/**
+	 * Set data attributes for the task
+	 *
+	 * @param array $data_attributes Associative array of data attributes
+	 * @return void
+	 */
+	public function set_data_attributes( array $data_attributes ): void {
+		$this->data_attributes = $data_attributes;
+	}
+
+	/**
+	 * Add a single data attribute
+	 *
+	 * @param string $key Data attribute key (without 'data-' prefix)
+	 * @param string $value Data attribute value
+	 * @return void
+	 */
+	public function add_data_attribute( string $key, string $value ): void {
+		$this->data_attributes[ $key ] = $value;
+	}
+
+	/**
+	 * Remove a data attribute
+	 *
+	 * @param string $key Data attribute key to remove
+	 * @return void
+	 */
+	public function remove_data_attribute( string $key ): void {
+		unset( $this->data_attributes[ $key ] );
+	}
+
+	/**
+	 * Get formatted data attributes for HTML output
+	 *
+	 * @return array Formatted data attributes with 'data-' prefix
+	 */
+	public function get_formatted_data_attributes(): array {
+		$formatted = array();
+		foreach ( $this->data_attributes as $key => $value ) {
+			// Ensure key doesn't already have 'data-' prefix
+			$formatted_key = strpos( $key, 'data-' ) === 0 ? $key : 'data-' . $key;
+			$formatted[ $formatted_key ] = $value;
+		}
+		return $formatted;
 	}
 
 	/**
