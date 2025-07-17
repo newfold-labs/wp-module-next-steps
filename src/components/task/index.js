@@ -4,18 +4,23 @@ import { todoIcon, doneIcon, hideIcon, showIcon, goIcon } from '../icons';
 
 export const Task = ( props ) => {
 	const {
-		id,
-		description = '',
-		title = '',
-		status,
-		href,
+		step,
 		taskUpdateCallback,
 		track,
 		section,
 		showDismissed,
-		data_attributes = {},
 		...restProps
 	} = props;
+	
+	// Destructure step properties
+	const {
+		id,
+		// description = '',
+		title = '',
+		status,
+		href,
+		data_attributes = {}
+	} = step;
 	
 	const getHref = () => {
 		// replace {siteUrl} placeholder with the actual site URL
@@ -59,7 +64,7 @@ export const Task = ( props ) => {
 	};
 
 	// Combine custom data attributes with any other restProps
-	const combinedAttributes = { ...formatDataAttributes(), ...restProps };
+	const combinedAttributes = { ...formatDataAttributes() };
 
 	const renderStepContent = ( href = false, target = '' ) => {
 		return (

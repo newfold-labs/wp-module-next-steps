@@ -52,18 +52,12 @@ export const Section = ( props ) => {
 			<div className="nfd-section-steps">
 				{ section.tasks.map( ( step ) => (
 					<Task
+						key={ step.id }
+						step={ step }
 						taskUpdateCallback={ taskUpdateCallback }
 						showDismissed={ showDismissed }
-						description={ step.description }
-						href={ step.href }
-						id={ step.id }
-						key={ step.id }
-						title={ step.title }
 						track={ track }
 						section={ section.id }
-						status={ step.status }
-						step={ step }
-						data_attributes={ step.data_attributes || {} }
 					/>
 				) ) }
 			</div>
