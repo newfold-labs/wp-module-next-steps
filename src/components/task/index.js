@@ -2,17 +2,25 @@ import { Title } from '@newfold/ui-component-library';
 import { __, sprintf } from '@wordpress/i18n';
 import { todoIcon, doneIcon, hideIcon, showIcon, goIcon } from '../icons';
 
-export const Task = ( {
-	id,
-	description = '',
-	title = '',
-	status,
-	href,
-	taskUpdateCallback,
-	track,
-	section,
-	showDismissed
-} ) => {
+export const Task = ( props ) => {
+	const {
+		step,
+		taskUpdateCallback,
+		track,
+		section,
+		showDismissed,
+		...restProps
+	} = props;
+	
+	// Destructure step properties
+	const {
+		id,
+		// description = '',
+		title = '',
+		status,
+		href,
+		data_attributes = {}
+	} = step;
 	
 	const getHref = () => {
 		// replace {siteUrl} placeholder with the actual site URL
@@ -32,6 +40,31 @@ export const Task = ( {
 		}
 		return '_blank';
 	};
+
+	/**
+	 * Format data attributes for React components
+	 * Ensures all keys have 'data-' prefix and handles boolean values
+	 */
+	const formatDataAttributes = () => {
+		const formatted = {};
+		
+		Object.entries( data_attributes ).forEach( ( [ key, value ] ) => {
+			// Ensure key has 'data-' prefix
+			const dataKey = key.startsWith( 'data-' ) ? key : `data-${ key }`;
+			
+			// Handle boolean values (convert to string or use key as flag)
+			if ( typeof value === 'boolean' ) {
+				formatted[ dataKey ] = value ? 'true' : 'false';
+			} else {
+				formatted[ dataKey ] = value;
+			}
+		} );
+		
+		return formatted;
+	};
+
+	// Combine custom data attributes with any other restProps
+	const combinedAttributes = { ...formatDataAttributes() };
 
 	const renderStepContent = ( href = false, target = '' ) => {
 		return (
@@ -54,7 +87,7 @@ export const Task = ( {
 	};
 	const renderNewStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id }>
+			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
@@ -110,7 +143,7 @@ export const Task = ( {
 	};
 	const renderDoneStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id }>
+			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
@@ -133,7 +166,7 @@ export const Task = ( {
 	};
 	const renderDismissedStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id }>
+			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
