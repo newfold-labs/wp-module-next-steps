@@ -27,11 +27,10 @@ A WordPress module for managing personalized next steps for users after completi
 
 ## Critical Paths
 
-- When a user completes onboarding and selects a site type, the appropriate next steps plan should be automatically loaded and available in the dashboard widget
-- For existing sites without onboarding data, the module should detect site characteristics and load the most appropriate plan without user intervention
-- Task completion and progress should persist across page loads and remain accurate when users return to the dashboard
-- Plan switching should work seamlessly when site type changes (e.g., user adds WooCommerce to convert from blog to ecommerce)
-- The dashboard widget should display current progress and provide clear calls-to-action for incomplete tasks
+- When a user completes onboarding and selects a site type, the appropriate next steps plan should be automatically loaded and available in the dashboard widget and plugin app.
+- For existing sites without onboarding data, the module should detect site characteristics and load the most appropriate plan without user intervention.
+- Task completion and progress should persist across page loads and remain accurate when users return to the dashboard.
+- The dashboard widget should display current progress and provide clear calls-to-action for incomplete tasks and link users to the appropriate page to complete the task.
 
 ## Features
 
@@ -41,7 +40,6 @@ A WordPress module for managing personalized next steps for users after completi
 - **Task Management**: Track completion status of individual tasks and sections
 - **Dashboard Widget**: Integrated WordPress dashboard widget
 - **Standalone Portal**: Full-page next steps interface
-- **Responsive Design**: Works across all device sizes
 
 ## Installation
 
@@ -322,3 +320,7 @@ GPL-3.0-or-later
 ## Support
 
 For issues and feature requests, please use the GitHub issue tracker. 
+
+## Usage
+ 
+[More on Newfold WordPress Modules](https://github.com/newfold-labs/wp-module-loader)
