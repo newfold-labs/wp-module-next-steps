@@ -31,12 +31,12 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// Ensure no steps option exists
 		delete_option( StepsApi::OPTION );
 		
-		// Set solution to blog (internal plan type)
-		update_option( PlanManager::SOLUTION_OPTION, 'blog' );
+		// No external option setup needed - test should use intelligent detection
+		// which defaults to 'blog' in test environment
 		
 		PlanLoader::load_default_steps();
 		
-		// Verify that steps were loaded and saved
+		// Verify that steps were loaded and saved to the module's own option
 		$steps_data = get_option( StepsApi::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'blog_setup', $steps_data['id'] );
@@ -76,16 +76,17 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	 * Test on_sitetype_change when site type doesn't change
 	 */
 	public function test_on_sitetype_change_no_change() {
-		// Set initial solution
-		update_option( PlanManager::SOLUTION_OPTION, 'blog' );
+		// Clean slate 
+		delete_option( StepsApi::OPTION );
 		
 		$old_value = array( 'site_type' => 'personal' );
-		$new_value = array( 'site_type' => 'personal' );
+		$new_value = array( 'site_type' => 'personal' ); // Same as old
 		
 		PlanLoader::on_sitetype_change( $old_value, $new_value );
 		
-		// Verify solution option wasn't changed
-		$this->assertEquals( 'blog', get_option( PlanManager::SOLUTION_OPTION ) );
+		// Verify no steps were loaded since there was no change
+		$steps_data = get_option( StepsApi::OPTION );
+		$this->assertFalse( $steps_data, 'No steps should be loaded when site type does not change' );
 	}
 
 	/**
@@ -110,37 +111,43 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	 * Test on_sitetype_change with invalid new value structure
 	 */
 	public function test_on_sitetype_change_invalid_new_value() {
-		// Set initial solution
-		update_option( PlanManager::SOLUTION_OPTION, 'blog' );
+		// Clean slate
+		delete_option( StepsApi::OPTION );
 		
 		$old_value = array( 'site_type' => 'personal' );
 		
 		// Test with non-array new value
 		$new_value = 'invalid';
 		PlanLoader::on_sitetype_change( $old_value, $new_value );
-		$this->assertEquals( 'blog', get_option( PlanManager::SOLUTION_OPTION ) );
+		
+		// Verify no steps were loaded due to invalid input
+		$steps_data = get_option( StepsApi::OPTION );
+		$this->assertFalse( $steps_data, 'No steps should be loaded for invalid new value' );
 		
 		// Test with array missing site_type key
 		$new_value = array( 'other_key' => 'value' );
 		PlanLoader::on_sitetype_change( $old_value, $new_value );
-		$this->assertEquals( 'blog', get_option( PlanManager::SOLUTION_OPTION ) );
+		
+		// Verify no steps were loaded due to missing site_type
+		$steps_data = get_option( StepsApi::OPTION );
+		$this->assertFalse( $steps_data, 'No steps should be loaded for missing site_type key' );
 	}
 
 	/**
 	 * Test on_sitetype_change with invalid site type
 	 */
 	public function test_on_sitetype_change_invalid_site_type() {
-		// Set initial solution
-		update_option( PlanManager::SOLUTION_OPTION, 'blog' );
+		// Clean slate
+		delete_option( StepsApi::OPTION );
 		
 		$old_value = array( 'site_type' => 'personal' );
 		$new_value = array( 'site_type' => 'invalid_type' );
 		
 		PlanLoader::on_sitetype_change( $old_value, $new_value );
 		
-		// Verify steps data wasn't updated
+		// Verify no steps were loaded for invalid site type
 		$steps_data = get_option( StepsApi::OPTION );
-		$this->assertFalse( $steps_data );
+		$this->assertFalse( $steps_data, 'No steps should be loaded for invalid site type' );
 	}
 
 	/**
