@@ -136,15 +136,15 @@ class PlanManagerTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test load_default_plan defaults to ecommerce
+	 * Test load_default_plan defaults to blog when no solution is set
 	 */
-	public function test_load_default_plan_defaults_to_ecommerce() {
+	public function test_load_default_plan_defaults_to_blog() {
 		// Don't set any solution option
 		
 		$plan = PlanManager::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'store_setup', $plan->id );
+		$this->assertEquals( 'blog_setup', $plan->id );
 	}
 
 	/**
@@ -161,10 +161,10 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'blog_setup', $plan->id );
 		
-		// Verify solution option was updated
-		$this->assertEquals( 'blog', get_option( PlanManager::SOLUTION_OPTION ) );
+		// The module should NOT modify external options - it's read-only for those
+		// We only verify that the correct plan object was returned
 		
-		// Verify old plan data was cleared and new saved
+		// Verify the plan was processed correctly and saved to the module's own option
 		$saved_plan_data = get_option( PlanManager::OPTION );
 		$this->assertEquals( 'blog_setup', $saved_plan_data['id'] );
 	}

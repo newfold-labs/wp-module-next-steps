@@ -26,18 +26,21 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 } else {
 	// For basic testing without full WordPress environment
 	// Define minimal WordPress-like functions for testing
+	// Global option storage for WordPress functions
+	if ( ! isset( $GLOBALS['test_wp_options'] ) ) {
+		$GLOBALS['test_wp_options'] = array();
+	}
+
 	if ( ! function_exists( 'get_option' ) ) {
 		function get_option( $option, $default = false ) {
-			static $options = array();
-			return isset( $options[ $option ] ) ? $options[ $option ] : $default;
+			return isset( $GLOBALS['test_wp_options'][ $option ] ) ? $GLOBALS['test_wp_options'][ $option ] : $default;
 		}
 	}
 	
 	if ( ! function_exists( 'update_option' ) ) {
 		function update_option( $option, $value ) {
-			static $options = array();
-			$old_value = isset( $options[ $option ] ) ? $options[ $option ] : false;
-			$options[ $option ] = $value;
+			$old_value = isset( $GLOBALS['test_wp_options'][ $option ] ) ? $GLOBALS['test_wp_options'][ $option ] : false;
+			$GLOBALS['test_wp_options'][ $option ] = $value;
 			// Trigger hook if it exists
 			if ( function_exists( 'do_action' ) ) {
 				do_action( "update_option_{$option}", $old_value, $value );
@@ -48,8 +51,33 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 	
 	if ( ! function_exists( 'delete_option' ) ) {
 		function delete_option( $option ) {
-			static $options = array();
-			unset( $options[ $option ] );
+			unset( $GLOBALS['test_wp_options'][ $option ] );
+			return true;
+		}
+	}
+
+	// Global transient storage for WordPress functions
+	if ( ! isset( $GLOBALS['test_wp_transients'] ) ) {
+		$GLOBALS['test_wp_transients'] = array();
+	}
+
+	// WordPress transient functions
+	if ( ! function_exists( 'get_transient' ) ) {
+		function get_transient( $transient ) {
+			return isset( $GLOBALS['test_wp_transients'][ $transient ] ) ? $GLOBALS['test_wp_transients'][ $transient ] : false;
+		}
+	}
+
+	if ( ! function_exists( 'set_transient' ) ) {
+		function set_transient( $transient, $value, $expiration = 0 ) {
+			$GLOBALS['test_wp_transients'][ $transient ] = $value;
+			return true;
+		}
+	}
+
+	if ( ! function_exists( 'delete_transient' ) ) {
+		function delete_transient( $transient ) {
+			unset( $GLOBALS['test_wp_transients'][ $transient ] );
 			return true;
 		}
 	}
@@ -101,24 +129,42 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 		}
 	}
 	
+	// Global hook storage for WordPress functions  
+	if ( ! isset( $GLOBALS['test_wp_hooks'] ) ) {
+		$GLOBALS['test_wp_hooks'] = array();
+	}
+
 	// WordPress hook functions
 	if ( ! function_exists( 'has_action' ) ) {
 		function has_action( $tag, $function_to_check = false ) {
-			static $actions = array();
-			if ( $function_to_check === false ) {
-				return isset( $actions[ $tag ] );
+			if ( ! isset( $GLOBALS['test_wp_hooks'][ $tag ] ) ) {
+				return false;
 			}
-			return isset( $actions[ $tag ] ) && in_array( $function_to_check, $actions[ $tag ] );
+			
+			if ( $function_to_check === false ) {
+				return count( $GLOBALS['test_wp_hooks'][ $tag ] );
+			}
+
+			// Check for specific callback
+			foreach ( $GLOBALS['test_wp_hooks'][ $tag ] as $hook_data ) {
+				if ( $hook_data['callback'] === $function_to_check ) {
+					return $hook_data['priority'];
+				}
+			}
+			return false;
 		}
 	}
 	
 	if ( ! function_exists( 'add_action' ) ) {
 		function add_action( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
-			static $actions = array();
-			if ( ! isset( $actions[ $tag ] ) ) {
-				$actions[ $tag ] = array();
+			if ( ! isset( $GLOBALS['test_wp_hooks'][ $tag ] ) ) {
+				$GLOBALS['test_wp_hooks'][ $tag ] = array();
 			}
-			$actions[ $tag ][] = $function_to_add;
+			$GLOBALS['test_wp_hooks'][ $tag ][] = array(
+				'callback' => $function_to_add,
+				'priority' => $priority,
+				'args' => $accepted_args
+			);
 			return true;
 		}
 	}

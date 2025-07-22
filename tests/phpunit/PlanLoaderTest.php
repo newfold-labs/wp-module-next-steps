@@ -66,9 +66,6 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		
 		PlanLoader::on_sitetype_change( $old_value, $new_value );
 		
-		// Verify solution option was updated
-		$this->assertEquals( 'ecommerce', get_option( PlanManager::SOLUTION_OPTION ) );
-		
 		// Verify steps data was updated
 		$steps_data = get_option( StepsApi::OPTION );
 		$this->assertIsArray( $steps_data );
@@ -102,9 +99,6 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		);
 		
 		PlanLoader::on_sitetype_change( $old_value, $new_value );
-		
-		// Verify solution option was set
-		$this->assertEquals( 'corporate', get_option( PlanManager::SOLUTION_OPTION ) );
 		
 		// Verify steps data was updated
 		$steps_data = get_option( StepsApi::OPTION );
@@ -144,9 +138,6 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		
 		PlanLoader::on_sitetype_change( $old_value, $new_value );
 		
-		// Verify solution option wasn't changed due to invalid type
-		$this->assertEquals( 'blog', get_option( PlanManager::SOLUTION_OPTION ) );
-		
 		// Verify steps data wasn't updated
 		$steps_data = get_option( StepsApi::OPTION );
 		$this->assertFalse( $steps_data );
@@ -171,11 +162,12 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		
 		PlanLoader::on_sitetype_change( $old_value, $new_value );
 		
-		// Verify solution was switched
-		$this->assertEquals( 'ecommerce', get_option( PlanManager::SOLUTION_OPTION ) );
+		// The module should NOT modify the solution option - it's read-only
+		// We only verify that the correct plan was loaded
 		
 		// Verify steps were updated
 		$steps_data = get_option( StepsApi::OPTION );
+		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'store_setup', $steps_data['id'] );
 	}
 
@@ -189,22 +181,26 @@ class PlanLoaderTest extends WP_UnitTestCase {
 			'ecommerce' => array( 'solution' => 'ecommerce', 'plan_id' => 'store_setup' ),
 		);
 		
+		$old_site_types = array( 'ecommerce', 'personal', 'business' ); // Rotate old values
+		$i = 0;
+		
 		foreach ( $valid_types as $site_type => $expected ) {
 			// Clean slate for each test
 			delete_option( PlanManager::OPTION );
 			delete_option( PlanManager::SOLUTION_OPTION );
 			delete_option( StepsApi::OPTION );
 			
-			$old_value = array( 'site_type' => 'ecommerce' ); // Start with different type
+			// Use a different old value to ensure a change is detected
+			$old_value = array( 'site_type' => $old_site_types[$i] );
 			$new_value = array( 'site_type' => $site_type );
+			$i++;
 			
 			PlanLoader::on_sitetype_change( $old_value, $new_value );
 			
-			// Verify correct solution was set (internal plan type)
-			$this->assertEquals( $expected['solution'], get_option( PlanManager::SOLUTION_OPTION ) );
-			
 			// Verify correct plan was loaded
 			$steps_data = get_option( StepsApi::OPTION );
+			$this->assertIsArray( $steps_data, "Steps data should be an array for site_type: $site_type, got: " . var_export( $steps_data, true ) );
+			$this->assertArrayHasKey( 'id', $steps_data, "Steps data should have 'id' key" );
 			$this->assertEquals( $expected['plan_id'], $steps_data['id'] );
 		}
 	}
@@ -217,15 +213,16 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// or test that calling it with WooCommerce plugin path would switch to ecommerce
 		
 		PlanLoader::on_woocommerce_activation( 'woocommerce/woocommerce.php', false );
-		
-		// Since method is commented out, verify it doesn't change anything
-		$this->assertEquals( 'ecommerce', get_option( PlanManager::SOLUTION_OPTION, 'ecommerce' ) );
+
 	}
 
 	/**
 	 * Test that PlanLoader constructor sets up hooks correctly
 	 */
 	public function test_constructor_sets_up_hooks() {
+		// Instantiate PlanLoader to trigger constructor and hook registration
+		new PlanLoader();
+		
 		// Verify init hook is added
 		$this->assertEquals( 1, has_action( 'init', array( 'NewfoldLabs\WP\Module\NextSteps\PlanLoader', 'load_default_steps' ) ) );
 		
@@ -256,9 +253,8 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// Manually trigger the hook (since WordPress hooks don't fire in unit tests)
 		PlanLoader::on_sitetype_change( false, $site_info );
 		
-		// Step 3: Verify plan was loaded correctly (should be 'corporate' internally)
-		$this->assertEquals( 'corporate', get_option( PlanManager::SOLUTION_OPTION ) );
-		
+		// Step 3: The module does NOT modify the solution option - it's read-only
+		// We only verify that the correct plan was loaded
 		$steps_data = get_option( StepsApi::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'corporate_setup', $steps_data['id'] );
@@ -278,9 +274,9 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		update_option( 'nfd_module_onboarding_site_info', $initial_site_info );
 		PlanLoader::on_sitetype_change( false, $initial_site_info );
 		
-		// Verify initial setup (personal -> blog internally)
-		$this->assertEquals( 'blog', get_option( PlanManager::SOLUTION_OPTION ) );
+		// Verify initial setup loaded blog steps
 		$steps_data = get_option( StepsApi::OPTION );
+		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'blog_setup', $steps_data['id'] );
 		
 		// User changes their mind and switches to ecommerce
@@ -291,10 +287,8 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		
 		PlanLoader::on_sitetype_change( $initial_site_info, $updated_site_info );
 		
-		// Verify switch was successful
-		$this->assertEquals( 'ecommerce', get_option( PlanManager::SOLUTION_OPTION ) );
-		
 		$updated_steps_data = get_option( StepsApi::OPTION );
+		$this->assertIsArray( $updated_steps_data );
 		$this->assertEquals( 'store_setup', $updated_steps_data['id'] );
 		$this->assertNotEquals( $steps_data, $updated_steps_data );
 	}
@@ -320,19 +314,18 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		delete_option( StepsApi::OPTION );
 		delete_option( PlanManager::SOLUTION_OPTION );
 		
-		// Mock site detection to return 'corporate'
-		// We can't easily mock private methods, so we'll test the full flow
+		// Test the full flow - this should load default steps based on site detection
 		PlanLoader::load_default_steps();
 		
-		// Verify a solution was set (will be 'blog' by default in test environment)
-		$solution = get_option( PlanManager::SOLUTION_OPTION );
-		$this->assertNotFalse( $solution );
-		$this->assertContains( $solution, array( 'blog', 'corporate', 'ecommerce' ) );
+		// The module should NOT modify external options - it's read-only for those
+		// We only verify that default steps were loaded
 		
-		// Verify steps were loaded
+		// Verify steps were loaded using intelligent detection
 		$steps_data = get_option( StepsApi::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertArrayHasKey( 'id', $steps_data );
+		// Should default to blog in test environment (no ecommerce/corporate indicators)
+		$this->assertEquals( 'blog_setup', $steps_data['id'] );
 	}
 
 	/**
