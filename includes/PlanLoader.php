@@ -26,7 +26,7 @@ class PlanLoader {
 		\add_action( 'init', array( __CLASS__, 'load_default_steps' ), 1 );
 		
 		// Hook into solution option changes for dynamic plan switching
-		\add_action( 'update_option_nfd_solution', array( __CLASS__, 'on_solution_change' ), 10, 2 );
+		\add_action( 'update_option_nfd_module_onboarding_site_info', array( __CLASS__, 'on_sitetype_change' ), 10, 2 );
 		
 		// Hook into WooCommerce activation to potentially switch to store plan
 		// \add_action( 'activated_plugin', array( __CLASS__, 'on_woocommerce_activation' ), 10, 2 );
@@ -47,15 +47,28 @@ class PlanLoader {
 	/**
 	 * Handle solution option changes to switch plans dynamically.
 	 *
-	 * @param string $old_value Old solution value
-	 * @param string $new_value New solution value
+	 * @param mixed $old_value Old solution value
+	 * @param array $new_value New solution value
 	 */
-	public static function on_solution_change( $old_value, $new_value ) {
+	public static function on_sitetype_change( $old_value, $new_value ) {
+		// Validate new value structure
+		if ( ! is_array( $new_value ) || ! isset( $new_value['site_type'] ) ) {
+			return;
+		}
+		
+		// Get old site type safely
+		$old_site_type = ( is_array( $old_value ) && isset( $old_value['site_type'] ) ) ? $old_value['site_type'] : '';
+		$new_site_type = $new_value['site_type'];
+		
 		// Only switch plan if the solution actually changed
-		if ( $old_value !== $new_value ) {
-			$plan = PlanManager::switch_plan( $new_value );
-			if ( $plan ) {
-				StepsApi::set_data( $plan->to_array() );
+		if ( $old_site_type !== $new_site_type ) {
+			// Check if the new site type is a valid plan type
+			if ( array_key_exists( $new_site_type, PlanManager::PLAN_TYPES ) ) {
+				$plan_type = PlanManager::PLAN_TYPES[ $new_site_type ];
+				$plan = PlanManager::switch_plan( $plan_type );
+				if ( $plan ) {
+					StepsApi::set_data( $plan->to_array() );
+				}
 			}
 		}
 	}

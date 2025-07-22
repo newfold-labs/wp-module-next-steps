@@ -25,12 +25,17 @@ class PlanManager {
 	const SOLUTION_OPTION = 'nfd_solution';
 
 	/**
-	 * Available plan types
+	 * Available plan types, this maps the site_type from onboarding module to internal plan types
+	 * 
+	 * Maps nfd_module_onboarding_site_info['site_type'] values to internal plan types:
+	 * - 'personal' (onboarding) -> 'blog' (internal plan)
+	 * - 'business' (onboarding) -> 'corporate' (internal plan)  
+	 * - 'ecommerce' (onboarding) -> 'ecommerce' (internal plan)
 	 */
 	const PLAN_TYPES = array(
+		'personal'  => 'blog',
+		'business'  => 'corporate',
 		'ecommerce' => 'ecommerce',
-		'blog'      => 'blog',
-		'corporate' => 'corporate',
 	);
 
 	/**
@@ -129,7 +134,7 @@ class PlanManager {
 									'id'              => 'store_quick_setup',
 									'title'           => __( 'Quick Setup', 'wp-module-next-steps' ),
 									'description'     => __( 'Complete the basic store configuration and settings', 'wp-module-next-steps' ),
-									'href'            => '{siteUrl}/wp-admin/admin.php?page=bluehost#/store/details',
+									'href'            => '#store-setup-quick-flow-modal',
 									'status'          => 'new',
 									'priority'        => 1,
 									'source'          => 'wp-module-next-steps',
@@ -149,7 +154,7 @@ class PlanManager {
 									'id'          => 'store_upload_logo',
 									'title'       => __( 'Upload Logo', 'wp-module-next-steps' ),
 									'description' => __( 'Add your business logo to build brand recognition', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=title_tagline',
+									'href'        => '{siteUrl}/wp-admin/site-editor.php?',
 									'status'      => 'new',
 									'priority'    => 1,
 									'source'      => 'wp-module-next-steps',
@@ -158,7 +163,7 @@ class PlanManager {
 									'id'          => 'store_choose_colors_fonts',
 									'title'       => __( 'Choose Colors and Fonts', 'wp-module-next-steps' ),
 									'description' => __( 'Select colors and typography that reflect your brand', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=colors',
+									'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fstyles',
 									'status'      => 'new',
 									'priority'    => 2,
 									'source'      => 'wp-module-next-steps',
@@ -167,7 +172,7 @@ class PlanManager {
 									'id'          => 'store_customize_header',
 									'title'       => __( 'Customize Header', 'wp-module-next-steps' ),
 									'description' => __( 'Design your header layout and navigation', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=header',
+									'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpage&canvas=edit',
 									'status'      => 'new',
 									'priority'    => 3,
 									'source'      => 'wp-module-next-steps',
@@ -176,7 +181,7 @@ class PlanManager {
 									'id'          => 'store_customize_footer',
 									'title'       => __( 'Customize Footer', 'wp-module-next-steps' ),
 									'description' => __( 'Set up your footer with important links and information', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=footer',
+									'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2F&canvas=edit',
 									'status'      => 'new',
 									'priority'    => 4,
 									'source'      => 'wp-module-next-steps',
@@ -185,7 +190,7 @@ class PlanManager {
 									'id'          => 'store_customize_homepage',
 									'title'       => __( 'Customize Homepage', 'wp-module-next-steps' ),
 									'description' => __( 'Create an engaging homepage that showcases your products', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=static_front_page',
+									'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2F&canvas=edit',
 									'status'      => 'new',
 									'priority'    => 5,
 									'source'      => 'wp-module-next-steps',
@@ -194,7 +199,7 @@ class PlanManager {
 						),
 						array(
 							'id'          => 'setup_products',
-							'label'       => __( 'Set Up Products', 'wp-module-next-steps' ),
+							'label'       => __( 'Set Up Shopping Experience', 'wp-module-next-steps' ),
 							'description' => __( 'Add and configure your product catalog', 'wp-module-next-steps' ),
 							'tasks'       => array(
 								array(
@@ -210,7 +215,7 @@ class PlanManager {
 									'id'          => 'store_customize_product_page',
 									'title'       => __( 'Customize the Product Page', 'wp-module-next-steps' ),
 									'description' => __( 'Design how individual products are displayed', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=woocommerce_product_catalog',
+									'href'        => '{siteUrl}/wp-admin/post.php?post=',
 									'status'      => 'new',
 									'priority'    => 2,
 									'source'      => 'wp-module-next-steps',
@@ -219,7 +224,7 @@ class PlanManager {
 									'id'          => 'store_customize_shop_page',
 									'title'       => __( 'Customize the Shop Page', 'wp-module-next-steps' ),
 									'description' => __( 'Configure your main product catalog display', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=woocommerce_product_catalog',
+									'href'        => '{siteUrl}/wp-admin/post.php?post=',
 									'status'      => 'new',
 									'priority'    => 3,
 									'source'      => 'wp-module-next-steps',
@@ -228,7 +233,7 @@ class PlanManager {
 									'id'          => 'store_customize_cart_page',
 									'title'       => __( 'Customize the Cart Page', 'wp-module-next-steps' ),
 									'description' => __( 'Optimize the shopping cart experience', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=advanced&section=woocommerce_cart_page_id',
+									'href'        => '{siteUrl}/wp-admin/post.php?post=',
 									'status'      => 'new',
 									'priority'    => 4,
 									'source'      => 'wp-module-next-steps',
@@ -237,7 +242,7 @@ class PlanManager {
 									'id'          => 'store_customize_checkout_flow',
 									'title'       => __( 'Customize the Checkout Flow', 'wp-module-next-steps' ),
 									'description' => __( 'Streamline the checkout process for better conversions', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=checkout',
+									'href'        => '{siteUrl}/wp-admin/post.php?post=',
 									'status'      => 'new',
 									'priority'    => 5,
 									'source'      => 'wp-module-next-steps',
@@ -253,7 +258,7 @@ class PlanManager {
 									'id'          => 'store_setup_payments',
 									'title'       => __( 'Set Up Payments', 'wp-module-next-steps' ),
 									'description' => __( 'Configure payment gateways like PayPal and Stripe', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=checkout',
+									'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=payments',
 									'status'      => 'new',
 									'priority'    => 1,
 									'source'      => 'wp-module-next-steps',
@@ -296,7 +301,7 @@ class PlanManager {
 									'id'          => 'store_terms_conditions',
 									'title'       => __( 'Terms & Conditions', 'wp-module-next-steps' ),
 									'description' => __( 'Set terms of service for customer purchases', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=page',
+									'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
 									'status'      => 'new',
 									'priority'    => 2,
 									'source'      => 'wp-module-next-steps',
@@ -305,7 +310,7 @@ class PlanManager {
 									'id'          => 'store_return_refund_policy',
 									'title'       => __( 'Return and Refund Policy', 'wp-module-next-steps' ),
 									'description' => __( 'Define your return and refund procedures', 'wp-module-next-steps' ),
-									'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=page',
+									'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
 									'status'      => 'new',
 									'priority'    => 3,
 									'source'      => 'wp-module-next-steps',
