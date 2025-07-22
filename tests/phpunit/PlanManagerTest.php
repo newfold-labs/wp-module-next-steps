@@ -70,7 +70,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 			'id'          => 'test_plan',
 			'label'       => 'Test Plan',
 			'description' => 'A test plan',
-			'tracks'      => array()
+			'tracks'      => array(),
 		);
 
 		update_option( PlanManager::OPTION, $test_plan_data );
@@ -210,7 +210,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 
 		// Check first section has tasks
 		$first_section = $sections[0];
-		$tasks = $first_section->get_tasks();
+		$tasks        = $first_section->get_tasks();
 		$this->assertGreaterThan( 0, count( $tasks ) );
 	}
 
@@ -245,9 +245,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 		PlanManager::save_plan( $plan );
 
 		// Update task status
-		$result = PlanManager::update_task_status( 
-			'store_build_track', 
-			'basic_store_setup', 
+		$result = PlanManager::update_task_status(
+			'store_build_track',
+			'basic_store_setup',
 			'store_quick_setup',
 			'done'
 		);
@@ -256,7 +256,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 
 		// Verify the task status was updated
 		$updated_plan = PlanManager::get_current_plan();
-		$task = $updated_plan->get_task( 'store_build_track', 'basic_store_setup', 'store_quick_setup' );
+		$task         = $updated_plan->get_task( 'store_build_track', 'basic_store_setup', 'store_quick_setup' );
 		$this->assertEquals( 'done', $task->status );
 	}
 
@@ -270,7 +270,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		// Try to update non-existent task
 		$result = PlanManager::update_task_status(
 			'invalid_track',
-			'invalid_section', 
+			'invalid_section',
 			'invalid_task',
 			'done'
 		);
@@ -287,7 +287,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 
 		$task = PlanManager::get_task(
 			'store_build_track',
-			'basic_store_setup', 
+			'basic_store_setup',
 			'store_quick_setup'
 		);
 
@@ -385,7 +385,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 
 		// Verify the section status was updated
 		$updated_plan = PlanManager::get_current_plan();
-		$section = $updated_plan->get_section( 'store_build_track', 'basic_store_setup' );
+		$section      = $updated_plan->get_section( 'store_build_track', 'basic_store_setup' );
 		$this->assertFalse( $section->is_open() );
 	}
 
@@ -399,4 +399,4 @@ class PlanManagerTest extends WP_UnitTestCase {
 
 		parent::tearDown();
 	}
-} 
+}

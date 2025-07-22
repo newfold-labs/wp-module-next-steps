@@ -3,6 +3,7 @@
  * Bootstrap file for Next Steps module unit tests.
  *
  * @package WPModuleNextSteps
+ * @phpcs:disable Universal.Files.SeparateFunctionsFromOO.Mixed
  */
 
 // Load up Composer dependencies.
