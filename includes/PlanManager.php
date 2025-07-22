@@ -9,7 +9,7 @@ use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
 
 /**
  * Plan Manager
- * 
+ *
  * Handles plan loading, switching, and management based on nfd_solution option
  */
 class PlanManager {
@@ -23,10 +23,10 @@ class PlanManager {
 
 	/**
 	 * Available plan types, this maps the site_type from onboarding module to internal plan types
-	 * 
+	 *
 	 * Maps nfd_module_onboarding_site_info['site_type'] values to internal plan types:
 	 * - 'personal' (onboarding) -> 'blog' (internal plan)
-	 * - 'business' (onboarding) -> 'corporate' (internal plan)  
+	 * - 'business' (onboarding) -> 'corporate' (internal plan)
 	 * - 'ecommerce' (onboarding) -> 'ecommerce' (internal plan)
 	 */
 	const PLAN_TYPES = array(
@@ -81,7 +81,7 @@ class PlanManager {
 
 		// Clear current plan to force reload
 		// delete_option( self::OPTION );
-		
+
 		// Load the appropriate plan directly
 		switch ( $plan_type ) {
 			case 'blog':
@@ -98,7 +98,7 @@ class PlanManager {
 
 		// Save the loaded plan
 		self::save_plan( $plan );
-		
+
 		return $plan;
 	}
 
@@ -1992,4 +1992,4 @@ class PlanManager {
 
 		return $success;
 	}
-} 
+}

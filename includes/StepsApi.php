@@ -255,7 +255,7 @@ class StepsApi {
 	 */
 	public static function get_steps() {
 		$plan = PlanManager::get_current_plan();
-		
+
 		if ( ! $plan ) {
 			return new \WP_Error( 'no_plan', __( 'No plan found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
@@ -277,7 +277,7 @@ class StepsApi {
 	public static function add_steps( $new_tasks ) {
 		// Get the current plan
 		$plan = PlanManager::get_current_plan();
-		
+
 		if ( ! $plan ) {
 			return new \WP_Error( 'no_plan', __( 'No plan found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
@@ -287,23 +287,23 @@ class StepsApi {
 		if ( empty( $tracks ) ) {
 			return new \WP_Error( 'no_tracks', __( 'No tracks found in plan.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
-		
+
 		$first_track = $tracks[0];
 		$sections = $first_track->get_sections();
 		if ( empty( $sections ) ) {
 			return new \WP_Error( 'no_sections', __( 'No sections found in track.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
-		
+
 		$first_section = $sections[0];
-		
+
 		// Add each task to the first section
 		foreach ( $new_tasks as $task_data ) {
 			if ( ! isset( $task_data['id'] ) ) {
 				continue;
 			}
-			
+
 			$task = Task::from_array( $task_data );
-			
+
 			// Check if task already exists and update it
 			$existing_task = $first_section->get_task( $task->id );
 			if ( $existing_task ) {
@@ -319,7 +319,7 @@ class StepsApi {
 				$first_section->add_task( $task );
 			}
 		}
-		
+
 		// Save the updated plan
 		PlanManager::save_plan( $plan );
 
@@ -338,7 +338,7 @@ class StepsApi {
 		$section = $request->get_param( 'section' );
 		$task    = $request->get_param( 'task' );
 		$status  = $request->get_param( 'status' );
-		
+
 		// validate parameters
 		if ( empty( $track ) || empty( $section ) || empty( $task ) || empty( $status ) ) {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
@@ -346,17 +346,17 @@ class StepsApi {
 		if ( ! in_array( $status, array( 'new', 'done', 'dismissed' ), true ) ) {
 			return new WP_Error( 'invalid_status', __( 'Invalid status provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
-		
+
 		// Use PlanManager to update the task status
 		$success = PlanManager::update_task_status( $track, $section, $task, $status );
-		
+
 		if ( ! $success ) {
 			return new WP_Error( 'step_not_found', __( 'Step not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
-		
+
 		// Get the updated plan
 		$plan = PlanManager::get_current_plan();
-		
+
 		return new WP_REST_Response( $plan->to_array(), 200 );
 	}
 
@@ -371,19 +371,19 @@ class StepsApi {
 		$track   = $request->get_param( 'track' );
 		$section = $request->get_param( 'section' );
 		$open    = $request->get_param( 'open' ) ?? false;
-		
+
 		// validate parameters
 		if ( empty( $track ) || empty( $section ) ) {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
-		
+
 		// Use PlanManager to update the section status
 		$success = PlanManager::update_section_status( $track, $section, $open );
-		
+
 		if ( ! $success ) {
 			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
-		
+
 		return new WP_REST_Response( true, 200 );
 	}
 
@@ -405,13 +405,13 @@ class StepsApi {
 	 */
 	public static function switch_plan( \WP_REST_Request $request ) {
 		$plan_type = $request->get_param( 'plan_type' );
-		
+
 		$plan = PlanManager::switch_plan( $plan_type );
-		
+
 		if ( ! $plan ) {
 			return new WP_Error( 'invalid_plan_type', __( 'Invalid plan type provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
-		
+
 		return new WP_REST_Response( $plan->to_array(), 200 );
 	}
 
@@ -435,15 +435,15 @@ class StepsApi {
 		$track_id   = $request->get_param( 'track_id' );
 		$section_id = $request->get_param( 'section_id' );
 		$task_data  = $request->get_param( 'task' );
-		
+
 		$task = Task::from_array( $task_data );
-		
+
 		$success = PlanManager::add_task( $track_id, $section_id, $task );
-		
+
 		if ( ! $success ) {
 			return new WP_Error( 'add_task_failed', __( 'Failed to add task to section.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
-		
+
 		$plan = PlanManager::get_current_plan();
 		return new WP_REST_Response( $plan->to_array(), 200 );
 	}

@@ -34,10 +34,10 @@ class PlanLoader {
 	public function __construct() {
 		// Initialize default steps on init
 		\add_action( 'init', array( __CLASS__, 'load_default_steps' ), 1 );
-		
+
 		// Hook into solution option changes for dynamic plan switching
 		\add_action( 'update_option_' . self::ONBOARDING_SITE_INFO_OPTION, array( __CLASS__, 'on_sitetype_change' ), 10, 2 );
-		
+
 		// Hook into WooCommerce activation to potentially switch to store plan
 		\add_action( 'activated_plugin', array( __CLASS__, 'on_woocommerce_activation' ), 10, 2 );
 	}
@@ -69,11 +69,11 @@ class PlanLoader {
 		if ( ! is_array( $new_value ) || ! isset( $new_value['site_type'] ) ) {
 			return;
 		}
-		
+
 		// Get old site type safely
 		$old_site_type = ( is_array( $old_value ) && isset( $old_value['site_type'] ) ) ? $old_value['site_type'] : '';
 		$new_site_type = $new_value['site_type'];
-		
+
 		// Only switch plan if the solution actually changed
 		if ( $old_site_type !== $new_site_type ) {
 			// Check if the new site type is a valid plan type
@@ -106,7 +106,7 @@ class PlanLoader {
 
 	/**
 	 * Intelligently detect the site type for existing sites without onboarding data
-	 * 
+	 *
 	 * @return string The detected plan type ('ecommerce', 'corporate', or 'blog')
 	 */
 	public static function detect_site_type() {
@@ -126,7 +126,7 @@ class PlanLoader {
 
 	/**
 	 * Check if this appears to be an ecommerce site
-	 * 
+	 *
 	 * @return bool
 	 */
 	private static function is_ecommerce_site() {
@@ -175,12 +175,12 @@ class PlanLoader {
 
 	/**
 	 * Check if this appears to be a corporate/business site
-	 * 
+	 *
 	 * @return bool
 	 */
 	private static function is_corporate_site() {
 		$business_indicators = 0;
-		$business_threshold = 2;
+		$business_threshold  = 2;
 
 		// Check for multiple users (businesses often have multiple content creators)
 		$user_count = count_users();
@@ -224,10 +224,10 @@ class PlanLoader {
 		}
 
 		// Check site title/description for business keywords
-		$site_title = get_bloginfo( 'name' );
-		$site_description = get_bloginfo( 'description' );
+		$site_title        = get_bloginfo( 'name' );
+		$site_description  = get_bloginfo( 'description' );
 		$business_keywords = array( 'LLC', 'Inc', 'Corp', 'Company', 'Business', 'Agency', 'Studio', 'Solutions', 'Services', 'Consulting' );
-		
+
 		foreach ( $business_keywords as $keyword ) {
 			if ( stripos( $site_title, $keyword ) !== false || stripos( $site_description, $keyword ) !== false ) {
 				$business_indicators++;
@@ -241,10 +241,10 @@ class PlanLoader {
 
 	/**
 	 * Determine the appropriate site type/plan based on multiple data sources
-	 * 
+	 *
 	 * Priority order:
 	 * 1. nfd_module_onboarding_site_info option (from onboarding)
-	 * 2. newfold_solutions transient (from solutions API)  
+	 * 2. newfold_solutions transient (from solutions API)
 	 * 3. Intelligent site detection (fallback)
 	 *
 	 * @return string The determined plan type (blog, corporate, ecommerce)
@@ -279,12 +279,12 @@ class PlanLoader {
 
 	/**
 	 * Load default plan based on site type detection
-	 * 
+	 *
 	 * @return \NewfoldLabs\WP\Module\NextSteps\DTOs\Plan
 	 */
 	public static function load_default_plan(): \NewfoldLabs\WP\Module\NextSteps\DTOs\Plan {
 		$plan_type = self::determine_site_type();
-		
+
 		switch ( $plan_type ) {
 			case 'blog':
 				$plan = PlanManager::get_blog_plan();
@@ -300,7 +300,7 @@ class PlanLoader {
 
 		// Save the loaded plan
 		PlanManager::save_plan( $plan );
-		
+
 		return $plan;
 	}
-} 
+}
