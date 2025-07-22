@@ -65,14 +65,14 @@ class PlanManager {
 	}
 
 	/**
-	 * Load default plan based on solution
+	 * Load default plan based on site type determination
 	 *
 	 * @return Plan
 	 */
 	public static function load_default_plan(): Plan {
-		$solution = get_option( self::SOLUTION_OPTION, 'ecommerce' );
+		$plan_type = self::determine_site_type();
 		
-		switch ( $solution ) {
+		switch ( $plan_type ) {
 			case 'blog':
 				$plan = self::get_blog_plan();
 				break;
@@ -92,22 +92,80 @@ class PlanManager {
 	}
 
 	/**
+	 * Determine the appropriate site type/plan based on multiple data sources
+	 * 
+	 * Priority order:
+	 * 1. nfd_module_onboarding_site_info option (from onboarding)
+	 * 2. newfold_solutions transient (from solutions API)  
+	 * 3. Intelligent site detection (fallback)
+	 *
+	 * @return string The determined plan type (blog, corporate, ecommerce)
+	 */
+	public static function determine_site_type(): string {
+		// 1. Check onboarding site info first (highest priority)
+		$onboarding_info = get_option( 'nfd_module_onboarding_site_info', false );
+		if ( is_array( $onboarding_info ) && isset( $onboarding_info['site_type'] ) ) {
+			$site_type = $onboarding_info['site_type'];
+			if ( array_key_exists( $site_type, self::PLAN_TYPES ) ) {
+				return self::PLAN_TYPES[ $site_type ];
+			}
+		}
+
+		// 2. Check solutions transient (second priority)
+		$solutions_data = get_transient( 'newfold_solutions' );
+		if ( is_array( $solutions_data ) && isset( $solutions_data['solution'] ) ) {
+			$solution = $solutions_data['solution'];
+			switch ( $solution ) {
+				case 'WP_SOLUTION_COMMERCE':
+					return 'ecommerce';
+				case 'WP_SOLUTION_CREATOR':
+					return 'blog';
+				case 'WP_SOLUTION_SERVICE':
+					return 'corporate';
+			}
+		}
+
+		// 3. Fall back to intelligent detection (from PlanLoader)
+		return PlanLoader::detect_site_type();
+	}
+
+	/**
 	 * Switch to a different plan type
 	 *
 	 * @param string $plan_type Plan type to switch to
 	 * @return Plan|false
 	 */
 	public static function switch_plan( string $plan_type ) {
-		if ( ! in_array( $plan_type, self::PLAN_TYPES, true ) ) {
+		if ( ! in_array( $plan_type, array_values( self::PLAN_TYPES ), true ) && ! in_array( $plan_type, array_keys( self::PLAN_TYPES ), true ) ) {
 			return false;
 		}
 
-		// Update the solution option
-		update_option( self::SOLUTION_OPTION, $plan_type );
+		// If we received an onboarding site_type, convert it to internal plan type
+		if ( array_key_exists( $plan_type, self::PLAN_TYPES ) ) {
+			$plan_type = self::PLAN_TYPES[ $plan_type ];
+		}
 
-		// Load the new plan
-		delete_option( self::OPTION ); // Clear current plan
-		return self::load_default_plan();
+		// Clear current plan to force reload
+		delete_option( self::OPTION );
+		
+		// Load the appropriate plan directly
+		switch ( $plan_type ) {
+			case 'blog':
+				$plan = self::get_blog_plan();
+				break;
+			case 'corporate':
+				$plan = self::get_corporate_plan();
+				break;
+			case 'ecommerce':
+			default:
+				$plan = self::get_ecommerce_plan();
+				break;
+		}
+
+		// Save the loaded plan
+		self::save_plan( $plan );
+		
+		return $plan;
 	}
 
 	/**
