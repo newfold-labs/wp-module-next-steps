@@ -361,7 +361,7 @@ class Plan {
 		// Validate all tracks
 		foreach ( $this->tracks as $track ) {
 			$track_validation = $track->validate();
-			if ( $track_validation !== true ) {
+			if ( true !== $track_validation ) {
 				return "Track validation failed: {$track_validation}";
 			}
 		}

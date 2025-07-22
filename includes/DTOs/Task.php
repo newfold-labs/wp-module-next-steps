@@ -201,7 +201,7 @@ class Task {
 	 * @return bool
 	 */
 	public function is_completed(): bool {
-		return $this->status === 'done';
+		return 'done' === $this->status;
 	}
 
 	/**
@@ -210,7 +210,7 @@ class Task {
 	 * @return bool
 	 */
 	public function is_dismissed(): bool {
-		return $this->status === 'dismissed';
+		return 'dismissed' === $this->status;
 	}
 
 	/**

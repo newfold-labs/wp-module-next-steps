@@ -295,7 +295,7 @@ class Track {
 		// Validate all sections
 		foreach ( $this->sections as $section ) {
 			$section_validation = $section->validate();
-			if ( $section_validation !== true ) {
+			if ( true !== $section_validation ) {
 				return "Section validation failed: {$section_validation}";
 			}
 		}

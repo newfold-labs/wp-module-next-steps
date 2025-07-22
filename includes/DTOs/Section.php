@@ -286,7 +286,7 @@ class Section {
 		// Validate all tasks
 		foreach ( $this->tasks as $task ) {
 			$task_validation = $task->validate();
-			if ( $task_validation !== true ) {
+			if ( true !== $task_validation ) {
 				return "Task validation failed: {$task_validation}";
 			}
 		}
