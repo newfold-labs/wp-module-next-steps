@@ -27,5 +27,9 @@
 
 	<php>
 		<ini name="WP_PHPUNIT__DIR" value="../../../../../../.wp-env/*/tests-WordPress-PHPUnit" />
+		<!-- Alternative paths for local development -->
+		<env name="WP_PHPUNIT_DIR" value="../../../../../../.wp-env/*/tests-WordPress-PHPUnit" />
+		<!-- Set this to skip WordPress loading if needed -->
+		<env name="WP_TESTS_SKIP_INSTALL" value="1" />
 	</php>
 </phpunit> 

@@ -56,7 +56,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::get_current_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'store_setup', $plan->get_id() );
+		$this->assertEquals( 'store_setup', $plan->id );
 	}
 
 	/**
@@ -76,8 +76,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::get_current_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'test_plan', $plan->get_id() );
-		$this->assertEquals( 'Test Plan', $plan->get_label() );
+		$this->assertEquals( 'test_plan', $plan->id );
+		$this->assertEquals( 'Test Plan', $plan->label );
 	}
 
 	/**
@@ -105,7 +105,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'store_setup', $plan->get_id() );
+		$this->assertEquals( 'store_setup', $plan->id );
 		
 		// Verify plan was saved
 		$this->assertTrue( get_option( PlanManager::OPTION ) !== false );
@@ -120,7 +120,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'blog_setup', $plan->get_id() );
+		$this->assertEquals( 'blog_setup', $plan->id );
 	}
 
 	/**
@@ -132,7 +132,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'corporate_setup', $plan->get_id() );
+		$this->assertEquals( 'corporate_setup', $plan->id );
 	}
 
 	/**
@@ -144,7 +144,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'store_setup', $plan->get_id() );
+		$this->assertEquals( 'store_setup', $plan->id );
 	}
 
 	/**
@@ -159,7 +159,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::switch_plan( 'blog' );
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'blog_setup', $plan->get_id() );
+		$this->assertEquals( 'blog_setup', $plan->id );
 		
 		// Verify solution option was updated
 		$this->assertEquals( 'blog', get_option( PlanManager::SOLUTION_OPTION ) );
@@ -188,16 +188,16 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::get_ecommerce_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'store_setup', $plan->get_id() );
-		$this->assertEquals( 'Store Setup', $plan->get_label() );
+		$this->assertEquals( 'store_setup', $plan->id );
+		$this->assertEquals( 'Store Setup', $plan->label );
 		
 		$tracks = $plan->get_tracks();
 		$this->assertGreaterThan( 0, count( $tracks ) );
 		
 		// Check first track has expected structure
 		$first_track = $tracks[0];
-		$this->assertEquals( 'store_build_track', $first_track->get_id() );
-		$this->assertEquals( 'Build', $first_track->get_label() );
+		$this->assertEquals( 'store_build_track', $first_track->id );
+		$this->assertEquals( 'Build', $first_track->label );
 		
 		// Check track has sections
 		$sections = $first_track->get_sections();
@@ -216,8 +216,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::get_blog_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'blog_setup', $plan->get_id() );
-		$this->assertEquals( 'Blog Setup', $plan->get_label() );
+		$this->assertEquals( 'blog_setup', $plan->id );
+		$this->assertEquals( 'Blog Setup', $plan->label );
 	}
 
 	/**
@@ -227,8 +227,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$plan = PlanManager::get_corporate_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'corporate_setup', $plan->get_id() );
-		$this->assertEquals( 'Corporate Setup', $plan->get_label() );
+		$this->assertEquals( 'corporate_setup', $plan->id );
+		$this->assertEquals( 'Corporate Setup', $plan->label );
 	}
 
 	/**
@@ -252,7 +252,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		// Verify the task status was updated
 		$updated_plan = PlanManager::get_current_plan();
 		$task = $updated_plan->get_task( 'store_build_track', 'basic_store_setup', 'store_quick_setup' );
-		$this->assertEquals( 'done', $task->get_status() );
+		$this->assertEquals( 'done', $task->status );
 	}
 
 	/**
@@ -287,7 +287,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		);
 		
 		$this->assertInstanceOf( Task::class, $task );
-		$this->assertEquals( 'store_quick_setup', $task->get_id() );
+		$this->assertEquals( 'store_quick_setup', $task->id );
 	}
 
 	/**
@@ -320,7 +320,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$this->assertInstanceOf( Plan::class, $plan );
 		
 		// Verify default plan was loaded based on solution
-		$this->assertEquals( 'blog_setup', $plan->get_id() );
+		$this->assertEquals( 'blog_setup', $plan->id );
 		
 		// Verify old data was cleared
 		$this->assertNotEquals( $test_plan_data, get_option( PlanManager::OPTION ) );

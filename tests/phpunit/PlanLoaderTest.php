@@ -300,6 +300,62 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test site type detection for existing sites without onboarding data
+	 */
+	public function test_detect_site_type_defaults_to_blog() {
+		// Clean slate
+		delete_option( PlanManager::SOLUTION_OPTION );
+		
+		// Mock a simple site with no special indicators
+		$detected_type = PlanLoader::detect_site_type();
+		
+		$this->assertEquals( 'blog', $detected_type );
+	}
+
+	/**
+	 * Test load_default_steps with backfill for existing sites
+	 */
+	public function test_load_default_steps_backfills_solution() {
+		// Clean slate - simulate existing site without onboarding or solution data
+		delete_option( StepsApi::OPTION );
+		delete_option( PlanManager::SOLUTION_OPTION );
+		
+		// Mock site detection to return 'corporate'
+		// We can't easily mock private methods, so we'll test the full flow
+		PlanLoader::load_default_steps();
+		
+		// Verify a solution was set (will be 'blog' by default in test environment)
+		$solution = get_option( PlanManager::SOLUTION_OPTION );
+		$this->assertNotFalse( $solution );
+		$this->assertContains( $solution, array( 'blog', 'corporate', 'ecommerce' ) );
+		
+		// Verify steps were loaded
+		$steps_data = get_option( StepsApi::OPTION );
+		$this->assertIsArray( $steps_data );
+		$this->assertArrayHasKey( 'id', $steps_data );
+	}
+
+	/**
+	 * Test load_default_steps doesn't backfill if solution already exists
+	 */
+	public function test_load_default_steps_respects_existing_solution() {
+		// Clean slate
+		delete_option( StepsApi::OPTION );
+		
+		// Set an existing solution
+		update_option( PlanManager::SOLUTION_OPTION, 'ecommerce' );
+		
+		PlanLoader::load_default_steps();
+		
+		// Verify existing solution was preserved
+		$this->assertEquals( 'ecommerce', get_option( PlanManager::SOLUTION_OPTION ) );
+		
+		// Verify correct plan was loaded
+		$steps_data = get_option( StepsApi::OPTION );
+		$this->assertEquals( 'store_setup', $steps_data['id'] );
+	}
+
+	/**
 	 * Test error handling when StepsApi is not available
 	 */
 	public function test_handles_missing_steps_api() {
