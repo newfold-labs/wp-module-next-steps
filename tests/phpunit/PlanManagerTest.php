@@ -1,6 +1,7 @@
 <?php
 
 use NewfoldLabs\WP\Module\NextSteps\PlanManager;
+use NewfoldLabs\WP\Module\NextSteps\PlanLoader;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
 
@@ -19,7 +20,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		
 		// Clean up options before each test
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( PlanLoader::SOLUTION_OPTION );
 	}
 
 	/**
@@ -51,7 +52,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_get_current_plan_loads_default_plan_when_none_exists() {
 		// Set solution option to ecommerce
-		update_option( PlanManager::SOLUTION_OPTION, 'ecommerce' );
+		update_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' );
 		
 		$plan = PlanManager::get_current_plan();
 		
@@ -100,9 +101,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test load_default_plan with ecommerce solution
 	 */
 	public function test_load_default_plan_ecommerce() {
-		update_option( PlanManager::SOLUTION_OPTION, 'ecommerce' );
+		update_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' );
 		
-		$plan = PlanManager::load_default_plan();
+		$plan = PlanLoader::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'store_setup', $plan->id );
@@ -115,9 +116,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test load_default_plan with blog solution
 	 */
 	public function test_load_default_plan_blog() {
-		update_option( PlanManager::SOLUTION_OPTION, 'blog' );
+		update_option( PlanLoader::SOLUTION_OPTION, 'blog' );
 		
-		$plan = PlanManager::load_default_plan();
+		$plan = PlanLoader::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'blog_setup', $plan->id );
@@ -127,9 +128,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test load_default_plan with corporate solution
 	 */
 	public function test_load_default_plan_corporate() {
-		update_option( PlanManager::SOLUTION_OPTION, 'corporate' );
+		update_option( PlanLoader::SOLUTION_OPTION, 'corporate' );
 		
-		$plan = PlanManager::load_default_plan();
+		$plan = PlanLoader::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'corporate_setup', $plan->id );
@@ -141,7 +142,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 	public function test_load_default_plan_defaults_to_blog() {
 		// Don't set any solution option
 		
-		$plan = PlanManager::load_default_plan();
+		$plan = PlanLoader::load_default_plan();
 		
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'blog_setup', $plan->id );
@@ -152,8 +153,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_switch_plan_valid_type() {
 		// Start with ecommerce plan
-		update_option( PlanManager::SOLUTION_OPTION, 'ecommerce' );
-		PlanManager::load_default_plan();
+		update_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' );
+		PlanLoader::load_default_plan();
 		
 		// Switch to blog plan
 		$plan = PlanManager::switch_plan( 'blog' );
@@ -178,7 +179,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$this->assertFalse( $result );
 		
 		// Verify solution option was not changed
-		$this->assertEquals( 'ecommerce', get_option( PlanManager::SOLUTION_OPTION, 'ecommerce' ) );
+		$this->assertEquals( 'ecommerce', get_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' ) );
 	}
 
 	/**
@@ -313,7 +314,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		// Set up existing plan data
 		$test_plan_data = array( 'id' => 'test_plan' );
 		update_option( PlanManager::OPTION, $test_plan_data );
-		update_option( PlanManager::SOLUTION_OPTION, 'blog' );
+		update_option( PlanLoader::SOLUTION_OPTION, 'blog' );
 		
 		$plan = PlanManager::reset_plan();
 		
@@ -389,7 +390,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		// Clean up options after each test
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( PlanLoader::SOLUTION_OPTION );
 		
 		parent::tearDown();
 	}

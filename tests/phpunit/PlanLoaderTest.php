@@ -19,9 +19,9 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		
 		// Clean up options before each test
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( PlanLoader::SOLUTION_OPTION );
 		delete_option( StepsApi::OPTION );
-		delete_option( 'nfd_module_onboarding_site_info' );
+		delete_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION );
 	}
 
 	/**
@@ -194,7 +194,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		foreach ( $valid_types as $site_type => $expected ) {
 			// Clean slate for each test
 			delete_option( PlanManager::OPTION );
-			delete_option( PlanManager::SOLUTION_OPTION );
+			delete_option( PlanLoader::SOLUTION_OPTION );
 			delete_option( StepsApi::OPTION );
 			
 			// Use a different old value to ensure a change is detected
@@ -218,7 +218,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function test_on_woocommerce_activation() {
 		// Clean slate
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( PlanLoader::SOLUTION_OPTION );
 		delete_option( StepsApi::OPTION );
 		
 		// Set up initial blog steps
@@ -247,7 +247,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function test_on_woocommerce_activation_ignores_other_plugins() {
 		// Clean slate
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( PlanLoader::SOLUTION_OPTION );
 		delete_option( StepsApi::OPTION );
 		
 		// Set up initial blog steps
@@ -279,7 +279,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		$this->assertEquals( 1, has_action( 'init', array( 'NewfoldLabs\WP\Module\NextSteps\PlanLoader', 'load_default_steps' ) ) );
 		
 		// Verify option update hook is added
-		$this->assertEquals( 10, has_action( 'update_option_nfd_module_onboarding_site_info', array( 'NewfoldLabs\WP\Module\NextSteps\PlanLoader', 'on_sitetype_change' ) ) );
+		$this->assertEquals( 10, has_action( 'update_option_' . PlanLoader::ONBOARDING_SITE_INFO_OPTION, array( 'NewfoldLabs\WP\Module\NextSteps\PlanLoader', 'on_sitetype_change' ) ) );
 	}
 
 	/**
@@ -289,7 +289,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// Simulate onboarding module setting site info for the first time
 		
 		// Step 1: No existing data (fresh install)
-		$this->assertFalse( get_option( 'nfd_module_onboarding_site_info' ) );
+		$this->assertFalse( get_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION ) );
 		$this->assertFalse( get_option( StepsApi::OPTION ) );
 		
 		// Step 2: Onboarding module sets site info
@@ -300,7 +300,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		);
 		
 		// Simulate the option update that would trigger our hook
-		update_option( 'nfd_module_onboarding_site_info', $site_info );
+		update_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION, $site_info );
 		
 		// Manually trigger the hook (since WordPress hooks don't fire in unit tests)
 		PlanLoader::on_sitetype_change( false, $site_info );
@@ -322,7 +322,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function test_site_type_change_after_initial_setup() {
 		// Set up initial state (blog site from 'personal' onboarding choice)
 		$initial_site_info = array( 'site_type' => 'personal' );
-		update_option( 'nfd_module_onboarding_site_info', $initial_site_info );
+		update_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION, $initial_site_info );
 		PlanLoader::on_sitetype_change( false, $initial_site_info );
 		
 		// Verify initial setup loaded blog steps
@@ -349,7 +349,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	 */
 	public function test_detect_site_type_defaults_to_blog() {
 		// Clean slate
-		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( PlanLoader::SOLUTION_OPTION );
 		
 		// Mock a simple site with no special indicators
 		$detected_type = PlanLoader::detect_site_type();
@@ -363,7 +363,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function test_load_default_steps_backfills_solution() {
 		// Clean slate - simulate existing site without onboarding or solution data
 		delete_option( StepsApi::OPTION );
-		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( PlanLoader::SOLUTION_OPTION );
 		
 		// Test the full flow - this should load default steps based on site detection
 		PlanLoader::load_default_steps();
@@ -384,7 +384,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		delete_option( StepsApi::OPTION );
 		
 		// Set an existing solution
-		update_option( PlanManager::SOLUTION_OPTION, 'ecommerce' );
+		update_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' );
 		
 		PlanLoader::load_default_steps();
 		
@@ -408,9 +408,9 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		// Clean up options after each test
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( PlanLoader::SOLUTION_OPTION );
 		delete_option( StepsApi::OPTION );
-		delete_option( 'nfd_module_onboarding_site_info' );
+		delete_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION );
 		
 		parent::tearDown();
 	}

@@ -19,6 +19,16 @@ use function NewfoldLabs\WP\Context\getContext;
 class PlanLoader {
 
 	/**
+	 * Option name for the solution type (moved from PlanManager)
+	 */
+	const SOLUTION_OPTION = 'nfd_solution';
+
+	/**
+	 * Option name for onboarding site info
+	 */
+	const ONBOARDING_SITE_INFO_OPTION = 'nfd_module_onboarding_site_info';
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -26,22 +36,21 @@ class PlanLoader {
 		\add_action( 'init', array( __CLASS__, 'load_default_steps' ), 1 );
 		
 		// Hook into solution option changes for dynamic plan switching
-		\add_action( 'update_option_nfd_module_onboarding_site_info', array( __CLASS__, 'on_sitetype_change' ), 10, 2 );
+		\add_action( 'update_option_' . self::ONBOARDING_SITE_INFO_OPTION, array( __CLASS__, 'on_sitetype_change' ), 10, 2 );
 		
 		// Hook into WooCommerce activation to potentially switch to store plan
 		\add_action( 'activated_plugin', array( __CLASS__, 'on_woocommerce_activation' ), 10, 2 );
 	}
 
 	/**
-	 * Load default steps using PlanManager.
+	 * Load default steps using local site type determination.
 	 * This method is called on init to ensure default steps are loaded.
-	 * Uses the shared site type determination logic from PlanManager.
 	 */
 	public static function load_default_steps() {
 		$steps = get_option( StepsApi::OPTION, false );
 		if ( false === $steps ) {
-			// Use the shared site type determination logic
-			$plan_type = PlanManager::determine_site_type();
+			// Use our local site type determination logic
+			$plan_type = self::determine_site_type();
 			$plan = PlanManager::switch_plan( $plan_type );
 			if ( $plan ) {
 				StepsApi::set_data( $plan->to_array() );
@@ -228,5 +237,77 @@ class PlanLoader {
 
 		// Threshold: if we have 2 or more business indicators, consider it corporate
 		return $business_indicators >= $business_threshold;
+	}
+
+	/**
+	 * Determine the appropriate site type/plan based on multiple data sources
+	 * 
+	 * Priority order:
+	 * 1. nfd_module_onboarding_site_info option (from onboarding)
+	 * 2. newfold_solutions transient (from solutions API)  
+	 * 3. Legacy solution option (for backward compatibility)
+	 * 4. Intelligent site detection (fallback)
+	 *
+	 * @return string The determined plan type (blog, corporate, ecommerce)
+	 */
+	public static function determine_site_type(): string {
+		// 1. Check onboarding site info first (highest priority)
+		$onboarding_info = get_option( self::ONBOARDING_SITE_INFO_OPTION, false );
+		if ( is_array( $onboarding_info ) && isset( $onboarding_info['site_type'] ) ) {
+			$site_type = $onboarding_info['site_type'];
+			if ( array_key_exists( $site_type, PlanManager::PLAN_TYPES ) ) {
+				return PlanManager::PLAN_TYPES[ $site_type ];
+			}
+		}
+
+		// 2. Check solutions transient (second priority)
+		$solutions_data = get_transient( 'newfold_solutions' );
+		if ( is_array( $solutions_data ) && isset( $solutions_data['solution'] ) ) {
+			$solution = $solutions_data['solution'];
+			switch ( $solution ) {
+				case 'WP_SOLUTION_COMMERCE':
+					return 'ecommerce';
+				case 'WP_SOLUTION_CREATOR':
+					return 'blog';
+				case 'WP_SOLUTION_SERVICE':
+					return 'corporate';
+			}
+		}
+
+		// 3. Check legacy solution option (for backward compatibility)
+		$legacy_solution = get_option( self::SOLUTION_OPTION, false );
+		if ( false !== $legacy_solution && in_array( $legacy_solution, array( 'blog', 'corporate', 'ecommerce' ), true ) ) {
+			return $legacy_solution;
+		}
+
+		// 4. Fall back to intelligent detection
+		return self::detect_site_type();
+	}
+
+	/**
+	 * Load default plan based on site type detection
+	 * 
+	 * @return \NewfoldLabs\WP\Module\NextSteps\DTOs\Plan
+	 */
+	public static function load_default_plan(): \NewfoldLabs\WP\Module\NextSteps\DTOs\Plan {
+		$plan_type = self::determine_site_type();
+		
+		switch ( $plan_type ) {
+			case 'blog':
+				$plan = PlanManager::get_blog_plan();
+				break;
+			case 'corporate':
+				$plan = PlanManager::get_corporate_plan();
+				break;
+			case 'ecommerce':
+			default:
+				$plan = PlanManager::get_ecommerce_plan();
+				break;
+		}
+
+		// Save the loaded plan
+		PlanManager::save_plan( $plan );
+		
+		return $plan;
 	}
 } 

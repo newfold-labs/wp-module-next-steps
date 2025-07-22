@@ -19,10 +19,7 @@ class PlanManager {
 	 */
 	const OPTION = 'nfd_next_steps';
 
-	/**
-	 * Option name for the solution type
-	 */
-	const SOLUTION_OPTION = 'nfd_solution';
+
 
 	/**
 	 * Available plan types, this maps the site_type from onboarding module to internal plan types
@@ -48,7 +45,7 @@ class PlanManager {
 		// $plan_data = false; // for resetting data while debugging
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on solution
-			return self::load_default_plan();
+			return PlanLoader::load_default_plan();
 		}
 
 		return Plan::from_array( $plan_data );
@@ -64,77 +61,7 @@ class PlanManager {
 		return update_option( self::OPTION, $plan->to_array() );
 	}
 
-	/**
-	 * Load default plan based on site type determination
-	 *
-	 * @return Plan
-	 */
-	public static function load_default_plan(): Plan {
-		$plan_type = self::determine_site_type();
-		
-		switch ( $plan_type ) {
-			case 'blog':
-				$plan = self::get_blog_plan();
-				break;
-			case 'corporate':
-				$plan = self::get_corporate_plan();
-				break;
-			case 'ecommerce':
-			default:
-				$plan = self::get_ecommerce_plan();
-				break;
-		}
 
-		// Save the loaded plan
-		self::save_plan( $plan );
-		
-		return $plan;
-	}
-
-	/**
-	 * Determine the appropriate site type/plan based on multiple data sources
-	 * 
-	 * Priority order:
-	 * 1. nfd_module_onboarding_site_info option (from onboarding)
-	 * 2. newfold_solutions transient (from solutions API)  
-	 * 3. Legacy solution option (for backward compatibility)
-	 * 4. Intelligent site detection (fallback)
-	 *
-	 * @return string The determined plan type (blog, corporate, ecommerce)
-	 */
-	public static function determine_site_type(): string {
-		// 1. Check onboarding site info first (highest priority)
-		$onboarding_info = get_option( 'nfd_module_onboarding_site_info', false );
-		if ( is_array( $onboarding_info ) && isset( $onboarding_info['site_type'] ) ) {
-			$site_type = $onboarding_info['site_type'];
-			if ( array_key_exists( $site_type, self::PLAN_TYPES ) ) {
-				return self::PLAN_TYPES[ $site_type ];
-			}
-		}
-
-		// 2. Check solutions transient (second priority)
-		$solutions_data = get_transient( 'newfold_solutions' );
-		if ( is_array( $solutions_data ) && isset( $solutions_data['solution'] ) ) {
-			$solution = $solutions_data['solution'];
-			switch ( $solution ) {
-				case 'WP_SOLUTION_COMMERCE':
-					return 'ecommerce';
-				case 'WP_SOLUTION_CREATOR':
-					return 'blog';
-				case 'WP_SOLUTION_SERVICE':
-					return 'corporate';
-			}
-		}
-
-		// 3. Check legacy solution option (for backward compatibility)
-		$legacy_solution = get_option( self::SOLUTION_OPTION, false );
-		if ( false !== $legacy_solution && in_array( $legacy_solution, array( 'blog', 'corporate', 'ecommerce' ), true ) ) {
-			return $legacy_solution;
-		}
-
-		// 4. Fall back to intelligent detection (from PlanLoader)
-		return PlanLoader::detect_site_type();
-	}
 
 	/**
 	 * Switch to a different plan type
@@ -2018,7 +1945,7 @@ class PlanManager {
 	 */
 	public static function reset_plan(): Plan {
 		delete_option( self::OPTION );
-		return self::load_default_plan();
+		return PlanLoader::load_default_plan();
 	}
 
 	/**
