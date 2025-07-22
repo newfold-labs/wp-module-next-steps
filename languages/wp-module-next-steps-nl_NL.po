@@ -3,12 +3,13 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: nl_NL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
+"Language: nl_NL\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-module-next-steps\n"
 
@@ -16,29 +17,29 @@ msgstr ""
 #: includes/NextSteps.php:62
 #: includes/NextStepsWidget.php:39
 msgid "Next Steps"
-msgstr ""
+msgstr "Volgende Stappen"
 
 #: includes/PlanManager.php:113
 msgid "Store Setup"
-msgstr ""
+msgstr "Winkel Instellingen"
 
 #: includes/PlanManager.php:114
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr ""
+msgstr "Voltooi de inrichting van je e-commerce winkel met deze essentiële stappen:"
 
 #: includes/PlanManager.php:118
 #: includes/PlanManager.php:696
 #: includes/PlanManager.php:1268
 msgid "Build"
-msgstr ""
+msgstr "Bouwen"
 
 #: includes/PlanManager.php:122
 msgid "Basic Store Setup"
-msgstr ""
+msgstr "Basis Winkel Instellingen"
 
 #: includes/PlanManager.php:123
 msgid "Get your store foundation ready"
-msgstr ""
+msgstr "Maak de basis van je winkel klaar"
 
 #: includes/PlanManager.php:127
 msgid "Quick Setup"
@@ -46,15 +47,15 @@ msgstr ""
 
 #: includes/PlanManager.php:128
 msgid "Complete the basic store configuration and settings"
-msgstr ""
+msgstr "Voltooi de basis winkel configuratie en instellingen"
 
 #: includes/PlanManager.php:142
 msgid "Customize Your Store"
-msgstr ""
+msgstr "Pas Je Winkel Aan"
 
 #: includes/PlanManager.php:143
 msgid "Brand your store to match your business"
-msgstr ""
+msgstr "Geef je winkel een eigen stijl die past bij je bedrijf"
 
 #: includes/PlanManager.php:147
 #: includes/PlanManager.php:748
@@ -63,49 +64,49 @@ msgstr ""
 
 #: includes/PlanManager.php:148
 msgid "Add your business logo to build brand recognition"
-msgstr ""
+msgstr "Voeg je bedrijfslogo toe om merkherkenning op te bouwen"
 
 #: includes/PlanManager.php:156
 #: includes/PlanManager.php:757
 msgid "Choose Colors and Fonts"
-msgstr ""
+msgstr "Kies Kleuren en Lettertypen"
 
 #: includes/PlanManager.php:157
 msgid "Select colors and typography that reflect your brand"
-msgstr ""
+msgstr "Selecteer kleuren en typografie die je merk weerspiegelen"
 
 #: includes/PlanManager.php:165
 msgid "Customize Header"
-msgstr ""
+msgstr "Pas Koptekst Aan"
 
 #: includes/PlanManager.php:166
 msgid "Design your header layout and navigation"
-msgstr ""
+msgstr "Ontwerp je koptekst layout en navigatie"
 
 #: includes/PlanManager.php:174
 msgid "Customize Footer"
-msgstr ""
+msgstr "Pas Voettekst Aan"
 
 #: includes/PlanManager.php:175
 msgid "Set up your footer with important links and information"
-msgstr ""
+msgstr "Stel je voettekst in met belangrijke links en informatie"
 
 #: includes/PlanManager.php:183
 #: includes/PlanManager.php:775
 msgid "Customize Homepage"
-msgstr ""
+msgstr "Pas Startpagina Aan"
 
 #: includes/PlanManager.php:184
 msgid "Create an engaging homepage that showcases your products"
-msgstr ""
+msgstr "Creëer een aantrekkelijke startpagina die je producten toont"
 
 #: includes/PlanManager.php:194
 msgid "Set Up Shopping Experience"
-msgstr ""
+msgstr "Stel Winkelervaring In"
 
 #: includes/PlanManager.php:195
 msgid "Add and configure your product catalog"
-msgstr ""
+msgstr "Voeg je productcatalogus toe en configureer deze"
 
 #: includes/PlanManager.php:199
 msgid "Add a Product"
@@ -113,7 +114,7 @@ msgstr ""
 
 #: includes/PlanManager.php:200
 msgid "Create your first product listing with images and details"
-msgstr ""
+msgstr "Maak je eerste productlijst met afbeeldingen en details"
 
 #: includes/PlanManager.php:208
 msgid "Customize the Product Page"
@@ -165,7 +166,7 @@ msgstr ""
 
 #: includes/PlanManager.php:260
 msgid "Set Up Shipping"
-msgstr ""
+msgstr "Stel Verzending In"
 
 #: includes/PlanManager.php:261
 msgid "Define shipping zones, rates, and delivery options"
@@ -189,7 +190,7 @@ msgstr ""
 
 #: includes/PlanManager.php:285
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Privacybeleid"
 
 #: includes/PlanManager.php:286
 msgid "Create a privacy policy to comply with data protection laws"
@@ -215,7 +216,7 @@ msgstr ""
 #: includes/PlanManager.php:890
 #: includes/PlanManager.php:1489
 msgid "Brand"
-msgstr ""
+msgstr "Merk"
 
 #: includes/PlanManager.php:320
 msgid "First Marketing Steps"
@@ -358,7 +359,7 @@ msgstr ""
 #: includes/PlanManager.php:1059
 #: includes/PlanManager.php:1667
 msgid "Grow"
-msgstr ""
+msgstr "Groeien"
 
 #: includes/PlanManager.php:473
 msgid "Improve Your Customer Experience to Sell More"
@@ -557,7 +558,7 @@ msgstr ""
 
 #: includes/PlanManager.php:691
 msgid "Blog Setup"
-msgstr ""
+msgstr "Blog Instellingen"
 
 #: includes/PlanManager.php:692
 msgid "Get your blog up and running with these essential steps:"
@@ -1052,7 +1053,7 @@ msgstr ""
 
 #: includes/PlanManager.php:1263
 msgid "Corporate Setup"
-msgstr ""
+msgstr "Bedrijfs Instellingen"
 
 #: includes/PlanManager.php:1264
 msgid "Set up your corporate website with these essential steps:"
@@ -1600,19 +1601,19 @@ msgstr ""
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1765
 msgid "Mark Complete"
-msgstr ""
+msgstr "Markeer als Voltooid"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1788
 msgid "Skip"
-msgstr ""
+msgstr "Overslaan"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1821
 msgid "Restart"
-msgstr ""
+msgstr "Herstart"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1

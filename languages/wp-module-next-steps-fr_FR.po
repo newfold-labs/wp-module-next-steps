@@ -3,12 +3,13 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: fr_FR <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
+"Language: fr_FR\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-module-next-steps\n"
 
@@ -16,104 +17,104 @@ msgstr ""
 #: includes/NextSteps.php:62
 #: includes/NextStepsWidget.php:39
 msgid "Next Steps"
-msgstr ""
+msgstr "Prochaines Étapes"
 
 #: includes/PlanManager.php:113
 msgid "Store Setup"
-msgstr ""
+msgstr "Configuration de Boutique"
 
 #: includes/PlanManager.php:114
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr ""
+msgstr "Complétez la configuration de votre boutique e-commerce avec ces étapes essentielles :"
 
 #: includes/PlanManager.php:118
 #: includes/PlanManager.php:696
 #: includes/PlanManager.php:1268
 msgid "Build"
-msgstr ""
+msgstr "Construire"
 
 #: includes/PlanManager.php:122
 msgid "Basic Store Setup"
-msgstr ""
+msgstr "Configuration de Base de la Boutique"
 
 #: includes/PlanManager.php:123
 msgid "Get your store foundation ready"
-msgstr ""
+msgstr "Préparez les fondations de votre boutique"
 
 #: includes/PlanManager.php:127
 msgid "Quick Setup"
-msgstr ""
+msgstr "Configuration Rapide"
 
 #: includes/PlanManager.php:128
 msgid "Complete the basic store configuration and settings"
-msgstr ""
+msgstr "Complétez la configuration de base et les paramètres de la boutique"
 
 #: includes/PlanManager.php:142
 msgid "Customize Your Store"
-msgstr ""
+msgstr "Personnalisez Votre Boutique"
 
 #: includes/PlanManager.php:143
 msgid "Brand your store to match your business"
-msgstr ""
+msgstr "Personnalisez votre boutique pour qu'elle corresponde à votre entreprise"
 
 #: includes/PlanManager.php:147
 #: includes/PlanManager.php:748
 msgid "Upload Logo"
-msgstr ""
+msgstr "Télécharger le Logo"
 
 #: includes/PlanManager.php:148
 msgid "Add your business logo to build brand recognition"
-msgstr ""
+msgstr "Ajoutez le logo de votre entreprise pour renforcer la reconnaissance de marque"
 
 #: includes/PlanManager.php:156
 #: includes/PlanManager.php:757
 msgid "Choose Colors and Fonts"
-msgstr ""
+msgstr "Choisir les Couleurs et les Polices"
 
 #: includes/PlanManager.php:157
 msgid "Select colors and typography that reflect your brand"
-msgstr ""
+msgstr "Sélectionnez des couleurs et une typographie qui reflètent votre marque"
 
 #: includes/PlanManager.php:165
 msgid "Customize Header"
-msgstr ""
+msgstr "Personnaliser l'En-tête"
 
 #: includes/PlanManager.php:166
 msgid "Design your header layout and navigation"
-msgstr ""
+msgstr "Concevez la mise en page de votre en-tête et la navigation"
 
 #: includes/PlanManager.php:174
 msgid "Customize Footer"
-msgstr ""
+msgstr "Personnaliser le Pied de Page"
 
 #: includes/PlanManager.php:175
 msgid "Set up your footer with important links and information"
-msgstr ""
+msgstr "Configurez votre pied de page avec des liens et informations importants"
 
 #: includes/PlanManager.php:183
 #: includes/PlanManager.php:775
 msgid "Customize Homepage"
-msgstr ""
+msgstr "Personnaliser la Page d'Accueil"
 
 #: includes/PlanManager.php:184
 msgid "Create an engaging homepage that showcases your products"
-msgstr ""
+msgstr "Créez une page d'accueil attrayante qui met en valeur vos produits"
 
 #: includes/PlanManager.php:194
 msgid "Set Up Shopping Experience"
-msgstr ""
+msgstr "Configurer l'Expérience d'Achat"
 
 #: includes/PlanManager.php:195
 msgid "Add and configure your product catalog"
-msgstr ""
+msgstr "Ajoutez et configurez votre catalogue de produits"
 
 #: includes/PlanManager.php:199
 msgid "Add a Product"
-msgstr ""
+msgstr "Ajouter un Produit"
 
 #: includes/PlanManager.php:200
 msgid "Create your first product listing with images and details"
-msgstr ""
+msgstr "Créez votre première fiche produit avec des images et des détails"
 
 #: includes/PlanManager.php:208
 msgid "Customize the Product Page"
@@ -157,7 +158,7 @@ msgstr ""
 
 #: includes/PlanManager.php:251
 msgid "Set Up Payments"
-msgstr ""
+msgstr "Configurer les Paiements"
 
 #: includes/PlanManager.php:252
 msgid "Configure payment gateways like PayPal and Stripe"
@@ -165,7 +166,7 @@ msgstr ""
 
 #: includes/PlanManager.php:260
 msgid "Set Up Shipping"
-msgstr ""
+msgstr "Configurer la Livraison"
 
 #: includes/PlanManager.php:261
 msgid "Define shipping zones, rates, and delivery options"
@@ -189,7 +190,7 @@ msgstr ""
 
 #: includes/PlanManager.php:285
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politique de Confidentialité"
 
 #: includes/PlanManager.php:286
 msgid "Create a privacy policy to comply with data protection laws"
@@ -215,7 +216,7 @@ msgstr ""
 #: includes/PlanManager.php:890
 #: includes/PlanManager.php:1489
 msgid "Brand"
-msgstr ""
+msgstr "Marque"
 
 #: includes/PlanManager.php:320
 msgid "First Marketing Steps"
@@ -358,7 +359,7 @@ msgstr ""
 #: includes/PlanManager.php:1059
 #: includes/PlanManager.php:1667
 msgid "Grow"
-msgstr ""
+msgstr "Développer"
 
 #: includes/PlanManager.php:473
 msgid "Improve Your Customer Experience to Sell More"
@@ -557,7 +558,7 @@ msgstr ""
 
 #: includes/PlanManager.php:691
 msgid "Blog Setup"
-msgstr ""
+msgstr "Configuration de Blog"
 
 #: includes/PlanManager.php:692
 msgid "Get your blog up and running with these essential steps:"
@@ -1052,7 +1053,7 @@ msgstr ""
 
 #: includes/PlanManager.php:1263
 msgid "Corporate Setup"
-msgstr ""
+msgstr "Configuration d'Entreprise"
 
 #: includes/PlanManager.php:1264
 msgid "Set up your corporate website with these essential steps:"
@@ -1156,7 +1157,7 @@ msgstr ""
 
 #: includes/PlanManager.php:1390
 msgid "Create a Contact Page"
-msgstr ""
+msgstr "Créer une Page de Contact"
 
 #: includes/PlanManager.php:1391
 msgid "Add contact form and map for customer inquiries"
@@ -1600,19 +1601,19 @@ msgstr ""
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1765
 msgid "Mark Complete"
-msgstr ""
+msgstr "Marquer comme Terminé"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1788
 msgid "Skip"
-msgstr ""
+msgstr "Ignorer"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1821
 msgid "Restart"
-msgstr ""
+msgstr "Redémarrer"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
@@ -1636,4 +1637,4 @@ msgstr ""
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 msgid "Loading next steps..."
-msgstr ""
+msgstr "Chargement des prochaines étapes..."

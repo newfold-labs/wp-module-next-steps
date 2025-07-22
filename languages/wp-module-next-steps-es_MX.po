@@ -3,12 +3,13 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: es_MX <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
+"Language: es_MX\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-module-next-steps\n"
 
@@ -16,29 +17,29 @@ msgstr ""
 #: includes/NextSteps.php:62
 #: includes/NextStepsWidget.php:39
 msgid "Next Steps"
-msgstr ""
+msgstr "Próximos Pasos"
 
 #: includes/PlanManager.php:113
 msgid "Store Setup"
-msgstr ""
+msgstr "Configuración de Tienda"
 
 #: includes/PlanManager.php:114
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr ""
+msgstr "Completa la configuración de tu tienda en línea con estos pasos esenciales:"
 
 #: includes/PlanManager.php:118
 #: includes/PlanManager.php:696
 #: includes/PlanManager.php:1268
 msgid "Build"
-msgstr ""
+msgstr "Construir"
 
 #: includes/PlanManager.php:122
 msgid "Basic Store Setup"
-msgstr ""
+msgstr "Configuración Básica de la Tienda"
 
 #: includes/PlanManager.php:123
 msgid "Get your store foundation ready"
-msgstr ""
+msgstr "Prepara los fundamentos de tu tienda"
 
 #: includes/PlanManager.php:127
 msgid "Quick Setup"
@@ -46,15 +47,15 @@ msgstr ""
 
 #: includes/PlanManager.php:128
 msgid "Complete the basic store configuration and settings"
-msgstr ""
+msgstr "Completa la configuración básica y ajustes de la tienda"
 
 #: includes/PlanManager.php:142
 msgid "Customize Your Store"
-msgstr ""
+msgstr "Personaliza Tu Tienda"
 
 #: includes/PlanManager.php:143
 msgid "Brand your store to match your business"
-msgstr ""
+msgstr "Dale marca a tu tienda para que coincida con tu negocio"
 
 #: includes/PlanManager.php:147
 #: includes/PlanManager.php:748
@@ -63,20 +64,20 @@ msgstr ""
 
 #: includes/PlanManager.php:148
 msgid "Add your business logo to build brand recognition"
-msgstr ""
+msgstr "Agrega el logo de tu empresa para crear reconocimiento de marca"
 
 #: includes/PlanManager.php:156
 #: includes/PlanManager.php:757
 msgid "Choose Colors and Fonts"
-msgstr ""
+msgstr "Elegir Colores y Fuentes"
 
 #: includes/PlanManager.php:157
 msgid "Select colors and typography that reflect your brand"
-msgstr ""
+msgstr "Selecciona colores y tipografía que reflejen tu marca"
 
 #: includes/PlanManager.php:165
 msgid "Customize Header"
-msgstr ""
+msgstr "Personalizar Encabezado"
 
 #: includes/PlanManager.php:166
 msgid "Design your header layout and navigation"
@@ -215,7 +216,7 @@ msgstr ""
 #: includes/PlanManager.php:890
 #: includes/PlanManager.php:1489
 msgid "Brand"
-msgstr ""
+msgstr "Marca"
 
 #: includes/PlanManager.php:320
 msgid "First Marketing Steps"
@@ -358,7 +359,7 @@ msgstr ""
 #: includes/PlanManager.php:1059
 #: includes/PlanManager.php:1667
 msgid "Grow"
-msgstr ""
+msgstr "Crecer"
 
 #: includes/PlanManager.php:473
 msgid "Improve Your Customer Experience to Sell More"
@@ -557,7 +558,7 @@ msgstr ""
 
 #: includes/PlanManager.php:691
 msgid "Blog Setup"
-msgstr ""
+msgstr "Configuración de Blog"
 
 #: includes/PlanManager.php:692
 msgid "Get your blog up and running with these essential steps:"
@@ -1052,7 +1053,7 @@ msgstr ""
 
 #: includes/PlanManager.php:1263
 msgid "Corporate Setup"
-msgstr ""
+msgstr "Configuración Corporativa"
 
 #: includes/PlanManager.php:1264
 msgid "Set up your corporate website with these essential steps:"
@@ -1600,19 +1601,19 @@ msgstr ""
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1765
 msgid "Mark Complete"
-msgstr ""
+msgstr "Marcar como Completado"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1788
 msgid "Skip"
-msgstr ""
+msgstr "Omitir"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1821
 msgid "Restart"
-msgstr ""
+msgstr "Reiniciar"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1

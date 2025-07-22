@@ -3,12 +3,13 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: de_DE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
+"Language: de_DE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-module-next-steps\n"
 
@@ -16,640 +17,640 @@ msgstr ""
 #: includes/NextSteps.php:62
 #: includes/NextStepsWidget.php:39
 msgid "Next Steps"
-msgstr ""
+msgstr "Nächste Schritte"
 
 #: includes/PlanManager.php:113
 msgid "Store Setup"
-msgstr ""
+msgstr "Shop-Einrichtung"
 
 #: includes/PlanManager.php:114
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr ""
+msgstr "Vervollständigen Sie die Einrichtung Ihres E-Commerce-Shops mit diesen wichtigen Schritten:"
 
 #: includes/PlanManager.php:118
 #: includes/PlanManager.php:696
 #: includes/PlanManager.php:1268
 msgid "Build"
-msgstr ""
+msgstr "Erstellen"
 
 #: includes/PlanManager.php:122
 msgid "Basic Store Setup"
-msgstr ""
+msgstr "Grundlegende Shop-Einrichtung"
 
 #: includes/PlanManager.php:123
 msgid "Get your store foundation ready"
-msgstr ""
+msgstr "Bereiten Sie das Fundament Ihres Shops vor"
 
 #: includes/PlanManager.php:127
 msgid "Quick Setup"
-msgstr ""
+msgstr "Schnelle Einrichtung"
 
 #: includes/PlanManager.php:128
 msgid "Complete the basic store configuration and settings"
-msgstr ""
+msgstr "Schließen Sie die grundlegende Shop-Konfiguration und -Einstellungen ab"
 
 #: includes/PlanManager.php:142
 msgid "Customize Your Store"
-msgstr ""
+msgstr "Passen Sie Ihren Shop an"
 
 #: includes/PlanManager.php:143
 msgid "Brand your store to match your business"
-msgstr ""
+msgstr "Gestalten Sie Ihren Shop passend zu Ihrem Unternehmen"
 
 #: includes/PlanManager.php:147
 #: includes/PlanManager.php:748
 msgid "Upload Logo"
-msgstr ""
+msgstr "Logo hochladen"
 
 #: includes/PlanManager.php:148
 msgid "Add your business logo to build brand recognition"
-msgstr ""
+msgstr "Fügen Sie Ihr Firmenlogo hinzu, um die Markenbekanntheit zu steigern"
 
 #: includes/PlanManager.php:156
 #: includes/PlanManager.php:757
 msgid "Choose Colors and Fonts"
-msgstr ""
+msgstr "Farben und Schriften wählen"
 
 #: includes/PlanManager.php:157
 msgid "Select colors and typography that reflect your brand"
-msgstr ""
+msgstr "Wählen Sie Farben und Typografie, die Ihre Marke widerspiegeln"
 
 #: includes/PlanManager.php:165
 msgid "Customize Header"
-msgstr ""
+msgstr "Header anpassen"
 
 #: includes/PlanManager.php:166
 msgid "Design your header layout and navigation"
-msgstr ""
+msgstr "Gestalten Sie Ihr Header-Layout und die Navigation"
 
 #: includes/PlanManager.php:174
 msgid "Customize Footer"
-msgstr ""
+msgstr "Footer anpassen"
 
 #: includes/PlanManager.php:175
 msgid "Set up your footer with important links and information"
-msgstr ""
+msgstr "Richten Sie Ihren Footer mit wichtigen Links und Informationen ein"
 
 #: includes/PlanManager.php:183
 #: includes/PlanManager.php:775
 msgid "Customize Homepage"
-msgstr ""
+msgstr "Startseite anpassen"
 
 #: includes/PlanManager.php:184
 msgid "Create an engaging homepage that showcases your products"
-msgstr ""
+msgstr "Erstellen Sie eine ansprechende Startseite, die Ihre Produkte präsentiert"
 
 #: includes/PlanManager.php:194
 msgid "Set Up Shopping Experience"
-msgstr ""
+msgstr "Einkaufserlebnis einrichten"
 
 #: includes/PlanManager.php:195
 msgid "Add and configure your product catalog"
-msgstr ""
+msgstr "Fügen Sie Ihren Produktkatalog hinzu und konfigurieren Sie ihn"
 
 #: includes/PlanManager.php:199
 msgid "Add a Product"
-msgstr ""
+msgstr "Produkt hinzufügen"
 
 #: includes/PlanManager.php:200
 msgid "Create your first product listing with images and details"
-msgstr ""
+msgstr "Erstellen Sie Ihr erstes Produktlisting mit Bildern und Details"
 
 #: includes/PlanManager.php:208
 msgid "Customize the Product Page"
-msgstr ""
+msgstr "Produktseite anpassen"
 
 #: includes/PlanManager.php:209
 msgid "Design how individual products are displayed"
-msgstr ""
+msgstr "Gestalten Sie, wie einzelne Produkte angezeigt werden"
 
 #: includes/PlanManager.php:217
 msgid "Customize the Shop Page"
-msgstr ""
+msgstr "Shop-Seite anpassen"
 
 #: includes/PlanManager.php:218
 msgid "Configure your main product catalog display"
-msgstr ""
+msgstr "Konfigurieren Sie die Anzeige Ihres Hauptprodukt-Katalogs"
 
 #: includes/PlanManager.php:226
 msgid "Customize the Cart Page"
-msgstr ""
+msgstr "Warenkorb-Seite anpassen"
 
 #: includes/PlanManager.php:227
 msgid "Optimize the shopping cart experience"
-msgstr ""
+msgstr "Optimieren Sie das Warenkorb-Erlebnis"
 
 #: includes/PlanManager.php:235
 msgid "Customize the Checkout Flow"
-msgstr ""
+msgstr "Kaufprozess anpassen"
 
 #: includes/PlanManager.php:236
 msgid "Streamline the checkout process for better conversions"
-msgstr ""
+msgstr "Optimieren Sie den Kaufprozess für bessere Conversions"
 
 #: includes/PlanManager.php:246
 msgid "Set Up Payments and Shipping"
-msgstr ""
+msgstr "Zahlungen und Versand einrichten"
 
 #: includes/PlanManager.php:247
 msgid "Configure payment methods and shipping options"
-msgstr ""
+msgstr "Zahlungsmethoden und Versandoptionen konfigurieren"
 
 #: includes/PlanManager.php:251
 msgid "Set Up Payments"
-msgstr ""
+msgstr "Zahlungen einrichten"
 
 #: includes/PlanManager.php:252
 msgid "Configure payment gateways like PayPal and Stripe"
-msgstr ""
+msgstr "Zahlungsanbieter wie PayPal und Stripe konfigurieren"
 
 #: includes/PlanManager.php:260
 msgid "Set Up Shipping"
-msgstr ""
+msgstr "Versand einrichten"
 
 #: includes/PlanManager.php:261
 msgid "Define shipping zones, rates, and delivery options"
-msgstr ""
+msgstr "Versandzonen, Preise und Lieferoptionen definieren"
 
 #: includes/PlanManager.php:269
 msgid "Set Up Taxes"
-msgstr ""
+msgstr "Steuern einrichten"
 
 #: includes/PlanManager.php:270
 msgid "Configure tax rates and calculations for your region"
-msgstr ""
+msgstr "Steuersätze und Berechnungen für Ihre Region konfigurieren"
 
 #: includes/PlanManager.php:280
 msgid "Set Up Legal Pages"
-msgstr ""
+msgstr "Rechtliche Seiten einrichten"
 
 #: includes/PlanManager.php:281
 msgid "Create essential legal pages for compliance"
-msgstr ""
+msgstr "Erstellen Sie wichtige rechtliche Seiten für die Compliance"
 
 #: includes/PlanManager.php:285
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Datenschutzrichtlinie"
 
 #: includes/PlanManager.php:286
 msgid "Create a privacy policy to comply with data protection laws"
-msgstr ""
+msgstr "Erstellen Sie eine Datenschutzrichtlinie zur Einhaltung der Datenschutzgesetze"
 
 #: includes/PlanManager.php:294
 msgid "Terms & Conditions"
-msgstr ""
+msgstr "Allgemeine Geschäftsbedingungen"
 
 #: includes/PlanManager.php:295
 msgid "Set terms of service for customer purchases"
-msgstr ""
+msgstr "Servicebedingungen für Kundenkäufe festlegen"
 
 #: includes/PlanManager.php:303
 msgid "Return and Refund Policy"
-msgstr ""
+msgstr "Rückgabe- und Erstattungsrichtlinie"
 
 #: includes/PlanManager.php:304
 msgid "Define your return and refund procedures"
-msgstr ""
+msgstr "Definieren Sie Ihre Rückgabe- und Erstattungsverfahren"
 
 #: includes/PlanManager.php:316
 #: includes/PlanManager.php:890
 #: includes/PlanManager.php:1489
 msgid "Brand"
-msgstr ""
+msgstr "Marke"
 
 #: includes/PlanManager.php:320
 msgid "First Marketing Steps"
-msgstr ""
+msgstr "Erste Marketing-Schritte"
 
 #: includes/PlanManager.php:321
 msgid "Set up essential marketing tools and features"
-msgstr ""
+msgstr "Richten Sie wichtige Marketing-Tools und -Funktionen ein"
 
 #: includes/PlanManager.php:325
 msgid "Enable Social Login Register for Your Customers"
-msgstr ""
+msgstr "Social Login Registrierung für Ihre Kunden aktivieren"
 
 #: includes/PlanManager.php:326
 msgid "Allow customers to register and login using social media accounts"
-msgstr ""
+msgstr "Ermöglichen Sie Kunden die Registrierung und Anmeldung über Social Media Konten"
 
 #: includes/PlanManager.php:334
 msgid "Configure Welcome Discount Popup"
-msgstr ""
+msgstr "Willkommens-Rabatt Popup konfigurieren"
 
 #: includes/PlanManager.php:335
 msgid "Create a popup to capture emails and offer discounts"
-msgstr ""
+msgstr "Erstellen Sie ein Popup zur E-Mail-Erfassung und Rabattangeboten"
 
 #: includes/PlanManager.php:343
 msgid "Create a Gift Card to Sell in Your Shop"
-msgstr ""
+msgstr "Geschenkkarte für Ihren Shop erstellen"
 
 #: includes/PlanManager.php:344
 msgid "Add gift cards as a product option to increase sales"
-msgstr ""
+msgstr "Fügen Sie Geschenkkarten als Produktoption hinzu, um den Umsatz zu steigern"
 
 #: includes/PlanManager.php:352
 msgid "Enable Abandoned Cart Emails"
-msgstr ""
+msgstr "Warenkorbabbruch-E-Mails aktivieren"
 
 #: includes/PlanManager.php:353
 msgid "Recover lost sales with automated cart abandonment emails"
-msgstr ""
+msgstr "Gewinnen Sie verlorene Verkäufe mit automatisierten Warenkorbabbruch-E-Mails zurück"
 
 #: includes/PlanManager.php:361
 msgid "Customize Your Store Emails"
-msgstr ""
+msgstr "Shop-E-Mails anpassen"
 
 #: includes/PlanManager.php:362
 msgid "Brand your order confirmation and customer emails"
-msgstr ""
+msgstr "Gestalten Sie Ihre Bestellbestätigungs- und Kunden-E-Mails im Corporate Design"
 
 #: includes/PlanManager.php:370
 msgid "Add Google Analytics"
-msgstr ""
+msgstr "Google Analytics hinzufügen"
 
 #: includes/PlanManager.php:371
 msgid "Track visitor behavior and store performance"
-msgstr ""
+msgstr "Verfolgen Sie Besucherverhalten und Shop-Performance"
 
 #: includes/PlanManager.php:381
 msgid "Launch and Promote - Social Media Setup & Engagement"
-msgstr ""
+msgstr "Starten und Bewerben - Social Media Einrichtung msgstr \"\" Engagement"
 
 #: includes/PlanManager.php:382
 msgid "Connect your store to social media platforms"
-msgstr ""
+msgstr "Verbinden Sie Ihren Shop mit Social Media Plattformen"
 
 #: includes/PlanManager.php:386
 msgid "Connect Facebook Store"
-msgstr ""
+msgstr "Facebook Shop verbinden"
 
 #: includes/PlanManager.php:387
 msgid "Sync your products with Facebook Shop"
-msgstr ""
+msgstr "Synchronisieren Sie Ihre Produkte mit Facebook Shop"
 
 #: includes/PlanManager.php:395
 msgid "Connect Instagram Shopping"
-msgstr ""
+msgstr "Instagram Shopping verbinden"
 
 #: includes/PlanManager.php:396
 msgid "Enable product tagging on Instagram posts"
-msgstr ""
+msgstr "Produkt-Tagging in Instagram Posts aktivieren"
 
 #: includes/PlanManager.php:404
 msgid "Connect TikTok Shop"
-msgstr ""
+msgstr "TikTok Shop verbinden"
 
 #: includes/PlanManager.php:405
 msgid "Integrate with TikTok for product promotion"
-msgstr ""
+msgstr "Integration mit TikTok für Produktwerbung"
 
 #: includes/PlanManager.php:413
 msgid "Add Social Sharing Buttons"
-msgstr ""
+msgstr "Social Media Teilen-Buttons hinzufügen"
 
 #: includes/PlanManager.php:414
 msgid "Let customers share products on social media"
-msgstr ""
+msgstr "Ermöglichen Sie Kunden das Teilen von Produkten in sozialen Medien"
 
 #: includes/PlanManager.php:422
 msgid "Add Social Media Feed to Homepage"
-msgstr ""
+msgstr "Social Media Feed zur Startseite hinzufügen"
 
 #: includes/PlanManager.php:423
 msgid "Display your social media posts on your homepage"
-msgstr ""
+msgstr "Zeigen Sie Ihre Social Media Posts auf Ihrer Startseite an"
 
 #: includes/PlanManager.php:433
 msgid "Launch and Promote - SEO & Store Visibility"
-msgstr ""
+msgstr "Starten und Bewerben - SEO msgstr \"\" Shop-Sichtbarkeit"
 
 #: includes/PlanManager.php:434
 msgid "Optimize your store for search engines"
-msgstr ""
+msgstr "Optimieren Sie Ihren Shop für Suchmaschinen"
 
 #: includes/PlanManager.php:438
 msgid "Optimize Your Store SEO"
-msgstr ""
+msgstr "Shop-SEO optimieren"
 
 #: includes/PlanManager.php:439
 msgid "Improve search engine rankings with SEO best practices"
-msgstr ""
+msgstr "Verbessern Sie Suchmaschinenrankings mit SEO-Best Practices"
 
 #: includes/PlanManager.php:447
 #: includes/PlanManager.php:1037
 msgid "Submit Site to Google Search Console"
-msgstr ""
+msgstr "Website zur Google Search Console hinzufügen"
 
 #: includes/PlanManager.php:448
 msgid "Monitor your site's search performance"
-msgstr ""
+msgstr "Überwachen Sie die Suchleistung Ihrer Website"
 
 #: includes/PlanManager.php:456
 msgid "Create a Custom Sitemap"
-msgstr ""
+msgstr "Benutzerdefinierte Sitemap erstellen"
 
 #: includes/PlanManager.php:457
 msgid "Help search engines discover your products"
-msgstr ""
+msgstr "Helfen Sie Suchmaschinen dabei, Ihre Produkte zu entdecken"
 
 #: includes/PlanManager.php:469
 #: includes/PlanManager.php:1059
 #: includes/PlanManager.php:1667
 msgid "Grow"
-msgstr ""
+msgstr "Wachsen"
 
 #: includes/PlanManager.php:473
 msgid "Improve Your Customer Experience to Sell More"
-msgstr ""
+msgstr "Verbessern Sie Ihr Kundenerlebnis, um mehr zu verkaufen"
 
 #: includes/PlanManager.php:474
 msgid "Enhance customer satisfaction and increase sales"
-msgstr ""
+msgstr "Steigern Sie Kundenzufriedenheit und erhöhen Sie den Umsatz"
 
 #: includes/PlanManager.php:478
 msgid "Customize the Thank You Page"
-msgstr ""
+msgstr "Danke-Seite anpassen"
 
 #: includes/PlanManager.php:479
 msgid "Create a branded post-purchase experience"
-msgstr ""
+msgstr "Erstellen Sie ein markenbezogenes Nachkauf-Erlebnis"
 
 #: includes/PlanManager.php:487
 msgid "Customize Your Customer's Account Page"
-msgstr ""
+msgstr "Kundenkonto-Seite anpassen"
 
 #: includes/PlanManager.php:488
 msgid "Improve the customer dashboard experience"
-msgstr ""
+msgstr "Verbessern Sie das Kundendashboard-Erlebnis"
 
 #: includes/PlanManager.php:496
 msgid "Collect and Show Reviews for Your Products"
-msgstr ""
+msgstr "Bewertungen für Ihre Produkte sammeln und anzeigen"
 
 #: includes/PlanManager.php:497
 msgid "Build trust with customer reviews and testimonials"
-msgstr ""
+msgstr "Schaffen Sie Vertrauen mit Kundenbewertungen und Erfahrungsberichten"
 
 #: includes/PlanManager.php:507
 msgid "Advanced Social & Influencer Marketing"
-msgstr ""
+msgstr "Erweiterte Social Media msgstr \"\" Influencer Marketing"
 
 #: includes/PlanManager.php:508
 msgid "Implement advanced marketing strategies"
-msgstr ""
+msgstr "Implementieren Sie erweiterte Marketing-Strategien"
 
 #: includes/PlanManager.php:512
 msgid "Launch an Affiliate Program"
-msgstr ""
+msgstr "Affiliate-Programm starten"
 
 #: includes/PlanManager.php:513
 msgid "Let others promote your products for commission"
-msgstr ""
+msgstr "Lassen Sie andere Ihre Produkte gegen Provision bewerben"
 
 #: includes/PlanManager.php:521
 msgid "Create a Points & Rewards Program for Your Customers"
-msgstr ""
+msgstr "Punkte- und Belohnungsprogramm für Ihre Kunden erstellen"
 
 #: includes/PlanManager.php:522
 msgid "Encourage repeat purchases with loyalty rewards"
-msgstr ""
+msgstr "Fördern Sie Wiederholungskäufe mit Treuepunkten"
 
 #: includes/PlanManager.php:530
 #: includes/PlanManager.php:1129
 msgid "Run First Facebook or Instagram Ad"
-msgstr ""
+msgstr "Erste Facebook oder Instagram Anzeige schalten"
 
 #: includes/PlanManager.php:531
 msgid "Start paid advertising to reach more customers"
-msgstr ""
+msgstr "Beginnen Sie mit bezahlter Werbung, um mehr Kunden zu erreichen"
 
 #: includes/PlanManager.php:539
 msgid "Launch Product Giveaway Campaign"
-msgstr ""
+msgstr "Produkt-Gewinnspiel Kampagne starten"
 
 #: includes/PlanManager.php:540
 msgid "Generate buzz and attract new customers"
-msgstr ""
+msgstr "Erzeugen Sie Aufmerksamkeit und gewinnen Sie neue Kunden"
 
 #: includes/PlanManager.php:548
 msgid "Create Influencer Outreach List"
-msgstr ""
+msgstr "Influencer-Kontaktliste erstellen"
 
 #: includes/PlanManager.php:549
 msgid "Build relationships with influencers in your niche"
-msgstr ""
+msgstr "Bauen Sie Beziehungen zu Influencern in Ihrer Nische auf"
 
 #: includes/PlanManager.php:557
 msgid "Track UTM Campaign Links"
-msgstr ""
+msgstr "UTM-Kampagnen-Links verfolgen"
 
 #: includes/PlanManager.php:558
 msgid "Monitor the effectiveness of your marketing campaigns"
-msgstr ""
+msgstr "Überwachen Sie die Wirksamkeit Ihrer Marketing-Kampagnen"
 
 #: includes/PlanManager.php:568
 msgid "Next Marketing Steps"
-msgstr ""
+msgstr "Nächste Marketing-Schritte"
 
 #: includes/PlanManager.php:569
 msgid "Advanced marketing tactics to grow your business"
-msgstr ""
+msgstr "Erweiterte Marketing-Taktiken zum Wachstum Ihres Unternehmens"
 
 #: includes/PlanManager.php:573
 msgid "Write a Blog Post"
-msgstr ""
+msgstr "Blog-Beitrag schreiben"
 
 #: includes/PlanManager.php:574
 msgid "Create content to drive traffic and improve SEO"
-msgstr ""
+msgstr "Erstellen Sie Inhalte, um Traffic zu generieren und SEO zu verbessern"
 
 #: includes/PlanManager.php:582
 msgid "Create a Sale & Promo Campaign for Your Products"
-msgstr ""
+msgstr "Sale msgstr \"\" Promo-Kampagne für Ihre Produkte erstellen"
 
 #: includes/PlanManager.php:583
 msgid "Run promotional campaigns to boost sales"
-msgstr ""
+msgstr "Führen Sie Werbekampagnen durch, um den Umsatz zu steigern"
 
 #: includes/PlanManager.php:591
 msgid "Create an Upsell Campaign"
-msgstr ""
+msgstr "Upsell-Kampagne erstellen"
 
 #: includes/PlanManager.php:592
 msgid "Increase average order value with strategic upsells"
-msgstr ""
+msgstr "Erhöhen Sie den durchschnittlichen Bestellwert mit strategischen Upsells"
 
 #: includes/PlanManager.php:600
 msgid "Setup Yoast Premium to Drive Traffic to Your Store"
-msgstr ""
+msgstr "Yoast Premium einrichten, um Traffic zu Ihrem Shop zu leiten"
 
 #: includes/PlanManager.php:601
 msgid "Advanced SEO features to improve search rankings"
-msgstr ""
+msgstr "Erweiterte SEO-Funktionen zur Verbesserung der Suchrankings"
 
 #: includes/PlanManager.php:611
 #: includes/PlanManager.php:1192
 msgid "Performance & Security"
-msgstr ""
+msgstr "Performance msgstr \"\" Sicherheit"
 
 #: includes/PlanManager.php:612
 msgid "Optimize your store for speed and security"
-msgstr ""
+msgstr "Optimieren Sie Ihren Shop für Geschwindigkeit und Sicherheit"
 
 #: includes/PlanManager.php:616
 msgid "Improve Performance and Speed with Jetpack Boost"
-msgstr ""
+msgstr "Performance und Geschwindigkeit mit Jetpack Boost verbessern"
 
 #: includes/PlanManager.php:617
 msgid "Speed up your store for better user experience"
-msgstr ""
+msgstr "Beschleunigen Sie Ihren Shop für eine bessere Benutzererfahrung"
 
 #: includes/PlanManager.php:625
 msgid "Enable Auto-Backup & Update Alerts"
-msgstr ""
+msgstr "Automatische Backups msgstr \"\" Update-Benachrichtigungen aktivieren"
 
 #: includes/PlanManager.php:626
 msgid "Protect your store with automatic backups"
-msgstr ""
+msgstr "Schützen Sie Ihren Shop mit automatischen Backups"
 
 #: includes/PlanManager.php:634
 msgid "Create a Staging Website"
-msgstr ""
+msgstr "Staging-Website erstellen"
 
 #: includes/PlanManager.php:635
 msgid "Test changes safely before going live"
-msgstr ""
+msgstr "Testen Sie Änderungen sicher, bevor Sie live gehen"
 
 #: includes/PlanManager.php:645
 msgid "Store Analysis"
-msgstr ""
+msgstr "Shop-Analyse"
 
 #: includes/PlanManager.php:646
 msgid "Monitor and analyze your store performance"
-msgstr ""
+msgstr "Überwachen und analysieren Sie die Performance Ihres Shops"
 
 #: includes/PlanManager.php:650
 msgid "Monitor Traffic and Conversion Rates"
-msgstr ""
+msgstr "Traffic und Conversion-Raten überwachen"
 
 #: includes/PlanManager.php:651
 msgid "Track key metrics to optimize your store"
-msgstr ""
+msgstr "Verfolgen Sie wichtige Kennzahlen zur Optimierung Ihres Shops"
 
 #: includes/PlanManager.php:659
 msgid "Run A/B Test on Homepage Banner"
-msgstr ""
+msgstr "A/B-Test für Homepage-Banner durchführen"
 
 #: includes/PlanManager.php:660
 msgid "Test different designs to improve conversions"
-msgstr ""
+msgstr "Testen Sie verschiedene Designs zur Verbesserung der Conversions"
 
 #: includes/PlanManager.php:668
 #: includes/PlanManager.php:1240
 msgid "Review Monthly Performance Dashboard"
-msgstr ""
+msgstr "Monatliches Performance-Dashboard überprüfen"
 
 #: includes/PlanManager.php:669
 msgid "Analyze monthly reports to identify trends"
-msgstr ""
+msgstr "Analysieren Sie monatliche Berichte, um Trends zu identifizieren"
 
 #: includes/PlanManager.php:691
 msgid "Blog Setup"
-msgstr ""
+msgstr "Blog-Einrichtung"
 
 #: includes/PlanManager.php:692
 msgid "Get your blog up and running with these essential steps:"
-msgstr ""
+msgstr "Bringen Sie Ihren Blog mit diesen wichtigen Schritten zum Laufen:"
 
 #: includes/PlanManager.php:700
 msgid "Basic Blog Setup"
-msgstr ""
+msgstr "Blog-Grundeinrichtung"
 
 #: includes/PlanManager.php:701
 msgid "Configure your blog's basic settings"
-msgstr ""
+msgstr "Konfigurieren Sie die Grundeinstellungen Ihres Blogs"
 
 #: includes/PlanManager.php:705
 msgid "Set Site Title"
-msgstr ""
+msgstr "Website-Titel festlegen"
 
 #: includes/PlanManager.php:706
 msgid "Choose a memorable title for your blog"
-msgstr ""
+msgstr "Wählen Sie einen einprägsamen Titel für Ihren Blog"
 
 #: includes/PlanManager.php:714
 #: includes/PlanManager.php:1295
 msgid "Set Tagline"
-msgstr ""
+msgstr "Untertitel festlegen"
 
 #: includes/PlanManager.php:715
 msgid "Create a compelling tagline that describes your blog"
-msgstr ""
+msgstr "Erstellen Sie einen überzeugenden Untertitel, der Ihren Blog beschreibt"
 
 #: includes/PlanManager.php:723
 #: includes/PlanManager.php:1313
 msgid "Set Time Zone"
-msgstr ""
+msgstr "Zeitzone einstellen"
 
 #: includes/PlanManager.php:724
 msgid "Configure your blog's timezone for accurate posting"
-msgstr ""
+msgstr "Konfigurieren Sie die Zeitzone Ihres Blogs für genaue Veröffentlichungszeiten"
 
 #: includes/PlanManager.php:732
 #: includes/PlanManager.php:1304
 msgid "Set Language"
-msgstr ""
+msgstr "Sprache einstellen"
 
 #: includes/PlanManager.php:733
 msgid "Choose your blog's primary language"
-msgstr ""
+msgstr "Wählen Sie die Hauptsprache Ihres Blogs"
 
 #: includes/PlanManager.php:743
 msgid "Customize Your Blog"
-msgstr ""
+msgstr "Ihren Blog anpassen"
 
 #: includes/PlanManager.php:744
 msgid "Make your blog visually appealing and unique"
-msgstr ""
+msgstr "Machen Sie Ihren Blog visuell ansprechend und einzigartig"
 
 #: includes/PlanManager.php:749
 msgid "Add your blog logo to establish brand identity"
-msgstr ""
+msgstr "Fügen Sie Ihr Blog-Logo hinzu, um eine Markenidentität zu schaffen"
 
 #: includes/PlanManager.php:758
 msgid "Select colors and typography that match your style"
-msgstr ""
+msgstr "Wählen Sie Farben und Typografie, die zu Ihrem Stil passen"
 
 #: includes/PlanManager.php:766
 #: includes/PlanManager.php:1347
 msgid "Customize Header and Footer"
-msgstr ""
+msgstr "Header und Footer anpassen"
 
 #: includes/PlanManager.php:767
 msgid "Design your header and footer layout"
-msgstr ""
+msgstr "Gestalten Sie Ihr Header- und Footer-Layout"
 
 #: includes/PlanManager.php:776
 msgid "Choose a layout or blog grid for your homepage"
-msgstr ""
+msgstr "Wählen Sie ein Layout oder Blog-Raster für Ihre Startseite"
 
 #: includes/PlanManager.php:786
 msgid "Create Content"
-msgstr ""
+msgstr "Inhalte erstellen"
 
 #: includes/PlanManager.php:787
 msgid "Start creating engaging blog content"
-msgstr ""
+msgstr "Beginnen Sie mit der Erstellung ansprechender Blog-Inhalte"
 
 #: includes/PlanManager.php:791
 msgid "Add Your First Blog Post"
-msgstr ""
+msgstr "Ihren ersten Blog-Beitrag hinzufügen"
 
 #: includes/PlanManager.php:792
 msgid "Write and publish your first blog post"
-msgstr ""
+msgstr "Schreiben und veröffentlichen Sie Ihren ersten Blog-Beitrag"
 
 #: includes/PlanManager.php:800
 msgid "Create an \"About\" Page"
@@ -657,148 +658,148 @@ msgstr ""
 
 #: includes/PlanManager.php:801
 msgid "Tell your readers about yourself and your blog"
-msgstr ""
+msgstr "Erzählen Sie Ihren Lesern von sich und Ihrem Blog"
 
 #: includes/PlanManager.php:809
 msgid "Set a Featured Image for One Post"
-msgstr ""
+msgstr "Beitragsbild für einen Beitrag festlegen"
 
 #: includes/PlanManager.php:810
 msgid "Add visual appeal to your posts with featured images"
-msgstr ""
+msgstr "Verleihen Sie Ihren Beiträgen visuellen Reiz mit Beitragsbildern"
 
 #: includes/PlanManager.php:820
 msgid "Set Up Navigation"
-msgstr ""
+msgstr "Navigation einrichten"
 
 #: includes/PlanManager.php:821
 msgid "Create user-friendly navigation for your blog"
-msgstr ""
+msgstr "Erstellen Sie benutzerfreundliche Navigation für Ihren Blog"
 
 #: includes/PlanManager.php:825
 #: includes/PlanManager.php:1415
 msgid "Add Pages for Home, Blog, About, Contact"
-msgstr ""
+msgstr "Seiten für Startseite, Blog, Über uns, Kontakt hinzufügen"
 
 #: includes/PlanManager.php:826
 msgid "Create essential pages for your blog"
-msgstr ""
+msgstr "Erstellen Sie wichtige Seiten für Ihren Blog"
 
 #: includes/PlanManager.php:834
 #: includes/PlanManager.php:1424
 msgid "Create a Primary Menu"
-msgstr ""
+msgstr "Hauptmenü erstellen"
 
 #: includes/PlanManager.php:835
 msgid "Set up main navigation for your blog"
-msgstr ""
+msgstr "Richten Sie die Hauptnavigation für Ihren Blog ein"
 
 #: includes/PlanManager.php:843
 msgid "Create a Footer Menu"
-msgstr ""
+msgstr "Footer-Menü erstellen"
 
 #: includes/PlanManager.php:844
 msgid "Add footer navigation with important links"
-msgstr ""
+msgstr "Fügen Sie Footer-Navigation mit wichtigen Links hinzu"
 
 #: includes/PlanManager.php:854
 msgid "Set Up Essential Pages"
-msgstr ""
+msgstr "Wichtige Seiten einrichten"
 
 #: includes/PlanManager.php:855
 msgid "Create important legal and policy pages"
-msgstr ""
+msgstr "Erstellen Sie wichtige rechtliche und Richtlinienseiten"
 
 #: includes/PlanManager.php:859
 #: includes/PlanManager.php:1449
 msgid "Add a Privacy Policy"
-msgstr ""
+msgstr "Datenschutzrichtlinie hinzufügen"
 
 #: includes/PlanManager.php:860
 msgid "Create a privacy policy for legal compliance"
-msgstr ""
+msgstr "Erstellen Sie eine Datenschutzrichtlinie für die rechtliche Compliance"
 
 #: includes/PlanManager.php:868
 #: includes/PlanManager.php:1458
 msgid "Add Terms & Conditions"
-msgstr ""
+msgstr "Allgemeine Geschäftsbedingungen hinzufügen"
 
 #: includes/PlanManager.php:869
 msgid "Set terms of use for your blog"
-msgstr ""
+msgstr "Nutzungsbedingungen für Ihren Blog festlegen"
 
 #: includes/PlanManager.php:877
 #: includes/PlanManager.php:1467
 msgid "Add an Accessibility Statement"
-msgstr ""
+msgstr "Barrierefreiheitserklärung hinzufügen"
 
 #: includes/PlanManager.php:878
 msgid "Show your commitment to accessibility"
-msgstr ""
+msgstr "Zeigen Sie Ihr Engagement für Barrierefreiheit"
 
 #: includes/PlanManager.php:894
 msgid "First Audience-Building Steps"
-msgstr ""
+msgstr "Erste Schritte zum Publikumsaufbau"
 
 #: includes/PlanManager.php:895
 msgid "Start building your blog audience"
-msgstr ""
+msgstr "Beginnen Sie mit dem Aufbau Ihrer Blog-Leserschaft"
 
 #: includes/PlanManager.php:899
 msgid "Enable Social Login"
-msgstr ""
+msgstr "Social Login aktivieren"
 
 #: includes/PlanManager.php:900
 msgid "Allow readers to comment using social media accounts"
-msgstr ""
+msgstr "Ermöglichen Sie Lesern, mit Social Media Konten zu kommentieren"
 
 #: includes/PlanManager.php:908
 msgid "Add a Welcome-Subscribe Popup"
-msgstr ""
+msgstr "Willkommens-Anmeldung Popup hinzufügen"
 
 #: includes/PlanManager.php:909
 msgid "Convert visitors to your email list with a popup"
-msgstr ""
+msgstr "Wandeln Sie Besucher mit einem Popup in E-Mail-Abonnenten um"
 
 #: includes/PlanManager.php:917
 msgid "Customize Notification Emails"
-msgstr ""
+msgstr "Benachrichtigungs-E-Mails anpassen"
 
 #: includes/PlanManager.php:918
 msgid "Personalize comment replies and new-post alerts"
-msgstr ""
+msgstr "Personalisieren Sie Kommentarantworten und neue Beitrag-Benachrichtigungen"
 
 #: includes/PlanManager.php:926
 msgid "Connect Jetpack Stats (or Google Analytics 4)"
-msgstr ""
+msgstr "Jetpack Stats (oder Google Analytics 4) verbinden"
 
 #: includes/PlanManager.php:927
 msgid "Track your blog's performance and visitor behavior"
-msgstr ""
+msgstr "Verfolgen Sie die Performance Ihres Blogs und das Besucherverhalten"
 
 #: includes/PlanManager.php:937
 msgid "Test Everything"
-msgstr ""
+msgstr "Alles testen"
 
 #: includes/PlanManager.php:938
 msgid "Ensure your blog works perfectly before launch"
-msgstr ""
+msgstr "Stellen Sie sicher, dass Ihr Blog vor dem Start einwandfrei funktioniert"
 
 #: includes/PlanManager.php:942
 msgid "Check Mobile Optimization"
-msgstr ""
+msgstr "Mobile Optimierung prüfen"
 
 #: includes/PlanManager.php:943
 msgid "Test how your blog looks on mobile devices"
-msgstr ""
+msgstr "Testen Sie, wie Ihr Blog auf mobilen Geräten aussieht"
 
 #: includes/PlanManager.php:951
 msgid "Click Through Every Menu Item & Post"
-msgstr ""
+msgstr "Alle Menüelemente msgstr \"\" Beiträge durchklicken"
 
 #: includes/PlanManager.php:952
 msgid "Test all links and navigation to ensure they work"
-msgstr ""
+msgstr "Testen Sie alle Links und die Navigation, um sicherzustellen, dass sie funktionieren"
 
 #: includes/PlanManager.php:960
 msgid "Disable \"Coming Soon\" Mode When Ready"
@@ -806,31 +807,31 @@ msgstr ""
 
 #: includes/PlanManager.php:961
 msgid "Make your blog visible to the public"
-msgstr ""
+msgstr "Machen Sie Ihren Blog öffentlich sichtbar"
 
 #: includes/PlanManager.php:971
 msgid "Launch & Promote - Social Presence"
-msgstr ""
+msgstr "Starten msgstr \"\" Bewerben - Social Media Präsenz"
 
 #: includes/PlanManager.php:972
 msgid "Establish your blog's social media presence"
-msgstr ""
+msgstr "Etablieren Sie die Social Media Präsenz Ihres Blogs"
 
 #: includes/PlanManager.php:976
 msgid "Connect Facebook Page Auto-Sharing"
-msgstr ""
+msgstr "Facebook-Seite Auto-Sharing verbinden"
 
 #: includes/PlanManager.php:977
 msgid "Automatically share new posts to Facebook"
-msgstr ""
+msgstr "Neue Beiträge automatisch auf Facebook teilen"
 
 #: includes/PlanManager.php:985
 msgid "Connect Instagram Auto-Sharing"
-msgstr ""
+msgstr "Instagram Auto-Sharing verbinden"
 
 #: includes/PlanManager.php:986
 msgid "Share your blog posts on Instagram"
-msgstr ""
+msgstr "Teilen Sie Ihre Blog-Beiträge auf Instagram"
 
 #: includes/PlanManager.php:994
 msgid "Connect TikTok Profile"
@@ -1052,39 +1053,39 @@ msgstr ""
 
 #: includes/PlanManager.php:1263
 msgid "Corporate Setup"
-msgstr ""
+msgstr "Unternehmens-Setup"
 
 #: includes/PlanManager.php:1264
 msgid "Set up your corporate website with these essential steps:"
-msgstr ""
+msgstr "Richten Sie Ihre Unternehmenswebsite mit diesen wichtigen Schritten ein:"
 
 #: includes/PlanManager.php:1272
 msgid "Basic Site Setup"
-msgstr ""
+msgstr "Website-Grundeinrichtung"
 
 #: includes/PlanManager.php:1273
 msgid "Configure your corporate website foundation"
-msgstr ""
+msgstr "Konfigurieren Sie das Fundament Ihrer Unternehmenswebsite"
 
 #: includes/PlanManager.php:1277
 msgid "Complete Basic Site Setup"
-msgstr ""
+msgstr "Website-Grundeinrichtung abschließen"
 
 #: includes/PlanManager.php:1278
 msgid "Configure essential website settings"
-msgstr ""
+msgstr "Wichtige Website-Einstellungen konfigurieren"
 
 #: includes/PlanManager.php:1286
 msgid "Set Site Name"
-msgstr ""
+msgstr "Website-Name festlegen"
 
 #: includes/PlanManager.php:1287
 msgid "Add your company name as the site title"
-msgstr ""
+msgstr "Fügen Sie Ihren Firmennamen als Website-Titel hinzu"
 
 #: includes/PlanManager.php:1296
 msgid "Create a professional tagline that describes your business"
-msgstr ""
+msgstr "Erstellen Sie einen professionellen Untertitel, der Ihr Unternehmen beschreibt"
 
 #: includes/PlanManager.php:1305
 msgid "Choose your website's primary language"
@@ -1104,11 +1105,11 @@ msgstr ""
 
 #: includes/PlanManager.php:1329
 msgid "Upload Company Logo"
-msgstr ""
+msgstr "Firmenlogo hochladen"
 
 #: includes/PlanManager.php:1330
 msgid "Add your company logo to establish brand identity"
-msgstr ""
+msgstr "Fügen Sie Ihr Firmenlogo hinzu, um eine Markenidentität zu schaffen"
 
 #: includes/PlanManager.php:1338
 msgid "Choose Brand Colors and Fonts"
@@ -1156,7 +1157,7 @@ msgstr ""
 
 #: includes/PlanManager.php:1390
 msgid "Create a Contact Page"
-msgstr ""
+msgstr "Kontaktseite erstellen"
 
 #: includes/PlanManager.php:1391
 msgid "Add contact form and map for customer inquiries"
@@ -1561,46 +1562,46 @@ msgstr ""
 #: includes/StepsApi.php:260
 #: includes/StepsApi.php:282
 msgid "No plan found."
-msgstr ""
+msgstr "Kein Plan gefunden."
 
 #: includes/StepsApi.php:288
 msgid "No tracks found in plan."
-msgstr ""
+msgstr "Keine Tracks im Plan gefunden."
 
 #: includes/StepsApi.php:294
 msgid "No sections found in track."
-msgstr ""
+msgstr "Keine Abschnitte im Track gefunden."
 
 #: includes/StepsApi.php:344
 #: includes/StepsApi.php:377
 msgid "Invalid parameters provided."
-msgstr ""
+msgstr "Ungültige Parameter angegeben."
 
 #: includes/StepsApi.php:347
 msgid "Invalid status provided."
-msgstr ""
+msgstr "Ungültiger Status angegeben."
 
 #: includes/StepsApi.php:354
 msgid "Step not found."
-msgstr ""
+msgstr "Schritt nicht gefunden."
 
 #: includes/StepsApi.php:384
 msgid "Section not found."
-msgstr ""
+msgstr "Abschnitt nicht gefunden."
 
 #: includes/StepsApi.php:412
 msgid "Invalid plan type provided."
-msgstr ""
+msgstr "Ungültiger Plantyp angegeben."
 
 #: includes/StepsApi.php:444
 msgid "Failed to add task to section."
-msgstr ""
+msgstr "Fehler beim Hinzufügen der Aufgabe zum Abschnitt."
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1765
 msgid "Mark Complete"
-msgstr ""
+msgstr "Als abgeschlossen markieren"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
@@ -1619,21 +1620,21 @@ msgstr ""
 #: build/next-steps-portal/bundle.js:1844
 #: build/next-steps-portal/bundle.js:1859
 msgid "Unskip"
-msgstr ""
+msgstr "Nicht überspringen"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1575
 msgid "Hide skipped tasks"
-msgstr ""
+msgstr "Übersprungene Aufgaben ausblenden"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1576
 msgid "View skipped tasks"
-msgstr ""
+msgstr "Übersprungene Aufgaben anzeigen"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
 msgid "Loading next steps..."
-msgstr ""
+msgstr "Lade nächste Schritte..."
