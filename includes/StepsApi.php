@@ -289,7 +289,7 @@ class StepsApi {
 		}
 
 		$first_track = $tracks[0];
-		$sections = $first_track->get_sections();
+		$sections    = $first_track->get_sections();
 		if ( empty( $sections ) ) {
 			return new \WP_Error( 'no_sections', __( 'No sections found in track.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}

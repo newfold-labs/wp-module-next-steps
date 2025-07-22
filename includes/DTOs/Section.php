@@ -4,7 +4,7 @@ namespace NewfoldLabs\WP\Module\NextSteps\DTOs;
 
 /**
  * Section Data Transfer Object
- * 
+ *
  * Represents a section that contains multiple tasks
  */
 class Section {
@@ -79,9 +79,12 @@ class Section {
 			'label'       => $this->label,
 			'description' => $this->description,
 			'open'        => $this->open,
-			'tasks'       => array_map( function ( Task $task ) {
-				return $task->to_array();
-			}, $this->tasks ),
+			'tasks'       => array_map(
+				function ( Task $task ) {
+					return $task->to_array();
+				},
+				$this->tasks
+			),
 		);
 	}
 
@@ -174,9 +177,12 @@ class Section {
 	 * Sort tasks by priority
 	 */
 	public function sort_tasks(): void {
-		usort( $this->tasks, function ( Task $a, Task $b ) {
-			return $a->priority <=> $b->priority;
-		} );
+		usort(
+			$this->tasks,
+			function ( Task $a, Task $b ) {
+				return $a->priority <=> $b->priority;
+			}
+		);
 	}
 
 	/**
@@ -189,9 +195,12 @@ class Section {
 			return 0;
 		}
 
-		$completed_tasks = array_filter( $this->tasks, function ( Task $task ) {
-			return $task->is_completed();
-		} );
+		$completed_tasks = array_filter(
+			$this->tasks,
+			function ( Task $task ) {
+				return $task->is_completed();
+			}
+		);
 
 		return intval( ( count( $completed_tasks ) / count( $this->tasks ) ) * 100 );
 	}
@@ -211,9 +220,14 @@ class Section {
 	 * @return int
 	 */
 	public function get_completed_tasks_count(): int {
-		return count( array_filter( $this->tasks, function ( Task $task ) {
-			return $task->is_completed();
-		} ) );
+		return count(
+			array_filter(
+				$this->tasks,
+				function ( Task $task ) {
+					return $task->is_completed();
+				}
+			)
+		);
 	}
 
 	/**
@@ -279,4 +293,4 @@ class Section {
 
 		return true;
 	}
-} 
+}

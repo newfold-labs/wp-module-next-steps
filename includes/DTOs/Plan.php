@@ -4,7 +4,7 @@ namespace NewfoldLabs\WP\Module\NextSteps\DTOs;
 
 /**
  * Plan Data Transfer Object
- * 
+ *
  * Represents a plan that contains multiple tracks
  */
 class Plan {
@@ -70,9 +70,12 @@ class Plan {
 			'id'          => $this->id,
 			'label'       => $this->label,
 			'description' => $this->description,
-			'tracks'      => array_map( function ( Track $track ) {
-				return $track->to_array();
-			}, $this->tracks ),
+			'tracks'      => array_map(
+				function ( Track $track ) {
+					return $track->to_array();
+				},
+				$this->tracks
+			),
 		);
 	}
 
@@ -261,9 +264,14 @@ class Plan {
 	 * @return int
 	 */
 	public function get_completed_tracks_count(): int {
-		return count( array_filter( $this->tracks, function ( Track $track ) {
-			return $track->is_completed();
-		} ) );
+		return count(
+			array_filter(
+				$this->tracks,
+				function ( Track $track ) {
+					return $track->is_completed();
+				}
+			)
+		);
 	}
 
 	/**
@@ -324,7 +332,7 @@ class Plan {
 	 *
 	 * @param string $track_id Track ID
 	 * @param string $section_id Section ID
-	 * @param bool $open Open state
+	 * @param bool   $open Open state
 	 * @return bool
 	 */
 	public function update_section_open_state( string $track_id, string $section_id, bool $open ): bool {
@@ -360,4 +368,4 @@ class Plan {
 
 		return true;
 	}
-} 
+}

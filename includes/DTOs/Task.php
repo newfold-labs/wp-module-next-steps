@@ -4,7 +4,7 @@ namespace NewfoldLabs\WP\Module\NextSteps\DTOs;
 
 /**
  * Task Data Transfer Object
- * 
+ *
  * Represents an individual task within a section
  */
 class Task {
@@ -189,7 +189,7 @@ class Task {
 		$formatted = array();
 		foreach ( $this->data_attributes as $key => $value ) {
 			// Ensure key doesn't already have 'data-' prefix
-			$formatted_key = strpos( $key, 'data-' ) === 0 ? $key : 'data-' . $key;
+			$formatted_key               = strpos( $key, 'data-' ) === 0 ? $key : 'data-' . $key;
 			$formatted[ $formatted_key ] = $value;
 		}
 		return $formatted;
@@ -221,4 +221,4 @@ class Task {
 	public function get_completion_percentage(): int {
 		return $this->is_completed() ? 100 : 0;
 	}
-} 
+}

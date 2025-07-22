@@ -51,7 +51,7 @@ class PlanLoader {
 		if ( false === $steps ) {
 			// Use our local site type determination logic
 			$plan_type = self::determine_site_type();
-			$plan = PlanManager::switch_plan( $plan_type );
+			$plan      = PlanManager::switch_plan( $plan_type );
 			if ( $plan ) {
 				StepsApi::set_data( $plan->to_array() );
 			}
@@ -79,7 +79,7 @@ class PlanLoader {
 			// Check if the new site type is a valid plan type
 			if ( array_key_exists( $new_site_type, PlanManager::PLAN_TYPES ) ) {
 				$plan_type = PlanManager::PLAN_TYPES[ $new_site_type ];
-				$plan = PlanManager::switch_plan( $plan_type );
+				$plan      = PlanManager::switch_plan( $plan_type );
 				if ( $plan ) {
 					StepsApi::set_data( $plan->to_array() );
 				}
@@ -185,14 +185,14 @@ class PlanLoader {
 		// Check for multiple users (businesses often have multiple content creators)
 		$user_count = count_users();
 		if ( $user_count['total_users'] > 2 ) {
-			$business_indicators++;
+			++$business_indicators;
 		}
 
 		// Check for business-oriented pages
 		$business_pages = array( 'about', 'about-us', 'services', 'contact', 'team', 'portfolio', 'testimonials' );
 		foreach ( $business_pages as $page_slug ) {
 			if ( get_page_by_path( $page_slug ) ) {
-				$business_indicators++;
+				++$business_indicators;
 				break; // Only count this once
 			}
 		}
@@ -201,7 +201,7 @@ class PlanLoader {
 		$business_post_types = array( 'portfolio', 'team', 'service', 'testimonial', 'project', 'case-study' );
 		foreach ( $business_post_types as $post_type ) {
 			if ( post_type_exists( $post_type ) ) {
-				$business_indicators++;
+				++$business_indicators;
 				break; // Only count this once
 			}
 		}
@@ -215,12 +215,12 @@ class PlanLoader {
 		$active_business_plugins = 0;
 		foreach ( $business_plugins as $plugin ) {
 			if ( is_plugin_active( $plugin ) ) {
-				$active_business_plugins++;
+				++$active_business_plugins;
 			}
 		}
 
 		if ( $active_business_plugins >= 2 ) {
-			$business_indicators++;
+			++$business_indicators;
 		}
 
 		// Check site title/description for business keywords
@@ -230,7 +230,7 @@ class PlanLoader {
 
 		foreach ( $business_keywords as $keyword ) {
 			if ( stripos( $site_title, $keyword ) !== false || stripos( $site_description, $keyword ) !== false ) {
-				$business_indicators++;
+				++$business_indicators;
 				break; // Only count this once
 			}
 		}

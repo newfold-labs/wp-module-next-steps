@@ -4,7 +4,7 @@ namespace NewfoldLabs\WP\Module\NextSteps\DTOs;
 
 /**
  * Track Data Transfer Object
- * 
+ *
  * Represents a track that contains multiple sections
  */
 class Track {
@@ -61,9 +61,12 @@ class Track {
 		return array(
 			'id'       => $this->id,
 			'label'    => $this->label,
-			'sections' => array_map( function ( Section $section ) {
-				return $section->to_array();
-			}, $this->sections ),
+			'sections' => array_map(
+				function ( Section $section ) {
+					return $section->to_array();
+				},
+				$this->sections
+			),
 		);
 	}
 
@@ -208,9 +211,14 @@ class Track {
 	 * @return int
 	 */
 	public function get_completed_sections_count(): int {
-		return count( array_filter( $this->sections, function ( Section $section ) {
-			return $section->is_completed();
-		} ) );
+		return count(
+			array_filter(
+				$this->sections,
+				function ( Section $section ) {
+					return $section->is_completed();
+				}
+			)
+		);
 	}
 
 	/**
@@ -243,7 +251,7 @@ class Track {
 	 * Update section open state
 	 *
 	 * @param string $section_id Section ID
-	 * @param bool $open Open state
+	 * @param bool   $open Open state
 	 * @return bool
 	 */
 	public function update_section_open_state( string $section_id, bool $open ): bool {
@@ -294,4 +302,4 @@ class Track {
 
 		return true;
 	}
-} 
+}
