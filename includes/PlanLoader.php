@@ -19,9 +19,9 @@ use function NewfoldLabs\WP\Context\getContext;
 class PlanLoader {
 
 	/**
-	 * Option name for the solution type (moved from PlanManager)
+	 * Transient name for Newfold solutions data
 	 */
-	const SOLUTION_OPTION = 'nfd_solution';
+	const SOLUTIONS_TRANSIENT = 'newfold_solutions';
 
 	/**
 	 * Option name for onboarding site info
@@ -245,8 +245,7 @@ class PlanLoader {
 	 * Priority order:
 	 * 1. nfd_module_onboarding_site_info option (from onboarding)
 	 * 2. newfold_solutions transient (from solutions API)  
-	 * 3. Legacy solution option (for backward compatibility)
-	 * 4. Intelligent site detection (fallback)
+	 * 3. Intelligent site detection (fallback)
 	 *
 	 * @return string The determined plan type (blog, corporate, ecommerce)
 	 */
@@ -261,7 +260,7 @@ class PlanLoader {
 		}
 
 		// 2. Check solutions transient (second priority)
-		$solutions_data = get_transient( 'newfold_solutions' );
+		$solutions_data = get_transient( self::SOLUTIONS_TRANSIENT );
 		if ( is_array( $solutions_data ) && isset( $solutions_data['solution'] ) ) {
 			$solution = $solutions_data['solution'];
 			switch ( $solution ) {
@@ -274,13 +273,7 @@ class PlanLoader {
 			}
 		}
 
-		// 3. Check legacy solution option (for backward compatibility)
-		$legacy_solution = get_option( self::SOLUTION_OPTION, false );
-		if ( false !== $legacy_solution && in_array( $legacy_solution, array( 'blog', 'corporate', 'ecommerce' ), true ) ) {
-			return $legacy_solution;
-		}
-
-		// 4. Fall back to intelligent detection
+		// 3. Fall back to intelligent detection
 		return self::detect_site_type();
 	}
 

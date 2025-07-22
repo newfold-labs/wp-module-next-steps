@@ -19,7 +19,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		
 		// Clean up options before each test
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanLoader::SOLUTION_OPTION );
+		delete_transient( PlanLoader::SOLUTIONS_TRANSIENT );
 		delete_option( StepsApi::OPTION );
 		delete_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION );
 	}
@@ -194,7 +194,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		foreach ( $valid_types as $site_type => $expected ) {
 			// Clean slate for each test
 			delete_option( PlanManager::OPTION );
-			delete_option( PlanLoader::SOLUTION_OPTION );
+
 			delete_option( StepsApi::OPTION );
 			
 			// Use a different old value to ensure a change is detected
@@ -218,7 +218,6 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function test_on_woocommerce_activation() {
 		// Clean slate
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanLoader::SOLUTION_OPTION );
 		delete_option( StepsApi::OPTION );
 		
 		// Set up initial blog steps
@@ -247,7 +246,6 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function test_on_woocommerce_activation_ignores_other_plugins() {
 		// Clean slate
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanLoader::SOLUTION_OPTION );
 		delete_option( StepsApi::OPTION );
 		
 		// Set up initial blog steps
@@ -348,8 +346,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	 * Test site type detection for existing sites without onboarding data
 	 */
 	public function test_detect_site_type_defaults_to_blog() {
-		// Clean slate
-		delete_option( PlanLoader::SOLUTION_OPTION );
+		// Clean slate - no special setup needed
 		
 		// Mock a simple site with no special indicators
 		$detected_type = PlanLoader::detect_site_type();
@@ -363,7 +360,6 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function test_load_default_steps_backfills_solution() {
 		// Clean slate - simulate existing site without onboarding or solution data
 		delete_option( StepsApi::OPTION );
-		delete_option( PlanLoader::SOLUTION_OPTION );
 		
 		// Test the full flow - this should load default steps based on site detection
 		PlanLoader::load_default_steps();
@@ -377,14 +373,15 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test load_default_steps doesn't backfill if solution already exists
+	 * Test load_default_steps respects existing solution from transient
 	 */
 	public function test_load_default_steps_respects_existing_solution() {
 		// Clean slate
 		delete_option( StepsApi::OPTION );
 		
-		// Set an existing solution
-		update_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' );
+		// Set an existing solution via transient (primary method)
+		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
+		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
 		
 		PlanLoader::load_default_steps();
 		
@@ -408,7 +405,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		// Clean up options after each test
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanLoader::SOLUTION_OPTION );
+		delete_transient( PlanLoader::SOLUTIONS_TRANSIENT );
 		delete_option( StepsApi::OPTION );
 		delete_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION );
 		

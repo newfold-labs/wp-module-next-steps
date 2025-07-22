@@ -20,7 +20,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		
 		// Clean up options before each test
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanLoader::SOLUTION_OPTION );
+		delete_transient( PlanLoader::SOLUTIONS_TRANSIENT );
 	}
 
 	/**
@@ -51,8 +51,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test get_current_plan loads default plan when none exists
 	 */
 	public function test_get_current_plan_loads_default_plan_when_none_exists() {
-		// Set solution option to ecommerce
-		update_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' );
+		// Set solution via transient (primary method)
+		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
+		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
 		
 		$plan = PlanManager::get_current_plan();
 		
@@ -101,7 +102,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test load_default_plan with ecommerce solution
 	 */
 	public function test_load_default_plan_ecommerce() {
-		update_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' );
+		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
+		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
 		
 		$plan = PlanLoader::load_default_plan();
 		
@@ -116,7 +118,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test load_default_plan with blog solution
 	 */
 	public function test_load_default_plan_blog() {
-		update_option( PlanLoader::SOLUTION_OPTION, 'blog' );
+		$solutions_data = array( 'solution' => 'WP_SOLUTION_CREATOR' );
+		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
 		
 		$plan = PlanLoader::load_default_plan();
 		
@@ -128,7 +131,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test load_default_plan with corporate solution
 	 */
 	public function test_load_default_plan_corporate() {
-		update_option( PlanLoader::SOLUTION_OPTION, 'corporate' );
+		$solutions_data = array( 'solution' => 'WP_SOLUTION_SERVICE' );
+		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
 		
 		$plan = PlanLoader::load_default_plan();
 		
@@ -153,7 +157,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_switch_plan_valid_type() {
 		// Start with ecommerce plan
-		update_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' );
+		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
+		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
 		PlanLoader::load_default_plan();
 		
 		// Switch to blog plan
@@ -178,8 +183,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		
 		$this->assertFalse( $result );
 		
-		// Verify solution option was not changed
-		$this->assertEquals( 'ecommerce', get_option( PlanLoader::SOLUTION_OPTION, 'ecommerce' ) );
+		// No external state should be modified for invalid plan types
 	}
 
 	/**
@@ -314,7 +318,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 		// Set up existing plan data
 		$test_plan_data = array( 'id' => 'test_plan' );
 		update_option( PlanManager::OPTION, $test_plan_data );
-		update_option( PlanLoader::SOLUTION_OPTION, 'blog' );
+		$solutions_data = array( 'solution' => 'WP_SOLUTION_CREATOR' );
+		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
 		
 		$plan = PlanManager::reset_plan();
 		
@@ -390,7 +395,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		// Clean up options after each test
 		delete_option( PlanManager::OPTION );
-		delete_option( PlanLoader::SOLUTION_OPTION );
+		delete_transient( PlanLoader::SOLUTIONS_TRANSIENT );
 		
 		parent::tearDown();
 	}
