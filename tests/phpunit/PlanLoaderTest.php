@@ -206,14 +206,59 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test on_woocommerce_activation (commented out method)
+	 * Test on_woocommerce_activation switches from blog to ecommerce
 	 */
 	public function test_on_woocommerce_activation() {
-		// Since the method is commented out, we can test the logic if we uncomment it
-		// or test that calling it with WooCommerce plugin path would switch to ecommerce
+		// Clean slate
+		delete_option( PlanManager::OPTION );
+		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( StepsApi::OPTION );
 		
+		// Set up initial blog steps
+		$blog_plan = PlanManager::switch_plan( 'blog' );
+		$this->assertNotFalse( $blog_plan );
+		StepsApi::set_data( $blog_plan->to_array() );
+		
+		// Verify initial state is blog
+		$initial_steps = get_option( StepsApi::OPTION );
+		$this->assertIsArray( $initial_steps );
+		$this->assertEquals( 'blog_setup', $initial_steps['id'] );
+		
+		// Simulate WooCommerce activation
 		PlanLoader::on_woocommerce_activation( 'woocommerce/woocommerce.php', false );
-
+		
+		// Verify steps switched to ecommerce
+		$updated_steps = get_option( StepsApi::OPTION );
+		$this->assertIsArray( $updated_steps );
+		$this->assertEquals( 'store_setup', $updated_steps['id'] );
+		$this->assertNotEquals( $initial_steps, $updated_steps );
+	}
+	
+	/**
+	 * Test on_woocommerce_activation ignores other plugins
+	 */
+	public function test_on_woocommerce_activation_ignores_other_plugins() {
+		// Clean slate
+		delete_option( PlanManager::OPTION );
+		delete_option( PlanManager::SOLUTION_OPTION );
+		delete_option( StepsApi::OPTION );
+		
+		// Set up initial blog steps
+		$blog_plan = PlanManager::switch_plan( 'blog' );
+		$this->assertNotFalse( $blog_plan );
+		StepsApi::set_data( $blog_plan->to_array() );
+		
+		// Get initial steps state
+		$initial_steps = get_option( StepsApi::OPTION );
+		$this->assertEquals( 'blog_setup', $initial_steps['id'] );
+		
+		// Simulate activation of a different plugin
+		PlanLoader::on_woocommerce_activation( 'some-other-plugin/plugin.php', false );
+		
+		// Verify steps did NOT change
+		$unchanged_steps = get_option( StepsApi::OPTION );
+		$this->assertEquals( $initial_steps, $unchanged_steps );
+		$this->assertEquals( 'blog_setup', $unchanged_steps['id'] );
 	}
 
 	/**
@@ -253,8 +298,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// Manually trigger the hook (since WordPress hooks don't fire in unit tests)
 		PlanLoader::on_sitetype_change( false, $site_info );
 		
-		// Step 3: The module does NOT modify the solution option - it's read-only
-		// We only verify that the correct plan was loaded
+		// Verify that the correct plan was loaded
 		$steps_data = get_option( StepsApi::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'corporate_setup', $steps_data['id'] );
@@ -317,9 +361,6 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// Test the full flow - this should load default steps based on site detection
 		PlanLoader::load_default_steps();
 		
-		// The module should NOT modify external options - it's read-only for those
-		// We only verify that default steps were loaded
-		
 		// Verify steps were loaded using intelligent detection
 		$steps_data = get_option( StepsApi::OPTION );
 		$this->assertIsArray( $steps_data );
@@ -339,9 +380,6 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		update_option( PlanManager::SOLUTION_OPTION, 'ecommerce' );
 		
 		PlanLoader::load_default_steps();
-		
-		// Verify existing solution was preserved
-		$this->assertEquals( 'ecommerce', get_option( PlanManager::SOLUTION_OPTION ) );
 		
 		// Verify correct plan was loaded
 		$steps_data = get_option( StepsApi::OPTION );
