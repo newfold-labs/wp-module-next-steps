@@ -312,15 +312,17 @@ class PlanManager {
 								'label'       => __( 'First Marketing Steps', 'wp-module-next-steps' ),
 								'description' => __( 'Set up essential marketing tools and features', 'wp-module-next-steps' ),
 								'tasks'       => array(
-									// array(
-									// 	'id'          => 'store_enable_social_login',
-									// 	'title'       => __( 'Enable Social Login Register for Your Customers', 'wp-module-next-steps' ),
-									// 	'description' => __( 'Allow customers to register and login using social media accounts', 'wp-module-next-steps' ),
-									// 	'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=account',
-									// 	'status'      => 'new',
-									// 	'priority'    => 1,
-									// 	'source'      => 'wp-module-next-steps',
-									// ),
+									/*
+									array(
+										'id'          => 'store_enable_social_login',
+										'title'       => __( 'Enable Social Login Register for Your Customers', 'wp-module-next-steps' ),
+										'description' => __( 'Allow customers to register and login using social media accounts', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=account',
+										'status'      => 'new',
+										'priority'    => 1,
+										'source'      => 'wp-module-next-steps',
+									),
+									*/
 									array(
 										'id'          => 'store_configure_welcome_popup',
 										'title'       => __( 'Configure Welcome Discount Popup', 'wp-module-next-steps' ),
@@ -357,15 +359,17 @@ class PlanManager {
 										'priority'    => 5,
 										'source'      => 'wp-module-next-steps',
 									),
-									// array(
-									// 	'id'          => 'store_add_google_analytics',
-									// 	'title'       => __( 'Add Google Analytics', 'wp-module-next-steps' ),
-									// 	'description' => __( 'Track visitor behavior and store performance', 'wp-module-next-steps' ),
-									// 	'href'        => '{siteUrl}/wp-admin/admin.php?page=jetpack#/traffic',
-									// 	'status'      => 'new',
-									// 	'priority'    => 6,
-									// 	'source'      => 'wp-module-next-steps',
-									// ),
+									/*
+									array(
+										'id'          => 'store_add_google_analytics',
+										'title'       => __( 'Add Google Analytics', 'wp-module-next-steps' ),
+										'description' => __( 'Track visitor behavior and store performance', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=jetpack#/traffic',
+										'status'      => 'new',
+										'priority'    => 6,
+										'source'      => 'wp-module-next-steps',
+									),
+									*/
 								),
 							),
 							array(
@@ -655,15 +659,17 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
-									// array(
-									// 	'id'          => 'store_review_performance',
-									// 	'title'       => __( 'Review Monthly Performance Dashboard', 'wp-module-next-steps' ),
-									// 	'description' => __( 'Analyze monthly reports to identify trends', 'wp-module-next-steps' ),
-									// 	'href'        => '{siteUrl}/wp-admin/admin.php?page=jetpack#/traffic',
-									// 	'status'      => 'new',
-									// 	'priority'    => 3,
-									// 	'source'      => 'wp-module-next-steps',
-									// ),
+									/*
+									array(
+										'id'          => 'store_review_performance',
+										'title'       => __( 'Review Monthly Performance Dashboard', 'wp-module-next-steps' ),
+										'description' => __( 'Analyze monthly reports to identify trends', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=jetpack#/traffic',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+									*/
 								),
 							),
 						),

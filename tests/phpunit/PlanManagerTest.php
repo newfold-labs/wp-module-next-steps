@@ -210,7 +210,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 
 		// Check first section has tasks
 		$first_section = $sections[0];
-		$tasks        = $first_section->get_tasks();
+		$tasks         = $first_section->get_tasks();
 		$this->assertGreaterThan( 0, count( $tasks ) );
 	}
 
