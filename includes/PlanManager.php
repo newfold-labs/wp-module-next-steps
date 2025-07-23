@@ -607,7 +607,7 @@ class PlanManager {
 								),
 							),
 							array(
-								'id'          => 'performance_security',
+								'id'          => 'ecommerce_performance_security',
 								'label'       => __( 'Performance & Security', 'wp-module-next-steps' ),
 								'description' => __( 'Optimize your store for speed and security', 'wp-module-next-steps' ),
 								'tasks'       => array(
@@ -1194,7 +1194,7 @@ class PlanManager {
 								),
 							),
 							array(
-								'id'          => 'performance_security',
+								'id'          => 'blog_performance_security',
 								'label'       => __( 'Performance & Security', 'wp-module-next-steps' ),
 								'description' => __( 'Optimize your blog for speed and security', 'wp-module-next-steps' ),
 								'tasks'       => array(
