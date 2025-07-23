@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="tests/phpunit/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+>
+	<testsuites>
+		<testsuite name="wp-module-next-steps">
+			<directory prefix="test-" suffix=".php">./tests/phpunit/</directory>
+			<directory prefix="" suffix="Test.php">./tests/phpunit/</directory>
+		</testsuite>
+	</testsuites>
+
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">./includes</directory>
+		</whitelist>
+	</filter>
+
+	<logging>
+		<log type="coverage-html" target="tests/coverage" />
+		<log type="coverage-text" target="php://stdout" showUncoveredFiles="false" />
+	</logging>
+
+	<php>
+		<ini name="WP_PHPUNIT__DIR" value="../../../../../../.wp-env/*/tests-WordPress-PHPUnit" />
+		<!-- Alternative paths for local development -->
+		<env name="WP_PHPUNIT_DIR" value="../../../../../../.wp-env/*/tests-WordPress-PHPUnit" />
+		<!-- Set this to skip WordPress loading if needed -->
+		<env name="WP_TESTS_SKIP_INSTALL" value="1" />
+	</php>
+</phpunit> 
