@@ -59,6 +59,7 @@ const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 export const NextSteps = () => {
 	const [ plan, setPlan ] = useState( window.NewfoldNextSteps );
 	const [ showDismissed, setShowDismissed ] = useState( false );
+	const [ showControls, setShowControls ] = useState( false );
 
 	const taskUpdateCallback = ( track, section, id, status ) => {
 		const data = {
@@ -143,7 +144,7 @@ export const NextSteps = () => {
 					showDismissed={ showDismissed }
 				/>
 			) ) }
-			<div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">
+			{ showControls && <div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">
 				<Button
 					className="nfd-nextsteps-filter-button"
 					data-nfd-click="nextsteps_step_toggle"
@@ -159,7 +160,7 @@ export const NextSteps = () => {
 						: __( 'View skipped tasks', 'wp-module-next-steps' )
 					}
 				</Button>
-			</div>
+			</div> }
 		</div>
 	);
 };
