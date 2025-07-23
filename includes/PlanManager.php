@@ -312,7 +312,9 @@ class PlanManager {
 								'label'       => __( 'First Marketing Steps', 'wp-module-next-steps' ),
 								'description' => __( 'Set up essential marketing tools and features', 'wp-module-next-steps' ),
 								'tasks'       => array(
+									
 									/*
+									Removed step for now - no link provided
 									array(
 										'id'          => 'store_enable_social_login',
 										'title'       => __( 'Enable Social Login Register for Your Customers', 'wp-module-next-steps' ),
@@ -359,7 +361,9 @@ class PlanManager {
 										'priority'    => 5,
 										'source'      => 'wp-module-next-steps',
 									),
+									
 									/*
+									Removed step for now - no link provided
 									array(
 										'id'          => 'store_add_google_analytics',
 										'title'       => __( 'Add Google Analytics', 'wp-module-next-steps' ),
@@ -659,7 +663,9 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
+									
 									/*
+									Removed step for now - no link provided
 									array(
 										'id'          => 'store_review_performance',
 										'title'       => __( 'Review Monthly Performance Dashboard', 'wp-module-next-steps' ),
