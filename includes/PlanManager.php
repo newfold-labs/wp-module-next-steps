@@ -312,7 +312,7 @@ class PlanManager {
 								'label'       => __( 'First Marketing Steps', 'wp-module-next-steps' ),
 								'description' => __( 'Set up essential marketing tools and features', 'wp-module-next-steps' ),
 								'tasks'       => array(
-									
+
 									/*
 									Removed step for now - no link provided
 									array(
@@ -361,7 +361,7 @@ class PlanManager {
 										'priority'    => 5,
 										'source'      => 'wp-module-next-steps',
 									),
-									
+
 									/*
 									Removed step for now - no link provided
 									array(
@@ -663,7 +663,7 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
-									
+
 									/*
 									Removed step for now - no link provided
 									array(
