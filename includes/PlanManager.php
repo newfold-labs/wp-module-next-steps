@@ -23,7 +23,7 @@ class PlanManager {
 	 * Current version of plan data structure
 	 * Increment this when plan data changes to trigger merges
 	 */
-	const PLAN_DATA_VERSION = '1.0.0';
+	const PLAN_DATA_VERSION = NFD_NEXTSTEPS_MODULE_VERSION;
 
 
 
@@ -752,7 +752,7 @@ class PlanManager {
 								),
 							),
 							array(
-								'id'          => 'ecommerce_performance_security',
+								'id'          => 'store_performance_security',
 								'label'       => __( 'Performance & Security', 'wp-module-next-steps' ),
 								'description' => __( 'Optimize your store for speed and security', 'wp-module-next-steps' ),
 								'tasks'       => array(

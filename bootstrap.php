@@ -4,6 +4,13 @@ use NewfoldLabs\WP\ModuleLoader\Container;
 use NewfoldLabs\WP\Module\NextSteps\NextSteps;
 use function NewfoldLabs\WP\ModuleLoader\register;
 
+// Do not allow multiple copies of the module to be active
+if ( defined( 'NFD_NEXTSTEPS_MODULE_VERSION' ) ) {
+	return;
+}
+
+define( 'NFD_NEXTSTEPS_MODULE_VERSION', '0.5.0' );
+
 if ( function_exists( 'add_action' ) ) {
 	add_action(
 		'plugins_loaded',
