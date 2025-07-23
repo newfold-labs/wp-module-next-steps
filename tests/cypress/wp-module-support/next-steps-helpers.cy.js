@@ -26,8 +26,7 @@ export const getTaskByStatus = ( status ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const completeTask = ( task ) => {
-	task.find( '.nfd-nextsteps-button-todo' ).scrollIntoView().click( { force: true } );
-	cy.wait( 1000 ); // Wait for API call
+        task.find( '.nfd-nextsteps-button-todo' ).scrollIntoView().click( { force: true } );
 };
 
 /**
@@ -35,8 +34,7 @@ export const completeTask = ( task ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const dismissTask = ( task ) => {
-	task.find( '.nfd-nextsteps-button-dismiss' ).scrollIntoView().click( { force: true } );
-	cy.wait( 1000 ); // Wait for API call
+        task.find( '.nfd-nextsteps-button-dismiss' ).scrollIntoView().click( { force: true } );
 };
 
 /**
@@ -44,8 +42,7 @@ export const dismissTask = ( task ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const undoTask = ( task ) => {
-	task.find( '.nfd-nextsteps-button-redo' ).scrollIntoView().click( { force: true } );
-	cy.wait( 1000 ); // Wait for API call
+        task.find( '.nfd-nextsteps-button-redo' ).scrollIntoView().click( { force: true } );
 };
 
 /**
@@ -88,7 +85,7 @@ export const toggleSection = ( trackIndex, sectionIndex ) => {
 	cy.get( '.nfd-track' ).eq( trackIndex )
 		.find( '.nfd-section' ).eq( sectionIndex )
 		.find( '.nfd-section-header' ).click();
-	cy.wait( 100 ); // Wait for any animation
+	cy.wait( 200 ); // Wait for any animation
 };
 
 /**
@@ -170,11 +167,10 @@ export const getTasksInSection = ( trackIndex, sectionIndex ) => {
 };
 
 /**
- * Wait for API response after task action
- * @param {Function} action - The action to perform
- * @param {number} timeout - Wait timeout in milliseconds (default: 2000)
+ * Reset test data for clean test state
  */
-export const waitForTaskAction = ( action, timeout = 2000 ) => {
-	action();
-	cy.wait( timeout );
+export const resetNextStepsData = () => {
+        // Use cy.exec to run wp-cli commands through wp-env
+        cy.exec( 'npx wp-env run cli wp option delete nfd_next_steps', { failOnNonZeroExit: false } );
+
 }; 
