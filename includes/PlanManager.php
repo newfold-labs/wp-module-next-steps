@@ -25,8 +25,6 @@ class PlanManager {
 	 */
 	const PLAN_DATA_VERSION = NFD_NEXTSTEPS_MODULE_VERSION;
 
-
-
 	/**
 	 * Available plan types, this maps the site_type from onboarding module to internal plan types
 	 *
@@ -49,7 +47,7 @@ class PlanManager {
 	public static function get_current_plan(): ?Plan {
 		$plan_data = get_option( self::OPTION, array() );
 		// $plan_data = false; // for resetting data while debugging
-		
+
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on solution
 			return PlanLoader::load_default_plan();
@@ -58,14 +56,14 @@ class PlanManager {
 		// Check if we need to merge with new plan data
 		$saved_version = $plan_data['version'] ?? '0.0.0';
 		$current_version = self::PLAN_DATA_VERSION;
-		
+
 		if ( version_compare( $saved_version, $current_version, '<' ) ) {
 			// Version is outdated, need to merge with latest plan data
-			
+
 			// First determine what plan type this is based on saved data
 			$plan_id = $plan_data['id'] ?? '';
 			$new_plan = null;
-			
+
 			// Load the appropriate new plan based on the saved plan ID
 			switch ( $plan_id ) {
 				case 'blog':
@@ -81,13 +79,13 @@ class PlanManager {
 					// If we can't determine the plan type, fall back to loading default
 					return PlanLoader::load_default_plan();
 			}
-			
+
 			// Merge the saved data with the new plan
 			$merged_plan = self::merge_plan_data( $plan_data, $new_plan );
-			
+
 			// Save the merged plan with updated version
 			self::save_plan( $merged_plan );
-			
+
 			return $merged_plan;
 		}
 
@@ -142,26 +140,26 @@ class PlanManager {
 				$merged_tasks = array();
 				foreach ( $section->get_tasks() as $task ) {
 					$task_data = $task->to_array();
-					
+
 					// If this task exists in saved data, preserve its status and any custom data
 					if ( isset( $existing_tasks[ $task->get_id() ] ) ) {
 						$existing_task = $existing_tasks[ $task->get_id() ];
-						
+
 						// Preserve status (this is the key user state we want to keep)
 						if ( isset( $existing_task['status'] ) ) {
 							$task_data['status'] = $existing_task['status'];
 						}
-						
+
 						// Preserve any custom completion date if it exists
 						if ( isset( $existing_task['completed_at'] ) ) {
 							$task_data['completed_at'] = $existing_task['completed_at'];
 						}
-						
+
 						// Preserve any custom dismissal date if it exists
 						if ( isset( $existing_task['dismissed_at'] ) ) {
 							$task_data['dismissed_at'] = $existing_task['dismissed_at'];
 						}
-						
+
 						// Preserve any other custom metadata that might have been added
 						foreach ( $existing_task as $key => $value ) {
 							if ( ! in_array( $key, array( 'id', 'title', 'description', 'href', 'priority', 'source' ), true ) ) {
@@ -169,7 +167,6 @@ class PlanManager {
 							}
 						}
 					}
-					
 					$merged_tasks[] = new Task(
 						$task_data['id'],
 						$task_data['title'],
@@ -181,7 +178,6 @@ class PlanManager {
 						$task_data
 					);
 				}
-				
 				$merged_sections[] = new Section(
 					$section->get_id(),
 					$section->get_label(),
@@ -189,7 +185,6 @@ class PlanManager {
 					$merged_tasks
 				);
 			}
-			
 			$merged_tracks[] = new Track(
 				$track->get_id(),
 				$track->get_label(),
@@ -197,7 +192,6 @@ class PlanManager {
 				$merged_sections
 			);
 		}
-
 		return new Plan(
 			$new_plan->get_id(),
 			$new_plan->get_label(),
@@ -205,8 +199,6 @@ class PlanManager {
 			$merged_tracks
 		);
 	}
-
-
 
 	/**
 	 * Switch to a different plan type
@@ -2089,8 +2081,6 @@ class PlanManager {
 
 		return $success;
 	}
-
-
 
 	/**
 	 * Reset plan to defaults
