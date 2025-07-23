@@ -31,6 +31,7 @@ export const Section = ( props ) => {
 	}
 
 	return (
+		( total > 0 || showDismissed === true )&& (
 		<details className="nfd-section" open={ isOpen } { ...restProps }>
 			<summary
 				className="nfd-section-header" 
@@ -62,5 +63,6 @@ export const Section = ( props ) => {
 				) ) }
 			</div>
 		</details>
+		)
 	);
 };
