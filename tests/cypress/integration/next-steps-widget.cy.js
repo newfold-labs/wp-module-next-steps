@@ -1,6 +1,7 @@
 // <reference types="Cypress" />
 import { wpLogin, wpCli } from '../wp-module-support/utils.cy';
 import {
+	resetNextStepsData,
 	waitForNextStepsApp,
 	getTaskByStatus,
 	completeTask,
@@ -14,7 +15,7 @@ import {
 describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 	before( () => {
 		// Reset Next Steps data to ensure clean state for tests
-		wpCli( 'option delete nfd_next_steps', false );
+		resetNextStepsData();
 	} );
 
 	beforeEach( () => {
@@ -213,7 +214,6 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		// Find a completed task and undo it
 		getTaskByStatus( 'done' ).first().then( ( task ) => {
 			cy.wrap( task ).find( '.nfd-nextsteps-button-redo' ).scrollIntoView().click( { force: true } );
-			cy.wait( 1000 );
 		} );
 		
 		// The task should be back to new state
@@ -263,5 +263,30 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		cy.get( '@newTask' ).find( '.nfd-nextsteps-button-todo' ).should( 'have.attr', 'data-nfd-event-key' );
 		cy.get( '@newTask' ).find( '.nfd-nextsteps-button-dismiss' ).should( 'have.attr', 'data-nfd-event-key' );
 		cy.get( '@newTask' ).find( '.nfd-nextsteps-button-link' ).should( 'have.attr', 'data-nfd-event-key' );
+	} );
+
+	// New test to verify version handling and merge functionality
+	it( 'handles versioned data correctly', () => {
+		// Complete a task to create some user state
+		getTaskByStatus( 'new' ).first().then( ( task ) => {
+			completeTask( cy.wrap( task ) );
+		} );
+		
+		// Verify the task is completed
+		getTaskByStatus( 'done' ).should( 'have.length.greaterThan', 0 );
+		
+		// Refresh the page to trigger potential merge logic
+		cy.reload();
+		
+		// Wait for app to reload
+		waitForNextStepsApp();
+		
+		// Verify the completed task status is preserved after reload
+		getTaskByStatus( 'done' ).should( 'have.length.greaterThan', 0 );
+		
+		// Verify the app still functions normally
+		cy.get( '.nfd-track' ).should( 'have.length.greaterThan', 0 );
+		cy.get( '.nfd-section' ).should( 'have.length.greaterThan', 0 );
+		cy.get( '.nfd-nextsteps-step-container' ).should( 'have.length.greaterThan', 0 );
 	} );
 } );
