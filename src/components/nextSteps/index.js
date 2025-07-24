@@ -22,11 +22,11 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 		data,
 	} )
 		.then( ( response ) => {
-			console.log( 'Response from taskUpdateWrapper:', response );
+			// console.log( 'Response from taskUpdateWrapper:', response );
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
-			console.error( 'Error from taskUpdateWrapper:', error );
+			// console.error( 'Error from taskUpdateWrapper:', error );
 			passError( error );
 		} );
 };
@@ -47,11 +47,11 @@ const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 		data,
 	} )
 		.then( ( response ) => {
-			console.log( 'Section update response:', response );
+			// console.log( 'Section update response:', response );
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
-			console.error( 'Error updating section:', error );
+			// console.error( 'Error updating section:', error );
 			passError( error );
 		} );
 };
@@ -73,11 +73,11 @@ export const NextSteps = () => {
 			data,
 			( error ) => {
 				// TODO handle error better
-				console.error( 'Error updating step:', error );
+				// console.error( 'Error updating step:', error );
 			},
 			( response ) => {
 				// The response is the full plan object, not wrapped in a plan property
-				console.log( 'Task update response:', response );
+				// console.log( 'Task update response:', response );
 				window.NewfoldNextSteps = response;
 				setPlan( response );
 			}
@@ -85,7 +85,7 @@ export const NextSteps = () => {
 	};
 
 	const sectionOpenCallback = ( section, open ) => {
-		console.log( 'Section open callback:', section, open );
+		// console.log( 'Section open callback:', section, open );
 		
 		// Find the track that contains this section
 		let trackId = null;
@@ -113,10 +113,10 @@ export const NextSteps = () => {
 		sectionUpdateWrapper( 
 			data,
 			( error ) => {
-				console.error( 'Error updating section open state:', error );
+				// console.error( 'Error updating section open state:', error );
 			},
 			( response ) => {
-				console.log( 'Section open state updated successfully:', response );
+				// console.log( 'Section open state updated successfully:', response );
 			}
 		);
 	};
