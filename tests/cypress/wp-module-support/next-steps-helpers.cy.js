@@ -10,75 +10,165 @@ export const waitForNextStepsApp = () => {
 	cy.get( '.nfd-track' ).should( 'have.length.greaterThan', 0 );
 	cy.get( '.nfd-section' ).should( 'have.length.greaterThan', 0 );
 	cy.get( '.nfd-nextsteps-step-container' ).should( 'have.length.greaterThan', 0 );
+	
+	// Ensure at least the first track is open for interaction
+	ensureFirstTrackOpen();
 };
 
 /**
- * Get a task by its status
+ * Ensure the first track is open for interaction
+ */
+export const ensureFirstTrackOpen = () => {
+	cy.get( '.nfd-track' ).first().then( ( $track ) => {
+		if ( ! $track.attr( 'open' ) ) {
+			cy.wrap( $track ).find( '.nfd-track-header' ).click();
+			cy.get( '.nfd-track' ).first().should( 'have.attr', 'open' );
+		}
+	} );
+};
+
+/**
+ * Ensure a specific track is open
+ * @param {number} trackIndex - The track index (0-based)
+ */
+export const ensureTrackOpen = ( trackIndex = 0 ) => {
+	cy.get( '.nfd-track' ).eq( trackIndex ).then( ( $track ) => {
+		if ( ! $track.attr( 'open' ) ) {
+			cy.wrap( $track ).find( '.nfd-track-header' ).click();
+			cy.get( '.nfd-track' ).eq( trackIndex ).should( 'have.attr', 'open' );
+		}
+	} );
+};
+
+/**
+ * Ensure a section is expanded/visible
+ * @param {number} trackIndex - The track index (0-based)
+ * @param {number} sectionIndex - The section index (0-based)
+ */
+export const ensureSectionExpanded = ( trackIndex = 0, sectionIndex = 0 ) => {
+	// First ensure the track is open
+	ensureTrackOpen( trackIndex );
+	
+	cy.get( '.nfd-track' ).eq( trackIndex )
+		.find( '.nfd-section' ).eq( sectionIndex ).then( ( $section ) => {
+			// Check if section has tasks visible - if not, it might be collapsed
+			const $steps = $section.find( '.nfd-nextsteps-step-container' );
+			if ( $steps.length === 0 || ! $steps.is( ':visible' ) ) {
+				// Try clicking the section header to expand it
+				cy.wrap( $section ).find( '.nfd-section-header' ).click();
+			}
+			
+			// Ensure tasks are now visible
+			cy.wrap( $section ).find( '.nfd-nextsteps-step-container' ).should( 'be.visible' );
+		} );
+};
+
+/**
+ * Get a task by its status with robust visibility checks
  * @param {string} status - The task status ('new', 'done', 'dismissed')
  * @returns {Cypress.Chainable} The task element
  */
 export const getTaskByStatus = ( status ) => {
-	return cy.get( `.nfd-nextsteps-step-${ status }` );
+	// First ensure we have visible tracks and sections
+	ensureFirstTrackOpen();
+	
+	return cy.get( `.nfd-nextsteps-step-${ status }` ).first().should( 'be.visible' );
 };
 
 /**
- * Mark a task as complete
+ * Mark a task as complete with robust checks
  * @param {Cypress.Chainable} task - The task element
  */
 export const completeTask = ( task ) => {
-        task.find( '.nfd-nextsteps-button-todo' ).scrollIntoView().click( { force: true } );
+	// Ensure the task is visible and the button is interactable
+	task.should( 'be.visible' );
+	task.find( '.nfd-nextsteps-button-todo' )
+		.should( 'be.visible' )
+		.and( 'not.be.disabled' )
+		.scrollIntoView()
+		.click( { force: true } ); // Force click to handle overlapping SVG icons
 };
 
 /**
- * Dismiss a task
+ * Dismiss a task with robust checks
  * @param {Cypress.Chainable} task - The task element
  */
 export const dismissTask = ( task ) => {
-        task.find( '.nfd-nextsteps-button-dismiss' ).scrollIntoView().click( { force: true } );
+	// Ensure the task is visible and the button is interactable
+	task.should( 'be.visible' );
+	task.find( '.nfd-nextsteps-button-dismiss' )
+		.should( 'be.visible' )
+		.and( 'not.be.disabled' )
+		.scrollIntoView()
+		.click( { force: true } ); // Force click to handle overlapping SVG icons
 };
 
 /**
- * Undo a completed task
+ * Undo a completed task with robust checks
  * @param {Cypress.Chainable} task - The task element
  */
 export const undoTask = ( task ) => {
-        task.find( '.nfd-nextsteps-button-redo' ).scrollIntoView().click( { force: true } );
+	// Ensure the task is visible and the button is interactable
+	task.should( 'be.visible' );
+	task.find( '.nfd-nextsteps-button-redo' )
+		.should( 'be.visible' )
+		.and( 'not.be.disabled' )
+		.scrollIntoView()
+		.click( { force: true } ); // Force click to handle overlapping SVG icons
 };
 
 /**
- * Open a track accordion
+ * Open a track accordion with robust checks
  * @param {number} index - The track index (0-based)
  */
 export const openTrack = ( index ) => {
-	cy.get( '.nfd-track' ).eq( index ).then( ( $track ) => {
+	cy.get( '.nfd-track' ).eq( index ).should( 'be.visible' ).then( ( $track ) => {
 		if ( ! $track.attr( 'open' ) ) {
-			cy.wrap( $track ).find( '.nfd-track-header' ).click();
+			cy.wrap( $track ).find( '.nfd-track-header' )
+				.should( 'be.visible' )
+				.click();
+			// Verify it opened
+			cy.get( '.nfd-track' ).eq( index ).should( 'have.attr', 'open' );
 		}
 	} );
 };
 
 /**
- * Close a track accordion
+ * Close a track accordion with robust checks
  * @param {number} index - The track index (0-based)
  */
 export const closeTrack = ( index ) => {
-	cy.get( '.nfd-track' ).eq( index ).then( ( $track ) => {
+	cy.get( '.nfd-track' ).eq( index ).should( 'be.visible' ).then( ( $track ) => {
 		if ( $track.attr( 'open' ) ) {
-			cy.wrap( $track ).find( '.nfd-track-header' ).click();
+			cy.wrap( $track ).find( '.nfd-track-header' )
+				.should( 'be.visible' )
+				.click();
+			// Verify it closed
+			cy.get( '.nfd-track' ).eq( index ).should( 'not.have.attr', 'open' );
 		}
 	} );
 };
 
 /**
- * Toggle a section accordion
+ * Toggle a section accordion with robust checks
  * @param {number} trackIndex - The track index (0-based)
  * @param {number} sectionIndex - The section index (0-based)
  */
 export const toggleSection = ( trackIndex, sectionIndex ) => {
+	// First ensure the track is open
+	ensureTrackOpen( trackIndex );
+	
 	cy.get( '.nfd-track' ).eq( trackIndex )
 		.find( '.nfd-section' ).eq( sectionIndex )
-		.find( '.nfd-section-header' ).click();
-	cy.wait( 200 ); // Wait for any animation
+		.should( 'be.visible' )
+		.find( '.nfd-section-header' )
+		.should( 'be.visible' )
+		.click();
+	
+	// Allow time for any animations
+	cy.get( '.nfd-track' ).eq( trackIndex )
+		.find( '.nfd-section' ).eq( sectionIndex )
+		.should( 'be.visible' );
 };
 
 /**
@@ -148,15 +238,48 @@ export const verifyProgressBar = ( section, expectedCompleted, expectedTotal ) =
 };
 
 /**
- * Get all tasks within a specific section
+ * Get all tasks within a specific section with visibility checks
  * @param {number} trackIndex - The track index (0-based)
  * @param {number} sectionIndex - The section index (0-based)
  * @returns {Cypress.Chainable} The task elements
  */
 export const getTasksInSection = ( trackIndex, sectionIndex ) => {
+	// Ensure the section is expanded first
+	ensureSectionExpanded( trackIndex, sectionIndex );
+	
 	return cy.get( '.nfd-track' ).eq( trackIndex )
 		.find( '.nfd-section' ).eq( sectionIndex )
-		.find( '.nfd-nextsteps-step-container' );
+		.find( '.nfd-nextsteps-step-container' )
+		.should( 'be.visible' );
+};
+
+/**
+ * Get a task by status from a specific section
+ * @param {string} status - The task status ('new', 'done', 'dismissed')
+ * @param {number} trackIndex - The track index (0-based)
+ * @param {number} sectionIndex - The section index (0-based)
+ * @returns {Cypress.Chainable} The task element
+ */
+export const getTaskByStatusInSection = ( status, trackIndex = 0, sectionIndex = 0 ) => {
+	// Ensure the section is expanded
+	ensureSectionExpanded( trackIndex, sectionIndex );
+	
+	return cy.get( '.nfd-track' ).eq( trackIndex )
+		.find( '.nfd-section' ).eq( sectionIndex )
+		.find( `.nfd-nextsteps-step-${ status }` )
+		.first()
+		.should( 'be.visible' );
+};
+
+/**
+ * Toggle dismissed tasks visibility with robust checks
+ */
+export const toggleDismissedTasks = () => {
+	cy.get( '.nfd-nextsteps-filter-button' )
+		.should( 'be.visible' )
+		.and( 'not.be.disabled' )
+		.scrollIntoView()
+		.click( { force: true } ); // Force click to handle potential overlapping elements
 };
 
 /**

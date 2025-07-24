@@ -4,6 +4,8 @@ import {
 	resetNextStepsData,
         waitForNextStepsApp,
 	getTaskByStatus,
+	ensureTrackOpen,
+	ensureSectionExpanded,
 	verifyTaskDataAttributes,
 	verifyTaskLinks,
 	verifyTaskIcons,
