@@ -192,7 +192,7 @@ class StepsApi {
 					'task'       => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
-							return is_array( $value ) && isset( $value['id'] ) && isset( $value['title'] );
+							return is_array( $value ) && isset( $value['id'], $value['title'] );
 						},
 					),
 				),
