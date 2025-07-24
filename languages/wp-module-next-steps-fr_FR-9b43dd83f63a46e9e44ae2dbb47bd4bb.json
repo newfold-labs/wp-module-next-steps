@@ -11,13 +11,13 @@
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
             "Mark Complete": [
-                "Marquer comme Termin\u00e9"
+                ""
             ],
             "Skip": [
-                "Ignorer"
+                ""
             ],
             "Restart": [
-                "Red\u00e9marrer"
+                ""
             ],
             "Unskip": [
                 ""
@@ -29,7 +29,7 @@
                 ""
             ],
             "Loading next steps...": [
-                "Chargement des prochaines \u00e9tapes..."
+                ""
             ]
         }
     }

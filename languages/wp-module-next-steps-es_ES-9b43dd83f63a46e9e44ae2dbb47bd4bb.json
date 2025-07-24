@@ -11,25 +11,25 @@
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
             "Mark Complete": [
-                "Marcar como Completado"
+                ""
             ],
             "Skip": [
-                "Omitir"
+                ""
             ],
             "Restart": [
-                "Reiniciar"
+                ""
             ],
             "Unskip": [
-                "No omitir"
+                ""
             ],
             "Hide skipped tasks": [
-                "Ocultar tareas omitidas"
+                ""
             ],
             "View skipped tasks": [
-                "Ver tareas omitidas"
+                ""
             ],
             "Loading next steps...": [
-                "Cargando pr\u00f3ximos pasos..."
+                ""
             ]
         }
     }

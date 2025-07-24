@@ -11,13 +11,13 @@
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
             "Mark Complete": [
-                "Markeer als Voltooid"
+                ""
             ],
             "Skip": [
-                "Overslaan"
+                ""
             ],
             "Restart": [
-                "Herstart"
+                ""
             ],
             "Unskip": [
                 ""

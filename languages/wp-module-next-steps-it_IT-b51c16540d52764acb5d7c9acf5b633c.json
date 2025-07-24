@@ -11,13 +11,13 @@
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
             "Mark Complete": [
-                "Segna come Completato"
+                ""
             ],
             "Skip": [
-                "Salta"
+                ""
             ],
             "Restart": [
-                "Riavvia"
+                ""
             ],
             "Unskip": [
                 ""
@@ -29,7 +29,7 @@
                 ""
             ],
             "Loading next steps...": [
-                "Caricamento prossimi passi..."
+                ""
             ]
         }
     }

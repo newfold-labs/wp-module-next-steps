@@ -11,7 +11,7 @@
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
             "Mark Complete": [
-                "Als abgeschlossen markieren"
+                ""
             ],
             "Skip": [
                 ""
@@ -20,16 +20,16 @@
                 ""
             ],
             "Unskip": [
-                "Nicht \u00fcberspringen"
+                ""
             ],
             "Hide skipped tasks": [
-                "\u00dcbersprungene Aufgaben ausblenden"
+                ""
             ],
             "View skipped tasks": [
-                "\u00dcbersprungene Aufgaben anzeigen"
+                ""
             ],
             "Loading next steps...": [
-                "Lade n\u00e4chste Schritte..."
+                ""
             ]
         }
     }
