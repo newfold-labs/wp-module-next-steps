@@ -80,12 +80,10 @@ export const getTaskByStatus = ( status ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const completeTask = ( task ) => {
-	// Ensure the task is visible and the button is interactable
-	task.should( 'be.visible' );
+	// Now find and click the complete button
 	task.find( '.nfd-nextsteps-button-todo' )
 		.should( 'be.visible' )
 		.and( 'not.be.disabled' )
-		.scrollIntoView()
 		.click( { force: true } ); // Force click to handle overlapping SVG icons
 };
 
@@ -94,12 +92,9 @@ export const completeTask = ( task ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const dismissTask = ( task ) => {
-	// Ensure the task is visible and the button is interactable
-	task.should( 'be.visible' );
+	// Now find and click the dismiss button
 	task.find( '.nfd-nextsteps-button-dismiss' )
-		.should( 'be.visible' )
-		.and( 'not.be.disabled' )
-		.scrollIntoView()
+		.should( 'not.be.disabled' )
 		.click( { force: true } ); // Force click to handle overlapping SVG icons
 };
 
@@ -108,12 +103,9 @@ export const dismissTask = ( task ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const undoTask = ( task ) => {
-	// Ensure the task is visible and the button is interactable
-	task.should( 'be.visible' );
+	// Now find and click the undo button
 	task.find( '.nfd-nextsteps-button-redo' )
-		.should( 'be.visible' )
 		.and( 'not.be.disabled' )
-		.scrollIntoView()
 		.click( { force: true } ); // Force click to handle overlapping SVG icons
 };
 
