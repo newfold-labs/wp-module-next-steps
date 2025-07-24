@@ -135,41 +135,6 @@ class PlanLoader {
 			return true;
 		}
 
-		// Check for product post type (WooCommerce or other ecommerce plugins)
-		if ( post_type_exists( 'product' ) ) {
-			return true;
-		}
-
-		// Check for other popular ecommerce plugins
-		$ecommerce_plugins = array(
-			'wpseo-woocommerce/wpseo-woocommerce.php',
-			'wonder-cart/init.php',
-			'ecomdash-wordpress-plugin/ecomdash-plugin.php',
-			'yith-composite-products-for-woocommerce-premium/init.php',
-			'yith-store-locator-for-wordpress/init.php',
-			'yith-woocommerce-advanced-product-options-premium/init.php',
-			'yith-woocommerce-advanced-reviews-premium/init.php',
-			'yith-woocommerce-affiliates/init.php',
-			'yith-woocommerce-dynamic-pricing-and-discounts-premium/init.php',
-			'yith-woocommerce-email-templates-premium/init.php',
-			'yith-woocommerce-gift-cards-premium/init.php',
-			'yith-woocommerce-wishlist/init.php',
-		);
-
-		foreach ( $ecommerce_plugins as $plugin ) {
-			if ( is_plugin_active( $plugin ) ) {
-				return true;
-			}
-		}
-
-		// Check for ecommerce-related post types from other plugins
-		$ecommerce_post_types = array( 'download', 'shop_order', 'shop_coupon', 'wpsc-product' );
-		foreach ( $ecommerce_post_types as $post_type ) {
-			if ( post_type_exists( $post_type ) ) {
-				return true;
-			}
-		}
-
 		return false;
 	}
 
@@ -286,15 +251,15 @@ class PlanLoader {
 		$plan_type = self::determine_site_type();
 
 		switch ( $plan_type ) {
-			case 'blog':
-				$plan = PlanManager::get_blog_plan();
+			case 'ecommerce':
+				$plan = PlanManager::get_ecommerce_plan();
 				break;
 			case 'corporate':
 				$plan = PlanManager::get_corporate_plan();
 				break;
-			case 'ecommerce':
+			case 'blog':
 			default:
-				$plan = PlanManager::get_ecommerce_plan();
+				$plan = PlanManager::get_blog_plan();
 				break;
 		}
 
