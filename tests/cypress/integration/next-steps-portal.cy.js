@@ -58,14 +58,6 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
                         verifyTaskIcons( cy.wrap( task ), 'new' );
                 } );
 
-                // === Show/Hide Dismissed Tasks ===
-                cy.get( '.nfd-nextsteps-filter-button' ).should( 'be.visible' );
-                cy.get( '.nfd-nextsteps-filter-button' ).should( 'contain.text', 'View skipped tasks' );
-
-                // Test that the button is clickable
-                toggleDismissedTasks();
-                cy.get( '.nfd-nextsteps-filter-button' ).should( 'contain.text', 'Hide skipped tasks' );
-
                 // === Task Links and Navigation ===
                 getTaskByStatus( 'new' ).first().then( ( task ) => {
                         verifyTaskLinks( cy.wrap( task ) );

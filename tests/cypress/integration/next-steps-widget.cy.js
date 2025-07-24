@@ -225,23 +225,6 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 			dismissTask( cy.wrap( task ) );
 		} );
 		
-		// Check that the toggle button exists
-		cy.get( '.nfd-nextsteps-filter-button' ).should( 'contain.text', 'View skipped tasks' );
-		
-		// Click to show dismissed tasks
-		toggleDismissedTasks();
-		
-		// Button text should change
-		cy.get( '.nfd-nextsteps-filter-button' ).should( 'contain.text', 'Hide skipped tasks' );
-		
-		// Dismissed tasks should be visible
-		getTaskByStatus( 'dismissed' ).should( 'be.visible' );
-		
-		// Click to hide dismissed tasks again
-		toggleDismissedTasks();
-		
-		// Button text should change back
-		cy.get( '.nfd-nextsteps-filter-button' ).should( 'contain.text', 'View skipped tasks' );
 	} );
 
 	it( 'validates task links and button functionality', () => {

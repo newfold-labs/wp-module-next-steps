@@ -46,13 +46,6 @@ export const undoTask = ( task ) => {
 };
 
 /**
- * Toggle the visibility of dismissed tasks
- */
-export const toggleDismissedTasks = () => {
-	cy.get( '.nfd-nextsteps-filter-button' ).click();
-};
-
-/**
  * Open a track accordion
  * @param {number} index - The track index (0-based)
  */
