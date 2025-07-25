@@ -4,6 +4,8 @@ import {
 	resetNextStepsData,
 	waitForNextStepsApp,
 	getTaskByStatus,
+	ensureTrackOpen,
+	ensureSectionExpanded,
 	completeTask,
 	dismissTask,
 	countTasksByStatus,
@@ -195,22 +197,17 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 			countTasksByStatus( 'done' ).should( 'be.greaterThan', 0 );
 		} );
 
-		// Task Dismissa
+		// Task Dismissal
 		
-		// Get the initial count of new tasks
-		let initialNewTaskCount;
-		countTasksByStatus( 'new' ).then( ( count ) => {
-			initialNewTaskCount = count;
-		} );
-		
-		// Find a task with "new" status and dismiss it
-		getTaskByStatus( 'new' ).then( ( task ) => {
-			dismissTask( cy.wrap( task ) );
-		} );
-		
-		// Verify task was dismissed by checking the count decreased
-		countTasksByStatus( 'new' ).should( ( $count ) => {
-			expect( $count ).to.be.lessThan( initialNewTaskCount );
+		// Get the initial count of new tasks and perform dismissal in the same chain
+		countTasksByStatus( 'new' ).then( ( initialCount ) => {
+			// Find a task with "new" status and dismiss it
+			getTaskByStatus( 'new' ).then( ( task ) => {
+				dismissTask( cy.wrap( task ) );
+				
+				// Verify task was dismissed by checking the count decreased
+				countTasksByStatus( 'new' ).should( 'be.lessThan', initialCount );
+			} );
 		} );
 		
 	} );

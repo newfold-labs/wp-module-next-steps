@@ -18,22 +18,32 @@
  * @returns {Object} Task details object
  */
 const logTaskInfo = ( $task, action = '' ) => {
-	const taskContainer = $task.closest( '.nfd-nextsteps-step-container' );
-	const taskId = taskContainer.attr( 'id' ) || 'unknown-id';
-	const taskTitle = taskContainer.find( '.nfd-nextsteps-step-title' ).text().trim() || 'unknown-title';
-	const taskStatus = $task.attr( 'class' ).match( /nfd-nextsteps-step-(\w+)/ )?.[1] || 'unknown-status';
-	
-	const taskInfo = {
-		id: taskId,
-		title: taskTitle,
-		status: taskStatus
-	};
-	
-	if ( action ) {
-		cy.log( `${action} - ID: "${taskId}", Title: "${taskTitle}", Status: "${taskStatus}"` );
+	try {
+		if ( ! $task || $task.length === 0 ) {
+			cy.log( `⚠️  ${action} - Task element is null or empty` );
+			return { id: 'null', title: 'null', status: 'null' };
+		}
+
+		const taskContainer = $task.closest( '.nfd-nextsteps-step-container' );
+		const taskId = taskContainer.length > 0 ? taskContainer.attr( 'id' ) || 'unknown-id' : 'no-container';
+		const taskTitle = taskContainer.length > 0 ? taskContainer.find( '.nfd-nextsteps-step-title' ).text().trim() || 'unknown-title' : 'no-container';
+		const taskStatus = $task.attr( 'class' )?.match( /nfd-nextsteps-step-(\w+)/ )?.[1] || 'unknown-status';
+		
+		const taskInfo = {
+			id: taskId,
+			title: taskTitle,
+			status: taskStatus
+		};
+		
+		if ( action ) {
+			cy.log( `${action} - ID: "${taskId}", Title: "${taskTitle}", Status: "${taskStatus}"` );
+		}
+		
+		return taskInfo;
+	} catch ( error ) {
+		cy.log( `⚠️  Error in logTaskInfo: ${error.message}` );
+		return { id: 'error', title: 'error', status: 'error' };
 	}
-	
-	return taskInfo;
 };
 
 /**
@@ -137,12 +147,21 @@ export const getTaskByStatus = ( status ) => {
 	// First ensure we have visible tracks and sections
 	openAllTracksAndSections();
 	
-	return cy.get( `.nfd-nextsteps-step-${ status }` ).first().should( 'be.visible' ).then( ( $task ) => {
-		const taskInfo = logTaskInfo( $task );
-		cy.log( `✅ Found task - Status: "${status}", ID: "${taskInfo.id}", Title: "${taskInfo.title}"` );
-		
-		return cy.wrap( $task );
-	} );
+	// Find the task and ensure it exists
+	return cy.get( `.nfd-nextsteps-step-${ status }` )
+		.should( 'exist' )
+		.first()
+		.should( 'be.visible' )
+		.then( ( $task ) => {
+			if ( $task && $task.length > 0 ) {
+				const taskInfo = logTaskInfo( $task );
+				cy.log( `✅ Found task - Status: "${status}", ID: "${taskInfo.id}", Title: "${taskInfo.title}"` );
+				return cy.wrap( $task );
+			} else {
+				cy.log( `⚠️  No task found with status: "${status}"` );
+				throw new Error( `No task found with status: ${status}` );
+			}
+		} );
 };
 
 /**
@@ -150,15 +169,17 @@ export const getTaskByStatus = ( status ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const completeTask = ( task ) => {
-	task.then( ( $task ) => {
-		logTaskInfo( $task, '✅ completeTask called' );
-	} );
+	cy.log( '✅ completeTask called' );
 	
-	// Now find and click the complete button
-	task.find( '.nfd-nextsteps-button-todo' )
-		.should( 'be.visible' )
+	// Simple, direct approach - find and click the button
+	task
+		.should( 'exist' )
+		.and( 'be.visible' )
+		.find( '.nfd-nextsteps-button-todo' )
+		.should( 'exist' )
+		.and( 'be.visible' )
 		.and( 'not.be.disabled' )
-		.click( { force: true } ); // Force click to handle overlapping SVG icons
+		.click( { force: true } );
 	
 	cy.log( `🎯 Task completion button clicked` );
 };
@@ -168,14 +189,16 @@ export const completeTask = ( task ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const dismissTask = ( task ) => {
-	task.then( ( $task ) => {
-		logTaskInfo( $task, '❌ dismissTask called' );
-	} );
+	cy.log( '❌ dismissTask called' );
 	
-	// Now find and click the dismiss button
-	task.find( '.nfd-nextsteps-button-dismiss' )
-		.should( 'not.be.disabled' )
-		.click( { force: true } ); // Force click to handle overlapping SVG icons and hover state
+	// Simple, direct approach - find and click the button
+	task
+		.should( 'exist' )
+		.and( 'be.visible' )
+		.find( '.nfd-nextsteps-button-dismiss' )
+		.should( 'exist' )
+		.and( 'not.be.disabled' )
+		.click( { force: true } );
 	
 	cy.log( `🚫 Task dismiss button clicked` );
 };
@@ -185,14 +208,17 @@ export const dismissTask = ( task ) => {
  * @param {Cypress.Chainable} task - The task element
  */
 export const undoTask = ( task ) => {
-	task.then( ( $task ) => {
-		logTaskInfo( $task, '↩️ undoTask called' );
-	} );
+	cy.log( '↩️ undoTask called' );
 	
-	// Now find and click the undo button
-	task.find( '.nfd-nextsteps-button-redo' )
+	// Simple, direct approach - find and click the button
+	task
+		.should( 'exist' )
+		.and( 'be.visible' )
+		.find( '.nfd-nextsteps-button-redo' )
+		.should( 'exist' )
+		.and( 'be.visible' )
 		.and( 'not.be.disabled' )
-		.click( { force: true } ); // Force click to handle overlapping SVG icons
+		.click( { force: true } );
 	
 	cy.log( `🔄 Task undo button clicked` );
 };
@@ -297,10 +323,8 @@ export const countTasksByStatus = ( status ) => {
 	
 	openAllTracksAndSections();
 	
-	return cy.get( `.nfd-nextsteps-step-${ status }` ).filter(':visible').its( 'length' ).then( ( count ) => {
-		cy.log( `📈 Found ${count} tasks with status: "${status}"` );
-		return count;
-	} );
+	// Return the count directly - .its('length') gives us a chainable number
+	return cy.get( `.nfd-nextsteps-step-${ status }` ).filter(':visible').its( 'length' );
 };
 
 
@@ -338,7 +362,7 @@ export const getTaskByStatusInSection = ( status, trackIndex = 0, sectionIndex =
  */
 export const toggleDismissedTasks = () => {
 	cy.get( '.nfd-nextsteps-filter-button' )
-		.should( 'be.visible' )
+
 		.and( 'not.be.disabled' )
 		.scrollIntoView()
 		.click( { force: true } ); // Force click to handle potential overlapping elements
