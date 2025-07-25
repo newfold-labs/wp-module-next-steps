@@ -7,6 +7,21 @@ import { Track } from '../track';
 import './styles.scss';
 
 /**
+ * Method to create endpoint url
+ * 
+ * no permalinks: 'http://localhost:8882/index.php?rest_route=/'
+ * permalinks: 'http://localhost:8882/wp-json/'
+ */
+const createEndpointUrl = ( root, endpoint ) => {
+	// if restUrl has /index.php?rest_route=/, add escaped endpoint
+	if ( root.includes( '?' ) ) {
+		return root + encodeURIComponent( endpoint );
+	} 
+	// otherwise permalinks set and restUrl should concatenate endpoint
+	return root + endpoint;
+};
+
+/**
  * Wrapper method to post task update to endpoint
  *
  * @param {Object}   data         object of data
@@ -15,9 +30,10 @@ import './styles.scss';
  */
 const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
-		url:
-			window.NewfoldRuntime.restUrl +
-			'newfold-next-steps/v1/steps/status',
+		url: createEndpointUrl( 
+			window.NewfoldRuntime.restUrl,
+			'newfold-next-steps/v1/steps/status'
+		),
 		method: 'PUT',
 		data,
 	} )
@@ -40,9 +56,10 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 */
 const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
-		url:
-			window.NewfoldRuntime.restUrl +
-			'newfold-next-steps/v1/steps/section/open',
+		url: createEndpointUrl( 
+			window.NewfoldRuntime.restUrl, 
+			'newfold-next-steps/v1/steps/section/open'
+		),
 		method: 'PUT',
 		data,
 	} )
