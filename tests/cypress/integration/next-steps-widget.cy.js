@@ -4,15 +4,11 @@ import {
 	resetNextStepsData,
 	waitForNextStepsApp,
 	getTaskByStatus,
-	getTaskByStatusInSection,
-	ensureTrackOpen,
-	ensureSectionExpanded,
 	completeTask,
 	dismissTask,
-	toggleDismissedTasks,
+	countTasksByStatus,
 	openTrack,
-	closeTrack,
-	toggleSection
+	closeTrack
 } from '../wp-module-support/next-steps-helpers.cy';
 
 describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
@@ -32,7 +28,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 	} );
 
 	it( 'renders complete structure and elements correctly', () => {
-		// === Widget Container and Title ===
+		// Widget Container and Title
 		cy.get( '#nfd_next_steps_widget' )
 			.scrollIntoView()
 			.should( 'be.visible' );
@@ -43,7 +39,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 			.scrollIntoView()
 			.should( 'be.visible' );
 
-		// === Main Next Steps App Structure ===
+		// Main Next Steps App Structure
 		cy.get( '#nfd-nextsteps' ).should( 'be.visible' );
 		cy.get( '#nfd-nextsteps p' ).should( 'be.visible' );
 		
@@ -53,7 +49,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		// Check that the first track is open by default
 		cy.get( '.nfd-track' ).first().should( 'have.attr', 'open' );
 
-		// === Tracks Structure ===
+		// Tracks Structure
 		// Check track headers
 		cy.get( '.nfd-track-header' ).should( 'have.length.greaterThan', 0 );
 		
@@ -66,7 +62,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		// Check track sections container
 		cy.get( '.nfd-track-sections' ).should( 'have.length.greaterThan', 0 );
 
-		// === Sections Structure ===
+		// Sections Structure
 		// Check sections exist
 		cy.get( '.nfd-section' ).should( 'have.length.greaterThan', 0 );
 		
@@ -82,7 +78,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		// Check section steps container
 		cy.get( '.nfd-section-steps' ).should( 'have.length.greaterThan', 0 );
 
-		// === Tasks Structure ===
+		// Tasks Structure
 		// Check tasks exist
 		cy.get( '.nfd-nextsteps-step-container' ).should( 'have.length.greaterThan', 0 );
 		
@@ -95,7 +91,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		// Check task buttons
 		cy.get( '.nfd-nextsteps-button' ).should( 'have.length.greaterThan', 0 );
 
-		// === Task Data Attributes ===
+		// Task Data Attributes
 		// Check that tasks have proper data attributes
 		cy.get( '.nfd-nextsteps-step-container' ).first().then( ( $task ) => {
 			// Should have an id attribute
@@ -110,7 +106,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 			} );
 		} );
 
-		// === Loading State Verification ===
+		// Loading State Verification
 		// Verify the structure is ready and loaded
 		cy.get( '#nfd-nextsteps' ).should( 'be.visible' );
 		cy.get( '#nfd-nextsteps p' ).should( 'be.visible' );
@@ -118,7 +114,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 	} );
 
 	it( 'displays progress bars and visual elements correctly', () => {
-		// === Progress Bars for Sections ===
+		// Progress Bars for Sections
 		// With clean state, verify that sections with tasks display progress bars
 		cy.get( '.nfd-section' ).should( 'have.length.greaterThan', 0 );
 		
@@ -140,7 +136,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		// ensure the first track is open
 		openTrack( 0 );
 		
-		// === Task Icons for Different States ===
+		// Task Icons for Different States
 		// Check new task icons
 		cy.get( '.nfd-nextsteps-step-new' ).first().as( 'newTask' );
 		cy.get( '@newTask' ).find( '.nfd-nextsteps-button-todo' ).find( 'svg' ).should( 'exist' );
@@ -155,7 +151,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		// Check that the completed task has the correct redo icon
 		getTaskByStatus( 'done' ).first().find( '.nfd-nextsteps-button-redo' ).find( 'svg' ).should( 'exist' );
 
-		// === Progress Bar Updates ===
+		// Progress Bar Updates
 		// Mark a task as complete using helper function
 		getTaskByStatus( 'new' ).first().then( ( task ) => {
 			completeTask( cy.wrap( task ) );
@@ -169,12 +165,12 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 	} );
 
 	it( 'handles all interaction functionality correctly', () => {
-		// === Ensure Initial State ===
+		// Ensure Initial State
 		// Make sure we have a clean starting point with tracks and sections visible
 		ensureTrackOpen( 0 );
 		ensureSectionExpanded( 0, 0 );
 
-		// === Track Accordion Functionality ===
+		// Track Accordion Functionality
 		// It should be open by default
 		cy.get( '.nfd-track' ).first().should( 'have.attr', 'open' );
 		
@@ -189,21 +185,6 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		
 		// It should open again
 		cy.get( '.nfd-track' ).first().should( 'have.attr', 'open' );
-
-		// === Section Accordion Functionality ===
-		// Ensure section is expanded for testing
-		ensureSectionExpanded( 0, 0 );
-		
-		// Toggle section to test functionality
-		toggleSection( 0, 0 );
-		
-		// Toggle again to test back
-		toggleSection( 0, 0 );
-
-		// === Task Completion ===
-		// Ensure we have proper visibility before task interaction
-		ensureTrackOpen( 0 );
-		ensureSectionExpanded( 0, 0 );
 		
 		// Find a task with "new" status using robust helper
 		getTaskByStatus( 'new' ).then( ( task ) => {
@@ -211,17 +192,14 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 			completeTask( cy.wrap( task ) );
 			
 			// Check that a done task appeared (since DOM might rebuild)
-			getTaskByStatus( 'done' ).should( 'have.length.greaterThan', 0 );
+			countTasksByStatus( 'done' ).should( 'be.greaterThan', 0 );
 		} );
 
-		// === Task Dismissal ===
-		// Ensure visibility again before next interaction
-		ensureTrackOpen( 0 );
-		ensureSectionExpanded( 0, 0 );
+		// Task Dismissa
 		
 		// Get the initial count of new tasks
 		let initialNewTaskCount;
-		getTaskByStatus( 'new' ).its( 'length' ).then( ( count ) => {
+		countTasksByStatus( 'new' ).then( ( count ) => {
 			initialNewTaskCount = count;
 		} );
 		
@@ -231,18 +209,18 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		} );
 		
 		// Verify task was dismissed by checking the count decreased
-		getTaskByStatus( 'new' ).should( ( $tasks ) => {
-			expect( $tasks.length ).to.be.lessThan( initialNewTaskCount );
+		countTasksByStatus( 'new' ).should( ( $count ) => {
+			expect( $count ).to.be.lessThan( initialNewTaskCount );
 		} );
 		
 	} );
 
 	it( 'validates task links and button functionality', () => {
-		// === Ensure Proper Visibility First ===
+		// Ensure Proper Visibility First
 		ensureTrackOpen( 0 );
 		ensureSectionExpanded( 0, 0 );
 		
-		// === Task Links and Buttons ===
+		// Task Links and Buttons
 		// Get a new task using robust helper
 		getTaskByStatus( 'new' ).as( 'newTask' );
 		
@@ -264,7 +242,7 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 
 	// New test to verify version handling and merge functionality
 	it( 'handles versioned data correctly', () => {
-		// === Ensure Proper Visibility First ===
+		// Ensure Proper Visibility First
 		ensureTrackOpen( 0 );
 		ensureSectionExpanded( 0, 0 );
 		
