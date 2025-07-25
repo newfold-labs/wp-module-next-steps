@@ -17,6 +17,8 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 	before( () => {
 		// Reset Next Steps data to ensure clean state for tests
 		resetNextStepsData();
+		wpCli( 'rewrite structure "/%postname%/"', { failOnNonZeroExit: false } );
+		wpCli( 'rewrite flush', { failOnNonZeroExit: false } );
 	} );
 
 	beforeEach( () => {
