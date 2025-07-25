@@ -147,8 +147,8 @@ export const getTaskByStatus = ( status ) => {
 	// First ensure we have visible tracks and sections
 	openAllTracksAndSections();
 	
-	// Find the task and ensure it exists
-	return cy.get( `.nfd-nextsteps-step-${ status }` )
+	// Use 15s timeout for all task statuses to handle CI environment delays
+	return cy.get( `.nfd-nextsteps-step-${ status }`, { timeout: 15000 } )
 		.should( 'exist' )
 		.first()
 		.should( 'be.visible' )
@@ -171,17 +171,40 @@ export const getTaskByStatus = ( status ) => {
 export const completeTask = ( task ) => {
 	cy.log( '✅ completeTask called' );
 	
-	// Simple, direct approach - find and click the button
+	// Click the completion button and verify the task transitions to completed state
 	task
 		.should( 'exist' )
 		.and( 'be.visible' )
-		.find( '.nfd-nextsteps-button-todo' )
-		.should( 'exist' )
-		.and( 'be.visible' )
-		.and( 'not.be.disabled' )
-		.click( { force: true } );
+		.then( ( $task ) => {
+			// Get task container for verification
+			const $container = $task.closest( '.nfd-nextsteps-step-container' );
+			const taskId = $container.attr( 'id' );
+			cy.log( `📋 Completing task with ID: ${taskId}` );
+			
+			// Click the complete button
+			cy.wrap( $task )
+				.find( '.nfd-nextsteps-button-todo' )
+				.should( 'exist' )
+				.and( 'be.visible' )
+				.and( 'not.be.disabled' )
+				.click( { force: true } );
+			
+			// CRITICAL: Verify the task actually became completed
+			// This addresses the CI issue where DOM doesn't update fast enough
+			if ( taskId ) {
+				// Wait for the task to transition to completed state
+				cy.get( `#${taskId} .nfd-nextsteps-step-done`, { timeout: 15000 } )
+					.should( 'exist' );
+				cy.log( `✅ Task ${taskId} verified as completed` );
+			} else {
+				// Fallback: ensure at least one completed task exists
+				cy.get( '.nfd-nextsteps-step-done', { timeout: 15000 } )
+					.should( 'exist' );
+				cy.log( `✅ Task completion verified (fallback)` );
+			}
+		} );
 	
-	cy.log( `🎯 Task completion button clicked` );
+	cy.log( `🎯 Task completion process finished` );
 };
 
 /**
@@ -323,8 +346,8 @@ export const countTasksByStatus = ( status ) => {
 	
 	openAllTracksAndSections();
 	
-	// Return the count directly - .its('length') gives us a chainable number
-	return cy.get( `.nfd-nextsteps-step-${ status }` ).filter(':visible').its( 'length' );
+	// Use 15s timeout for all task statuses to handle CI environment delays
+	return cy.get( `.nfd-nextsteps-step-${ status }`, { timeout: 15000 } ).filter(':visible').its( 'length' );
 };
 
 
