@@ -1,0 +1,2 @@
+<?php
+return ['domain'=>'wp-module-next-steps','plural-forms'=>NULL,'language'=>'es_MX','project-id-version'=>'','pot-creation-date'=>'2025-06-06T06:30:00+00:00','po-revision-date'=>'2025-01-21 17:05:00+0000','x-generator'=>'WP-CLI 2.12.0','messages'=>[]];

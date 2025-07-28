@@ -3,9 +3,7 @@
 namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\ModuleLoader\Container;
-use NewfoldLabs\WP\Module\NextSteps\I18nService;
 use NewfoldLabs\WP\Module\Data\HiiveConnection;
-use NewfoldLabs\WP\Module\Data\SiteCapabilities;
 
 /**
  * Manages all the functionalities for the module.
@@ -31,12 +29,8 @@ class NextSteps {
 	 * @param Container $container The module container.
 	 */
 	public function __construct( Container $container ) {
-		// includes until autoloading is set up
-		include_once NFD_NEXTSTEPS_DIR . '/includes/StepsApi.php';
-		include_once NFD_NEXTSTEPS_DIR . '/includes/NextStepsWidget.php';
-		include_once NFD_NEXTSTEPS_DIR . '/includes/I18nService.php';
-		include_once NFD_NEXTSTEPS_DIR . '/includes/DefaultSteps.php';
-		new DefaultSteps();
+		// Autoloader handles class loading
+		new PlanLoader();
 		$hiive           = new HiiveConnection();
 		self::$steps_api = new StepsApi( $hiive );
 		$this->container = $container;
@@ -87,6 +81,7 @@ class NextSteps {
 	 * Enqueue widget app assets.
 	 */
 	public static function nextsteps_widget() {
+		// Always register assets for extensibility (other modules might depend on them)
 		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-widget/bundle.asset.php';
 		$build_dir  = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-widget/';
 
@@ -114,20 +109,20 @@ class NextSteps {
 			$asset['version']
 		);
 
-		// Only enqueue on dashboard page
+		// Only enqueue on dashboard pages
 		$screen = \get_current_screen();
 		if ( isset( $screen->id ) && false !== strpos( $screen->id, 'dashboard' ) ) {
 			\wp_enqueue_script( 'next-steps-widget' );
 			\wp_enqueue_style( 'next-steps-widget-style' );
 
-			$next_steps_data = json_decode( \wp_json_encode( self::$steps_api->get_steps()->data ), true );
+			// Get current plan data
+			$current_plan    = PlanManager::get_current_plan();
+			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(
 				'next-steps-widget',
 				'NewfoldNextSteps',
-				array_merge(
-					$next_steps_data,
-				)
+				$next_steps_data
 			);
 		}
 	}
@@ -136,6 +131,7 @@ class NextSteps {
 	 * Enqueue Fill app assets.
 	 */
 	public static function nextsteps_portal() {
+		// Always register assets for extensibility (other modules might depend on them)
 		$asset_file = NFD_NEXTSTEPS_DIR . '/build/next-steps-portal/bundle.asset.php';
 		$build_dir  = NFD_NEXTSTEPS_PLUGIN_URL . 'vendor/newfold-labs/wp-module-next-steps/build/next-steps-portal/';
 
@@ -159,29 +155,24 @@ class NextSteps {
 		\wp_register_style(
 			'next-steps-portal-style',
 			$build_dir . 'next-steps-portal.css',
-			null,
+			null, // still dependant on plugin styles but they are loaded on the plugin page
 			$asset['version']
 		);
 
-		// Only enqueue on plugin page
+		// Only enqueue on plugin pages
 		$screen = \get_current_screen();
-		if ( isset( $screen->id ) &&
-			(
-				false !== strpos( $screen->id, 'bluehost' ) ||
-				false !== strpos( $screen->id, 'hostgator' )
-			)
-		) {
+		if ( isset( $screen->id ) && false !== strpos( $screen->id, 'bluehost' ) ) {
 			\wp_enqueue_script( 'next-steps-portal' );
 			\wp_enqueue_style( 'next-steps-portal-style' );
 
-			$next_steps_data = json_decode( \wp_json_encode( self::$steps_api->get_steps()->data ), true );
+			// Get current plan data
+			$current_plan    = PlanManager::get_current_plan();
+			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(
 				'next-steps-portal',
 				'NewfoldNextSteps',
-				array_merge(
-					$next_steps_data,
-				)
+				$next_steps_data
 			);
 		}
 	}
