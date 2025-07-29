@@ -33,7 +33,7 @@ if ( function_exists( 'add_action' ) ) {
 						if ( ! defined( 'NFD_NEXTSTEPS_PLUGIN_DIRNAME' ) ) {
 							define( 'NFD_NEXTSTEPS_PLUGIN_DIRNAME', dirname( $container->plugin()->basename ) );
 						}
-						include_once NFD_NEXTSTEPS_DIR . '/includes/NextSteps.php';
+
 						new NextSteps( $container );
 					},
 					'isActive' => true,
