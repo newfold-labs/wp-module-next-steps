@@ -27,7 +27,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
         it( 'renders portal structure and displays progress bars correctly', () => {
                 // === Portal App Rendering ===
-                cy.get( '#next-steps-slot .next-steps-fill #nfd-nextsteps' )
+                cy.get( '.next-steps-fill #nfd-nextsteps' )
                         .scrollIntoView()
                         .should( 'be.visible' );
 
@@ -77,7 +77,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
                 cy.reload();
                 
                 // Wait for portal to reload
-                cy.get( '#next-steps-slot .next-steps-fill #nfd-nextsteps' )
+                cy.get( '.next-steps-fill #nfd-nextsteps' )
                         .scrollIntoView()
                         .should( 'be.visible' );
                         
