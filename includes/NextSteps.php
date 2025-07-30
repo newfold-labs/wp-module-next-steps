@@ -111,9 +111,9 @@ class NextSteps {
 
 		// Only enqueue on dashboard pages
 		$screen = \get_current_screen();
-		if ( isset( $screen->id ) && 
+		if ( isset( $screen->id ) &&
 			false !== strpos( $screen->id, 'dashboard' ) && // on dashboard page
-			false === strpos( $screen->id, 'nfd-onboarding') // but not onboarding page
+			false === strpos( $screen->id, 'nfd-onboarding' ) // but not onboarding page
 		) {
 			\wp_enqueue_script( 'next-steps-widget' );
 			\wp_enqueue_style( 'next-steps-widget-style' );
