@@ -1,36 +1,36 @@
 {
-  "translation-revision-date": "2025-01-21 17:05:00+0000",
-  "generator": "WP-CLI/2.12.0",
-  "source": "build/next-steps-portal/bundle.js",
-  "domain": "messages",
-  "locale_data": {
-    "messages": {
-      "": {
-        "domain": "messages",
-        "lang": "de_DE",
-        "plural-forms": "nplurals=2; plural=(n != 1);"
-      },
-      "Mark Complete": [
-        "Als abgeschlossen markieren"
-      ],
-      "Skip": [
-        "Hüpfen"
-      ],
-      "Restart": [
-        "Neustarten"
-      ],
-      "Unskip": [
-        "Überspringen"
-      ],
-      "Hide skipped tasks": [
-        "Übersprungene Aufgaben ausblenden"
-      ],
-      "View skipped tasks": [
-        "Übersprungene Aufgaben anzeigen"
-      ],
-      "Loading next steps...": [
-        "Nächste Schritte werden geladen..."
-      ]
+    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/next-steps-portal\/bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "de_DE",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Mark Complete": [
+                "Als abgeschlossen markieren"
+            ],
+            "Skip": [
+                "H\u00fcpfen"
+            ],
+            "Restart": [
+                "Neustarten"
+            ],
+            "Unskip": [
+                "\u00dcberspringen"
+            ],
+            "Hide skipped tasks": [
+                "\u00dcbersprungene Aufgaben ausblenden"
+            ],
+            "View skipped tasks": [
+                "\u00dcbersprungene Aufgaben anzeigen"
+            ],
+            "Loading next steps...": [
+                "N\u00e4chste Schritte werden geladen..."
+            ]
+        }
     }
-  }
 }
