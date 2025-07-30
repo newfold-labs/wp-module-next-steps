@@ -1,21 +1,20 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: nl_NL <LL@li.org>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
-"Language: nl_NL\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:22
-#: includes/NextSteps.php:62
-#: includes/NextStepsWidget.php:39
+#: bootstrap.php:22 includes/NextSteps.php:62 includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Volgende stappen"
 
@@ -25,10 +24,10 @@ msgstr "Winkel instellen"
 
 #: includes/PlanManager.php:252
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr "Voltooi de installatie van uw e-commerce winkel met deze essentiële stappen:"
+msgstr ""
+"Voltooi de installatie van uw e-commerce winkel met deze essentiële stappen:"
 
-#: includes/PlanManager.php:256
-#: includes/PlanManager.php:839
+#: includes/PlanManager.php:256 includes/PlanManager.php:839
 #: includes/PlanManager.php:1413
 msgid "Build"
 msgstr "Bouwen"
@@ -57,8 +56,7 @@ msgstr "Pas uw winkel aan"
 msgid "Brand your store to match your business"
 msgstr "Merk uw winkel af zodat deze bij uw bedrijf past"
 
-#: includes/PlanManager.php:285
-#: includes/PlanManager.php:891
+#: includes/PlanManager.php:285 includes/PlanManager.php:891
 msgid "Upload Logo"
 msgstr "Logo uploaden"
 
@@ -66,8 +64,7 @@ msgstr "Logo uploaden"
 msgid "Add your business logo to build brand recognition"
 msgstr "Voeg uw bedrijfslogo toe om merkherkenning op te bouwen"
 
-#: includes/PlanManager.php:294
-#: includes/PlanManager.php:900
+#: includes/PlanManager.php:294 includes/PlanManager.php:900
 msgid "Choose Colors and Fonts"
 msgstr "Kies kleuren en lettertypen"
 
@@ -91,14 +88,14 @@ msgstr "Voettekst aanpassen"
 msgid "Set up your footer with important links and information"
 msgstr "Stel uw voettekst in met belangrijke links en informatie"
 
-#: includes/PlanManager.php:321
-#: includes/PlanManager.php:918
+#: includes/PlanManager.php:321 includes/PlanManager.php:918
 msgid "Customize Homepage"
 msgstr "Homepage aanpassen"
 
 #: includes/PlanManager.php:322
 msgid "Create an engaging homepage that showcases your products"
-msgstr "Maak een boeiende startpagina die uw producten onder de aandacht brengt"
+msgstr ""
+"Maak een boeiende startpagina die uw producten onder de aandacht brengt"
 
 #: includes/PlanManager.php:332
 msgid "Set Up Shopping Experience"
@@ -186,7 +183,9 @@ msgstr "Privacybeleid"
 
 #: includes/PlanManager.php:415
 msgid "Create a privacy policy to comply with data protection laws"
-msgstr "Maak een privacybeleid om te voldoen aan de wetgeving inzake gegevensbescherming"
+msgstr ""
+"Maak een privacybeleid om te voldoen aan de wetgeving inzake "
+"gegevensbescherming"
 
 #: includes/PlanManager.php:423
 msgid "Terms & Conditions"
@@ -204,8 +203,7 @@ msgstr "Retour- en restitutiebeleid"
 msgid "Define your return and refund procedures"
 msgstr "Definieer uw retour- en terugbetalingsprocedures"
 
-#: includes/PlanManager.php:445
-#: includes/PlanManager.php:1033
+#: includes/PlanManager.php:445 includes/PlanManager.php:1033
 #: includes/PlanManager.php:1634
 msgid "Brand"
 msgstr "Merk"
@@ -240,7 +238,9 @@ msgstr "E-mails over verlaten winkelwagentjes inschakelen"
 
 #: includes/PlanManager.php:486
 msgid "Recover lost sales with automated cart abandonment emails"
-msgstr "Herstel verloren verkopen met geautomatiseerde e-mails over het verlaten van de winkelwagen"
+msgstr ""
+"Herstel verloren verkopen met geautomatiseerde e-mails over het verlaten van"
+" de winkelwagen"
 
 #: includes/PlanManager.php:494
 msgid "Customize Your Store Emails"
@@ -314,8 +314,7 @@ msgstr "Optimaliseer de SEO van uw winkel"
 msgid "Improve search engine rankings with SEO best practices"
 msgstr "Verbeter de positie in zoekmachines met best practices voor SEO"
 
-#: includes/PlanManager.php:584
-#: includes/PlanManager.php:1180
+#: includes/PlanManager.php:584 includes/PlanManager.php:1180
 msgid "Submit Site to Google Search Console"
 msgstr "Site indienen bij Google Search Console"
 
@@ -331,8 +330,7 @@ msgstr "Maak een aangepaste sitemap"
 msgid "Help search engines discover your products"
 msgstr "Help zoekmachines uw producten te ontdekken"
 
-#: includes/PlanManager.php:606
-#: includes/PlanManager.php:1202
+#: includes/PlanManager.php:606 includes/PlanManager.php:1202
 #: includes/PlanManager.php:1812
 msgid "Grow"
 msgstr "Groeien"
@@ -393,8 +391,7 @@ msgstr "Creëer een punten- en beloningsprogramma voor uw klanten"
 msgid "Encourage repeat purchases with loyalty rewards"
 msgstr "Stimuleer herhaalaankopen met loyaliteitsbeloningen"
 
-#: includes/PlanManager.php:667
-#: includes/PlanManager.php:1272
+#: includes/PlanManager.php:667 includes/PlanManager.php:1272
 msgid "Run First Facebook or Instagram Ad"
 msgstr "Eerste Facebook- of Instagram-advertentie uitvoeren"
 
@@ -466,8 +463,7 @@ msgstr "Stel Yoast Premium in om verkeer naar uw winkel te leiden"
 msgid "Advanced SEO features to improve search rankings"
 msgstr "Geavanceerde SEO-functies om de zoekresultaten te verbeteren"
 
-#: includes/PlanManager.php:748
-#: includes/PlanManager.php:1335
+#: includes/PlanManager.php:748 includes/PlanManager.php:1335
 msgid "Performance & Security"
 msgstr "Prestaties en beveiliging"
 
@@ -547,8 +543,7 @@ msgstr "Sitetitel instellen"
 msgid "Choose a memorable title for your blog"
 msgstr "Kies een gedenkwaardige titel voor je blog"
 
-#: includes/PlanManager.php:857
-#: includes/PlanManager.php:1440
+#: includes/PlanManager.php:857 includes/PlanManager.php:1440
 msgid "Set Tagline"
 msgstr "Slogan instellen"
 
@@ -556,8 +551,7 @@ msgstr "Slogan instellen"
 msgid "Create a compelling tagline that describes your blog"
 msgstr "Maak een pakkende slogan die je blog beschrijft"
 
-#: includes/PlanManager.php:866
-#: includes/PlanManager.php:1458
+#: includes/PlanManager.php:866 includes/PlanManager.php:1458
 msgid "Set Time Zone"
 msgstr "Tijdzone instellen"
 
@@ -565,8 +559,7 @@ msgstr "Tijdzone instellen"
 msgid "Configure your blog's timezone for accurate posting"
 msgstr "Configureer de tijdzone van je blog voor nauwkeurige berichten"
 
-#: includes/PlanManager.php:875
-#: includes/PlanManager.php:1449
+#: includes/PlanManager.php:875 includes/PlanManager.php:1449
 msgid "Set Language"
 msgstr "Taal instellen"
 
@@ -590,8 +583,7 @@ msgstr "Voeg uw bloglogo toe om de merkidentiteit vast te stellen"
 msgid "Select colors and typography that match your style"
 msgstr "Selecteer kleuren en typografie die bij uw stijl passen"
 
-#: includes/PlanManager.php:909
-#: includes/PlanManager.php:1492
+#: includes/PlanManager.php:909 includes/PlanManager.php:1492
 msgid "Customize Header and Footer"
 msgstr "Kop- en voettekst aanpassen"
 
@@ -633,7 +625,9 @@ msgstr "Stel een uitgelichte afbeelding in voor één bericht"
 
 #: includes/PlanManager.php:953
 msgid "Add visual appeal to your posts with featured images"
-msgstr "Voeg visuele aantrekkingskracht toe aan je berichten met uitgelichte afbeeldingen"
+msgstr ""
+"Voeg visuele aantrekkingskracht toe aan je berichten met uitgelichte "
+"afbeeldingen"
 
 #: includes/PlanManager.php:963
 msgid "Set Up Navigation"
@@ -643,8 +637,7 @@ msgstr "Navigatie instellen"
 msgid "Create user-friendly navigation for your blog"
 msgstr "Creëer gebruiksvriendelijke navigatie voor uw blog"
 
-#: includes/PlanManager.php:968
-#: includes/PlanManager.php:1560
+#: includes/PlanManager.php:968 includes/PlanManager.php:1560
 msgid "Add Pages for Home, Blog, About, Contact"
 msgstr "Pagina's toevoegen voor Home, Blog, Over, Contact"
 
@@ -652,8 +645,7 @@ msgstr "Pagina's toevoegen voor Home, Blog, Over, Contact"
 msgid "Create essential pages for your blog"
 msgstr "Maak essentiële pagina's voor uw blog"
 
-#: includes/PlanManager.php:977
-#: includes/PlanManager.php:1569
+#: includes/PlanManager.php:977 includes/PlanManager.php:1569
 msgid "Create a Primary Menu"
 msgstr "Een primair menu maken"
 
@@ -677,8 +669,7 @@ msgstr "Essentiële pagina's instellen"
 msgid "Create important legal and policy pages"
 msgstr "Maak belangrijke juridische en beleidspagina's"
 
-#: includes/PlanManager.php:1002
-#: includes/PlanManager.php:1594
+#: includes/PlanManager.php:1002 includes/PlanManager.php:1594
 msgid "Add a Privacy Policy"
 msgstr "Voeg een privacybeleid toe"
 
@@ -686,8 +677,7 @@ msgstr "Voeg een privacybeleid toe"
 msgid "Create a privacy policy for legal compliance"
 msgstr "Maak een privacybeleid voor naleving van de wet"
 
-#: includes/PlanManager.php:1011
-#: includes/PlanManager.php:1603
+#: includes/PlanManager.php:1011 includes/PlanManager.php:1603
 msgid "Add Terms & Conditions"
 msgstr "Algemene voorwaarden toevoegen"
 
@@ -695,8 +685,7 @@ msgstr "Algemene voorwaarden toevoegen"
 msgid "Set terms of use for your blog"
 msgstr "Gebruiksvoorwaarden instellen voor je blog"
 
-#: includes/PlanManager.php:1020
-#: includes/PlanManager.php:1612
+#: includes/PlanManager.php:1020 includes/PlanManager.php:1612
 msgid "Add an Accessibility Statement"
 msgstr "Een toegankelijkheidsverklaring toevoegen"
 
@@ -718,7 +707,8 @@ msgstr "Schakel Social Login in"
 
 #: includes/PlanManager.php:1043
 msgid "Allow readers to comment using social media accounts"
-msgstr "Sta lezers toe om commentaar te geven met behulp van sociale media-accounts"
+msgstr ""
+"Sta lezers toe om commentaar te geven met behulp van sociale media-accounts"
 
 #: includes/PlanManager.php:1051
 msgid "Add a Welcome-Subscribe Popup"
@@ -884,8 +874,7 @@ msgstr "Getuigenissen of gemarkeerde opmerkingen weergeven"
 msgid "Showcase positive feedback from readers"
 msgstr "Breng positieve feedback van lezers onder de aandacht"
 
-#: includes/PlanManager.php:1238
-#: includes/PlanManager.php:1652
+#: includes/PlanManager.php:1238 includes/PlanManager.php:1652
 msgid "Create a Favicon"
 msgstr "Maak een favicon"
 
@@ -981,8 +970,7 @@ msgstr "Versnel de site met Jetpack Boost"
 msgid "Improve loading times with caching and optimization"
 msgstr "Verbeter laadtijden met caching en optimalisatie"
 
-#: includes/PlanManager.php:1349
-#: includes/PlanManager.php:1941
+#: includes/PlanManager.php:1349 includes/PlanManager.php:1941
 msgid "Enable Automatic Backups & Update Alerts"
 msgstr "Automatische back-ups inschakelen en waarschuwingen bijwerken"
 
@@ -1452,7 +1440,8 @@ msgstr "Maak een downloadbare bron"
 
 #: includes/PlanManager.php:1917
 msgid "Offer brochure, whitepaper, or guide for lead generation"
-msgstr "Bied een brochure, whitepaper of gids voor het genereren van leads aan"
+msgstr ""
+"Bied een brochure, whitepaper of gids voor het genereren van leads aan"
 
 #: includes/PlanManager.php:1927
 msgid "Site Performance & Security"
@@ -1530,8 +1519,7 @@ msgstr "Plan uw volgende inhouds- of campagne-update"
 msgid "Schedule regular content and marketing updates"
 msgstr "Plan regelmatig content- en marketingupdates"
 
-#: includes/StepsApi.php:260
-#: includes/StepsApi.php:282
+#: includes/StepsApi.php:260 includes/StepsApi.php:282
 msgid "No plan found."
 msgstr "Geen plan gevonden."
 
@@ -1543,8 +1531,7 @@ msgstr "Geen sporen gevonden in plan."
 msgid "No sections found in track."
 msgstr "Geen secties gevonden in het spoor."
 
-#: includes/StepsApi.php:344
-#: includes/StepsApi.php:377
+#: includes/StepsApi.php:344 includes/StepsApi.php:377
 msgid "Invalid parameters provided."
 msgstr "Ongeldige parameters opgegeven."
 
@@ -1568,45 +1555,38 @@ msgstr "Ongeldig abonnementstype opgegeven."
 msgid "Failed to add task to section."
 msgstr "Kan geen taak toevoegen aan sectie."
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1973
 msgid "Mark Complete"
 msgstr "Markeer Voltooid"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1996
 msgid "Skip"
 msgstr "Overslaan"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2029
 msgid "Restart"
 msgstr "Herstarten"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2052
 #: build/next-steps-portal/bundle.js:2067
 msgid "Unskip"
 msgstr "Niet overslaan"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1733
 msgid "Hide skipped tasks"
 msgstr "Overgeslagen taken verbergen"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1734
 msgid "View skipped tasks"
 msgstr "Overgeslagen taken weergeven"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1703
 msgid "Loading next steps..."
 msgstr "Volgende stappen laden..."
