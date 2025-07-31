@@ -28,8 +28,8 @@ msgid "Complete your ecommerce store setup with these essential steps:"
 msgstr "Voltooi de installatie van uw e-commerce winkel met deze essentiële stappen:"
 
 #: includes/PlanManager.php:256
-#: includes/PlanManager.php:839
-#: includes/PlanManager.php:1413
+#: includes/PlanManager.php:741
+#: includes/PlanManager.php:1155
 msgid "Build"
 msgstr "Bouwen"
 
@@ -37,1498 +37,679 @@ msgstr "Bouwen"
 msgid "Basic Store Setup"
 msgstr "Basis winkelconfiguratie"
 
-#: includes/PlanManager.php:261
-msgid "Get your store foundation ready"
-msgstr "Maak je winkelfundering klaar"
-
-#: includes/PlanManager.php:265
+#: includes/PlanManager.php:264
+#: includes/PlanManager.php:749
 msgid "Quick Setup"
 msgstr "Snelle installatie"
 
-#: includes/PlanManager.php:266
-msgid "Complete the basic store configuration and settings"
-msgstr "Voltooi de basisconfiguratie en -instellingen van de winkel"
-
-#: includes/PlanManager.php:280
+#: includes/PlanManager.php:278
 msgid "Customize Your Store"
 msgstr "Pas uw winkel aan"
 
-#: includes/PlanManager.php:281
-msgid "Brand your store to match your business"
-msgstr "Merk uw winkel af zodat deze bij uw bedrijf past"
-
-#: includes/PlanManager.php:285
-#: includes/PlanManager.php:891
+#: includes/PlanManager.php:282
+#: includes/PlanManager.php:767
 msgid "Upload Logo"
 msgstr "Logo uploaden"
 
-#: includes/PlanManager.php:286
-msgid "Add your business logo to build brand recognition"
-msgstr "Voeg uw bedrijfslogo toe om merkherkenning op te bouwen"
-
-#: includes/PlanManager.php:294
-#: includes/PlanManager.php:900
+#: includes/PlanManager.php:290
+#: includes/PlanManager.php:775
 msgid "Choose Colors and Fonts"
 msgstr "Kies kleuren en lettertypen"
 
-#: includes/PlanManager.php:295
-msgid "Select colors and typography that reflect your brand"
-msgstr "Selecteer kleuren en typografie die uw merk weerspiegelen"
-
-#: includes/PlanManager.php:303
+#: includes/PlanManager.php:298
 msgid "Customize Header"
 msgstr "Header aanpassen"
 
-#: includes/PlanManager.php:304
-msgid "Design your header layout and navigation"
-msgstr "Ontwerp de lay-out en navigatie van uw koptekst"
-
-#: includes/PlanManager.php:312
+#: includes/PlanManager.php:306
 msgid "Customize Footer"
 msgstr "Voettekst aanpassen"
 
-#: includes/PlanManager.php:313
-msgid "Set up your footer with important links and information"
-msgstr "Stel uw voettekst in met belangrijke links en informatie"
-
-#: includes/PlanManager.php:321
-#: includes/PlanManager.php:918
+#: includes/PlanManager.php:314
 msgid "Customize Homepage"
 msgstr "Homepage aanpassen"
 
-#: includes/PlanManager.php:322
-msgid "Create an engaging homepage that showcases your products"
-msgstr "Maak een boeiende startpagina die uw producten onder de aandacht brengt"
-
-#: includes/PlanManager.php:332
+#: includes/PlanManager.php:324
 msgid "Set Up Shopping Experience"
 msgstr "Winkelervaring instellen"
 
-#: includes/PlanManager.php:333
-msgid "Add and configure your product catalog"
-msgstr "Uw productcatalogus toevoegen en configureren"
-
-#: includes/PlanManager.php:337
+#: includes/PlanManager.php:328
 msgid "Add a Product"
 msgstr "Voeg een product toe"
 
-#: includes/PlanManager.php:338
-msgid "Create your first product listing with images and details"
-msgstr "Maak uw eerste productvermelding met afbeeldingen en details"
-
-#: includes/PlanManager.php:346
+#: includes/PlanManager.php:336
 msgid "Customize the Shop Page"
 msgstr "De winkelpagina aanpassen"
 
-#: includes/PlanManager.php:347
-msgid "Configure your main product catalog display"
-msgstr "De weergave van uw hoofdproductcatalogus configureren"
-
-#: includes/PlanManager.php:355
+#: includes/PlanManager.php:344
 msgid "Customize the Cart Page"
 msgstr "Pas de winkelwagenpagina aan"
 
-#: includes/PlanManager.php:356
-msgid "Optimize the shopping cart experience"
-msgstr "Optimaliseer de winkelwagenervaring"
-
-#: includes/PlanManager.php:364
+#: includes/PlanManager.php:352
 msgid "Customize the Checkout Flow"
 msgstr "Pas de afrekenstroom aan"
 
-#: includes/PlanManager.php:365
-msgid "Streamline the checkout process for better conversions"
-msgstr "Stroomlijn het afrekenproces voor betere conversies"
-
-#: includes/PlanManager.php:375
+#: includes/PlanManager.php:362
 msgid "Set Up Payments and Shipping"
 msgstr "Betalingen en verzending instellen"
 
-#: includes/PlanManager.php:376
-msgid "Configure payment methods and shipping options"
-msgstr "Betaalmethoden en verzendopties configureren"
-
-#: includes/PlanManager.php:380
+#: includes/PlanManager.php:366
 msgid "Set Up Payments"
 msgstr "Betalingen instellen"
 
-#: includes/PlanManager.php:381
-msgid "Configure payment gateways like PayPal and Stripe"
-msgstr "Configureer betalingsgateways zoals PayPal en Stripe"
-
-#: includes/PlanManager.php:389
+#: includes/PlanManager.php:374
 msgid "Set Up Shipping"
 msgstr "Verzending instellen"
 
-#: includes/PlanManager.php:390
-msgid "Define shipping zones, rates, and delivery options"
-msgstr "Definieer verzendzones, tarieven en bezorgopties"
-
-#: includes/PlanManager.php:398
+#: includes/PlanManager.php:382
 msgid "Set Up Taxes"
 msgstr "Belastingen instellen"
 
-#: includes/PlanManager.php:399
-msgid "Configure tax rates and calculations for your region"
-msgstr "Configureer belastingtarieven en berekeningen voor uw regio"
-
-#: includes/PlanManager.php:409
+#: includes/PlanManager.php:392
 msgid "Set Up Legal Pages"
 msgstr "Juridische pagina's instellen"
 
-#: includes/PlanManager.php:410
-msgid "Create essential legal pages for compliance"
-msgstr "Maak essentiële juridische pagina's voor naleving"
-
-#: includes/PlanManager.php:414
+#: includes/PlanManager.php:396
 msgid "Privacy Policy"
 msgstr "Privacybeleid"
 
-#: includes/PlanManager.php:415
-msgid "Create a privacy policy to comply with data protection laws"
-msgstr "Maak een privacybeleid om te voldoen aan de wetgeving inzake gegevensbescherming"
-
-#: includes/PlanManager.php:423
+#: includes/PlanManager.php:404
 msgid "Terms & Conditions"
 msgstr "Algemene voorwaarden"
 
-#: includes/PlanManager.php:424
-msgid "Set terms of service for customer purchases"
-msgstr "Servicevoorwaarden instellen voor aankopen van klanten"
-
-#: includes/PlanManager.php:432
+#: includes/PlanManager.php:412
 msgid "Return and Refund Policy"
 msgstr "Retour- en restitutiebeleid"
 
-#: includes/PlanManager.php:433
-msgid "Define your return and refund procedures"
-msgstr "Definieer uw retour- en terugbetalingsprocedures"
-
-#: includes/PlanManager.php:445
-#: includes/PlanManager.php:1033
-#: includes/PlanManager.php:1634
+#: includes/PlanManager.php:424
+#: includes/PlanManager.php:885
+#: includes/PlanManager.php:1351
 msgid "Brand"
 msgstr "Merk"
 
-#: includes/PlanManager.php:449
+#: includes/PlanManager.php:428
 msgid "First Marketing Steps"
 msgstr "Eerste marketingstappen"
 
-#: includes/PlanManager.php:450
-msgid "Set up essential marketing tools and features"
-msgstr "Essentiële marketingtools en -functies instellen"
-
-#: includes/PlanManager.php:467
+#: includes/PlanManager.php:432
 msgid "Configure Welcome Discount Popup"
 msgstr "Configureer welkomstkorting pop-up"
 
-#: includes/PlanManager.php:468
-msgid "Create a popup to capture emails and offer discounts"
-msgstr "Maak een pop-up om e-mails vast te leggen en kortingen aan te bieden"
-
-#: includes/PlanManager.php:476
+#: includes/PlanManager.php:440
 msgid "Create a Gift Card to Sell in Your Shop"
 msgstr "Maak een cadeaubon om in uw winkel te verkopen"
 
-#: includes/PlanManager.php:477
-msgid "Add gift cards as a product option to increase sales"
-msgstr "Voeg cadeaubonnen toe als productoptie om de verkoop te verhogen"
-
-#: includes/PlanManager.php:485
+#: includes/PlanManager.php:448
 msgid "Enable Abandoned Cart Emails"
 msgstr "E-mails over verlaten winkelwagentjes inschakelen"
 
-#: includes/PlanManager.php:486
-msgid "Recover lost sales with automated cart abandonment emails"
-msgstr "Herstel verloren verkopen met geautomatiseerde e-mails over het verlaten van de winkelwagen"
-
-#: includes/PlanManager.php:494
+#: includes/PlanManager.php:456
 msgid "Customize Your Store Emails"
 msgstr "Pas uw winkel-e-mails aan"
 
-#: includes/PlanManager.php:495
-msgid "Brand your order confirmation and customer emails"
-msgstr "Merk uw orderbevestiging en e-mails van klanten"
-
-#: includes/PlanManager.php:518
+#: includes/PlanManager.php:466
 msgid "Launch and Promote - Social Media Setup & Engagement"
 msgstr "Lanceren en promoten - Social Media Setup & Engagement"
 
-#: includes/PlanManager.php:519
-msgid "Connect your store to social media platforms"
-msgstr "Verbind uw winkel met sociale mediaplatforms"
-
-#: includes/PlanManager.php:523
+#: includes/PlanManager.php:470
 msgid "Connect Facebook Store"
 msgstr "Verbind Facebook Store"
 
-#: includes/PlanManager.php:524
-msgid "Sync your products with Facebook Shop"
-msgstr "Synchroniseer je producten met Facebook Shop"
-
-#: includes/PlanManager.php:532
+#: includes/PlanManager.php:478
 msgid "Connect Instagram Shopping"
 msgstr "Verbind Instagram Shopping"
 
-#: includes/PlanManager.php:533
-msgid "Enable product tagging on Instagram posts"
-msgstr "Schakel producttagging in op Instagram-berichten"
-
-#: includes/PlanManager.php:541
+#: includes/PlanManager.php:486
 msgid "Connect TikTok Shop"
 msgstr "Verbind TikTok-winkel"
 
-#: includes/PlanManager.php:542
-msgid "Integrate with TikTok for product promotion"
-msgstr "Integreer met TikTok voor productpromotie"
-
-#: includes/PlanManager.php:550
+#: includes/PlanManager.php:494
 msgid "Add Social Sharing Buttons"
 msgstr "Knoppen voor sociaal delen toevoegen"
 
-#: includes/PlanManager.php:551
-msgid "Let customers share products on social media"
-msgstr "Laat klanten producten delen op social media"
-
-#: includes/PlanManager.php:559
+#: includes/PlanManager.php:502
 msgid "Add Social Media Feed to Homepage"
 msgstr "Voeg social media feed toe aan de startpagina"
 
-#: includes/PlanManager.php:560
-msgid "Display your social media posts on your homepage"
-msgstr "Toon uw posts op sociale media op uw homepage"
-
-#: includes/PlanManager.php:570
+#: includes/PlanManager.php:512
 msgid "Launch and Promote - SEO & Store Visibility"
 msgstr "Lanceren en promoten - SEO & Zichtbaarheid in de winkel"
 
-#: includes/PlanManager.php:571
-msgid "Optimize your store for search engines"
-msgstr "Optimaliseer uw winkel voor zoekmachines"
-
-#: includes/PlanManager.php:575
+#: includes/PlanManager.php:516
 msgid "Optimize Your Store SEO"
 msgstr "Optimaliseer de SEO van uw winkel"
 
-#: includes/PlanManager.php:576
-msgid "Improve search engine rankings with SEO best practices"
-msgstr "Verbeter de positie in zoekmachines met best practices voor SEO"
-
-#: includes/PlanManager.php:584
-#: includes/PlanManager.php:1180
+#: includes/PlanManager.php:524
+#: includes/PlanManager.php:962
 msgid "Submit Site to Google Search Console"
 msgstr "Site indienen bij Google Search Console"
 
-#: includes/PlanManager.php:585
-msgid "Monitor your site's search performance"
-msgstr "De zoekprestaties van uw site bijhouden"
-
-#: includes/PlanManager.php:593
+#: includes/PlanManager.php:532
 msgid "Create a Custom Sitemap"
 msgstr "Maak een aangepaste sitemap"
 
-#: includes/PlanManager.php:594
-msgid "Help search engines discover your products"
-msgstr "Help zoekmachines uw producten te ontdekken"
-
-#: includes/PlanManager.php:606
-#: includes/PlanManager.php:1202
-#: includes/PlanManager.php:1812
+#: includes/PlanManager.php:544
+#: includes/PlanManager.php:982
+#: includes/PlanManager.php:1509
 msgid "Grow"
 msgstr "Groeien"
 
-#: includes/PlanManager.php:610
+#: includes/PlanManager.php:548
 msgid "Improve Your Customer Experience to Sell More"
 msgstr "Verbeter uw klantervaring om meer te verkopen"
 
-#: includes/PlanManager.php:611
-msgid "Enhance customer satisfaction and increase sales"
-msgstr "Verbeter de klanttevredenheid en verhoog de verkoop"
-
-#: includes/PlanManager.php:615
+#: includes/PlanManager.php:552
 msgid "Customize the Thank You Page"
 msgstr "De bedankpagina aanpassen"
 
-#: includes/PlanManager.php:616
-msgid "Create a branded post-purchase experience"
-msgstr "Creëer een merkervaring na aankoop"
-
-#: includes/PlanManager.php:624
+#: includes/PlanManager.php:560
 msgid "Customize Your Customer's Account Page"
 msgstr "Pas de accountpagina van uw klant aan"
 
-#: includes/PlanManager.php:625
-msgid "Improve the customer dashboard experience"
-msgstr "Verbeter de ervaring van het klantendashboard"
-
-#: includes/PlanManager.php:633
+#: includes/PlanManager.php:568
 msgid "Collect and Show Reviews for Your Products"
 msgstr "Verzamel en toon beoordelingen voor uw producten"
 
-#: includes/PlanManager.php:634
-msgid "Build trust with customer reviews and testimonials"
-msgstr "Bouw vertrouwen op met klantrecensies en getuigenissen"
-
-#: includes/PlanManager.php:644
+#: includes/PlanManager.php:578
+#: includes/PlanManager.php:1024
 msgid "Advanced Social & Influencer Marketing"
 msgstr "Geavanceerde Social & Influencer Marketing"
 
-#: includes/PlanManager.php:645
-msgid "Implement advanced marketing strategies"
-msgstr "Implementeer geavanceerde marketingstrategieën"
-
-#: includes/PlanManager.php:649
+#: includes/PlanManager.php:582
 msgid "Launch an Affiliate Program"
 msgstr "Start een partnerprogramma"
 
-#: includes/PlanManager.php:650
-msgid "Let others promote your products for commission"
-msgstr "Laat anderen uw producten promoten voor commissie"
-
-#: includes/PlanManager.php:658
+#: includes/PlanManager.php:590
 msgid "Create a Points & Rewards Program for Your Customers"
 msgstr "Creëer een punten- en beloningsprogramma voor uw klanten"
 
-#: includes/PlanManager.php:659
-msgid "Encourage repeat purchases with loyalty rewards"
-msgstr "Stimuleer herhaalaankopen met loyaliteitsbeloningen"
-
-#: includes/PlanManager.php:667
-#: includes/PlanManager.php:1272
+#: includes/PlanManager.php:598
 msgid "Run First Facebook or Instagram Ad"
 msgstr "Eerste Facebook- of Instagram-advertentie uitvoeren"
 
-#: includes/PlanManager.php:668
-msgid "Start paid advertising to reach more customers"
-msgstr "Begin met betaald adverteren om meer klanten te bereiken"
-
-#: includes/PlanManager.php:676
+#: includes/PlanManager.php:606
 msgid "Launch Product Giveaway Campaign"
 msgstr "Lancering Product Giveaway-campagne"
 
-#: includes/PlanManager.php:677
-msgid "Generate buzz and attract new customers"
-msgstr "Genereer buzz en trek nieuwe klanten aan"
-
-#: includes/PlanManager.php:685
+#: includes/PlanManager.php:614
 msgid "Create Influencer Outreach List"
 msgstr "Maak een lijst met influencers"
 
-#: includes/PlanManager.php:686
-msgid "Build relationships with influencers in your niche"
-msgstr "Bouw relaties op met influencers in uw niche"
-
-#: includes/PlanManager.php:694
+#: includes/PlanManager.php:622
 msgid "Track UTM Campaign Links"
 msgstr "Volg UTM-campagnelinks"
 
-#: includes/PlanManager.php:695
-msgid "Monitor the effectiveness of your marketing campaigns"
-msgstr "Monitor de effectiviteit van uw marketingcampagnes"
-
-#: includes/PlanManager.php:705
+#: includes/PlanManager.php:632
 msgid "Next Marketing Steps"
 msgstr "Volgende marketingstappen"
 
-#: includes/PlanManager.php:706
-msgid "Advanced marketing tactics to grow your business"
-msgstr "Geavanceerde marketingtactieken om uw bedrijf te laten groeien"
-
-#: includes/PlanManager.php:710
+#: includes/PlanManager.php:636
 msgid "Write a Blog Post"
 msgstr "Schrijf een blogpost"
 
-#: includes/PlanManager.php:711
-msgid "Create content to drive traffic and improve SEO"
-msgstr "Creëer inhoud om verkeer te genereren en SEO te verbeteren"
-
-#: includes/PlanManager.php:719
+#: includes/PlanManager.php:644
 msgid "Create a Sale & Promo Campaign for Your Products"
 msgstr "Creëer een verkoop- en promotiecampagne voor uw producten"
 
-#: includes/PlanManager.php:720
-msgid "Run promotional campaigns to boost sales"
-msgstr "Voer promotiecampagnes om de verkoop te stimuleren"
-
-#: includes/PlanManager.php:728
+#: includes/PlanManager.php:652
 msgid "Create an Upsell Campaign"
 msgstr "Maak een upsell-campagne"
 
-#: includes/PlanManager.php:729
-msgid "Increase average order value with strategic upsells"
-msgstr "Verhoog de gemiddelde orderwaarde met strategische upsells"
-
-#: includes/PlanManager.php:737
+#: includes/PlanManager.php:660
 msgid "Setup Yoast Premium to Drive Traffic to Your Store"
 msgstr "Stel Yoast Premium in om verkeer naar uw winkel te leiden"
 
-#: includes/PlanManager.php:738
-msgid "Advanced SEO features to improve search rankings"
-msgstr "Geavanceerde SEO-functies om de zoekresultaten te verbeteren"
-
-#: includes/PlanManager.php:748
-#: includes/PlanManager.php:1335
+#: includes/PlanManager.php:670
+#: includes/PlanManager.php:1092
 msgid "Performance & Security"
 msgstr "Prestaties en beveiliging"
 
-#: includes/PlanManager.php:749
-msgid "Optimize your store for speed and security"
-msgstr "Optimaliseer uw winkel voor snelheid en veiligheid"
-
-#: includes/PlanManager.php:753
+#: includes/PlanManager.php:674
 msgid "Improve Performance and Speed with Jetpack Boost"
 msgstr "Verbeter prestaties en snelheid met Jetpack Boost"
 
-#: includes/PlanManager.php:754
-msgid "Speed up your store for better user experience"
-msgstr "Versnel uw winkel voor een betere gebruikerservaring"
-
-#: includes/PlanManager.php:762
+#: includes/PlanManager.php:682
 msgid "Enable Auto-Backup & Update Alerts"
 msgstr "Automatische back-up inschakelen en waarschuwingen bijwerken"
 
-#: includes/PlanManager.php:763
-msgid "Protect your store with automatic backups"
-msgstr "Bescherm je winkel met automatische back-ups"
-
-#: includes/PlanManager.php:771
+#: includes/PlanManager.php:690
 msgid "Create a Staging Website"
 msgstr "Maak een testomgeving website"
 
-#: includes/PlanManager.php:772
-msgid "Test changes safely before going live"
-msgstr "Test wijzigingen veilig voordat u live gaat"
-
-#: includes/PlanManager.php:782
+#: includes/PlanManager.php:700
 msgid "Store Analysis"
 msgstr "Winkel Analyse"
 
-#: includes/PlanManager.php:783
-msgid "Monitor and analyze your store performance"
-msgstr "Bewaak en analyseer uw winkelprestaties"
-
-#: includes/PlanManager.php:787
+#: includes/PlanManager.php:704
 msgid "Monitor Traffic and Conversion Rates"
 msgstr "Bewaak verkeer en conversieratio's"
 
-#: includes/PlanManager.php:788
-msgid "Track key metrics to optimize your store"
-msgstr "Houd belangrijke statistieken bij om uw winkel te optimaliseren"
-
-#: includes/PlanManager.php:796
+#: includes/PlanManager.php:712
 msgid "Run A/B Test on Homepage Banner"
 msgstr "Voer een A/B-test uit op de banner van de startpagina"
 
-#: includes/PlanManager.php:797
-msgid "Test different designs to improve conversions"
-msgstr "Test verschillende ontwerpen om conversies te verbeteren"
-
-#: includes/PlanManager.php:834
+#: includes/PlanManager.php:736
 msgid "Blog Setup"
 msgstr "Blog instellen"
 
-#: includes/PlanManager.php:835
+#: includes/PlanManager.php:737
 msgid "Get your blog up and running with these essential steps:"
 msgstr "Zet je blog aan de slag met deze essentiële stappen:"
 
-#: includes/PlanManager.php:843
+#: includes/PlanManager.php:745
 msgid "Basic Blog Setup"
 msgstr "Basis Blog Setup"
 
-#: includes/PlanManager.php:844
-msgid "Configure your blog's basic settings"
-msgstr "De basisinstellingen van je blog configureren"
-
-#: includes/PlanManager.php:848
-msgid "Set Site Title"
-msgstr "Sitetitel instellen"
-
-#: includes/PlanManager.php:849
-msgid "Choose a memorable title for your blog"
-msgstr "Kies een gedenkwaardige titel voor je blog"
-
-#: includes/PlanManager.php:857
-#: includes/PlanManager.php:1440
+#: includes/PlanManager.php:1179
 msgid "Set Tagline"
 msgstr "Slogan instellen"
 
-#: includes/PlanManager.php:858
-msgid "Create a compelling tagline that describes your blog"
-msgstr "Maak een pakkende slogan die je blog beschrijft"
-
-#: includes/PlanManager.php:866
-#: includes/PlanManager.php:1458
+#: includes/PlanManager.php:1195
 msgid "Set Time Zone"
 msgstr "Tijdzone instellen"
 
-#: includes/PlanManager.php:867
-msgid "Configure your blog's timezone for accurate posting"
-msgstr "Configureer de tijdzone van je blog voor nauwkeurige berichten"
-
-#: includes/PlanManager.php:875
-#: includes/PlanManager.php:1449
+#: includes/PlanManager.php:1187
 msgid "Set Language"
 msgstr "Taal instellen"
 
-#: includes/PlanManager.php:876
-msgid "Choose your blog's primary language"
-msgstr "Kies de primaire taal van je blog"
-
-#: includes/PlanManager.php:886
+#: includes/PlanManager.php:763
 msgid "Customize Your Blog"
 msgstr "Pas uw blog aan"
 
-#: includes/PlanManager.php:887
-msgid "Make your blog visually appealing and unique"
-msgstr "Maak uw blog visueel aantrekkelijk en uniek"
-
-#: includes/PlanManager.php:892
-msgid "Add your blog logo to establish brand identity"
-msgstr "Voeg uw bloglogo toe om de merkidentiteit vast te stellen"
-
-#: includes/PlanManager.php:901
-msgid "Select colors and typography that match your style"
-msgstr "Selecteer kleuren en typografie die bij uw stijl passen"
-
-#: includes/PlanManager.php:909
-#: includes/PlanManager.php:1492
+#: includes/PlanManager.php:783
+#: includes/PlanManager.php:1225
 msgid "Customize Header and Footer"
 msgstr "Kop- en voettekst aanpassen"
 
-#: includes/PlanManager.php:910
-msgid "Design your header and footer layout"
-msgstr "Ontwerp de lay-out van uw kop- en voettekst"
-
-#: includes/PlanManager.php:919
-msgid "Choose a layout or blog grid for your homepage"
-msgstr "Kies een lay-out of blograster voor uw startpagina"
-
-#: includes/PlanManager.php:929
+#: includes/PlanManager.php:793
 msgid "Create Content"
 msgstr "Inhoud maken"
 
-#: includes/PlanManager.php:930
-msgid "Start creating engaging blog content"
-msgstr "Begin met het maken van boeiende bloginhoud"
-
-#: includes/PlanManager.php:934
+#: includes/PlanManager.php:797
 msgid "Add Your First Blog Post"
 msgstr "Voeg je eerste blogpost toe"
 
-#: includes/PlanManager.php:935
-msgid "Write and publish your first blog post"
-msgstr "Schrijf en publiceer je eerste blogpost"
-
-#: includes/PlanManager.php:943
+#: includes/PlanManager.php:805
 msgid "Create an \"About\" Page"
 msgstr "Maak een 'Over'-pagina"
 
-#: includes/PlanManager.php:944
-msgid "Tell your readers about yourself and your blog"
-msgstr "Vertel je lezers over jezelf en je blog"
-
-#: includes/PlanManager.php:952
+#: includes/PlanManager.php:813
 msgid "Set a Featured Image for One Post"
 msgstr "Stel een uitgelichte afbeelding in voor één bericht"
 
-#: includes/PlanManager.php:953
-msgid "Add visual appeal to your posts with featured images"
-msgstr "Voeg visuele aantrekkingskracht toe aan je berichten met uitgelichte afbeeldingen"
-
-#: includes/PlanManager.php:963
+#: includes/PlanManager.php:823
 msgid "Set Up Navigation"
 msgstr "Navigatie instellen"
 
-#: includes/PlanManager.php:964
-msgid "Create user-friendly navigation for your blog"
-msgstr "Creëer gebruiksvriendelijke navigatie voor uw blog"
-
-#: includes/PlanManager.php:968
-#: includes/PlanManager.php:1560
+#: includes/PlanManager.php:827
+#: includes/PlanManager.php:1285
 msgid "Add Pages for Home, Blog, About, Contact"
 msgstr "Pagina's toevoegen voor Home, Blog, Over, Contact"
 
-#: includes/PlanManager.php:969
-msgid "Create essential pages for your blog"
-msgstr "Maak essentiële pagina's voor uw blog"
-
-#: includes/PlanManager.php:977
-#: includes/PlanManager.php:1569
+#: includes/PlanManager.php:835
+#: includes/PlanManager.php:1293
 msgid "Create a Primary Menu"
 msgstr "Een primair menu maken"
 
-#: includes/PlanManager.php:978
-msgid "Set up main navigation for your blog"
-msgstr "Hoofdnavigatie instellen voor je blog"
-
-#: includes/PlanManager.php:986
+#: includes/PlanManager.php:843
 msgid "Create a Footer Menu"
 msgstr "Maak een voettekstmenu"
 
-#: includes/PlanManager.php:987
-msgid "Add footer navigation with important links"
-msgstr "Voettekstnavigatie toevoegen met belangrijke links"
-
-#: includes/PlanManager.php:997
+#: includes/PlanManager.php:853
 msgid "Set Up Essential Pages"
 msgstr "Essentiële pagina's instellen"
 
-#: includes/PlanManager.php:998
-msgid "Create important legal and policy pages"
-msgstr "Maak belangrijke juridische en beleidspagina's"
-
-#: includes/PlanManager.php:1002
-#: includes/PlanManager.php:1594
+#: includes/PlanManager.php:857
+#: includes/PlanManager.php:1315
 msgid "Add a Privacy Policy"
 msgstr "Voeg een privacybeleid toe"
 
-#: includes/PlanManager.php:1003
-msgid "Create a privacy policy for legal compliance"
-msgstr "Maak een privacybeleid voor naleving van de wet"
-
-#: includes/PlanManager.php:1011
-#: includes/PlanManager.php:1603
+#: includes/PlanManager.php:865
+#: includes/PlanManager.php:1323
 msgid "Add Terms & Conditions"
 msgstr "Algemene voorwaarden toevoegen"
 
-#: includes/PlanManager.php:1012
-msgid "Set terms of use for your blog"
-msgstr "Gebruiksvoorwaarden instellen voor je blog"
-
-#: includes/PlanManager.php:1020
-#: includes/PlanManager.php:1612
+#: includes/PlanManager.php:873
+#: includes/PlanManager.php:1331
 msgid "Add an Accessibility Statement"
 msgstr "Een toegankelijkheidsverklaring toevoegen"
 
-#: includes/PlanManager.php:1021
-msgid "Show your commitment to accessibility"
-msgstr "Toon uw toewijding aan toegankelijkheid"
-
-#: includes/PlanManager.php:1037
+#: includes/PlanManager.php:889
 msgid "First Audience-Building Steps"
 msgstr "Eerste stappen om het publiek op te bouwen"
 
-#: includes/PlanManager.php:1038
-msgid "Start building your blog audience"
-msgstr "Begin met het opbouwen van je blogpubliek"
-
-#: includes/PlanManager.php:1042
-msgid "Enable Social Login"
-msgstr "Schakel Social Login in"
-
-#: includes/PlanManager.php:1043
-msgid "Allow readers to comment using social media accounts"
-msgstr "Sta lezers toe om commentaar te geven met behulp van sociale media-accounts"
-
-#: includes/PlanManager.php:1051
+#: includes/PlanManager.php:893
 msgid "Add a Welcome-Subscribe Popup"
 msgstr "Voeg een pop-up voor welkom en abonneer toe"
 
-#: includes/PlanManager.php:1052
-msgid "Convert visitors to your email list with a popup"
-msgstr "Converteer bezoekers naar uw e-maillijst met een pop-up"
-
-#: includes/PlanManager.php:1060
+#: includes/PlanManager.php:902
 msgid "Customize Notification Emails"
 msgstr "E-mails met meldingen aanpassen"
 
-#: includes/PlanManager.php:1061
-msgid "Personalize comment replies and new-post alerts"
-msgstr "Personaliseer reacties op reacties en meldingen voor nieuwe berichten"
-
-#: includes/PlanManager.php:1069
+#: includes/PlanManager.php:910
 msgid "Connect Jetpack Stats (or Google Analytics 4)"
 msgstr "Koppel Jetpack-statistieken (of Google Analytics 4)"
 
-#: includes/PlanManager.php:1070
-msgid "Track your blog's performance and visitor behavior"
-msgstr "Volg de prestaties en het bezoekersgedrag van je blog"
-
-#: includes/PlanManager.php:1080
-msgid "Test Everything"
-msgstr "Test alles"
-
-#: includes/PlanManager.php:1081
-msgid "Ensure your blog works perfectly before launch"
-msgstr "Zorg ervoor dat uw blog perfect werkt voordat u wordt gelanceerd"
-
-#: includes/PlanManager.php:1085
-msgid "Check Mobile Optimization"
-msgstr "Controleer mobiele optimalisatie"
-
-#: includes/PlanManager.php:1086
-msgid "Test how your blog looks on mobile devices"
-msgstr "Test hoe je blog eruitziet op mobiele apparaten"
-
-#: includes/PlanManager.php:1094
-msgid "Click Through Every Menu Item & Post"
-msgstr "Klik door elk menu-item en plaats"
-
-#: includes/PlanManager.php:1095
-msgid "Test all links and navigation to ensure they work"
-msgstr "Test alle links en navigatie om er zeker van te zijn dat ze werken"
-
-#: includes/PlanManager.php:1103
-msgid "Disable \"Coming Soon\" Mode When Ready"
-msgstr "Schakel de modus \"Binnenkort beschikbaar\" uit wanneer u klaar bent"
-
-#: includes/PlanManager.php:1104
-msgid "Make your blog visible to the public"
-msgstr "Maak je blog zichtbaar voor het publiek"
-
-#: includes/PlanManager.php:1114
-msgid "Launch & Promote - Social Presence"
-msgstr "Lanceren en promoten - Sociale aanwezigheid"
-
-#: includes/PlanManager.php:1115
-msgid "Establish your blog's social media presence"
-msgstr "Vestig de aanwezigheid van uw blog op sociale media"
-
-#: includes/PlanManager.php:1119
+#: includes/PlanManager.php:924
 msgid "Connect Facebook Page Auto-Sharing"
 msgstr "Verbind Facebook-pagina automatisch delen"
 
-#: includes/PlanManager.php:1120
-msgid "Automatically share new posts to Facebook"
-msgstr "Nieuwe berichten automatisch delen op Facebook"
-
-#: includes/PlanManager.php:1128
-msgid "Connect Instagram Auto-Sharing"
-msgstr "Verbind Instagram automatisch delen"
-
-#: includes/PlanManager.php:1129
-msgid "Share your blog posts on Instagram"
-msgstr "Deel je blogposts op Instagram"
-
-#: includes/PlanManager.php:1137
-msgid "Connect TikTok Profile"
-msgstr "Verbind TikTok-profiel"
-
-#: includes/PlanManager.php:1138
-msgid "Link your TikTok profile to your blog"
-msgstr "Koppel je TikTok-profiel aan je blog"
-
-#: includes/PlanManager.php:1146
-msgid "Add Social-Sharing Buttons to Posts"
-msgstr "Voeg knoppen voor sociaal delen toe aan berichten"
-
-#: includes/PlanManager.php:1147
-msgid "Let readers share your content on social media"
-msgstr "Laat lezers uw inhoud delen op sociale media"
-
-#: includes/PlanManager.php:1155
+#: includes/PlanManager.php:940
 msgid "Embed a Social Media Feed on Homepage"
 msgstr "Sluit een social media-feed in op de startpagina"
 
-#: includes/PlanManager.php:1156
-msgid "Show your latest social media posts on your blog"
-msgstr "Toon je laatste social media posts op je blog"
-
-#: includes/PlanManager.php:1166
-msgid "Launch & Promote - SEO & Visibility"
-msgstr "Lanceren & Promoten - SEO & Zichtbaarheid"
-
-#: includes/PlanManager.php:1167
-msgid "Optimize your blog for search engines"
-msgstr "Optimaliseer uw blog voor zoekmachines"
-
-#: includes/PlanManager.php:1171
+#: includes/PlanManager.php:954
 msgid "Optimize On-Page SEO"
 msgstr "Optimaliseer on-page SEO"
 
-#: includes/PlanManager.php:1172
-msgid "Use Yoast or All-in-One SEO to optimize your content"
-msgstr "Gebruik Yoast of All-in-One SEO om je content te optimaliseren"
-
-#: includes/PlanManager.php:1181
-msgid "Monitor your blog's search performance"
-msgstr "De zoekprestaties van je blog bijhouden"
-
-#: includes/PlanManager.php:1189
+#: includes/PlanManager.php:970
 msgid "Generate & Submit XML Sitemap"
 msgstr "XML-sitemap genereren en verzenden"
 
-#: includes/PlanManager.php:1190
-msgid "Help search engines discover your content"
-msgstr "Help zoekmachines uw inhoud te ontdekken"
-
-#: includes/PlanManager.php:1206
+#: includes/PlanManager.php:986
 msgid "Enhance Reader Experience"
 msgstr "Verbeter de lezerservaring"
 
-#: includes/PlanManager.php:1207
-msgid "Improve engagement and user experience"
-msgstr "Verbeter de betrokkenheid en gebruikerservaring"
-
-#: includes/PlanManager.php:1211
+#: includes/PlanManager.php:990
 msgid "Enable & Style Comments Section"
 msgstr "Sectie Opmerkingen inschakelen en opmaken"
 
-#: includes/PlanManager.php:1212
-msgid "Set up Akismet or Antispam Bee for comment moderation"
-msgstr "Akismet of Antispam Bee instellen voor het modereren van reacties"
-
-#: includes/PlanManager.php:1220
+#: includes/PlanManager.php:998
 msgid "Customize Author/Profile Boxes"
 msgstr "Auteurs-/profielvakken aanpassen"
 
-#: includes/PlanManager.php:1221
-msgid "Create professional author profiles"
-msgstr "Maak professionele auteursprofielen"
-
-#: includes/PlanManager.php:1229
+#: includes/PlanManager.php:1006
 msgid "Display Testimonials or Highlighted Comments"
 msgstr "Getuigenissen of gemarkeerde opmerkingen weergeven"
 
-#: includes/PlanManager.php:1230
-msgid "Showcase positive feedback from readers"
-msgstr "Breng positieve feedback van lezers onder de aandacht"
-
-#: includes/PlanManager.php:1238
-#: includes/PlanManager.php:1652
+#: includes/PlanManager.php:1014
+#: includes/PlanManager.php:1367
 msgid "Create a Favicon"
 msgstr "Maak een favicon"
 
-#: includes/PlanManager.php:1239
-msgid "Add a browser icon for your blog"
-msgstr "Een browserpictogram toevoegen voor je blog"
-
-#: includes/PlanManager.php:1249
-msgid "Advanced Promotion & Partnerships"
-msgstr "Geavanceerde promotie en partnerschappen"
-
-#: includes/PlanManager.php:1250
-msgid "Expand your blog's reach and partnerships"
-msgstr "Vergroot het bereik en de partnerschappen van je blog"
-
-#: includes/PlanManager.php:1254
+#: includes/PlanManager.php:1028
 msgid "Build an Email Newsletter"
 msgstr "Bouw een e-mailnieuwsbrief"
 
-#: includes/PlanManager.php:1255
-msgid "Create regular email updates for your readers"
-msgstr "Maak regelmatig e-mailupdates voor uw lezers"
-
-#: includes/PlanManager.php:1263
+#: includes/PlanManager.php:1036
 msgid "Draft an Influencer/Guest-Post Outreach List"
 msgstr "Stel een lijst met influencers/gastposten op"
 
-#: includes/PlanManager.php:1264
-msgid "Build relationships with other bloggers and influencers"
-msgstr "Bouw relaties op met andere bloggers en influencers"
-
-#: includes/PlanManager.php:1273
-msgid "Promote a pillar article with paid advertising"
-msgstr "Promoot een pijlerartikel met betaalde advertenties"
-
-#: includes/PlanManager.php:1281
-msgid "Launch a Content Giveaway"
-msgstr "Lanceer een Content Giveaway"
-
-#: includes/PlanManager.php:1282
-msgid "Offer a free e-book or resource to grow your audience"
-msgstr "Bied een gratis e-book of bron aan om uw publiek te laten groeien"
-
-#: includes/PlanManager.php:1290
+#: includes/PlanManager.php:1052
 msgid "Track Campaigns with UTM Links"
 msgstr "Volg campagnes met UTM-links"
 
-#: includes/PlanManager.php:1291
-msgid "Monitor campaign effectiveness in Analytics"
-msgstr "De effectiviteit van campagnes bijhouden in Analytics"
-
-#: includes/PlanManager.php:1301
+#: includes/PlanManager.php:1062
 msgid "Content & Traffic Strategy"
 msgstr "Content & Traffic Strategie"
 
-#: includes/PlanManager.php:1302
-msgid "Develop advanced content strategies"
-msgstr "Ontwikkel geavanceerde contentstrategieën"
-
-#: includes/PlanManager.php:1306
+#: includes/PlanManager.php:1066
 msgid "Plan a Content Series or Editorial Calendar"
 msgstr "Een inhoudsreeks of redactionele kalender plannen"
 
-#: includes/PlanManager.php:1307
-msgid "Create a structured content planning approach"
-msgstr "Creëer een gestructureerde aanpak voor contentplanning"
-
-#: includes/PlanManager.php:1315
+#: includes/PlanManager.php:1074
 msgid "Implement Internal-Linking Strategy"
 msgstr "Implementeer een strategie voor interne koppelingen"
 
-#: includes/PlanManager.php:1316
-msgid "Link older posts to improve SEO and user engagement"
-msgstr "Link oudere berichten om SEO en gebruikersbetrokkenheid te verbeteren"
-
-#: includes/PlanManager.php:1324
+#: includes/PlanManager.php:1082
 msgid "Install Yoast Premium for Advanced Schemas"
 msgstr "Installeer Yoast Premium voor geavanceerde schema's"
 
-#: includes/PlanManager.php:1325
-msgid "Enhance SEO with advanced structured data"
-msgstr "Verbeter SEO met geavanceerde gestructureerde gegevens"
-
-#: includes/PlanManager.php:1336
-msgid "Optimize your blog for speed and security"
-msgstr "Optimaliseer uw blog voor snelheid en veiligheid"
-
-#: includes/PlanManager.php:1340
+#: includes/PlanManager.php:1096
 msgid "Speed-up Site with Jetpack Boost"
 msgstr "Versnel de site met Jetpack Boost"
 
-#: includes/PlanManager.php:1341
-msgid "Improve loading times with caching and optimization"
-msgstr "Verbeter laadtijden met caching en optimalisatie"
-
-#: includes/PlanManager.php:1349
-#: includes/PlanManager.php:1941
+#: includes/PlanManager.php:1104
+#: includes/PlanManager.php:1623
 msgid "Enable Automatic Backups & Update Alerts"
 msgstr "Automatische back-ups inschakelen en waarschuwingen bijwerken"
 
-#: includes/PlanManager.php:1350
-msgid "Protect your blog with automated backups"
-msgstr "Bescherm je blog met geautomatiseerde back-ups"
-
-#: includes/PlanManager.php:1358
+#: includes/PlanManager.php:1112
 msgid "Create a Staging Site"
 msgstr "Een testsite maken"
 
-#: includes/PlanManager.php:1359
-msgid "Test changes safely before publishing"
-msgstr "Test wijzigingen veilig voordat u ze publiceert"
-
-#: includes/PlanManager.php:1369
+#: includes/PlanManager.php:1122
 msgid "Blog Analytics"
 msgstr "Blog Analytics"
 
-#: includes/PlanManager.php:1370
-msgid "Monitor and analyze your blog performance"
-msgstr "Bewaak en analyseer de prestaties van uw blog"
-
-#: includes/PlanManager.php:1374
+#: includes/PlanManager.php:1126
 msgid "Monitor Traffic & Engagement"
 msgstr "Monitor verkeer en betrokkenheid"
 
-#: includes/PlanManager.php:1375
-msgid "Track visitor behavior in Jetpack or Google Analytics"
-msgstr "Volg het gedrag van bezoekers in Jetpack of Google Analytics"
-
-#: includes/PlanManager.php:1383
-msgid "Review Monthly Performance Dashboard"
-msgstr "Bekijk het maandelijkse prestatiedashboard"
-
-#: includes/PlanManager.php:1384
-msgid "Analyze monthly reports and set growth goals"
-msgstr "Analyseer maandelijkse rapporten en stel groeidoelen"
-
-#: includes/PlanManager.php:1408
+#: includes/PlanManager.php:1150
 msgid "Corporate Setup"
 msgstr "Zakelijke opzet"
 
-#: includes/PlanManager.php:1409
+#: includes/PlanManager.php:1151
 msgid "Set up your corporate website with these essential steps:"
 msgstr "Zet uw bedrijfswebsite op met deze essentiële stappen:"
 
-#: includes/PlanManager.php:1417
+#: includes/PlanManager.php:1159
 msgid "Basic Site Setup"
 msgstr "Basisinstellingen van de site"
 
-#: includes/PlanManager.php:1418
-msgid "Configure your corporate website foundation"
-msgstr "Configureer de fundering van uw bedrijfswebsite"
-
-#: includes/PlanManager.php:1422
+#: includes/PlanManager.php:1163
 msgid "Complete Basic Site Setup"
 msgstr "Volledige basisinstallatie van de site"
 
-#: includes/PlanManager.php:1423
-msgid "Configure essential website settings"
-msgstr "Configureer essentiële website-instellingen"
-
-#: includes/PlanManager.php:1431
+#: includes/PlanManager.php:1171
 msgid "Set Site Name"
 msgstr "Sitenaam instellen"
 
-#: includes/PlanManager.php:1432
-msgid "Add your company name as the site title"
-msgstr "Voeg uw bedrijfsnaam toe als sitetitel"
-
-#: includes/PlanManager.php:1441
-msgid "Create a professional tagline that describes your business"
-msgstr "Maak een professionele slogan die uw bedrijf beschrijft"
-
-#: includes/PlanManager.php:1450
-msgid "Choose your website's primary language"
-msgstr "Kies de primaire taal van uw website"
-
-#: includes/PlanManager.php:1459
-msgid "Configure your website's timezone"
-msgstr "Configureer de tijdzone van uw website"
-
-#: includes/PlanManager.php:1469
+#: includes/PlanManager.php:1205
 msgid "Customize Your Website"
 msgstr "Pas uw website aan"
 
-#: includes/PlanManager.php:1470
-msgid "Brand your corporate website professionally"
-msgstr "Merk uw bedrijfswebsite professioneel op"
-
-#: includes/PlanManager.php:1474
+#: includes/PlanManager.php:1209
 msgid "Upload Company Logo"
 msgstr "Bedrijfslogo uploaden"
 
-#: includes/PlanManager.php:1475
-msgid "Add your company logo to establish brand identity"
-msgstr "Voeg uw bedrijfslogo toe om de merkidentiteit vast te stellen"
-
-#: includes/PlanManager.php:1483
+#: includes/PlanManager.php:1217
 msgid "Choose Brand Colors and Fonts"
 msgstr "Kies merkkleuren en lettertypen"
 
-#: includes/PlanManager.php:1484
-msgid "Apply your corporate brand colors and typography"
-msgstr "Pas de kleuren en typografie van uw bedrijfsmerk toe"
-
-#: includes/PlanManager.php:1493
-msgid "Design professional header and footer layouts"
-msgstr "Ontwerp professionele kop- en voettekstlay-outs"
-
-#: includes/PlanManager.php:1501
+#: includes/PlanManager.php:1233
 msgid "Customize Homepage Layout"
 msgstr "De lay-out van de startpagina aanpassen"
 
-#: includes/PlanManager.php:1502
-msgid "Select a template or blocks for your homepage"
-msgstr "Selecteer een sjabloon of blokken voor uw startpagina"
-
-#: includes/PlanManager.php:1512
+#: includes/PlanManager.php:1243
 msgid "Set Up Key Pages"
 msgstr "Belangrijke pagina's instellen"
 
-#: includes/PlanManager.php:1513
-msgid "Create essential corporate pages"
-msgstr "Maak essentiële bedrijfspagina's"
-
-#: includes/PlanManager.php:1517
+#: includes/PlanManager.php:1247
 msgid "Create an About Us Page"
 msgstr "Maak een Over ons-pagina"
 
-#: includes/PlanManager.php:1518
-msgid "Tell visitors about your company and mission"
-msgstr "Vertel bezoekers over je bedrijf en missie"
-
-#: includes/PlanManager.php:1526
+#: includes/PlanManager.php:1255
 msgid "Create a Services or What We Do Page"
 msgstr "Een pagina maken voor diensten of wat we doen"
 
-#: includes/PlanManager.php:1527
-msgid "Showcase your company's services and offerings"
-msgstr "Breng de diensten en het aanbod van uw bedrijf onder de aandacht"
-
-#: includes/PlanManager.php:1535
+#: includes/PlanManager.php:1263
 msgid "Create a Contact Page"
 msgstr "Maak een contactpagina"
 
-#: includes/PlanManager.php:1536
-msgid "Add contact form and map for customer inquiries"
-msgstr "Voeg contactformulier en kaart toe voor vragen van klanten"
-
-#: includes/PlanManager.php:1544
+#: includes/PlanManager.php:1271
 msgid "Add a Team or Leadership Page"
 msgstr "Een team- of leiderschapspagina toevoegen"
 
-#: includes/PlanManager.php:1545
-msgid "Introduce your team members and leadership"
-msgstr "Stel uw teamleden en leiderschap voor"
-
-#: includes/PlanManager.php:1555
+#: includes/PlanManager.php:1281
 msgid "Configure Navigation"
 msgstr "Navigatie configureren"
 
-#: includes/PlanManager.php:1556
-msgid "Set up professional website navigation"
-msgstr "Professionele websitenavigatie instellen"
-
-#: includes/PlanManager.php:1561
-msgid "Create all essential navigation pages"
-msgstr "Maak alle essentiële navigatiepagina's"
-
-#: includes/PlanManager.php:1570
-msgid "Set up main navigation menu"
-msgstr "Hoofdnavigatiemenu instellen"
-
-#: includes/PlanManager.php:1578
+#: includes/PlanManager.php:1301
 msgid "Add a Footer Menu"
 msgstr "Een voettekstmenu toevoegen"
 
-#: includes/PlanManager.php:1579
-msgid "Create footer navigation with Privacy, Terms, etc."
-msgstr "Maak voettekstnavigatie met privacy, voorwaarden, enz."
-
-#: includes/PlanManager.php:1589
+#: includes/PlanManager.php:1311
 msgid "Add Legal & Trust Content"
 msgstr "Voeg juridische en vertrouwensinhoud toe"
 
-#: includes/PlanManager.php:1590
-msgid "Build credibility with legal and trust signals"
-msgstr "Bouw geloofwaardigheid op met juridische en vertrouwenssignalen"
-
-#: includes/PlanManager.php:1595
-msgid "Create privacy policy for legal compliance"
-msgstr "Creëer een privacybeleid voor naleving van de wet"
-
-#: includes/PlanManager.php:1604
-msgid "Set terms of service for your business"
-msgstr "Servicevoorwaarden instellen voor uw bedrijf"
-
-#: includes/PlanManager.php:1613
-msgid "Show commitment to web accessibility"
-msgstr "Toon toewijding aan webtoegankelijkheid"
-
-#: includes/PlanManager.php:1621
+#: includes/PlanManager.php:1339
 msgid "Add Client Logos or Testimonials"
 msgstr "Logo's of getuigenissen van klanten toevoegen"
 
-#: includes/PlanManager.php:1622
-msgid "Display client logos and positive testimonials"
-msgstr "Toon klantlogo's en positieve getuigenissen"
-
-#: includes/PlanManager.php:1638
+#: includes/PlanManager.php:1355
 msgid "Establish Your Brand Online"
 msgstr "Vestig uw merk online"
 
-#: includes/PlanManager.php:1639
-msgid "Build your corporate online presence"
-msgstr "Bouw uw zakelijke online aanwezigheid op"
-
-#: includes/PlanManager.php:1643
+#: includes/PlanManager.php:1359
 msgid "Set Up a Custom Domain"
 msgstr "Een aangepast domein instellen"
 
-#: includes/PlanManager.php:1644
-msgid "Configure your professional domain name"
-msgstr "Configureer uw professionele domeinnaam"
-
-#: includes/PlanManager.php:1653
-msgid "Add a professional browser icon"
-msgstr "Een professioneel browserpictogram toevoegen"
-
-#: includes/PlanManager.php:1661
+#: includes/PlanManager.php:1375
 msgid "Connect Your Google Business Profile"
 msgstr "Koppel uw Google-bedrijfsprofiel"
 
-#: includes/PlanManager.php:1662
-msgid "Enhance local/regional presence with Google Business"
-msgstr "Verbeter de lokale/regionale aanwezigheid met Google Business"
-
-#: includes/PlanManager.php:1670
+#: includes/PlanManager.php:1383
 msgid "Create a Branded Email Address"
 msgstr "Maak een merk-e-mailadres aan"
 
-#: includes/PlanManager.php:1671
-msgid "Set up professional email like info@yourcompany.com"
-msgstr "Professionele e-mail instellen zoals info@yourcompany.com"
-
-#: includes/PlanManager.php:1681
+#: includes/PlanManager.php:1393
 msgid "Launch Essential Marketing Tools"
 msgstr "Lanceer essentiële marketingtools"
 
-#: includes/PlanManager.php:1682
-msgid "Set up analytics and SEO tools"
-msgstr "Analyse- en SEO-tools instellen"
-
-#: includes/PlanManager.php:1686
+#: includes/PlanManager.php:1397
 msgid "Set Up Jetpack Stats (or GA4)"
 msgstr "Jetpack-statistieken (of GA4) instellen"
 
-#: includes/PlanManager.php:1687
-msgid "Track website performance and visitor behavior"
-msgstr "Volg de prestaties van de website en het bezoekersgedrag"
-
-#: includes/PlanManager.php:1695
+#: includes/PlanManager.php:1405
 msgid "Connect Google Search Console"
 msgstr "Verbind Google Search Console"
 
-#: includes/PlanManager.php:1696
-msgid "Monitor search performance and indexing"
-msgstr "Zoekprestaties en indexering controleren"
-
-#: includes/PlanManager.php:1704
+#: includes/PlanManager.php:1413
 msgid "Install a SEO Plugin (Yoast Premium)"
 msgstr "Installeer een SEO-plug-in (Yoast Premium)"
 
-#: includes/PlanManager.php:1705
-msgid "Optimize your website for search engines"
-msgstr "Optimaliseer uw website voor zoekmachines"
-
-#: includes/PlanManager.php:1713
+#: includes/PlanManager.php:1421
 msgid "Add Social Sharing Settings"
 msgstr "Instellingen voor sociaal delen toevoegen"
 
-#: includes/PlanManager.php:1714
-msgid "Enable social media sharing for content"
-msgstr "Schakel het delen van inhoud op sociale media in"
-
-#: includes/PlanManager.php:1724
+#: includes/PlanManager.php:1431
 msgid "Set Up Contact & Engagement"
 msgstr "Contact & Engagement instellen"
 
-#: includes/PlanManager.php:1725
-msgid "Make it easy for customers to contact you"
-msgstr "Maak het klanten gemakkelijk om contact met u op te nemen"
-
-#: includes/PlanManager.php:1729
+#: includes/PlanManager.php:1435
 msgid "Add a Contact Form"
 msgstr "Voeg een contactformulier toe"
 
-#: includes/PlanManager.php:1730
-msgid "Create contact form with email routing"
-msgstr "Contactformulier maken met e-mailroutering"
-
-#: includes/PlanManager.php:1738
+#: includes/PlanManager.php:1443
 msgid "Embed a Map or Location"
 msgstr "Een kaart of locatie insluiten"
 
-#: includes/PlanManager.php:1739
-msgid "Show your business location if applicable"
-msgstr "Toon uw bedrijfslocatie indien van toepassing"
-
-#: includes/PlanManager.php:1747
+#: includes/PlanManager.php:1451
 msgid "Add Live Chat or Contact Widget"
 msgstr "Live Chat of Contact Widget toevoegen"
 
-#: includes/PlanManager.php:1748
-msgid "Enable real-time customer support"
-msgstr "Realtime klantenondersteuning inschakelen"
-
-#: includes/PlanManager.php:1756
+#: includes/PlanManager.php:1459
 msgid "Link to Social Media Profiles"
 msgstr "Link naar profielen op sociale media"
 
-#: includes/PlanManager.php:1757
-msgid "Add social media links in header/footer"
-msgstr "Voeg links naar sociale media toe in de kop-/voettekst"
-
-#: includes/PlanManager.php:1767
+#: includes/PlanManager.php:1469
 msgid "Final Review Before Going Live"
 msgstr "Eindbeoordeling voor livegang"
 
-#: includes/PlanManager.php:1768
-msgid "Test everything before launch"
-msgstr "Test alles voor de lancering"
-
-#: includes/PlanManager.php:1772
+#: includes/PlanManager.php:1473
 msgid "Preview on Mobile, Tablet, and Desktop"
 msgstr "Voorbeeld op mobiel, tablet en desktop"
 
-#: includes/PlanManager.php:1773
-msgid "Test responsive design on all devices"
-msgstr "Test responsive design op alle apparaten"
-
-#: includes/PlanManager.php:1781
+#: includes/PlanManager.php:1481
 msgid "Test Contact Form and Navigation Links"
 msgstr "Test contactformulier en navigatielinks"
 
-#: includes/PlanManager.php:1782
-msgid "Ensure all forms and links work properly"
-msgstr "Zorg ervoor dat alle formulieren en links goed werken"
-
-#: includes/PlanManager.php:1790
+#: includes/PlanManager.php:1489
 msgid "Disable \"Coming Soon\" Mode"
 msgstr "Schakel de modus \"Binnenkort beschikbaar\" uit"
 
-#: includes/PlanManager.php:1791
-msgid "Make your website visible to the public"
-msgstr "Maak je website zichtbaar voor het publiek"
-
-#: includes/PlanManager.php:1799
+#: includes/PlanManager.php:1497
 msgid "Ask Someone Outside Your Team to Review"
 msgstr "Vraag iemand buiten je team om een beoordeling te geven"
 
-#: includes/PlanManager.php:1800
-msgid "Get external feedback before launching"
-msgstr "Krijg externe feedback voordat u start"
-
-#: includes/PlanManager.php:1816
+#: includes/PlanManager.php:1513
 msgid "Strengthen Online Presence"
 msgstr "Versterk de online aanwezigheid"
 
-#: includes/PlanManager.php:1817
-msgid "Build credibility and trust"
-msgstr "Bouw geloofwaardigheid en vertrouwen op"
-
-#: includes/PlanManager.php:1821
+#: includes/PlanManager.php:1517
 msgid "Add Client Testimonials or Reviews"
 msgstr "Getuigenissen of beoordelingen van klanten toevoegen"
 
-#: includes/PlanManager.php:1822
-msgid "Showcase positive client feedback"
-msgstr "Positieve feedback van klanten onder de aandacht brengen"
-
-#: includes/PlanManager.php:1830
+#: includes/PlanManager.php:1525
 msgid "Add Certifications, Memberships, or Awards"
 msgstr "Certificeringen, lidmaatschappen of onderscheidingen toevoegen"
 
-#: includes/PlanManager.php:1831
-msgid "Display industry credentials and achievements"
-msgstr "Referenties en prestaties van de display-industrie"
-
-#: includes/PlanManager.php:1841
+#: includes/PlanManager.php:1535
 msgid "Build Content for SEO & Trust"
 msgstr "Bouw inhoud voor SEO en vertrouwen"
 
-#: includes/PlanManager.php:1842
-msgid "Create valuable content that builds authority"
-msgstr "Creëer waardevolle inhoud die autoriteit opbouwt"
-
-#: includes/PlanManager.php:1846
+#: includes/PlanManager.php:1539
 msgid "Publish Your First Company Blog Post"
 msgstr "Publiceer uw eerste bedrijfsblogpost"
 
-#: includes/PlanManager.php:1847
-msgid "Share industry insights or company news"
-msgstr "Deel inzichten uit de branche of bedrijfsnieuws"
-
-#: includes/PlanManager.php:1855
+#: includes/PlanManager.php:1547
 msgid "Create a FAQ Page"
 msgstr "Maak een pagina met veelgestelde vragen"
 
-#: includes/PlanManager.php:1856
-msgid "Answer common customer questions"
-msgstr "Beantwoord veelgestelde vragen van klanten"
-
-#: includes/PlanManager.php:1864
+#: includes/PlanManager.php:1555
 msgid "Optimize Your Key Pages for Keywords"
 msgstr "Optimaliseer uw belangrijkste pagina's voor zoekwoorden"
 
-#: includes/PlanManager.php:1865
-msgid "Improve SEO and readability of important pages"
-msgstr "Verbeter SEO en leesbaarheid van belangrijke pagina's"
-
-#: includes/PlanManager.php:1873
+#: includes/PlanManager.php:1563
 msgid "Generate and Submit XML Sitemap"
 msgstr "XML-sitemap genereren en verzenden"
 
-#: includes/PlanManager.php:1874
-msgid "Help search engines discover your pages"
-msgstr "Help zoekmachines uw pagina's te ontdekken"
-
-#: includes/PlanManager.php:1884
+#: includes/PlanManager.php:1573
 msgid "Marketing & Lead Generation"
 msgstr "Marketing en leadgeneratie"
 
-#: includes/PlanManager.php:1885
-msgid "Generate and nurture business leads"
-msgstr "Genereer en koester zakelijke leads"
-
-#: includes/PlanManager.php:1889
+#: includes/PlanManager.php:1577
 msgid "Set Up an Email Capture Form"
 msgstr "Een formulier voor het vastleggen van e-mail instellen"
 
-#: includes/PlanManager.php:1890
-msgid "Build a newsletter subscription list"
-msgstr "Bouw een lijst met abonnementen op de nieuwsbrief"
-
-#: includes/PlanManager.php:1898
+#: includes/PlanManager.php:1585
 msgid "Connect to CRM or Email Tool"
 msgstr "Verbinding maken met CRM of e-mailtool"
 
-#: includes/PlanManager.php:1899
-msgid "Integrate with Mailchimp, HubSpot, or similar"
-msgstr "Integreer met Mailchimp, HubSpot of iets dergelijks"
-
-#: includes/PlanManager.php:1907
+#: includes/PlanManager.php:1593
 msgid "Add a Call-to-Action Section to Homepage"
 msgstr "Voeg een call-to-action-sectie toe aan de startpagina"
 
-#: includes/PlanManager.php:1908
-msgid "Encourage visitors to take action"
-msgstr "Stimuleer bezoekers om actie te ondernemen"
-
-#: includes/PlanManager.php:1916
+#: includes/PlanManager.php:1601
 msgid "Create a Downloadable Resource"
 msgstr "Maak een downloadbare bron"
 
-#: includes/PlanManager.php:1917
-msgid "Offer brochure, whitepaper, or guide for lead generation"
-msgstr "Bied een brochure, whitepaper of gids voor het genereren van leads aan"
-
-#: includes/PlanManager.php:1927
+#: includes/PlanManager.php:1611
 msgid "Site Performance & Security"
 msgstr "Prestaties en beveiliging van de site"
 
-#: includes/PlanManager.php:1928
-msgid "Optimize and secure your corporate website"
-msgstr "Optimaliseer en beveilig uw bedrijfswebsite"
-
-#: includes/PlanManager.php:1932
+#: includes/PlanManager.php:1615
 msgid "Install Jetpack Boost or Caching Plugin"
 msgstr "Installeer Jetpack Boost of caching plugin"
 
-#: includes/PlanManager.php:1933
-msgid "Improve website loading speed"
-msgstr "Verbeter de laadsnelheid van de website"
-
-#: includes/PlanManager.php:1942
-msgid "Protect your website with regular backups"
-msgstr "Bescherm uw website met regelmatige back-ups"
-
-#: includes/PlanManager.php:1950
+#: includes/PlanManager.php:1631
 msgid "Install a Security Plugin"
 msgstr "Installeer een beveiligingsplug-in"
 
-#: includes/PlanManager.php:1951
-msgid "Add security protection against threats"
-msgstr "Voeg beveiligingsbescherming tegen bedreigingen toe"
-
-#: includes/PlanManager.php:1959
+#: includes/PlanManager.php:1639
 msgid "Set Up a Staging Site"
 msgstr "Een testsite instellen"
 
-#: includes/PlanManager.php:1960
-msgid "Test updates and redesigns safely"
-msgstr "Test updates en herontwerpen veilig"
-
-#: includes/PlanManager.php:1970
+#: includes/PlanManager.php:1649
 msgid "Monitor & Improve"
 msgstr "Monitoren en verbeteren"
 
-#: includes/PlanManager.php:1971
-msgid "Track performance and plan improvements"
-msgstr "Prestaties bijhouden en verbeteringen plannen"
-
-#: includes/PlanManager.php:1975
+#: includes/PlanManager.php:1653
 msgid "Review Traffic & Engagement"
 msgstr "Bekijk Traffic & Engagement"
 
-#: includes/PlanManager.php:1976
-msgid "Analyze visitor behavior in Google Analytics"
-msgstr "Analyseer bezoekersgedrag in Google Analytics"
-
-#: includes/PlanManager.php:1984
+#: includes/PlanManager.php:1661
 msgid "Track Form Submissions or Lead Goals"
 msgstr "Formulierinzendingen of leaddoelen bijhouden"
 
-#: includes/PlanManager.php:1985
-msgid "Monitor lead generation effectiveness"
-msgstr "Bewaak de effectiviteit van leadgeneratie"
-
-#: includes/PlanManager.php:1993
+#: includes/PlanManager.php:1669
 msgid "Run a Speed Test"
 msgstr "Voer een snelheidstest uit"
 
-#: includes/PlanManager.php:1994
-msgid "Test site speed with PageSpeed Insights or GTmetrix"
-msgstr "Test de snelheid van de site met PageSpeed Insights of GTmetrix"
-
-#: includes/PlanManager.php:2002
+#: includes/PlanManager.php:1677
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Plan uw volgende inhouds- of campagne-update"
-
-#: includes/PlanManager.php:2003
-msgid "Schedule regular content and marketing updates"
-msgstr "Plan regelmatig content- en marketingupdates"
 
 #: includes/StepsApi.php:260
 #: includes/StepsApi.php:282
@@ -1610,3 +791,23 @@ msgstr "Overgeslagen taken weergeven"
 #: build/next-steps-portal/bundle.js:1703
 msgid "Loading next steps..."
 msgstr "Volgende stappen laden..."
+
+#: includes/PlanManager.php:894
+msgid "Convert visitors to email subscribers."
+msgstr ""
+
+#: includes/PlanManager.php:920
+msgid "Social Presence"
+msgstr ""
+
+#: includes/PlanManager.php:932
+msgid "Add Social-Sharing Buttons"
+msgstr ""
+
+#: includes/PlanManager.php:950
+msgid "SEO & Visibility"
+msgstr ""
+
+#: includes/PlanManager.php:1044
+msgid "Run pillar article promotion on social ad"
+msgstr ""
