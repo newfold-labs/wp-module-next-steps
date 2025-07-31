@@ -264,7 +264,7 @@ class PlanManager {
 										'id'              => 'store_quick_setup',
 										'title'           => __( 'Quick Setup', 'wp-module-next-steps' ),
 										'description'     => __( 'Complete the basic store configuration and settings', 'wp-module-next-steps' ),
-										'href'            => '#store-setup-quick-flow-modal',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=general',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
