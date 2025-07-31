@@ -1,21 +1,20 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en_GB <LL@li.org>\n"
+"Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
-"Language: en_GB\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:22
-#: includes/NextSteps.php:62
-#: includes/NextStepsWidget.php:39
+#: bootstrap.php:22 includes/NextSteps.php:62 includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Next Steps"
 
@@ -27,8 +26,7 @@ msgstr "Store Setup"
 msgid "Complete your ecommerce store setup with these essential steps:"
 msgstr "Complete your ecommerce store setup with these essential steps:"
 
-#: includes/PlanManager.php:256
-#: includes/PlanManager.php:741
+#: includes/PlanManager.php:256 includes/PlanManager.php:741
 #: includes/PlanManager.php:1155
 msgid "Build"
 msgstr "Build"
@@ -37,8 +35,7 @@ msgstr "Build"
 msgid "Basic Store Setup"
 msgstr "Basic Store Setup"
 
-#: includes/PlanManager.php:264
-#: includes/PlanManager.php:749
+#: includes/PlanManager.php:264 includes/PlanManager.php:749
 msgid "Quick Setup"
 msgstr "Quick Setup"
 
@@ -46,13 +43,11 @@ msgstr "Quick Setup"
 msgid "Customize Your Store"
 msgstr "Customize Your Store"
 
-#: includes/PlanManager.php:282
-#: includes/PlanManager.php:767
+#: includes/PlanManager.php:282 includes/PlanManager.php:767
 msgid "Upload Logo"
 msgstr "Upload Logo"
 
-#: includes/PlanManager.php:290
-#: includes/PlanManager.php:775
+#: includes/PlanManager.php:290 includes/PlanManager.php:775
 msgid "Choose Colors and Fonts"
 msgstr "Choose Colors and Fonts"
 
@@ -120,8 +115,7 @@ msgstr "Terms & Conditions"
 msgid "Return and Refund Policy"
 msgstr "Return and Refund Policy"
 
-#: includes/PlanManager.php:424
-#: includes/PlanManager.php:885
+#: includes/PlanManager.php:424 includes/PlanManager.php:885
 #: includes/PlanManager.php:1351
 msgid "Brand"
 msgstr "Brand"
@@ -178,8 +172,7 @@ msgstr "Launch and Promote - SEO & Store Visibility"
 msgid "Optimize Your Store SEO"
 msgstr "Optimize Your Store SEO"
 
-#: includes/PlanManager.php:524
-#: includes/PlanManager.php:962
+#: includes/PlanManager.php:524 includes/PlanManager.php:962
 msgid "Submit Site to Google Search Console"
 msgstr "Submit Site to Google Search Console"
 
@@ -187,8 +180,7 @@ msgstr "Submit Site to Google Search Console"
 msgid "Create a Custom Sitemap"
 msgstr "Create a Custom Sitemap"
 
-#: includes/PlanManager.php:544
-#: includes/PlanManager.php:982
+#: includes/PlanManager.php:544 includes/PlanManager.php:982
 #: includes/PlanManager.php:1509
 msgid "Grow"
 msgstr "Grow"
@@ -209,8 +201,7 @@ msgstr "Customize Your Customer's Account Page"
 msgid "Collect and Show Reviews for Your Products"
 msgstr "Collect and Show Reviews for Your Products"
 
-#: includes/PlanManager.php:578
-#: includes/PlanManager.php:1024
+#: includes/PlanManager.php:578 includes/PlanManager.php:1024
 msgid "Advanced Social & Influencer Marketing"
 msgstr "Advanced Social & Influencer Marketing"
 
@@ -258,8 +249,7 @@ msgstr "Create an Upsell Campaign"
 msgid "Setup Yoast Premium to Drive Traffic to Your Store"
 msgstr "Setup Yoast Premium to Drive Traffic to Your Store"
 
-#: includes/PlanManager.php:670
-#: includes/PlanManager.php:1092
+#: includes/PlanManager.php:670 includes/PlanManager.php:1092
 msgid "Performance & Security"
 msgstr "Performance & Security"
 
@@ -315,8 +305,7 @@ msgstr "Set Language"
 msgid "Customize Your Blog"
 msgstr "Customize Your Blog"
 
-#: includes/PlanManager.php:783
-#: includes/PlanManager.php:1225
+#: includes/PlanManager.php:783 includes/PlanManager.php:1225
 msgid "Customize Header and Footer"
 msgstr "Customize Header and Footer"
 
@@ -340,13 +329,11 @@ msgstr "Set a Featured Image for One Post"
 msgid "Set Up Navigation"
 msgstr "Set Up Navigation"
 
-#: includes/PlanManager.php:827
-#: includes/PlanManager.php:1285
+#: includes/PlanManager.php:827 includes/PlanManager.php:1285
 msgid "Add Pages for Home, Blog, About, Contact"
 msgstr "Add Pages for Home, Blog, About, Contact"
 
-#: includes/PlanManager.php:835
-#: includes/PlanManager.php:1293
+#: includes/PlanManager.php:835 includes/PlanManager.php:1293
 msgid "Create a Primary Menu"
 msgstr "Create a Primary Menu"
 
@@ -358,18 +345,15 @@ msgstr "Create a Footer Menu"
 msgid "Set Up Essential Pages"
 msgstr "Set Up Essential Pages"
 
-#: includes/PlanManager.php:857
-#: includes/PlanManager.php:1315
+#: includes/PlanManager.php:857 includes/PlanManager.php:1315
 msgid "Add a Privacy Policy"
 msgstr "Add a Privacy Policy"
 
-#: includes/PlanManager.php:865
-#: includes/PlanManager.php:1323
+#: includes/PlanManager.php:865 includes/PlanManager.php:1323
 msgid "Add Terms & Conditions"
 msgstr "Add Terms & Conditions"
 
-#: includes/PlanManager.php:873
-#: includes/PlanManager.php:1331
+#: includes/PlanManager.php:873 includes/PlanManager.php:1331
 msgid "Add an Accessibility Statement"
 msgstr "Add an Accessibility Statement"
 
@@ -421,8 +405,7 @@ msgstr "Customize Author/Profile Boxes"
 msgid "Display Testimonials or Highlighted Comments"
 msgstr "Display Testimonials or Highlighted Comments"
 
-#: includes/PlanManager.php:1014
-#: includes/PlanManager.php:1367
+#: includes/PlanManager.php:1014 includes/PlanManager.php:1367
 msgid "Create a Favicon"
 msgstr "Create a Favicon"
 
@@ -458,8 +441,7 @@ msgstr "Install Yoast Premium for Advanced Schemas"
 msgid "Speed-up Site with Jetpack Boost"
 msgstr "Speed-up Site with Jetpack Boost"
 
-#: includes/PlanManager.php:1104
-#: includes/PlanManager.php:1623
+#: includes/PlanManager.php:1104 includes/PlanManager.php:1623
 msgid "Enable Automatic Backups & Update Alerts"
 msgstr "Enable Automatic Backups & Update Alerts"
 
@@ -711,8 +693,7 @@ msgstr "Run a Speed Test"
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Plan Your Next Content or Campaign Update"
 
-#: includes/StepsApi.php:260
-#: includes/StepsApi.php:282
+#: includes/StepsApi.php:260 includes/StepsApi.php:282
 msgid "No plan found."
 msgstr "No plan found."
 
@@ -724,8 +705,7 @@ msgstr "No tracks found in plan."
 msgid "No sections found in track."
 msgstr "No sections found in track."
 
-#: includes/StepsApi.php:344
-#: includes/StepsApi.php:377
+#: includes/StepsApi.php:344 includes/StepsApi.php:377
 msgid "Invalid parameters provided."
 msgstr "Invalid parameters provided."
 
@@ -749,65 +729,58 @@ msgstr "Invalid plan type provided."
 msgid "Failed to add task to section."
 msgstr "Failed to add task to section."
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1973
 msgid "Mark Complete"
 msgstr "Mark Complete"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1996
 msgid "Skip"
 msgstr "Skip"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2029
 msgid "Restart"
 msgstr "Restart"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2052
 #: build/next-steps-portal/bundle.js:2067
 msgid "Unskip"
 msgstr "Unskip"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1733
 msgid "Hide skipped tasks"
 msgstr "Hide skipped tasks"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1734
 msgid "View skipped tasks"
 msgstr "View skipped tasks"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1703
 msgid "Loading next steps..."
 msgstr "Loading next steps..."
 
 #: includes/PlanManager.php:894
 msgid "Convert visitors to email subscribers."
-msgstr ""
+msgstr "Convert visitors to email subscribers."
 
 #: includes/PlanManager.php:920
 msgid "Social Presence"
-msgstr ""
+msgstr "Social Presence"
 
 #: includes/PlanManager.php:932
 msgid "Add Social-Sharing Buttons"
-msgstr ""
+msgstr "Add Social-Sharing Buttons"
 
 #: includes/PlanManager.php:950
 msgid "SEO & Visibility"
-msgstr ""
+msgstr "SEO & Visibility"
 
 #: includes/PlanManager.php:1044
 msgid "Run pillar article promotion on social ad"
-msgstr ""
+msgstr "Run pillar article promotion on social ad"
