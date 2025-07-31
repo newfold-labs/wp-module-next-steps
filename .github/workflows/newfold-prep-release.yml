@@ -30,4 +30,4 @@ jobs:
       module-branch: 'main'
       level: ${{ inputs.level }}
       json-file: 'package.json'
-      php-file: ''
+      php-file: 'bootstrap.php'
