@@ -427,18 +427,6 @@ class PlanManager {
 								'id'          => 'first_marketing_steps',
 								'label'       => __( 'First Marketing Steps', 'wp-module-next-steps' ),
 								'tasks'       => array(
-
-									/*
-									Removed step for now - no link provided
-									array(
-										'id'          => 'store_enable_social_login',
-										'title'       => __( 'Enable Social Login Register for Your Customers', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=account',
-										'status'      => 'new',
-										'priority'    => 1,
-										'source'      => 'wp-module-next-steps',
-									),
-									*/
 									array(
 										'id'          => 'store_configure_welcome_popup',
 										'title'       => __( 'Configure Welcome Discount Popup', 'wp-module-next-steps' ),
@@ -471,18 +459,6 @@ class PlanManager {
 										'priority'    => 5,
 										'source'      => 'wp-module-next-steps',
 									),
-
-									/*
-									Removed step for now - no link provided
-									array(
-										'id'          => 'store_add_google_analytics',
-										'title'       => __( 'Add Google Analytics', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/admin.php?page=jetpack#/traffic',
-										'status'      => 'new',
-										'priority'    => 6,
-										'source'      => 'wp-module-next-steps',
-									),
-									*/
 								),
 							),
 							array(
@@ -739,18 +715,6 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
-
-									/*
-									Removed step for now - no link provided
-									array(
-										'id'          => 'store_review_performance',
-										'title'       => __( 'Review Monthly Performance Dashboard', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/admin.php?page=jetpack#/traffic',
-										'status'      => 'new',
-										'priority'    => 3,
-										'source'      => 'wp-module-next-steps',
-									),
-									*/
 								),
 							),
 						),
@@ -781,36 +745,16 @@ class PlanManager {
 								'label'       => __( 'Basic Blog Setup', 'wp-module-next-steps' ),
 								'tasks'       => array(
 									array(
-										'id'          => 'blog_set_site_title',
-										'title'       => __( 'Set Site Title', 'wp-module-next-steps' ),
+										'id'          => 'blog_quick_setup',
+										'title'       => __( 'Quick Setup', 'wp-module-next-steps' ),
 										'href'        => '{siteUrl}/wp-admin/options-general.php',
 										'status'      => 'new',
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
-									),
-									array(
-										'id'          => 'blog_set_tagline',
-										'title'       => __( 'Set Tagline', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/options-general.php',
-										'status'      => 'new',
-										'priority'    => 2,
-										'source'      => 'wp-module-next-steps',
-									),
-									array(
-										'id'          => 'blog_set_timezone',
-										'title'       => __( 'Set Time Zone', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/options-general.php',
-										'status'      => 'new',
-										'priority'    => 3,
-										'source'      => 'wp-module-next-steps',
-									),
-									array(
-										'id'          => 'blog_set_language',
-										'title'       => __( 'Set Language', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/options-general.php',
-										'status'      => 'new',
-										'priority'    => 4,
-										'source'      => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-test-id' => 'blog_quick_setup',
+											'data-nfd-id'  => 'blog_quick_start',
+										),
 									),
 								),
 							),
@@ -821,7 +765,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_upload_logo',
 										'title'       => __( 'Upload Logo', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=title_tagline',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php',
 										'status'      => 'new',
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
@@ -829,7 +773,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_choose_colors_fonts',
 										'title'       => __( 'Choose Colors and Fonts', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=colors',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fstyles',
 										'status'      => 'new',
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
@@ -837,17 +781,9 @@ class PlanManager {
 									array(
 										'id'          => 'blog_customize_header_footer',
 										'title'       => __( 'Customize Header and Footer', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/customize.php',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpage&canvas=edit',
 										'status'      => 'new',
 										'priority'    => 3,
-										'source'      => 'wp-module-next-steps',
-									),
-									array(
-										'id'          => 'blog_customize_homepage',
-										'title'       => __( 'Customize Homepage', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/customize.php?autofocus[section]=static_front_page',
-										'status'      => 'new',
-										'priority'    => 4,
 										'source'      => 'wp-module-next-steps',
 									),
 								),
@@ -867,7 +803,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_about_page',
 										'title'       => __( 'Create an "About" Page', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=page',
+										'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=page&wb-library=patterns&wb-category=features',
 										'status'      => 'new',
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
@@ -875,7 +811,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_set_featured_image',
 										'title'       => __( 'Set a Featured Image for One Post', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/edit.php',
+										'href'        => '{siteUrl}/wp-admin/post.php?post=1&action=edit',
 										'status'      => 'new',
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
@@ -897,7 +833,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_create_primary_menu',
 										'title'       => __( 'Create a Primary Menu', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/nav-menus.php',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fwp_navigation%2F7&canvas=edit',
 										'status'      => 'new',
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
@@ -905,7 +841,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_create_footer_menu',
 										'title'       => __( 'Create a Footer Menu', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/nav-menus.php',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=footer',
 										'status'      => 'new',
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
@@ -919,7 +855,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_privacy_policy',
 										'title'       => __( 'Add a Privacy Policy', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/privacy.php',
+										'href'        => '{siteUrl}/wp-admin/post-new.php?wb-library=patterns&wb-category=text',
 										'status'      => 'new',
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
@@ -927,7 +863,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_terms_conditions',
 										'title'       => __( 'Add Terms & Conditions', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=page',
+										'href'        => '{siteUrl}/wp-admin/post-new.php?wb-library=patterns&wb-category=text',
 										'status'      => 'new',
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
@@ -935,7 +871,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_accessibility_statement',
 										'title'       => __( 'Add an Accessibility Statement', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/post-new.php?post_type=page',
+										'href'        => '{siteUrl}/wp-admin/post-new.php?wb-library=patterns&wb-category=text',
 										'status'      => 'new',
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
