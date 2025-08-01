@@ -280,7 +280,7 @@ class PlanManager {
 									array(
 										'id'          => 'store_upload_logo',
 										'title'       => __( 'Upload Logo', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/site-editor.php?',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=all-parts',
 										'status'      => 'new',
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
@@ -296,7 +296,7 @@ class PlanManager {
 									array(
 										'id'          => 'store_customize_header',
 										'title'       => __( 'Customize Header', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpage&canvas=edit',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=header',
 										'status'      => 'new',
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
@@ -304,7 +304,7 @@ class PlanManager {
 									array(
 										'id'          => 'store_customize_footer',
 										'title'       => __( 'Customize Footer', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2F&canvas=edit',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=footer',
 										'status'      => 'new',
 										'priority'    => 4,
 										'source'      => 'wp-module-next-steps',
@@ -312,7 +312,7 @@ class PlanManager {
 									array(
 										'id'          => 'store_customize_homepage',
 										'title'       => __( 'Customize Homepage', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2F&canvas=edit',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Ftemplate',
 										'status'      => 'new',
 										'priority'    => 5,
 										'source'      => 'wp-module-next-steps',
@@ -500,7 +500,7 @@ class PlanManager {
 									array(
 										'id'          => 'store_add_social_feed',
 										'title'       => __( 'Add Social Media Feed to Homepage', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'href'        => 'https://www.bluehost.com/blog/how-to-incorporate-a-social-media-marketing-strategy-with-your-wordpress-website/ ',
 										'status'      => 'new',
 										'priority'    => 5,
 										'source'      => 'wp-module-next-steps',
@@ -710,7 +710,7 @@ class PlanManager {
 									array(
 										'id'          => 'store_run_ab_test',
 										'title'       => __( 'Run A/B Test on Homepage Banner', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-admin&path=%2Fanalytics%2Foverview',
+										'href'        => 'https://www.bluehost.com/blog/split-testing/',
 										'status'      => 'new',
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
@@ -765,7 +765,7 @@ class PlanManager {
 									array(
 										'id'          => 'blog_upload_logo',
 										'title'       => __( 'Upload Logo', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/site-editor.php',
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=all-parts',
 										'status'      => 'new',
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
@@ -779,9 +779,17 @@ class PlanManager {
 										'source'      => 'wp-module-next-steps',
 									),
 									array(
-										'id'          => 'blog_customize_header_footer',
-										'title'       => __( 'Customize Header and Footer', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpage&canvas=edit',
+										'id'          => 'blog_customize_header',
+										'title'       => __( 'Customize Header', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=header',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'blog_customize_footer',
+										'title'       => __( 'Customize Footer', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=footer',
 										'status'      => 'new',
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
