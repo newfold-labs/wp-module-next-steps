@@ -159,7 +159,7 @@ export const Task = ( props ) => {
 							{ doneIcon }
 						</button>
 					</div>
-					{ renderStepContent() }
+					{ renderStepContent( getHref(), getTarget() ) }
 				</div>
 			</div>
 		);
@@ -182,7 +182,7 @@ export const Task = ( props ) => {
 							{ doneIcon }
 						</button>
 					</div>
-					{ renderStepContent() }
+					{ renderStepContent( getHref(), getTarget() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
