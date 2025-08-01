@@ -73,6 +73,32 @@ const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 		} );
 };
 
+/**
+* Wrapper method to post track update to endpoint
+*
+* @param {Object}   data         object of data
+* @param {Function} passError    setter for the error in component
+* @param {Function} thenCallback method to call in promise then
+*/
+const trackUpdateWrapper = ( data, passError, thenCallback ) => {
+	return apiFetch( {
+		url: createEndpointUrl( 
+			window.NewfoldRuntime.restUrl, 
+			'newfold-next-steps/v1/steps/track/open'
+		),
+		method: 'PUT',
+		data,
+	} )
+		.then( ( response ) => {
+			// console.log( 'Track update response:', response );
+			thenCallback( response );
+		} )
+		.catch( ( error ) => {
+			// console.error( 'Error updating track:', error );
+			passError( error );
+		} );
+};
+
 export const NextSteps = () => {
 	const [ plan, setPlan ] = useState( window.NewfoldNextSteps );
 	const [ showDismissed, setShowDismissed ] = useState( true );
@@ -138,6 +164,26 @@ export const NextSteps = () => {
 		);
 	};
 
+	const trackOpenCallback = ( track, open ) => {
+		// console.log( 'Track open callback:', track, open );
+		
+		const data = {
+			plan: plan.id,
+			track: track,
+			open: open,
+		};
+		
+		trackUpdateWrapper( 
+			data,
+			( error ) => {
+				// console.error( 'Error updating track open state:', error );
+			},
+			( response ) => {
+				// console.log( 'Track open state updated successfully:', response );
+			}
+		);
+	};
+
 	// Handle case where plan might not be loaded yet
 	if ( ! plan || ! plan.tracks ) {
 		return (
@@ -156,6 +202,7 @@ export const NextSteps = () => {
 					key={ track.id }
 					track={ track }
 					index={ i }
+					trackOpenCallback={ trackOpenCallback }
 					sectionOpenCallback={ sectionOpenCallback }
 					taskUpdateCallback={ taskUpdateCallback }
 					showDismissed={ showDismissed }

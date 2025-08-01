@@ -1690,4 +1690,25 @@ class PlanManager {
 
 		return $success;
 	}
+
+	/**
+	 * Update track open state
+	 *
+	 * @param string $track_id Track ID
+	 * @param bool   $open Open state
+	 * @return bool
+	 */
+	public static function update_track_status( string $track_id, bool $open ): bool {
+		$plan = self::get_current_plan();
+		if ( ! $plan ) {
+			return false;
+		}
+
+		$success = $plan->update_track_open_state( $track_id, $open );
+		if ( $success ) {
+			self::save_plan( $plan );
+		}
+
+		return $success;
+	}
 }

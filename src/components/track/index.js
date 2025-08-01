@@ -8,14 +8,27 @@ export const Track = ( props ) => {
 		index,
 		taskUpdateCallback,
 		sectionOpenCallback,
+		trackOpenCallback,
 		showDismissed,
 		...restProps
 	} = props;
 
-	const isOpen = index === 0; // Open the first track by default
+	// Use track.open if available, otherwise fall back to default behavior (first track open)
+	const isOpen = track.open !== undefined ? track.open : index === 0;
+
+	const handleToggleOpen = ( event ) => {
+		// Get the new open state from the details element
+		const newOpenState = event.target.open;
+		// Call the callback to update the backend
+		trackOpenCallback( track.id, newOpenState );
+	};
 
 	return (
-		<details className="nfd-track" open={ isOpen } { ...restProps }>
+		<details 
+			className="nfd-track"
+			open={ isOpen } 
+			onToggle={ handleToggleOpen }
+		>
 			<summary className="nfd-track-header">
 				<Title className="nfd-track-title mb-0" as="h2">
 					{ track.label }

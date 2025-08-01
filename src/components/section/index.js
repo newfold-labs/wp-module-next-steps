@@ -45,15 +45,22 @@ export const Section = ( props ) => {
 		}
 	}, [ showCompleteCelebration, completed, total ] );
 
+	const handleToggleOpen = ( event, state = null ) => {
+		// Get the new open state from the details element
+		const newOpenState = state !== null ? state : event.target.open;
+		// Call the callback to update the backend
+		sectionOpenCallback( section.id, newOpenState );
+		setIsOpen( newOpenState );
+	};
+
 	return (
 		( total > 0 || showDismissed === true )&& (
-		<details className="nfd-section" open={ isOpen }>
-			<summary
-				className="nfd-section-header" 
-				onClick={ ( e ) => {
-					sectionOpenCallback( section.id, !isOpen );
-				} }
-			>
+		<details
+			className="nfd-section"
+			open={ isOpen }
+			onToggle={ handleToggleOpen }
+		>
+			<summary className="nfd-section-header">
 				<Title className="nfd-section-title mb-0" as="h3">
 					<span className="nfd-section-header-icon nfd-header-icon">
 						<span className="nfd-section-header-icon-closed">
@@ -85,8 +92,7 @@ export const Section = ( props ) => {
 					data-complete={ isComplete }
 					onClick={ ( e ) => {
 						setShowCompleteCelebration( false );
-						setIsOpen( false )
-						sectionOpenCallback( section.id, false );
+						handleToggleOpen( e, false );
 					} }
 				>
 					<button className="nfd-nextsteps-section-close-button">
