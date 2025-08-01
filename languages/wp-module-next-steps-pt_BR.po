@@ -619,84 +619,85 @@ msgstr "Executar um teste de velocidade"
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Planeje sua próxima atualização de conteúdo ou campanha"
 
-#: includes/StepsApi.php:260
-#: includes/StepsApi.php:282
+#: includes/StepsApi.php:293
+#: includes/StepsApi.php:315
 msgid "No plan found."
 msgstr "Nenhum plano encontrado."
 
-#: includes/StepsApi.php:288
+#: includes/StepsApi.php:321
 msgid "No tracks found in plan."
 msgstr "Nenhuma trilha encontrada no plano."
 
-#: includes/StepsApi.php:294
+#: includes/StepsApi.php:327
 msgid "No sections found in track."
 msgstr "Nenhuma seção encontrada na pista."
 
-#: includes/StepsApi.php:344
 #: includes/StepsApi.php:377
+#: includes/StepsApi.php:410
+#: includes/StepsApi.php:436
 msgid "Invalid parameters provided."
 msgstr "Parâmetros inválidos fornecidos."
 
-#: includes/StepsApi.php:347
+#: includes/StepsApi.php:380
 msgid "Invalid status provided."
 msgstr "Status inválido fornecido."
 
-#: includes/StepsApi.php:354
+#: includes/StepsApi.php:387
 msgid "Step not found."
 msgstr "Etapa não encontrada."
 
-#: includes/StepsApi.php:384
+#: includes/StepsApi.php:417
 msgid "Section not found."
 msgstr "Seção não encontrada."
 
-#: includes/StepsApi.php:412
+#: includes/StepsApi.php:471
 msgid "Invalid plan type provided."
 msgstr "Tipo de plano inválido fornecido."
 
-#: includes/StepsApi.php:444
+#: includes/StepsApi.php:503
 msgid "Failed to add task to section."
 msgstr "Falha ao adicionar tarefa à seção."
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1973
+#: build/next-steps-portal/bundle.js:2117
 msgid "Mark Complete"
 msgstr "Marcar como concluído"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1996
+#: build/next-steps-portal/bundle.js:2140
 msgid "Skip"
 msgstr "Saltitar"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2029
+#: build/next-steps-portal/bundle.js:2173
 msgid "Restart"
 msgstr "Reiniciar"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2052
-#: build/next-steps-portal/bundle.js:2067
+#: build/next-steps-portal/bundle.js:2196
+#: build/next-steps-portal/bundle.js:2211
 msgid "Unskip"
 msgstr "Cancelar pular"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1733
+#: build/next-steps-portal/bundle.js:1843
 msgid "Hide skipped tasks"
 msgstr "Ocultar tarefas ignoradas"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1734
+#: build/next-steps-portal/bundle.js:1844
 msgid "View skipped tasks"
 msgstr "Exibir tarefas ignoradas"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1703
+#: build/next-steps-portal/bundle.js:1813
 msgid "Loading next steps..."
 msgstr "Carregando próximos passos..."
 
@@ -734,4 +735,14 @@ msgstr ""
 
 #: includes/PlanManager.php:1413
 msgid "Add Client Logos or Testimonials or Reviews"
+msgstr ""
+
+#: includes/StepsApi.php:443
+msgid "Track not found."
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:2009
+msgid "All complete!"
 msgstr ""

@@ -654,83 +654,94 @@ msgstr ""
 msgid "Plan Your Next Content or Campaign Update"
 msgstr ""
 
-#: includes/StepsApi.php:260
-#: includes/StepsApi.php:282
+#: includes/StepsApi.php:293
+#: includes/StepsApi.php:315
 msgid "No plan found."
 msgstr ""
 
-#: includes/StepsApi.php:288
+#: includes/StepsApi.php:321
 msgid "No tracks found in plan."
 msgstr ""
 
-#: includes/StepsApi.php:294
+#: includes/StepsApi.php:327
 msgid "No sections found in track."
 msgstr ""
 
-#: includes/StepsApi.php:344
 #: includes/StepsApi.php:377
+#: includes/StepsApi.php:410
+#: includes/StepsApi.php:436
 msgid "Invalid parameters provided."
 msgstr ""
 
-#: includes/StepsApi.php:347
+#: includes/StepsApi.php:380
 msgid "Invalid status provided."
 msgstr ""
 
-#: includes/StepsApi.php:354
+#: includes/StepsApi.php:387
 msgid "Step not found."
 msgstr ""
 
-#: includes/StepsApi.php:384
+#: includes/StepsApi.php:417
 msgid "Section not found."
 msgstr ""
 
-#: includes/StepsApi.php:412
+#: includes/StepsApi.php:443
+msgid "Track not found."
+msgstr ""
+
+#: includes/StepsApi.php:471
 msgid "Invalid plan type provided."
 msgstr ""
 
-#: includes/StepsApi.php:444
+#: includes/StepsApi.php:503
 msgid "Failed to add task to section."
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1973
+#: build/next-steps-portal/bundle.js:2117
 msgid "Mark Complete"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1996
+#: build/next-steps-portal/bundle.js:2140
 msgid "Skip"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2029
+#: build/next-steps-portal/bundle.js:2173
 msgid "Restart"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2052
-#: build/next-steps-portal/bundle.js:2067
+#: build/next-steps-portal/bundle.js:2196
+#: build/next-steps-portal/bundle.js:2211
 msgid "Unskip"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1733
+#: build/next-steps-portal/bundle.js:2009
+msgid "All complete!"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1843
 msgid "Hide skipped tasks"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1734
+#: build/next-steps-portal/bundle.js:1844
 msgid "View skipped tasks"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1703
+#: build/next-steps-portal/bundle.js:1813
 msgid "Loading next steps..."
 msgstr ""
