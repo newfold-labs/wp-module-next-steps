@@ -1,6 +1,6 @@
 import { Title } from '@newfold/ui-component-library';
 import { Section } from '../section';
-import { chevron } from '../icons';
+import { chevronIcon } from '../icons';
 
 export const Track = ( props ) => {
 	const {
@@ -21,7 +21,7 @@ export const Track = ( props ) => {
 					{ track.label }
 				</Title>
 				<span className="nfd-track-header-icon nfd-header-icon">
-					{ chevron }
+					{ chevronIcon }
 				</span>
 			</summary>
 			<div className="nfd-track-sections">

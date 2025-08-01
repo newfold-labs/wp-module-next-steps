@@ -1,5 +1,5 @@
 import { Title } from '@newfold/ui-component-library';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon } from '../icons';
 
 export const Task = ( props ) => {

@@ -116,7 +116,7 @@ export const NextSteps = () => {
 		}
 		
 		if ( ! trackId ) {
-			console.error( 'Could not find track for section:', section );
+			// console.error( 'Could not find track for section:', section );
 			return;
 		}
 
@@ -156,8 +156,8 @@ export const NextSteps = () => {
 					key={ track.id }
 					track={ track }
 					index={ i }
-					taskUpdateCallback={ taskUpdateCallback }
 					sectionOpenCallback={ sectionOpenCallback }
+					taskUpdateCallback={ taskUpdateCallback }
 					showDismissed={ showDismissed }
 				/>
 			) ) }

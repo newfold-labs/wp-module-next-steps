@@ -5,19 +5,21 @@ import {
 	MinusCircleIcon,
 	EyeSlashIcon,
 	EyeIcon,
-	TrophyIcon
+	TrophyIcon,
+	XCircleIcon
 } from '@heroicons/react/24/outline';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
 // Using Heroicons components
-export const chevron = <ChevronUpIcon className="size-6" />;
-export const openCircle = <PlusCircleIcon className="size-6" />;
-export const closeCircle = <MinusCircleIcon className="size-6" />;
+export const chevronIcon = <ChevronUpIcon className="size-6" />;
+export const plusCircleIcon = <PlusCircleIcon className="size-6" />;
+export const minusCircleIcon = <MinusCircleIcon className="size-6" />;
 export const hideIcon = <EyeSlashIcon className="size-6" />;
 export const showIcon = <EyeIcon className="size-6" />;
 export const doneIcon = <CheckCircleIcon className="size-6" />;
 export const goIcon = <ArrowRightIcon className="size-6" />;
 export const trophyIcon = <TrophyIcon className="size-6" />;
+export const closeCircleIcon = <XCircleIcon className="size-6" />;
 
 // Circle dashed icon from https://sidekickicons.com/?iconset=Sidekickicons&code=JSX&icon=circle-dashed
 export const circleDashedIcon = (
@@ -26,8 +28,7 @@ export const circleDashedIcon = (
 		viewBox="0 0 24 24"
 		strokeWidth={1.5}
 		stroke="currentColor"
-		ariaHidden="true"
-		dataSlot="icon"
+		aria-hidden="true"
 		fill="none"
 		className="size-6"
 	>
@@ -44,8 +45,7 @@ export const circleIcon = (
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 24 24"
 		strokeWidth={1.5} stroke="currentColor"
-		ariaHidden="true"
-		dataSlot="icon"
+		aria-hidden="true"
 		fill="none"
 		className="size-6"
 	>
@@ -62,6 +62,7 @@ export const todoIcon = (
 		xmlns="http://www.w3.org/2000/svg"
 		className="h-6 w-6 stroke-current"
 		fill="none"
+		aria-hidden="true"
 		viewBox="0 0 24 24"
 	>
 		<circle cx="12" cy="12" r="10" strokeWidth="2" stroke="currentColor" />
