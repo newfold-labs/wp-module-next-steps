@@ -1,21 +1,20 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: pt_BR <LL@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
-"Language: pt_BR\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:22
-#: includes/NextSteps.php:62
-#: includes/NextStepsWidget.php:39
+#: bootstrap.php:22 includes/NextSteps.php:62 includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Próximos passos"
 
@@ -25,7 +24,9 @@ msgstr "Configuração da loja"
 
 #: includes/PlanManager.php:252
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr "Conclua a configuração da sua loja de comércio eletrônico com estas etapas essenciais:"
+msgstr ""
+"Conclua a configuração da sua loja de comércio eletrônico com estas etapas "
+"essenciais:"
 
 #: includes/PlanManager.php:256
 #: includes/PlanManager.php:741
@@ -47,13 +48,11 @@ msgstr "Configuração rápida"
 msgid "Customize Your Store"
 msgstr "Personalize sua loja"
 
-#: includes/PlanManager.php:282
-#: includes/PlanManager.php:767
+#: includes/PlanManager.php:282 includes/PlanManager.php:767
 msgid "Upload Logo"
 msgstr "Carregar logotipo"
 
-#: includes/PlanManager.php:290
-#: includes/PlanManager.php:775
+#: includes/PlanManager.php:290 includes/PlanManager.php:775
 msgid "Choose Colors and Fonts"
 msgstr "Escolha cores e fontes"
 
@@ -703,19 +702,19 @@ msgstr "Carregando próximos passos..."
 
 #: includes/PlanManager.php:902
 msgid "Convert visitors to email subscribers."
-msgstr ""
+msgstr "Converta visitantes em assinantes de e-mail."
 
 #: includes/PlanManager.php:928
 msgid "Social Presence"
-msgstr ""
+msgstr "Presença Social"
 
 #: includes/PlanManager.php:940
 msgid "Add Social-Sharing Buttons"
-msgstr ""
+msgstr "Adicionar botões de compartilhamento social"
 
 #: includes/PlanManager.php:958
 msgid "SEO & Visibility"
-msgstr ""
+msgstr "SEO e Visibilidade"
 
 #: includes/PlanManager.php:1052
 msgid "Run pillar article promotion on social ad"

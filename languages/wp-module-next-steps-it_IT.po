@@ -1,21 +1,20 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it_IT <LL@li.org>\n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
-"Language: it_IT\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:22
-#: includes/NextSteps.php:62
-#: includes/NextStepsWidget.php:39
+#: bootstrap.php:22 includes/NextSteps.php:62 includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Passaggi successivi"
 
@@ -25,7 +24,9 @@ msgstr "Configurazione del negozio"
 
 #: includes/PlanManager.php:252
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr "Completa la configurazione del tuo negozio di e-commerce con questi passaggi essenziali:"
+msgstr ""
+"Completa la configurazione del tuo negozio di e-commerce con questi passaggi"
+" essenziali:"
 
 #: includes/PlanManager.php:256
 #: includes/PlanManager.php:741
@@ -47,13 +48,11 @@ msgstr "Configurazione rapida"
 msgid "Customize Your Store"
 msgstr "Personalizza il tuo negozio"
 
-#: includes/PlanManager.php:282
-#: includes/PlanManager.php:767
+#: includes/PlanManager.php:282 includes/PlanManager.php:767
 msgid "Upload Logo"
 msgstr "Carica logo"
 
-#: includes/PlanManager.php:290
-#: includes/PlanManager.php:775
+#: includes/PlanManager.php:290 includes/PlanManager.php:775
 msgid "Choose Colors and Fonts"
 msgstr "Scegli colori e caratteri"
 
@@ -153,7 +152,8 @@ msgstr "Personalizza le email del tuo negozio"
 
 #: includes/PlanManager.php:466
 msgid "Launch and Promote - Social Media Setup & Engagement"
-msgstr "Lancio e promozione - Configurazione e coinvolgimento sui social media"
+msgstr ""
+"Lancio e promozione - Configurazione e coinvolgimento sui social media"
 
 #: includes/PlanManager.php:470
 msgid "Connect Facebook Store"
@@ -261,7 +261,8 @@ msgstr "Crea una campagna di upsell"
 
 #: includes/PlanManager.php:660
 msgid "Setup Yoast Premium to Drive Traffic to Your Store"
-msgstr "Configura Yoast Premium per indirizzare il traffico verso il tuo negozio"
+msgstr ""
+"Configura Yoast Premium per indirizzare il traffico verso il tuo negozio"
 
 #: includes/PlanManager.php:670
 #: includes/PlanManager.php:1100
@@ -703,19 +704,19 @@ msgstr "Caricamento dei prossimi passi..."
 
 #: includes/PlanManager.php:902
 msgid "Convert visitors to email subscribers."
-msgstr ""
+msgstr "Converti i visitatori in abbonati e-mail."
 
 #: includes/PlanManager.php:928
 msgid "Social Presence"
-msgstr ""
+msgstr "Presenza sui social"
 
 #: includes/PlanManager.php:940
 msgid "Add Social-Sharing Buttons"
-msgstr ""
+msgstr "Aggiungi pulsanti di condivisione social"
 
 #: includes/PlanManager.php:958
 msgid "SEO & Visibility"
-msgstr ""
+msgstr "SEO e visibilità"
 
 #: includes/PlanManager.php:1052
 msgid "Run pillar article promotion on social ad"

@@ -1,21 +1,20 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de_DE <LL@li.org>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
-"Language: de_DE\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:22
-#: includes/NextSteps.php:62
-#: includes/NextStepsWidget.php:39
+#: bootstrap.php:22 includes/NextSteps.php:62 includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Nächste Schritte"
 
@@ -25,7 +24,9 @@ msgstr "Einrichtung des Shops"
 
 #: includes/PlanManager.php:252
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr "Schließen Sie die Einrichtung Ihres E-Commerce-Shops mit diesen wesentlichen Schritten ab:"
+msgstr ""
+"Schließen Sie die Einrichtung Ihres E-Commerce-Shops mit diesen wesentlichen"
+" Schritten ab:"
 
 #: includes/PlanManager.php:256
 #: includes/PlanManager.php:741
@@ -47,13 +48,11 @@ msgstr "Schnelle Einrichtung"
 msgid "Customize Your Store"
 msgstr "Passen Sie Ihren Shop an"
 
-#: includes/PlanManager.php:282
-#: includes/PlanManager.php:767
+#: includes/PlanManager.php:282 includes/PlanManager.php:767
 msgid "Upload Logo"
 msgstr "Logo hochladen"
 
-#: includes/PlanManager.php:290
-#: includes/PlanManager.php:775
+#: includes/PlanManager.php:290 includes/PlanManager.php:775
 msgid "Choose Colors and Fonts"
 msgstr "Wählen Sie Farben und Schriftarten"
 
@@ -141,7 +140,8 @@ msgstr "Konfigurieren des Popup-Fensters für den Willkommensrabatt"
 
 #: includes/PlanManager.php:440
 msgid "Create a Gift Card to Sell in Your Shop"
-msgstr "Erstellen Sie eine Geschenkkarte, die Sie in Ihrem Geschäft verkaufen können"
+msgstr ""
+"Erstellen Sie eine Geschenkkarte, die Sie in Ihrem Geschäft verkaufen können"
 
 #: includes/PlanManager.php:448
 msgid "Enable Abandoned Cart Emails"
@@ -261,7 +261,8 @@ msgstr "Erstellen Sie eine Upsell-Kampagne"
 
 #: includes/PlanManager.php:660
 msgid "Setup Yoast Premium to Drive Traffic to Your Store"
-msgstr "Richten Sie Yoast Premium ein, um den Traffic auf Ihren Shop zu lenken"
+msgstr ""
+"Richten Sie Yoast Premium ein, um den Traffic auf Ihren Shop zu lenken"
 
 #: includes/PlanManager.php:670
 #: includes/PlanManager.php:1100
@@ -469,7 +470,8 @@ msgstr "Unternehmens-Setup"
 
 #: includes/PlanManager.php:1159
 msgid "Set up your corporate website with these essential steps:"
-msgstr "Richten Sie Ihre Unternehmenswebsite mit diesen wesentlichen Schritten ein:"
+msgstr ""
+"Richten Sie Ihre Unternehmenswebsite mit diesen wesentlichen Schritten ein:"
 
 #: includes/PlanManager.php:1167
 msgid "Basic Site Setup"
@@ -703,19 +705,19 @@ msgstr "Nächste Schritte werden geladen..."
 
 #: includes/PlanManager.php:902
 msgid "Convert visitors to email subscribers."
-msgstr ""
+msgstr "Verwandeln Sie Besucher in E-Mail-Abonnenten."
 
 #: includes/PlanManager.php:928
 msgid "Social Presence"
-msgstr ""
+msgstr "Soziale Präsenz"
 
 #: includes/PlanManager.php:940
 msgid "Add Social-Sharing Buttons"
-msgstr ""
+msgstr "Fügen Sie Social-Sharing-Schaltflächen hinzu"
 
 #: includes/PlanManager.php:958
 msgid "SEO & Visibility"
-msgstr ""
+msgstr "SEO & Sichtbarkeit"
 
 #: includes/PlanManager.php:1052
 msgid "Run pillar article promotion on social ad"

@@ -1,21 +1,20 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en_AU <LL@li.org>\n"
+"Language: en_AU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
-"Language: en_AU\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:22
-#: includes/NextSteps.php:62
-#: includes/NextStepsWidget.php:39
+#: bootstrap.php:22 includes/NextSteps.php:62 includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Next Steps"
 
@@ -47,13 +46,11 @@ msgstr "Quick Setup"
 msgid "Customize Your Store"
 msgstr "Customize Your Store"
 
-#: includes/PlanManager.php:282
-#: includes/PlanManager.php:767
+#: includes/PlanManager.php:282 includes/PlanManager.php:767
 msgid "Upload Logo"
 msgstr "Upload Logo"
 
-#: includes/PlanManager.php:290
-#: includes/PlanManager.php:775
+#: includes/PlanManager.php:290 includes/PlanManager.php:775
 msgid "Choose Colors and Fonts"
 msgstr "Choose Colors and Fonts"
 
@@ -703,19 +700,19 @@ msgstr "Loading next steps..."
 
 #: includes/PlanManager.php:902
 msgid "Convert visitors to email subscribers."
-msgstr ""
+msgstr "Convert visitors to email subscribers."
 
 #: includes/PlanManager.php:928
 msgid "Social Presence"
-msgstr ""
+msgstr "Social Presence"
 
 #: includes/PlanManager.php:940
 msgid "Add Social-Sharing Buttons"
-msgstr ""
+msgstr "Add Social-Sharing Buttons"
 
 #: includes/PlanManager.php:958
 msgid "SEO & Visibility"
-msgstr ""
+msgstr "SEO & Visibility"
 
 #: includes/PlanManager.php:1052
 msgid "Run pillar article promotion on social ad"
