@@ -4,7 +4,8 @@ import {
 	PlusCircleIcon,
 	MinusCircleIcon,
 	EyeSlashIcon,
-	EyeIcon
+	EyeIcon,
+	TrophyIcon
 } from '@heroicons/react/24/outline';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
@@ -16,6 +17,44 @@ export const hideIcon = <EyeSlashIcon className="size-6" />;
 export const showIcon = <EyeIcon className="size-6" />;
 export const doneIcon = <CheckCircleIcon className="size-6" />;
 export const goIcon = <ArrowRightIcon className="size-6" />;
+export const trophyIcon = <TrophyIcon className="size-6" />;
+
+// Circle dashed icon from https://sidekickicons.com/?iconset=Sidekickicons&code=JSX&icon=circle-dashed
+export const circleDashedIcon = (
+	<svg 
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		strokeWidth={1.5}
+		stroke="currentColor"
+		ariaHidden="true"
+		dataSlot="icon"
+		fill="none"
+		className="size-6"
+	>
+		<path 
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			d="M13.716 3.165a9 9 0 0 1 3.315 1.373m2.43 2.429a9 9 0 0 1 1.374 3.316m0 3.434a9 9 0 0 1-1.373 3.315m-2.43 2.43a9 9 0 0 1-3.316 1.373m-3.432 0a9 9 0 0 1-3.316-1.373m-2.43-2.43a9 9 0 0 1-1.373-3.315m0-3.434a9 9 0 0 1 1.373-3.315m2.43-2.43a9 9 0 0 1 3.316-1.373"
+		></path>
+	</svg>
+);
+// Circle icon from https://sidekickicons.com/?iconset=Sidekickicons&code=JSX&icon=circle
+export const circleIcon = (
+	<svg 
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		strokeWidth={1.5} stroke="currentColor"
+		ariaHidden="true"
+		dataSlot="icon"
+		fill="none"
+		className="size-6"
+	>
+		<path strokeLinecap="round"
+			strokeLinejoin="round"
+			d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
+		></path>
+	</svg>
+);
 
 // Custom icons (keeping as SVG)
 export const todoIcon = (
