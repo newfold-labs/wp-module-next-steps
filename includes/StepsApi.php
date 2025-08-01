@@ -237,6 +237,39 @@ class StepsApi {
 				),
 			)
 		);
+
+		// Add route for updating track open state
+		register_rest_route(
+			$this->namespace,
+			$this->rest_base . '/track/open',
+			array(
+				'methods'             => \WP_REST_Server::EDITABLE,
+				'callback'            => array( $this, 'update_track_status' ),
+				'permission_callback' => function () {
+					return current_user_can( 'manage_options' );
+				},
+				'args'                => array(
+					'plan'  => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'track' => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'open'  => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_bool( $value );
+						},
+					),
+				),
+			)
+		);
 	}
 
 	/**
@@ -382,6 +415,32 @@ class StepsApi {
 
 		if ( ! $success ) {
 			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		return new WP_REST_Response( true, 200 );
+	}
+
+	/**
+	 * Update a track status.
+	 *
+	 * @param \WP_REST_Request $request  The REST request object.
+	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
+	 */
+	public static function update_track_status( \WP_REST_Request $request ) {
+		$plan  = $request->get_param( 'plan' );
+		$track = $request->get_param( 'track' );
+		$open  = $request->get_param( 'open' ) ?? false;
+
+		// validate parameters
+		if ( empty( $track ) ) {
+			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
+		}
+
+		// Use PlanManager to update the track status
+		$success = PlanManager::update_track_status( $track, $open );
+
+		if ( ! $success ) {
+			return new WP_Error( 'track_not_found', __( 'Track not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
 		return new WP_REST_Response( true, 200 );

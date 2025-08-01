@@ -345,6 +345,22 @@ class Plan {
 	}
 
 	/**
+	 * Update track open state
+	 *
+	 * @param string $track_id Track ID
+	 * @param bool   $open Open state
+	 * @return bool
+	 */
+	public function update_track_open_state( string $track_id, bool $open ): bool {
+		$track = $this->get_track( $track_id );
+		if ( ! $track ) {
+			return false;
+		}
+
+		return $track->set_open( $open );
+	}
+
+	/**
 	 * Validate plan data
 	 *
 	 * @return bool|string True if valid, error message if not

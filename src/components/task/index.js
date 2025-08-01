@@ -1,6 +1,6 @@
 import { Title } from '@newfold/ui-component-library';
-import { __, sprintf } from '@wordpress/i18n';
-import { todoIcon, doneIcon, hideIcon, showIcon, goIcon } from '../icons';
+import { __ } from '@wordpress/i18n';
+import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon } from '../icons';
 
 export const Task = ( props ) => {
 	const {
@@ -103,7 +103,7 @@ export const Task = ( props ) => {
 								'wp-module-next-steps'
 							) }
 						>
-							{ todoIcon }
+							{ circleIcon }
 						</button>
 					</div>
 					{ renderStepContent( getHref(), getTarget() ) }
@@ -159,7 +159,7 @@ export const Task = ( props ) => {
 							{ doneIcon }
 						</button>
 					</div>
-					{ renderStepContent() }
+					{ renderStepContent( getHref(), getTarget() ) }
 				</div>
 			</div>
 		);
@@ -179,10 +179,10 @@ export const Task = ( props ) => {
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>
-							{ doneIcon }
+							{ circleDashedIcon }
 						</button>
 					</div>
-					{ renderStepContent() }
+					{ renderStepContent( getHref(), getTarget() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
