@@ -46,7 +46,6 @@ class PlanManager {
 	 */
 	public static function get_current_plan(): ?Plan {
 		$plan_data = get_option( self::OPTION, array() );
-		// $plan_data = false; // for resetting data while debugging
 
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on solution
@@ -54,14 +53,14 @@ class PlanManager {
 		}
 
 		// Check if we need to merge with new plan data
-		$saved_version = $plan_data['version'] ?? '0.0.0';
+		$saved_version   = $plan_data['version'] ?? '0.0.0';
 		$current_version = self::PLAN_DATA_VERSION;
 
 		if ( version_compare( $saved_version, $current_version, '<' ) ) {
 			// Version is outdated, need to merge with latest plan data
 
 			// First determine what plan type this is based on saved data
-			$plan_id = $plan_data['id'] ?? '';
+			$plan_id  = $plan_data['id'] ?? '';
 			$new_plan = null;
 
 			// Load the appropriate new plan based on the saved plan ID
@@ -100,7 +99,7 @@ class PlanManager {
 	 */
 	public static function save_plan( Plan $plan ): bool {
 		// Add version information to the saved data
-		$plan_data = $plan->to_array();
+		$plan_data            = $plan->to_array();
 		$plan_data['version'] = self::PLAN_DATA_VERSION;
 		return update_option( self::OPTION, $plan_data );
 	}
@@ -1002,9 +1001,9 @@ class PlanManager {
 								),
 							),
 							array(
-								'id'          => 'blog_promote_seo',
-								'label'       => __( 'SEO & Visibility', 'wp-module-next-steps' ),
-								'tasks'       => array(
+								'id'    => 'blog_promote_seo',
+								'label' => __( 'SEO & Visibility', 'wp-module-next-steps' ),
+								'tasks' => array(
 									array(
 										'id'       => 'blog_optimize_seo',
 										'title'    => __( 'Optimize On-Page SEO', 'wp-module-next-steps' ),
@@ -1386,7 +1385,7 @@ class PlanManager {
 								'id'    => 'launch_marketing_tools',
 								'label' => __( 'Launch Essential Marketing Tools', 'wp-module-next-steps' ),
 								'tasks' => array(
-									
+
 									/*
 									Hide Jetpack Stats for now
 									array(
