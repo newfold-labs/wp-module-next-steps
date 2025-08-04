@@ -14,7 +14,7 @@ export const Track = ( props ) => {
 	} = props;
 
 	// Use track.open if available, otherwise fall back to default behavior (first track open)
-	const isOpen = track.open !== undefined ? track.open : index === 0;
+	const isOpen = track.hasOwnProperty('open') ? track.open : index === 0;
 
 	const handleToggleOpen = ( event ) => {
 		// Get the new open state from the details element

@@ -7,8 +7,7 @@ import {
 	verifyTaskDataAttributes,
 	verifyTaskLinks,
 	verifyTaskIcons,
-	toggleSection,
-	toggleDismissedTasks
+	toggleSection
 } from '../wp-module-support/next-steps-helpers.cy';
 
 describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
@@ -47,7 +46,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
         it( 'handles all portal interactions and functionality correctly', () => {
                 // === Basic Interactions ===
-                // Test that tracks can be toggled
+                // Test that the first track is open by default
                 cy.get( '.nfd-track' ).first().should( 'have.attr', 'open' );
 
                 // Test that sections can be toggled
