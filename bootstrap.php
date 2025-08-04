@@ -9,7 +9,7 @@ if ( defined( 'NFD_NEXTSTEPS_MODULE_VERSION' ) ) {
 	return;
 }
 
-define( 'NFD_NEXTSTEPS_MODULE_VERSION', '1.0.4' );
+define( 'NFD_NEXTSTEPS_MODULE_VERSION', '1.0.5' );
 
 if ( function_exists( 'add_action' ) ) {
 	add_action(
