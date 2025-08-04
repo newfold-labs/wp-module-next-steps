@@ -260,12 +260,12 @@ class PlanManager {
 								'label' => __( 'Basic Store Setup', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
-										'id'       => 'store_quick_setup',
-										'title'    => __( 'Quick Setup', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=general',
-										'status'   => 'new',
-										'priority' => 1,
-										'source'   => 'wp-module-next-steps',
+										'id'              => 'store_quick_setup',
+										'title'           => __( 'Quick Setup', 'wp-module-next-steps' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=general',
+										'status'          => 'new',
+										'priority'        => 1,
+										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
 											'data-test-id' => 'store_quick_setup',
 											'data-nfd-id'  => 'store_quick_start',
@@ -387,6 +387,7 @@ class PlanManager {
 									),
 
 									/*
+									Hide Email Templates for now
 									array(
 										'id'       => 'store_enable_abandoned_cart',
 										'title'    => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
@@ -464,6 +465,7 @@ class PlanManager {
 									),
 
 									/*
+									Hide Email Templates for now
 									array(
 										'id'       => 'store_enable_abandoned_cart',
 										'title'    => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
@@ -513,6 +515,7 @@ class PlanManager {
 									),
 
 									/*
+									Hide Jetpack Social Sharing Settings for now
 									array(
 										'id'       => 'store_add_social_sharing',
 										'title'    => __( 'Add Social Sharing Buttons', 'wp-module-next-steps' ),
@@ -590,6 +593,7 @@ class PlanManager {
 									),
 
 									/*
+									Hide Advanced Reviews for now
 									array(
 										'id'       => 'store_collect_reviews',
 										'title'    => __( 'Collect and Show Reviews for Your Products', 'wp-module-next-steps' ),
@@ -607,6 +611,7 @@ class PlanManager {
 								'tasks' => array(
 
 									/*
+									Hide Affiliate Program and Yith WooCommerce Points and Rewards for now
 									array(
 										'id'       => 'store_launch_affiliate',
 										'title'    => __( 'Launch an Affiliate Program', 'wp-module-next-steps' ),
@@ -702,6 +707,7 @@ class PlanManager {
 								'tasks' => array(
 
 									/*
+									Hide Jetpack Boost and Automatic Backups for now
 									array(
 										'id'       => 'store_improve_performance',
 										'title'    => __( 'Improve Performance and Speed with Jetpack Boost', 'wp-module-next-steps' ),
@@ -779,12 +785,12 @@ class PlanManager {
 								'label' => __( 'Basic Blog Setup', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
-										'id'       => 'blog_quick_setup',
-										'title'    => __( 'Quick Setup', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/options-general.php',
-										'status'   => 'new',
-										'priority' => 1,
-										'source'   => 'wp-module-next-steps',
+										'id'              => 'blog_quick_setup',
+										'title'           => __( 'Quick Setup', 'wp-module-next-steps' ),
+										'href'            => '{siteUrl}/wp-admin/options-general.php',
+										'status'          => 'new',
+										'priority'        => 1,
+										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
 											'data-test-id' => 'blog_quick_setup',
 											'data-nfd-id'  => 'blog_quick_start',
@@ -941,6 +947,7 @@ class PlanManager {
 									),
 
 									/*
+									Hide Email Templates and Jetpack Stats for now
 									array(
 										'id'       => 'blog_customize_notification_emails',
 										'title'    => __( 'Customize Notification Emails', 'wp-module-next-steps' ),
@@ -966,6 +973,7 @@ class PlanManager {
 								'tasks' => array(
 
 									/*
+									Hide Jetpack Social Sharing Settings for now
 									array(
 										'id'       => 'blog_connect_facebook',
 										'title'    => __( 'Connect Facebook Page Auto-Sharing', 'wp-module-next-steps' ),
@@ -1141,6 +1149,7 @@ class PlanManager {
 								'tasks' => array(
 
 									/*
+									Hide Jetpack Boost and Automatic Backups for now
 									array(
 										'id'       => 'blog_speed_up_site',
 										'title'    => __( 'Speed-up Site with Jetpack Boost', 'wp-module-next-steps' ),
@@ -1210,12 +1219,12 @@ class PlanManager {
 								'label' => __( 'Basic Site Setup', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
-										'id'       => 'corporate_quick_setup',
-										'title'    => __( 'Quick Setup', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/options-general.php',
-										'status'   => 'new',
-										'priority' => 1,
-										'source'   => 'wp-module-next-steps',
+										'id'              => 'corporate_quick_setup',
+										'title'           => __( 'Quick Setup', 'wp-module-next-steps' ),
+										'href'            => '{siteUrl}/wp-admin/options-general.php',
+										'status'          => 'new',
+										'priority'        => 1,
+										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
 											'data-test-id' => 'corporate_quick_setup',
 											'data-nfd-id'  => 'corporate_quick_start',
@@ -1379,6 +1388,7 @@ class PlanManager {
 								'tasks' => array(
 									
 									/*
+									Hide Jetpack Stats for now
 									array(
 										'id'       => 'corporate_setup_jetpack_stats',
 										'title'    => __( 'Set Up Jetpack Stats', 'wp-module-next-steps' ),
@@ -1389,12 +1399,12 @@ class PlanManager {
 									),
 									*/
 									array(
-										'id'        => 'corporate_connect_search_console',
-										'title'     => __( 'Connect Google Search Console', 'wp-module-next-steps' ),
-										'href'      => 'https://www.bluehost.com/blog/how-to-submit-your-website-to-search-engines/',
-										'status'    => 'new',
-										'priority'  => 2,
-										'source'    => 'wp-module-next-steps',
+										'id'       => 'corporate_connect_search_console',
+										'title'    => __( 'Connect Google Search Console', 'wp-module-next-steps' ),
+										'href'     => 'https://www.bluehost.com/blog/how-to-submit-your-website-to-search-engines/',
+										'status'   => 'new',
+										'priority' => 2,
+										'source'   => 'wp-module-next-steps',
 									),
 									array(
 										'id'       => 'corporate_install_seo_plugin',
@@ -1406,6 +1416,7 @@ class PlanManager {
 									),
 
 									/*
+									Hide Jetpack Social Sharing Settings for now
 									array(
 										'id'       => 'corporate_add_social_sharing',
 										'title'    => __( 'Add Social Sharing Settings', 'wp-module-next-steps' ),
@@ -1549,21 +1560,22 @@ class PlanManager {
 								'tasks' => array(
 
 									/*
+									Hide Jetpack Boost and Automatic Backups for now
 									array(
-										'id'          => 'corporate_install_jetpack_boost',
-										'title'       => __( 'Install Jetpack Boost or Caching Plugin', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/admin.php?page=my-jetpack#/add-boost',
-										'status'      => 'new',
-										'priority'    => 1,
-										'source'      => 'wp-module-next-steps',
+										'id'       => 'corporate_install_jetpack_boost',
+										'title'    => __( 'Install Jetpack Boost or Caching Plugin', 'wp-module-next-steps' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=my-jetpack#/add-boost',
+										'status'   => 'new',
+										'priority' => 1,
+										'source'   => 'wp-module-next-steps',
 									),
 									array(
-										'id'          => 'corporate_enable_auto_backups',
-										'title'       => __( 'Enable Automatic Backups & Update Alerts', 'wp-module-next-steps' ),
-										'href'        => '{siteUrl}/wp-admin/admin.php?page=jetpack-backup',
-										'status'      => 'new',
-										'priority'    => 2,
-										'source'      => 'wp-module-next-steps',
+										'id'       => 'corporate_enable_auto_backups',
+										'title'    => __( 'Enable Automatic Backups & Update Alerts', 'wp-module-next-steps' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=jetpack-backup',
+										'status'   => 'new',
+										'priority' => 2,
+										'source'   => 'wp-module-next-steps',
 									),
 									*/
 									array(
@@ -1585,9 +1597,9 @@ class PlanManager {
 								),
 							),
 							array(
-								'id'          => 'monitor_improve',
-								'label'       => __( 'Monitor & Improve', 'wp-module-next-steps' ),
-								'tasks'       => array(
+								'id'    => 'monitor_improve',
+								'label' => __( 'Monitor & Improve', 'wp-module-next-steps' ),
+								'tasks' => array(
 									array(
 										'id'       => 'corporate_review_traffic_engagement',
 										'title'    => __( 'Review Traffic & Engagement', 'wp-module-next-steps' ),
