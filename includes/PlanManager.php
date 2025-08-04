@@ -385,6 +385,22 @@ class PlanManager {
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
 									),
+									// array(
+									// 	'id'          => 'store_enable_abandoned_cart',
+									// 	'title'       => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
+									// 	'href'        => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
+									// 	'status'      => 'new',
+									// 	'priority'    => 4,
+									// 	'source'      => 'wp-module-next-steps',
+									// ),
+									// array(
+									// 	'id'          => 'store_customize_emails',
+									// 	'title'       => __( 'Customize Your Store Emails', 'wp-module-next-steps' ),
+									// 	'href'        => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
+									// 	'status'      => 'new',
+									// 	'priority'    => 5,
+									// 	'source'      => 'wp-module-next-steps',
+									// ),
 								),
 							),
 							array(
@@ -443,6 +459,7 @@ class PlanManager {
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
 									),
+									// 	'source'      => 'wp-module-next-steps',
 								),
 							),
 							array(
@@ -473,6 +490,8 @@ class PlanManager {
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
 									),
+
+									/*
 									array(
 										'id'          => 'store_add_social_sharing',
 										'title'       => __( 'Add Social Sharing Buttons', 'wp-module-next-steps' ),
@@ -481,6 +500,7 @@ class PlanManager {
 										'priority'    => 4,
 										'source'      => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'          => 'store_add_social_feed',
 										'title'       => __( 'Add Social Media Feed to Homepage', 'wp-module-next-steps' ),
@@ -621,6 +641,8 @@ class PlanManager {
 								'id'          => 'store_performance_security',
 								'label'       => __( 'Performance & Security', 'wp-module-next-steps' ),
 								'tasks'       => array(
+
+									/*
 									array(
 										'id'          => 'store_improve_performance',
 										'title'       => __( 'Improve Performance and Speed with Jetpack Boost', 'wp-module-next-steps' ),
@@ -637,6 +659,7 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'          => 'store_create_staging',
 										'title'       => __( 'Create a Staging Website', 'wp-module-next-steps' ),
@@ -857,6 +880,8 @@ class PlanManager {
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
 									),
+
+									/*
 									array(
 										'id'          => 'blog_connect_jetpack_stats',
 										'title'       => __( 'Connect Jetpack Stats (or Google Analytics 4)', 'wp-module-next-steps' ),
@@ -865,12 +890,15 @@ class PlanManager {
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
 									),
+									*/
 								),
 							),
 							array(
 								'id'          => 'blog_promote_social',
 								'label'       => __( 'Social Presence', 'wp-module-next-steps' ),
 								'tasks'       => array(
+
+									/*
 									array(
 										'id'          => 'blog_connect_facebook',
 										'title'       => __( 'Connect Facebook Page Auto-Sharing', 'wp-module-next-steps' ),
@@ -887,6 +915,7 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'          => 'blog_embed_social_feed',
 										'title'       => __( 'Embed a Social Media Feed on Homepage', 'wp-module-next-steps' ),
@@ -1043,6 +1072,8 @@ class PlanManager {
 								'id'          => 'blog_performance_security',
 								'label'       => __( 'Performance & Security', 'wp-module-next-steps' ),
 								'tasks'       => array(
+
+									/*
 									array(
 										'id'          => 'blog_speed_up_site',
 										'title'       => __( 'Speed-up Site with Jetpack Boost', 'wp-module-next-steps' ),
@@ -1059,6 +1090,7 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'          => 'blog_create_staging_site',
 										'title'       => __( 'Create a Staging Site', 'wp-module-next-steps' ),
@@ -1278,6 +1310,8 @@ class PlanManager {
 								'id'          => 'launch_marketing_tools',
 								'label'       => __( 'Launch Essential Marketing Tools', 'wp-module-next-steps' ),
 								'tasks'       => array(
+									
+									/*
 									array(
 										'id'          => 'corporate_setup_jetpack_stats',
 										'title'       => __( 'Set Up Jetpack Stats', 'wp-module-next-steps' ),
@@ -1286,6 +1320,7 @@ class PlanManager {
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'          => 'corporate_connect_search_console',
 										'title'       => __( 'Connect Google Search Console', 'wp-module-next-steps' ),
@@ -1302,6 +1337,8 @@ class PlanManager {
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
 									),
+
+									/*
 									array(
 										'id'          => 'corporate_add_social_sharing',
 										'title'       => __( 'Add Social Sharing Settings', 'wp-module-next-steps' ),
@@ -1310,6 +1347,7 @@ class PlanManager {
 										'priority'    => 4,
 										'source'      => 'wp-module-next-steps',
 									),
+									*/
 								),
 							),
 							array(
@@ -1442,6 +1480,8 @@ class PlanManager {
 								'id'          => 'site_performance_security',
 								'label'       => __( 'Site Performance & Security', 'wp-module-next-steps' ),
 								'tasks'       => array(
+
+									/*
 									array(
 										'id'          => 'corporate_install_jetpack_boost',
 										'title'       => __( 'Install Jetpack Boost or Caching Plugin', 'wp-module-next-steps' ),
@@ -1458,6 +1498,7 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'          => 'corporate_install_security_plugin',
 										'title'       => __( 'Install a Security Plugin', 'wp-module-next-steps' ),
