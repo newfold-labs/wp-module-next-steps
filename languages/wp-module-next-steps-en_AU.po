@@ -673,3 +673,8 @@ msgstr "Track not found."
 #: build/next-steps-portal/bundle.js:2009
 msgid "All complete!"
 msgstr "All complete!"
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Close"
+msgstr ""
