@@ -24,6 +24,13 @@ class Track {
 	public $label;
 
 	/**
+	 * Track state (open or closed)
+	 *
+	 * @var boolean
+	 */
+	public $open;
+
+	/**
 	 * Track sections
 	 *
 	 * @var Section[]
@@ -38,6 +45,7 @@ class Track {
 	public function __construct( array $data = array() ) {
 		$this->id       = $data['id'] ?? '';
 		$this->label    = $data['label'] ?? '';
+		$this->open     = $data['open'] ?? false;
 		$this->sections = array();
 
 		// Convert section arrays to Section objects
@@ -61,6 +69,7 @@ class Track {
 		return array(
 			'id'       => $this->id,
 			'label'    => $this->label,
+			'open'     => $this->open,
 			'sections' => array_map(
 				function ( Section $section ) {
 					return $section->to_array();
@@ -276,6 +285,36 @@ class Track {
 			return $section->get_task( $task_id );
 		}
 		return null;
+	}
+
+	/**
+	 * Set track open state
+	 *
+	 * @param bool $open Open state
+	 * @return bool
+	 */
+	public function set_open( bool $open ): bool {
+		$this->open = $open;
+		return true;
+	}
+
+	/**
+	 * Check if track is open
+	 *
+	 * @return bool
+	 */
+	public function is_open(): bool {
+		return $this->open;
+	}
+
+	/**
+	 * Toggle track open state
+	 *
+	 * @return bool New open state
+	 */
+	public function toggle_open(): bool {
+		$this->open = ! $this->open;
+		return $this->open;
 	}
 
 	/**
