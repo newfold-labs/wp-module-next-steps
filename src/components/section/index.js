@@ -95,9 +95,11 @@ export const Section = ( props ) => {
 						handleToggleOpen( e, false );
 					} }
 				>
-					<button className="nfd-nextsteps-section-close-button">
+					<span
+						className="nfd-nextsteps-section-close-button"
+					>
 						{ closeCircleIcon }
-					</button>
+					</span>
 					<div className="nfd-section-celebrate">{ trophyIcon }</div>
 					<p className="nfd-section-celebrate-text">{ __( 'All complete!', 'wp-module-next-steps' ) }</p>
 				</div>
