@@ -385,22 +385,25 @@ class PlanManager {
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
 									),
-									// array(
-									// 	'id'          => 'store_enable_abandoned_cart',
-									// 	'title'       => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
-									// 	'href'        => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
-									// 	'status'      => 'new',
-									// 	'priority'    => 4,
-									// 	'source'      => 'wp-module-next-steps',
-									// ),
-									// array(
-									// 	'id'          => 'store_customize_emails',
-									// 	'title'       => __( 'Customize Your Store Emails', 'wp-module-next-steps' ),
-									// 	'href'        => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
-									// 	'status'      => 'new',
-									// 	'priority'    => 5,
-									// 	'source'      => 'wp-module-next-steps',
-									// ),
+
+									/*
+									array(
+										'id'          => 'store_enable_abandoned_cart',
+										'title'       => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
+										'status'      => 'new',
+										'priority'    => 4,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_customize_emails',
+										'title'       => __( 'Customize Your Store Emails', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
+										'status'      => 'new',
+										'priority'    => 5,
+										'source'      => 'wp-module-next-steps',
+									),
+									*/
 								),
 							),
 							array(
@@ -459,7 +462,25 @@ class PlanManager {
 										'priority'    => 3,
 										'source'      => 'wp-module-next-steps',
 									),
-									// 	'source'      => 'wp-module-next-steps',
+
+									/*
+									array(
+										'id'          => 'store_enable_abandoned_cart',
+										'title'       => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
+										'status'      => 'new',
+										'priority'    => 4,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_customize_emails',
+										'title'       => __( 'Customize Your Store Emails', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
+										'status'      => 'new',
+										'priority'    => 5,
+										'source'      => 'wp-module-next-steps',
+									),
+									*/
 								),
 							),
 							array(
@@ -567,12 +588,50 @@ class PlanManager {
 										'priority'    => 2,
 										'source'      => 'wp-module-next-steps',
 									),
+
+									/*
+									array(
+										'id'          => 'store_collect_reviews',
+										'title'       => __( 'Collect and Show Reviews for Your Products', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=bh_advanced_reviews_panel',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+									*/
 								),
 							),
 							array(
 								'id'          => 'advanced_social_marketing',
 								'label'       => __( 'Advanced Social & Influencer Marketing', 'wp-module-next-steps' ),
 								'tasks'       => array(
+
+									/*
+									array(
+										'id'          => 'store_launch_affiliate',
+										'title'       => __( 'Launch an Affiliate Program', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=bh_affiliates_panel',
+										'status'      => 'new',
+										'priority'    => 1,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_create_rewards',
+										'title'       => __( 'Create a Points & Rewards Program for Your Customers', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=yith_woocommerce_points_and_rewards',
+										'status'      => 'new',
+										'priority'    => 2,
+										'source'      => 'wp-module-next-steps',
+									),
+									array(
+										'id'          => 'store_run_first_ad',
+										'title'       => __( 'Run First Facebook or Instagram Ad', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-admin&tab=extensions&path=%2Fextensions&term=facebook',
+										'status'      => 'new',
+										'priority'    => 3,
+										'source'      => 'wp-module-next-steps',
+									),
+									*/
 									array(
 										'id'          => 'store_launch_giveaway',
 										'title'       => __( 'Launch Product Giveaway Campaign', 'wp-module-next-steps' ),
@@ -882,6 +941,14 @@ class PlanManager {
 									),
 
 									/*
+									array(
+										'id'          => 'blog_customize_notification_emails',
+										'title'       => __( 'Customize Notification Emails', 'wp-module-next-steps' ),
+										'href'        => '{siteUrl}/wp-admin/admin.php?page=bh_email_templates_panel',
+										'status'      => 'new',
+										'priority'    => 2,
+										'source'      => 'wp-module-next-steps',
+									),
 									array(
 										'id'          => 'blog_connect_jetpack_stats',
 										'title'       => __( 'Connect Jetpack Stats (or Google Analytics 4)', 'wp-module-next-steps' ),
