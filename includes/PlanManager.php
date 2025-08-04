@@ -253,10 +253,12 @@ class PlanManager {
 					array(
 						'id'       => 'store_build_track',
 						'label'    => __( 'Build', 'wp-module-next-steps' ),
+						'open'     => true,
 						'sections' => array(
 							array(
 								'id'    => 'basic_store_setup',
 								'label' => __( 'Basic Store Setup', 'wp-module-next-steps' ),
+								'open'  => true,
 								'tasks' => array(
 									array(
 										'id'              => 'store_quick_setup',
@@ -275,6 +277,7 @@ class PlanManager {
 							array(
 								'id'    => 'customize_store',
 								'label' => __( 'Customize Your Store', 'wp-module-next-steps' ),
+								'open'  => true,
 								'tasks' => array(
 									array(
 										'id'       => 'store_upload_logo',
@@ -384,26 +387,6 @@ class PlanManager {
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
 									),
-
-									/*
-									Hide Email Templates for now
-									array(
-										'id'       => 'store_enable_abandoned_cart',
-										'title'    => __( 'Enable Abandoned Cart Emails', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
-										'status'   => 'new',
-										'priority' => 4,
-										'source'   => 'wp-module-next-steps',
-									),
-									array(
-										'id'       => 'store_customize_emails',
-										'title'    => __( 'Customize Your Store Emails', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
-										'status'   => 'new',
-										'priority' => 5,
-										'source'   => 'wp-module-next-steps',
-									),
-									*/
 								),
 							),
 							array(
@@ -778,10 +761,12 @@ class PlanManager {
 					array(
 						'id'       => 'blog_build_track',
 						'label'    => __( 'Build', 'wp-module-next-steps' ),
+						'open'     => true,
 						'sections' => array(
 							array(
 								'id'    => 'basic_blog_setup',
 								'label' => __( 'Basic Blog Setup', 'wp-module-next-steps' ),
+								'open'  => true,
 								'tasks' => array(
 									array(
 										'id'              => 'blog_quick_setup',
@@ -800,6 +785,7 @@ class PlanManager {
 							array(
 								'id'    => 'customize_blog',
 								'label' => __( 'Customize Your Blog', 'wp-module-next-steps' ),
+								'open'  => true,
 								'tasks' => array(
 									array(
 										'id'       => 'blog_upload_logo',
@@ -1212,10 +1198,12 @@ class PlanManager {
 					array(
 						'id'       => 'corporate_build_track',
 						'label'    => __( 'Build', 'wp-module-next-steps' ),
+						'open'     => true,
 						'sections' => array(
 							array(
 								'id'    => 'basic_site_setup',
 								'label' => __( 'Basic Site Setup', 'wp-module-next-steps' ),
+								'open'  => true,
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_quick_setup',
@@ -1234,6 +1222,7 @@ class PlanManager {
 							array(
 								'id'    => 'customize_website',
 								'label' => __( 'Customize Your Website', 'wp-module-next-steps' ),
+								'open'  => true,
 								'tasks' => array(
 									array(
 										'id'       => 'corporate_upload_logo',
