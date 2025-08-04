@@ -1,42 +1,42 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
-    "generator": "WP-CLI\/2.12.0",
-    "source": "build\/next-steps-portal\/bundle.js",
-    "domain": "messages",
-    "locale_data": {
-        "messages": {
-            "": {
-                "domain": "messages",
-                "lang": "fr_FR",
-                "plural-forms": "nplurals=2; plural=(n != 1);"
-            },
-            "Mark Complete": [
-                "Marquer comme termin\u00e9"
-            ],
-            "Skip": [
-                "Sautiller"
-            ],
-            "Restart": [
-                "Red\u00e9marrer"
-            ],
-            "Unskip": [
-                "D\u00e9sencha\u00eener"
-            ],
-            "Hide skipped tasks": [
-                "Masquer les t\u00e2ches ignor\u00e9es"
-            ],
-            "View skipped tasks": [
-                "Afficher les t\u00e2ches ignor\u00e9es"
-            ],
-            "Loading next steps...": [
-                "Chargement des \u00e9tapes suivantes..."
-            ],
-            "All complete!": [
-                "Tout est termin\u00e9\u00a0!"
-            ],
-            "Close": [
-                ""
-            ]
-        }
+  "translation-revision-date": "2025-01-21 17:05:00+0000",
+  "generator": "WP-CLI/2.12.0",
+  "source": "build/next-steps-portal/bundle.js",
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "fr_FR",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Mark Complete": [
+        "Marquer comme terminé"
+      ],
+      "Skip": [
+        "Sautiller"
+      ],
+      "Restart": [
+        "Redémarrer"
+      ],
+      "Unskip": [
+        "Désenchaîner"
+      ],
+      "Hide skipped tasks": [
+        "Masquer les tâches ignorées"
+      ],
+      "View skipped tasks": [
+        "Afficher les tâches ignorées"
+      ],
+      "Loading next steps...": [
+        "Chargement des étapes suivantes..."
+      ],
+      "All complete!": [
+        "Tout est terminé !"
+      ],
+      "Close": [
+        "Fermer"
+      ]
     }
+  }
 }
