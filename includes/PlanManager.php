@@ -1026,6 +1026,9 @@ class PlanManager {
 								'id'    => 'enhance_reader_experience',
 								'label' => __( 'Enhance Reader Experience', 'wp-module-next-steps' ),
 								'tasks' => array(
+
+									/*
+									Hide Akismet for now
 									array(
 										'id'       => 'blog_enable_comments',
 										'title'    => __( 'Enable & Style Comments Section', 'wp-module-next-steps' ),
@@ -1034,6 +1037,7 @@ class PlanManager {
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'       => 'blog_customize_author_boxes',
 										'title'    => __( 'Customize Author/Profile Boxes', 'wp-module-next-steps' ),
