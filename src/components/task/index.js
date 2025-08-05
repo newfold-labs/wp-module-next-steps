@@ -23,11 +23,12 @@ export const Task = ( props ) => {
 	} = step;
 	
 	const getHref = () => {
+        let hrefValue = href;
 		// replace {siteUrl} placeholder with the actual site URL
-		if ( href.includes( '{siteUrl}' ) ) {
-			return href.replace( '{siteUrl}', window.NewfoldRuntime.siteUrl );
+		if ( hrefValue.includes( '{siteUrl}' ) ) {
+            hrefValue = href.replace( '{siteUrl}', window.NewfoldRuntime.siteUrl );
 		}
-		return href;
+		return window.NewfoldRuntime?.linkTracker?.addUtmParams( hrefValue ) || hrefValue;
 	};
 
 	const getTarget = () => {
