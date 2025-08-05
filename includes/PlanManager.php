@@ -540,7 +540,7 @@ class PlanManager {
 									array(
 										'id'       => 'store_create_sitemap',
 										'title'    => __( 'Create a Custom Sitemap', 'wp-module-next-steps' ),
-										'href'     => 'https://www.bluehost.com/blog/how-to-submit-your-website-to-search-engines/',
+										'href'     => 'https://www.bluehost.com/blog/what-is-a-sitemap-how-it-helps-seo-and-navigation/',
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
@@ -1026,6 +1026,9 @@ class PlanManager {
 								'id'    => 'enhance_reader_experience',
 								'label' => __( 'Enhance Reader Experience', 'wp-module-next-steps' ),
 								'tasks' => array(
+
+									/*
+									Hide Akismet for now
 									array(
 										'id'       => 'blog_enable_comments',
 										'title'    => __( 'Enable & Style Comments Section', 'wp-module-next-steps' ),
@@ -1034,6 +1037,7 @@ class PlanManager {
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'       => 'blog_customize_author_boxes',
 										'title'    => __( 'Customize Author/Profile Boxes', 'wp-module-next-steps' ),
