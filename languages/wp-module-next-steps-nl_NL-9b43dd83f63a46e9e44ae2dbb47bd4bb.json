@@ -1,42 +1,42 @@
 {
-  "translation-revision-date": "2025-01-21 17:05:00+0000",
-  "generator": "WP-CLI/2.12.0",
-  "source": "build/next-steps-portal/bundle.js",
-  "domain": "messages",
-  "locale_data": {
-    "messages": {
-      "": {
-        "domain": "messages",
-        "lang": "nl_NL",
-        "plural-forms": "nplurals=2; plural=(n != 1);"
-      },
-      "Mark Complete": [
-        "Markeer Voltooid"
-      ],
-      "Skip": [
-        "Overslaan"
-      ],
-      "Restart": [
-        "Herstarten"
-      ],
-      "Unskip": [
-        "Niet overslaan"
-      ],
-      "Hide skipped tasks": [
-        "Overgeslagen taken verbergen"
-      ],
-      "View skipped tasks": [
-        "Overgeslagen taken weergeven"
-      ],
-      "Loading next steps...": [
-        "Volgende stappen laden..."
-      ],
-      "All complete!": [
-        "Helemaal compleet!"
-      ],
-      "Close": [
-        "Sluiten"
-      ]
+    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/next-steps-portal\/bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "nl_NL",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Mark Complete": [
+                "Markeer Voltooid"
+            ],
+            "Skip": [
+                "Overslaan"
+            ],
+            "Restart": [
+                "Herstarten"
+            ],
+            "Unskip": [
+                "Niet overslaan"
+            ],
+            "Hide skipped tasks": [
+                "Overgeslagen taken verbergen"
+            ],
+            "View skipped tasks": [
+                "Overgeslagen taken weergeven"
+            ],
+            "Loading next steps...": [
+                "Volgende stappen laden..."
+            ],
+            "All complete!": [
+                "Helemaal compleet!"
+            ],
+            "Close": [
+                "Sluiten"
+            ]
+        }
     }
-  }
 }
