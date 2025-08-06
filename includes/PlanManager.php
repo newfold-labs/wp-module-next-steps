@@ -1493,7 +1493,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_create_faq_page',
 										'title'    => __( 'Create a FAQ Page', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}wp-admin/post-new.php?post_type=page&wb-library=patterns&wb-category=features',
+										'href'     => '{siteUrl}/wp-admin/post-new.php?post_type=page&wb-library=patterns&wb-category=features',
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
