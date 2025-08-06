@@ -538,15 +538,11 @@ msgstr "Configurar um site de teste"
 msgid "Monitor & Improve"
 msgstr "Monitore e melhore"
 
-#: includes/PlanManager.php:1597
-msgid "Review Traffic & Engagement"
-msgstr "Revisar tráfego e engajamento"
-
-#: includes/PlanManager.php:1605
+#: includes/PlanManager.php:1609
 msgid "Run a Speed Test"
 msgstr "Executar um teste de velocidade"
 
-#: includes/PlanManager.php:1613
+#: includes/PlanManager.php:1617
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Planeje sua próxima atualização de conteúdo ou campanha"
 

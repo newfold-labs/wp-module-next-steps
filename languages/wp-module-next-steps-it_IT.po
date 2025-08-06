@@ -538,15 +538,11 @@ msgstr "Impostazione di un sito di gestione temporanea"
 msgid "Monitor & Improve"
 msgstr "Monitora e migliora"
 
-#: includes/PlanManager.php:1597
-msgid "Review Traffic & Engagement"
-msgstr "Esamina il traffico e il coinvolgimento"
-
-#: includes/PlanManager.php:1605
+#: includes/PlanManager.php:1609
 msgid "Run a Speed Test"
 msgstr "Esegui un test di velocità"
 
-#: includes/PlanManager.php:1613
+#: includes/PlanManager.php:1617
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Pianifica il tuo prossimo aggiornamento di contenuti o campagne"
 
