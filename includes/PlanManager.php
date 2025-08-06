@@ -1166,6 +1166,8 @@ class PlanManager {
 									),
 								),
 							),
+							/*
+							Hide Jetpack Analytics for now
 							array(
 								'id'    => 'blog_analytics',
 								'label' => __( 'Blog Analytics', 'wp-module-next-steps' ),
@@ -1180,6 +1182,7 @@ class PlanManager {
 									),
 								),
 							),
+							*/
 						),
 					),
 				),
