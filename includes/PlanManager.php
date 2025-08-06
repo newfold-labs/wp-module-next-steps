@@ -1592,6 +1592,9 @@ class PlanManager {
 								'id'    => 'monitor_improve',
 								'label' => __( 'Monitor & Improve', 'wp-module-next-steps' ),
 								'tasks' => array(
+
+									/*
+									Hide Jetpack Traffic for now
 									array(
 										'id'       => 'corporate_review_traffic_engagement',
 										'title'    => __( 'Review Traffic & Engagement', 'wp-module-next-steps' ),
@@ -1600,6 +1603,7 @@ class PlanManager {
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'       => 'corporate_run_speed_test',
 										'title'    => __( 'Run a Speed Test', 'wp-module-next-steps' ),
