@@ -1615,7 +1615,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_plan_next_content',
 										'title'    => __( 'Plan Your Next Content or Campaign Update', 'wp-module-next-steps' ),
-										'href'     => 'https://www.bluehost.com/blog/what-is-my-page-speed/',
+										'href'     => 'https://www.bluehost.com/blog/how-to-create-a-content-calendar/',
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
