@@ -1485,7 +1485,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_publish_first_blog_post',
 										'title'    => __( 'Publish Your First Company Blog Post', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}wp-admin/post-new.php?wb-library=patterns&wb-category=text',
+										'href'     => '{siteUrl}/wp-admin/post-new.php?wb-library=patterns&wb-category=text',
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -1493,7 +1493,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_create_faq_page',
 										'title'    => __( 'Create a FAQ Page', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}wp-admin/post-new.php?post_type=page&wb-library=patterns&wb-category=features',
+										'href'     => '{siteUrl}/wp-admin/post-new.php?post_type=page&wb-library=patterns&wb-category=features',
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -1592,6 +1592,9 @@ class PlanManager {
 								'id'    => 'monitor_improve',
 								'label' => __( 'Monitor & Improve', 'wp-module-next-steps' ),
 								'tasks' => array(
+
+									/*
+									Hide Jetpack Traffic for now
 									array(
 										'id'       => 'corporate_review_traffic_engagement',
 										'title'    => __( 'Review Traffic & Engagement', 'wp-module-next-steps' ),
@@ -1600,6 +1603,7 @@ class PlanManager {
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
 									),
+									*/
 									array(
 										'id'       => 'corporate_run_speed_test',
 										'title'    => __( 'Run a Speed Test', 'wp-module-next-steps' ),
@@ -1611,7 +1615,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_plan_next_content',
 										'title'    => __( 'Plan Your Next Content or Campaign Update', 'wp-module-next-steps' ),
-										'href'     => 'https://www.bluehost.com/blog/what-is-my-page-speed/',
+										'href'     => 'https://www.bluehost.com/blog/how-to-create-a-content-calendar/',
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
