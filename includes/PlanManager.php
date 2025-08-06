@@ -1485,7 +1485,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_publish_first_blog_post',
 										'title'    => __( 'Publish Your First Company Blog Post', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}wp-admin/post-new.php?wb-library=patterns&wb-category=text',
+										'href'     => '{siteUrl}/wp-admin/post-new.php?wb-library=patterns&wb-category=text',
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
