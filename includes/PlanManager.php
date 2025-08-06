@@ -1166,6 +1166,7 @@ class PlanManager {
 									),
 								),
 							),
+
 							/*
 							Hide Jetpack Analytics for now
 							array(
