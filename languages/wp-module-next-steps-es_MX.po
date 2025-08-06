@@ -1,20 +1,21 @@
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es_MX <LL@li.org>\n"
-"Language: es_MX\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
+"Language: es_MX\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:22 includes/NextSteps.php:62 includes/NextStepsWidget.php:39
+#: bootstrap.php:22
+#: includes/NextSteps.php:62
+#: includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Próximos pasos"
 
@@ -24,11 +25,10 @@ msgstr "Configuración de la tienda"
 
 #: includes/PlanManager.php:251
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr ""
-"Complete la configuración de su tienda de comercio electrónico con estos "
-"pasos esenciales:"
+msgstr "Complete la configuración de su tienda de comercio electrónico con estos pasos esenciales:"
 
-#: includes/PlanManager.php:255 includes/PlanManager.php:763
+#: includes/PlanManager.php:255
+#: includes/PlanManager.php:763
 #: includes/PlanManager.php:1207
 msgid "Build"
 msgstr "Construir"
@@ -37,7 +37,8 @@ msgstr "Construir"
 msgid "Basic Store Setup"
 msgstr "Configuración básica de la tienda"
 
-#: includes/PlanManager.php:265 includes/PlanManager.php:773
+#: includes/PlanManager.php:265
+#: includes/PlanManager.php:773
 #: includes/PlanManager.php:1217
 msgid "Quick Setup"
 msgstr "Configuración rápida"
@@ -46,20 +47,24 @@ msgstr "Configuración rápida"
 msgid "Customize Your Store"
 msgstr "Personaliza tu tienda"
 
-#: includes/PlanManager.php:284 includes/PlanManager.php:792
+#: includes/PlanManager.php:284
+#: includes/PlanManager.php:792
 msgid "Upload Logo"
 msgstr "Subir logotipo"
 
-#: includes/PlanManager.php:292 includes/PlanManager.php:800
+#: includes/PlanManager.php:292
+#: includes/PlanManager.php:800
 msgid "Choose Colors and Fonts"
 msgstr "Elegir colores y fuentes"
 
-#: includes/PlanManager.php:300 includes/PlanManager.php:808
+#: includes/PlanManager.php:300
+#: includes/PlanManager.php:808
 #: includes/PlanManager.php:1252
 msgid "Customize Header"
 msgstr "Personalizar encabezado"
 
-#: includes/PlanManager.php:308 includes/PlanManager.php:816
+#: includes/PlanManager.php:308
+#: includes/PlanManager.php:816
 #: includes/PlanManager.php:1260
 msgid "Customize Footer"
 msgstr "Personalizar pie de página"
@@ -120,7 +125,8 @@ msgstr "Términos y condiciones"
 msgid "Return and Refund Policy"
 msgstr "Política de devoluciones y reembolsos"
 
-#: includes/PlanManager.php:426 includes/PlanManager.php:918
+#: includes/PlanManager.php:426
+#: includes/PlanManager.php:918
 #: includes/PlanManager.php:1340
 msgid "Brand"
 msgstr "Marca"
@@ -139,8 +145,7 @@ msgstr "Crea una tarjeta de regalo para vender en tu tienda"
 
 #: includes/PlanManager.php:472
 msgid "Launch and Promote - Social Media Setup & Engagement"
-msgstr ""
-"Lanzamiento y promoción: configuración y participación en las redes sociales"
+msgstr "Lanzamiento y promoción: configuración y participación en las redes sociales"
 
 #: includes/PlanManager.php:476
 msgid "Connect Facebook Store"
@@ -166,7 +171,8 @@ msgstr "Lanzamiento y promoción: SEO y visibilidad de la tienda"
 msgid "Optimize Your Store SEO"
 msgstr "Optimiza el SEO de tu tienda"
 
-#: includes/PlanManager.php:534 includes/PlanManager.php:1003
+#: includes/PlanManager.php:534
+#: includes/PlanManager.php:1003
 msgid "Submit Site to Google Search Console"
 msgstr "Enviar sitio a Google Search Console"
 
@@ -174,7 +180,8 @@ msgstr "Enviar sitio a Google Search Console"
 msgid "Create a Custom Sitemap"
 msgstr "Crear un mapa del sitio personalizado"
 
-#: includes/PlanManager.php:554 includes/PlanManager.php:1023
+#: includes/PlanManager.php:554
+#: includes/PlanManager.php:1023
 #: includes/PlanManager.php:1460
 msgid "Grow"
 msgstr "Crecer"
@@ -191,7 +198,8 @@ msgstr "Personaliza la página de agradecimiento"
 msgid "Customize Your Customer's Account Page"
 msgstr "Personaliza la página de la cuenta de tu cliente"
 
-#: includes/PlanManager.php:592 includes/PlanManager.php:1069
+#: includes/PlanManager.php:592
+#: includes/PlanManager.php:1069
 msgid "Advanced Social & Influencer Marketing"
 msgstr "Marketing social e influencer avanzado"
 
@@ -227,7 +235,8 @@ msgstr "Crear una campaña de ventas adicionales"
 msgid "Setup Yoast Premium to Drive Traffic to Your Store"
 msgstr "Configura Yoast Premium para atraer tráfico a tu tienda"
 
-#: includes/PlanManager.php:688 includes/PlanManager.php:1137
+#: includes/PlanManager.php:688
+#: includes/PlanManager.php:1137
 msgid "Performance & Security"
 msgstr "Rendimiento y seguridad"
 
@@ -283,11 +292,13 @@ msgstr "Establecer una imagen destacada para una publicación"
 msgid "Set Up Navigation"
 msgstr "Configurar la navegación"
 
-#: includes/PlanManager.php:860 includes/PlanManager.php:1282
+#: includes/PlanManager.php:860
+#: includes/PlanManager.php:1282
 msgid "Add Pages for Home, Blog, About, Contact"
 msgstr "Agregar páginas para Inicio, Blog, Acerca de, Contacto"
 
-#: includes/PlanManager.php:868 includes/PlanManager.php:1290
+#: includes/PlanManager.php:868
+#: includes/PlanManager.php:1290
 msgid "Create a Primary Menu"
 msgstr "Crear un menú principal"
 
@@ -299,15 +310,18 @@ msgstr "Crear un menú de pie de página"
 msgid "Set Up Essential Pages"
 msgstr "Configurar páginas esenciales"
 
-#: includes/PlanManager.php:890 includes/PlanManager.php:1312
+#: includes/PlanManager.php:890
+#: includes/PlanManager.php:1312
 msgid "Add a Privacy Policy"
 msgstr "Agregar una política de privacidad"
 
-#: includes/PlanManager.php:898 includes/PlanManager.php:1320
+#: includes/PlanManager.php:898
+#: includes/PlanManager.php:1320
 msgid "Add Terms & Conditions"
 msgstr "Agregar Términos y Condiciones"
 
-#: includes/PlanManager.php:906 includes/PlanManager.php:1328
+#: includes/PlanManager.php:906
+#: includes/PlanManager.php:1328
 msgid "Add an Accessibility Statement"
 msgstr "Agregar una declaración de accesibilidad"
 
@@ -343,7 +357,8 @@ msgstr "Personalizar cuadros de autor/perfil"
 msgid "Display Testimonials or Highlighted Comments"
 msgstr "Mostrar testimonios o comentarios destacados"
 
-#: includes/PlanManager.php:1059 includes/PlanManager.php:1356
+#: includes/PlanManager.php:1059
+#: includes/PlanManager.php:1356
 msgid "Create a Favicon"
 msgstr "Crear un favicon"
 
@@ -353,8 +368,7 @@ msgstr "Crear un boletín informativo por correo electrónico"
 
 #: includes/PlanManager.php:1081
 msgid "Draft an Influencer/Guest-Post Outreach List"
-msgstr ""
-"Redacte una lista de divulgación de influencers/publicaciones de invitados"
+msgstr "Redacte una lista de divulgación de influencers/publicaciones de invitados"
 
 #: includes/PlanManager.php:1097
 msgid "Track Campaigns with UTM Links"
@@ -524,7 +538,8 @@ msgstr "Ejecutar una prueba de velocidad"
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Planifica tu próxima actualización de contenido o campaña"
 
-#: includes/StepsApi.php:293 includes/StepsApi.php:315
+#: includes/StepsApi.php:293
+#: includes/StepsApi.php:315
 msgid "No plan found."
 msgstr "No se encontró ningún plan."
 
@@ -536,7 +551,8 @@ msgstr "No se encontraron huellas en el plano."
 msgid "No sections found in track."
 msgstr "No se encontraron secciones en la pista."
 
-#: includes/StepsApi.php:377 includes/StepsApi.php:410
+#: includes/StepsApi.php:377
+#: includes/StepsApi.php:410
 #: includes/StepsApi.php:436
 msgid "Invalid parameters provided."
 msgstr "Parámetros no válidos proporcionados."
@@ -561,38 +577,45 @@ msgstr "Se proporciona un tipo de plan no válido."
 msgid "Failed to add task to section."
 msgstr "No se pudo agregar la tarea a la sección."
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2117
 msgid "Mark Complete"
 msgstr "Marcar completo"
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2140
 msgid "Skip"
 msgstr "Saltarse"
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2173
 msgid "Restart"
 msgstr "Reanudar"
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2196
 #: build/next-steps-portal/bundle.js:2211
 msgid "Unskip"
 msgstr "Omitir"
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1843
 msgid "Hide skipped tasks"
 msgstr "Ocultar tareas omitidas"
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1844
 msgid "View skipped tasks"
 msgstr "Ver tareas omitidas"
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1813
 msgid "Loading next steps..."
 msgstr "Cargando los próximos pasos..."
@@ -619,8 +642,7 @@ msgstr "Explorar el plugin SEO"
 
 #: includes/PlanManager.php:1432
 msgid "Add a Contact Form with email routing"
-msgstr ""
-"Agregar un formulario de contacto con enrutamiento de correo electrónico"
+msgstr "Agregar un formulario de contacto con enrutamiento de correo electrónico"
 
 #: includes/PlanManager.php:1468
 msgid "Add Client Logos or Testimonials or Reviews"
@@ -630,11 +652,13 @@ msgstr "Agregar logotipos de clientes, testimonios o reseñas"
 msgid "Track not found."
 msgstr "Pista no encontrada."
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2009
 msgid "All complete!"
 msgstr "¡Todo completo!"
 
-#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Close"
 msgstr "Cerrar"
