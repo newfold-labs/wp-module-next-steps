@@ -538,15 +538,11 @@ msgstr "Einrichten einer Staging-Site"
 msgid "Monitor & Improve"
 msgstr "Überwachen & Verbessern"
 
-#: includes/PlanManager.php:1597
-msgid "Review Traffic & Engagement"
-msgstr "Review Traffic & Engagement"
-
-#: includes/PlanManager.php:1605
+#: includes/PlanManager.php:1609
 msgid "Run a Speed Test"
 msgstr "Führen Sie einen Geschwindigkeitstest durch"
 
-#: includes/PlanManager.php:1613
+#: includes/PlanManager.php:1617
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Planen Sie Ihr nächstes Content- oder Kampagnen-Update"
 

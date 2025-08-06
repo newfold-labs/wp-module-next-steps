@@ -538,15 +538,11 @@ msgstr "Een testsite instellen"
 msgid "Monitor & Improve"
 msgstr "Monitoren en verbeteren"
 
-#: includes/PlanManager.php:1597
-msgid "Review Traffic & Engagement"
-msgstr "Bekijk Traffic & Engagement"
-
-#: includes/PlanManager.php:1605
+#: includes/PlanManager.php:1609
 msgid "Run a Speed Test"
 msgstr "Voer een snelheidstest uit"
 
-#: includes/PlanManager.php:1613
+#: includes/PlanManager.php:1617
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Plan uw volgende inhouds- of campagne-update"
 

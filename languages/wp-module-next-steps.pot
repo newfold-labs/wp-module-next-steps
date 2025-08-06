@@ -565,15 +565,11 @@ msgstr ""
 msgid "Monitor & Improve"
 msgstr ""
 
-#: includes/PlanManager.php:1597
-msgid "Review Traffic & Engagement"
-msgstr ""
-
-#: includes/PlanManager.php:1605
+#: includes/PlanManager.php:1609
 msgid "Run a Speed Test"
 msgstr ""
 
-#: includes/PlanManager.php:1613
+#: includes/PlanManager.php:1617
 msgid "Plan Your Next Content or Campaign Update"
 msgstr ""
 
