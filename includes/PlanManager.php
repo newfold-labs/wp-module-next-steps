@@ -366,7 +366,7 @@ class PlanManager {
 									array(
 										'id'       => 'store_setup_payments',
 										'title'    => __( 'Set Up Payments', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=payments',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=checkout',
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
