@@ -98,14 +98,6 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		cy.get( '.nfd-nextsteps-step-container' ).first().then( ( $task ) => {
 			// Should have an id attribute
 			cy.wrap( $task ).should( 'have.attr', 'id' );
-			
-			// May have custom data attributes
-			const attributes = $task.get( 0 ).attributes;
-			Object.values( attributes ).forEach( ( attr ) => {
-				if ( attr.name.startsWith( 'data-' ) ) {
-					cy.wrap( $task ).should( 'have.attr', attr.name );
-				}
-			} );
 		} );
 
 		// Loading State Verification
