@@ -40,7 +40,6 @@ export const Task = ( props ) => {
 			( response ) => {
 				// update status on success
 				setStatus( newStatus ); // redundant since we already set it above
-				// console.log( 'Task status updated successfully' );
 			}
 		);
 	};

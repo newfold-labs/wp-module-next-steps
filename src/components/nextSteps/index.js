@@ -109,14 +109,10 @@ export const NextSteps = () => {
 		taskUpdateWrapper(
 			data,
 			( error ) => {
-				// TODO handle error better
-				// console.error( 'Error updating step:', error );
 				errorCallback( error );
 			},
 			( response ) => {
-				// The response is true for success
-				// Nothing needed here since the task update is handled in the task component
-				// console.log( 'Task update success' );
+				// Nothing action needed here since the task update is handled in the task component
 				successCallback( response );
 			}
 		);
@@ -135,7 +131,7 @@ export const NextSteps = () => {
 		}
 		
 		if ( ! trackId ) {
-			// console.error( 'Could not find track for section:', section );
+			// Could not find track for intendend section
 			return;
 		}
 
