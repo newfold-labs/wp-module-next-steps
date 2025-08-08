@@ -25,7 +25,7 @@ const createEndpointUrl = ( root, endpoint ) => {
  * Wrapper method to post task update to endpoint
  *
  * @param {Object}   data         object of data
- * @param {Function} passError    setter for the error in component
+ * @param {Function} passError    method to handle the error in component
  * @param {Function} thenCallback method to call in promise then
  */
 const taskUpdateWrapper = ( data, passError, thenCallback ) => {
@@ -49,7 +49,7 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 * Wrapper method to post section update to endpoint
 *
 * @param {Object}   data         object of data
-* @param {Function} passError    setter for the error in component
+* @param {Function} passError    method to handle the error in component
 * @param {Function} thenCallback method to call in promise then
 */
 const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
@@ -73,7 +73,7 @@ const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 * Wrapper method to post track update to endpoint
 *
 * @param {Object}   data         object of data
-* @param {Function} passError    setter for the error in component
+* @param {Function} passError    method to handle the error in component
 * @param {Function} thenCallback method to call in promise then
 */
 const trackUpdateWrapper = ( data, passError, thenCallback ) => {
@@ -118,19 +118,8 @@ export const NextSteps = () => {
 		);
 	};
 
-	const sectionOpenCallback = ( section, open ) => {		
-		// Find the track that contains this section
-		let trackId = null;
-		if ( plan && plan.tracks ) {
-			for ( const track of plan.tracks ) {
-				if ( track.sections && track.sections.some( s => s.id === section ) ) {
-					trackId = track.id;
-					break;
-				}
-			}
-		}
-		
-		if ( ! trackId ) {
+	const sectionOpenCallback = ( trackId, sectionId, open ) => {		
+		if ( !trackId || !sectionId ) {
 			// Could not find track for intendend section
 			return;
 		}
@@ -138,7 +127,7 @@ export const NextSteps = () => {
 		const data = {
 			plan: plan.id,
 			track: trackId,
-			section: section,
+			section: sectionId,
 			open: open,
 		};
 		
@@ -184,15 +173,15 @@ export const NextSteps = () => {
 	return (
 		<div className="nfd-nextsteps" id="nfd-nextsteps">
 			<p className="nfd-pb-4">{ plan.description }</p>
-			{ plan.tracks.map( ( track, i ) => (
+			{ plan.tracks.map( ( track, trackIndex ) => (
 				<Track
+					index={ trackIndex }
 					key={ track.id }
-					track={ track }
-					index={ i }
-					trackOpenCallback={ trackOpenCallback }
 					sectionOpenCallback={ sectionOpenCallback }
-					taskUpdateCallback={ taskUpdateCallback }
 					showDismissed={ showDismissed }
+					taskUpdateCallback={ taskUpdateCallback }
+					track={ track }
+					trackOpenCallback={ trackOpenCallback }
 				/>
 			) ) }
 			{ showControls && <div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">

@@ -1,22 +1,40 @@
+import { useEffect, useRef } from '@wordpress/element';
 import { Title } from '@newfold/ui-component-library';
 import { Section } from '../section';
 import { chevronIcon } from '../icons';
 
 export const Track = ( props ) => {
 	const {
-		track,
 		index,
-		taskUpdateCallback,
+		track,
 		sectionOpenCallback,
-		trackOpenCallback,
 		showDismissed,
-		...restProps
+		taskUpdateCallback,
+		trackOpenCallback,
 	} = props;
 
 	// Use track.open if available, otherwise fall back to default behavior (first track open)
-	const isOpen = track.hasOwnProperty('open') ? track.open : index === 0;
+	const initialOpenState = track.open;
+	const detailsRef = useRef( null );
+	const isInitialized = useRef( false );
+
+	// Set initial open state imperatively
+	useEffect( () => {
+		if ( detailsRef.current ) {
+			detailsRef.current.open = initialOpenState;
+		}
+		// Use setTimeout to ensure initialization happens after any triggered events
+		setTimeout( () => {
+			isInitialized.current = true;
+		}, 0 );
+	}, [] );
 
 	const handleToggleOpen = ( event ) => {
+		// Only call the callback if this is a user-triggered event (after initialization)
+		if ( ! isInitialized.current ) {
+			return;
+		}
+		
 		// Get the new open state from the details element
 		const newOpenState = event.target.open;
 		// Call the callback to update the backend
@@ -24,9 +42,9 @@ export const Track = ( props ) => {
 	};
 
 	return (
-		<details 
+		<details
+			ref={ detailsRef }
 			className="nfd-track"
-			open={ isOpen } 
 			onToggle={ handleToggleOpen }
 		>
 			<summary className="nfd-track-header">
@@ -40,13 +58,13 @@ export const Track = ( props ) => {
 			<div className="nfd-track-sections">
 				{ track.sections.map( ( section, sectionIndex ) => (
 					<Section
+						index={ sectionIndex }
 						key={ section.id }
 						section={ section }
-						index={ sectionIndex }
-						taskUpdateCallback={ taskUpdateCallback }
 						sectionOpenCallback={ sectionOpenCallback }
-						track={ track.id }
 						showDismissed={ showDismissed }
+						taskUpdateCallback={ taskUpdateCallback }
+						trackId={ track.id }
 					/>
 				) ) }
 			</div>

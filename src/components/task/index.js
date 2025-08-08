@@ -5,12 +5,12 @@ import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon } fr
 
 export const Task = ( props ) => {
 	const {
+		index,
+		sectionId,
+		showDismissed,
 		task,
 		taskUpdateCallback,
-		track,
-		section,
-		showDismissed,
-		...restProps
+		trackId,
 	} = props;
 	
 	// Destructure task properties
@@ -28,8 +28,8 @@ export const Task = ( props ) => {
 		setStatus( newStatus ); // for immediate UI feedback
 		// update task status via API
 		taskUpdateCallback( 
-			track,
-			section,
+			trackId,
+			sectionId,
 			id,
 			newStatus,
 			( error ) => {

@@ -761,7 +761,7 @@ class PlanManager {
 					array(
 						'id'       => 'blog_build_track',
 						'label'    => __( 'Build', 'wp-module-next-steps' ),
-						'open'     => true,
+						'open'     => false,
 						'sections' => array(
 							array(
 								'id'    => 'basic_blog_setup',
@@ -1206,7 +1206,7 @@ class PlanManager {
 					array(
 						'id'       => 'corporate_build_track',
 						'label'    => __( 'Build', 'wp-module-next-steps' ),
-						'open'     => true,
+						'open'     => false,
 						'sections' => array(
 							array(
 								'id'    => 'basic_site_setup',
