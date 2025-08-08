@@ -866,7 +866,7 @@ class PlanManager {
 									array(
 										'id'       => 'blog_create_primary_menu',
 										'title'    => __( 'Create a Primary Menu', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=%2Fwp_navigation%2F7&canvas=edit',
+										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=/navigation',
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
