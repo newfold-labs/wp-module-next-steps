@@ -170,11 +170,25 @@ export const getTaskByStatus = ( status ) => {
  */
 export const completeTask = ( task ) => {
 	cy.log( '✅ completeTask called' );
+
+	// Intercept the task status update API call (since endpoint depends on permalinks)
+	cy.intercept(
+		{
+			method: 'POST',
+			url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)status/,
+		},
+		{
+			statusCode: 200,
+			body: true
+		}
+	).as( 'updateTaskStatus' );
 	
 	// Click the completion button and verify the task transitions to completed state
 	task
+		.scrollIntoView()
 		.should( 'exist' )
 		.and( 'be.visible' )
+		.and( 'not.be.disabled' )
 		.then( ( $task ) => {
 			// Get task container for verification
 			const $container = $task.closest( '.nfd-nextsteps-step-container' );
@@ -189,19 +203,10 @@ export const completeTask = ( task ) => {
 				.and( 'not.be.disabled' )
 				.click( { force: true } );
 			
-			// CRITICAL: Verify the task actually became completed
-			// This addresses the CI issue where DOM doesn't update fast enough
-			if ( taskId ) {
-				// Wait for the task to transition to completed state
-				cy.get( `#${taskId} .nfd-nextsteps-step-done`, { timeout: 15000 } )
-					.should( 'exist' );
-				cy.log( `✅ Task ${taskId} verified as completed` );
-			} else {
-				// Fallback: ensure at least one completed task exists
-				cy.get( '.nfd-nextsteps-step-done', { timeout: 15000 } )
-					.should( 'exist' );
-				cy.log( `✅ Task completion verified (fallback)` );
-			}
+			cy.wait( '@updateTaskStatus' );
+			
+			cy.get( `#${taskId} .nfd-nextsteps-step-done` ).should( 'exist' );
+			cy.log( `✅ Task ${taskId} verified as completed` );
 		} );
 	
 	cy.log( `🎯 Task completion process finished` );
