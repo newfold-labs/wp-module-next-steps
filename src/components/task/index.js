@@ -1,10 +1,11 @@
 import { Title } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
+import { useState } from '@wordpress/element';
 import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon } from '../icons';
 
 export const Task = ( props ) => {
 	const {
-		step,
+		task,
 		taskUpdateCallback,
 		track,
 		section,
@@ -12,15 +13,37 @@ export const Task = ( props ) => {
 		...restProps
 	} = props;
 	
-	// Destructure step properties
+	// Destructure task properties
 	const {
 		id,
-		// description = '',
 		title = '',
-		status,
 		href,
 		data_attributes = {}
-	} = step;
+	} = task;
+	// task status uses state to track the current status
+	const [ status, setStatus ] = useState( task.status );
+
+	const updateStatus = ( newStatus ) => {
+		const currentStatus = status;
+		setStatus( newStatus ); // for immediate UI feedback
+		// update task status via API
+		taskUpdateCallback( 
+			track,
+			section,
+			id,
+			newStatus,
+			( error ) => {
+				// undo status update on error
+				setStatus( currentStatus );
+				console.error( 'Error updating task status. Please, try reloading the page to load the latest data.', error );
+			},
+			( response ) => {
+				// update status on success
+				setStatus( newStatus ); // redundant since we already set it above
+				// console.log( 'Task status updated successfully' );
+			}
+		);
+	};
 	
 	const getHref = () => {
         let hrefValue = href;
@@ -97,7 +120,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback( track, section, id, 'done' )
+								updateStatus( 'done' )
 							}
 							title={ __(
 								'Mark Complete',
@@ -115,12 +138,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback(
-									track,
-									section,
-									id,
-									'dismissed'
-								)
+								updateStatus( 'dismissed' )
 							}
 							title={ __( 'Skip', 'wp-module-next-steps' ) }
 						>
@@ -153,7 +171,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback( track, section, id, 'new' )
+								updateStatus( 'new' )
 							}
 							title={ __( 'Restart', 'wp-module-next-steps' ) }
 						>
@@ -176,7 +194,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback( track, section, id, 'new' )
+								updateStatus( 'new' )
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>
@@ -191,7 +209,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback( track, section, id, 'new' )
+								updateStatus( 'new' )
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>

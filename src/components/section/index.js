@@ -75,10 +75,10 @@ export const Section = ( props ) => {
 				{ total > 0 && <ProgressBar completed={ completed } total={ total } /> }
 			</summary>
 			<div className="nfd-section-steps">
-				{ section.tasks.map( ( step ) => (
+				{ section.tasks.map( ( task ) => (
 					<Task
-						key={ step.id }
-						step={ step }
+						key={ task.id }
+						task={ task }
 						taskUpdateCallback={ taskUpdateCallback }
 						showDismissed={ showDismissed }
 						track={ track }

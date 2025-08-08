@@ -80,7 +80,7 @@ class StepsApi {
 			$this->rest_base . '/status',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE,
-				'callback'            => array( $this, 'update_step_status' ),
+				'callback'            => array( $this, 'update_task_status' ),
 				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
@@ -360,12 +360,12 @@ class StepsApi {
 	}
 
 	/**
-	 * Update a step status.
+	 * Update a task status.
 	 *
 	 * @param \WP_REST_Request $request  The REST request object.
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 */
-	public static function update_step_status( \WP_REST_Request $request ) {
+	public static function update_task_status( \WP_REST_Request $request ) {
 		$plan    = $request->get_param( 'plan' );
 		$track   = $request->get_param( 'track' );
 		$section = $request->get_param( 'section' );
@@ -388,9 +388,9 @@ class StepsApi {
 		}
 
 		// Get the updated plan
-		$plan = PlanManager::get_current_plan();
+		// $plan = PlanManager::get_current_plan();
 
-		return new WP_REST_Response( $plan->to_array(), 200 );
+		return new WP_REST_Response( true, 200 );
 	}
 
 	/**

@@ -38,11 +38,9 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 		data,
 	} )
 		.then( ( response ) => {
-			// console.log( 'Response from taskUpdateWrapper:', response );
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
-			// console.error( 'Error from taskUpdateWrapper:', error );
 			passError( error );
 		} );
 };
@@ -64,11 +62,9 @@ const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 		data,
 	} )
 		.then( ( response ) => {
-			// console.log( 'Section update response:', response );
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
-			// console.error( 'Error updating section:', error );
 			passError( error );
 		} );
 };
@@ -90,11 +86,9 @@ const trackUpdateWrapper = ( data, passError, thenCallback ) => {
 		data,
 	} )
 		.then( ( response ) => {
-			// console.log( 'Track update response:', response );
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
-			// console.error( 'Error updating track:', error );
 			passError( error );
 		} );
 };
@@ -104,7 +98,7 @@ export const NextSteps = () => {
 	const [ showDismissed, setShowDismissed ] = useState( true );
 	const [ showControls, setShowControls ] = useState( false );
 
-	const taskUpdateCallback = ( track, section, id, status ) => {
+	const taskUpdateCallback = ( track, section, id, status, errorCallback, successCallback ) => {
 		const data = {
 			plan: plan.id,
 			track,
@@ -117,19 +111,18 @@ export const NextSteps = () => {
 			( error ) => {
 				// TODO handle error better
 				// console.error( 'Error updating step:', error );
+				errorCallback( error );
 			},
 			( response ) => {
-				// The response is the full plan object, not wrapped in a plan property
-				// console.log( 'Task update response:', response );
-				window.NewfoldNextSteps = response;
-				setPlan( response );
+				// The response is true for success
+				// Nothing needed here since the task update is handled in the task component
+				// console.log( 'Task update success' );
+				successCallback( response );
 			}
 		);
 	};
 
-	const sectionOpenCallback = ( section, open ) => {
-		// console.log( 'Section open callback:', section, open );
-		
+	const sectionOpenCallback = ( section, open ) => {		
 		// Find the track that contains this section
 		let trackId = null;
 		if ( plan && plan.tracks ) {
@@ -165,8 +158,6 @@ export const NextSteps = () => {
 	};
 
 	const trackOpenCallback = ( track, open ) => {
-		// console.log( 'Track open callback:', track, open );
-		
 		const data = {
 			plan: plan.id,
 			track: track,
