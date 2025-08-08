@@ -7,13 +7,12 @@ import { Task } from '../task';
 
 export const Section = ( props ) => {
 	const {
-		section,
 		index,
-		taskUpdateCallback,
+		section,
 		sectionOpenCallback,
-		track,
 		showDismissed,
-		...restProps
+		taskUpdateCallback,
+		trackId,
 	} = props;
 	
 	const [ showCompleteCelebration, setShowCompleteCelebration ] = useState( true );
@@ -75,14 +74,15 @@ export const Section = ( props ) => {
 				{ total > 0 && <ProgressBar completed={ completed } total={ total } /> }
 			</summary>
 			<div className="nfd-section-steps">
-				{ section.tasks.map( ( task ) => (
+				{ section.tasks.map( ( task, taskIndex ) => (
 					<Task
+						index={ taskIndex }
 						key={ task.id }
-						task={ task }
-						taskUpdateCallback={ taskUpdateCallback }
+						sectionId={ section.id }
 						showDismissed={ showDismissed }
-						track={ track }
-						section={ section.id }
+						task={ task }
+						taskUpdateCallback={ sectionTaskUpdateCallback }
+						trackId={ trackId }
 					/>
 				) ) }
 			</div>

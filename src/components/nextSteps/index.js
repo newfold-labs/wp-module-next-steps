@@ -138,7 +138,7 @@ export const NextSteps = () => {
 		const data = {
 			plan: plan.id,
 			track: trackId,
-			section: section,
+			section: sectionId,
 			open: open,
 		};
 		
@@ -184,15 +184,15 @@ export const NextSteps = () => {
 	return (
 		<div className="nfd-nextsteps" id="nfd-nextsteps">
 			<p className="nfd-pb-4">{ plan.description }</p>
-			{ plan.tracks.map( ( track, i ) => (
+			{ plan.tracks.map( ( track, trackIndex ) => (
 				<Track
+					index={ trackIndex }
 					key={ track.id }
-					track={ track }
-					index={ i }
-					trackOpenCallback={ trackOpenCallback }
 					sectionOpenCallback={ sectionOpenCallback }
-					taskUpdateCallback={ taskUpdateCallback }
 					showDismissed={ showDismissed }
+					taskUpdateCallback={ taskUpdateCallback }
+					track={ track }
+					trackOpenCallback={ trackOpenCallback }
 				/>
 			) ) }
 			{ showControls && <div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">

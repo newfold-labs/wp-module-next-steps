@@ -4,13 +4,12 @@ import { chevronIcon } from '../icons';
 
 export const Track = ( props ) => {
 	const {
-		track,
 		index,
-		taskUpdateCallback,
+		track,
 		sectionOpenCallback,
-		trackOpenCallback,
 		showDismissed,
-		...restProps
+		taskUpdateCallback,
+		trackOpenCallback,
 	} = props;
 
 	// Use track.open if available, otherwise fall back to default behavior (first track open)
@@ -40,13 +39,13 @@ export const Track = ( props ) => {
 			<div className="nfd-track-sections">
 				{ track.sections.map( ( section, sectionIndex ) => (
 					<Section
+						index={ sectionIndex }
 						key={ section.id }
 						section={ section }
-						index={ sectionIndex }
-						taskUpdateCallback={ taskUpdateCallback }
 						sectionOpenCallback={ sectionOpenCallback }
-						track={ track.id }
 						showDismissed={ showDismissed }
+						taskUpdateCallback={ taskUpdateCallback }
+						trackId={ track.id }
 					/>
 				) ) }
 			</div>
