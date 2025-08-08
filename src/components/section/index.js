@@ -1,4 +1,4 @@
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { Title } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
 import { ProgressBar } from '../progressBar';
@@ -15,48 +15,95 @@ export const Section = ( props ) => {
 		trackId,
 	} = props;
 	
-	const [ showCompleteCelebration, setShowCompleteCelebration ] = useState( true );
+	const [ totalCount, setTotalCount ] = useState( false );
+	const [ completedCount, setCompletedCount ] = useState( false );
+	const [ showCompleteCelebration, setShowCompleteCelebration ] = useState( false );
 	const [ isComplete, setIsComplete ] = useState( false );
 	// Use persisted open state from section data, fallback to passed-in open prop or default for first section
-	const [ isOpen, setIsOpen ] = useState( section.open !== undefined ? section.open : index === 0 );
+	const initialOpenState = section.open;
+	const detailsRef = useRef( null );
+	const isInitialized = useRef( false );
 
-	const completed = section.tasks.filter(
-		( task ) => task.status === 'done'
-	).length;
-	const total = section.tasks.filter(
-		( task ) => task.status !== 'dismissed'
-	).length;
+	const init = () => {
+		calculateCounts();
+	};
+	// Calculate total task count
+	const calculateCounts = () => {
+		setTotalCount( getTotalCount() );
+		setCompletedCount( getCompletedCount() );
+	};
+	const getTotalCount = () => {
+		return section.tasks.filter( ( task ) => task.status !== 'dismissed' ).length;
+	};
+	const getCompletedCount = () => {
+		return section.tasks.filter( ( task ) => task.status === 'done' ).length;
+	};
 
-	// if section complete on load, don't show complete celebration
+	// Wrapper for taskUpdateCallback that updates counts after task status changes
+	const sectionTaskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback, successCallback ) => {
+		taskUpdateCallback( trackId, sectionId, taskId, status, (error) => {
+			// Update the counts after failed task update - most likely redundant
+			calculateCounts();
+			if ( errorCallback ) {
+				errorCallback( error );
+			}
+		}, ( response ) => {
+			setIsComplete( false );
+			// Update task status in section.tasks
+			section.tasks.find( ( task ) => task.id === taskId ).status = status;
+			// Update the counts after successful task update
+			calculateCounts();
+			if ( successCallback ) {
+				successCallback( response );
+			}
+			setShowCompleteCelebration( true );
+		} );
+	};
+
+	// on mount, initialize the counts and set initial open state
 	useEffect( () => {
-		if ( completed === total ) {
-			setShowCompleteCelebration( false );
+		init();
+		// Set initial open state imperatively without triggering callbacks
+		if ( detailsRef.current ) {
+			detailsRef.current.open = initialOpenState;
 		}
+		// Use setTimeout to ensure initialization happens after any triggered events
+		setTimeout( () => {
+			isInitialized.current = true;
+		}, 0 );
 	}, [] );
 
 	useEffect( () => {
-		if ( total === completed ) {
+		if ( completedCount === totalCount ) {
+			// give success celebration a little delay
 			const timer = setTimeout(() => {
-				setIsComplete( !isComplete );
-			}, 100);
+				setIsComplete( true );
+			}, 150);
 			// Clean up the timer when the component unmounts
 			return () => clearTimeout(timer);
 		}
-	}, [ showCompleteCelebration, completed, total ] );
+	}, [ completedCount, totalCount ] );
 
-	const handleToggleOpen = ( event, state = null ) => {
+	const handleToggleOpen = ( event ) => {
+		// Prevent event from bubbling up to parent track details element
+		event.stopPropagation();
+		
+		// Only call the callback if this is a user-triggered event (after initialization)
+		if ( ! isInitialized.current ) {
+			return;
+		}
+		
 		// Get the new open state from the details element
-		const newOpenState = state !== null ? state : event.target.open;
+		const newOpenState = event.target.open;
 		// Call the callback to update the backend
-		sectionOpenCallback( section.id, newOpenState );
-		setIsOpen( newOpenState );
+		sectionOpenCallback( trackId, section.id, newOpenState );
 	};
 
 	return (
-		( total > 0 || showDismissed === true )&& (
+		( totalCount > 0 || showDismissed === true )&& (
 		<details
+			ref={ detailsRef }
 			className="nfd-section"
-			open={ isOpen }
 			onToggle={ handleToggleOpen }
 		>
 			<summary className="nfd-section-header">
@@ -71,7 +118,7 @@ export const Section = ( props ) => {
 					</span>
 					{ section.label }
 				</Title>
-				{ total > 0 && <ProgressBar completed={ completed } total={ total } /> }
+				{ totalCount > 0 && <ProgressBar completed={ completedCount } total={ totalCount } /> }
 			</summary>
 			<div className="nfd-section-steps">
 				{ section.tasks.map( ( task, taskIndex ) => (
@@ -92,7 +139,11 @@ export const Section = ( props ) => {
 					data-complete={ isComplete }
 					onClick={ ( e ) => {
 						setShowCompleteCelebration( false );
-						handleToggleOpen( e, false );
+						// Programmatically close the details element
+						const detailsElement = e.target.closest( 'details' );
+						if ( detailsElement ) {
+							detailsElement.open = false;
+						}
 					} }
 				>
 					<button
