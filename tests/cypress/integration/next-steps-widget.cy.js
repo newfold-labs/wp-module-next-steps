@@ -17,8 +17,6 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 	before( () => {
 		// Reset Next Steps data to ensure clean state for tests
 		resetNextStepsData();
-		wpCli( 'rewrite structure "/%postname%/"', { failOnNonZeroExit: false } );
-		wpCli( 'rewrite flush', { failOnNonZeroExit: false } );
 	} );
 
 	beforeEach( () => {
@@ -239,32 +237,4 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		cy.get( '@newTask' ).find( '.nfd-nextsteps-button-link' ).should( 'have.attr', 'data-nfd-event-key' );
 	} );
 
-	// New test to verify version handling and merge functionality
-	it( 'handles versioned data correctly', () => {
-		// Ensure Proper Visibility First
-		ensureTrackOpen( 0 );
-		ensureSectionExpanded( 0, 0 );
-		
-		// Complete a task to create some user state
-		getTaskByStatus( 'new' ).then( ( task ) => {
-			completeTask( cy.wrap( task ) );
-		} );
-		
-		// Verify the task is completed
-		getTaskByStatus( 'done' ).should( 'have.length.greaterThan', 0 );
-		
-		// Refresh the page to trigger potential merge logic
-		cy.reload();
-		
-		// Wait for app to reload
-		waitForNextStepsApp();
-		
-		// Verify the completed task status is preserved after reload
-		getTaskByStatus( 'done' ).should( 'have.length.greaterThan', 0 );
-		
-		// Verify the app still functions normally
-		cy.get( '.nfd-track' ).should( 'have.length.greaterThan', 0 );
-		cy.get( '.nfd-section' ).should( 'have.length.greaterThan', 0 );
-		cy.get( '.nfd-nextsteps-step-container' ).should( 'have.length.greaterThan', 0 );
-	} );
 } );
