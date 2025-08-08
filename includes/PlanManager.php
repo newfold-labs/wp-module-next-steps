@@ -1166,6 +1166,7 @@ class PlanManager {
 									),
 								),
 							),
+
 							/*
 							Hide Jetpack Analytics for now
 							array(
@@ -1346,7 +1347,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_setup_custom_domain',
 										'title'    => __( 'Set Up a Custom Domain', 'wp-module-next-steps' ),
-										'href'     => 'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
+										'href'     => 'https://www.bluehost.com/my-account/domain-center-update/list',
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
