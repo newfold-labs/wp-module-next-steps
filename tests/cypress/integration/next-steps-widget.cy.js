@@ -144,6 +144,8 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		cy.get( '@newTask' ).find( '.nfd-nextsteps-button-todo' ).find( 'svg' ).should( 'exist' );
 		cy.get( '@newTask' ).find( '.nfd-nextsteps-button-dismiss' ).find( 'svg' ).should( 'exist' );
 		cy.get( '@newTask' ).find( '.nfd-nextsteps-button-link' ).find( 'svg' ).should( 'exist' );
+		cy.get( '.nfd-progress-bar .nfd-progress-bar-inner' ).first().should( 'have.attr', 'data-percent', '0' );
+		cy.get( '.nfd-progress-bar .nfd-progress-bar-label' ).first().should( 'contain', '0/1' );
 		
 		// Complete a task to test done task icons
 		getTaskByStatus( 'new' ).first().then( ( task ) => {
@@ -152,18 +154,21 @@ describe( 'Next Steps Dashboard Widget', { testIsolation: true }, () => {
 		
 		// Check that the completed task has the correct redo icon
 		getTaskByStatus( 'done' ).first().find( '.nfd-nextsteps-button-redo' ).find( 'svg' ).should( 'exist' );
-
-		// Progress Bar Updates
-		// Mark a task as complete using helper function
-		getTaskByStatus( 'new' ).first().then( ( task ) => {
-			completeTask( cy.wrap( task ) );
-		} );
-		
 		// Check that the task state changed (this is the main functionality)
 		getTaskByStatus( 'done' ).should( 'have.length.greaterThan', 0 );
+		// Progress Bar Updates
+		cy.get( '.nfd-progress-bar .nfd-progress-bar-inner' ).first().should( 'have.attr', 'data-percent', '100' );
+		cy.get( '.nfd-progress-bar .nfd-progress-bar-label' ).first().should( 'contain', '1/1' );
+
+		// Success Celebration
+		cy.get( '.nfd-section-complete' ).first().as( 'completeSection' );
+		cy.get( '@completeSection' ).should( 'be.visible' );
+		cy.get( '@completeSection' ).should( 'have.attr', 'data-complete', 'true' );
+		cy.get( '@completeSection' ).find( '.nfd-section-celebrate' ).should( 'be.visible' );
+		cy.get( '@completeSection' ).find( '.nfd-nextsteps-section-close-button' ).find( 'svg' ).should( 'exist' );
+		cy.get( '@completeSection' ).find( '.nfd-nextsteps-section-close-button' ).click();
+		cy.get( '.nfd-section-complete' ).should( 'not.exist' );
 		
-		// Check if progress elements exist anywhere in the app
-		cy.get( '#nfd-nextsteps' ).find( '.nfd-progress-bar, [role="progressbar"]' ).should( 'exist' );
 	} );
 
 	it( 'handles all interaction functionality correctly', () => {
