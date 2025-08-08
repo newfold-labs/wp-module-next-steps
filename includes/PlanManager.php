@@ -366,7 +366,7 @@ class PlanManager {
 									array(
 										'id'       => 'store_setup_payments',
 										'title'    => __( 'Set Up Payments', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=payments',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=checkout',
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -866,7 +866,7 @@ class PlanManager {
 									array(
 										'id'       => 'blog_create_primary_menu',
 										'title'    => __( 'Create a Primary Menu', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=%2Fwp_navigation%2F7&canvas=edit',
+										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=/navigation',
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -1166,6 +1166,7 @@ class PlanManager {
 									),
 								),
 							),
+
 							/*
 							Hide Jetpack Analytics for now
 							array(
@@ -1288,7 +1289,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_create_primary_menu',
 										'title'    => __( 'Create a Primary Menu', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=%2Fwp_navigation%2F7&canvas=edit',
+										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=/navigation',
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -1346,7 +1347,7 @@ class PlanManager {
 									array(
 										'id'       => 'corporate_setup_custom_domain',
 										'title'    => __( 'Set Up a Custom Domain', 'wp-module-next-steps' ),
-										'href'     => 'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
+										'href'     => 'https://www.bluehost.com/my-account/domain-center-update/list',
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
