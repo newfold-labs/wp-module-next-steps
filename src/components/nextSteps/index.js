@@ -1,14 +1,15 @@
+import data from './data.json'
 import { Button } from '@newfold/ui-component-library';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { spinner, hideIcon } from '../icons';
-import { Track } from '../track';
+import { TaskCard } from '../task-card';
 import './styles.scss';
 
 /**
  * Method to create endpoint url
- * 
+ *
  * no permalinks: 'http://localhost:8882/index.php?rest_route=/'
  * permalinks: 'http://localhost:8882/wp-json/'
  */
@@ -16,7 +17,7 @@ const createEndpointUrl = ( root, endpoint ) => {
 	// if restUrl has /index.php?rest_route=/, add escaped endpoint
 	if ( root.includes( '?' ) ) {
 		return root + encodeURIComponent( endpoint );
-	} 
+	}
 	// otherwise permalinks set and restUrl should concatenate endpoint
 	return root + endpoint;
 };
@@ -30,7 +31,7 @@ const createEndpointUrl = ( root, endpoint ) => {
  */
 const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
-		url: createEndpointUrl( 
+		url: createEndpointUrl(
 			window.NewfoldRuntime.restUrl,
 			'newfold-next-steps/v1/steps/status'
 		),
@@ -48,16 +49,16 @@ const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 };
 
 /**
-* Wrapper method to post section update to endpoint
-*
-* @param {Object}   data         object of data
-* @param {Function} passError    setter for the error in component
-* @param {Function} thenCallback method to call in promise then
-*/
+ * Wrapper method to post section update to endpoint
+ *
+ * @param {Object}   data         object of data
+ * @param {Function} passError    setter for the error in component
+ * @param {Function} thenCallback method to call in promise then
+ */
 const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
-		url: createEndpointUrl( 
-			window.NewfoldRuntime.restUrl, 
+		url: createEndpointUrl(
+			window.NewfoldRuntime.restUrl,
 			'newfold-next-steps/v1/steps/section/open'
 		),
 		method: 'PUT',
@@ -74,16 +75,16 @@ const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 };
 
 /**
-* Wrapper method to post track update to endpoint
-*
-* @param {Object}   data         object of data
-* @param {Function} passError    setter for the error in component
-* @param {Function} thenCallback method to call in promise then
-*/
+ * Wrapper method to post track update to endpoint
+ *
+ * @param {Object}   data         object of data
+ * @param {Function} passError    setter for the error in component
+ * @param {Function} thenCallback method to call in promise then
+ */
 const trackUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
-		url: createEndpointUrl( 
-			window.NewfoldRuntime.restUrl, 
+		url: createEndpointUrl(
+			window.NewfoldRuntime.restUrl,
 			'newfold-next-steps/v1/steps/track/open'
 		),
 		method: 'PUT',
@@ -99,10 +100,20 @@ const trackUpdateWrapper = ( data, passError, thenCallback ) => {
 		} );
 };
 
+const getTasks = ( tracks ) => {
+	let tasks = [];
+	tracks.map( track => {
+		track.sections.map( section => {
+			tasks = [ ...tasks, ...section.tasks.map( task => ({ ...task, trackId: track.id, sectionId: section.id }) ) ];
+		} );
+	} );
+
+	return tasks;
+}
+
 export const NextSteps = () => {
 	const [ plan, setPlan ] = useState( window.NewfoldNextSteps );
 	const [ showDismissed, setShowDismissed ] = useState( true );
-	const [ showControls, setShowControls ] = useState( false );
 
 	const taskUpdateCallback = ( track, section, id, status ) => {
 		const data = {
@@ -129,7 +140,7 @@ export const NextSteps = () => {
 
 	const sectionOpenCallback = ( section, open ) => {
 		// console.log( 'Section open callback:', section, open );
-		
+
 		// Find the track that contains this section
 		let trackId = null;
 		if ( plan && plan.tracks ) {
@@ -140,7 +151,7 @@ export const NextSteps = () => {
 				}
 			}
 		}
-		
+
 		if ( ! trackId ) {
 			// console.error( 'Could not find track for section:', section );
 			return;
@@ -152,8 +163,8 @@ export const NextSteps = () => {
 			section: section,
 			open: open,
 		};
-		
-		sectionUpdateWrapper( 
+
+		sectionUpdateWrapper(
 			data,
 			( error ) => {
 				// console.error( 'Error updating section open state:', error );
@@ -166,14 +177,14 @@ export const NextSteps = () => {
 
 	const trackOpenCallback = ( track, open ) => {
 		// console.log( 'Track open callback:', track, open );
-		
+
 		const data = {
 			plan: plan.id,
 			track: track,
 			open: open,
 		};
-		
-		trackUpdateWrapper( 
+
+		trackUpdateWrapper(
 			data,
 			( error ) => {
 				// console.error( 'Error updating track open state:', error );
@@ -194,37 +205,22 @@ export const NextSteps = () => {
 		);
 	}
 
+	const { cards } = data;
+
 	return (
-		<div className="nfd-nextsteps" id="nfd-nextsteps">
-			<p className="nfd-pb-4">{ plan.description }</p>
-			{ plan.tracks.map( ( track, i ) => (
-				<Track
-					key={ track.id }
-					track={ track }
-					index={ i }
-					trackOpenCallback={ trackOpenCallback }
-					sectionOpenCallback={ sectionOpenCallback }
-					taskUpdateCallback={ taskUpdateCallback }
-					showDismissed={ showDismissed }
-				/>
-			) ) }
-			{ showControls && <div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">
-				<Button
-					className="nfd-nextsteps-filter-button"
-					data-nfd-click="nextsteps_step_toggle"
-					data-nfd-event-category="nextsteps_toggle"
-					data-nfd-event-key="toggle"
-					onClick={ () => {
-						setShowDismissed( ! showDismissed );
-					} }
-					variant="secondary"
-				>{ hideIcon }
-					{ showDismissed
-						? __( 'Hide skipped tasks', 'wp-module-next-steps' )
-						: __( 'View skipped tasks', 'wp-module-next-steps' )
-					}
-				</Button>
-			</div> }
-		</div>
+		<>
+			<div id={ 'nfd-quick-add-product-modal-only' }/>
+			<div className="nfd-nextsteps nfd-grid nfd-grid-cols-2 nfd-grid-rows-[auto_auto] nfd-gap-4" id="nfd-nextsteps">
+				{ cards.slice( 0, 3 ).map( ( card, i ) => {
+					return <TaskCard
+						className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
+						key={ card.id }
+						wide={ i === 2 }
+						taskUpdateCallback={ taskUpdateCallback }
+						{ ...card }
+					/>
+				} ) }
+			</div>
+		</>
 	);
 };

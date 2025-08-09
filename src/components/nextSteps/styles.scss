@@ -215,12 +215,53 @@
         }
     }
 
-    .nfd-nextsteps-step {
-        border: 1px solid #D7D7D7;
+    .nfd-nextsteps-step-card {
+        border: none;
+        background: #F2F5F9;
         border-radius: 1rem;
-        padding: 10px;
-        margin-bottom: 10px;
+        padding: 20px;
         transition: .2s all ease-in-out;
+
+        .nfd-nextsteps-step-card__wireframe {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        &:not(.nfd-nextsteps-step-card--wide) .nfd-nextsteps-step-card__wireframe {
+            width: 100%;
+
+            svg {
+                width  : 100%;
+                height : auto;
+            }
+        }
+
+        &.nfd-nextsteps-step-card--wide .nfd-nextsteps-step-card__wireframe {
+            height: 100%;
+            min-width: fit-content;
+
+            svg {
+                height : 100%;
+                width  : auto;
+            }
+        }
+
+        .nfd-nextsteps-step-title-wrapper {
+            display     : flex;
+            align-items : center;
+            gap         : .7rem;
+
+            .nfd-nextsteps-step-icon-wrapper {
+                padding    : 6px;
+                background : #ddecff;
+                border-radius: 7px;
+            }
+        }
+
+        .nfd-nextsteps-step-title {
+            height: 28px;
+            font-size : 1rem;
+        }
 
         &:hover {
             background-color: #EAF4FB;
@@ -232,13 +273,34 @@
         }
     }
 
-    .nfd-nextsteps-step-done {
-        // text-decoration: line-through;
-        background-color: #F6FDE8 !important;
-        border-color: #78AE144A;
+    .nfd-nextsteps-step-card-done {
+		align-items      : flex-start;
+		background-color : #F5F9EE !important;
+		border-color     : #78ae144a;
 
-        .nfd-nextsteps-step-title {
-            color: #696969;
+		.nfd-nextsteps-step-card__wireframe {
+			opacity : 50%;
+		}
+
+        .nfd-nextsteps-step-title-wrapper {
+            opacity : 50%;
+
+            .nfd-nextsteps-step-icon-wrapper {
+                background : #e4eed2;
+            }
+        }
+
+        .nfd-nextstep-step__completed-badge{
+            background: #E5F7C6;
+            color: #ABAE14;
+            padding: 2px 10px 2px 2px;
+            display: flex;
+            gap: 3px;
+            align-items: center;
+        }
+
+        &:hover {
+            border-color : #abae14;
         }
     }
 
@@ -252,14 +314,9 @@
 
     .nfd-nextsteps-button {
         align-items: center;
-        color: #7E7E7E;
         display: inline-flex;
         text-decoration: none;
         transition: all .2s ease;
-
-        &:hover {
-            color: #336AD7
-        }
 
         svg {
             width: 100%;
@@ -289,4 +346,100 @@
         color: #ABAE14;
     }
 
+}
+
+.nfd-nextstep-tasks-modal {
+    p {
+        margin-bottom : 1.5rem;
+    }
+
+    .nfd-nextsteps-step {
+        border        : 1px solid #d7d7d7;
+        border-radius : 2rem;
+        padding: 8px 13px 8px 8px;
+        margin-bottom : 10px;
+        transition    : .2s all ease-in-out;
+
+        a {
+            text-decoration : none;
+        }
+
+        .nfd-nextsteps-step-title {
+            height : 28px;
+        }
+
+        &:hover {
+            background-color : #eaf4fb;
+            border-color     : #336ad7;
+
+            .nfd-nextsteps-button-dismiss {
+                opacity : 1;
+            }
+        }
+    }
+
+    .nfd-nextsteps-step-done {
+        align-items      : flex-start;
+        background-color : #F5F9EE !important;
+        border-color     : #78ae144a;
+
+        .nfd-nextsteps-step-title {
+            color: #696969;
+            font-size: .875rem;
+        }
+
+        &:hover {
+            border-color : #abae14;
+        }
+    }
+
+    .nfd-nextsteps-step-dismissed {
+        text-decoration: line-through;
+    }
+
+    .nfd-ml-auto {
+        margin-left: auto;
+    }
+
+    .nfd-nextsteps-button {
+        align-items: center;
+        display: inline-flex;
+        text-decoration: none;
+        transition: all .2s ease;
+
+        svg {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .nfd-nextsteps-button-todo {
+        width: 1.5rem;
+
+        &:hover {
+            color: #ABAE14;
+        }
+    }
+
+    .nfd-nextsteps-button-dismiss {
+        width: 1rem;
+        opacity: 0;
+    }
+
+    .nfd-nextsteps-button-link {
+        width: 1.25rem;
+    }
+
+    .nfd-nextsteps-button-redo {
+        width: 1.5rem;
+        color: #ABAE14;
+    }
+}
+
+// # Task modal
+
+.nfd-nextstep-tasks-modal {
+    h1.nfd-title {
+        font-size : 1.25rem !important;
+    }
 }
