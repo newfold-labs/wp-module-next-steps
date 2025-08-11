@@ -179,7 +179,7 @@
         transition: all .15s ease;
         width: 100%;
 
-        &[data-complete="true"] {
+        &[data-complete="true"][data-show-celebration="true"] {
             opacity: .95;
             top: 4.25rem;
             z-index: 1;

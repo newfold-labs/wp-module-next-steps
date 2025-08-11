@@ -4,6 +4,34 @@
 import apiFetch from '@wordpress/api-fetch';
 
 /**
+ * Calculate progress data for all sections in a plan
+ * @param {Object} plan - The plan data
+ * @returns {Object} Plan with progress data added to each section
+ */
+export const calculatePlanProgress = (plan) => {
+	return {
+		...plan,
+		tracks: plan.tracks.map(track => ({
+			...track,
+			sections: track.sections.map(section => {
+				const totalCount = section.tasks.filter(t => t.status !== 'dismissed').length;
+				const completedCount = section.tasks.filter(t => t.status === 'done').length;
+				
+				return {
+					...section,
+					progress: {
+						totalCount,
+						completedCount,
+						isComplete: totalCount > 0 && completedCount === totalCount,
+						percentage: totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0
+					}
+				};
+			})
+		}))
+	};
+};
+
+/**
  * Update task status in plan state immutably
  * @param {Object} plan - The current plan state
  * @param {string} trackId - Track ID

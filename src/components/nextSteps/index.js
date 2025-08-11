@@ -1,10 +1,13 @@
-import { useState } from '@wordpress/element';
+import { useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@newfold/ui-component-library';
 import { spinner, hideIcon } from '../icons';
 import { Track } from '../track';
 import { 
+	calculatePlanProgress,
 	updateTaskStatusInPlan,
+	updateSectionInPlan,
+	updateTrackInPlan,
 	taskUpdateWrapper,
 	sectionUpdateWrapper,
 	trackUpdateWrapper
@@ -16,6 +19,11 @@ export const NextSteps = () => {
 	const [ plan, setPlan ] = useState( window.NewfoldNextSteps );
 	const [ showDismissed, setShowDismissed ] = useState( true );
 	const [ showControls, setShowControls ] = useState( false );
+
+	// ✅ Calculate progress data for all sections
+	const planWithProgress = useMemo(() => {
+		return plan ? calculatePlanProgress(plan) : null;
+	}, [plan]);
 
 	const taskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback, successCallback ) => {
 		// send update to endpoint
@@ -59,7 +67,7 @@ export const NextSteps = () => {
 				// console.error( 'Error updating section open state:', error );
 			},
 			( response ) => {
-				// console.log( 'Section open state updated successfully:', response );
+				setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, open ) );
 			}
 		);
 	};
@@ -77,13 +85,13 @@ export const NextSteps = () => {
 				// console.error( 'Error updating track open state:', error );
 			},
 			( response ) => {
-				// console.log( 'Track open state updated successfully:', response );
+				setPlan( prevPlan => updateTrackInPlan( prevPlan, trackId, open ) );
 			}
 		);
 	};
 
 	// Handle case where plan might not be loaded yet
-	if ( ! plan || ! plan.tracks ) {
+	if ( ! planWithProgress || ! planWithProgress.tracks ) {
 		return (
 			<div className="nfd-nextsteps" id="nfd-nextsteps">
 				{ spinner }
@@ -95,11 +103,11 @@ export const NextSteps = () => {
 	return (
 		<div
 			className="nfd-nextsteps"
-			data-nfd-plan-id={ plan.id }
+			data-nfd-plan-id={ planWithProgress.id }
 			id="nfd-nextsteps"
 		>
-			<p className="nfd-pb-4">{ plan.description }</p>
-			{ plan.tracks.map( ( track, trackIndex ) => (
+			<p className="nfd-pb-4">{ planWithProgress.description }</p>
+			{ planWithProgress.tracks.map( ( track, trackIndex ) => (
 				<Track
 					index={ trackIndex }
 					key={ track.id }

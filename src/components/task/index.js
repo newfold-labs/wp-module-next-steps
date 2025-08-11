@@ -1,9 +1,9 @@
 import { Title } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, memo } from '@wordpress/element';
 import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon } from '../icons';
 
-export const Task = ( props ) => {
+export const Task = memo(( props ) => {
 	const {
 		index,
 		sectionId,
@@ -40,6 +40,9 @@ export const Task = ( props ) => {
 				console.error( 'Error updating task status. Please, try reloading the page to load the latest data.' );
 				// If error, revert optimistic task update to previous status
 				setStatus( previousStatus );
+			},
+			( response ) => {
+				setStatus( newStatus ); // redundant since we optimistically set it above
 			}
 		);
 	};
@@ -230,4 +233,4 @@ export const Task = ( props ) => {
 			{ status === 'dismissed' && showDismissed && renderDismissedStep() }
 		</>
 	);
-};
+});

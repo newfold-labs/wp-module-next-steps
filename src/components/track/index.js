@@ -1,9 +1,9 @@
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef, memo } from '@wordpress/element';
 import { Title } from '@newfold/ui-component-library';
 import { chevronIcon } from '../icons';
 import { Section } from '../section';
 
-export const Track = ( props ) => {
+export const Track = memo(( props ) => {
 	const {
 		index,
 		track,
@@ -72,4 +72,4 @@ export const Track = ( props ) => {
 			</div>
 		</details>
 	);
-};
+});
