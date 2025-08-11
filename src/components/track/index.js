@@ -46,6 +46,8 @@ export const Track = ( props ) => {
 			ref={ detailsRef }
 			className="nfd-track"
 			onToggle={ handleToggleOpen }
+			data-nfd-track-id={ track.id }
+			data-nfd-track-index={ index }
 		>
 			<summary className="nfd-track-header">
 				<Title className="nfd-track-title mb-0" as="h2">

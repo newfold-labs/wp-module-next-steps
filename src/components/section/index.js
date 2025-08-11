@@ -102,9 +102,11 @@ export const Section = ( props ) => {
 	return (
 		( totalCount > 0 || showDismissed === true )&& (
 		<details
-			ref={ detailsRef }
 			className="nfd-section"
+			data-nfd-section-id={ section.id }
+			data-nfd-section-index={ index }
 			onToggle={ handleToggleOpen }
+			ref={ detailsRef }
 		>
 			<summary className="nfd-section-header">
 				<Title className="nfd-section-title mb-0" as="h3">

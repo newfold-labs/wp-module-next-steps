@@ -171,7 +171,11 @@ export const NextSteps = () => {
 	}
 
 	return (
-		<div className="nfd-nextsteps" id="nfd-nextsteps">
+		<div
+			className="nfd-nextsteps"
+			data-nfd-plan-id={ plan.id }
+			id="nfd-nextsteps"
+		>
 			<p className="nfd-pb-4">{ plan.description }</p>
 			{ plan.tracks.map( ( track, trackIndex ) => (
 				<Track
