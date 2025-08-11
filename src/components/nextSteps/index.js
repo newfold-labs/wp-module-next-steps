@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Button } from '@newfold/ui-component-library';
 import { spinner, hideIcon } from '../icons';
 import { Track } from '../track';
+import { NextStepsErrorBoundary } from '../ErrorBoundary';
 import { 
 	calculatePlanProgress,
 	updateTaskStatusInPlan,
@@ -101,40 +102,42 @@ export const NextSteps = () => {
 	}
 
 	return (
-		<div
-			className="nfd-nextsteps"
-			data-nfd-plan-id={ planWithProgress.id }
-			id="nfd-nextsteps"
-		>
-			<p className="nfd-pb-4">{ planWithProgress.description }</p>
-			{ planWithProgress.tracks.map( ( track, trackIndex ) => (
-				<Track
-					index={ trackIndex }
-					key={ track.id }
-					sectionOpenCallback={ sectionOpenCallback }
-					showDismissed={ showDismissed }
-					taskUpdateCallback={ taskUpdateCallback }
-					track={ track }
-					trackOpenCallback={ trackOpenCallback }
-				/>
-			) ) }
-			{ showControls && <div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">
-				<Button
-					className="nfd-nextsteps-filter-button"
-					data-nfd-click="nextsteps_step_toggle"
-					data-nfd-event-category="nextsteps_toggle"
-					data-nfd-event-key="toggle"
-					onClick={ () => {
-						setShowDismissed( ! showDismissed );
-					} }
-					variant="secondary"
-				>{ hideIcon }
-					{ showDismissed
-						? __( 'Hide skipped tasks', 'wp-module-next-steps' )
-						: __( 'View skipped tasks', 'wp-module-next-steps' )
-					}
-				</Button>
-			</div> }
-		</div>
+		<NextStepsErrorBoundary>
+			<div
+				className="nfd-nextsteps"
+				data-nfd-plan-id={ planWithProgress.id }
+				id="nfd-nextsteps"
+			>
+				<p className="nfd-pb-4">{ planWithProgress.description }</p>
+				{ planWithProgress.tracks.map( ( track, trackIndex ) => (
+					<Track
+						index={ trackIndex }
+						key={ track.id }
+						sectionOpenCallback={ sectionOpenCallback }
+						showDismissed={ showDismissed }
+						taskUpdateCallback={ taskUpdateCallback }
+						track={ track }
+						trackOpenCallback={ trackOpenCallback }
+					/>
+				) ) }
+				{ showControls && <div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">
+					<Button
+						className="nfd-nextsteps-filter-button"
+						data-nfd-click="nextsteps_step_toggle"
+						data-nfd-event-category="nextsteps_toggle"
+						data-nfd-event-key="toggle"
+						onClick={ () => {
+							setShowDismissed( ! showDismissed );
+						} }
+						variant="secondary"
+					>{ hideIcon }
+						{ showDismissed
+							? __( 'Hide skipped tasks', 'wp-module-next-steps' )
+							: __( 'View skipped tasks', 'wp-module-next-steps' )
+						}
+					</Button>
+				</div> }
+			</div>
+		</NextStepsErrorBoundary>
 	);
 };

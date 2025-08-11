@@ -37,9 +37,9 @@ export const Task = memo(( props ) => {
 			id,
 			newStatus,
 			( error ) => {
-				console.error( 'Error updating task status. Please, try reloading the page to load the latest data.' );
 				// If error, revert optimistic task update to previous status
 				setStatus( previousStatus );
+				// further error handling done in the error boundary
 			},
 			( response ) => {
 				setStatus( newStatus ); // redundant since we optimistically set it above

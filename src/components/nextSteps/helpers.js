@@ -3,6 +3,29 @@
  */
 import apiFetch from '@wordpress/api-fetch';
 
+/**
+ * Determine if an error should trigger error boundaries
+ * @param {Error} error - The error object
+ * @returns {boolean} - Whether to trigger error boundary
+ */
+const shouldTriggerErrorBoundary = (error) => {
+	// Server errors (5xx) should trigger error boundaries
+	if (error.status >= 500) return true;
+	
+	// Network errors (no status) should trigger error boundaries
+	if (!error.status) return true;
+	
+	// Critical API errors should trigger error boundaries
+	if (error.name?.includes('Critical')) return true;
+	
+	// Authentication errors might need error boundaries in some cases
+	if (error.status === 401 || error.status === 403) return true;
+	
+	// Client errors (4xx) typically shouldn't trigger error boundaries
+	// These are usually validation errors that should be handled gracefully
+	return false;
+};
+
 // Simple progress calculation without caching
 
 /**
@@ -168,10 +191,31 @@ export const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 		data,
 	} )
 		.then( ( response ) => {
+			// Check for API-level errors in successful responses
+			if ( response && response.error ) {
+				const apiError = new Error( `Task update failed: ${response.error}` );
+				apiError.name = 'TaskUpdateError';
+				apiError.data = { response, requestData: data };
+				throw apiError;
+			}
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
-			passError( error );
+			// Enhance error with context for error boundaries
+			const enhancedError = new Error( 
+				`Task update API error: ${error.message || 'Unknown error'}` 
+			);
+			enhancedError.name = 'TaskUpdateAPIError';
+			enhancedError.originalError = error;
+			enhancedError.data = { requestData: data, endpoint: 'steps/status' };
+			
+			// Call error handler first
+			passError( enhancedError );
+			
+			// Then throw to trigger error boundary if error is critical
+			if ( shouldTriggerErrorBoundary( error ) ) {
+				throw enhancedError;
+			}
 		} );
 };
 
@@ -192,10 +236,31 @@ export const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 		data,
 	} )
 		.then( ( response ) => {
+			// Check for API-level errors in successful responses
+			if ( response && response.error ) {
+				const apiError = new Error( `Section update failed: ${response.error}` );
+				apiError.name = 'SectionUpdateError';
+				apiError.data = { response, requestData: data };
+				throw apiError;
+			}
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
-			passError( error );
+			// Enhance error with context for error boundaries
+			const enhancedError = new Error( 
+				`Section update API error: ${error.message || 'Unknown error'}` 
+			);
+			enhancedError.name = 'SectionUpdateAPIError';
+			enhancedError.originalError = error;
+			enhancedError.data = { requestData: data, endpoint: 'steps/section/open' };
+			
+			// Call error handler first
+			passError( enhancedError );
+			
+			// Then throw to trigger error boundary if error is critical
+			if ( shouldTriggerErrorBoundary( error ) ) {
+				throw enhancedError;
+			}
 		} );
 };
 
@@ -216,9 +281,30 @@ export const trackUpdateWrapper = ( data, passError, thenCallback ) => {
 		data,
 	} )
 		.then( ( response ) => {
+			// Check for API-level errors in successful responses
+			if ( response && response.error ) {
+				const apiError = new Error( `Track update failed: ${response.error}` );
+				apiError.name = 'TrackUpdateError';
+				apiError.data = { response, requestData: data };
+				throw apiError;
+			}
 			thenCallback( response );
 		} )
 		.catch( ( error ) => {
-			passError( error );
+			// Enhance error with context for error boundaries
+			const enhancedError = new Error( 
+				`Track update API error: ${error.message || 'Unknown error'}` 
+			);
+			enhancedError.name = 'TrackUpdateAPIError';
+			enhancedError.originalError = error;
+			enhancedError.data = { requestData: data, endpoint: 'steps/track/open' };
+			
+			// Call error handler first
+			passError( enhancedError );
+			
+			// Then throw to trigger error boundary if error is critical
+			if ( shouldTriggerErrorBoundary( error ) ) {
+				throw enhancedError;
+			}
 		} );
 };

@@ -4,6 +4,7 @@ import { Title } from '@newfold/ui-component-library';
 import { plusCircleIcon, minusCircleIcon, closeCircleIcon,trophyIcon } from '../icons';
 import { ProgressBar } from '../progressBar';
 import { Task } from '../task';
+import { ErrorBoundary } from '../ErrorBoundary';
 
 export const Section = memo(( props ) => {
 	const {
@@ -80,15 +81,24 @@ export const Section = memo(( props ) => {
 			</summary>
 			<div className="nfd-section-steps">
 				{ section.tasks.map( ( task, taskIndex ) => (
-					<Task
-						index={ taskIndex }
-						key={ task.id }
-						sectionId={ section.id }
-						showDismissed={ showDismissed }
-						task={ task }
-						taskUpdateCallback={ taskUpdateCallback }
-						trackId={ trackId }
-					/>
+					<ErrorBoundary 
+						key={ `task-boundary-${task.id}` }
+						fallback={ 
+							<div className="nfd-task-error">
+								<p>{ __('Task temporarily unavailable', 'wp-module-next-steps') }</p>
+							</div> 
+						}
+					>
+						<Task
+							index={ taskIndex }
+							key={ task.id }
+							sectionId={ section.id }
+							showDismissed={ showDismissed }
+							task={ task }
+							taskUpdateCallback={ taskUpdateCallback }
+							trackId={ trackId }
+						/>
+					</ErrorBoundary>
 				) ) }
 			</div>
 			<div

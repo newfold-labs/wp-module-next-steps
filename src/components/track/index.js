@@ -2,6 +2,7 @@ import { memo } from '@wordpress/element';
 import { Title } from '@newfold/ui-component-library';
 import { chevronIcon } from '../icons';
 import { Section } from '../section';
+import { ErrorBoundary } from '../ErrorBoundary';
 
 export const Track = memo(( props ) => {
 	const {
@@ -38,15 +39,24 @@ export const Track = memo(( props ) => {
 			</summary>
 			<div className="nfd-track-sections">
 				{ track.sections.map( ( section, sectionIndex ) => (
-					<Section
-						index={ sectionIndex }
-						key={ section.id }
-						section={ section }
-						sectionOpenCallback={ sectionOpenCallback }
-						showDismissed={ showDismissed }
-						taskUpdateCallback={ taskUpdateCallback }
-						trackId={ track.id }
-					/>
+					<ErrorBoundary 
+						key={ `section-boundary-${section.id}` }
+						fallback={ 
+							<div className="nfd-section-error">
+								<p>Section temporarily unavailable</p>
+							</div> 
+						}
+					>
+						<Section
+							index={ sectionIndex }
+							key={ section.id }
+							section={ section }
+							sectionOpenCallback={ sectionOpenCallback }
+							showDismissed={ showDismissed }
+							taskUpdateCallback={ taskUpdateCallback }
+							trackId={ track.id }
+						/>
+					</ErrorBoundary>
 				) ) }
 			</div>
 		</details>
