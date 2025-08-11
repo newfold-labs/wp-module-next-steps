@@ -3,30 +3,83 @@
  */
 import apiFetch from '@wordpress/api-fetch';
 
+// Section-specific progress cache
+let sectionProgressCache = new Map();
+
 /**
- * Calculate progress data for all sections in a plan
+ * Create a cache key for a specific section based on its task statuses
+ * @param {Object} section - The section data
+ * @returns {string} Cache key representing current section task states
+ */
+export const createSectionCacheKey = (section) => {
+	if (!section?.tasks?.length) return `${section.id}:empty`;
+	
+	return `${section.id}:${section.tasks
+		.map(task => `${task.id}:${task.status}`)
+		.join('|')}`;
+};
+
+/**
+ * Calculate progress for a single section (memoized)
+ * @param {Object} section - The section data
+ * @returns {Object} Progress data for the section
+ */
+export const calculateSectionProgress = (section) => {
+	// Create cache key based on section's task statuses
+	const cacheKey = createSectionCacheKey(section);
+	
+	// Return cached result if available
+	if (sectionProgressCache.has(cacheKey)) {
+		return sectionProgressCache.get(cacheKey);
+	}
+	
+	// Calculate progress for this section
+	let progress;
+	
+	if (!section.tasks?.length) {
+		progress = {
+			totalCount: 0,
+			completedCount: 0,
+			isComplete: false,
+			percentage: 0
+		};
+	} else {
+		const totalCount = section.tasks.filter(t => t.status !== 'dismissed').length;
+		const completedCount = section.tasks.filter(t => t.status === 'done').length;
+		
+		progress = {
+			totalCount,
+			completedCount,
+			isComplete: totalCount > 0 && completedCount === totalCount,
+			percentage: totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0
+		};
+	}
+	
+	// Cache the result (limit cache size to prevent memory leaks)
+	if (sectionProgressCache.size > 50) {
+		sectionProgressCache.clear();
+	}
+	sectionProgressCache.set(cacheKey, progress);
+	
+	return progress;
+};
+
+/**
+ * Calculate progress data for all sections in a plan (section-level memoized)
  * @param {Object} plan - The plan data
  * @returns {Object} Plan with progress data added to each section
  */
 export const calculatePlanProgress = (plan) => {
+	if (!plan?.tracks) return plan;
+	
 	return {
 		...plan,
 		tracks: plan.tracks.map(track => ({
 			...track,
-			sections: track.sections.map(section => {
-				const totalCount = section.tasks.filter(t => t.status !== 'dismissed').length;
-				const completedCount = section.tasks.filter(t => t.status === 'done').length;
-				
-				return {
-					...section,
-					progress: {
-						totalCount,
-						completedCount,
-						isComplete: totalCount > 0 && completedCount === totalCount,
-						percentage: totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0
-					}
-				};
-			})
+			sections: track.sections.map(section => ({
+				...section,
+				progress: calculateSectionProgress(section) // Section-level caching
+			}))
 		}))
 	};
 };

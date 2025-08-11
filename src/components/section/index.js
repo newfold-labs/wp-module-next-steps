@@ -1,4 +1,4 @@
-import { useEffect, useState, memo } from '@wordpress/element';
+import { useEffect, useState, useRef, memo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Title } from '@newfold/ui-component-library';
 import { plusCircleIcon, minusCircleIcon, closeCircleIcon,trophyIcon } from '../icons';
@@ -23,17 +23,27 @@ export const Section = memo(( props ) => {
 	};
 	
 	const [ showCompleteCelebration, setShowCompleteCelebration ] = useState( false );
+	// Track the previous completion state to detect user-triggered completions
+	const prevIsComplete = useRef( isComplete );
+	const isInitialMount = useRef( true );
 
+	// watch for section completion state changes and display success celebration if needed
 	useEffect( () => {
-		if ( isComplete && totalCount > 0 ) {
-			// give success celebration a little delay
-			const timer = setTimeout(() => {
-				setShowCompleteCelebration( true );
-			}, 150);
-			// Clean up the timer when the component unmounts
-			return () => clearTimeout(timer);
+		// Only show celebration if
+		if ( 
+			isComplete && // Section is now complete
+			totalCount > 0 && // Has tasks to complete  
+			!prevIsComplete.current && // Was previously incomplete (user-triggered transition)
+			!isInitialMount.current // Not the initial mount
+		) {
+			// display success celebration (slight css-base delay and animation)
+			setShowCompleteCelebration( true );
 		}
-	}, [ isComplete, totalCount ] );
+		
+		// Update refs for next render
+		prevIsComplete.current = isComplete;
+		isInitialMount.current = false;
+	}, [ isComplete ] );
 
 	const handleToggleOpen = ( event ) => {
 		// Prevent event from bubbling up to parent track details element

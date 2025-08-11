@@ -20,7 +20,7 @@ export const NextSteps = () => {
 	const [ showDismissed, setShowDismissed ] = useState( true );
 	const [ showControls, setShowControls ] = useState( false );
 
-	// ✅ Calculate progress data for all sections
+	// Calculate progress data (internally memoized based on task statuses)
 	const planWithProgress = useMemo(() => {
 		return plan ? calculatePlanProgress(plan) : null;
 	}, [plan]);
