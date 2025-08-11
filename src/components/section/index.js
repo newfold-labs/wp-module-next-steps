@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from '@wordpress/element';
-import { Title } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
-import { ProgressBar } from '../progressBar';
+import { Title } from '@newfold/ui-component-library';
 import { plusCircleIcon, minusCircleIcon, closeCircleIcon,trophyIcon } from '../icons';
+import { ProgressBar } from '../progressBar';
 import { Task } from '../task';
 
 export const Section = ( props ) => {
@@ -137,9 +137,8 @@ export const Section = ( props ) => {
 					onClick={ ( e ) => {
 						setShowCompleteCelebration( false );
 						// Programmatically close the details element
-						const detailsElement = e.target.closest( 'details' );
-						if ( detailsElement ) {
-							detailsElement.open = false;
+						if (detailsRef.current) {
+							detailsRef.current.open = false;
 						}
 					} }
 				>

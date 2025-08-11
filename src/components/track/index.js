@@ -1,7 +1,7 @@
 import { useEffect, useRef } from '@wordpress/element';
 import { Title } from '@newfold/ui-component-library';
-import { Section } from '../section';
 import { chevronIcon } from '../icons';
+import { Section } from '../section';
 
 export const Track = ( props ) => {
 	const {
