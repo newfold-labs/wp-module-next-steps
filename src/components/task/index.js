@@ -1,6 +1,6 @@
 import { Title } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon } from '../icons';
 
 export const Task = ( props ) => {
@@ -23,9 +23,13 @@ export const Task = ( props ) => {
 	// task status uses state to track the current status
 	const [ status, setStatus ] = useState( task.status );
 
+	useEffect( () => {
+		setStatus( task.status );
+	}, [ task.status ] );
+
 	const updateStatus = ( newStatus ) => {
-		const currentStatus = status;
-		setStatus( newStatus ); // for immediate UI feedback
+		const previousStatus = status;
+		setStatus( newStatus ); // optimistic update - for immediate UI feedback
 		// update task status via API
 		taskUpdateCallback( 
 			trackId,
@@ -33,13 +37,9 @@ export const Task = ( props ) => {
 			id,
 			newStatus,
 			( error ) => {
-				// undo status update on error
-				setStatus( currentStatus );
-				console.error( 'Error updating task status. Please, try reloading the page to load the latest data.', error );
-			},
-			( response ) => {
-				// update status on success
-				setStatus( newStatus ); // redundant since we already set it above
+				console.error( 'Error updating task status. Please, try reloading the page to load the latest data.' );
+				// If error, revert optimistic task update to previous status
+				setStatus( previousStatus );
 			}
 		);
 	};
@@ -69,7 +69,10 @@ export const Task = ( props ) => {
 	 * Ensures all keys have 'data-' prefix and handles boolean values
 	 */
 	const formatDataAttributes = () => {
-		const formatted = {};
+		const formatted = {
+			'data-nfd-task-index': index,
+			'data-nfd-task-id': id,
+		};
 		
 		Object.entries( data_attributes ).forEach( ( [ key, value ] ) => {
 			// Ensure key has 'data-' prefix

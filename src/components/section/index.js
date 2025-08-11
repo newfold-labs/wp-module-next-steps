@@ -49,13 +49,10 @@ export const Section = ( props ) => {
 			}
 		}, ( response ) => {
 			setIsComplete( false );
-			// Update task status in section.tasks
-			section.tasks.find( ( task ) => task.id === taskId ).status = status;
+			successCallback( response );
+			// Task status updated in wrapper callback
 			// Update the counts after successful task update
 			calculateCounts();
-			if ( successCallback ) {
-				successCallback( response );
-			}
 			setShowCompleteCelebration( true );
 		} );
 	};

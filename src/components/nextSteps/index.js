@@ -112,7 +112,16 @@ export const NextSteps = () => {
 				errorCallback( error );
 			},
 			( response ) => {
-				// Nothing action needed here since the task update is handled in the task component
+				// update plan state with the new taskstatus
+				setPlan( prevPlan => {
+					const newPlan = { ...prevPlan };
+					const track = newPlan.tracks.find( t => t.id === trackId );
+					const section = track.sections.find( s => s.id === sectionId );
+					const task = section.tasks.find( t => t.id === taskId );
+					task.status = status;
+					return newPlan;
+				});
+				// call provided success callback
 				successCallback( response );
 			}
 		);
