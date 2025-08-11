@@ -30,7 +30,7 @@ const createEndpointUrl = ( root, endpoint ) => {
  */
 const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
-		url: createEndpointUrl( 
+		url: createEndpointUrl(
 			window.NewfoldRuntime.restUrl,
 			'newfold-next-steps/v1/steps/status'
 		),
@@ -98,12 +98,13 @@ export const NextSteps = () => {
 	const [ showDismissed, setShowDismissed ] = useState( true );
 	const [ showControls, setShowControls ] = useState( false );
 
-	const taskUpdateCallback = ( track, section, id, status, errorCallback, successCallback ) => {
+	const taskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback, successCallback ) => {
+		// send update to endpoint
 		const data = {
-			plan: plan.id,
-			track,
-			section,
-			task: id,
+			plan_id: plan.id,
+			track_id: trackId,
+			section_id: sectionId,
+			task_id: taskId,
 			status,
 		};
 		taskUpdateWrapper(
@@ -134,9 +135,9 @@ export const NextSteps = () => {
 		}
 
 		const data = {
-			plan: plan.id,
-			track: trackId,
-			section: sectionId,
+			plan_id: plan.id,
+			track_id: trackId,
+			section_id: sectionId,
 			open: open,
 		};
 		
@@ -151,10 +152,10 @@ export const NextSteps = () => {
 		);
 	};
 
-	const trackOpenCallback = ( track, open ) => {
+	const trackOpenCallback = ( trackId, open ) => {
 		const data = {
-			plan: plan.id,
-			track: track,
+			plan_id: plan.id,
+			track_id: trackId,
 			open: open,
 		};
 		

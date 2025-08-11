@@ -40,7 +40,7 @@ export const Section = ( props ) => {
 	};
 
 	// Wrapper for taskUpdateCallback that updates counts after task status changes
-	const sectionTaskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback, successCallback ) => {
+	const sectionTaskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback = () => {}, successCallback = () => {} ) => {
 		taskUpdateCallback( trackId, sectionId, taskId, status, (error) => {
 			// Update the counts after failed task update - most likely redundant
 			calculateCounts();
@@ -79,7 +79,7 @@ export const Section = ( props ) => {
 			// Clean up the timer when the component unmounts
 			return () => clearTimeout(timer);
 		}
-	}, [ completedCount, totalCount ] );
+	}, [ completedCount, totalCount, section.tasks ] );
 
 	const handleToggleOpen = ( event ) => {
 		// Prevent event from bubbling up to parent track details element
