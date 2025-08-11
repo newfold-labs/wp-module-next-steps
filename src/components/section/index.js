@@ -15,8 +15,8 @@ export const Section = ( props ) => {
 		trackId,
 	} = props;
 	
-	const [ totalCount, setTotalCount ] = useState( false );
-	const [ completedCount, setCompletedCount ] = useState( false );
+	const [ totalCount, setTotalCount ] = useState( 0 );
+	const [ completedCount, setCompletedCount ] = useState( 0 );
 	const [ showCompleteCelebration, setShowCompleteCelebration ] = useState( false );
 	const [ isComplete, setIsComplete ] = useState( false );
 	// Use persisted open state from section data, fallback to passed-in open prop or default for first section
@@ -44,9 +44,7 @@ export const Section = ( props ) => {
 		taskUpdateCallback( trackId, sectionId, taskId, status, (error) => {
 			// Update the counts after failed task update - most likely redundant
 			calculateCounts();
-			if ( errorCallback ) {
-				errorCallback( error );
-			}
+			errorCallback( error );
 		}, ( response ) => {
 			setIsComplete( false );
 			successCallback( response );
