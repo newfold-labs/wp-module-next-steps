@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, memo } from '@wordpress/element';
+import { useEffect, useState, memo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Title } from '@newfold/ui-component-library';
 import { plusCircleIcon, minusCircleIcon, closeCircleIcon,trophyIcon } from '../icons';
@@ -23,22 +23,6 @@ export const Section = memo(( props ) => {
 	};
 	
 	const [ showCompleteCelebration, setShowCompleteCelebration ] = useState( false );
-	// Use persisted open state from section data, fallback to passed-in open prop or default for first section
-	const initialOpenState = section.open;
-	const detailsRef = useRef( null );
-	const isInitialized = useRef( false );
-
-	// on mount, set initial open state
-	useEffect( () => {
-		// Set initial open state imperatively without triggering callbacks
-		if ( detailsRef.current ) {
-			detailsRef.current.open = initialOpenState;
-		}
-		// Use setTimeout to ensure initialization happens after any triggered events
-		setTimeout( () => {
-			isInitialized.current = true;
-		}, 0 );
-	}, [] );
 
 	useEffect( () => {
 		if ( isComplete && totalCount > 0 ) {
@@ -55,11 +39,6 @@ export const Section = memo(( props ) => {
 		// Prevent event from bubbling up to parent track details element
 		event.stopPropagation();
 		
-		// Only call the callback if this is a user-triggered event (after initialization)
-		if ( ! isInitialized.current ) {
-			return;
-		}
-		
 		// Get the new open state from the details element
 		const newOpenState = event.target.open;
 		// Call the callback to update the backend
@@ -73,7 +52,7 @@ export const Section = memo(( props ) => {
 			data-nfd-section-id={ section.id }
 			data-nfd-section-index={ index }
 			onToggle={ handleToggleOpen }
-			ref={ detailsRef }
+			open={ section.open }
 		>
 			<summary className="nfd-section-header">
 				<Title className="nfd-section-title mb-0" as="h3">
@@ -108,10 +87,7 @@ export const Section = memo(( props ) => {
 				data-show-celebration={ showCompleteCelebration }
 				onClick={ ( e ) => {
 					setShowCompleteCelebration( false );
-					// Programmatically close the details element
-					if (detailsRef.current) {
-						detailsRef.current.open = false;
-					}
+					sectionOpenCallback( trackId, section.id, false );
 				} }
 			>
 				<button
