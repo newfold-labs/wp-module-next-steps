@@ -103,7 +103,7 @@ const Icon = ICONS_IDS[icon] ?? null;
 						{
 							Icon &&
 							<span className={'nfd-nextsteps-step-icon-wrapper'}>
-								<Icon width={ 20 }/>
+								<Icon width={ 16 }/>
 							</span>
 						}
 						<Title as="span" className="nfd-nextsteps-step-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center">
