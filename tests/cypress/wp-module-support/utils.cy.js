@@ -1,3 +1,5 @@
+const testPlan = require( '../fixtures/test-plan.json' );
+
 /**
  * Loginto WordPress.
  */
@@ -27,4 +29,15 @@ export const wpCli = ( cmd, failOnNonZeroExit = true ) => {
 			cy.log( `${ key }: ${ value }` );
 		}
 	} );
+};
+
+/**
+ * Set next steps test fixture to database option
+ */
+export const setTestNextStepsData = () => {
+	wpCli(
+		`option update nfd_next_steps '${ JSON.stringify(
+			testPlan
+		) }' --format=json`
+	);
 };

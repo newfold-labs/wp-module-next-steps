@@ -1,3 +1,5 @@
+import { wpCli } from './utils.cy';
+
 /**
  * Helper functions for testing Next Steps functionality
  *
@@ -401,6 +403,6 @@ export const toggleDismissedTasks = () => {
  */
 export const resetNextStepsData = () => {
         // Use cy.exec to run wp-cli commands through wp-env
-        cy.exec( 'npx wp-env run cli wp option delete nfd_next_steps', { failOnNonZeroExit: false } );
+        wpCli( 'option delete nfd_next_steps', { failOnNonZeroExit: false } );
 
-}; 
+};
