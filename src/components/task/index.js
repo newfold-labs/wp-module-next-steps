@@ -75,6 +75,7 @@ export const Task = memo(( props ) => {
 		const formatted = {
 			'data-nfd-task-index': index,
 			'data-nfd-task-id': id,
+			'data-nfd-task-status': status,
 		};
 		
 		Object.entries( data_attributes ).forEach( ( [ key, value ] ) => {
