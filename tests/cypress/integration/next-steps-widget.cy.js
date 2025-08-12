@@ -190,10 +190,8 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@firstNewTask' ).should('have.attr', 'id', 's1task1');
 		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss').should('exist');
 		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss').should('not.be.visible');
-		cy.get( '@firstNewTask' ).invoke('show'); // trigger focus on the task to make the dismiss button visible
-		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss').should('be.visible');
-		// Click dismiss button
-		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss').click();		
+		// Click dismiss button - force due to cypress not being able to trigger hover state
+		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss').click( { force: true } );		
 		// Wait for API call
 		cy.wait( '@updateTaskStatus' );
 		// Task should now be dismissed
