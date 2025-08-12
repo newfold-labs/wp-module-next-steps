@@ -163,9 +163,9 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@firstSection' ).find('.nfd-nextsteps-section-close-button').should('be.visible');
 
 		// Close celebration closes section
+		cy.get( '@firstSection' ).should('have.attr', 'open');
 		cy.get( '@firstSection' ).find('.nfd-section-complete').click();
 		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
-		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
 		cy.get( '@firstSection' ).should('not.have.attr', 'open');
 		// Open the section
 		cy.get( '@firstSection' ).find('.nfd-section-header').click();
