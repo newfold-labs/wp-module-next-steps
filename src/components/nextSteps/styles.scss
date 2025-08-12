@@ -135,11 +135,11 @@
 
         .nfd-progress-bar-label {
             position: absolute;
-            top: -1px;
+            top: -2px;
             right: 0.75rem;
             color: #234aa7;
             z-index: 2;
-            font-size: 11px;
+            font-size: 12px;
         }
 
         // empty style
@@ -152,7 +152,7 @@
         // complete style
         &.nfd-progress-bar-100 {
             .nfd-progress-bar-inner {
-                background-color: #A0C00F;
+                background-color: #8daa0e;
             }
 
             .nfd-progress-bar-label {
