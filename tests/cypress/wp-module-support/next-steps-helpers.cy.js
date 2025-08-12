@@ -1,5 +1,3 @@
-import { wpCli } from './utils.cy';
-
 /**
  * Helper functions for testing Next Steps functionality
  *
@@ -396,13 +394,4 @@ export const toggleDismissedTasks = () => {
 		.and( 'not.be.disabled' )
 		.scrollIntoView()
 		.click( { force: true } ); // Force click to handle potential overlapping elements
-};
-
-/**
- * Reset test data for clean test state
- */
-export const resetNextStepsData = () => {
-        // Use cy.exec to run wp-cli commands through wp-env
-        wpCli( 'option delete nfd_next_steps', { failOnNonZeroExit: false } );
-
 };

@@ -1,13 +1,19 @@
 // <reference types="Cypress" />
 import { 
 	wpLogin,
-	setTestNextStepsData
+	setTestNextStepsData,
+	resetNextStepsData
 } from '../wp-module-support/utils.cy';
 
 describe('Next Steps Widget', { testIsolation: true }, () => {
 	before( () => {
 		// Set test Next Steps data
 		setTestNextStepsData();
+	} );
+
+	after( () => {
+		// Reset test data
+		resetNextStepsData();
 	} );
 
 	beforeEach(() => {

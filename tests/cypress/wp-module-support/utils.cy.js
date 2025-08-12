@@ -41,3 +41,11 @@ export const setTestNextStepsData = () => {
 		) }' --format=json`
 	);
 };
+
+/**
+ * Reset test data for clean test state
+ */
+export const resetNextStepsData = () => {
+	// Use cy.exec to run wp-cli commands through wp-env
+	wpCli( 'option delete nfd_next_steps', { failOnNonZeroExit: false } );
+};
