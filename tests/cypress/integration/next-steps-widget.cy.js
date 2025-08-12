@@ -132,6 +132,16 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 				body: true
 			}
 		).as( 'updateTaskStatus' );
+		cy.intercept(
+			{
+				method: 'POST',
+				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)open/,
+			},
+			{
+				statusCode: 200,
+				body: true
+			}
+		).as( 'updateSectionState' );
 
 		// Find progress bar in first section
 		cy.get('.nfd-section[data-nfd-section-id="section1"]').as( 'firstSection' );
@@ -165,7 +175,9 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		// Close celebration closes section
 		cy.get( '@firstSection' ).should('have.attr', 'open');
 		cy.get( '@firstSection' ).find('.nfd-section-complete').click();
+		cy.wait( '@updateSectionState' );
 		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
+		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
 		cy.get( '@firstSection' ).should('not.have.attr', 'open');
 		// Open the section
 		cy.get( '@firstSection' ).find('.nfd-section-header').click();
