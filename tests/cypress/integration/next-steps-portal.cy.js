@@ -1,7 +1,6 @@
 // <reference types="Cypress" />
-import { wpLogin } from '../wp-module-support/utils.cy';
+import { wpLogin, resetNextStepsData } from '../wp-module-support/utils.cy';
 import {
-	resetNextStepsData,
 	waitForNextStepsApp,
 	getTaskByStatus,
 	verifyTaskDataAttributes,
