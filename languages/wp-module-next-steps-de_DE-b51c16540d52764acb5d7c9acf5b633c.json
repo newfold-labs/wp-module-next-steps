@@ -1,72 +1,72 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
-    "generator": "WP-CLI\/2.12.0",
-    "source": "build\/next-steps-widget\/bundle.js",
-    "domain": "messages",
-    "locale_data": {
-        "messages": {
-            "": {
-                "domain": "messages",
-                "lang": "de_DE",
-                "plural-forms": "nplurals=2; plural=(n != 1);"
-            },
-            "Mark Complete": [
-                "Als abgeschlossen markieren"
-            ],
-            "Skip": [
-                "H\u00fcpfen"
-            ],
-            "Restart": [
-                "Neustarten"
-            ],
-            "Unskip": [
-                "\u00dcberspringen"
-            ],
-            "Hide skipped tasks": [
-                "\u00dcbersprungene Aufgaben ausblenden"
-            ],
-            "View skipped tasks": [
-                "\u00dcbersprungene Aufgaben anzeigen"
-            ],
-            "Loading next steps...": [
-                "N\u00e4chste Schritte werden geladen..."
-            ],
-            "All complete!": [
-                "Alles komplett!"
-            ],
-            "Close": [
-                "Schlie\u00dfen"
-            ],
-            "We encountered a connection error. Please check your internet connection and try again.": [
-                ""
-            ],
-            "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists.": [
-                ""
-            ],
-            "Connection Error": [
-                ""
-            ],
-            "Something went wrong": [
-                ""
-            ],
-            "Try Again": [
-                ""
-            ],
-            "Refresh Page": [
-                ""
-            ],
-            "Technical Details": [
-                ""
-            ],
-            "Next Steps Unavailable": [
-                ""
-            ],
-            "The Next Steps module encountered an error and cannot be displayed right now.": [
-                ""
-            ],
-            "Task temporarily unavailable": [
-                ""
-            ]
-        }
+  "translation-revision-date": "2025-01-21 17:05:00+0000",
+  "generator": "WP-CLI/2.12.0",
+  "source": "build/next-steps-widget/bundle.js",
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "de_DE",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Mark Complete": [
+        "Als abgeschlossen markieren"
+      ],
+      "Skip": [
+        "Hüpfen"
+      ],
+      "Restart": [
+        "Neustarten"
+      ],
+      "Unskip": [
+        "Überspringen"
+      ],
+      "Hide skipped tasks": [
+        "Übersprungene Aufgaben ausblenden"
+      ],
+      "View skipped tasks": [
+        "Übersprungene Aufgaben anzeigen"
+      ],
+      "Loading next steps...": [
+        "Nächste Schritte werden geladen..."
+      ],
+      "All complete!": [
+        "Alles komplett!"
+      ],
+      "Close": [
+        "Schließen"
+      ],
+      "We encountered a connection error. Please check your internet connection and try again.": [
+        "Es ist ein Verbindungsfehler aufgetreten. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut."
+      ],
+      "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists.": [
+        "Wir sind auf einen unerwarteten Fehler gestoßen. Versuchen Sie, die Seite zu aktualisieren, oder wenden Sie sich an den Support, wenn das Problem weiterhin besteht."
+      ],
+      "Connection Error": [
+        "Verbindungsfehler"
+      ],
+      "Something went wrong": [
+        "Etwas ist schief gelaufen"
+      ],
+      "Try Again": [
+        "Wiederholen"
+      ],
+      "Refresh Page": [
+        "Seite \"Aktualisieren\""
+      ],
+      "Technical Details": [
+        "Technische Details"
+      ],
+      "Next Steps Unavailable": [
+        "Nächste Schritte nicht verfügbar"
+      ],
+      "The Next Steps module encountered an error and cannot be displayed right now.": [
+        "Im Modul \"Nächste Schritte\" ist ein Fehler aufgetreten und kann derzeit nicht angezeigt werden."
+      ],
+      "Task temporarily unavailable": [
+        "Aufgabe vorübergehend nicht verfügbar"
+      ]
     }
+  }
 }
