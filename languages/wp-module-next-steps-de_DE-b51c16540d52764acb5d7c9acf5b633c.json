@@ -36,6 +36,36 @@
             ],
             "Close": [
                 "Schlie\u00dfen"
+            ],
+            "We encountered a connection error. Please check your internet connection and try again.": [
+                ""
+            ],
+            "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists.": [
+                ""
+            ],
+            "Connection Error": [
+                ""
+            ],
+            "Something went wrong": [
+                ""
+            ],
+            "Try Again": [
+                ""
+            ],
+            "Refresh Page": [
+                ""
+            ],
+            "Technical Details": [
+                ""
+            ],
+            "Next Steps Unavailable": [
+                ""
+            ],
+            "The Next Steps module encountered an error and cannot be displayed right now.": [
+                ""
+            ],
+            "Task temporarily unavailable": [
+                ""
             ]
         }
     }

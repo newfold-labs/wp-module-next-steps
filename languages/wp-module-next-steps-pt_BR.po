@@ -29,7 +29,7 @@ msgstr "Conclua a configuração da sua loja de comércio eletrônico com estas 
 
 #: includes/PlanManager.php:255
 #: includes/PlanManager.php:763
-#: includes/PlanManager.php:1207
+#: includes/PlanManager.php:1208
 msgid "Build"
 msgstr "Construir"
 
@@ -39,7 +39,7 @@ msgstr "Configuração básica da loja"
 
 #: includes/PlanManager.php:265
 #: includes/PlanManager.php:773
-#: includes/PlanManager.php:1217
+#: includes/PlanManager.php:1218
 msgid "Quick Setup"
 msgstr "Configuração rápida"
 
@@ -59,13 +59,13 @@ msgstr "Escolha cores e fontes"
 
 #: includes/PlanManager.php:300
 #: includes/PlanManager.php:808
-#: includes/PlanManager.php:1252
+#: includes/PlanManager.php:1253
 msgid "Customize Header"
 msgstr "Personalizar cabeçalho"
 
 #: includes/PlanManager.php:308
 #: includes/PlanManager.php:816
-#: includes/PlanManager.php:1260
+#: includes/PlanManager.php:1261
 msgid "Customize Footer"
 msgstr "Personalizar rodapé"
 
@@ -127,7 +127,7 @@ msgstr "Política de Devolução e Reembolso"
 
 #: includes/PlanManager.php:426
 #: includes/PlanManager.php:918
-#: includes/PlanManager.php:1340
+#: includes/PlanManager.php:1341
 msgid "Brand"
 msgstr "Marca"
 
@@ -182,7 +182,7 @@ msgstr "Criar um Sitemap personalizado"
 
 #: includes/PlanManager.php:554
 #: includes/PlanManager.php:1023
-#: includes/PlanManager.php:1460
+#: includes/PlanManager.php:1461
 msgid "Grow"
 msgstr "Crescer"
 
@@ -293,12 +293,12 @@ msgid "Set Up Navigation"
 msgstr "Configurar navegação"
 
 #: includes/PlanManager.php:860
-#: includes/PlanManager.php:1282
+#: includes/PlanManager.php:1283
 msgid "Add Pages for Home, Blog, About, Contact"
 msgstr "Adicionar páginas para Home, Blog, Sobre, Contato"
 
 #: includes/PlanManager.php:868
-#: includes/PlanManager.php:1290
+#: includes/PlanManager.php:1291
 msgid "Create a Primary Menu"
 msgstr "Criar um menu principal"
 
@@ -311,17 +311,17 @@ msgid "Set Up Essential Pages"
 msgstr "Configurar páginas essenciais"
 
 #: includes/PlanManager.php:890
-#: includes/PlanManager.php:1312
+#: includes/PlanManager.php:1313
 msgid "Add a Privacy Policy"
 msgstr "Adicionar uma Política de Privacidade"
 
 #: includes/PlanManager.php:898
-#: includes/PlanManager.php:1320
+#: includes/PlanManager.php:1321
 msgid "Add Terms & Conditions"
 msgstr "Adicionar Termos e Condições"
 
 #: includes/PlanManager.php:906
-#: includes/PlanManager.php:1328
+#: includes/PlanManager.php:1329
 msgid "Add an Accessibility Statement"
 msgstr "Adicionar uma declaração de acessibilidade"
 
@@ -358,7 +358,7 @@ msgid "Display Testimonials or Highlighted Comments"
 msgstr "Exibir depoimentos ou comentários destacados"
 
 #: includes/PlanManager.php:1059
-#: includes/PlanManager.php:1356
+#: includes/PlanManager.php:1357
 msgid "Create a Favicon"
 msgstr "Criar um favicon"
 
@@ -394,147 +394,147 @@ msgstr "Instale o Yoast Premium para esquemas avançados"
 msgid "Create a Staging Site"
 msgstr "Criar um site de teste"
 
-#: includes/PlanManager.php:1202
+#: includes/PlanManager.php:1203
 msgid "Corporate Setup"
 msgstr "Configuração corporativa"
 
-#: includes/PlanManager.php:1203
+#: includes/PlanManager.php:1204
 msgid "Set up your corporate website with these essential steps:"
 msgstr "Configure seu site corporativo com estas etapas essenciais:"
 
-#: includes/PlanManager.php:1212
+#: includes/PlanManager.php:1213
 msgid "Basic Site Setup"
 msgstr "Configuração básica do site"
 
-#: includes/PlanManager.php:1231
+#: includes/PlanManager.php:1232
 msgid "Customize Your Website"
 msgstr "Personalize seu site"
 
-#: includes/PlanManager.php:1236
+#: includes/PlanManager.php:1237
 msgid "Upload Company Logo"
 msgstr "Carregar logotipo da empresa"
 
-#: includes/PlanManager.php:1244
+#: includes/PlanManager.php:1245
 msgid "Choose Brand Colors and Fonts"
 msgstr "Escolha cores e fontes da marca"
 
-#: includes/PlanManager.php:1268
+#: includes/PlanManager.php:1269
 msgid "Customize Homepage Layout"
 msgstr "Personalizar layout da página inicial"
 
-#: includes/PlanManager.php:1278
+#: includes/PlanManager.php:1279
 msgid "Configure Navigation"
 msgstr "Configurar navegação"
 
-#: includes/PlanManager.php:1298
+#: includes/PlanManager.php:1299
 msgid "Add a Footer Menu"
 msgstr "Adicionar um menu de rodapé"
 
-#: includes/PlanManager.php:1308
+#: includes/PlanManager.php:1309
 msgid "Add Legal & Trust Content"
 msgstr "Adicionar conteúdo legal e confiável"
 
-#: includes/PlanManager.php:1344
+#: includes/PlanManager.php:1345
 msgid "Establish Your Brand Online"
 msgstr "Estabeleça sua marca online"
 
-#: includes/PlanManager.php:1348
+#: includes/PlanManager.php:1349
 msgid "Set Up a Custom Domain"
 msgstr "Configurar um domínio personalizado"
 
-#: includes/PlanManager.php:1364
+#: includes/PlanManager.php:1365
 msgid "Connect Your Google Business Profile"
 msgstr "Conecte seu perfil comercial do Google"
 
-#: includes/PlanManager.php:1372
+#: includes/PlanManager.php:1373
 msgid "Create a Branded Email Address"
 msgstr "Crie um endereço de e-mail de marca"
 
-#: includes/PlanManager.php:1382
+#: includes/PlanManager.php:1383
 msgid "Launch Essential Marketing Tools"
 msgstr "Lance ferramentas essenciais de marketing"
 
-#: includes/PlanManager.php:1398
+#: includes/PlanManager.php:1399
 msgid "Connect Google Search Console"
 msgstr "Conecte o Google Search Console"
 
-#: includes/PlanManager.php:1428
+#: includes/PlanManager.php:1429
 msgid "Set Up Contact & Engagement"
 msgstr "Configurar contato e engajamento"
 
-#: includes/PlanManager.php:1440
+#: includes/PlanManager.php:1441
 msgid "Embed a Map or Location"
 msgstr "Incorporar um mapa ou local"
 
-#: includes/PlanManager.php:1448
+#: includes/PlanManager.php:1449
 msgid "Link to Social Media Profiles"
 msgstr "Link para perfis de mídia social"
 
-#: includes/PlanManager.php:1464
+#: includes/PlanManager.php:1465
 msgid "Strengthen Online Presence"
 msgstr "Fortaleça a presença online"
 
-#: includes/PlanManager.php:1476
+#: includes/PlanManager.php:1477
 msgid "Add Certifications, Memberships, or Awards"
 msgstr "Adicionar certificações, associações ou prêmios"
 
-#: includes/PlanManager.php:1486
+#: includes/PlanManager.php:1487
 msgid "Build Content for SEO & Trust"
 msgstr "Crie conteúdo para SEO e confiança"
 
-#: includes/PlanManager.php:1490
+#: includes/PlanManager.php:1491
 msgid "Publish Your First Company Blog Post"
 msgstr "Publique sua primeira postagem no blog da empresa"
 
-#: includes/PlanManager.php:1498
+#: includes/PlanManager.php:1499
 msgid "Create a FAQ Page"
 msgstr "Criar uma página de perguntas frequentes"
 
-#: includes/PlanManager.php:1506
+#: includes/PlanManager.php:1507
 msgid "Optimize Your Key Pages for Keywords"
 msgstr "Otimize suas páginas-chave para palavras-chave"
 
-#: includes/PlanManager.php:1514
+#: includes/PlanManager.php:1515
 msgid "Generate and Submit XML Sitemap"
 msgstr "Gerar e enviar mapa do site XML"
 
-#: includes/PlanManager.php:1524
+#: includes/PlanManager.php:1525
 msgid "Marketing & Lead Generation"
 msgstr "Marketing e geração de leads"
 
-#: includes/PlanManager.php:1528
+#: includes/PlanManager.php:1529
 msgid "Set Up an Email Capture Form"
 msgstr "Configurar um formulário de captura de e-mail"
 
-#: includes/PlanManager.php:1536
+#: includes/PlanManager.php:1537
 msgid "Connect to CRM or Email Tool"
 msgstr "Conecte-se ao CRM ou à ferramenta de e-mail"
 
-#: includes/PlanManager.php:1544
+#: includes/PlanManager.php:1545
 msgid "Add a Call-to-Action Section to Homepage"
 msgstr "Adicionar uma seção de call-to-action à página inicial"
 
-#: includes/PlanManager.php:1554
+#: includes/PlanManager.php:1555
 msgid "Site Performance & Security"
 msgstr "Desempenho e segurança do site"
 
-#: includes/PlanManager.php:1578
+#: includes/PlanManager.php:1579
 msgid "Install a Security Plugin"
 msgstr "Instale um plug-in de segurança"
 
-#: includes/PlanManager.php:1586
+#: includes/PlanManager.php:1587
 msgid "Set Up a Staging Site"
 msgstr "Configurar um site de teste"
 
-#: includes/PlanManager.php:1596
+#: includes/PlanManager.php:1597
 msgid "Monitor & Improve"
 msgstr "Monitore e melhore"
 
-#: includes/PlanManager.php:1612
+#: includes/PlanManager.php:1613
 msgid "Run a Speed Test"
 msgstr "Executar um teste de velocidade"
 
-#: includes/PlanManager.php:1620
+#: includes/PlanManager.php:1621
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Planeje sua próxima atualização de conteúdo ou campanha"
 
@@ -579,44 +579,44 @@ msgstr "Falha ao adicionar tarefa à seção."
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2117
+#: build/next-steps-portal/bundle.js:2723
 msgid "Mark Complete"
 msgstr "Marcar como concluído"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2140
+#: build/next-steps-portal/bundle.js:2741
 msgid "Skip"
 msgstr "Saltitar"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2173
+#: build/next-steps-portal/bundle.js:2774
 msgid "Restart"
 msgstr "Reiniciar"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2196
-#: build/next-steps-portal/bundle.js:2211
+#: build/next-steps-portal/bundle.js:2797
+#: build/next-steps-portal/bundle.js:2812
 msgid "Unskip"
 msgstr "Cancelar pular"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1843
+#: build/next-steps-portal/bundle.js:2393
 msgid "Hide skipped tasks"
 msgstr "Ocultar tarefas ignoradas"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1844
+#: build/next-steps-portal/bundle.js:2394
 msgid "View skipped tasks"
 msgstr "Exibir tarefas ignoradas"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:1813
+#: build/next-steps-portal/bundle.js:2357
 msgid "Loading next steps..."
 msgstr "Carregando próximos passos..."
 
@@ -636,15 +636,15 @@ msgstr "SEO e Visibilidade"
 msgid "Run pillar article promotion on social ad"
 msgstr "Executar promoção de artigo pilar em anúncio social"
 
-#: includes/PlanManager.php:1406
+#: includes/PlanManager.php:1407
 msgid "Explore SEO Plugin"
 msgstr "Explore SEO Plugin"
 
-#: includes/PlanManager.php:1432
+#: includes/PlanManager.php:1433
 msgid "Add a Contact Form with email routing"
 msgstr "Adicionar um formulário de contato com roteamento de e-mail"
 
-#: includes/PlanManager.php:1468
+#: includes/PlanManager.php:1469
 msgid "Add Client Logos or Testimonials or Reviews"
 msgstr "Adicione logotipos de clientes, depoimentos ou avaliações"
 
@@ -654,11 +654,82 @@ msgstr "Faixa não encontrada."
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2009
+#: build/next-steps-portal/bundle.js:2586
 msgid "All complete!"
 msgstr "Tudo completo!"
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:2581
 msgid "Close"
 msgstr "Fechar"
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1658
+msgid "We encountered a connection error. Please check your internet connection and try again."
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1659
+msgid "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists."
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1664
+msgid "Connection Error"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1664
+msgid "Something went wrong"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1672
+msgid "Try Again"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1679
+#: build/next-steps-portal/bundle.js:1752
+#: build/next-steps-portal/bundle.js:1805
+msgid "Refresh Page"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1685
+msgid "Technical Details"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1744
+msgid "Next Steps Unavailable"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1746
+msgid "The Next Steps module encountered an error and cannot be displayed right now."
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:2554
+msgid "Task temporarily unavailable"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1797
+msgid "Connection Issue"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:1799
+msgid "Unable to save your changes right now. Please check your connection and try again."
+msgstr ""
