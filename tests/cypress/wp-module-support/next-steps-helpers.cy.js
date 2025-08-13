@@ -395,12 +395,3 @@ export const toggleDismissedTasks = () => {
 		.scrollIntoView()
 		.click( { force: true } ); // Force click to handle potential overlapping elements
 };
-
-/**
- * Reset test data for clean test state
- */
-export const resetNextStepsData = () => {
-        // Use cy.exec to run wp-cli commands through wp-env
-        cy.exec( 'npx wp-env run cli wp option delete nfd_next_steps', { failOnNonZeroExit: false } );
-
-}; 

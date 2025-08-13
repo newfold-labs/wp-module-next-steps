@@ -135,11 +135,11 @@
 
         .nfd-progress-bar-label {
             position: absolute;
-            top: -1px;
+            top: -2px;
             right: 0.75rem;
             color: #234aa7;
             z-index: 2;
-            font-size: 11px;
+            font-size: 12px;
         }
 
         // empty style
@@ -152,11 +152,12 @@
         // complete style
         &.nfd-progress-bar-100 {
             .nfd-progress-bar-inner {
-                background-color: #A0C00F;
+                background-color: #8daa0e;
             }
 
             .nfd-progress-bar-label {
                 color: #fff;
+                text-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
             }
         }
     }
@@ -175,10 +176,10 @@
         padding: 0 1rem 1rem;
         position: absolute;
         top: 100%;
-        transition: all .15s ease;
+        transition: all .15s ease .15s;
         width: 100%;
 
-        &[data-complete="true"] {
+        &[data-complete="true"][data-show-celebration="true"] {
             opacity: .95;
             top: 4.25rem;
             z-index: 1;
@@ -287,6 +288,137 @@
     .nfd-nextsteps-button-redo {
         width: 1.5rem;
         color: #ABAE14;
+    }
+
+    // Error Boundary Styles
+    .nfd-error-boundary,
+    .nfd-nextsteps-error {
+        padding: 2rem;
+        text-align: center;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin: 1rem 0;
+
+        .nfd-error-boundary-content,
+        .nfd-nextsteps-error-content {
+            max-width: 500px;
+            margin: 0 auto;
+
+            h3 {
+                color: #d63638;
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+
+            p {
+                color: #666;
+                margin-bottom: 1.5rem;
+                line-height: 1.5;
+            }
+        }
+
+        .nfd-error-boundary-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .nfd-error-boundary-details {
+            margin-top: 1.5rem;
+            text-align: left;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 1rem;
+
+            summary {
+                cursor: pointer;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: #495057;
+
+                &:hover {
+                    color: #007cba;
+                }
+            }
+
+            .nfd-error-boundary-stack {
+                background: #f1f1f1;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                padding: 0.75rem;
+                font-family: 'Courier New', monospace;
+                font-size: 0.8rem;
+                color: #d63638;
+                white-space: pre-wrap;
+                word-break: break-word;
+                max-height: 200px;
+                overflow-y: auto;
+                margin: 0;
+            }
+        }
+    }
+
+    // Section-level error fallback
+    .nfd-section-error {
+        padding: 1rem;
+        text-align: center;
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+        color: #856404;
+        font-size: 0.9rem;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    // Task-level error fallback
+    .nfd-task-error {
+        padding: 0.75rem;
+        text-align: center;
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        border-radius: 4px;
+        margin: 0.25rem 0;
+        color: #721c24;
+        font-size: 0.85rem;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    // API-specific error boundary
+    .nfd-api-error-boundary {
+        padding: 1.5rem;
+        text-align: center;
+        background: #e7f3ff;
+        border: 1px solid #b3d9ff;
+        border-radius: 4px;
+        margin: 1rem 0;
+
+        .nfd-api-error-content {
+            max-width: 400px;
+            margin: 0 auto;
+
+            h4 {
+                color: #0073aa;
+                margin-bottom: 0.75rem;
+                font-size: 1.1rem;
+            }
+
+            p {
+                color: #555;
+                margin-bottom: 1rem;
+                line-height: 1.4;
+            }
+        }
     }
 
 }
