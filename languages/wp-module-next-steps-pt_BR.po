@@ -1,21 +1,20 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: pt_BR <LL@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
-"Language: pt_BR\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:22
-#: includes/NextSteps.php:62
-#: includes/NextStepsWidget.php:39
+#: bootstrap.php:22 includes/NextSteps.php:62 includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Próximos passos"
 
@@ -25,10 +24,11 @@ msgstr "Configuração da loja"
 
 #: includes/PlanManager.php:251
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr "Conclua a configuração da sua loja de comércio eletrônico com estas etapas essenciais:"
+msgstr ""
+"Conclua a configuração da sua loja de comércio eletrônico com estas etapas "
+"essenciais:"
 
-#: includes/PlanManager.php:255
-#: includes/PlanManager.php:763
+#: includes/PlanManager.php:255 includes/PlanManager.php:763
 #: includes/PlanManager.php:1208
 msgid "Build"
 msgstr "Construir"
@@ -37,8 +37,7 @@ msgstr "Construir"
 msgid "Basic Store Setup"
 msgstr "Configuração básica da loja"
 
-#: includes/PlanManager.php:265
-#: includes/PlanManager.php:773
+#: includes/PlanManager.php:265 includes/PlanManager.php:773
 #: includes/PlanManager.php:1218
 msgid "Quick Setup"
 msgstr "Configuração rápida"
@@ -47,24 +46,20 @@ msgstr "Configuração rápida"
 msgid "Customize Your Store"
 msgstr "Personalize sua loja"
 
-#: includes/PlanManager.php:284
-#: includes/PlanManager.php:792
+#: includes/PlanManager.php:284 includes/PlanManager.php:792
 msgid "Upload Logo"
 msgstr "Carregar logotipo"
 
-#: includes/PlanManager.php:292
-#: includes/PlanManager.php:800
+#: includes/PlanManager.php:292 includes/PlanManager.php:800
 msgid "Choose Colors and Fonts"
 msgstr "Escolha cores e fontes"
 
-#: includes/PlanManager.php:300
-#: includes/PlanManager.php:808
+#: includes/PlanManager.php:300 includes/PlanManager.php:808
 #: includes/PlanManager.php:1253
 msgid "Customize Header"
 msgstr "Personalizar cabeçalho"
 
-#: includes/PlanManager.php:308
-#: includes/PlanManager.php:816
+#: includes/PlanManager.php:308 includes/PlanManager.php:816
 #: includes/PlanManager.php:1261
 msgid "Customize Footer"
 msgstr "Personalizar rodapé"
@@ -125,8 +120,7 @@ msgstr "Termos e Condições"
 msgid "Return and Refund Policy"
 msgstr "Política de Devolução e Reembolso"
 
-#: includes/PlanManager.php:426
-#: includes/PlanManager.php:918
+#: includes/PlanManager.php:426 includes/PlanManager.php:918
 #: includes/PlanManager.php:1341
 msgid "Brand"
 msgstr "Marca"
@@ -171,8 +165,7 @@ msgstr "Lançar e promover - SEO e visibilidade da loja"
 msgid "Optimize Your Store SEO"
 msgstr "Otimize o SEO da sua loja"
 
-#: includes/PlanManager.php:534
-#: includes/PlanManager.php:1003
+#: includes/PlanManager.php:534 includes/PlanManager.php:1003
 msgid "Submit Site to Google Search Console"
 msgstr "Enviar site para o Google Search Console"
 
@@ -180,8 +173,7 @@ msgstr "Enviar site para o Google Search Console"
 msgid "Create a Custom Sitemap"
 msgstr "Criar um Sitemap personalizado"
 
-#: includes/PlanManager.php:554
-#: includes/PlanManager.php:1023
+#: includes/PlanManager.php:554 includes/PlanManager.php:1023
 #: includes/PlanManager.php:1461
 msgid "Grow"
 msgstr "Crescer"
@@ -198,8 +190,7 @@ msgstr "Personalize a página de agradecimento"
 msgid "Customize Your Customer's Account Page"
 msgstr "Personalize a página da conta do seu cliente"
 
-#: includes/PlanManager.php:592
-#: includes/PlanManager.php:1069
+#: includes/PlanManager.php:592 includes/PlanManager.php:1069
 msgid "Advanced Social & Influencer Marketing"
 msgstr "Marketing Social e de Influenciadores Avançado"
 
@@ -235,8 +226,7 @@ msgstr "Crie uma campanha de upsell"
 msgid "Setup Yoast Premium to Drive Traffic to Your Store"
 msgstr "Configure o Yoast Premium para direcionar o tráfego para sua loja"
 
-#: includes/PlanManager.php:688
-#: includes/PlanManager.php:1137
+#: includes/PlanManager.php:688 includes/PlanManager.php:1137
 msgid "Performance & Security"
 msgstr "Desempenho e segurança"
 
@@ -292,13 +282,11 @@ msgstr "Definir uma imagem em destaque para uma postagem"
 msgid "Set Up Navigation"
 msgstr "Configurar navegação"
 
-#: includes/PlanManager.php:860
-#: includes/PlanManager.php:1283
+#: includes/PlanManager.php:860 includes/PlanManager.php:1283
 msgid "Add Pages for Home, Blog, About, Contact"
 msgstr "Adicionar páginas para Home, Blog, Sobre, Contato"
 
-#: includes/PlanManager.php:868
-#: includes/PlanManager.php:1291
+#: includes/PlanManager.php:868 includes/PlanManager.php:1291
 msgid "Create a Primary Menu"
 msgstr "Criar um menu principal"
 
@@ -310,18 +298,15 @@ msgstr "Criar um menu de rodapé"
 msgid "Set Up Essential Pages"
 msgstr "Configurar páginas essenciais"
 
-#: includes/PlanManager.php:890
-#: includes/PlanManager.php:1313
+#: includes/PlanManager.php:890 includes/PlanManager.php:1313
 msgid "Add a Privacy Policy"
 msgstr "Adicionar uma Política de Privacidade"
 
-#: includes/PlanManager.php:898
-#: includes/PlanManager.php:1321
+#: includes/PlanManager.php:898 includes/PlanManager.php:1321
 msgid "Add Terms & Conditions"
 msgstr "Adicionar Termos e Condições"
 
-#: includes/PlanManager.php:906
-#: includes/PlanManager.php:1329
+#: includes/PlanManager.php:906 includes/PlanManager.php:1329
 msgid "Add an Accessibility Statement"
 msgstr "Adicionar uma declaração de acessibilidade"
 
@@ -357,8 +342,7 @@ msgstr "Personalizar caixas de autor/perfil"
 msgid "Display Testimonials or Highlighted Comments"
 msgstr "Exibir depoimentos ou comentários destacados"
 
-#: includes/PlanManager.php:1059
-#: includes/PlanManager.php:1357
+#: includes/PlanManager.php:1059 includes/PlanManager.php:1357
 msgid "Create a Favicon"
 msgstr "Criar um favicon"
 
@@ -538,8 +522,7 @@ msgstr "Executar um teste de velocidade"
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Planeje sua próxima atualização de conteúdo ou campanha"
 
-#: includes/StepsApi.php:293
-#: includes/StepsApi.php:315
+#: includes/StepsApi.php:293 includes/StepsApi.php:315
 msgid "No plan found."
 msgstr "Nenhum plano encontrado."
 
@@ -551,8 +534,7 @@ msgstr "Nenhuma trilha encontrada no plano."
 msgid "No sections found in track."
 msgstr "Nenhuma seção encontrada na pista."
 
-#: includes/StepsApi.php:377
-#: includes/StepsApi.php:410
+#: includes/StepsApi.php:377 includes/StepsApi.php:410
 #: includes/StepsApi.php:436
 msgid "Invalid parameters provided."
 msgstr "Parâmetros inválidos fornecidos."
@@ -577,45 +559,38 @@ msgstr "Tipo de plano inválido fornecido."
 msgid "Failed to add task to section."
 msgstr "Falha ao adicionar tarefa à seção."
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2723
 msgid "Mark Complete"
 msgstr "Marcar como concluído"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2741
 msgid "Skip"
 msgstr "Saltitar"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2774
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2797
 #: build/next-steps-portal/bundle.js:2812
 msgid "Unskip"
 msgstr "Cancelar pular"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2393
 msgid "Hide skipped tasks"
 msgstr "Ocultar tarefas ignoradas"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2394
 msgid "View skipped tasks"
 msgstr "Exibir tarefas ignoradas"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2357
 msgid "Loading next steps..."
 msgstr "Carregando próximos passos..."
@@ -652,76 +627,76 @@ msgstr "Adicione logotipos de clientes, depoimentos ou avaliações"
 msgid "Track not found."
 msgstr "Faixa não encontrada."
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2586
 msgid "All complete!"
 msgstr "Tudo completo!"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2581
 msgid "Close"
 msgstr "Fechar"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1658
-msgid "We encountered a connection error. Please check your internet connection and try again."
-msgstr "Encontramos um erro de conexão. Verifique sua conexão com a Internet e tente novamente."
+msgid ""
+"We encountered a connection error. Please check your internet connection and"
+" try again."
+msgstr ""
+"Encontramos um erro de conexão. Verifique sua conexão com a Internet e tente"
+" novamente."
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1659
-msgid "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists."
-msgstr "Encontramos um erro inesperado. Tente atualizar a página ou entre em contato com o suporte se o problema persistir."
+msgid ""
+"We encountered an unexpected error. Please try refreshing the page or "
+"contact support if the problem persists."
+msgstr ""
+"Encontramos um erro inesperado. Tente atualizar a página ou entre em contato"
+" com o suporte se o problema persistir."
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1664
 msgid "Connection Error"
 msgstr "Erro de conexão"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1664
 msgid "Something went wrong"
 msgstr "Algo deu errado"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1672
 msgid "Try Again"
 msgstr "Tentar novamente"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1679
 #: build/next-steps-portal/bundle.js:1752
 #: build/next-steps-portal/bundle.js:1805
 msgid "Refresh Page"
 msgstr "Atualizar página"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1685
 msgid "Technical Details"
 msgstr "Detalhes técnicos"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1744
 msgid "Next Steps Unavailable"
 msgstr "Próximos passos indisponíveis"
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:1746
-msgid "The Next Steps module encountered an error and cannot be displayed right now."
-msgstr "O módulo Próximas etapas encontrou um erro e não pode ser exibido no momento."
+msgid ""
+"The Next Steps module encountered an error and cannot be displayed right "
+"now."
+msgstr ""
+"O módulo Próximas etapas encontrou um erro e não pode ser exibido no "
+"momento."
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:1 build/next-steps-widget/bundle.js:1
 #: build/next-steps-portal/bundle.js:2554
 msgid "Task temporarily unavailable"
 msgstr "Tarefa temporariamente indisponível"
@@ -731,5 +706,9 @@ msgid "Connection Issue"
 msgstr "Problema de conexão"
 
 #: build/next-steps-portal/bundle.js:1799
-msgid "Unable to save your changes right now. Please check your connection and try again."
-msgstr "Não é possível salvar suas alterações no momento. Verifique sua conexão e tente novamente."
+msgid ""
+"Unable to save your changes right now. Please check your connection and try "
+"again."
+msgstr ""
+"Não é possível salvar suas alterações no momento. Verifique sua conexão e "
+"tente novamente."
