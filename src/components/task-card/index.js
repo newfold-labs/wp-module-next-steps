@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { PaintBrushIcon, CreditCardIcon, ArchiveBoxIcon } from "@heroicons/react/24/outline";
 import { customizeYourStoreIcon, addFirstProductIcon, storeSetupPaymentsIcon } from './wireframes';
+import { redoIcon } from '../icons';
 
 const ICONS_IDS = {
 	'paint-brush': PaintBrushIcon,
@@ -88,6 +89,17 @@ const Icon = ICONS_IDS[icon] ?? null;
 		return formatted;
 	};
 
+    const getCtaText = () => {
+
+        let ctaText = cta;
+
+        if( 'skipped' === status ) {
+            ctaText = __('SKIPPED', 'wp-module-next-step');
+        }
+
+        return ctaText;
+    }
+
 	// Combine custom data attributes with any other restProps
 	const combinedAttributes = { ...formatDataAttributes() };
 
@@ -148,12 +160,24 @@ const Icon = ICONS_IDS[icon] ?? null;
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-justify-center nfd-items-center nfd-gap-2">
 						<Button
 							as={ 'a' }
-							className="nfd-nextsteps-button"
-							data-nfd-click="nextsteps_step_link"
+                            className= {
+                                classNames(
+                                    'nfd-nextsteps-button',
+                                    {
+                                        'nfd-nextsteps-button--skipped': 'skipped' === status,
+                                        'nfd-nextsteps-button--completed': 'completed' === status,
+                                        'nfd-nextsteps-button--new': 'new' === status,
+                                        'nfd-pointer-events-none' : 'skipped' === status,
+                                    }
+                                )
+
+                            }
+                            data-nfd-click="nextsteps_step_link"
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							title={ label }
 							variant={ 'completed' === status ? 'secondary' : 'primary' }
+                            disabled={ 'skipped' === status }
 							onClick={ ( e ) => {
 								if ( tasks?.length ) {
 									e.preventDefault();
@@ -168,8 +192,20 @@ const Icon = ICONS_IDS[icon] ?? null;
 							} }
 							{ ...getLinkAttributes() }
 						>
-							{ cta }
+							{ getCtaText() }
 						</Button>
+                        { 'skipped' === status &&
+                            <Button
+                                as={ 'a' }
+                                className= 'nfd-nextsteps-button nfd-nextsteps-button--undo'
+                                title={ 'Undo' }
+                                onClick={ ( e ) => {
+                                } }
+                            >
+                                { redoIcon }
+                                { __('Undo', 'wp-module-next-step') }
+                            </Button>
+                        }
 					</div>
 				</div>
 			</div>

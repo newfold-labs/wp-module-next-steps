@@ -479,6 +479,20 @@
         opacity: 1;
       }
     }
+
+    // Skipped button styles
+    .nfd-nextsteps-button.nfd-nextsteps-button--skipped {
+      background: #E3E3E3;
+      border-radius: unset;
+      cursor: not-allowed;
+      border-color: inherit;
+    }
+    .nfd-nextsteps-button.nfd-nextsteps-button--undo {
+      width: 6rem;
+      background-color: inherit;
+      color: #196BDE;
+    }
+
   }
 
   .nfd-nextsteps-step-card-done {

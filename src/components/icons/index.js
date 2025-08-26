@@ -6,7 +6,8 @@ import {
 	EyeSlashIcon,
 	EyeIcon,
 	TrophyIcon,
-	XCircleIcon
+	XCircleIcon,
+    ArrowUturnLeftIcon
 } from '@heroicons/react/24/outline';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
@@ -20,6 +21,8 @@ export const doneIcon = <CheckCircleIcon className="size-6"/>;
 export const goIcon = <ArrowRightIcon className="size-6"/>;
 export const trophyIcon = <TrophyIcon className="size-6"/>;
 export const closeCircleIcon = <XCircleIcon className="size-6"/>;
+
+export const redoIcon = <ArrowUturnLeftIcon className="size-6"/>;
 
 // Circle dashed icon from https://sidekickicons.com/?iconset=Sidekickicons&code=JSX&icon=circle-dashed
 export const circleDashedIcon = (
