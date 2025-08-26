@@ -1,64 +1,69 @@
-import { useEffect, useState } from '@wordpress/element';
-import { Title } from '@newfold/ui-component-library';
+import { useEffect, useState, useRef, memo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { ProgressBar } from '../progressBar';
+import { Title } from '@newfold/ui-component-library';
 import { plusCircleIcon, minusCircleIcon, closeCircleIcon,trophyIcon } from '../icons';
+import { ProgressBar } from '../progressBar';
 import { Task } from '../task';
+import { ErrorBoundary } from '../ErrorBoundary';
 
-export const Section = ( props ) => {
+export const Section = memo(( props ) => {
 	const {
-		section,
 		index,
-		taskUpdateCallback,
+		section,
 		sectionOpenCallback,
-		track,
 		showDismissed,
-		...restProps
+		taskUpdateCallback,
+		trackId,
 	} = props;
 	
-	const [ showCompleteCelebration, setShowCompleteCelebration ] = useState( true );
-	const [ isComplete, setIsComplete ] = useState( false );
-	// Use persisted open state from section data, fallback to passed-in open prop or default for first section
-	const [ isOpen, setIsOpen ] = useState( section.open !== undefined ? section.open : index === 0 );
+	// Get progress data from props (calculated in parent)
+	const { totalCount, completedCount, isComplete } = section.progress || {
+		totalCount: 0,
+		completedCount: 0,
+		isComplete: false
+	};
+	
+	const [ showCompleteCelebration, setShowCompleteCelebration ] = useState( false );
+	// Track the previous completion state to detect user-triggered completions
+	const prevIsComplete = useRef( isComplete );
+	const isInitialMount = useRef( true );
 
-	const completed = section.tasks.filter(
-		( task ) => task.status === 'done'
-	).length;
-	const total = section.tasks.filter(
-		( task ) => task.status !== 'dismissed'
-	).length;
-
-	// if section complete on load, don't show complete celebration
+	// watch for section completion state changes and display success celebration if needed
 	useEffect( () => {
-		if ( completed === total ) {
-			setShowCompleteCelebration( false );
+		// Only show celebration if
+		if ( 
+			isComplete && // Section is now complete
+			totalCount > 0 && // Has tasks to complete  
+			!prevIsComplete.current && // Was previously incomplete (user-triggered transition)
+			!isInitialMount.current // Not the initial mount
+		) {
+			// display success celebration (slight css-base delay and animation)
+			setShowCompleteCelebration( true );
 		}
-	}, [] );
+		
+		// Update refs for next render
+		prevIsComplete.current = isComplete;
+		isInitialMount.current = false;
+	}, [ isComplete ] );
 
-	useEffect( () => {
-		if ( total === completed ) {
-			const timer = setTimeout(() => {
-				setIsComplete( !isComplete );
-			}, 100);
-			// Clean up the timer when the component unmounts
-			return () => clearTimeout(timer);
-		}
-	}, [ showCompleteCelebration, completed, total ] );
-
-	const handleToggleOpen = ( event, state = null ) => {
+	const handleToggleOpen = ( event ) => {
+		// Prevent event from bubbling up to parent track details element
+		event.stopPropagation();
+		
 		// Get the new open state from the details element
-		const newOpenState = state !== null ? state : event.target.open;
+		const newOpenState = event.target.open;
 		// Call the callback to update the backend
-		sectionOpenCallback( section.id, newOpenState );
-		setIsOpen( newOpenState );
+		sectionOpenCallback( trackId, section.id, newOpenState );
 	};
 
 	return (
-		( total > 0 || showDismissed === true )&& (
+		( totalCount > 0 || showDismissed === true ) && (
 		<details
 			className="nfd-section"
-			open={ isOpen }
+			data-nfd-section-id={ section.id }
+			data-nfd-section-index={ index }
 			onToggle={ handleToggleOpen }
+			open={ section.open }
 		>
 			<summary className="nfd-section-header">
 				<Title className="nfd-section-title mb-0" as="h3">
@@ -72,40 +77,50 @@ export const Section = ( props ) => {
 					</span>
 					{ section.label }
 				</Title>
-				{ total > 0 && <ProgressBar completed={ completed } total={ total } /> }
+				{ totalCount > 0 && <ProgressBar completed={ completedCount } total={ totalCount } /> }
 			</summary>
 			<div className="nfd-section-steps">
-				{ section.tasks.map( ( step ) => (
-					<Task
-						key={ step.id }
-						step={ step }
-						taskUpdateCallback={ taskUpdateCallback }
-						showDismissed={ showDismissed }
-						track={ track }
-						section={ section.id }
-					/>
+				{ section.tasks.map( ( task, taskIndex ) => (
+					<ErrorBoundary 
+						key={ `task-boundary-${task.id}` }
+						fallback={ 
+							<div className="nfd-task-error">
+								<p>{ __('Task temporarily unavailable', 'wp-module-next-steps') }</p>
+							</div> 
+						}
+					>
+						<Task
+							index={ taskIndex }
+							key={ task.id }
+							sectionId={ section.id }
+							showDismissed={ showDismissed }
+							task={ task }
+							taskUpdateCallback={ taskUpdateCallback }
+							trackId={ trackId }
+						/>
+					</ErrorBoundary>
 				) ) }
 			</div>
-			{ showCompleteCelebration && 
-				<div
-					className="nfd-section-complete"
-					data-complete={ isComplete }
-					onClick={ ( e ) => {
-						setShowCompleteCelebration( false );
-						handleToggleOpen( e, false );
-					} }
+			<div
+				className="nfd-section-complete"
+				data-complete={ isComplete }
+				data-show-celebration={ showCompleteCelebration }
+				onClick={ ( e ) => {
+					setShowCompleteCelebration( false );
+					sectionOpenCallback( trackId, section.id, false );
+				} }
+			>
+				<button
+					className="nfd-nextsteps-section-close-button"
+					title={ __( 'Close', 'wp-module-next-steps' ) }
 				>
-					<button
-						className="nfd-nextsteps-section-close-button"
-						title={ __( 'Close', 'wp-module-next-steps' ) }
-					>
-						{ closeCircleIcon }
-					</button>
-					<div className="nfd-section-celebrate">{ trophyIcon }</div>
-					<p className="nfd-section-celebrate-text">{ __( 'All complete!', 'wp-module-next-steps' ) }</p>
-				</div>
-			}
+					{ closeCircleIcon }
+				</button>
+				<div className="nfd-section-celebrate">{ trophyIcon }</div>
+				<p className="nfd-section-celebrate-text">{ __( 'All complete!', 'wp-module-next-steps' ) }</p>
+			</div>
+
 		</details>
 		)
 	);
-};
+});

@@ -1,26 +1,51 @@
 import { Title } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
+import { useState, useEffect, memo } from '@wordpress/element';
 import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon } from '../icons';
 
-export const Task = ( props ) => {
+export const Task = memo(( props ) => {
 	const {
-		step,
-		taskUpdateCallback,
-		track,
-		section,
+		index,
+		sectionId,
 		showDismissed,
-		...restProps
+		task,
+		taskUpdateCallback,
+		trackId,
 	} = props;
 	
-	// Destructure step properties
+	// Destructure task properties
 	const {
 		id,
-		// description = '',
 		title = '',
-		status,
 		href,
 		data_attributes = {}
-	} = step;
+	} = task;
+	// task status uses state to track the current status
+	const [ status, setStatus ] = useState( task.status );
+
+	useEffect( () => {
+		setStatus( task.status );
+	}, [ task.status ] );
+
+	const updateStatus = ( newStatus ) => {
+		const previousStatus = status;
+		setStatus( newStatus ); // optimistic update - for immediate UI feedback
+		// update task status via API
+		taskUpdateCallback( 
+			trackId,
+			sectionId,
+			id,
+			newStatus,
+			( error ) => {
+				// If error, revert optimistic task update to previous status
+				setStatus( previousStatus );
+				// further error handling done in the error boundary
+			},
+			( response ) => {
+				setStatus( newStatus ); // redundant since we optimistically set it above
+			}
+		);
+	};
 	
 	const getHref = () => {
         let hrefValue = href;
@@ -47,7 +72,11 @@ export const Task = ( props ) => {
 	 * Ensures all keys have 'data-' prefix and handles boolean values
 	 */
 	const formatDataAttributes = () => {
-		const formatted = {};
+		const formatted = {
+			'data-nfd-task-index': index,
+			'data-nfd-task-id': id,
+			'data-nfd-task-status': status,
+		};
 		
 		Object.entries( data_attributes ).forEach( ( [ key, value ] ) => {
 			// Ensure key has 'data-' prefix
@@ -97,7 +126,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback( track, section, id, 'done' )
+								updateStatus( 'done' )
 							}
 							title={ __(
 								'Mark Complete',
@@ -115,12 +144,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback(
-									track,
-									section,
-									id,
-									'dismissed'
-								)
+								updateStatus( 'dismissed' )
 							}
 							title={ __( 'Skip', 'wp-module-next-steps' ) }
 						>
@@ -153,7 +177,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback( track, section, id, 'new' )
+								updateStatus( 'new' )
 							}
 							title={ __( 'Restart', 'wp-module-next-steps' ) }
 						>
@@ -176,7 +200,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback( track, section, id, 'new' )
+								updateStatus( 'new' )
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>
@@ -191,7 +215,7 @@ export const Task = ( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								taskUpdateCallback( track, section, id, 'new' )
+								updateStatus( 'new' )
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>
@@ -210,4 +234,4 @@ export const Task = ( props ) => {
 			{ status === 'dismissed' && showDismissed && renderDismissedStep() }
 		</>
 	);
-};
+});

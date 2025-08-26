@@ -36,6 +36,36 @@
             ],
             "Close": [
                 "Chiudere"
+            ],
+            "We encountered a connection error. Please check your internet connection and try again.": [
+                "Abbiamo riscontrato un errore di connessione. Controlla la tua connessione Internet e riprova."
+            ],
+            "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists.": [
+                "Si \u00e8 verificato un errore imprevisto. Prova ad aggiornare la pagina o contatta l'assistenza se il problema persiste."
+            ],
+            "Connection Error": [
+                "Errore di connessione"
+            ],
+            "Something went wrong": [
+                "Qualcosa \u00e8 andato storto"
+            ],
+            "Try Again": [
+                "Riprova"
+            ],
+            "Refresh Page": [
+                "Aggiorna pagina"
+            ],
+            "Technical Details": [
+                "Dettagli tecnici"
+            ],
+            "Next Steps Unavailable": [
+                "Passaggi successivi non disponibili"
+            ],
+            "The Next Steps module encountered an error and cannot be displayed right now.": [
+                "Il modulo Passaggi successivi ha riscontrato un errore e non pu\u00f2 essere visualizzato in questo momento."
+            ],
+            "Task temporarily unavailable": [
+                "Attivit\u00e0 temporaneamente non disponibile"
             ]
         }
     }

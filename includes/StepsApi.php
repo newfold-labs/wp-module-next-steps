@@ -74,42 +74,42 @@ class StepsApi {
 		);
 
 		// Add route for updating a step status
-		// newfold-next-steps/step/update
+		// newfold-next-steps/v1/steps/status
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/status',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE,
-				'callback'            => array( $this, 'update_step_status' ),
+				'callback'            => array( $this, 'update_task_status' ),
 				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
 				'args'                => array(
-					'plan'    => array(
+					'plan_id'    => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'track'   => array(
+					'track_id'   => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'section' => array(
+					'section_id' => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'task'    => array(
+					'task_id'    => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'status'  => array(
+					'status'    => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
@@ -210,19 +210,19 @@ class StepsApi {
 					return current_user_can( 'manage_options' );
 				},
 				'args'                => array(
-					'plan'    => array(
+					'plan_id'    => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'track'   => array(
+					'track_id'   => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'section' => array(
+					'section_id' => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
@@ -249,13 +249,13 @@ class StepsApi {
 					return current_user_can( 'manage_options' );
 				},
 				'args'                => array(
-					'plan'  => array(
+					'plan_id'  => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'track' => array(
+					'track_id' => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
@@ -360,20 +360,20 @@ class StepsApi {
 	}
 
 	/**
-	 * Update a step status.
+	 * Update a task status.
 	 *
 	 * @param \WP_REST_Request $request  The REST request object.
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 */
-	public static function update_step_status( \WP_REST_Request $request ) {
-		$plan    = $request->get_param( 'plan' );
-		$track   = $request->get_param( 'track' );
-		$section = $request->get_param( 'section' );
-		$task    = $request->get_param( 'task' );
-		$status  = $request->get_param( 'status' );
+	public static function update_task_status( \WP_REST_Request $request ) {
+		$plan_id    = $request->get_param( 'plan_id' );
+		$track_id   = $request->get_param( 'track_id' );
+		$section_id = $request->get_param( 'section_id' );
+		$task_id    = $request->get_param( 'task_id' );
+		$status     = $request->get_param( 'status' );
 
 		// validate parameters
-		if ( empty( $track ) || empty( $section ) || empty( $task ) || empty( $status ) ) {
+		if ( empty( $track_id ) || empty( $section_id ) || empty( $task_id ) || empty( $status ) ) {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 		if ( ! in_array( $status, array( 'new', 'done', 'dismissed' ), true ) ) {
@@ -381,16 +381,16 @@ class StepsApi {
 		}
 
 		// Use PlanManager to update the task status
-		$success = PlanManager::update_task_status( $track, $section, $task, $status );
+		$success = PlanManager::update_task_status( $track_id, $section_id, $task_id, $status );
 
 		if ( ! $success ) {
 			return new WP_Error( 'step_not_found', __( 'Step not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
 		// Get the updated plan
-		$plan = PlanManager::get_current_plan();
+		// $plan = PlanManager::get_current_plan();
 
-		return new WP_REST_Response( $plan->to_array(), 200 );
+		return new WP_REST_Response( true, 200 );
 	}
 
 	/**
@@ -400,18 +400,18 @@ class StepsApi {
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 */
 	public static function update_section_status( \WP_REST_Request $request ) {
-		$plan    = $request->get_param( 'plan' );
-		$track   = $request->get_param( 'track' );
-		$section = $request->get_param( 'section' );
-		$open    = $request->get_param( 'open' ) ?? false;
+		$plan_id    = $request->get_param( 'plan_id' );
+		$track_id   = $request->get_param( 'track_id' );
+		$section_id = $request->get_param( 'section_id' );
+		$open       = $request->get_param( 'open' ) ?? false;
 
 		// validate parameters
-		if ( empty( $track ) || empty( $section ) ) {
+		if ( empty( $track_id ) || empty( $section_id ) ) {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
 		// Use PlanManager to update the section status
-		$success = PlanManager::update_section_status( $track, $section, $open );
+		$success = PlanManager::update_section_status( $track_id, $section_id, $open );
 
 		if ( ! $success ) {
 			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
@@ -427,17 +427,17 @@ class StepsApi {
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 */
 	public static function update_track_status( \WP_REST_Request $request ) {
-		$plan  = $request->get_param( 'plan' );
-		$track = $request->get_param( 'track' );
-		$open  = $request->get_param( 'open' ) ?? false;
+		$plan_id  = $request->get_param( 'plan_id' );
+		$track_id = $request->get_param( 'track_id' );
+		$open     = $request->get_param( 'open' ) ?? false;
 
 		// validate parameters
-		if ( empty( $track ) ) {
+		if ( empty( $track_id ) ) {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
 		// Use PlanManager to update the track status
-		$success = PlanManager::update_track_status( $track, $open );
+		$success = PlanManager::update_track_status( $track_id, $open );
 
 		if ( ! $success ) {
 			return new WP_Error( 'track_not_found', __( 'Track not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );

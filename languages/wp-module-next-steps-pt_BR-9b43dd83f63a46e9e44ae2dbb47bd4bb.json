@@ -36,6 +36,42 @@
             ],
             "Close": [
                 "Fechar"
+            ],
+            "We encountered a connection error. Please check your internet connection and try again.": [
+                "Encontramos um erro de conex\u00e3o. Verifique sua conex\u00e3o com a Internet e tente novamente."
+            ],
+            "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists.": [
+                "Encontramos um erro inesperado. Tente atualizar a p\u00e1gina ou entre em contato com o suporte se o problema persistir."
+            ],
+            "Connection Error": [
+                "Erro de conex\u00e3o"
+            ],
+            "Something went wrong": [
+                "Algo deu errado"
+            ],
+            "Try Again": [
+                "Tentar novamente"
+            ],
+            "Refresh Page": [
+                "Atualizar p\u00e1gina"
+            ],
+            "Technical Details": [
+                "Detalhes t\u00e9cnicos"
+            ],
+            "Next Steps Unavailable": [
+                "Pr\u00f3ximos passos indispon\u00edveis"
+            ],
+            "The Next Steps module encountered an error and cannot be displayed right now.": [
+                "O m\u00f3dulo Pr\u00f3ximas etapas encontrou um erro e n\u00e3o pode ser exibido no momento."
+            ],
+            "Task temporarily unavailable": [
+                "Tarefa temporariamente indispon\u00edvel"
+            ],
+            "Connection Issue": [
+                "Problema de conex\u00e3o"
+            ],
+            "Unable to save your changes right now. Please check your connection and try again.": [
+                "N\u00e3o \u00e9 poss\u00edvel salvar suas altera\u00e7\u00f5es no momento. Verifique sua conex\u00e3o e tente novamente."
             ]
         }
     }

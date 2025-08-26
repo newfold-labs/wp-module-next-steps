@@ -1,104 +1,22 @@
 import data from './data.json'
 import { Button } from '@newfold/ui-component-library';
-import { useState } from '@wordpress/element';
+import { useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
 import { spinner, hideIcon } from '../icons';
 import { TaskCard } from '../task-card';
 import './styles.scss';
-
-/**
- * Method to create endpoint url
- *
- * no permalinks: 'http://localhost:8882/index.php?rest_route=/'
- * permalinks: 'http://localhost:8882/wp-json/'
- */
-const createEndpointUrl = ( root, endpoint ) => {
-	// if restUrl has /index.php?rest_route=/, add escaped endpoint
-	if ( root.includes( '?' ) ) {
-		return root + encodeURIComponent( endpoint );
-	}
-	// otherwise permalinks set and restUrl should concatenate endpoint
-	return root + endpoint;
-};
-
-/**
- * Wrapper method to post task update to endpoint
- *
- * @param {Object}   data         object of data
- * @param {Function} passError    setter for the error in component
- * @param {Function} thenCallback method to call in promise then
- */
-const taskUpdateWrapper = ( data, passError, thenCallback ) => {
-	return apiFetch( {
-		url: createEndpointUrl(
-			window.NewfoldRuntime.restUrl,
-			'newfold-next-steps/v1/steps/status'
-		),
-		method: 'PUT',
-		data,
-	} )
-		.then( ( response ) => {
-			// console.log( 'Response from taskUpdateWrapper:', response );
-			thenCallback( response );
-		} )
-		.catch( ( error ) => {
-			// console.error( 'Error from taskUpdateWrapper:', error );
-			passError( error );
-		} );
-};
-
-/**
- * Wrapper method to post section update to endpoint
- *
- * @param {Object}   data         object of data
- * @param {Function} passError    setter for the error in component
- * @param {Function} thenCallback method to call in promise then
- */
-const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
-	return apiFetch( {
-		url: createEndpointUrl(
-			window.NewfoldRuntime.restUrl,
-			'newfold-next-steps/v1/steps/section/open'
-		),
-		method: 'PUT',
-		data,
-	} )
-		.then( ( response ) => {
-			// console.log( 'Section update response:', response );
-			thenCallback( response );
-		} )
-		.catch( ( error ) => {
-			// console.error( 'Error updating section:', error );
-			passError( error );
-		} );
-};
-
-/**
- * Wrapper method to post track update to endpoint
- *
- * @param {Object}   data         object of data
- * @param {Function} passError    setter for the error in component
- * @param {Function} thenCallback method to call in promise then
- */
-const trackUpdateWrapper = ( data, passError, thenCallback ) => {
-	return apiFetch( {
-		url: createEndpointUrl(
-			window.NewfoldRuntime.restUrl,
-			'newfold-next-steps/v1/steps/track/open'
-		),
-		method: 'PUT',
-		data,
-	} )
-		.then( ( response ) => {
-			// console.log( 'Track update response:', response );
-			thenCallback( response );
-		} )
-		.catch( ( error ) => {
-			// console.error( 'Error updating track:', error );
-			passError( error );
-		} );
-};
+import { Track } from '../track';
+import { NextStepsErrorBoundary } from '../ErrorBoundary';
+import {
+    calculatePlanProgress,
+    updateTaskStatusInPlan,
+    updateSectionInPlan,
+    updateTrackInPlan,
+    taskUpdateWrapper,
+    sectionUpdateWrapper,
+    trackUpdateWrapper
+} from './helpers';
+import './styles.scss';
 
 const getTasks = ( tracks ) => {
 	let tasks = [];
@@ -114,89 +32,80 @@ const getTasks = ( tracks ) => {
 export const NextSteps = () => {
 	const [ plan, setPlan ] = useState( window.NewfoldNextSteps );
 	const [ showDismissed, setShowDismissed ] = useState( true );
+    const [ showControls, setShowControls ] = useState( false );
 
-	const taskUpdateCallback = ( track, section, id, status ) => {
+	// Calculate progress data on initial load, then updated per-section
+	const planWithProgress = useMemo(() => {
+		return plan ? calculatePlanProgress(plan) : null;
+	}, [plan]);
+
+	const taskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback, successCallback ) => {
+		// send update to endpoint
 		const data = {
-			plan: plan.id,
-			track,
-			section,
-			task: id,
+			plan_id: plan.id,
+			track_id: trackId,
+			section_id: sectionId,
+			task_id: taskId,
 			status,
 		};
 		taskUpdateWrapper(
 			data,
 			( error ) => {
-				// TODO handle error better
-				// console.error( 'Error updating step:', error );
+				errorCallback( error );
 			},
 			( response ) => {
-				// The response is the full plan object, not wrapped in a plan property
-				// console.log( 'Task update response:', response );
-				window.NewfoldNextSteps = response;
-				setPlan( response );
+				// update plan state with the new task status using immutability helper
+				setPlan( prevPlan => updateTaskStatusInPlan( prevPlan, trackId, sectionId, taskId, status ) );
+				// call provided success callback
+				successCallback( response );
 			}
 		);
 	};
 
-	const sectionOpenCallback = ( section, open ) => {
-		// console.log( 'Section open callback:', section, open );
+    const sectionOpenCallback = ( trackId, sectionId, open ) => {
+        if ( !trackId || !sectionId ) {
+            // Could not find track for intendend section
+            return;
+        }
 
-		// Find the track that contains this section
-		let trackId = null;
-		if ( plan && plan.tracks ) {
-			for ( const track of plan.tracks ) {
-				if ( track.sections && track.sections.some( s => s.id === section ) ) {
-					trackId = track.id;
-					break;
-				}
-			}
-		}
+        const data = {
+            plan_id: plan.id,
+            track_id: trackId,
+            section_id: sectionId,
+            open: open,
+        };
 
-		if ( ! trackId ) {
-			// console.error( 'Could not find track for section:', section );
-			return;
-		}
+        sectionUpdateWrapper(
+            data,
+            ( error ) => {
+                // console.error( 'Error updating section open state:', error );
+            },
+            ( response ) => {
+                setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, open ) );
+            }
+        );
+    };
 
-		const data = {
-			plan: plan.id,
-			track: trackId,
-			section: section,
-			open: open,
-		};
+    const trackOpenCallback = ( trackId, open ) => {
+        const data = {
+            plan_id: plan.id,
+            track_id: trackId,
+            open: open,
+        };
 
-		sectionUpdateWrapper(
-			data,
-			( error ) => {
-				// console.error( 'Error updating section open state:', error );
-			},
-			( response ) => {
-				// console.log( 'Section open state updated successfully:', response );
-			}
-		);
-	};
-
-	const trackOpenCallback = ( track, open ) => {
-		// console.log( 'Track open callback:', track, open );
-
-		const data = {
-			plan: plan.id,
-			track: track,
-			open: open,
-		};
-
-		trackUpdateWrapper(
-			data,
-			( error ) => {
-				// console.error( 'Error updating track open state:', error );
-			},
-			( response ) => {
-				// console.log( 'Track open state updated successfully:', response );
-			}
-		);
-	};
+        trackUpdateWrapper(
+            data,
+            ( error ) => {
+                // console.error( 'Error updating track open state:', error );
+            },
+            ( response ) => {
+                setPlan( prevPlan => updateTrackInPlan( prevPlan, trackId, open ) );
+            }
+        );
+    };
 
 	// Handle case where plan might not be loaded yet
-	if ( ! plan || ! plan.tracks ) {
+	if ( ! planWithProgress || ! planWithProgress.tracks ) {
 		return (
 			<div className="nfd-nextsteps" id="nfd-nextsteps">
 				{ spinner }
@@ -205,22 +114,64 @@ export const NextSteps = () => {
 		);
 	}
 
-	const { cards } = data;
+    if( planWithProgress.id === 'store_setup' ) {
+        const { cards } = data;
+        return (
+            <>
+                <div id={ 'nfd-quick-add-product-modal-only' }/>
+                <div className="nfd-nextsteps nfd-grid nfd-grid-cols-2 nfd-grid-rows-[auto_auto] nfd-gap-4" id="nfd-nextsteps">
+                    { cards.slice( 0, 3 ).map( ( card, i ) => {
+                        return <TaskCard
+                            className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
+                            key={ card.id }
+                            wide={ i === 2 }
+                            taskUpdateCallback={ taskUpdateCallback }
+                            { ...card }
+                        />
+                    } ) }
+                </div>
+            </>
+        );
+    }
 
 	return (
-		<>
-			<div id={ 'nfd-quick-add-product-modal-only' }/>
-			<div className="nfd-nextsteps nfd-grid nfd-grid-cols-2 nfd-grid-rows-[auto_auto] nfd-gap-4" id="nfd-nextsteps">
-				{ cards.slice( 0, 3 ).map( ( card, i ) => {
-					return <TaskCard
-						className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
-						key={ card.id }
-						wide={ i === 2 }
+
+		<NextStepsErrorBoundary>
+			<div
+				className="nfd-nextsteps"
+				data-nfd-plan-id={ planWithProgress.id }
+				id="nfd-nextsteps"
+			>
+				<p className="nfd-pb-4">{ planWithProgress.description }</p>
+				{ planWithProgress.tracks.map( ( track, trackIndex ) => (
+					<Track
+						index={ trackIndex }
+						key={ track.id }
+						sectionOpenCallback={ sectionOpenCallback }
+						showDismissed={ showDismissed }
 						taskUpdateCallback={ taskUpdateCallback }
-						{ ...card }
+						track={ track }
+						trackOpenCallback={ trackOpenCallback }
 					/>
-				} ) }
+				) ) }
+				{ showControls && <div className="nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center">
+					<Button
+						className="nfd-nextsteps-filter-button"
+						data-nfd-click="nextsteps_step_toggle"
+						data-nfd-event-category="nextsteps_toggle"
+						data-nfd-event-key="toggle"
+						onClick={ () => {
+							setShowDismissed( ! showDismissed );
+						} }
+						variant="secondary"
+					>{ hideIcon }
+						{ showDismissed
+							? __( 'Hide skipped tasks', 'wp-module-next-steps' )
+							: __( 'View skipped tasks', 'wp-module-next-steps' )
+						}
+					</Button>
+				</div> }
 			</div>
-		</>
+		</NextStepsErrorBoundary>
 	);
 };

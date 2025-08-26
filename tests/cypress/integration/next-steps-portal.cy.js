@@ -1,90 +1,101 @@
 // <reference types="Cypress" />
-import { wpLogin } from '../wp-module-support/utils.cy';
-import {
-	resetNextStepsData,
-        waitForNextStepsApp,
-	getTaskByStatus,
-	verifyTaskDataAttributes,
-	verifyTaskLinks,
-	verifyTaskIcons,
-	toggleSection
-} from '../wp-module-support/next-steps-helpers.cy';
+import { 
+	wpLogin,
+	setTestNextStepsData,
+	resetNextStepsData
+} from '../wp-module-support/utils.cy';
 
 describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
-        before( () => {
-                // Reset Next Steps data to ensure clean state for tests
-                resetNextStepsData();
-        } );
-        
-        beforeEach( () => {
-                wpLogin();
 
-                cy.visit(
-                        '/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) + '#/home'
-                );
-        } );
+	after( () => {
+		// Reset test data
+		resetNextStepsData();
+	} );
 
-        it( 'renders portal structure and displays progress bars correctly', () => {
-                // === Portal App Rendering ===
-                cy.get( '.next-steps-fill #nfd-nextsteps' )
-                        .scrollIntoView()
-                        .should( 'be.visible' );
+	beforeEach( () => {
+		wpLogin();
+		// Set test Next Steps data
+		setTestNextStepsData();
+		cy.visit(
+			'/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) + '#/home'
+		);
+		cy.reload();
 
-                // === Basic Structure ===
-                waitForNextStepsApp();
+		// Intercept the task status update API call
+		cy.intercept(
+			{
+				method: 'POST',
+				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)status/,
+			},
+			{
+				statusCode: 200,
+				body: true
+			}
+		).as( 'updateTaskStatus' );
+		cy.intercept(
+			{
+				method: 'POST',
+				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)open/,
+			},
+			{
+				statusCode: 200,
+				body: true
+			}
+		).as( 'updateSectionState' );
+	} );
 
-                // Check that the app has loaded with content
-                cy.get( '#nfd-nextsteps p' ).should( 'be.visible' );
+	it( 'portal renders and displays correctly', () => {
+		// Portal App Renders
+		cy.get('#next-steps-portal').scrollIntoView().should('be.visible');
+		cy.get( '.next-steps-fill #nfd-nextsteps' ).should( 'be.visible' );
 
-                // === Progress Bars Display ===
-                // Check if progress bars exist anywhere in the app
-                cy.get( '#nfd-nextsteps' ).then( ( $app ) => {
-                        // Check if progress bars exist, but don't fail if they don't
-                        cy.wrap( $app ).find( '.nfd-progress-bar' ).should( 'exist' );
-                } );
-        } );
+		// Check Basic Structure
+		cy.get( '.nfd-track' ).should( 'have.length', 2 );
+		cy.get( '.nfd-section' ).should( 'have.length', 4 );
+		cy.get( '.nfd-nextsteps-step-container' ).should( 'have.length', 9 );
 
-        it( 'handles all portal interactions and functionality correctly', () => {
-                // === Basic Interactions ===
-                // Test that the first track is open by default
-                cy.get( '.nfd-track' ).first().should( 'have.attr', 'open' );
+		// Check that the app has loaded with content
+		cy.get( '#nfd-nextsteps p' ).should( 'be.visible' ).and( 'contain', 'This is a test plan' );
 
-                // Test that sections can be toggled
-                toggleSection( 0, 0 );
+		// Marking a task complete updates task and progress bars
+		// Find progress bar in first section
+		cy.get('.nfd-section[data-nfd-section-id="section1"]').as( 'firstSection' );
+		// Should have a progress bar
+		cy.get( '@firstSection' ).find('.nfd-progress-bar').should('exist');
+		
+		// Validate initial progress values
+		cy.get( '@firstSection' ).find('.nfd-progress-bar-label').should('have.text', '0/1');
+		cy.get( '@firstSection' ).find('.nfd-progress-bar-inner').should('have.attr', 'data-percent', '0');
 
-                // Test that task buttons exist and are clickable
-                getTaskByStatus( 'new' ).first().then( ( task ) => {
-                        verifyTaskIcons( cy.wrap( task ), 'new' );
-                } );
+		// Task should be in new state
+		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'new');
 
-                // === Task Links and Navigation ===
-                getTaskByStatus( 'new' ).first().then( ( task ) => {
-                        verifyTaskLinks( cy.wrap( task ) );
-                        verifyTaskDataAttributes( cy.wrap( task ) );
-                } );
-        } );
+		// Complete task
+		cy.get( '@firstSection' ).find('#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo').click();
+		// Wait for API call
+		cy.wait('@updateTaskStatus');
 
-        // New test to verify version handling in portal context
-        it( 'handles versioned data correctly in portal', () => {
-                // Wait for initial load
-                waitForNextStepsApp();
-                
-                // Verify basic functionality works
-                getTaskByStatus( 'new' ).should( 'have.length.greaterThan', 0 );
-                
-                // Refresh the page to trigger potential merge logic
-                cy.reload();
-                
-                // Wait for portal to reload
-                cy.get( '.next-steps-fill #nfd-nextsteps' )
-                        .scrollIntoView()
-                        .should( 'be.visible' );
-                        
-                waitForNextStepsApp();
-                
-                // Verify the app still functions normally after reload
-                cy.get( '.nfd-track' ).should( 'have.length.greaterThan', 0 );
-                cy.get( '.nfd-section' ).should( 'have.length.greaterThan', 0 );
-                cy.get( '.nfd-nextsteps-step-container' ).should( 'have.length.greaterThan', 0 );
-        } );
+		// Task should now be in done state
+		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'done');
+
+		// Progress should update
+		cy.get( '@firstSection' ).find('.nfd-progress-bar-label').should('have.text', '1/1');
+		cy.get( '@firstSection' ).find('.nfd-progress-bar-inner').should('have.attr', 'data-percent', '100');
+				
+		// Celebrate should be visible
+		cy.get( '@firstSection' ).find('.nfd-section-celebrate').should('be.visible');
+		cy.get( '@firstSection' ).find('.nfd-section-celebrate-text').should('have.text', 'All complete!');
+		cy.get( '@firstSection' ).find('.nfd-nextsteps-section-close-button').should('be.visible');
+
+		// Close celebration closes section
+		cy.get( '@firstSection' ).should('have.attr', 'open');
+		cy.get( '@firstSection' ).find('.nfd-section-complete').click();
+		cy.wait( '@updateSectionState' );
+		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
+		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
+		cy.get( '@firstSection' ).should('not.have.attr', 'open');
+		// Open the section
+		cy.get( '@firstSection' ).find('.nfd-section-header').click();
+		cy.get( '@firstSection' ).should('have.attr', 'open');
+	} );
 } );

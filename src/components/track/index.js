@@ -1,20 +1,18 @@
+import { memo } from '@wordpress/element';
 import { Title } from '@newfold/ui-component-library';
-import { Section } from '../section';
 import { chevronIcon } from '../icons';
+import { Section } from '../section';
+import { ErrorBoundary } from '../ErrorBoundary';
 
-export const Track = ( props ) => {
+export const Track = memo(( props ) => {
 	const {
-		track,
 		index,
-		taskUpdateCallback,
+		track,
 		sectionOpenCallback,
-		trackOpenCallback,
 		showDismissed,
-		...restProps
+		taskUpdateCallback,
+		trackOpenCallback,
 	} = props;
-
-	// Use track.open if available, otherwise fall back to default behavior (first track open)
-	const isOpen = track.hasOwnProperty('open') ? track.open : index === 0;
 
 	const handleToggleOpen = ( event ) => {
 		// Get the new open state from the details element
@@ -24,10 +22,12 @@ export const Track = ( props ) => {
 	};
 
 	return (
-		<details 
+		<details
 			className="nfd-track"
-			open={ isOpen } 
 			onToggle={ handleToggleOpen }
+			data-nfd-track-id={ track.id }
+			data-nfd-track-index={ index }
+			open={ track.open }
 		>
 			<summary className="nfd-track-header">
 				<Title className="nfd-track-title mb-0" as="h2">
@@ -39,17 +39,26 @@ export const Track = ( props ) => {
 			</summary>
 			<div className="nfd-track-sections">
 				{ track.sections.map( ( section, sectionIndex ) => (
-					<Section
-						key={ section.id }
-						section={ section }
-						index={ sectionIndex }
-						taskUpdateCallback={ taskUpdateCallback }
-						sectionOpenCallback={ sectionOpenCallback }
-						track={ track.id }
-						showDismissed={ showDismissed }
-					/>
+					<ErrorBoundary 
+						key={ `section-boundary-${section.id}` }
+						fallback={ 
+							<div className="nfd-section-error">
+								<p>Section temporarily unavailable</p>
+							</div> 
+						}
+					>
+						<Section
+							index={ sectionIndex }
+							key={ section.id }
+							section={ section }
+							sectionOpenCallback={ sectionOpenCallback }
+							showDismissed={ showDismissed }
+							taskUpdateCallback={ taskUpdateCallback }
+							trackId={ track.id }
+						/>
+					</ErrorBoundary>
 				) ) }
 			</div>
 		</details>
 	);
-};
+});
