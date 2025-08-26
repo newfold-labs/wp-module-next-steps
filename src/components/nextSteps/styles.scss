@@ -609,3 +609,19 @@
     font-size : 1.25rem !important;
   }
 }
+
+// # no More cards
+.ndf-nextsteps-no-cards-content {
+  border: 1px dashed #A8A8A8;
+  padding: 20px;
+}
+
+.ndf-nextsteps-no-cards-content {
+  background:#FCFCFC;
+  .nfd-nextsteps-step-card__wireframe {
+    padding-bottom: 20px;
+  }
+  .nfd-next-steps-no-cards-text {
+      color: #696969;
+  }
+}

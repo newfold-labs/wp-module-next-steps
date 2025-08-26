@@ -4,6 +4,7 @@ import { useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { spinner, hideIcon } from '../icons';
 import { TaskCard } from '../task-card';
+import { NoMoreCards } from '../no-more-cards';
 import './styles.scss';
 import { Track } from '../track';
 import { NextStepsErrorBoundary } from '../ErrorBoundary';
@@ -93,21 +94,7 @@ export const NextSteps = () => {
         );
     };
 
-	// Handle case where plan might not be loaded yet
-	if ( ! planWithProgress || ! planWithProgress.tracks ) {
-		return (
-			<div className="nfd-nextsteps" id="nfd-nextsteps">
-				{ spinner }
-				<p>{ __( 'Loading next steps...', 'wp-module-next-steps' ) }</p>
-			</div>
-		);
-	}
-
-    if( planWithProgress.id === 'store_setup' ) {
-        //const { cards } = data;
-        const cards = planWithProgress.tracks[0].sections;
-        const trackId = planWithProgress.tracks[0].id;
-        console.log(cards);
+    const renderCards  = ( cards, trackId ) => {
         return (
             <>
                 <div id={ 'nfd-quick-add-product-modal-only' }/>
@@ -127,6 +114,28 @@ export const NextSteps = () => {
                 </div>
             </>
         );
+    }
+
+	// Handle case where plan might not be loaded yet
+	if ( ! planWithProgress || ! planWithProgress.tracks ) {
+		return (
+			<div className="nfd-nextsteps" id="nfd-nextsteps">
+				{ spinner }
+				<p>{ __( 'Loading next steps...', 'wp-module-next-steps' ) }</p>
+			</div>
+		);
+	}
+
+    if( planWithProgress.id === 'store_setup' ) {
+        //const { cards } = data;
+        const cards = planWithProgress.tracks[0].sections.filter( ( section ) => section.status !== 'done' );
+        const trackId = planWithProgress.tracks[0].id;
+        return (
+            <>
+                { !cards.length && <NoMoreCards/> }
+                { cards && renderCards( cards, trackId ) }
+            </>
+        )
     }
 
 	return (

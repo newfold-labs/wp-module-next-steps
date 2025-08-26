@@ -1,0 +1,1 @@
+export {default as noMoreCardsicon} from './no-more-cards';
