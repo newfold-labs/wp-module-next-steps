@@ -18,17 +18,6 @@ import {
 } from './helpers';
 import './styles.scss';
 
-const getTasks = ( tracks ) => {
-	let tasks = [];
-	tracks.map( track => {
-		track.sections.map( section => {
-			tasks = [ ...tasks, ...section.tasks.map( task => ({ ...task, trackId: track.id, sectionId: section.id }) ) ];
-		} );
-	} );
-
-	return tasks;
-}
-
 export const NextSteps = () => {
 	const [ plan, setPlan ] = useState( window.NewfoldNextSteps );
 	const [ showDismissed, setShowDismissed ] = useState( true );
@@ -115,7 +104,10 @@ export const NextSteps = () => {
 	}
 
     if( planWithProgress.id === 'store_setup' ) {
-        const { cards } = data;
+        //const { cards } = data;
+        const cards = planWithProgress.tracks[0].sections;
+        const trackId = planWithProgress.tracks[0].id;
+        console.log(cards);
         return (
             <>
                 <div id={ 'nfd-quick-add-product-modal-only' }/>
@@ -126,6 +118,9 @@ export const NextSteps = () => {
                             key={ card.id }
                             wide={ i === 2 }
                             taskUpdateCallback={ taskUpdateCallback }
+                            desc={ card.description }
+                            trackId={ trackId }
+                            sectionId={ card.id }
                             { ...card }
                         />
                     } ) }

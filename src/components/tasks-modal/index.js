@@ -37,14 +37,15 @@ export const TasksModal = ( {
 			}
 			<div className={'nfd.nfd-nextstep-tasks-modal__tasks'}>
 				{
-					tasks.map(task=>(
-						<Task
+					tasks.map(( task, taskIndex ) =>(
+                    <Task
 							key={ task.id }
-							step={ task }
+                            index={ taskIndex }
+                            task={ task }
 							taskUpdateCallback={ taskUpdateCallback }
-							showDismissed={ false }
-							track={ task?.track_id }
-							section={ task?.section_id }
+							showDismissed={ true }
+							trackId={ props?.trackId }
+							sectionId={ props?.sectionId }
 						/>
 					) )
 				}

@@ -15,7 +15,7 @@ const ICONS_IDS = {
 
 export const TaskCard = ( {
 	id,
-	title,
+	label,
 	desc,
 	href = '',
 	image = null,
@@ -28,6 +28,8 @@ export const TaskCard = ( {
 	taskUpdateCallback,
 	event,
 	icon,
+    trackId,
+    sectionId,
 	...props
 } ) => {
 
@@ -107,7 +109,7 @@ const Icon = ICONS_IDS[icon] ?? null;
 							</span>
 						}
 						<Title as="span" className="nfd-nextsteps-step-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center">
-							{ title }
+							{ label }
 						</Title>
 					</span>
 					{
@@ -150,7 +152,7 @@ const Icon = ICONS_IDS[icon] ?? null;
 							data-nfd-click="nextsteps_step_link"
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
-							title={ title }
+							title={ label }
 							variant={ 'completed' === status ? 'secondary' : 'primary' }
 							onClick={ ( e ) => {
 								if ( tasks?.length ) {
@@ -179,6 +181,8 @@ const Icon = ICONS_IDS[icon] ?? null;
 					tasks={ tasks }
 					title={ props?.modal_title }
 					desc={ props?.modal_desc }
+                    trackId={ trackId }
+                    sectionId={ sectionId }
 					taskUpdateCallback={ taskUpdateCallback }
 				/> }
 		</>
