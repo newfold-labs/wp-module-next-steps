@@ -380,6 +380,12 @@ class Plan {
 		if ( ! $section ) {
 			return false;
 		}
+		// If marking as 'new' or 'done', clear the completed/skipped timestamp
+		// Otherwise, set it to the current time.
+		//$time = time();
+		$section->set_date_completed_or_skipped(
+			( 'new' === $status || 'done' === $status ) ? '0' : $time
+		);
 
 		return $section->set_status( $status );
 	}

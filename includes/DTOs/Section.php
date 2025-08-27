@@ -325,6 +325,17 @@ class Section {
 	}
 
 	/**
+	 * Set date completed or skipped
+	 *
+	 * @param string|null $date Date string or null
+	 * @return bool
+	 */
+	public function set_date_completed_or_skipped( ?string $date ): bool {
+		$this->date_completed_or_skipped = $date;
+		return true;
+	}
+
+	/**
 	 * Check if section is open
 	 *
 	 * @return bool

@@ -91,6 +91,9 @@ const Icon = ICONS_IDS[icon] ?? null;
 		return formatted;
 	};
 
+    /**
+     * Adjust CTA text based on status
+     */
     const getCtaText = () => {
 
         let ctaText = cta;
@@ -178,7 +181,6 @@ const Icon = ICONS_IDS[icon] ?? null;
                                         {
                                             'nfd-nextsteps-button--skipped': 'skipped' === status,
                                             'nfd-nextsteps-button--completed': 'completed' === status,
-                                            'nfd-nextsteps-button--new': 'new' === status,
                                             'nfd-pointer-events-none' : 'skipped' === status,
                                         }
                                     )

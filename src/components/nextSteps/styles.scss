@@ -454,6 +454,11 @@
       }
     }
 
+    &.nfd-nextsteps-step-card--wide .nfd-nextsteps-buttons {
+      height: 100%;
+      min-width: fit-content;
+    }
+
     .nfd-nextsteps-step-title-wrapper {
       display     : flex;
       align-items : center;
