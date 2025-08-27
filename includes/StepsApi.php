@@ -109,7 +109,7 @@ class StepsApi {
 							return is_string( $value );
 						},
 					),
-					'status'    => array(
+					'status'     => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
@@ -228,7 +228,7 @@ class StepsApi {
 							return is_string( $value );
 						},
 					),
-					'open'    => array(
+					'open'       => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_bool( $value );
@@ -261,10 +261,49 @@ class StepsApi {
 							return is_string( $value );
 						},
 					),
-					'open'  => array(
+					'open'     => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_bool( $value );
+						},
+					),
+				),
+			)
+		);
+
+		// Add route for updating status state
+		register_rest_route(
+			$this->namespace,
+			$this->rest_base . '/section/status',
+			array(
+				'methods'             => \WP_REST_Server::EDITABLE,
+				'callback'            => array( $this, 'update_status_for_section' ),
+				'permission_callback' => function () {
+					return current_user_can( 'manage_options' );
+				},
+				'args'                => array(
+					'plan_id'    => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'track_id'   => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'section_id' => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
+						},
+					),
+					'status'     => array(
+						'required'          => true,
+						'validate_callback' => function ( $value ) {
+							return is_string( $value );
 						},
 					),
 				),
@@ -441,6 +480,36 @@ class StepsApi {
 
 		if ( ! $success ) {
 			return new WP_Error( 'track_not_found', __( 'Track not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		return new WP_REST_Response( true, 200 );
+	}
+
+	/**
+	 * Update status for a section.
+	 *
+	 * @param \WP_REST_Request $request  The REST request object.
+	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
+	 */
+	public function update_status_for_section( \WP_REST_Request $request ) {
+		$plan_id    = $request->get_param( 'plan_id' );
+		$track_id   = $request->get_param( 'track_id' );
+		$section_id = $request->get_param( 'section_id' );
+		$status     = $request->get_param( 'status' );
+
+		// validate parameters
+		if ( empty( $track_id ) || empty( $section_id ) || empty( $status ) ) {
+			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
+		}
+		if ( ! in_array( $status, array( 'new', 'skipped', 'completed' ), true ) ) {
+			return new WP_Error( 'invalid_status', __( 'Invalid status provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
+		}
+
+		// Use PlanManager to update the task status
+		$success = PlanManager::update_status_for_section( $track_id, $section_id, $status );
+
+		if ( ! $success ) {
+			return new WP_Error( 'step_not_found', __( 'Step not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
 		return new WP_REST_Response( true, 200 );

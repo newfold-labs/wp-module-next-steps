@@ -85,7 +85,7 @@ class Section {
 	 * @var string
 	 */
 	public $modal_desc;
-	
+
 	/**
 	 * Indicates if the section can be skipped.
 	 *
@@ -310,6 +310,17 @@ class Section {
 	 */
 	public function set_open( bool $open ): bool {
 		$this->open = $open;
+		return true;
+	}
+
+	/**
+	 * Set section status state
+	 *
+	 * @param string $status Status state
+	 * @return bool
+	 */
+	public function set_status( string $status ): bool {
+		$this->status = $status;
 		return true;
 	}
 

@@ -27,6 +27,7 @@ export const TaskCard = ( {
 	data_attributes: dataAttributes = {},
 	className,
 	taskUpdateCallback,
+    sectionUpdateCallback,
 	event,
 	icon,
     trackId,
@@ -147,7 +148,8 @@ const Icon = ICONS_IDS[icon] ?? null;
 						{
 							'nfd-nextsteps-step-card--wide nfd-flex-row': wide,
 							'nfd-flex-col': ! wide,
-							'nfd-nextsteps-step-card-done': 'completed' === status
+							'nfd-nextsteps-step-card-done': 'completed' === status,
+                            'nfd-nextsteps-step-card-skipped': 'skipped' === status,
 						}
 					) }
 				>
@@ -167,7 +169,7 @@ const Icon = ICONS_IDS[icon] ?? null;
                                  'nfd-flex-col': canBeSkipped && wide,
                              }
                          ) }>
-                        <div className="nfd-nextsteps-buttons-actions-primary">
+                        <div className="nfd-nextsteps-buttons-actions-primary nfd-flex">
                             <Button
                                 as={ 'a' }
                                 className= {
@@ -205,15 +207,13 @@ const Icon = ICONS_IDS[icon] ?? null;
                                 { getCtaText() }
                             </Button>
                             { 'skipped' === status &&
-                                <Button
+                                <Link
                                     className= 'nfd-nextsteps-button nfd-nextsteps-button--undo'
-                                    title={ 'Undo' }
-                                    onClick={ ( e ) => {
-                                    } }
+                                    onClick={ ( e ) => sectionUpdateCallback( trackId, sectionId, 'new' ) }
                                 >
                                     { redoIcon }
                                     { __('Undo', 'wp-module-next-step') }
-                                </Button>
+                                </Link>
                             }
                         </div>
                         {
@@ -221,9 +221,9 @@ const Icon = ICONS_IDS[icon] ?? null;
                             <Link
                                 as="button"
                                 className="nfd-nextsteps-button nfd-nextsteps-button--skip"
-                                onClick={() => alert('Hello World!')}
+                                onClick={(e) => sectionUpdateCallback( trackId, sectionId, 'skipped' ) }
                             >
-                            { __('Skip it', 'wp-module-next-step') }
+                                { __('Skip it', 'wp-module-next-step') }
                             </Link>
                             </div>
                         }

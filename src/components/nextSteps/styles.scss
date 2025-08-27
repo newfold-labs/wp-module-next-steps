@@ -482,15 +482,24 @@
 
     // Skipped button styles
     .nfd-nextsteps-button.nfd-nextsteps-button--skipped {
-      background: #E3E3E3;
+      background: #E3E3E3 !important;
       border-radius: unset;
-      cursor: not-allowed;
+      cursor: not-allowed !important;
       border-color: inherit;
+      color: #000000 !important;
+      opacity: 1 !important;
     }
     .nfd-nextsteps-button.nfd-nextsteps-button--undo {
-      width: 6rem;
       background-color: inherit;
       color: #196BDE;
+      padding-left: 15px;
+
+      svg {
+        width: 1rem;
+        height: auto;
+        margin-right: 5px;
+      }
+
     }
     .nfd-nextsteps-button.nfd-nextsteps-button--skip {
       text-decoration: none !important;
@@ -530,6 +539,15 @@
 
     &:hover {
       border-color : #abae14;
+    }
+  }
+
+  .nfd-nextsteps-step-card-skipped {
+    .nfd-nextsteps-step-card__wireframe {
+      opacity : 50%;
+    }
+    .nfd-nextsteps-step-title-wrapper {
+      opacity : 50%;
     }
   }
 

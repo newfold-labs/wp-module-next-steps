@@ -15,7 +15,9 @@ import {
     updateTrackInPlan,
     taskUpdateWrapper,
     sectionUpdateWrapper,
-    trackUpdateWrapper
+    trackUpdateWrapper,
+    updateStatusSectionWrapper,
+    updateStatusSectionInPlan
 } from './helpers';
 import './styles.scss';
 
@@ -94,6 +96,31 @@ export const NextSteps = () => {
         );
     };
 
+    const sectionUpdateCallback = ( trackId, sectionId, status ) => {
+        if ( !trackId || !sectionId ) {
+            // Could not find track for intendend section
+            return;
+        }
+
+        const data = {
+            plan_id: plan.id,
+            track_id: trackId,
+            section_id: sectionId,
+            status: status,
+        };
+
+        updateStatusSectionWrapper(
+            data,
+            ( error ) => {
+                // console.error( 'Error updating section status state:', error );
+            },
+            ( response ) => {
+                setPlan( prevPlan => updateStatusSectionInPlan( prevPlan, trackId, sectionId, status ) );
+            }
+        );
+    };
+
+
     const renderCards  = ( cards, trackId ) => {
         return (
             <>
@@ -105,6 +132,7 @@ export const NextSteps = () => {
                             key={ card.id }
                             wide={ i === 2 }
                             taskUpdateCallback={ taskUpdateCallback }
+                            sectionUpdateCallback = { sectionUpdateCallback }
                             desc={ card.description }
                             trackId={ trackId }
                             sectionId={ card.id }

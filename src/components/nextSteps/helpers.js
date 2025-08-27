@@ -142,6 +142,31 @@ export const updateSectionInPlan = (plan, trackId, sectionId, isOpen) => {
 };
 
 /**
+ * Update section status in plan state immutably
+ * @param plan
+ * @param trackId
+ * @param sectionId
+ * @param status
+ * @returns {Object} New plan state with updated section */
+export const updateStatusSectionInPlan = (plan, trackId, sectionId, status) => {
+    return {
+        ...plan,
+        tracks: plan.tracks.map(track =>
+            track.id === trackId
+                ? {
+                    ...track,
+                    sections: track.sections.map(section =>
+                        section.id === sectionId
+                            ? { ...section, status: status }
+                            : section
+                    )
+                }
+                : track
+        )
+    }
+}
+
+/**
  * Update track open state in plan state immutably
  * @param {Object} plan - The current plan state
  * @param {string} trackId - Track ID
@@ -307,4 +332,50 @@ export const trackUpdateWrapper = ( data, passError, thenCallback ) => {
 				throw enhancedError;
 			}
 		} );
+};
+
+
+/**
+ * Wrapper method to post section update status to endpoint
+ *
+ * @param {Object}   data         object of data
+ * @param {Function} passError    method to handle the error in component
+ * @param {Function} thenCallback method to call in promise then
+ */
+export const updateStatusSectionWrapper = ( data, passError, thenCallback ) => {
+    return apiFetch( {
+        url: createEndpointUrl(
+            window.NewfoldRuntime.restUrl,
+            'newfold-next-steps/v1/steps/section/status'
+        ),
+        method: 'PUT',
+        data,
+    } )
+        .then( ( response ) => {
+            // Check for API-level errors in successful responses
+            if ( response && response.error ) {
+                const apiError = new Error( `Section update failed: ${response.error}` );
+                apiError.name = 'SectionUpdateError';
+                apiError.data = { response, requestData: data };
+                throw apiError;
+            }
+            thenCallback( response );
+        } )
+        .catch( ( error ) => {
+            // Enhance error with context for error boundaries
+            const enhancedError = new Error(
+                `Section update API error: ${error.message || 'Unknown error'}`
+            );
+            enhancedError.name = 'SectionUpdateAPIError';
+            enhancedError.originalError = error;
+            enhancedError.data = { requestData: data, endpoint: 'steps/section/open' };
+
+            // Call error handler first
+            passError( enhancedError );
+
+            // Then throw to trigger error boundary if error is critical
+            if ( shouldTriggerErrorBoundary( error ) ) {
+                throw enhancedError;
+            }
+        } );
 };

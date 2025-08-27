@@ -322,21 +322,21 @@ class PlanManager {
 
 							),
 							array(
-								'id'          => 'add_first_product',
-								'label'       => __( 'Step 2: Add your first product', 'wp-module-next-steps' ),
-								'description' => __( 'Start bringing your store to life by adding a product in just a few simple steps.', 'wp-module-next-steps' ),
-								'cta'         => __( 'Add product', 'wp-module-next-steps' ),
-								'icon'        => 'archive-box',
-								'event'       => 'nfd-open-quick-add-product-modal',
+								'id'             => 'add_first_product',
+								'label'          => __( 'Step 2: Add your first product', 'wp-module-next-steps' ),
+								'description'    => __( 'Start bringing your store to life by adding a product in just a few simple steps.', 'wp-module-next-steps' ),
+								'cta'            => __( 'Add product', 'wp-module-next-steps' ),
+								'icon'           => 'archive-box',
+								'event'          => 'nfd-open-quick-add-product-modal',
 								'can_be_skipped' => true,
 							),
 							array(
-								'id'          => 'store_setup_payments',
-								'label'       => __( 'Step 3: Set Up Payments', 'wp-module-next-steps' ),
-								'description' => __( 'Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks.', 'wp-module-next-steps' ),
-								'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=payments',
-								'cta'         => __( 'Set up Payments', 'wp-module-next-steps' ),
-								'icon'        => 'credit-card',
+								'id'             => 'store_setup_payments',
+								'label'          => __( 'Step 3: Set Up Payments', 'wp-module-next-steps' ),
+								'description'    => __( 'Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks.', 'wp-module-next-steps' ),
+								'href'           => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=payments',
+								'cta'            => __( 'Set up Payments', 'wp-module-next-steps' ),
+								'icon'           => 'credit-card',
 								'can_be_skipped' => true,
 							),
 						),
@@ -1369,6 +1369,29 @@ class PlanManager {
 		}
 
 		$success = $plan->update_track_open_state( $track_id, $open );
+		if ( $success ) {
+			self::save_plan( $plan );
+		}
+
+		return $success;
+	}
+
+	/**
+	 * Update section status
+	 *
+	 * @param string $track_id Track ID
+	 * @param string $section_id Section ID
+	 * @param string $status New status
+	 * @return bool
+	 */
+	public static function update_status_for_section( string $track_id, string $section_id, string $status ): bool {
+		$plan = self::get_current_plan();
+
+		if ( ! $plan ) {
+			return false;
+		}
+
+		$success = $plan->update_status_for_section( $track_id, $section_id, $status );
 		if ( $success ) {
 			self::save_plan( $plan );
 		}

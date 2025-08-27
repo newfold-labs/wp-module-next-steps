@@ -361,6 +361,30 @@ class Plan {
 	}
 
 	/**
+	 * Update status for a section
+	 *
+	 * @param string $track_id Track ID
+	 * @param string $section_id Section ID
+	 * @param string $status New status
+	 * @return bool
+	 */
+	public function update_status_for_section( string $track_id, string $section_id, string $status ): bool {
+
+		$track = $this->get_track( $track_id );
+		if ( ! $track ) {
+			return false;
+		}
+
+		$section = $track->get_section( $section_id );
+
+		if ( ! $section ) {
+			return false;
+		}
+
+		return $section->set_status( $status );
+	}
+
+	/**
 	 * Validate plan data
 	 *
 	 * @return bool|string True if valid, error message if not
