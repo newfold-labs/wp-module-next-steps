@@ -108,6 +108,7 @@ export const NextSteps = () => {
                             desc={ card.description }
                             trackId={ trackId }
                             sectionId={ card.id }
+                            canBeSkipped={ card.can_be_skipped }
                             { ...card }
                         />
                     } ) }

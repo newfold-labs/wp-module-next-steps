@@ -85,6 +85,13 @@ class Section {
 	 * @var string
 	 */
 	public $modal_desc;
+	
+	/**
+	 * Indicates if the section can be skipped.
+	 *
+	 * @var bool
+	 */
+	public $can_be_skipped;
 
 	/**
 	 * Section constructor
@@ -103,6 +110,7 @@ class Section {
 		$this->icon                      = $data['icon'] ?? '';
 		$this->modal_title               = $data['modal_title'] ?? '';
 		$this->modal_desc                = $data['modal_desc'] ?? '';
+		$this->can_be_skipped            = $data['can_be_skipped'] ?? false;
 
 		// Convert task arrays to Task objects
 		if ( isset( $data['tasks'] ) && is_array( $data['tasks'] ) ) {
@@ -139,6 +147,7 @@ class Section {
 			'icon'                      => $this->icon,
 			'modal_title'               => $this->modal_title,
 			'modal_desc'                => $this->modal_desc,
+			'can_be_skipped'            => $this->can_be_skipped,
 		);
 	}
 

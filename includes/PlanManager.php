@@ -328,6 +328,7 @@ class PlanManager {
 								'cta'         => __( 'Add product', 'wp-module-next-steps' ),
 								'icon'        => 'archive-box',
 								'event'       => 'nfd-open-quick-add-product-modal',
+								'can_be_skipped' => true,
 							),
 							array(
 								'id'          => 'store_setup_payments',
@@ -336,6 +337,7 @@ class PlanManager {
 								'href'        => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=payments',
 								'cta'         => __( 'Set up Payments', 'wp-module-next-steps' ),
 								'icon'        => 'credit-card',
+								'can_be_skipped' => true,
 							),
 						),
 					),

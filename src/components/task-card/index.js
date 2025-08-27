@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Title, Button } from '@newfold/ui-component-library';
+import { Title, Button, Link } from '@newfold/ui-component-library';
 import { TasksModal } from '../tasks-modal';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
@@ -31,6 +31,7 @@ export const TaskCard = ( {
 	icon,
     trackId,
     sectionId,
+    canBeSkipped = false,
 	...props
 } ) => {
 
@@ -113,7 +114,7 @@ const Icon = ICONS_IDS[icon] ?? null;
 		return (
 			<div className="nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between nfd-gap-4">
 				<div className="nfd-nextsteps-step-header nfd-flex nfd-align-center nfd-justify-between">
-					<span class={'nfd-nextsteps-step-title-wrapper'}>
+					<span className={'nfd-nextsteps-step-title-wrapper'}>
 						{
 							Icon &&
 							<span className={'nfd-nextsteps-step-icon-wrapper'}>
@@ -157,54 +158,74 @@ const Icon = ICONS_IDS[icon] ?? null;
 						</div>
 					}
 					<StepContent/>
-					<div className="nfd-nextsteps-buttons nfd-flex nfd-justify-center nfd-items-center nfd-gap-2">
-						<Button
-							as={ 'a' }
-                            className= {
-                                classNames(
-                                    'nfd-nextsteps-button',
-                                    {
-                                        'nfd-nextsteps-button--skipped': 'skipped' === status,
-                                        'nfd-nextsteps-button--completed': 'completed' === status,
-                                        'nfd-nextsteps-button--new': 'new' === status,
-                                        'nfd-pointer-events-none' : 'skipped' === status,
-                                    }
-                                )
-
-                            }
-                            data-nfd-click="nextsteps_step_link"
-							data-nfd-event-category="nextsteps_step"
-							data-nfd-event-key={ id }
-							title={ label }
-							variant={ 'completed' === status ? 'secondary' : 'primary' }
-                            disabled={ 'skipped' === status }
-							onClick={ ( e ) => {
-								if ( tasks?.length ) {
-									e.preventDefault();
-									setIsModalOpened( true );
-
-									return false;
-								}
-
-								if ( event ) {
-									window.dispatchEvent( new CustomEvent( event ) );
-								}
-							} }
-							{ ...getLinkAttributes() }
-						>
-							{ getCtaText() }
-						</Button>
-                        { 'skipped' === status &&
+					<div className={ classNames(
+                             'nfd-nextsteps-buttons nfd-flex nfd-items-center nfd-gap-2',
+                             {
+                                 'nfd-nextsteps-justify-between' : canBeSkipped && 'skipped' !== status,
+                                 'nfd-justify-center' : ! canBeSkipped || wide,
+                                 'nfd-justify-between' : canBeSkipped && !wide,
+                                 'nfd-flex-col': canBeSkipped && wide,
+                             }
+                         ) }>
+                        <div className="nfd-nextsteps-buttons-actions-primary">
                             <Button
                                 as={ 'a' }
-                                className= 'nfd-nextsteps-button nfd-nextsteps-button--undo'
-                                title={ 'Undo' }
+                                className= {
+                                    classNames(
+                                        'nfd-nextsteps-button',
+                                        {
+                                            'nfd-nextsteps-button--skipped': 'skipped' === status,
+                                            'nfd-nextsteps-button--completed': 'completed' === status,
+                                            'nfd-nextsteps-button--new': 'new' === status,
+                                            'nfd-pointer-events-none' : 'skipped' === status,
+                                        }
+                                    )
+
+                                }
+                                data-nfd-click="nextsteps_step_link"
+                                data-nfd-event-category="nextsteps_step"
+                                data-nfd-event-key={ id }
+                                title={ label }
+                                variant={ 'completed' === status ? 'secondary' : 'primary' }
+                                disabled={ 'skipped' === status }
                                 onClick={ ( e ) => {
+                                    if ( tasks?.length ) {
+                                        e.preventDefault();
+                                        setIsModalOpened( true );
+
+                                        return false;
+                                    }
+
+                                    if ( event ) {
+                                        window.dispatchEvent( new CustomEvent( event ) );
+                                    }
                                 } }
+                                { ...getLinkAttributes() }
                             >
-                                { redoIcon }
-                                { __('Undo', 'wp-module-next-step') }
+                                { getCtaText() }
                             </Button>
+                            { 'skipped' === status &&
+                                <Button
+                                    className= 'nfd-nextsteps-button nfd-nextsteps-button--undo'
+                                    title={ 'Undo' }
+                                    onClick={ ( e ) => {
+                                    } }
+                                >
+                                    { redoIcon }
+                                    { __('Undo', 'wp-module-next-step') }
+                                </Button>
+                            }
+                        </div>
+                        {
+                            canBeSkipped && 'skipped' !== status && <div className="ndf-nextsteps-buttons-actions-secondary">
+                            <Link
+                                as="button"
+                                className="nfd-nextsteps-button nfd-nextsteps-button--skip"
+                                onClick={() => alert('Hello World!')}
+                            >
+                            { __('Skip it', 'wp-module-next-step') }
+                            </Link>
+                            </div>
                         }
 					</div>
 				</div>

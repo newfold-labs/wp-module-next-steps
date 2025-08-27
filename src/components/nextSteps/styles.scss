@@ -492,6 +492,13 @@
       background-color: inherit;
       color: #196BDE;
     }
+    .nfd-nextsteps-button.nfd-nextsteps-button--skip {
+      text-decoration: none !important;
+    }
+
+    &:not(.nfd-nextsteps-step-card--wide) .nfd-nextsteps-justify-between {
+      width: 100%;
+    }
 
   }
 
