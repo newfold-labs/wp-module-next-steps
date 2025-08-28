@@ -156,15 +156,11 @@ export const NextSteps = () => {
 	}
 
     if( planWithProgress.id === 'store_setup' ) {
-        //const { cards } = data;
-        const ONE_DAY_SECONDS = 24 * 60 * 60;
         const nowSeconds = Math.floor(Date.now() / 1000);
         // Filter out done tasks and tasks completed/skipped in the last 24 hours
         const cards = planWithProgress.tracks[0].sections.filter( ( section ) => {
-            if (section.status === 'done') return false;
-            const dateTimestamp = Number(section.date_completed_or_skipped);
-            return ! ( (nowSeconds - dateTimestamp) < ONE_DAY_SECONDS );
-
+            const dateTimestamp =  section.date_completed_or_skipped ? Number(section.date_completed_or_skipped ) : 0
+            return  !dateTimestamp || nowSeconds < dateTimestamp;
         } );
         // We should have only one track for store setup.
         const trackId = planWithProgress.tracks[0].id;

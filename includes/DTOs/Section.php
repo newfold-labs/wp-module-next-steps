@@ -94,6 +94,13 @@ class Section {
 	public $can_be_skipped;
 
 	/**
+	 * Optional hyperlink associated with the section.
+	 *
+	 * @var string|null
+	 */
+	public $href;
+
+	/**
 	 * Section constructor
 	 *
 	 * @param array $data Section data
@@ -111,6 +118,7 @@ class Section {
 		$this->modal_title               = $data['modal_title'] ?? '';
 		$this->modal_desc                = $data['modal_desc'] ?? '';
 		$this->can_be_skipped            = $data['can_be_skipped'] ?? false;
+		$this->href                      = $data['href'] ?? null;
 
 		// Convert task arrays to Task objects
 		if ( isset( $data['tasks'] ) && is_array( $data['tasks'] ) ) {
@@ -142,6 +150,7 @@ class Section {
 				$this->tasks
 			),
 			'cta'                       => $this->cta,
+			'href'                      => $this->href,
 			'status'                    => $this->status,
 			'date_completed_or_skipped' => $this->date_completed_or_skipped,
 			'icon'                      => $this->icon,
