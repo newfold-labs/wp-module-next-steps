@@ -1,4 +1,4 @@
-const customizeYourStoreIcon= (
+const storeSetupYoastIcon= (
     <svg width="256" height="160" viewBox="0 0 256 160" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_22_4164)">
             <rect width="256" height="160" fill="#DDE1E8"/>
@@ -161,6 +161,6 @@ const customizeYourStoreIcon= (
             </clipPath>
         </defs>
     </svg>
-);
+)
 
-export default customizeYourStoreIcon;
+export default storeSetupYoastIcon;

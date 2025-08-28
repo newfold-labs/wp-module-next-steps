@@ -4,14 +4,36 @@ import { TasksModal } from '../tasks-modal';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import { PaintBrushIcon, CreditCardIcon, ArchiveBoxIcon } from "@heroicons/react/24/outline";
-import { customizeYourStoreIcon, addFirstProductIcon, storeSetupPaymentsIcon } from './wireframes';
+import { PaintBrushIcon, CreditCardIcon, ArchiveBoxIcon, ShoppingCartIcon, RocketLaunchIcon, StarIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { customizeYourStoreIcon,
+    customizeYourStoreWideIcon,
+    addFirstProductIcon,
+    addFirstProductWideIcon,
+    storeSetupPaymentsIcon,
+    storeSetupPaymentsWideIcon,
+    storeSetupShoppingExperienceIcon,
+    storeSetupShoppingExperienceWideIcon,
+    storeMarketingStrategyIcon,
+    storeMarketingStrategyWideIcon,
+    storeCollectReviewsIcon,
+    storeCollectReviewsWideIcon,
+    storeLaunchAffiliateIcon,
+    storeLaunchAffiliateWideIcon,
+    storeSetupYoastIcon,
+    storeSetupYoastWideIcon,
+    storeImprovePerformanceIcon,
+    storeImprovePerformanceWideIcon
+} from './wireframes';
 import { redoIcon } from '../icons';
 
 const ICONS_IDS = {
 	'paint-brush': PaintBrushIcon,
 	'credit-card': CreditCardIcon,
-	'archive-box': ArchiveBoxIcon
+	'archive-box': ArchiveBoxIcon,
+    'shopping-cart': ShoppingCartIcon,
+    'rocket-launch': RocketLaunchIcon,
+    'star': StarIcon,
+    'users': UsersIcon,
 }
 
 export const TaskCard = ( {
@@ -60,7 +82,6 @@ const Icon = ICONS_IDS[icon] ?? null;
 
 	const getLinkAttributes = () => {
 		const attributes = {};
-
 		if ( href ) {
 			attributes[ 'href' ] = getHref();
 			attributes[ 'target' ] = getTarget();
@@ -109,9 +130,15 @@ const Icon = ICONS_IDS[icon] ?? null;
 	const combinedAttributes = { ...formatDataAttributes() };
 
 	const wireframes = {
-		'customize_your_store': customizeYourStoreIcon,
-		'add_first_product': addFirstProductIcon,
-		'store_setup_payments': storeSetupPaymentsIcon,
+		'customize_your_store': !wide ? customizeYourStoreWideIcon : customizeYourStoreIcon,
+		'add_first_product': !wide ? addFirstProductWideIcon : addFirstProductIcon,
+		'store_setup_payments': !wide ? storeSetupPaymentsWideIcon : storeSetupPaymentsIcon,
+        'store_setup_shopping_experience' : !wide ? storeSetupShoppingExperienceWideIcon : storeSetupShoppingExperienceIcon,
+        'store_marketing_strategy' : !wide ? storeMarketingStrategyWideIcon : storeMarketingStrategyIcon,
+        'store_collect_reviews' : !wide ? storeCollectReviewsWideIcon : storeCollectReviewsIcon,
+        'store_launch_affiliate_program' : !wide ? storeLaunchAffiliateWideIcon : storeLaunchAffiliateIcon,
+        'store_setup_yoast_premium' : !wide ? storeSetupYoastWideIcon : storeSetupYoastIcon,
+        'store_improve_performance' : !wide ? storeImprovePerformanceWideIcon : storeImprovePerformanceIcon,
 	}
 
 	const StepContent = () => {
