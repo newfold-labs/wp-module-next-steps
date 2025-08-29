@@ -24,7 +24,7 @@ import { customizeYourStoreIcon,
     storeImprovePerformanceIcon,
     storeImprovePerformanceWideIcon
 } from './wireframes';
-import { redoIcon } from '../icons';
+import { redoIcon, jetPackIcon, yoastIcon } from '../icons';
 
 const ICONS_IDS = {
 	'paint-brush': PaintBrushIcon,
@@ -34,6 +34,8 @@ const ICONS_IDS = {
     'rocket-launch': RocketLaunchIcon,
     'star': StarIcon,
     'users': UsersIcon,
+    'jetpack': jetPackIcon,
+    'yoast': yoastIcon,
 }
 
 export const TaskCard = ( {
@@ -148,7 +150,7 @@ const Icon = ICONS_IDS[icon] ?? null;
 					<span className={'nfd-nextsteps-step-title-wrapper'}>
 						{
 							Icon &&
-							<span className={'nfd-nextsteps-step-icon-wrapper'}>
+							<span className={`nfd-nextsteps-step-icon-wrapper nfd-nextsteps-step-icon-wrapper-${icon}`}>
 								<Icon width={ 16 }/>
 							</span>
 						}

@@ -464,7 +464,7 @@
       align-items : center;
       gap         : .7rem;
 
-      .nfd-nextsteps-step-icon-wrapper {
+      .nfd-nextsteps-step-icon-wrapper:not(.nfd-nextsteps-step-icon-wrapper-jetpack):not(.nfd-nextsteps-step-icon-wrapper-yoast) {
         padding    : 4px;
         background : #ddecff;
         border-radius: 5px;

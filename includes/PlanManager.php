@@ -466,7 +466,7 @@ class PlanManager {
 								'description'    => __( 'Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online.', 'wp-module-next-steps' ),
 								'href'           => '',
 								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
-								'icon'           => '',
+								'icon'           => 'yoast',
 								'can_be_skipped' => true,
 							),
 						),
