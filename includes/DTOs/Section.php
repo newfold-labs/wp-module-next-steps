@@ -101,6 +101,13 @@ class Section {
 	public $href;
 
 	/**
+	 * Event associated with the section (if any).
+	 *
+	 * @var string|null
+	 */
+	public $event;
+
+	/**
 	 * Section constructor
 	 *
 	 * @param array $data Section data
@@ -119,6 +126,7 @@ class Section {
 		$this->modal_desc                = $data['modal_desc'] ?? '';
 		$this->can_be_skipped            = $data['can_be_skipped'] ?? false;
 		$this->href                      = $data['href'] ?? null;
+		$this->event                     = $data['event'] ?? null;
 
 		// Convert task arrays to Task objects
 		if ( isset( $data['tasks'] ) && is_array( $data['tasks'] ) ) {
@@ -157,6 +165,7 @@ class Section {
 			'modal_title'               => $this->modal_title,
 			'modal_desc'                => $this->modal_desc,
 			'can_be_skipped'            => $this->can_be_skipped,
+			'event'                     => $this->event,
 		);
 	}
 
@@ -234,6 +243,20 @@ class Section {
 			return $task->update_status( $status );
 		}
 		return false;
+	}
+
+	/**
+	 * Update section status
+	 *
+	 * @param string $status New status
+	 * @return bool
+	 */
+	public function update_status( string $status ): bool {
+		if ( ! in_array( $status, array( 'new', 'skipped', 'completed' ), true ) ) {
+			return false;
+		}
+		$this->status = $status;
+		return true;
 	}
 
 	/**

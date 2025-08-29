@@ -345,6 +345,35 @@ class Plan {
 	}
 
 	/**
+	 * Update status for a section
+	 *
+	 * @param string $track_id Track ID
+	 * @param string $section_id Section ID
+	 * @param string $status New status
+	 * @return bool
+	 */
+	public function update_section_status( string $track_id, string $section_id, string $status ): bool {
+		$track = $this->get_track( $track_id );
+		if ( ! $track ) {
+			return false;
+		}
+
+		$section = $track->get_section( $section_id );
+
+		if ( ! $section ) {
+			return false;
+		}
+		// If marking as 'new' or 'done', clear the completed/skipped timestamp
+		// Otherwise, set it to the current time.
+		$time = time() + apply_filters( 'nfd_next_step_set_time', 24 * 60 * 60 );
+		$section->set_date_completed_or_skipped(
+			( 'new' === $status || 'done' === $status ) ? '0' : $time
+		);
+
+		return $section->set_status( $status );
+	}
+
+	/**
 	 * Update track open state
 	 *
 	 * @param string $track_id Track ID
