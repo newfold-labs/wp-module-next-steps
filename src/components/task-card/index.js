@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Title, Button, Link } from '@newfold/ui-component-library';
 import { TasksModal } from '../tasks-modal';
 import { __ } from '@wordpress/i18n';
@@ -61,7 +61,37 @@ export const TaskCard = ( {
 } ) => {
 
 	const [ isModalOpened, setIsModalOpened ] = useState( false );
-const Icon = ICONS_IDS[icon] ?? null;
+    const [ eventCompleted, setEventCompleted ] = useState('completed' === status );
+    const Icon = ICONS_IDS[icon] ?? null;
+
+    useEffect(() => {
+
+        if ( !event || eventCompleted || !eventClassToCheck[id] ) return;
+
+        const checkElement = () => {
+            const el = document.querySelector( eventClassToCheck[id] );
+            if (el) {
+                setEventCompleted(true);
+                sectionUpdateCallback( trackId, sectionId, 'completed' );
+                return true;
+            }
+            return false;
+        };
+
+        if (checkElement()) return;
+
+        const observer = new MutationObserver(() => {
+            if (checkElement()) {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        return () => observer.disconnect();
+    }, [eventCompleted]);
+
+
 	const getHref = () => {
 		let hrefValue = href;
 		// replace {siteUrl} placeholder with the actual site URL
@@ -146,6 +176,11 @@ const Icon = ICONS_IDS[icon] ?? null;
         'store_setup_yoast_premium' : !wide ? storeSetupYoastWideIcon : storeSetupYoastIcon,
         'store_improve_performance' : !wide ? storeImprovePerformanceWideIcon : storeImprovePerformanceIcon,
 	}
+
+    // Map of event names to CSS selectors to check for element presence
+    const eventClassToCheck = {
+        'add_first_product' : '.nfd-quick-add-product__response-product-permalink',
+    }
 
 	const StepContent = () => {
 		return (
