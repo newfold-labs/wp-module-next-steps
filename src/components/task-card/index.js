@@ -84,11 +84,11 @@ const Icon = ICONS_IDS[icon] ?? null;
 
 	const getLinkAttributes = () => {
 		const attributes = {};
-		if ( href ) {
+        // Only add href and target if href is provided and either no event is set or status is 'completed'
+		if ( href && ( !event || ( event && 'completed' === status ) ) ) {
 			attributes[ 'href' ] = getHref();
 			attributes[ 'target' ] = getTarget();
 		}
-
 		return attributes;
 	}
 
@@ -123,6 +123,10 @@ const Icon = ICONS_IDS[icon] ?? null;
 
         if( 'skipped' === status ) {
             ctaText = __('SKIPPED', 'wp-module-next-step');
+        }
+        // Change CTA text for completed "Add your first product" step
+        if( 'completed' === status && 'add_first_product' === id ) {
+            ctaText = __('Add another product', 'wp-module-next-step');
         }
 
         return ctaText;
@@ -225,11 +229,10 @@ const Icon = ICONS_IDS[icon] ?? null;
                                     if ( tasks?.length ) {
                                         e.preventDefault();
                                         setIsModalOpened( true );
-
                                         return false;
                                     }
 
-                                    if ( event ) {
+                                    if ( event && 'completed' !== status ) {
                                         window.dispatchEvent( new CustomEvent( event ) );
                                     }
                                 } }
