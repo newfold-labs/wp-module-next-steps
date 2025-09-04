@@ -1,14 +1,14 @@
 import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
 import { Root } from '@newfold/ui-component-library';
-import { NextStepsApp } from '../components/app';
+import { NextStepsListApp } from '../components/nextStepsListApp';
 
 const WP_NEXTSTEPS_ROOT_ELEMENT = 'nfd-next-steps-app';
 
 const App = () => {
 	return (
 		<Root>
-			<NextStepsApp />
+			<NextStepsListApp />
 		</Root>
 	);
 };
