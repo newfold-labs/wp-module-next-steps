@@ -45,16 +45,88 @@ class Section {
 	public $tasks;
 
 	/**
+	 * Call-to-action (CTA) for the section.
+	 *
+	 * @var mixed|null
+	 */
+	public $cta;
+
+	/**
+	 * Status of the section (e.g., 'new', 'skipped', 'completed').
+	 *
+	 * @var string
+	 */
+	public $status;
+
+	/**
+	 * Date when the section was completed or skipped.
+	 *
+	 * @var string|null
+	 */
+	public $date_completed_or_skipped;
+
+	/**
+	 * Icon associated with the section.
+	 *
+	 * @var string
+	 */
+	public $icon;
+
+	/**
+	 * Title for the modal related to the section.
+	 *
+	 * @var string
+	 */
+	public $modal_title;
+
+	/**
+	 * Description for the modal related to the section.
+	 *
+	 * @var string
+	 */
+	public $modal_desc;
+
+	/**
+	 * Indicates if the section can be skipped.
+	 *
+	 * @var bool
+	 */
+	public $can_be_skipped;
+
+	/**
+	 * Optional hyperlink associated with the section.
+	 *
+	 * @var string|null
+	 */
+	public $href;
+
+	/**
+	 * Event associated with the section (if any).
+	 *
+	 * @var string|null
+	 */
+	public $event;
+
+	/**
 	 * Section constructor
 	 *
 	 * @param array $data Section data
 	 */
 	public function __construct( array $data = array() ) {
-		$this->id          = $data['id'] ?? '';
-		$this->label       = $data['label'] ?? '';
-		$this->description = $data['description'] ?? '';
-		$this->open        = $data['open'] ?? false;
-		$this->tasks       = array();
+		$this->id                        = $data['id'] ?? '';
+		$this->label                     = $data['label'] ?? '';
+		$this->description               = $data['description'] ?? '';
+		$this->open                      = $data['open'] ?? false;
+		$this->tasks                     = array();
+		$this->cta                       = $data['cta'] ?? null;
+		$this->status                    = $data['status'] ?? 'new';
+		$this->date_completed_or_skipped = $data['date_completed_or_skipped'] ?? null;
+		$this->icon                      = $data['icon'] ?? '';
+		$this->modal_title               = $data['modal_title'] ?? '';
+		$this->modal_desc                = $data['modal_desc'] ?? '';
+		$this->can_be_skipped            = $data['can_be_skipped'] ?? false;
+		$this->href                      = $data['href'] ?? null;
+		$this->event                     = $data['event'] ?? null;
 
 		// Convert task arrays to Task objects
 		if ( isset( $data['tasks'] ) && is_array( $data['tasks'] ) ) {
@@ -75,16 +147,25 @@ class Section {
 	 */
 	public function to_array(): array {
 		return array(
-			'id'          => $this->id,
-			'label'       => $this->label,
-			'description' => $this->description,
-			'open'        => $this->open,
-			'tasks'       => array_map(
+			'id'                        => $this->id,
+			'label'                     => $this->label,
+			'description'               => $this->description,
+			'open'                      => $this->open,
+			'tasks'                     => array_map(
 				function ( Task $task ) {
 					return $task->to_array();
 				},
 				$this->tasks
 			),
+			'cta'                       => $this->cta,
+			'href'                      => $this->href,
+			'status'                    => $this->status,
+			'date_completed_or_skipped' => $this->date_completed_or_skipped,
+			'icon'                      => $this->icon,
+			'modal_title'               => $this->modal_title,
+			'modal_desc'                => $this->modal_desc,
+			'can_be_skipped'            => $this->can_be_skipped,
+			'event'                     => $this->event,
 		);
 	}
 
@@ -162,6 +243,20 @@ class Section {
 			return $task->update_status( $status );
 		}
 		return false;
+	}
+
+	/**
+	 * Update section status
+	 *
+	 * @param string $status New status
+	 * @return bool
+	 */
+	public function update_status( string $status ): bool {
+		if ( ! in_array( $status, array( 'new', 'skipped', 'completed' ), true ) ) {
+			return false;
+		}
+		$this->status = $status;
+		return true;
 	}
 
 	/**
@@ -247,6 +342,28 @@ class Section {
 	 */
 	public function set_open( bool $open ): bool {
 		$this->open = $open;
+		return true;
+	}
+
+	/**
+	 * Set section status state
+	 *
+	 * @param string $status Status state
+	 * @return bool
+	 */
+	public function set_status( string $status ): bool {
+		$this->status = $status;
+		return true;
+	}
+
+	/**
+	 * Set date completed or skipped
+	 *
+	 * @param string|null $date Date string or null
+	 * @return bool
+	 */
+	public function set_date_completed_or_skipped( ?string $date ): bool {
+		$this->date_completed_or_skipped = $date;
 		return true;
 	}
 

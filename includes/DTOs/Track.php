@@ -273,6 +273,22 @@ class Track {
 	}
 
 	/**
+	 * Update section status
+	 *
+	 * @param string $section_id Section ID
+	 * @param string $status New status
+	 * @return bool
+	 */
+	public function update_section_status( string $section_id, string $status ): bool {
+		$section = $this->get_section( $section_id );
+		if ( ! $section ) {
+			return false;
+		}
+
+		return $section->set_status( $status );
+	}
+
+	/**
 	 * Get task by section and task ID
 	 *
 	 * @param string $section_id Section ID

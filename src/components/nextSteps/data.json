@@ -1,0 +1,595 @@
+{
+  "id": "store_setup",
+  "label": "Store Setup",
+  "description": "Complete your ecommerce store setup with these essential steps:",
+  "cards": [
+    {
+      "id": "customize_your_store",
+      "title": "Step 1: Build your Store",
+      "desc": "Congrats — you’ve built your store!\nNow it’s time to make it yours. Customize the header, footer, and homepage to give your site a personal touch.",
+      "cta": "Customize Store",
+      "tasks": [
+        {
+          "track_id": "store_build_track",
+          "section_id": "basic_store_setup",
+          "id": "store_upload_logo",
+          "title": "Upload Logo",
+          "description": "",
+          "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=all-parts",
+          "status": "done",
+          "priority": 1,
+          "source": "wp-module-next-steps",
+          "data_attributes": []
+        },
+        {
+          "track_id": "store_build_track",
+          "section_id": "basic_store_setup",
+          "id": "store_choose_colors_fonts",
+          "title": "Choose Colors and Fonts",
+          "description": "",
+          "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Fstyles",
+          "status": "done",
+          "priority": 2,
+          "source": "wp-module-next-steps",
+          "data_attributes": []
+        },
+        {
+          "track_id": "store_build_track",
+          "section_id": "basic_store_setup",
+          "id": "store_customize_header",
+          "title": "Customize Header",
+          "description": "",
+          "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=header",
+          "status": "new",
+          "priority": 3,
+          "source": "wp-module-next-steps",
+          "data_attributes": []
+        },
+        {
+          "track_id": "store_build_track",
+          "section_id": "basic_store_setup",
+          "id": "store_customize_footer",
+          "title": "Customize Footer",
+          "description": "",
+          "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=footer",
+          "status": "new",
+          "priority": 4,
+          "source": "wp-module-next-steps",
+          "data_attributes": []
+        },
+        {
+          "track_id": "store_build_track",
+          "section_id": "basic_store_setup",
+          "id": "store_customize_homepage",
+          "title": "Customize Homepage",
+          "description": "",
+          "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Ftemplate",
+          "status": "new",
+          "priority": 5,
+          "source": "wp-module-next-steps",
+          "data_attributes": []
+        }
+      ],
+      "status": "completed",
+      "icon": "paint-brush",
+      "modal_title": "Customize your Store",
+      "modal_desc": "Customize the header, footer, and homepage — just few steps to give your site a personal touch."
+    },
+    {
+      "id": "add_first_product",
+      "title": "Step 2: Add your first product",
+      "desc": "Start bringing your store to life by adding a product in just a few simple steps.",
+      "cta": "Add product",
+      "icon": "archive-box",
+      "event": "nfd-open-quick-add-product-modal"
+    },
+    {
+      "id": "store_setup_payments",
+      "title": "Step 3: Set Up Payments",
+      "desc": "Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks.",
+      "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-settings&tab=payments",
+      "cta": "Set up Payments",
+      "icon": "credit-card"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "store_build_track",
+      "label": "Build",
+      "open": true,
+      "sections": [
+        {
+          "id": "basic_store_setup",
+          "label": "Basic Store Setup",
+          "description": "",
+          "open": true,
+          "tasks": [
+            {
+              "id": "store_quick_setup",
+              "title": "Quick Setup",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-settings&tab=general",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": {
+                "data-test-id": "store_quick_setup",
+                "data-nfd-id": "store_quick_start"
+              }
+            }
+          ]
+        },
+        {
+          "id": "customize_store",
+          "label": "Customize Your Store",
+          "description": "",
+          "open": true,
+          "tasks": [
+            {
+              "id": "store_upload_logo",
+              "title": "Upload Logo",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=all-parts",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_choose_colors_fonts",
+              "title": "Choose Colors and Fonts",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Fstyles",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_customize_header",
+              "title": "Customize Header",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=header",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_customize_footer",
+              "title": "Customize Footer",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=footer",
+              "status": "new",
+              "priority": 4,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_customize_homepage",
+              "title": "Customize Homepage",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2Ftemplate",
+              "status": "new",
+              "priority": 5,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "setup_products",
+          "label": "Set Up Shopping Experience",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_add_product",
+              "title": "Add a Product",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/post-new.php?post_type=product",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_customize_shop_page",
+              "title": "Customize the Shop Page",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/post.php?post=",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_customize_cart_page",
+              "title": "Customize the Cart Page",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/post.php?post=",
+              "status": "new",
+              "priority": 4,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_customize_checkout_flow",
+              "title": "Customize the Checkout Flow",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/post.php?post=",
+              "status": "new",
+              "priority": 5,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "setup_payments_shipping",
+          "label": "Set Up Payments and Shipping",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_setup_payments",
+              "title": "Set Up Payments",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-settings&tab=payments",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_setup_shipping",
+              "title": "Set Up Shipping",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-settings&tab=shipping",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_setup_taxes",
+              "title": "Set Up Taxes",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-settings&tab=tax",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "setup_legal_pages",
+          "label": "Set Up Legal Pages",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_privacy_policy",
+              "title": "Privacy Policy",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/options-privacy.php",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_terms_conditions",
+              "title": "Terms & Conditions",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/post-new.php?wb-library=patterns&wb-category=text",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_return_refund_policy",
+              "title": "Return and Refund Policy",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/post-new.php?wb-library=patterns&wb-category=text",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "store_brand_track",
+      "label": "Brand",
+      "open": false,
+      "sections": [
+        {
+          "id": "first_marketing_steps",
+          "label": "First Marketing Steps",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_configure_welcome_popup",
+              "title": "Configure Welcome Discount Popup",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/improve-conversion-rate-website-pop-ups\/",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_create_gift_card",
+              "title": "Create a Gift Card to Sell in Your Shop",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=solutions&category=all",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "social_media_engagement",
+          "label": "Launch and Promote - Social Media Setup & Engagement",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_connect_facebook",
+              "title": "Connect Facebook Store",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-admin&tab=extensions&path=%2Fextensions&term=facebook",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_connect_instagram",
+              "title": "Connect Instagram Shopping",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-admin&tab=extensions&path=%2Fextensions&term=facebook",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_connect_tiktok",
+              "title": "Connect TikTok Shop",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-admin&tab=extensions&path=%2Fextensions&term=tiktok",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_add_social_feed",
+              "title": "Add Social Media Feed to Homepage",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/how-to-incorporate-a-social-media-marketing-strategy-with-your-wordpress-website\/ ",
+              "status": "new",
+              "priority": 5,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "seo_visibility",
+          "label": "Launch and Promote - SEO & Store Visibility",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_optimize_seo",
+              "title": "Optimize Your Store SEO",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wpseo_dashboard",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_submit_search_console",
+              "title": "Submit Site to Google Search Console",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/how-to-submit-your-website-to-search-engines\/",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_create_sitemap",
+              "title": "Create a Custom Sitemap",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/what-is-a-sitemap-how-it-helps-seo-and-navigation\/",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "store_grow_track",
+      "label": "Grow",
+      "open": false,
+      "sections": [
+        {
+          "id": "improve_customer_experience",
+          "label": "Improve Your Customer Experience to Sell More",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_customize_thankyou",
+              "title": "Customize the Thank You Page",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2F&canvas=edit",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_customize_account",
+              "title": "Customize Your Customer's Account Page",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/site-editor.php?p=%2F&canvas=edit",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "advanced_social_marketing",
+          "label": "Advanced Social & Influencer Marketing",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_launch_giveaway",
+              "title": "Launch Product Giveaway Campaign",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/how-to-create-a-giveaway-contest-that-drives-traffic-to-your-site\/",
+              "status": "new",
+              "priority": 4,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_create_influencer_list",
+              "title": "Create Influencer Outreach List",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/influencer-marketing\/",
+              "status": "new",
+              "priority": 5,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_track_utm_campaigns",
+              "title": "Track UTM Campaign Links",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/affiliate-marketing-tools\/",
+              "status": "new",
+              "priority": 6,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "next_marketing_steps",
+          "label": "Next Marketing Steps",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_write_blog_post",
+              "title": "Write a Blog Post",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/post-new.php?wb-library=patterns&wb-category=text",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_create_sale_campaign",
+              "title": "Create a Sale & Promo Campaign for Your Products",
+              "description": "",
+              "href": "https:\/\/www.bluehost.in\/blog\/how-to-create-promotions-on-wordpress-with-woocommerce\/",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_create_upsell",
+              "title": "Create an Upsell Campaign",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/what-is-upselling\/",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_setup_yoast_premium",
+              "title": "Setup Yoast Premium to Drive Traffic to Your Store",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wpseo_tools",
+              "status": "new",
+              "priority": 4,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "store_performance_security",
+          "label": "Performance & Security",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_create_staging",
+              "title": "Create a Staging Website",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=nfd-staging",
+              "status": "new",
+              "priority": 3,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        },
+        {
+          "id": "store_analysis",
+          "label": "Store Analysis",
+          "description": "",
+          "open": false,
+          "tasks": [
+            {
+              "id": "store_monitor_traffic",
+              "title": "Monitor Traffic and Conversion Rates",
+              "description": "",
+              "href": "{siteUrl}\/wp-admin\/admin.php?page=wc-admin&path=%2Fanalytics%2Foverview",
+              "status": "new",
+              "priority": 1,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            },
+            {
+              "id": "store_run_ab_test",
+              "title": "Run A\/B Test on Homepage Banner",
+              "description": "",
+              "href": "https:\/\/www.bluehost.com\/blog\/split-testing\/",
+              "status": "new",
+              "priority": 2,
+              "source": "wp-module-next-steps",
+              "data_attributes": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
