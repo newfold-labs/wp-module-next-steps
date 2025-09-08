@@ -14,9 +14,7 @@ import {
     updateTrackInPlan,
     taskUpdateWrapper,
     sectionUpdateWrapper,
-    trackUpdateWrapper,
-    updateStatusSectionWrapper,
-    updateStatusSectionInPlan
+    trackUpdateWrapper
 } from './helpers';
 import './styles.scss';
 
@@ -63,7 +61,8 @@ export const NextSteps = () => {
             plan_id: plan.id,
             track_id: trackId,
             section_id: sectionId,
-            open: open,
+            type: 'open',
+            value: open,
         };
 
         sectionUpdateWrapper(
@@ -72,7 +71,7 @@ export const NextSteps = () => {
                 // console.error( 'Error updating section open state:', error );
             },
             ( response ) => {
-                setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, open ) );
+                setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, 'open', open ) );
             }
         );
     };
@@ -105,16 +104,17 @@ export const NextSteps = () => {
             plan_id: plan.id,
             track_id: trackId,
             section_id: sectionId,
-            status: status,
+            type: 'status',
+            value: status,
         };
 
-        updateStatusSectionWrapper(
+        sectionUpdateWrapper(
             data,
             ( error ) => {
                 // console.error( 'Error updating section status state:', error );
             },
             ( response ) => {
-                setPlan( prevPlan => updateStatusSectionInPlan( prevPlan, trackId, sectionId, status ) );
+                setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, 'status', status ) );
             }
         );
     };
@@ -163,6 +163,9 @@ export const NextSteps = () => {
         } );
         // We should have only one track for store setup.
         const trackId = planWithProgress.tracks[0].id;
+        // calculate primary task - first section with status !== completed
+        
+
         return (
             <>
                 { !cards.length && <NoMoreCards/> }

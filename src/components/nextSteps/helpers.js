@@ -116,14 +116,15 @@ export const updateTaskStatusInPlan = (plan, trackId, sectionId, taskId, newStat
 };
 
 /**
- * Update section open state in plan state immutably
+ * Update section state in plan state immutably (unified for both open and status)
  * @param {Object} plan - The current plan state
  * @param {string} trackId - Track ID
  * @param {string} sectionId - Section ID
- * @param {boolean} isOpen - New open state
+ * @param {string} property - Property to update ('open' or 'status')
+ * @param {*} value - New value for the property
  * @returns {Object} New plan state with updated section
  */
-export const updateSectionInPlan = (plan, trackId, sectionId, isOpen) => {
+export const updateSectionInPlan = (plan, trackId, sectionId, property, value) => {
 	return {
 		...plan,
 		tracks: plan.tracks.map(track => 
@@ -132,7 +133,7 @@ export const updateSectionInPlan = (plan, trackId, sectionId, isOpen) => {
 					...track,
 					sections: track.sections.map(section =>
 						section.id === sectionId
-							? { ...section, open: isOpen }
+							? { ...section, [property]: value }
 							: section
 					)
 				}
@@ -142,29 +143,16 @@ export const updateSectionInPlan = (plan, trackId, sectionId, isOpen) => {
 };
 
 /**
- * Update section status in plan state immutably
- * @param plan
- * @param trackId
- * @param sectionId
- * @param status
- * @returns {Object} New plan state with updated section */
+ * Update section status in plan state immutably (backward compatibility)
+ * @param {Object} plan - The current plan state
+ * @param {string} trackId - Track ID
+ * @param {string} sectionId - Section ID
+ * @param {string} status - New status
+ * @returns {Object} New plan state with updated section
+ */
 export const updateStatusSectionInPlan = (plan, trackId, sectionId, status) => {
-    return {
-        ...plan,
-        tracks: plan.tracks.map(track =>
-            track.id === trackId
-                ? {
-                    ...track,
-                    sections: track.sections.map(section =>
-                        section.id === sectionId
-                            ? { ...section, status: status }
-                            : section
-                    )
-                }
-                : track
-        )
-    }
-}
+    return updateSectionInPlan(plan, trackId, sectionId, 'status', status);
+};
 
 /**
  * Update track open state in plan state immutably
@@ -245,7 +233,7 @@ export const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 };
 
 /**
-* Wrapper method to post section update to endpoint
+* Wrapper method to post section update to endpoint (unified for both open and status)
 *
 * @param {Object}   data         object of data
 * @param {Function} passError    method to handle the error in component
@@ -255,7 +243,7 @@ export const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
 		url: createEndpointUrl( 
 			window.NewfoldRuntime.restUrl, 
-			'newfold-next-steps/v1/steps/section/open'
+			'newfold-next-steps/v1/steps/section/update'
 		),
 		method: 'PUT',
 		data,
@@ -277,7 +265,7 @@ export const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 			);
 			enhancedError.name = 'SectionUpdateAPIError';
 			enhancedError.originalError = error;
-			enhancedError.data = { requestData: data, endpoint: 'steps/section/open' };
+			enhancedError.data = { requestData: data, endpoint: 'steps/section/update' };
 			
 			// Call error handler first
 			passError( enhancedError );
@@ -334,48 +322,3 @@ export const trackUpdateWrapper = ( data, passError, thenCallback ) => {
 		} );
 };
 
-
-/**
- * Wrapper method to post section update status to endpoint
- *
- * @param {Object}   data         object of data
- * @param {Function} passError    method to handle the error in component
- * @param {Function} thenCallback method to call in promise then
- */
-export const updateStatusSectionWrapper = ( data, passError, thenCallback ) => {
-    return apiFetch( {
-        url: createEndpointUrl(
-            window.NewfoldRuntime.restUrl,
-            'newfold-next-steps/v1/steps/section/status'
-        ),
-        method: 'PUT',
-        data,
-    } )
-        .then( ( response ) => {
-            // Check for API-level errors in successful responses
-            if ( response && response.error ) {
-                const apiError = new Error( `Section update failed: ${response.error}` );
-                apiError.name = 'SectionUpdateError';
-                apiError.data = { response, requestData: data };
-                throw apiError;
-            }
-            thenCallback( response );
-        } )
-        .catch( ( error ) => {
-            // Enhance error with context for error boundaries
-            const enhancedError = new Error(
-                `Section update API error: ${error.message || 'Unknown error'}`
-            );
-            enhancedError.name = 'SectionUpdateAPIError';
-            enhancedError.originalError = error;
-            enhancedError.data = { requestData: data, endpoint: 'steps/section/open' };
-
-            // Call error handler first
-            passError( enhancedError );
-
-            // Then throw to trigger error boundary if error is critical
-            if ( shouldTriggerErrorBoundary( error ) ) {
-                throw enhancedError;
-            }
-        } );
-};

@@ -342,20 +342,27 @@ class PlanManager {
 	}
 
 	/**
-	 * Update section open state
+	 * Update section state (unified for both open and status)
 	 *
 	 * @param string $track_id Track ID
 	 * @param string $section_id Section ID
-	 * @param bool   $open Open state
+	 * @param string $type Type of update ('open' or 'status')
+	 * @param mixed  $value Value to set (bool for 'open', string for 'status')
 	 * @return bool
 	 */
-	public static function update_section_status( string $track_id, string $section_id, bool $open ): bool {
+	public static function update_section_state( string $track_id, string $section_id, string $type, $value ): bool {
 		$plan = self::get_current_plan();
 		if ( ! $plan ) {
 			return false;
 		}
 
-		$success = $plan->update_section_open_state( $track_id, $section_id, $open );
+		$success = false;
+		if ( 'open' === $type ) {
+			$success = $plan->update_section_open_state( $track_id, $section_id, (bool) $value );
+		} elseif ( 'status' === $type ) {
+			$success = $plan->update_status_for_section( $track_id, $section_id, (string) $value );
+		}
+
 		if ( $success ) {
 			self::save_plan( $plan );
 		}
@@ -384,26 +391,4 @@ class PlanManager {
 		return $success;
 	}
 
-	/**
-	 * Update section status
-	 *
-	 * @param string $track_id Track ID
-	 * @param string $section_id Section ID
-	 * @param string $status New status
-	 * @return bool
-	 */
-	public static function update_status_for_section( string $track_id, string $section_id, string $status ): bool {
-		$plan = self::get_current_plan();
-
-		if ( ! $plan ) {
-			return false;
-		}
-
-		$success = $plan->update_status_for_section( $track_id, $section_id, $status );
-		if ( $success ) {
-			self::save_plan( $plan );
-		}
-
-		return $success;
-	}
 }
