@@ -69,13 +69,13 @@ class PlanManager {
 			// Load the appropriate new plan based on the saved plan ID
 			switch ( $plan_id ) {
 				case 'blog':
-					$new_plan = new BlogPlan();
+					$new_plan = BlogPlan::get_plan();
 					break;
 				case 'corporate':
-					$new_plan = new CorporatePlan();
+					$new_plan = CorporatePlan::get_plan();
 					break;
 				case 'ecommerce':
-					$new_plan = new StorePlan();
+					$new_plan = StorePlan::get_plan();
 					break;
 				default:
 					// If we can't determine the plan type, fall back to loading default
@@ -223,16 +223,16 @@ class PlanManager {
 
 		// Load the appropriate plan directly
 		switch ( $plan_type ) {
-			case 'blog':
-				$plan = new BlogPlan();
+			case 'ecommerce':
+				$plan = StorePlan::get_plan();
 				break;
 			case 'corporate':
-				$plan = new CorporatePlan();
+				$plan = CorporatePlan::get_plan();
 				break;
-			case 'ecommerce':
+			case 'blog':
 			default:
-				$plan = new StorePlan();
-				break;
+				$plan = BlogPlan::get_plan();
+			break;
 		}
 
 		// Save the loaded plan

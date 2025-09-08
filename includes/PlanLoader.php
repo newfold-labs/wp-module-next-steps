@@ -7,6 +7,9 @@
 
 namespace NewfoldLabs\WP\Module\NextSteps;
 
+use NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan;
+use NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan;
+use NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan;
 use function NewfoldLabs\WP\ModuleLoader\container;
 use function NewfoldLabs\WP\Context\getContext;
 
@@ -274,14 +277,14 @@ class PlanLoader {
 
 		switch ( $plan_type ) {
 			case 'ecommerce':
-				$plan = PlanManager::get_ecommerce_plan();
+				$plan = StorePlan::get_plan();
 				break;
 			case 'corporate':
-				$plan = PlanManager::get_corporate_plan();
+				$plan = CorporatePlan::get_plan();
 				break;
 			case 'blog':
 			default:
-				$plan = PlanManager::get_blog_plan();
+				$plan = BlogPlan::get_plan();
 				break;
 		}
 

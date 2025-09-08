@@ -119,7 +119,7 @@ class CorporatePlan {
 	 *
 	 * @return Plan
 	 */
-    public function __construct() {
+    public static function get_plan() {
         return new Plan(
             array(
 				'id'          => 'corporate_setup',
