@@ -130,12 +130,12 @@ export const NextSteps = () => {
                             className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
                             key={ card.id }
                             wide={ i === 2 }
+                            isPrimary={ i === 0 }
                             taskUpdateCallback={ taskUpdateCallback }
                             sectionUpdateCallback = { sectionUpdateCallback }
                             desc={ card.description }
                             trackId={ trackId }
                             sectionId={ card.id }
-                            canBeSkipped={ card.can_be_skipped }
                             { ...card }
                         />
                     } ) }

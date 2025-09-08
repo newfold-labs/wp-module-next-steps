@@ -55,6 +55,7 @@ export const TaskCard = ( {
 	icon,
 	trackId,
 	sectionId,
+	isPrimary = false,
 	...props
 } ) => {
 
@@ -238,9 +239,9 @@ export const TaskCard = ( {
 					<div className={ classNames(
 							 'nfd-nextsteps-buttons nfd-flex nfd-items-center nfd-gap-2',
 							 {
-								 'nfd-nextsteps-justify-between' : 'dismissed' !== status,
-								 'nfd-justify-center' : wide,
 								 'nfd-justify-between' : !wide,
+								 'nfd-w-full': !wide,
+								 'nfd-justify-center' : wide,
 								 'nfd-flex-col': wide,
 							 }
 						 ) }>
@@ -256,13 +257,12 @@ export const TaskCard = ( {
 											'nfd-pointer-events-none' : 'dismissed' === status,
 										}
 									)
-
 								}
 								data-nfd-click="nextsteps_step_link"
 								data-nfd-event-category="nextsteps_step"
 								data-nfd-event-key={ id }
 								title={ label }
-								variant={ 'completed' === status ? 'secondary' : 'primary' }
+								variant={ isPrimary ? 'primary' : 'secondary' }
 								disabled={ 'dismissed' === status }
 								onClick={ ( e ) => {
 									if ( tasks.length > 1 ) {
