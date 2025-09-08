@@ -366,7 +366,7 @@ class Plan {
 		// If marking as 'new' or 'done', clear the completed/skipped timestamp
 		// Otherwise, set it to the current time.
 		$time = time() + apply_filters( 'nfd_next_step_set_time', 24 * 60 * 60 );
-		$section->set_date_completed_or_skipped(
+		$section->set_date_completed(
 			( 'new' === $status || 'done' === $status ) ? '0' : $time
 		);
 
@@ -412,7 +412,7 @@ class Plan {
 		// If marking as 'new' or 'done', clear the completed/skipped timestamp
 		// Otherwise, set it to the current time.
 		$time = time() + apply_filters( 'nfd_next_step_set_time', 24 * 60 * 60 );
-		$section->set_date_completed_or_skipped(
+		$section->set_date_completed(
 			( 'new' === $status || 'done' === $status ) ? '0' : $time
 		);
 

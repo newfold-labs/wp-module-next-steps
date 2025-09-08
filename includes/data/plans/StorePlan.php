@@ -1,6 +1,6 @@
 <?php
 
-namespace NewfoldLabs\WP\Module\NextSteps\data\plans;
+namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 

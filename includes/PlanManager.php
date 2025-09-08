@@ -49,7 +49,7 @@ class PlanManager {
 	 */
 	public static function get_current_plan(): ?Plan {
 		$plan_data = get_option( self::OPTION, array() );
-
+		$plan_data = array();
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on solution
 			return PlanLoader::load_default_plan();

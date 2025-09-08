@@ -1,4 +1,3 @@
-import data from './data.json'
 import { Button } from '@newfold/ui-component-library';
 import { useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -159,7 +158,7 @@ export const NextSteps = () => {
         const nowSeconds = Math.floor(Date.now() / 1000);
         // Filter out done tasks and tasks completed/skipped in the last 24 hours
         const cards = planWithProgress.tracks[0].sections.filter( ( section ) => {
-            const dateTimestamp =  section.date_completed_or_skipped ? Number(section.date_completed_or_skipped ) : 0
+            const dateTimestamp =  section.date_completed ? Number(section.date_completed ) : 0
             return  !dateTimestamp || nowSeconds < dateTimestamp;
         } );
         // We should have only one track for store setup.

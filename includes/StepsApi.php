@@ -501,7 +501,7 @@ class StepsApi {
 		if ( empty( $track_id ) || empty( $section_id ) || empty( $status ) ) {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
-		if ( ! in_array( $status, array( 'new', 'skipped', 'completed' ), true ) ) {
+		if ( ! in_array( $status, array( 'new', 'dismissed', 'completed' ), true ) ) {
 			return new WP_Error( 'invalid_status', __( 'Invalid status provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
