@@ -1,6 +1,6 @@
 import { Button } from '@newfold/ui-component-library';
 import { useState, useMemo } from '@wordpress/element';
-import { getDate, humanTimeDiff, format } from '@wordpress/date';
+import { getDate, humanTimeDiff, format, dateI18n } from '@wordpress/date';
 import { __ } from '@wordpress/i18n';
 import { spinner, hideIcon } from '../icons';
 import { SectionCard } from '../section-card';
@@ -157,6 +157,7 @@ export const NextSteps = () => {
 
     if ( planWithProgress.id === 'store_setup' ) {
         const now = new Date();
+        const nowDate = dateI18n( 'Y-m-d H:i:s', now );
         let hasPrimary = false; // track isPrimary flag
         // Filter out done tasks and tasks completed/skipped in the last 24 hours
         const sectionsAsCards = planWithProgress.tracks[0].sections.filter( ( section ) => {
@@ -165,11 +166,12 @@ export const NextSteps = () => {
                 // check if date completed is in last 24 hours
                 const completedDate = getDate( section.date_completed );
                 const expiryOffset = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-                const expiryDate = new Date( completedDate.getTime() + expiryOffset );
+                const expiryDate = dateI18n( 'Y-m-d H:i:s', new Date( completedDate.getTime() + expiryOffset ) );
                 // hide section if now is after expiry date
-                const shouldHide = now > expiryDate;
-                section.expiresIn = humanTimeDiff( expiryDate, now );
+                const shouldHide = nowDate > expiryDate;
+                section.expiresIn = humanTimeDiff( expiryDate, nowDate );
                 section.expiryDate = format( 'Y-m-d H:i:s', expiryDate );
+                section.nowDate = format( 'Y-m-d H:i:s', nowDate );
                 
                 // if not expired yet, return false (hide the section)
                 if ( shouldHide ) {

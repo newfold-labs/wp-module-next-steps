@@ -59,7 +59,7 @@ export const SectionCard = ( {
 	date_completed = null,
 	expiryDate = null,
 	expiresIn = null,
-	date_now = null,
+	nowDate = null,
 	...props
 } ) => {
 
@@ -160,6 +160,9 @@ export const SectionCard = ( {
 		}
 		if ( expiresIn ) {
 			formatted[ 'data-nfd-expires-in' ] = expiresIn;
+		}
+		if ( nowDate ) {
+			formatted[ 'data-nfd-now-date' ] = nowDate;
 		}
 
 		return formatted;

@@ -229,16 +229,31 @@ class Section {
 			return false;
 		}
 		$this->status = $status;
-		// automatically record completed/dismissed timestamp
+		// automatically record completed/dismissed 
 		if ( in_array( $status, array( 'dismissed', 'done' ), true ) ) {
-			// set date completed to current time in UTC
-			$now = new \DateTime( 'now', new \DateTimeZone( 'UTC' ) );
-			$this->set_date_completed( $now->format( 'Y-m-d H:i:s' ) );
+			$this->set_completed_now();
 		} else {
 			// reset date completed if marked as new
-			$this->date_completed = null;
+			$this->clear_completed_date();
 		}
 
+		return true;
+	}
+
+	/**
+	 * Set completed now
+	 */
+	public function set_completed_now(): bool {
+		$now = new \DateTime( 'now', new \DateTimeZone( wp_timezone_string() ) );
+		$this->set_date_completed( $now->format( 'Y-m-d H:i:s' ) );
+		return true;
+	}
+
+	/**
+	 * Clear completed date
+	 */
+	public function clear_completed_date(): bool {
+		$this->set_date_completed( null );
 		return true;
 	}
 
