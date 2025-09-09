@@ -118,8 +118,8 @@ export const TaskCard = ( {
 		const attributes = {};
 		// if this section has only one task, add href and target for single task
 		if ( tasks.length <= 1 ) {
-			attributes[ 'href' ] = getHref( tasks[0].href );
-			attributes[ 'target' ] = getTarget( tasks[0].href );
+			attributes[ 'href' ] = getHref( tasks[0]?.href ? tasks[0].href : '' );
+			attributes[ 'target' ] = getTarget( tasks[0]?.href ? tasks[0].href : '' );
 		}
 		// Only add href and target if href is provided and either no event is set or status is 'completed'
 		// if ( href && ( !event || ( event && 'completed' === status ) ) ) {
