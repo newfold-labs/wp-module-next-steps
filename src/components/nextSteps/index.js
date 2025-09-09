@@ -2,7 +2,7 @@ import { Button } from '@newfold/ui-component-library';
 import { useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { spinner, hideIcon } from '../icons';
-import { TaskCard } from '../task-card';
+import { SectionCard } from '../section-card';
 import { NoMoreCards } from '../no-more-cards';
 import './styles.scss';
 import { Track } from '../track';
@@ -120,23 +120,23 @@ export const NextSteps = () => {
     };
 
 
-    const renderCards  = ( cards, trackId ) => {
+    const renderCards  = ( sectionsAsCards, trackId ) => {
         return (
             <>
                 <div id={ 'nfd-quick-add-product-modal-only' }/>
                 <div className="nfd-nextsteps nfd-grid nfd-grid-cols-2 nfd-grid-rows-[auto_auto] nfd-gap-4" id="nfd-nextsteps">
-                    { cards.slice( 0, 3 ).map( ( card, i ) => {
-                        return <TaskCard
+                    { sectionsAsCards.slice( 0, 3 ).map( ( sectionsAsCard, i ) => {
+                        return <SectionCard
                             className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
-                            key={ card.id }
+                            key={ sectionsAsCard.id }
                             wide={ i === 2 }
                             isPrimary={ i === 0 }
                             taskUpdateCallback={ taskUpdateCallback }
                             sectionUpdateCallback = { sectionUpdateCallback }
-                            desc={ card.description }
+                            desc={ sectionsAsCard.description }
                             trackId={ trackId }
-                            sectionId={ card.id }
-                            { ...card }
+                            sectionId={ sectionsAsCard.id }
+                            { ...sectionsAsCard }
                         />
                     } ) }
                 </div>
@@ -154,10 +154,10 @@ export const NextSteps = () => {
 		);
 	}
 
-    if( planWithProgress.id === 'store_setup' ) {
+    if ( planWithProgress.id === 'store_setup' ) {
         const nowSeconds = Math.floor(Date.now() / 1000);
         // Filter out done tasks and tasks completed/skipped in the last 24 hours
-        const cards = planWithProgress.tracks[0].sections.filter( ( section ) => {
+        const sectionsAsCards = planWithProgress.tracks[0].sections.filter( ( section ) => {
             const dateTimestamp =  section.date_completed ? Number(section.date_completed ) : 0
             return  !dateTimestamp || nowSeconds < dateTimestamp;
         } );
@@ -168,8 +168,8 @@ export const NextSteps = () => {
 
         return (
             <>
-                { !cards.length && <NoMoreCards/> }
-                { cards && renderCards( cards, trackId ) }
+                { !sectionsAsCards.length && <NoMoreCards/> }
+                { sectionsAsCards && renderCards( sectionsAsCards, trackId ) }
             </>
         )
     }

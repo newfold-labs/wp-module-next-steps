@@ -29,16 +29,20 @@ export const TasksModal = ( {
 		// Check if all active tasks are completed
 		const allTasksCompleted = activeTasks.length > 0 && activeTasks.every(task => task.status === 'done');
 		
-		if (allTasksCompleted && !hasCompletedRef.current) {
+		if ( allTasksCompleted && !hasCompletedRef.current ) {
 			// Mark that we've sent the completion callback
 			hasCompletedRef.current = true;
 			// Auto-complete the section
-			sectionUpdateCallback(props.trackId, props.sectionId, 'completed');
-		} else if (!allTasksCompleted) {
+			sectionUpdateCallback( props.trackId, props.sectionId, 'completed' );
+			// Close the modal after a short delay to allow the completion callback to process
+			setTimeout(() => {
+				OnClose();
+			}, 500);
+		} else if ( !allTasksCompleted ) {
 			// Reset the completion flag if tasks are no longer all completed
 			hasCompletedRef.current = false;
 		}
-	}, [tasks, sectionUpdateCallback, props.trackId, props.sectionId]);
+	}, [tasks, sectionUpdateCallback, props.trackId, props.sectionId, OnClose]);
 
 	return <Modal
 		isOpen={ isOpen }

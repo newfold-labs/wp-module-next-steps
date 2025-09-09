@@ -39,7 +39,7 @@ const ICONS_IDS = {
 	'yoast': yoastIcon,
 }
 
-export const TaskCard = ( {
+export const SectionCard = ( {
 	id,
 	label,
 	desc,
@@ -56,6 +56,7 @@ export const TaskCard = ( {
 	trackId,
 	sectionId,
 	isPrimary = false,
+	date_completed = null,
 	...props
 } ) => {
 
@@ -147,6 +148,10 @@ export const TaskCard = ( {
 				formatted[ dataKey ] = value;
 			}
 		} );
+
+		if ( date_completed ) {
+			formatted[ 'data-nfd-date-completed' ] = date_completed;
+		}
 
 		return formatted;
 	};
