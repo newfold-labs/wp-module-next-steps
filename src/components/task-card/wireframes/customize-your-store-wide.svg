@@ -1,5 +1,4 @@
-const customizeYourStoreWideIcon= (
-    <svg width="394" height="100" viewBox="0 0 394 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 394 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_22_3989)">
             <rect width="394" height="100" rx="6" fill="#DDE1E8"/>
             <path d="M142.67 163H0V20.1851L142.67 163Z" fill="#D2DAE2"/>
@@ -158,6 +157,3 @@ const customizeYourStoreWideIcon= (
             </clipPath>
         </defs>
     </svg>
-);
-
-export default customizeYourStoreWideIcon;

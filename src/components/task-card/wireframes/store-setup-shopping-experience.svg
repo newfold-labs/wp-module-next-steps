@@ -1,5 +1,4 @@
-const storeSetupShoppingExperienceIcon = (
-    <svg width="256" height="156" viewBox="0 0 256 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 256 156" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_11_502)">
             <rect x="-190" width="654.04" height="166" rx="9.96" fill="#D4DFF0"/>
             <rect width="654.04" height="265.6" transform="translate(-190)" fill="#DCE7F7"/>
@@ -87,5 +86,3 @@ const storeSetupShoppingExperienceIcon = (
             </clipPath>
         </defs>
     </svg>
-);
-export default storeSetupShoppingExperienceIcon;

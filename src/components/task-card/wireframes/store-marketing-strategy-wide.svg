@@ -1,5 +1,4 @@
-const storeMarketingStrategyWideIcon = (
-    <svg width="394" height="100" viewBox="0 0 394 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 394 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="394" height="100" rx="6" fill="#DDE1E8"/>
         <path d="M95.9234 13.6635C95.9234 14.1681 95.2689 14.5771 94.4617 14.5771C93.6544 14.5771 93 14.1681 93 13.6635C93 13.159 93.6544 12.75 94.4617 12.75C95.2689 12.75 95.9234 13.159 95.9234 13.6635Z" fill="#F9FBB6"/>
         <path d="M108.45 13.6635C108.45 14.1681 107.796 14.5771 106.989 14.5771C106.181 14.5771 105.527 14.1681 105.527 13.6635C105.527 13.159 106.181 12.75 106.989 12.75C107.796 12.75 108.45 13.159 108.45 13.6635Z" fill="#F9FBB6"/>
@@ -144,5 +143,3 @@ const storeMarketingStrategyWideIcon = (
             </clipPath>
         </defs>
     </svg>
-);
-export default storeMarketingStrategyWideIcon;

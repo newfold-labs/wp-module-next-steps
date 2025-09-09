@@ -1,5 +1,4 @@
-const storeSetupPaymentsIcon = (
-    <svg width="256" height="160" viewBox="0 0 256 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 256 160" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_22_4650)">
             <rect width="256" height="160" fill="#E6EAEF"/>
             <rect width="256" height="160" fill="#E6EAEF"/>
@@ -72,5 +71,3 @@ const storeSetupPaymentsIcon = (
             </clipPath>
         </defs>
     </svg>
-);
-export default storeSetupPaymentsIcon;

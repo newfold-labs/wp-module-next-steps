@@ -1,5 +1,4 @@
-const storeLaunchAffiliateIcon = (
-    <svg width="256" height="160" viewBox="0 0 256 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 256 160" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_22_3451)">
             <rect width="256" height="160" fill="#D6E0E1"/>
             <path d="M79.6702 177H-63V34.1855L79.6702 177Z" fill="#D2DAE2"/>
@@ -157,5 +156,3 @@ const storeLaunchAffiliateIcon = (
             </clipPath>
         </defs>
     </svg>
-);
-export default storeLaunchAffiliateIcon;

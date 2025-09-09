@@ -6,24 +6,24 @@ import classNames from 'classnames';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { PaintBrushIcon, CreditCardIcon, ArchiveBoxIcon, ShoppingCartIcon, RocketLaunchIcon, StarIcon, UsersIcon } from "@heroicons/react/24/outline";
 import { 
-	customizeYourStoreIcon,
-	customizeYourStoreWideIcon,
-	addFirstProductIcon,
-	addFirstProductWideIcon,
-	storeSetupPaymentsIcon,
-	storeSetupPaymentsWideIcon,
-	storeSetupShoppingExperienceIcon,
-	storeSetupShoppingExperienceWideIcon,
-	storeMarketingStrategyIcon,
-	storeMarketingStrategyWideIcon,
-	storeCollectReviewsIcon,
-	storeCollectReviewsWideIcon,
-	storeLaunchAffiliateIcon,
-	storeLaunchAffiliateWideIcon,
-	storeSetupYoastIcon,
-	storeSetupYoastWideIcon,
-	storeImprovePerformanceIcon,
-	storeImprovePerformanceWideIcon
+	CustomizeYourStoreIcon,
+	CustomizeYourStoreWideIcon,
+	AddFirstProductIcon,
+	AddFirstProductWideIcon,
+	StoreSetupPaymentsIcon,
+	StoreSetupPaymentsWideIcon,
+	StoreSetupShoppingExperienceIcon,
+	StoreSetupShoppingExperienceWideIcon,
+	StoreMarketingStrategyIcon,
+	StoreMarketingStrategyWideIcon,
+	StoreCollectReviewsIcon,
+	StoreCollectReviewsWideIcon,
+	StoreLaunchAffiliateIcon,
+	StoreLaunchAffiliateWideIcon,
+	StoreSetupYoastIcon,
+	StoreSetupYoastWideIcon,
+	StoreImprovePerformanceIcon,
+	StoreImprovePerformanceWideIcon
 } from './wireframes';
 import { redoIcon, jetPackIcon, yoastIcon } from '../icons';
 
@@ -60,7 +60,7 @@ export const TaskCard = ( {
 } ) => {
 
 	const [ isModalOpened, setIsModalOpened ] = useState( false );
-	const [ eventCompleted, setEventCompleted ] = useState('completed' === status );
+	const [ eventCompleted, setEventCompleted ] = useState( 'completed' === status );
 
 	const Icon = ICONS_IDS[icon] ?? null;
 
@@ -78,10 +78,12 @@ export const TaskCard = ( {
 			return false;
 		};
 
-		if (checkElement()) return;
+		if ( checkElement() ) {
+			return;
+		}
 
 		const observer = new MutationObserver(() => {
-			if (checkElement()) {
+			if ( checkElement() ) {
 				observer.disconnect();
 			}
 		});
@@ -171,15 +173,15 @@ export const TaskCard = ( {
 	const combinedAttributes = { ...formatDataAttributes() };
 
 	const wireframes = {
-		'customize_your_store': !wide ? customizeYourStoreWideIcon : customizeYourStoreIcon,
-		'add_first_product': !wide ? addFirstProductWideIcon : addFirstProductIcon,
-		'store_setup_payments': !wide ? storeSetupPaymentsWideIcon : storeSetupPaymentsIcon,
-		'store_setup_shopping_experience' : !wide ? storeSetupShoppingExperienceWideIcon : storeSetupShoppingExperienceIcon,
-		'store_marketing_strategy' : !wide ? storeMarketingStrategyWideIcon : storeMarketingStrategyIcon,
-		'store_collect_reviews' : !wide ? storeCollectReviewsWideIcon : storeCollectReviewsIcon,
-		'store_launch_affiliate_program' : !wide ? storeLaunchAffiliateWideIcon : storeLaunchAffiliateIcon,
-		'store_setup_yoast_premium' : !wide ? storeSetupYoastWideIcon : storeSetupYoastIcon,
-		'store_improve_performance' : !wide ? storeImprovePerformanceWideIcon : storeImprovePerformanceIcon,
+		'customize_your_store': !wide ? <CustomizeYourStoreWideIcon /> : <CustomizeYourStoreIcon />,
+		'add_first_product': !wide ? <AddFirstProductWideIcon /> : <AddFirstProductIcon />,
+		'store_setup_payments': !wide ? <StoreSetupPaymentsWideIcon /> : <StoreSetupPaymentsIcon />,
+		'store_setup_shopping_experience' : !wide ? <StoreSetupShoppingExperienceWideIcon /> : <StoreSetupShoppingExperienceIcon />,
+		'store_marketing_strategy' : !wide ? <StoreMarketingStrategyWideIcon /> : <StoreMarketingStrategyIcon />,
+		'store_collect_reviews' : !wide ? <StoreCollectReviewsWideIcon /> : <StoreCollectReviewsIcon />,
+		'store_launch_affiliate_program' : !wide ? <StoreLaunchAffiliateWideIcon /> : <StoreLaunchAffiliateIcon />,
+		'store_setup_yoast_premium' : !wide ? <StoreSetupYoastWideIcon /> : <StoreSetupYoastIcon />,
+		'store_improve_performance' : !wide ? <StoreImprovePerformanceWideIcon /> : <StoreImprovePerformanceIcon />,
 	}
 
 	// Map of event names to CSS selectors to check for element presence
@@ -314,6 +316,7 @@ export const TaskCard = ( {
 					trackId={ trackId }
 					sectionId={ sectionId }
 					taskUpdateCallback={ taskUpdateCallback }
+					sectionUpdateCallback={ sectionUpdateCallback }
 				/> }
 		</>
 	);

@@ -1,5 +1,4 @@
-const storeMarketingStrategyIcon = (
-    <svg width="256" height="160" viewBox="0 0 256 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 256 160" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_22_3786)">
             <rect width="256" height="160" rx="6" fill="#DDE1E8"/>
             <path d="M14.9392 18.2972C14.9392 19.0137 14.01 19.5945 12.8637 19.5945C11.7173 19.5945 10.7881 19.0137 10.7881 18.2972C10.7881 17.5808 11.7173 17 12.8637 17C14.01 17 14.9392 17.5808 14.9392 18.2972Z" fill="#F9FBB6"/>
@@ -142,6 +141,3 @@ const storeMarketingStrategyIcon = (
             </clipPath>
         </defs>
     </svg>
-
-);
-export default storeMarketingStrategyIcon;
