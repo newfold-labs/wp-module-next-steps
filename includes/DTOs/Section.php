@@ -52,7 +52,7 @@ class Section {
 	public $cta;
 
 	/**
-	 * Status of the section (e.g., 'new', 'dismissed', 'completed').
+	 * Status of the section (e.g. 'new', 'done', 'dismissed'
 	 *
 	 * @var string
 	 */
@@ -225,16 +225,17 @@ class Section {
 	 * @return bool
 	 */
 	public function update_status( string $status ): bool {
-		if ( ! in_array( $status, array( 'new', 'dismissed', 'completed' ), true ) ) {
+		if ( ! in_array( $status, array( 'new', 'dismissed', 'done' ), true ) ) {
 			return false;
 		}
 		$this->status = $status;
 		// automatically record completed/dismissed timestamp
-		if ( in_array( $status, array( 'dismissed', 'completed' ), true ) ) {
-			// set date completed to current time
-			$this->date_completed = time();
+		if ( in_array( $status, array( 'dismissed', 'done' ), true ) ) {
+			// set date completed to current time in UTC
+			$now = new \DateTime( 'now', new \DateTimeZone( 'UTC' ) );
+			$this->set_date_completed( $now->format( 'Y-m-d H:i:s' ) );
 		} else {
-			// reset date completedif marked as new
+			// reset date completed if marked as new
 			$this->date_completed = null;
 		}
 

@@ -1,5 +1,6 @@
 import { Button } from '@newfold/ui-component-library';
 import { useState, useMemo } from '@wordpress/element';
+import { getDate, humanTimeDiff, format } from '@wordpress/date';
 import { __ } from '@wordpress/i18n';
 import { spinner, hideIcon } from '../icons';
 import { SectionCard } from '../section-card';
@@ -130,7 +131,7 @@ export const NextSteps = () => {
                             className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
                             key={ sectionsAsCard.id }
                             wide={ i === 2 }
-                            isPrimary={ i === 0 } // TODO: make this dynamic based on the first non-completed section
+                            isPrimary={ sectionsAsCard.isPrimary === true ? true : false } // calculated in filter to determine first new section
                             taskUpdateCallback={ taskUpdateCallback }
                             sectionUpdateCallback = { sectionUpdateCallback }
                             desc={ sectionsAsCard.description }
@@ -155,27 +156,36 @@ export const NextSteps = () => {
 	}
 
     if ( planWithProgress.id === 'store_setup' ) {
-        const nowSeconds = Math.floor( Date.now() / 1000 );
+        const now = new Date();
+        let hasPrimary = false; // track isPrimary flag
         // Filter out done tasks and tasks completed/skipped in the last 24 hours
         const sectionsAsCards = planWithProgress.tracks[0].sections.filter( ( section ) => {
-            section.date_now = nowSeconds;
-            // if section is completed or skipped and has a date completed
+            // if section is done or skipped and has a date completed
             if ( section.status !== 'new' && section.date_completed ) {
-                // check if date completed is in last 24 hours // 1 minute for testing
-                const dateDelay = 60; // 24 * 60 * 60;
-                // set expiry timestamp to 24 hours from date completed
-                const expiryTimestamp = section.date_completed + dateDelay;
-                // if now is before expiry timestamp, return false
-                if ( nowSeconds < expiryTimestamp ) {
+                // check if date completed is in last 24 hours
+                const completedDate = getDate( section.date_completed );
+                const expiryOffset = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+                const expiryDate = new Date( completedDate.getTime() + expiryOffset );
+                // hide section if now is after expiry date
+                const shouldHide = now > expiryDate;
+                section.expiresIn = humanTimeDiff( expiryDate, now );
+                section.expiryDate = format( 'Y-m-d H:i:s', expiryDate );
+                
+                // if not expired yet, return false (hide the section)
+                if ( shouldHide ) {
                     return false;
                 }
+            }
+            // calculate primary task - first section with status === new
+            if ( section.status === 'new' && ! hasPrimary ) {
+                section.isPrimary = true;
+                hasPrimary = true;
             }
             // if section is not completed or does not have a date completed past expiry timestamp, return true
             return true;
         } );
         // We should have only one track for store setup.
         const trackId = planWithProgress.tracks[0].id;
-        // calculate primary task - first section with status !== completed
         
 
         return (

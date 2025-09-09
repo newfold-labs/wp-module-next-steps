@@ -35,7 +35,7 @@ export const TasksModal = ( {
 			// Mark that we've sent the completion callback
 			hasCompletedRef.current = true;
 			// Auto-complete the section
-			sectionUpdateCallback( trackId, sectionId, 'completed' );
+			sectionUpdateCallback( trackId, sectionId, 'done' );
 			// Close the modal after a short delay to allow the completion callback to process
 			setTimeout(() => {
 				onClose();

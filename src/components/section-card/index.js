@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Title, Button, Link } from '@newfold/ui-component-library';
-import { TasksModal } from '../tasks-modal';
-import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { Title, Button, Link } from '@newfold/ui-component-library';
+import { __ } from '@wordpress/i18n';
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { PaintBrushIcon, CreditCardIcon, ArchiveBoxIcon, ShoppingCartIcon, RocketLaunchIcon, StarIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { TasksModal } from '../tasks-modal';
 import { 
 	CustomizeYourStoreIcon,
 	CustomizeYourStoreWideIcon,
@@ -57,12 +57,14 @@ export const SectionCard = ( {
 	sectionId,
 	isPrimary = false,
 	date_completed = null,
+	expiryDate = null,
+	expiresIn = null,
 	date_now = null,
 	...props
 } ) => {
 
 	const [ isModalOpened, setIsModalOpened ] = useState( false );
-	const [ eventCompleted, setEventCompleted ] = useState( 'completed' === status );
+	const [ eventCompleted, setEventCompleted ] = useState( 'done' === status );
 
 	const Icon = ICONS_IDS[icon] ?? null;
 
@@ -74,7 +76,7 @@ export const SectionCard = ( {
 			const el = document.querySelector( eventClassToCheck[id] );
 			if (el) {
 				setEventCompleted(true);
-				sectionUpdateCallback( trackId, sectionId, 'completed' );
+				sectionUpdateCallback( trackId, sectionId, 'done' );
 				return true;
 			}
 			return false;
@@ -123,8 +125,8 @@ export const SectionCard = ( {
 			attributes[ 'href' ] = getHref( tasks[0]?.href ? tasks[0].href : '' );
 			attributes[ 'target' ] = getTarget( tasks[0]?.href ? tasks[0].href : '' );
 		}
-		// Only add href and target if href is provided and either no event is set or status is 'completed'
-		// if ( href && ( !event || ( event && 'completed' === status ) ) ) {
+		// Only add href and target if href is provided and either no event is set or status is 'done'
+		// if ( href && ( !event || ( event && 'done' === status ) ) ) {
 		// 	attributes[ 'href' ] = getHref();
 		// 	attributes[ 'target' ] = getTarget();
 		// }
@@ -153,8 +155,11 @@ export const SectionCard = ( {
 		if ( date_completed ) {
 			formatted[ 'data-nfd-date-completed' ] = date_completed;
 		}
-		if ( date_now ) {
-			formatted[ 'data-nfd-date-now' ] = date_now;
+		if ( expiryDate ) {
+			formatted[ 'data-nfd-expiry-date' ] = expiryDate;
+		}
+		if ( expiresIn ) {
+			formatted[ 'data-nfd-expires-in' ] = expiresIn;
 		}
 
 		return formatted;
@@ -164,17 +169,14 @@ export const SectionCard = ( {
 	 * Adjust CTA text based on status
 	 */
 	const getCtaText = () => {
-
 		let ctaText = cta;
-
-		if( 'dismissed' === status ) {
-			ctaText = __('SKIPPED', 'wp-module-next-step');
-		}
+		// if( 'dismissed' === status ) {
+		// 	ctaText = __('SKIPPED', 'wp-module-next-step');
+		// }
 		// Change CTA text for completed "Add your first product" step
-		if( 'completed' === status && 'add_first_product' === id ) {
-			ctaText = __('Add another product', 'wp-module-next-step');
-		}
-
+		// if( 'done' === status && 'add_first_product' === id ) {
+		// 	ctaText = __('Add another product', 'wp-module-next-step');
+		// }
 		return ctaText;
 	}
 
@@ -209,15 +211,22 @@ export const SectionCard = ( {
 								<Icon width={ 16 }/>
 							</span>
 						}
-						<Title as="span" className="nfd-nextsteps-step-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center">
+						<Title as="span" className="nfd-nextsteps-step-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center nfd-mr-4">
 							{ label }
 						</Title>
 					</span>
 					{
-						'completed' === status &&
-						<span className={ 'nfd-nextstep-step__completed-badge nfd-flex nfd-rounded-full nfd-font-bold' }>
+						'done' === status &&
+						<span className={ 'nfd-nextstep-step__completed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
 							<CheckCircleIcon width={ 24 }/>
 							{ __( 'Completed', 'wp-module-next-step' ) }
+						</span>
+					}
+					{
+						'dismissed' === status &&
+						<span className={ 'nfd-nextstep-step__dismissed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
+							<XCircleIcon width={ 24 }/>
+							{ __( 'Skipped', 'wp-module-next-step' ) }
 						</span>
 					}
 				</div>
@@ -235,7 +244,7 @@ export const SectionCard = ( {
 						{
 							'nfd-nextsteps-step-card--wide nfd-flex-row': wide,
 							'nfd-flex-col': ! wide,
-							'nfd-nextsteps-step-card-done': 'completed' === status,
+							'nfd-nextsteps-step-card-done': 'done' === status,
 							'nfd-nextsteps-step-card-dismissed': 'dismissed' === status,
 						}
 					) }
@@ -264,7 +273,7 @@ export const SectionCard = ( {
 										'nfd-nextsteps-button',
 										{
 											'nfd-nextsteps-button--dismissed': 'dismissed' === status,
-											'nfd-nextsteps-button--completed': 'completed' === status,
+											'nfd-nextsteps-button--completed': 'done' === status,
 											'nfd-pointer-events-none' : 'dismissed' === status,
 										}
 									)
@@ -274,15 +283,16 @@ export const SectionCard = ( {
 								data-nfd-event-key={ id }
 								title={ label }
 								variant={ isPrimary ? 'primary' : 'secondary' }
-								disabled={ 'dismissed' === status }
+								disabled={ 'new' !== status }
 								onClick={ ( e ) => {
 									if ( tasks.length > 1 ) {
 										e.preventDefault();
 										setIsModalOpened( true );
 										return false;
 									}
-
-									if ( event && 'completed' !== status ) {
+									if ( 'done' !== status ) {
+										taskUpdateCallback( trackId, sectionId, tasks[0].id, 'done' );
+										sectionUpdateCallback( trackId, sectionId, 'done' );
 										window.dispatchEvent( new CustomEvent( event ) );
 									}
 								} }
@@ -315,7 +325,7 @@ export const SectionCard = ( {
 				</div>
 			</div>
 			{
-				!! tasks &&
+				!! tasks && tasks.length > 1 &&
 				<TasksModal
 					isOpen={ isModalOpened }
 					onClose={ () => setIsModalOpened( false ) }

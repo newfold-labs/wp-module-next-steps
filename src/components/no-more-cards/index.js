@@ -1,15 +1,13 @@
-import { NoMoreCardsIcon } from '../section-card/wireframes';
-import {Title} from "@newfold/ui-component-library";
+import { Title } from "@newfold/ui-component-library";
 import { __ } from '@wordpress/i18n';
+import { NoMoreCardsIcon } from '../section-card/wireframes';
 
-export const NoMoreCards = ( {
-
-} ) => {
+export const NoMoreCards = () => {
 
 	return (
 		<div className="nfd-nextsteps" id="nfd-nextsteps">
             <div className="nfd-nextsteps-step-content--no-cards">
-                <Title size={ 2 } as="h3" className="nfd-mb-4">
+                <Title size={"2"} as="h3" className="nfd-mb-4">
                     { __( 'No Pending tasks', 'wp-module-next-steps' ) }
                 </Title>
 
@@ -17,7 +15,7 @@ export const NoMoreCards = ( {
                     <div className="nfd-nextsteps-step-card__wireframe nfd-mb-4">
                         <NoMoreCardsIcon />
                     </div>
-                    <Title size="3" as="span" className="nfd-mb-1 nfd-font-bold">
+                    <Title size={"3"} as="span" className="nfd-mb-1 nfd-font-bold">
                         { __( 'Hooray!', 'wp-module-next-steps' ) }
                     </Title>
                     <p className="nfd-text-center nfd-next-steps-no-cards-text">

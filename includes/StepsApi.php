@@ -241,7 +241,7 @@ class StepsApi {
 							if ( 'open' === $type ) {
 								return is_bool( $value );
 							} elseif ( 'status' === $type ) {
-								return is_string( $value ) && in_array( $value, array( 'new', 'dismissed', 'completed' ), true );
+								return is_string( $value ) && in_array( $value, array( 'new', 'dismissed', 'done' ), true );
 							}
 							return false;
 						},
