@@ -5,10 +5,12 @@ import { useEffect, useRef } from 'react';
 
 export const TasksModal = ( {
 	isOpen,
-	OnClose,
+	onClose,
 	title = '',
 	desc = '',
 	tasks,
+	sectionId,
+	trackId,
 	className,
 	taskUpdateCallback,
 	sectionUpdateCallback,
@@ -19,7 +21,7 @@ export const TasksModal = ( {
 
 	// Check if all tasks are completed and auto-complete section
 	useEffect(() => {
-		if (!tasks || !sectionUpdateCallback || !props.trackId || !props.sectionId) {
+		if ( !tasks || !sectionUpdateCallback || !trackId || !sectionId ) {
 			return;
 		}
 
@@ -33,25 +35,24 @@ export const TasksModal = ( {
 			// Mark that we've sent the completion callback
 			hasCompletedRef.current = true;
 			// Auto-complete the section
-			sectionUpdateCallback( props.trackId, props.sectionId, 'completed' );
+			sectionUpdateCallback( trackId, sectionId, 'completed' );
 			// Close the modal after a short delay to allow the completion callback to process
 			setTimeout(() => {
-				OnClose();
+				onClose();
 			}, 500);
 		} else if ( !allTasksCompleted ) {
 			// Reset the completion flag if tasks are no longer all completed
 			hasCompletedRef.current = false;
 		}
-	}, [tasks, sectionUpdateCallback, props.trackId, props.sectionId, OnClose]);
+	}, [tasks, sectionUpdateCallback, trackId, sectionId, onClose]);
 
 	return <Modal
 		isOpen={ isOpen }
-		onClose={ OnClose }
+		onClose={ onClose }
 		className={ classNames(
 			'nfd-nextstep-tasks-modal',
 			className
 		) }
-		{ ...props }
 	>
 		<Modal.Panel>
 			{
@@ -76,8 +77,8 @@ export const TasksModal = ( {
                             task={ task }
 							taskUpdateCallback={ taskUpdateCallback }
 							showDismissed={ true }
-							trackId={ props?.trackId }
-							sectionId={ props?.sectionId }
+							trackId={ trackId }
+							sectionId={ sectionId }
 						/>
 					) )
 				}
