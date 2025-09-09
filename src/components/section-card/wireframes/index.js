@@ -16,3 +16,4 @@ export { ReactComponent as StoreSetupYoastIcon } from './store-setup-yoast.svg';
 export { ReactComponent as StoreSetupYoastWideIcon } from './store-setup-yoast-wide.svg';
 export { ReactComponent as StoreImprovePerformanceIcon } from './store-improve-performance.svg';
 export { ReactComponent as StoreImprovePerformanceWideIcon } from './store-improve-performance-wide.svg';
+export { ReactComponent as NoMoreCardsIcon } from './no-more-cards.svg';

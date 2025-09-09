@@ -229,6 +229,15 @@ class Section {
 			return false;
 		}
 		$this->status = $status;
+		// automatically record completed/dismissed timestamp
+		if ( in_array( $status, array( 'dismissed', 'completed' ), true ) ) {
+			// set date completed to current time
+			$this->date_completed = time();
+		} else {
+			// reset date completedif marked as new
+			$this->date_completed = null;
+		}
+
 		return true;
 	}
 

@@ -130,7 +130,7 @@ export const NextSteps = () => {
                             className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
                             key={ sectionsAsCard.id }
                             wide={ i === 2 }
-                            isPrimary={ i === 0 }
+                            isPrimary={ i === 0 } // TODO: make this dynamic based on the first non-completed section
                             taskUpdateCallback={ taskUpdateCallback }
                             sectionUpdateCallback = { sectionUpdateCallback }
                             desc={ sectionsAsCard.description }
@@ -155,11 +155,23 @@ export const NextSteps = () => {
 	}
 
     if ( planWithProgress.id === 'store_setup' ) {
-        const nowSeconds = Math.floor(Date.now() / 1000);
+        const nowSeconds = Math.floor( Date.now() / 1000 );
         // Filter out done tasks and tasks completed/skipped in the last 24 hours
         const sectionsAsCards = planWithProgress.tracks[0].sections.filter( ( section ) => {
-            const dateTimestamp =  section.date_completed ? Number(section.date_completed ) : 0
-            return  !dateTimestamp || nowSeconds < dateTimestamp;
+            section.date_now = nowSeconds;
+            // if section is completed or skipped and has a date completed
+            if ( section.status !== 'new' && section.date_completed ) {
+                // check if date completed is in last 24 hours // 1 minute for testing
+                const dateDelay = 60; // 24 * 60 * 60;
+                // set expiry timestamp to 24 hours from date completed
+                const expiryTimestamp = section.date_completed + dateDelay;
+                // if now is before expiry timestamp, return false
+                if ( nowSeconds < expiryTimestamp ) {
+                    return false;
+                }
+            }
+            // if section is not completed or does not have a date completed past expiry timestamp, return true
+            return true;
         } );
         // We should have only one track for store setup.
         const trackId = planWithProgress.tracks[0].id;

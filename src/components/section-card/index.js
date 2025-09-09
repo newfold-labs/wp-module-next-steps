@@ -57,6 +57,7 @@ export const SectionCard = ( {
 	sectionId,
 	isPrimary = false,
 	date_completed = null,
+	date_now = null,
 	...props
 } ) => {
 
@@ -151,6 +152,9 @@ export const SectionCard = ( {
 
 		if ( date_completed ) {
 			formatted[ 'data-nfd-date-completed' ] = date_completed;
+		}
+		if ( date_now ) {
+			formatted[ 'data-nfd-date-now' ] = date_now;
 		}
 
 		return formatted;
@@ -288,7 +292,7 @@ export const SectionCard = ( {
 							</Button>
 						</div>
 						{
-							'dismissed' !== status && <div className="ndf-nextsteps-buttons-actions-secondary">
+							'dismissed' !== status && <div className="nfd-nextsteps-buttons-actions-secondary">
 							<Link
 								as="button"
 								className="nfd-nextsteps-button nfd-nextsteps-button--skip"
