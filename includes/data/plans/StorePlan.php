@@ -4,108 +4,6 @@ namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 
-/*
-
-# Store
-
-## Build
-
-### Basic Store Setup 
-- Quick Setup 
-
-### Customize Your Store 
-
-- Upload Logo 
-- Choose Colors and Fonts 
-- Customize Header 
-- Customize Footer 
-- Customize Homepage 
-
-### Set Up Products 
-
-- Add a Product 
-- Customize the product page 
-- Customize the Shop Page 
-- Customize the Cart Page 
-- Customize the Checkout Flow 
-
-### Set Up Payments and Shipping 
-
-- Set Up Payments 
-- Set Up Shipping 
-- Set Up Taxes 
-
-### Set Up Legal Pages 
-
-- Privacy policy 
-- Terms & conditions 
-- Return and refund policy 
-
-
-## Brand
-
-### First Marketing steps 
-
-- Enable Social Login Register for your customers 
-- Configure Welcome Discount Popup  
-- Create a gift card to sell in your shop (gift card) 
-- Enable Abandoned Cart Emails 
-- Customize your store emails 
-- Add Google Analytics
-
-### Launch and promote - Social Media Setup & Engagement 
-
-- Connect Facebook Store
-- Connect Instagram Shopping
-- Connect Tik Tok Shop
-- Add Social Sharing Buttons
-- Add Social Media Feed to Homepage
-
-### Launch and promote - SEO & Store Visibility
-
-- Optimize your store SEO
-- Submit Site to Google Search Console
-- Create a Custom Sitemap
-
-
-## Grow
-
-### Improve your Customer Experience to sell more 
-
-- Customize the Thank You page 
-- Customize your customer’s account page 
-- Collect and show reviews for your products
-
-### Advanced Social & Influencer Marketing 
-
-- Launch an affiliate program 
-- Create a points & rewards program for your customers 
-- Run First Facebook or Instagram Ad 
-- Launch Product Giveaway Campaign 
-- Create Influencer Outreach List 
-- Track UTM Campaign Links 
-
-### Next marketing steps 
-
-- Write a blog Post – Posts page and auto open Wonder Blocks 
-- Create a sale & promo campaign for your products 
-- Create an upsell campaign 
-- Setup Yoast Premium to drive traffic to your store 
-
-### Performance & Security 
-
-- Migliora le performance e la velocità del tuo shop con Jetpack Boost 
-- Enable Auto-Backup & Update Alerts – WordPress Core and Code Guard 
-- Create a staging website 
-
-### Store analysis 
-
-- Monitor Traffic and Conversion Rates – BH Affiliates Dashboard 
-- Run A/B Test on Homepage Banner – Woo Upsell 
-- Review Monthly Performance Dashboard
-
-*/
-
 class StorePlan {
 
     /**
@@ -114,7 +12,6 @@ class StorePlan {
 	 * @return Plan
 	 */
     public static function get_plan() {
-		require_once NFD_NEXTSTEPS_DIR . '/includes/DTOs/Plan.php';
         return new Plan(
             array(
 				'id'          => 'store_setup',
@@ -141,7 +38,7 @@ class StorePlan {
 										'title'           => __( 'Upload Logo', 'wp-module-next-steps' ),
 										'description'     => '',
 										'href'            => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=all-parts',
-										'status'          => 'done',
+										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(),
@@ -151,7 +48,7 @@ class StorePlan {
 										'title'           => __( 'Choose Colors and Fonts', 'wp-module-next-steps' ),
 										'description'     => '',
 										'href'            => '{siteUrl}/wp-admin/site-editor.php?p=%2Fstyles',
-										'status'          => 'done',
+										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(),
@@ -190,14 +87,15 @@ class StorePlan {
 
 							),
 							array( // section
-								'id'          => 'add_first_product',
+								'id'          => 'setup_products',
 								'label'       => __( 'Step 2: Add your first product', 'wp-module-next-steps' ),
 								'description' => __( 'Start bringing your store to life by adding a product in just a few simple steps.', 'wp-module-next-steps' ),
 								'cta'         => __( 'Add product', 'wp-module-next-steps' ),
 								'icon'        => 'archive-box',
+								'status'      => 'new',
 								'tasks'       => array(
 									array( // task
-										'id'              => 'add_first_product_task',
+										'id'              => 'store_add_product',
 										'title'           => __( 'Add product', 'wp-module-next-steps' ),
 										'description'     => __( 'Start bringing your store to life by adding a product in just a few simple steps.', 'wp-module-next-steps' ),
 										'href'            => '{siteUrl}/wp-admin/post-new.php?post_type=product',
@@ -211,14 +109,15 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'          => 'store_setup_payments',
+								'id'          => 'setup_payments_shipping',
 								'label'       => __( 'Step 3: Set Up Payments', 'wp-module-next-steps' ),
 								'description' => __( 'Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks.', 'wp-module-next-steps' ),
 								'cta'         => __( 'Set up Payments', 'wp-module-next-steps' ),
 								'icon'        => 'credit-card',
+								'status'      => 'new',
 								'tasks'       => array(
 									array( // task
-										'id'              => 'store_setup_payments_task',
+										'id'              => 'store_setup_payments',
 										'title'           => __( 'Set up Payments', 'wp-module-next-steps' ),
 										'description'     => '',
 										'href'            => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=checkout',
@@ -230,7 +129,7 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'             => 'store_setup_shopping_experience',
+								'id'             => 'store_customize',
 								'label'          => __( 'Setup the Shopping Experience', 'wp-module-next-steps' ),
 								'description'    => __( 'Personalize your cart and checkout to match your brand and give customers a seamless shopping experience', 'wp-module-next-steps' ),
 								'cta'            => __( 'Start Now', 'wp-module-next-steps' ),
@@ -242,6 +141,7 @@ class StorePlan {
 										'id'              => 'store_customize_shop_page',
 										'title'           => __( 'Customize the shop page', 'wp-module-next-steps' ),
 										'description'     => '',
+										// TODO - need dynamic checking for these functions - as is this only runs on initial next steps setup
 										'href'            => function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'shop' ) > 0 ? '{siteUrl}/wp-admin/post.php?post=' . wc_get_page_id( 'shop' ) . '&action=edit' : '{siteUrl}/wp-admin/edit.php?post_type=page',
 										'status'          => 'new',
 										'priority'        => 1,
@@ -252,6 +152,7 @@ class StorePlan {
 										'id'              => 'store_customize_cart_page',
 										'title'           => __( 'Customize the cart page', 'wp-module-next-steps' ),
 										'description'     => '',
+										// TODO - need dynamic checking for these functions - as is this only runs on initial next steps setup
 										'href'            => function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'cart' ) > 0 ? '{siteUrl}/wp-admin/post.php?post=' . wc_get_page_id( 'cart' ) . '&action=edit' : '{siteUrl}/wp-admin/edit.php?post_type=page',
 										'status'          => 'new',
 										'priority'        => 2,
@@ -262,6 +163,7 @@ class StorePlan {
 										'id'              => 'store_customize_checkout_page',
 										'title'           => __( 'Customize the checkout flow', 'wp-module-next-steps' ),
 										'description'     => '',
+										// TODO - need dynamic checking for these functions - as is this only runs on initial next steps setup
 										'href'            => function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'checkout' ) ? '{siteUrl}/wp-admin/post.php?post=' . wc_get_page_id( 'checkout' ) . '&action=edit' : '{siteUrl}/wp-admin/edit.php?post_type=page',
 										'status'          => 'new',
 										'priority'        => 3,
@@ -271,7 +173,7 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'             => 'store_marketing_strategy',
+								'id'             => 'first_marketing_steps',
 								'label'          => __( 'Build your marketing strategy', 'wp-module-next-steps' ),
 								'description'    => __( 'Kickstart your store’s success with smart marketing strategies. Just few steps to build visibility, attract shoppers, and turn visits into loyal sales.', 'wp-module-next-steps' ),
 								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
@@ -283,37 +185,41 @@ class StorePlan {
 										'id'              => 'store_marketing_welcome_popup',
 										'title'           => __( 'Configure a welcome discount popup', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/post.php?post=',
+										'href'            => 'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(),
 									),
 									array( // task
-										'id'              => 'store_marketing_gift_card',
+										'id'              => 'store_create_gift_card',
 										'title'           => __( 'Create a gift card to sell in your shop', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/post.php?post=',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=solutions&category=all',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+
+										),
 									),
 									array( // task
-										'id'              => 'store_marketing_abandoned_cart_emails',
+										'id'              => 'store_enable_abandoned_cart',
 										'title'           => __( 'Enable abandoned cart emails', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/post.php?post=',
+										// TODO - need dynamic checking and redirect/fallback for this
+										'href'            => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(),
 									),
 									array( // task
-										'id'              => 'store_marketing_customize_emails',
+										'id'              => 'store_customize_emails',
 										'title'           => __( 'Customize your store emails', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=wc-settings&tab=email',
+										// TODO - need dynamic checking and redirect/fallback for this
+										'href'            => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -325,10 +231,22 @@ class StorePlan {
 								'id'             => 'store_improve_performance',
 								'label'          => __( 'Improve the performance and speed of your shop', 'wp-module-next-steps' ),
 								'description'    => __( 'Speed up your store by optimizing page performance with Jetpack Boost. Easily activate one-click optimizations to boost your Core Web Vitals.', 'wp-module-next-steps' ),
-								'href'           => '{siteUrl}/wp-admin/admin.php?page=my-jetpack#add-boost',
 								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
 								'icon'           => 'jetpack',
-								'tasks'          => array(),
+								'status'         => 'new',
+								'tasks'          => array(
+									array( // task
+										'id'              => 'store_improve_performance',
+										'title'           => __( 'Improve the performance and speed of your shop', 'wp-module-next-steps' ),
+										'description'     => '',
+										// TODO - need dynamic jetpack check and redirect/fallback for this link
+										'href'           => '{siteUrl}/wp-admin/admin.php?page=my-jetpack#add-boost',
+										'status'          => 'new',
+										'priority'        => 1,
+										'source'          => 'wp-module-next-steps',
+										'data_attributes' => array(),
+									),
+								),
 							),
 							array( // section
 								'id'             => 'store_collect_reviews',
@@ -337,25 +255,61 @@ class StorePlan {
 								'href'           => '',
 								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
 								'icon'           => 'start',
-								'tasks'          => array(),
+								'tasks'          => array(
+									array( // task
+										'id'              => 'store_collect_reviews_task',
+										'title'           => __( 'Collect and Show Reviews for Your Products', 'wp-module-next-steps' ),
+										'description'     => '',
+										// TODO - need dynamic checking and redirect/fallback for this (maybe installer integration?)
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=bh_advanced_reviews_panel',
+										'status'          => 'new',
+										'priority'        => 1,
+										'source'          => 'wp-module-next-steps',
+										'data_attributes' => array(),
+									),
+								),
 							),
 							array( // section
-								'id'             => 'store_launch_affiliate_program',
+								'id'             => 'advanced_social_marketing',
 								'label'          => __( 'Launch an affiliate program', 'wp-module-next-steps' ),
 								'description'    => __( 'Launch your own affiliate program to promote your products, reach new audiences and grow sales.', 'wp-module-next-steps' ),
-								'href'           => '',
+								'status'         => 'new',
 								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
 								'icon'           => 'users',
-								'tasks'          => array(),
+								'tasks'          => array(
+									array( // task
+										'id'              => 'store_launch_affiliate',
+										'title'           => __( 'Launch an affiliate program', 'wp-module-next-steps' ),
+										'description'     => '',
+										// TODO - need dynamic checking and redirect/fallback for this (maybe installer integration?)
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=bh_affiliates_panel',
+										'status'          => 'new',
+										'priority'        => 1,
+										'source'          => 'wp-module-next-steps',
+										'data_attributes' => array(),
+									),
+								),
 							),
 							array( // section
-								'id'             => 'store_setup_yoast_premium',
+								'id'             => 'next_marketing_steps',
 								'label'          => __( 'Setup Yoast Premium to drive traffic to your store', 'wp-module-next-steps' ),
 								'description'    => __( 'Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online.', 'wp-module-next-steps' ),
-								'href'           => '',
+								'status'         => 'new',
 								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
 								'icon'           => 'yoast',
-								'tasks'          => array(),
+								'tasks'          => array(
+									array( // task
+										'id'              => 'store_setup_yoast_premium',
+										'title'           => __( 'Setup Yoast Premium to drive traffic to your store', 'wp-module-next-steps' ),
+										'description'     => '',
+										// TODO - need dynamic checking and redirect/fallback for this
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=wpseo_tools',
+										'status'          => 'new',
+										'priority'        => 1,
+										'source'          => 'wp-module-next-steps',
+										'data_attributes' => array(),
+									),
+								),
 							),
 						),
 					),

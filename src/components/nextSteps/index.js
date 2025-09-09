@@ -122,11 +122,12 @@ export const NextSteps = () => {
 
 
     const renderCards  = ( sectionsAsCards, trackId ) => {
+        const maxCards = 3;
         return (
             <>
                 <div id={ 'nfd-quick-add-product-modal-only' }/>
                 <div className="nfd-nextsteps nfd-grid nfd-grid-cols-2 nfd-grid-rows-[auto_auto] nfd-gap-4" id="nfd-nextsteps">
-                    { sectionsAsCards.slice( 0, 3 ).map( ( sectionsAsCard, i ) => {
+                    { sectionsAsCards.slice( 0, maxCards ).map( ( sectionsAsCard, i ) => {
                         return <SectionCard
                             className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
                             key={ sectionsAsCard.id }
@@ -178,6 +179,11 @@ export const NextSteps = () => {
                 if ( shouldHide ) {
                     return false;
                 }
+            }
+            // if status is not new and no date completed, return false - this is legacy data from earlier version
+            if ( section.status !== 'new' && ! section.date_completed ) {
+                // this avoids rendering sections that a user completed before date_completed tracking began
+                return false;
             }
             // calculate primary task - first section with status === new
             if ( section.status === 'new' && ! hasPrimary ) {

@@ -188,19 +188,19 @@ export const SectionCard = ( {
 
 	const wireframes = {
 		'customize_your_store': !wide ? <CustomizeYourStoreWideIcon /> : <CustomizeYourStoreIcon />,
-		'add_first_product': !wide ? <AddFirstProductWideIcon /> : <AddFirstProductIcon />,
-		'store_setup_payments': !wide ? <StoreSetupPaymentsWideIcon /> : <StoreSetupPaymentsIcon />,
-		'store_setup_shopping_experience' : !wide ? <StoreSetupShoppingExperienceWideIcon /> : <StoreSetupShoppingExperienceIcon />,
-		'store_marketing_strategy' : !wide ? <StoreMarketingStrategyWideIcon /> : <StoreMarketingStrategyIcon />,
-		'store_collect_reviews' : !wide ? <StoreCollectReviewsWideIcon /> : <StoreCollectReviewsIcon />,
-		'store_launch_affiliate_program' : !wide ? <StoreLaunchAffiliateWideIcon /> : <StoreLaunchAffiliateIcon />,
-		'store_setup_yoast_premium' : !wide ? <StoreSetupYoastWideIcon /> : <StoreSetupYoastIcon />,
+		'setup_products': !wide ? <AddFirstProductWideIcon /> : <AddFirstProductIcon />,
+		'setup_payments_shipping': !wide ? <StoreSetupPaymentsWideIcon /> : <StoreSetupPaymentsIcon />,
+		'store_customize' : !wide ? <StoreSetupShoppingExperienceWideIcon /> : <StoreSetupShoppingExperienceIcon />,
+		'first_marketing_steps' : !wide ? <StoreMarketingStrategyWideIcon /> : <StoreMarketingStrategyIcon />,
 		'store_improve_performance' : !wide ? <StoreImprovePerformanceWideIcon /> : <StoreImprovePerformanceIcon />,
+		'store_collect_reviews' : !wide ? <StoreCollectReviewsWideIcon /> : <StoreCollectReviewsIcon />,
+		'advanced_social_marketing' : !wide ? <StoreLaunchAffiliateWideIcon /> : <StoreLaunchAffiliateIcon />,
+		'next_marketing_steps' : !wide ? <StoreSetupYoastWideIcon /> : <StoreSetupYoastIcon />,
 	}
 
 	// Map of event names to CSS selectors to check for element presence
 	const eventClassToCheck = {
-		'add_first_product' : '.nfd-quick-add-product__response-product-permalink',
+		'setup_products' : '.nfd-quick-add-product__response-product-permalink',
 	}
 
 	const StepContent = () => {
@@ -294,9 +294,20 @@ export const SectionCard = ( {
 										return false;
 									}
 									if ( 'done' !== status ) {
+										// TODO - clean this up - we're pausing the default action
+										// so the callbacks have time to update the status
+										// and then we manually open the link in a new tab
+										if ( e.target.tagName === 'A' ) {
+											e.preventDefault();
+										}
 										taskUpdateCallback( trackId, sectionId, tasks[0].id, 'done' );
-										sectionUpdateCallback( trackId, sectionId, 'done' );
-										window.dispatchEvent( new CustomEvent( event ) );
+										sectionUpdateCallback( trackId, sectionId, 'done' ).then(
+											() => {
+												window.open( e.target.href );
+											}
+										);
+										
+										// window.dispatchEvent( new CustomEvent( event ) );
 									}
 								} }
 								{ ...getLinkAttributes() }
