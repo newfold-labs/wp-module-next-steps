@@ -28,7 +28,7 @@ class PluginRedirect {
 	 * Initialize the plugin redirect functionality
 	 */
 	public static function init() {
-        // dummy page to manage dynamic redirects
+		// dummy page to manage dynamic redirects
 		add_action( 'admin_menu', array( __CLASS__, 'add_redirect_page' ) );
 	}
 
@@ -147,7 +147,7 @@ class PluginRedirect {
 
 		// Check plugin status
 		$plugin_active = self::check_plugin( $plugin_slug );
-		
+
 		// Determine redirect URL based on plugin status
 		$final_redirect_url = $plugin_active ? $final_redirect_url : $final_fallback_url;
 

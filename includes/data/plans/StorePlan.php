@@ -155,7 +155,7 @@ class StorePlan {
 										'id'              => 'store_setup_payments',
 										'title'           => __( 'Set up Payments', 'wp-module-next-steps' ),
 										'description'     => '',
-                                        'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&r=' . rawurlencode( 'admin.php?page=wc-settings&tab=checkout' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&r=' . rawurlencode( 'admin.php?page=wc-settings&tab=checkout' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
