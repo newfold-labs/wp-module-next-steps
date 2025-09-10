@@ -70,19 +70,19 @@ class PlanManager {
 			switch ( $plan_id ) {
 				case 'blog':
 					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
-						require_once __DIR__ . '/Data/Plans/BlogPlan.php';
+						require_once __DIR__ . '/includes/Data/Plans/BlogPlan.php';
 					}
 					$new_plan = BlogPlan::get_plan();
 					break;
 				case 'corporate':
 					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
-						require_once __DIR__ . '/Data/Plans/CorporatePlan.php';
+						require_once __DIR__ . '/includes/Data/Plans/CorporatePlan.php';
 					}
 					$new_plan = CorporatePlan::get_plan();
 					break;
 				case 'ecommerce':
 					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
-						require_once __DIR__ . '/Data/Plans/StorePlan.php';
+						require_once __DIR__ . '/includes/Data/Plans/StorePlan.php';
 					}
 					$new_plan = StorePlan::get_plan();
 					break;
@@ -231,20 +231,20 @@ class PlanManager {
 		switch ( $plan_type ) {
 			case 'ecommerce':
 				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
-					require_once __DIR__ . '/Data/Plans/StorePlan.php';
+					require_once __DIR__ . '/includes/Data/Plans/StorePlan.php';
 				}
 				$plan = StorePlan::get_plan();
 				break;
 			case 'corporate':
 				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
-					require_once __DIR__ . '/Data/Plans/CorporatePlan.php';
+					require_once __DIR__ . '/includes/Data/Plans/CorporatePlan.php';
 				}
 				$plan = CorporatePlan::get_plan();
 				break;
 			case 'blog':
 			default:
 				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
-					require_once __DIR__ . '/Data/Plans/BlogPlan.php';
+					require_once __DIR__ . '/includes/Data/Plans/BlogPlan.php';
 				}
 				$plan = BlogPlan::get_plan();
 				break;
