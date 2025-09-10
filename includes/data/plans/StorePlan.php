@@ -176,8 +176,7 @@ class StorePlan {
 										'id'              => 'store_customize_shop_page',
 										'title'           => __( 'Customize the shop page', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic checking for these functions - as is this only runs on initial next steps setup
-										'href'            => function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'shop' ) > 0 ? '{siteUrl}/wp-admin/post.php?post=' . wc_get_page_id( 'shop' ) . '&action=edit' : '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&r=' . urlencode( 'admin.php?page=wc-settings&tab=products' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -187,8 +186,7 @@ class StorePlan {
 										'id'              => 'store_customize_cart_page',
 										'title'           => __( 'Customize the cart page', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic checking for these functions - as is this only runs on initial next steps setup
-										'href'            => function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'cart' ) > 0 ? '{siteUrl}/wp-admin/post.php?post=' . wc_get_page_id( 'cart' ) . '&action=edit' : '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -198,8 +196,7 @@ class StorePlan {
 										'id'              => 'store_customize_checkout_page',
 										'title'           => __( 'Customize the checkout flow', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic checking for these functions - as is this only runs on initial next steps setup
-										'href'            => function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'checkout' ) ? '{siteUrl}/wp-admin/post.php?post=' . wc_get_page_id( 'checkout' ) . '&action=edit' : '{siteUrl}/wp-admin/edit.php?post_type=page',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -240,8 +237,7 @@ class StorePlan {
 										'id'              => 'store_enable_abandoned_cart',
 										'title'           => __( 'Enable abandoned cart emails', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic checking and redirect/fallback for this
-										'href'            => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -251,8 +247,7 @@ class StorePlan {
 										'id'              => 'store_customize_emails',
 										'title'           => __( 'Customize your store emails', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic checking and redirect/fallback for this
-										'href'            => '{siteUrl}/wp-admin/edit.php?post_type=bh-email-template',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -272,8 +267,7 @@ class StorePlan {
 										'id'              => 'store_improve_performance',
 										'title'           => __( 'Improve the performance and speed of your shop', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic jetpack check and redirect/fallback for this link
-										'href'           => '{siteUrl}/wp-admin/admin.php?page=my-jetpack#add-boost',
+										'href'           => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -293,8 +287,7 @@ class StorePlan {
 										'id'              => 'store_collect_reviews_task',
 										'title'           => __( 'Collect and Show Reviews for Your Products', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic checking and redirect/fallback for this (maybe installer integration?)
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=bh_advanced_reviews_panel',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=advanced-reviews',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -314,8 +307,7 @@ class StorePlan {
 										'id'              => 'store_launch_affiliate',
 										'title'           => __( 'Launch an affiliate program', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic checking and redirect/fallback for this (maybe installer integration?)
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=bh_affiliates_panel',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=affiliates',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -335,8 +327,7 @@ class StorePlan {
 										'id'              => 'store_setup_yoast_premium',
 										'title'           => __( 'Setup Yoast Premium to drive traffic to your store', 'wp-module-next-steps' ),
 										'description'     => '',
-										// TODO - need dynamic checking and redirect/fallback for this
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=wpseo_tools',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
