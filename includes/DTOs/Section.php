@@ -229,7 +229,7 @@ class Section {
 			return false;
 		}
 		$this->status = $status;
-		// automatically record completed/dismissed 
+		// automatically record completed/dismissed
 		if ( in_array( $status, array( 'dismissed', 'done' ), true ) ) {
 			$this->set_completed_now();
 		} else {

@@ -99,7 +99,7 @@ class StorePlan {
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(),
 									),
-									array( // task	
+									array( // task
 										'id'              => 'store_customize_footer',
 										'title'           => __( 'Customize Footer', 'wp-module-next-steps' ),
 										'description'     => '',
