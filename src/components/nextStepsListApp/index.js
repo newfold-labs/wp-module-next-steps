@@ -12,7 +12,7 @@ import {
 	taskUpdateWrapper,
 	sectionUpdateWrapper,
 	trackUpdateWrapper
-} from './helpers';
+} from '../../utils/helpers';
 import './styles.scss';
 
 
@@ -49,29 +49,30 @@ export const NextStepsListApp = () => {
 		);
 	};
 
-	const sectionOpenCallback = ( trackId, sectionId, open ) => {		
-		if ( !trackId || !sectionId ) {
-			// Could not find track for intendend section
-			return;
-		}
+	const sectionOpenCallback = ( trackId, sectionId, open ) => {
+        if ( !trackId || !sectionId ) {
+            // Could not find track for intendend section
+            return;
+        }
 
-		const data = {
-			plan_id: plan.id,
-			track_id: trackId,
-			section_id: sectionId,
-			open: open,
-		};
-		
-		sectionUpdateWrapper( 
-			data,
-			( error ) => {
-				// console.error( 'Error updating section open state:', error );
-			},
-			( response ) => {
-				setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, open ) );
-			}
-		);
-	};
+        const data = {
+            plan_id: plan.id,
+            track_id: trackId,
+            section_id: sectionId,
+            type: 'open',
+            value: open,
+        };
+
+        sectionUpdateWrapper(
+            data,
+            ( error ) => {
+                // console.error( 'Error updating section open state:', error );
+            },
+            ( response ) => {
+                setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, 'open', open ) );
+            }
+        );
+    };
 
 	const trackOpenCallback = ( trackId, open ) => {
 		const data = {
@@ -90,6 +91,31 @@ export const NextStepsListApp = () => {
 			}
 		);
 	};
+
+	const sectionUpdateCallback = ( trackId, sectionId, status ) => {
+        if ( !trackId || !sectionId ) {
+            // Could not find track for intendend section
+            return;
+        }
+
+        const data = {
+            plan_id: plan.id,
+            track_id: trackId,
+            section_id: sectionId,
+            type: 'status',
+            value: status,
+        };
+
+        sectionUpdateWrapper(
+            data,
+            ( error ) => {
+                // console.error( 'Error updating section status state:', error );
+            },
+            ( response ) => {
+                setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, 'status', status ) );
+            }
+        );
+    };
 
 	// Handle case where plan might not be loaded yet
 	if ( ! planWithProgress || ! planWithProgress.tracks ) {
@@ -115,6 +141,7 @@ export const NextStepsListApp = () => {
 							index={ trackIndex }
 							key={ track.id }
 							sectionOpenCallback={ sectionOpenCallback }
+							sectionUpdateCallback={ sectionUpdateCallback }
 							showDismissed={ showDismissed }
 							taskUpdateCallback={ taskUpdateCallback }
 							track={ track }

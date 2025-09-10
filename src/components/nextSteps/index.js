@@ -16,7 +16,7 @@ import {
     taskUpdateWrapper,
     sectionUpdateWrapper,
     trackUpdateWrapper
-} from './helpers';
+} from '../../utils/helpers';
 import './styles.scss';
 
 export const NextSteps = () => {
