@@ -69,12 +69,21 @@ class PlanManager {
 			// Load the appropriate new plan based on the saved plan ID
 			switch ( $plan_id ) {
 				case 'blog':
+					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
+						require_once __DIR__ . '/Data/Plans/BlogPlan.php';
+					}
 					$new_plan = BlogPlan::get_plan();
 					break;
 				case 'corporate':
+					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
+						require_once __DIR__ . '/Data/Plans/CorporatePlan.php';
+					}
 					$new_plan = CorporatePlan::get_plan();
 					break;
 				case 'ecommerce':
+					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
+						require_once __DIR__ . '/Data/Plans/StorePlan.php';
+					}
 					$new_plan = StorePlan::get_plan();
 					break;
 				default:
@@ -218,19 +227,25 @@ class PlanManager {
 			$plan_type = self::PLAN_TYPES[ $plan_type ];
 		}
 
-		// Clear current plan to force reload
-		// delete_option( self::OPTION );
-
 		// Load the appropriate plan directly
 		switch ( $plan_type ) {
 			case 'ecommerce':
+				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
+					require_once __DIR__ . '/Data/Plans/StorePlan.php';
+				}
 				$plan = StorePlan::get_plan();
 				break;
 			case 'corporate':
+				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
+					require_once __DIR__ . '/Data/Plans/CorporatePlan.php';
+				}
 				$plan = CorporatePlan::get_plan();
 				break;
 			case 'blog':
 			default:
+				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
+					require_once __DIR__ . '/Data/Plans/BlogPlan.php';
+				}
 				$plan = BlogPlan::get_plan();
 				break;
 		}
