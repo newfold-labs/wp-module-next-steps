@@ -381,15 +381,15 @@ class StepsApi {
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
 	 *
-	 * @param array $new_tasks Array of task objects to add or update.
-	 * @param string $new_tasks[].id Required. Unique task identifier
-	 * @param string $new_tasks[].title Required. Task title
-	 * @param string $new_tasks[].description Optional. Task description
-	 * @param string $new_tasks[].href Optional. Task URL or action
-	 * @param string $new_tasks[].status Optional. Task status ('new', 'done', 'dismissed')
-	 * @param number $new_tasks[].priority Optional. Task priority
-	 * @param string $new_tasks[].source Optional. Task source
-	 * @param Object $new_tasks[].data_attributes Optional. Additional data attributes
+	 * @param array $new_tasks Array of task objects to add or update. Task objects with:
+	 *  - string id Required. Unique task identifier
+	 *  - string title Required. Task title
+	 *  - string description Optional. Task description
+	 *  - string href Optional. Task URL or action
+	 *  - string status Optional. Task status ('new', 'done', 'dismissed')
+	 *  - number priority Optional. Task priority
+	 *  - string source Optional. Task source
+	 *  - Object data_attributes Optional. Additional data attributes
 	 *
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 	 *
@@ -466,11 +466,11 @@ class StepsApi {
 	 * @apiPermission manage_options
 	 *
 	 * @param WP_REST_Request $request The REST request object containing:
-	 * @param string $request->get_param('plan_id') Required. Plan identifier
-	 * @param string $request->get_param('track_id') Required. Track identifier
-	 * @param string $request->get_param('section_id') Required. Section identifier
-	 * @param string $request->get_param('task_id') Required. Task identifier
-	 * @param string $request->get_param('status') Required. New status ('new', 'done', 'dismissed')
+	 * $request->get_param('plan_id') Required. Plan identifier
+	 * $request->get_param('track_id') Required. Track identifier
+	 * $request->get_param('section_id') Required. Section identifier
+	 * $request->get_param('task_id') Required. Task identifier
+	 * $request->get_param('status') Required. New status ('new', 'done', 'dismissed')
 	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 *
@@ -481,7 +481,7 @@ class StepsApi {
 	 * @apiError (404) step_not_found Task not found in the specified location
 	 * @apiError (403) forbidden Insufficient permissions
 	 */
-	public static function update_task_status( \WP_REST_Request $request ) {
+	public static function update_task_status( WP_REST_Request $request ) {
 		$plan_id    = $request->get_param( 'plan_id' );
 		$track_id   = $request->get_param( 'track_id' );
 		$section_id = $request->get_param( 'section_id' );
@@ -523,13 +523,13 @@ class StepsApi {
 	 * @apiPermission manage_options
 	 *
 	 * @param WP_REST_Request $request The REST request object containing:
-	 * @param string $request->get_param('plan_id') Required. Plan identifier
-	 * @param string $request->get_param('track_id') Required. Track identifier
-	 * @param string $request->get_param('section_id') Required. Section identifier
-	 * @param string $request->get_param('type') Required. Update type ('open' or 'status')
-	 * @param mixed $request->get_param('value') Required. New value:
-	 *   - For 'open' type: boolean (true/false)
-	 *   - For 'status' type: string ('new', 'done', 'dismissed')
+	 * $request->get_param('plan_id') Required. Plan identifier
+	 * $request->get_param('track_id') Required. Track identifier
+	 * $request->get_param('section_id') Required. Section identifier
+	 * $request->get_param('type') Required. Update type ('open' or 'status')
+	 * $request->get_param('value') Required. New value:
+	 *  - For 'open' type: boolean (true/false)
+	 *  - For 'status' type: string ('new', 'done', 'dismissed')
 	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 *
@@ -539,7 +539,7 @@ class StepsApi {
 	 * @apiError (404) section_not_found Section not found in the specified location
 	 * @apiError (403) forbidden Insufficient permissions
 	 */
-	public static function update_section_state( \WP_REST_Request $request ) {
+	public static function update_section_state( WP_REST_Request $request ) {
 		$plan_id    = $request->get_param( 'plan_id' );
 		$track_id   = $request->get_param( 'track_id' );
 		$section_id = $request->get_param( 'section_id' );
@@ -573,9 +573,9 @@ class StepsApi {
 	 * @apiPermission manage_options
 	 *
 	 * @param WP_REST_Request $request The REST request object containing:
-	 * @param string $request->get_param('plan_id') Required. Plan identifier
-	 * @param string $request->get_param('track_id') Required. Track identifier
-	 * @param boolean $request->get_param('open') Required. Whether track should be open/expanded
+	 * $request->get_param('plan_id') Required. Plan identifier
+	 * $request->get_param('track_id') Required. Track identifier
+	 * $request->get_param('open') Required. Whether track should be open/expanded
 	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 *
@@ -585,7 +585,7 @@ class StepsApi {
 	 * @apiError (404) track_not_found Track not found in the specified location
 	 * @apiError (403) forbidden Insufficient permissions
 	 */
-	public static function update_track_status( \WP_REST_Request $request ) {
+	public static function update_track_status( WP_REST_Request $request ) {
 		$plan_id  = $request->get_param( 'plan_id' );
 		$track_id = $request->get_param( 'track_id' );
 		$open     = $request->get_param( 'open' ) ?? false;
@@ -648,7 +648,7 @@ class StepsApi {
 	 * @apiPermission manage_options
 	 *
 	 * @param WP_REST_Request $request The REST request object containing:
-	 * @param string $request->get_param('plan_type') Required. Plan type ('ecommerce', 'blog', 'corporate')
+	 * $request->get_param('plan_type') Required. Plan type ('ecommerce', 'blog', 'corporate')
 	 *
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error on failure.
 	 *
@@ -657,7 +657,7 @@ class StepsApi {
 	 * @apiError (400) invalid_plan_type Invalid plan type provided
 	 * @apiError (403) forbidden Insufficient permissions
 	 */
-	public static function switch_plan( \WP_REST_Request $request ) {
+	public static function switch_plan( WP_REST_Request $request ) {
 		$plan_type = $request->get_param( 'plan_type' );
 
 		$plan = PlanManager::switch_plan( $plan_type );
@@ -705,17 +705,17 @@ class StepsApi {
 	 * @apiPermission manage_options
 	 *
 	 * @param WP_REST_Request $request The REST request object containing:
-	 * @param string $request->get_param('track_id') Required. Track identifier
-	 * @param string $request->get_param('section_id') Required. Section identifier
-	 * @param Object $request->get_param('task') Required. Task object with:
-	 *   - string id Required. Unique task identifier
-	 *   - string title Required. Task title
-	 *   - string description Optional. Task description
-	 *   - string href Optional. Task URL or action
-	 *   - string status Optional. Task status ('new', 'done', 'dismissed')
-	 *   - number priority Optional. Task priority
-	 *   - string source Optional. Task source
-	 *   - Object data_attributes Optional. Additional data attributes
+	 * $request->get_param('track_id') Required. Track identifier
+	 * $request->get_param('section_id') Required. Section identifier
+	 * $request->get_param('task') Required. Task object with:
+	 *  - string id Required. Unique task identifier
+	 *  - string title Required. Task title
+	 *  - string description Optional. Task description
+	 *  - string href Optional. Task URL or action
+	 *  - string status Optional. Task status ('new', 'done', 'dismissed')
+	 *  - number priority Optional. Task priority
+	 *  - string source Optional. Task source
+	 *  - Object data_attributes Optional. Additional data attributes
 	 *
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error on failure.
 	 *
@@ -724,7 +724,7 @@ class StepsApi {
 	 * @apiError (400) add_task_failed Failed to add task to section
 	 * @apiError (403) forbidden Insufficient permissions
 	 */
-	public static function add_task_to_section( \WP_REST_Request $request ) {
+	public static function add_task_to_section( WP_REST_Request $request ) {
 		$track_id   = $request->get_param( 'track_id' );
 		$section_id = $request->get_param( 'section_id' );
 		$task_data  = $request->get_param( 'task' );
