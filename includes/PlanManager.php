@@ -232,7 +232,7 @@ class PlanManager {
 			case 'blog':
 			default:
 				$plan = BlogPlan::get_plan();
-			break;
+				break;
 		}
 
 		// Save the loaded plan
@@ -390,5 +390,4 @@ class PlanManager {
 
 		return $success;
 	}
-
 }

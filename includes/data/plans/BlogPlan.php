@@ -4,15 +4,42 @@ namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 
+/**
+ * BlogPlan - Defines the structured plan for blog/personal website setup
+ *
+ * This class provides a comprehensive step-by-step plan specifically designed for
+ * bloggers and personal website owners. The plan is organized into three main tracks:
+ * Build, Brand, and Grow, each containing multiple sections with actionable tasks.
+ *
+ * Plan Structure:
+ * - Build Track: Basic setup, customization, content creation, navigation, and legal pages
+ * - Brand Track: Audience building, social presence, and SEO optimization
+ * - Grow Track: Enhanced user experience, advanced marketing, content strategy, and performance
+ *
+ * Each task includes:
+ * - Unique identifier for tracking completion
+ * - Localized title and description
+ * - Direct links to WordPress admin areas or external resources
+ * - Priority ordering for logical progression
+ * - Status tracking (new, done, dismissed)
+ * - Source attribution for analytics
+ *
+ * The plan is designed to guide users through the complete process of setting up
+ * and growing a successful blog, from initial setup to advanced marketing strategies.
+ *
+ * @package NewfoldLabs\WP\Module\NextSteps\Data\Plans
+ * @since 1.0.0
+ * @author Newfold Labs
+ */
 class BlogPlan {
 
-    /**
+	/**
 	 * Get default blog or personal plan
 	 *
 	 * @return Plan
 	 */
-    public static function get_plan() {
-        return new Plan(
+	public static function get_plan() {
+		return new Plan(
 			array(
 				'id'          => 'blog_setup',
 				'label'       => __( 'Blog Setup', 'wp-module-next-steps' ),
@@ -449,5 +476,5 @@ class BlogPlan {
 				),
 			)
 		);
-    }
+	}
 }

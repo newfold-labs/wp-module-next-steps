@@ -4,16 +4,62 @@ namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 
+/**
+ * CorporatePlan - Defines the structured plan for corporate/business website setup
+ *
+ * This class provides a comprehensive step-by-step plan specifically designed for
+ * corporate and business website owners. The plan focuses on establishing a professional
+ * online presence, building brand credibility, and implementing business-focused features.
+ *
+ * Plan Structure:
+ * The plan is organized into three main tracks:
+ * - Build Track: Basic setup, website customization, navigation configuration, and legal compliance
+ * - Brand Track: Brand establishment, marketing tools, and contact/engagement setup
+ * - Grow Track: Online presence strengthening, content strategy, marketing automation, and performance monitoring
+ *
+ * Build Track Sections:
+ * - Basic site setup and configuration
+ * - Website customization (logo, branding, layout)
+ * - Navigation structure and menu creation
+ * - Legal and trust content (privacy policy, terms, accessibility)
+ *
+ * Brand Track Sections:
+ * - Brand establishment (domain, favicon, Google Business, branded email)
+ * - Marketing tools (Search Console, SEO plugin, social sharing)
+ * - Contact and engagement (forms, maps, social profiles)
+ *
+ * Grow Track Sections:
+ * - Online presence (testimonials, certifications, awards)
+ * - Content and SEO (blog posts, FAQ, keyword optimization, sitemaps)
+ * - Marketing and lead generation (email capture, CRM integration, CTAs)
+ * - Performance and security (security plugins, staging sites)
+ * - Monitoring and improvement (speed tests, content planning)
+ *
+ * Each task includes:
+ * - Unique identifier for tracking completion
+ * - Localized title and description
+ * - Direct links to WordPress admin areas or external resources
+ * - Priority ordering for logical progression
+ * - Status tracking (new, done, dismissed)
+ * - Source attribution for analytics
+ *
+ * The plan is designed to guide business owners through establishing a professional
+ * corporate website that builds trust, generates leads, and supports business growth.
+ *
+ * @package NewfoldLabs\WP\Module\NextSteps\Data\Plans
+ * @since 1.0.0
+ * @author Newfold Labs
+ */
 class CorporatePlan {
 
-    /**
+	/**
 	 * Get default corporate or business plan
 	 *
 	 * @return Plan
 	 */
-    public static function get_plan() {
-        return new Plan(
-            array(
+	public static function get_plan() {
+		return new Plan(
+			array(
 				'id'          => 'corporate_setup',
 				'label'       => __( 'Corporate Setup', 'wp-module-next-steps' ),
 				'description' => __( 'Set up your corporate website with these essential steps:', 'wp-module-next-steps' ),
@@ -446,5 +492,5 @@ class CorporatePlan {
 				),
 			)
 		);
-    }
+	}
 }

@@ -4,16 +4,52 @@ namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 
+/**
+ * StorePlan - Defines the structured plan for ecommerce store setup
+ *
+ * This class provides a comprehensive step-by-step plan specifically designed for
+ * ecommerce store owners using WooCommerce. The plan focuses on building a complete
+ * online store from initial setup to advanced marketing and performance optimization.
+ *
+ * Plan Structure:
+ * The plan is organized into a single "Build" track with multiple sections covering:
+ * - Store customization (logo, colors, fonts, header, footer, homepage)
+ * - Product management (adding first product)
+ * - Payment setup (configuring payment methods)
+ * - Shopping experience (customizing shop, cart, and checkout pages)
+ * - Marketing strategy (popups, gift cards, abandoned cart emails, email customization)
+ * - Performance optimization (Jetpack Boost integration)
+ * - Review collection and display
+ * - Affiliate program setup
+ * - SEO optimization with Yoast Premium
+ *
+ * Each task includes:
+ * - Unique identifier for tracking completion
+ * - Localized title and description
+ * - Direct links to WooCommerce admin areas or external resources
+ * - Priority ordering for logical progression
+ * - Status tracking (new, done, dismissed)
+ * - Source attribution for analytics
+ * - Data attributes for event tracking and modal interactions
+ *
+ * The plan is designed to guide users through the complete process of setting up
+ * a successful ecommerce store, from initial customization to advanced marketing
+ * and performance optimization strategies.
+ *
+ * @package NewfoldLabs\WP\Module\NextSteps\Data\Plans
+ * @since 1.0.0
+ * @author Newfold Labs
+ */
 class StorePlan {
 
-    /**
+	/**
 	 * Get default store or ecommerce plan
 	 *
 	 * @return Plan
 	 */
-    public static function get_plan() {
-        return new Plan(
-            array(
+	public static function get_plan() {
+		return new Plan(
+			array(
 				'id'          => 'store_setup',
 				'label'       => __( 'Store Setup', 'wp-module-next-steps' ),
 				'description' => __( 'Complete your ecommerce store setup with these essential steps:', 'wp-module-next-steps' ),
@@ -84,7 +120,6 @@ class StorePlan {
 										'data_attributes' => array(),
 									),
 								),
-
 							),
 							array( // section
 								'id'          => 'setup_products',
@@ -129,14 +164,14 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'             => 'store_customize',
-								'label'          => __( 'Setup the Shopping Experience', 'wp-module-next-steps' ),
-								'description'    => __( 'Personalize your cart and checkout to match your brand and give customers a seamless shopping experience', 'wp-module-next-steps' ),
-								'cta'            => __( 'Start Now', 'wp-module-next-steps' ),
-								'icon'           => 'shopping-cart',
-								'modal_title'    => __( 'Setup the shopping experience', 'wp-module-next-steps' ),
-								'modal_desc'     => __( 'Personalize your cart and checkout experience, and configure taxes and shipping options', 'wp-module-next-steps' ),
-								'tasks'          => array(
+								'id'          => 'store_customize',
+								'label'       => __( 'Setup the Shopping Experience', 'wp-module-next-steps' ),
+								'description' => __( 'Personalize your cart and checkout to match your brand and give customers a seamless shopping experience', 'wp-module-next-steps' ),
+								'cta'         => __( 'Start Now', 'wp-module-next-steps' ),
+								'icon'        => 'shopping-cart',
+								'modal_title' => __( 'Setup the shopping experience', 'wp-module-next-steps' ),
+								'modal_desc'  => __( 'Personalize your cart and checkout experience, and configure taxes and shipping options', 'wp-module-next-steps' ),
+								'tasks'       => array(
 									array( // task
 										'id'              => 'store_customize_shop_page',
 										'title'           => __( 'Customize the shop page', 'wp-module-next-steps' ),
@@ -173,14 +208,14 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'             => 'first_marketing_steps',
-								'label'          => __( 'Build your marketing strategy', 'wp-module-next-steps' ),
-								'description'    => __( 'Kickstart your store’s success with smart marketing strategies. Just few steps to build visibility, attract shoppers, and turn visits into loyal sales.', 'wp-module-next-steps' ),
-								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
-								'icon'           => 'rocket-launch',
-								'modal_title'    => __( 'Build your marketing strategy', 'wp-module-next-steps' ),
-								'modal_desc'     => __( 'Kickstart your store’s success with smart marketing strategies', 'wp-module-next-steps' ),
-								'tasks'          => array(
+								'id'          => 'first_marketing_steps',
+								'label'       => __( 'Build your marketing strategy', 'wp-module-next-steps' ),
+								'description' => __( 'Kickstart your store’s success with smart marketing strategies. Just few steps to build visibility, attract shoppers, and turn visits into loyal sales.', 'wp-module-next-steps' ),
+								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
+								'icon'        => 'rocket-launch',
+								'modal_title' => __( 'Build your marketing strategy', 'wp-module-next-steps' ),
+								'modal_desc'  => __( 'Kickstart your store’s success with smart marketing strategies', 'wp-module-next-steps' ),
+								'tasks'       => array(
 									array( // task
 										'id'              => 'store_marketing_welcome_popup',
 										'title'           => __( 'Configure a welcome discount popup', 'wp-module-next-steps' ),
@@ -199,9 +234,7 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(
-
-										),
+										'data_attributes' => array(),
 									),
 									array( // task
 										'id'              => 'store_enable_abandoned_cart',
@@ -228,13 +261,13 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'             => 'store_improve_performance',
-								'label'          => __( 'Improve the performance and speed of your shop', 'wp-module-next-steps' ),
-								'description'    => __( 'Speed up your store by optimizing page performance with Jetpack Boost. Easily activate one-click optimizations to boost your Core Web Vitals.', 'wp-module-next-steps' ),
-								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
-								'icon'           => 'jetpack',
-								'status'         => 'new',
-								'tasks'          => array(
+								'id'          => 'store_improve_performance',
+								'label'       => __( 'Improve the performance and speed of your shop', 'wp-module-next-steps' ),
+								'description' => __( 'Speed up your store by optimizing page performance with Jetpack Boost. Easily activate one-click optimizations to boost your Core Web Vitals.', 'wp-module-next-steps' ),
+								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
+								'icon'        => 'jetpack',
+								'status'      => 'new',
+								'tasks'       => array(
 									array( // task
 										'id'              => 'store_improve_performance',
 										'title'           => __( 'Improve the performance and speed of your shop', 'wp-module-next-steps' ),
@@ -249,13 +282,13 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'             => 'store_collect_reviews',
-								'label'          => __( 'Collect and show reviews for your products', 'wp-module-next-steps' ),
-								'description'    => __( 'Collect authentic reviews from your customers to build trust, highlight product quality, and help increase conversions.', 'wp-module-next-steps' ),
-								'href'           => '',
-								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
-								'icon'           => 'start',
-								'tasks'          => array(
+								'id'          => 'store_collect_reviews',
+								'label'       => __( 'Collect and show reviews for your products', 'wp-module-next-steps' ),
+								'description' => __( 'Collect authentic reviews from your customers to build trust, highlight product quality, and help increase conversions.', 'wp-module-next-steps' ),
+								'href'        => '',
+								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
+								'icon'        => 'start',
+								'tasks'       => array(
 									array( // task
 										'id'              => 'store_collect_reviews_task',
 										'title'           => __( 'Collect and Show Reviews for Your Products', 'wp-module-next-steps' ),
@@ -270,13 +303,13 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'             => 'advanced_social_marketing',
-								'label'          => __( 'Launch an affiliate program', 'wp-module-next-steps' ),
-								'description'    => __( 'Launch your own affiliate program to promote your products, reach new audiences and grow sales.', 'wp-module-next-steps' ),
-								'status'         => 'new',
-								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
-								'icon'           => 'users',
-								'tasks'          => array(
+								'id'          => 'advanced_social_marketing',
+								'label'       => __( 'Launch an affiliate program', 'wp-module-next-steps' ),
+								'description' => __( 'Launch your own affiliate program to promote your products, reach new audiences and grow sales.', 'wp-module-next-steps' ),
+								'status'      => 'new',
+								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
+								'icon'        => 'users',
+								'tasks'       => array(
 									array( // task
 										'id'              => 'store_launch_affiliate',
 										'title'           => __( 'Launch an affiliate program', 'wp-module-next-steps' ),
@@ -291,13 +324,13 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'             => 'next_marketing_steps',
-								'label'          => __( 'Setup Yoast Premium to drive traffic to your store', 'wp-module-next-steps' ),
-								'description'    => __( 'Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online.', 'wp-module-next-steps' ),
-								'status'         => 'new',
-								'cta'            => __( 'Start now', 'wp-module-next-steps' ),
-								'icon'           => 'yoast',
-								'tasks'          => array(
+								'id'          => 'next_marketing_steps',
+								'label'       => __( 'Setup Yoast Premium to drive traffic to your store', 'wp-module-next-steps' ),
+								'description' => __( 'Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online.', 'wp-module-next-steps' ),
+								'status'      => 'new',
+								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
+								'icon'        => 'yoast',
+								'tasks'       => array(
 									array( // task
 										'id'              => 'store_setup_yoast_premium',
 										'title'           => __( 'Setup Yoast Premium to drive traffic to your store', 'wp-module-next-steps' ),
@@ -316,6 +349,5 @@ class StorePlan {
 				),
 			)
 		);
-    }
-
+	}
 }
