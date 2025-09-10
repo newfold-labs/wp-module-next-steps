@@ -31,17 +31,17 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 				statusCode: 200,
 				body: true
 			}
-		).as( 'updateTaskStatus' );
+		).as( 'taskStatus' );
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)open/,
+				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)update/,
 			},
 			{
 				statusCode: 200,
 				body: true
 			}
-		).as( 'updateSectionState' );
+		).as( 'sectionUpdate' );
 	} );
 
 	it( 'portal renders and displays correctly', () => {
@@ -73,7 +73,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		// Complete task
 		cy.get( '@firstSection' ).find('#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo').click();
 		// Wait for API call
-		cy.wait('@updateTaskStatus');
+		cy.wait('@taskStatus');
 
 		// Task should now be in done state
 		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'done');
@@ -90,7 +90,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		// Close celebration closes section
 		cy.get( '@firstSection' ).should('have.attr', 'open');
 		cy.get( '@firstSection' ).find('.nfd-section-complete').click();
-		cy.wait( '@updateSectionState' );
+		cy.wait( '@sectionUpdate' );
 		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
 		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
 		cy.get( '@firstSection' ).should('not.have.attr', 'open');

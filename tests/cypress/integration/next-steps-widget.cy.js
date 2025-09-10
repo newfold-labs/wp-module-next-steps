@@ -6,10 +6,6 @@ import {
 } from '../wp-module-support/utils.cy';
 
 describe('Next Steps Widget', { testIsolation: true }, () => {
-	before( () => {
-		// Set test Next Steps data
-		setTestNextStepsData();
-	} );
 
 	after( () => {
 		// Reset test data
@@ -17,6 +13,8 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 	} );
 
 	beforeEach(() => {
+		// Set test Next Steps data
+		setTestNextStepsData();
 		wpLogin();
 		cy.visit('/wp-admin/index.php');
 		
@@ -137,17 +135,17 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 				statusCode: 200,
 				body: true
 			}
-		).as( 'updateTaskStatus' );
+		).as( 'taskStatus' );
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)open/,
+				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)update/,
 			},
 			{
 				statusCode: 200,
 				body: true
 			}
-		).as( 'updateSectionState' );
+		).as( 'sectionUpdate' );
 
 		// Find progress bar in first section
 		cy.get('.nfd-section[data-nfd-section-id="section1"]').as( 'firstSection' );
@@ -164,7 +162,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		// Complete task
 		cy.get( '@firstSection' ).find('#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo').click();
 		// Wait for API call
-		cy.wait('@updateTaskStatus');
+		cy.wait('@taskStatus');
 
 		// Task should now be in done state
 		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'done');
@@ -181,7 +179,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		// Close celebration closes section
 		cy.get( '@firstSection' ).should('have.attr', 'open');
 		cy.get( '@firstSection' ).find('.nfd-section-complete').click();
-		cy.wait( '@updateSectionState' );
+		cy.wait( '@sectionUpdate' );
 		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
 		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
 		cy.get( '@firstSection' ).should('not.have.attr', 'open');
@@ -201,7 +199,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 				statusCode: 200,
 				body: true
 			}
-		).as( 'updateTaskStatus' );
+		).as( 'taskStatus' );
 
 		// Find and dismiss a task
 		cy.get( '.nfd-nextsteps-step-container[data-nfd-task-status="new"]' ).first().as( 'firstNewTask' );
@@ -211,7 +209,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		// Click dismiss button - force due to cypress not being able to trigger hover state
 		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss').click( { force: true } );		
 		// Wait for API call
-		cy.wait( '@updateTaskStatus' );
+		cy.wait( '@taskStatus' );
 		// Task should now be dismissed
 		cy.get( '#s1task1' ).should('have.attr', 'data-nfd-task-status', 'dismissed');
 	});
@@ -227,28 +225,28 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 				statusCode: 200,
 				body: true
 			}
-		).as( 'updateTrackState' );
+		).as( 'trackOpen' );
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)open/,
+				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)update/,
 			},
 			{
 				statusCode: 200,
 				body: true
 			}
-		).as( 'updateSectionState' );
+		).as( 'sectionUpdate' );
 
 		// First track should be open by default
 		cy.get('.nfd-track').first().should('have.attr', 'open');
 		// Close the track
 		cy.get('.nfd-track').first().find('.nfd-track-header').click();
-		cy.wait('@updateTrackState');
+		cy.wait('@trackOpen');
 		// Should be closed
 		cy.get('.nfd-track').first().should('not.have.attr', 'open');
 		// Open the track again
 		cy.get('.nfd-track').first().find('.nfd-track-header').click();
-		cy.wait('@updateTrackState');
+		cy.wait('@trackOpen');
 		// Should be open
 		cy.get('.nfd-track').first().should('have.attr', 'open');
 
@@ -258,7 +256,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 			
 			// Click section header to toggle
 			cy.wrap($section).find('.nfd-section-header').click();
-			cy.wait('@updateSectionState');
+			cy.wait('@sectionUpdate');
 			
 			// State should change
 			if (isOpen) {

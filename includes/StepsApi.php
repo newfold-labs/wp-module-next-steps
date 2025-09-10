@@ -10,7 +10,19 @@ use WP_REST_Response;
 use WP_REST_Server;
 
 /**
- * Class StepsApi
+ * StepsApi - REST API controller for Next Steps functionality
+ *
+ * This class provides a comprehensive REST API for managing next steps plans,
+ * tasks, sections, and tracks. It handles all CRUD operations for the next steps
+ * system including plan management, task status updates, and progress tracking.
+ *
+ * All endpoints require 'manage_options' capability for security.
+ * The API uses WordPress REST API standards with proper validation,
+ * error handling, and response formatting.
+ *
+ * @package NewfoldLabs\WP\Module\NextSteps
+ * @since 1.0.0
+ * @author Newfold Labs
  */
 class StepsApi {
 
@@ -35,7 +47,10 @@ class StepsApi {
 	private $rest_base;
 
 	/**
-	 * EntitilementsApi constructor.
+	 * StepsApi constructor.
+	 *
+	 * Initializes the API with the namespace and base route for all endpoints.
+	 * Sets up the REST API namespace as 'newfold-next-steps/v1' and base route as '/steps'.
 	 */
 	public function __construct() {
 		$this->namespace = 'newfold-next-steps/v1';
@@ -43,11 +58,26 @@ class StepsApi {
 	}
 
 	/**
-	 * Register Entitlement routes.
+	 * Register all REST API routes for the Next Steps functionality.
+	 *
+	 * Registers the following endpoints:
+	 * - GET /steps - Retrieve current plan and steps
+	 * - POST /steps/add - Add new tasks to current plan
+	 * - PUT /steps/status - Update task status
+	 * - PUT /steps/section/update - Update section state (open/status)
+	 * - PUT /steps/track/open - Update track open state
+	 * - GET /steps/stats - Get plan statistics
+	 * - PUT /steps/switch - Switch to different plan type
+	 * - PUT /steps/reset - Reset plan to defaults
+	 * - POST /steps/tasks - Add task to specific section
+	 *
+	 * All routes require 'manage_options' capability and include proper
+	 * parameter validation and sanitization.
 	 */
 	public function register_routes() {
 
 		// Add route for fetching steps
+		// newfold-next-steps/v1/steps
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base,
@@ -61,6 +91,7 @@ class StepsApi {
 		);
 
 		// Add route for adding steps
+		// newfold-next-steps/v1/steps/add
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/add',
@@ -120,6 +151,7 @@ class StepsApi {
 		);
 
 		// Add route for plan statistics
+		// newfold-next-steps/v1/steps/stats
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/stats',
@@ -133,6 +165,7 @@ class StepsApi {
 		);
 
 		// Add route for switching plans
+		// newfold-next-steps/v1/steps/switch
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/switch',
@@ -154,6 +187,7 @@ class StepsApi {
 		);
 
 		// Add route for resetting plan
+		// newfold-next-steps/v1/steps/reset
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/reset',
@@ -167,6 +201,7 @@ class StepsApi {
 		);
 
 		// Add route for adding tasks to specific sections
+		// newfold-next-steps/v1/steps/tasks
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/tasks',
@@ -200,6 +235,7 @@ class StepsApi {
 		);
 
 		// Add route for updating section state (unified for both open and status)
+		// newfold-next-steps/v1/steps/section/update
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/section/update',
@@ -251,6 +287,7 @@ class StepsApi {
 		);
 
 		// Add route for updating track open state
+		// newfold-next-steps/v1/steps/track/open
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/track/open',
@@ -287,16 +324,34 @@ class StepsApi {
 	/**
 	 * Set the option where steps are stored.
 	 *
-	 * @param array $steps           Data to be stored
+	 * Helper method to store plan data in WordPress options table.
+	 * This method is used internally by the PlanManager to persist
+	 * plan state changes.
+	 *
+	 * @param array $steps Data to be stored in the options table
+	 *
+	 * @return void
 	 */
 	public static function set_data( $steps ) {
 		update_option( self::OPTION, $steps );
 	}
 
 	/**
-	 * Get current plan and steps.
+	 * GET /newfold-next-steps/v1/steps - Retrieve current plan and steps
 	 *
-	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
+	 * Retrieves the current active plan with all tracks, sections, and tasks.
+	 * This endpoint is used by the frontend to display the complete next steps
+	 * structure and current progress.
+	 *
+	 * @api {get} /newfold-next-steps/v1/steps Get Current Plan
+	 * @apiName GetSteps
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+	 *
+	 * @apiError (404) no_plan No plan found
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function get_steps() {
 		$plan = PlanManager::get_current_plan();
@@ -314,10 +369,36 @@ class StepsApi {
 	}
 
 	/**
-	 * Add tasks to the current plan.
+	 * POST /newfold-next-steps/v1/steps/add - Add new tasks to the current plan
 	 *
-	 * @param array $new_tasks Array of new tasks to add or update.
-	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
+	 * Adds new tasks to the first available section of the current plan.
+	 * If a task with the same ID already exists, it will be updated with new values.
+	 * This endpoint is typically used to dynamically add tasks based on user actions
+	 * or plugin installations.
+	 *
+	 * @api {post} /newfold-next-steps/v1/steps/add Add Tasks to Plan
+	 * @apiName AddSteps
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @param array $new_tasks Array of task objects to add or update.
+	 * @param string $new_tasks[].id Required. Unique task identifier
+	 * @param string $new_tasks[].title Required. Task title
+	 * @param string $new_tasks[].description Optional. Task description
+	 * @param string $new_tasks[].href Optional. Task URL or action
+	 * @param string $new_tasks[].status Optional. Task status ('new', 'done', 'dismissed')
+	 * @param number $new_tasks[].priority Optional. Task priority
+	 * @param string $new_tasks[].source Optional. Task source
+	 * @param Object $new_tasks[].data_attributes Optional. Additional data attributes
+	 *
+	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+	 *
+	 * @apiSuccess {Object} plan The updated plan object (same structure as GET /steps)
+	 *
+	 * @apiError (404) no_plan No plan found
+	 * @apiError (404) no_tracks No tracks found in plan
+	 * @apiError (404) no_sections No sections found in track
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function add_steps( $new_tasks ) {
 		// Get the current plan
@@ -372,10 +453,33 @@ class StepsApi {
 	}
 
 	/**
-	 * Update a task status.
+	 * PUT /newfold-next-steps/v1/steps/status - Update task status
 	 *
-	 * @param \WP_REST_Request $request  The REST request object.
+	 * Updates the status of a specific task within a plan. This endpoint is used
+	 * when users mark tasks as completed, dismissed, or reset them to new status.
+	 * The endpoint validates all required parameters and ensures the task exists
+	 * before updating.
+	 *
+	 * @api {put} /newfold-next-steps/v1/steps/status Update Task Status
+	 * @apiName UpdateTaskStatus
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @param WP_REST_Request $request The REST request object containing:
+	 * @param string $request->get_param('plan_id') Required. Plan identifier
+	 * @param string $request->get_param('track_id') Required. Track identifier
+	 * @param string $request->get_param('section_id') Required. Section identifier
+	 * @param string $request->get_param('task_id') Required. Task identifier
+	 * @param string $request->get_param('status') Required. New status ('new', 'done', 'dismissed')
+	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
+	 *
+	 * @apiSuccess {boolean} true Success indicator
+	 *
+	 * @apiError (400) invalid_params Invalid parameters provided
+	 * @apiError (400) invalid_status Invalid status value provided
+	 * @apiError (404) step_not_found Task not found in the specified location
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function update_task_status( \WP_REST_Request $request ) {
 		$plan_id    = $request->get_param( 'plan_id' );
@@ -406,10 +510,34 @@ class StepsApi {
 	}
 
 	/**
-	 * Update a section state (unified for both open and status).
+	 * PUT /newfold-next-steps/v1/steps/section/update - Update section state
 	 *
-	 * @param \WP_REST_Request $request  The REST request object.
+	 * Updates the state of a specific section within a plan. This unified endpoint
+	 * can update both the 'open' state (expanded/collapsed) and the 'status' state
+	 * (new/done/dismissed) of a section. The type parameter determines which property
+	 * to update, and the value parameter must match the expected type.
+	 *
+	 * @api {put} /newfold-next-steps/v1/steps/section/update Update Section State
+	 * @apiName UpdateSectionState
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @param WP_REST_Request $request The REST request object containing:
+	 * @param string $request->get_param('plan_id') Required. Plan identifier
+	 * @param string $request->get_param('track_id') Required. Track identifier
+	 * @param string $request->get_param('section_id') Required. Section identifier
+	 * @param string $request->get_param('type') Required. Update type ('open' or 'status')
+	 * @param mixed $request->get_param('value') Required. New value:
+	 *   - For 'open' type: boolean (true/false)
+	 *   - For 'status' type: string ('new', 'done', 'dismissed')
+	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
+	 *
+	 * @apiSuccess {boolean} true Success indicator
+	 *
+	 * @apiError (400) invalid_params Invalid parameters provided
+	 * @apiError (404) section_not_found Section not found in the specified location
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function update_section_state( \WP_REST_Request $request ) {
 		$plan_id    = $request->get_param( 'plan_id' );
@@ -434,10 +562,28 @@ class StepsApi {
 	}
 
 	/**
-	 * Update a track status.
+	 * PUT /newfold-next-steps/v1/steps/track/open - Update track open state
 	 *
-	 * @param \WP_REST_Request $request  The REST request object.
+	 * Updates the open/expanded state of a specific track within a plan.
+	 * This endpoint is used to expand or collapse tracks in the UI.
+	 *
+	 * @api {put} /newfold-next-steps/v1/steps/track/open Update Track State
+	 * @apiName UpdateTrackStatus
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @param WP_REST_Request $request The REST request object containing:
+	 * @param string $request->get_param('plan_id') Required. Plan identifier
+	 * @param string $request->get_param('track_id') Required. Track identifier
+	 * @param boolean $request->get_param('open') Required. Whether track should be open/expanded
+	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
+	 *
+	 * @apiSuccess {boolean} true Success indicator
+	 *
+	 * @apiError (400) invalid_params Invalid parameters provided
+	 * @apiError (404) track_not_found Track not found in the specified location
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function update_track_status( \WP_REST_Request $request ) {
 		$plan_id  = $request->get_param( 'plan_id' );
@@ -461,9 +607,28 @@ class StepsApi {
 
 
 	/**
-	 * Get plan statistics
+	 * GET /newfold-next-steps/v1/steps/stats - Get plan statistics
 	 *
-	 * @return WP_REST_Response
+	 * Retrieves statistical information about the current plan including
+	 * task completion counts, progress percentages, and other metrics.
+	 * This endpoint is used for analytics and progress tracking.
+	 *
+	 * @api {get} /newfold-next-steps/v1/steps/stats Get Plan Statistics
+	 * @apiName GetPlanStats
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @return WP_REST_Response Response object containing plan statistics.
+	 *
+	 * @apiSuccess {Object} stats Plan statistics object
+	 * @apiSuccess {number} stats.total_tasks Total number of tasks in plan
+	 * @apiSuccess {number} stats.completed_tasks Number of completed tasks
+	 * @apiSuccess {number} stats.dismissed_tasks Number of dismissed tasks
+	 * @apiSuccess {number} stats.new_tasks Number of new tasks
+	 * @apiSuccess {number} stats.completion_percentage Overall completion percentage
+	 * @apiSuccess {Object} stats.track_stats Statistics per track
+	 *
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function get_plan_stats() {
 		$stats = PlanManager::get_plan_stats();
@@ -471,10 +636,26 @@ class StepsApi {
 	}
 
 	/**
-	 * Switch to a different plan
+	 * PUT /newfold-next-steps/v1/steps/switch - Switch to different plan type
 	 *
-	 * @param \WP_REST_Request $request The REST request object.
-	 * @return WP_REST_Response|WP_Error
+	 * Switches the current plan to a different plan type (blog, store, or corporate).
+	 * This endpoint loads a new plan structure and replaces the current one.
+	 * All existing progress is lost when switching plans.
+	 *
+	 * @api {put} /newfold-next-steps/v1/steps/switch Switch Plan Type
+	 * @apiName SwitchPlan
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @param WP_REST_Request $request The REST request object containing:
+	 * @param string $request->get_param('plan_type') Required. Plan type ('ecommerce', 'blog', 'corporate')
+	 *
+	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error on failure.
+	 *
+	 * @apiSuccess {Object} plan The new plan object (same structure as GET /steps)
+	 *
+	 * @apiError (400) invalid_plan_type Invalid plan type provided
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function switch_plan( \WP_REST_Request $request ) {
 		$plan_type = $request->get_param( 'plan_type' );
@@ -489,9 +670,22 @@ class StepsApi {
 	}
 
 	/**
-	 * Reset plan to defaults
+	 * PUT /newfold-next-steps/v1/steps/reset - Reset plan to defaults
 	 *
-	 * @return WP_REST_Response
+	 * Resets the current plan to its default state, clearing all progress
+	 * and returning all tasks to their initial 'new' status. This endpoint
+	 * is useful for testing or when users want to start over.
+	 *
+	 * @api {put} /newfold-next-steps/v1/steps/reset Reset Plan
+	 * @apiName ResetPlan
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @return WP_REST_Response Response object containing the reset plan.
+	 *
+	 * @apiSuccess {Object} plan The reset plan object (same structure as GET /steps)
+	 *
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function reset_plan() {
 		$plan = PlanManager::reset_plan();
@@ -499,10 +693,36 @@ class StepsApi {
 	}
 
 	/**
-	 * Add task to a specific section
+	 * POST /newfold-next-steps/v1/steps/tasks - Add task to specific section
 	 *
-	 * @param \WP_REST_Request $request The REST request object.
-	 * @return WP_REST_Response|WP_Error
+	 * Adds a new task to a specific section within a track. This endpoint
+	 * allows for more precise task placement compared to the general add_steps
+	 * endpoint which adds to the first available section.
+	 *
+	 * @api {post} /newfold-next-steps/v1/steps/tasks Add Task to Section
+	 * @apiName AddTaskToSection
+	 * @apiGroup NextSteps
+	 * @apiPermission manage_options
+	 *
+	 * @param WP_REST_Request $request The REST request object containing:
+	 * @param string $request->get_param('track_id') Required. Track identifier
+	 * @param string $request->get_param('section_id') Required. Section identifier
+	 * @param Object $request->get_param('task') Required. Task object with:
+	 *   - string id Required. Unique task identifier
+	 *   - string title Required. Task title
+	 *   - string description Optional. Task description
+	 *   - string href Optional. Task URL or action
+	 *   - string status Optional. Task status ('new', 'done', 'dismissed')
+	 *   - number priority Optional. Task priority
+	 *   - string source Optional. Task source
+	 *   - Object data_attributes Optional. Additional data attributes
+	 *
+	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error on failure.
+	 *
+	 * @apiSuccess {Object} plan The updated plan object (same structure as GET /steps)
+	 *
+	 * @apiError (400) add_task_failed Failed to add task to section
+	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function add_task_to_section( \WP_REST_Request $request ) {
 		$track_id   = $request->get_param( 'track_id' );
