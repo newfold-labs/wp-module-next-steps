@@ -39,41 +39,46 @@ class PluginRedirect {
 	 */
 	private static function get_partner_plugins() {
 		// key value pair of plugin slug and plugin configuration
-		return array( 
-			'jetpack' => array(
-				'file' => 'jetpack/jetpack.php',
+		return array(
+			'jetpack'          => array(
+				'file'          => 'jetpack/jetpack.php',
 				'redirect_url' => 'admin.php?page=my-jetpack#add-boost',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=jetpack',
 			),
-			'woocommerce' => array(
-				'file' => 'woocommerce/woocommerce.php',
+			'woocommerce'      => array(
+				'file'          => 'woocommerce/woocommerce.php',
 				'redirect_url' => 'admin.php?page=wc-settings&tab=advanced',
 				'fallback_url' => 'plugin-install.php?s=woocommerce&tab=search&type=term',
 			),
-			'yoast-seo' => array(
-				'file' => 'wordpress-seo/wp-seo.php',
+			'yoast-seo'        => array(
+				'file'          => 'wordpress-seo/wp-seo.php',
 				'redirect_url' => 'admin.php?page=wpseo_dashboard',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=yoast',
 			),
 			'advanced-reviews' => array(
-				'file' => 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php',
+				'file'          => 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php',
 				'redirect_url' => 'admin.php?page=advanced-reviews',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=advanced+reviews',
 			),
-			'affiliates' => array(
-				'file' => 'wp-plugin-affiliates/wp-plugin-affiliates.php',
+			'affiliates'        => array(
+				'file'          => 'wp-plugin-affiliates/wp-plugin-affiliates.php',
 				'redirect_url' => 'admin.php?page=affiliates',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=affiliate',
 			),
-			'gift-cards' => array(
-				'file' => 'yith-woocommerce-gift-cards-premium/init.php',
+			'gift-cards'       => array(
+				'file'          => 'yith-woocommerce-gift-cards-premium/init.php',
 				'redirect_url' => 'admin.php?page=gift-cards',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=gift+cards',
 			),
-			'email-templates' => array(
-				'file' => 'wp-plugin-email-templates/wp-plugin-email-templates.php',
+			'email-templates'  => array(
+				'file'          => 'wp-plugin-email-templates/wp-plugin-email-templates.php',
 				'redirect_url' => 'edit.php?post_type=bh-email-template',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=email+templates',
+			),
+			'akismet'          => array(
+				'file'          => 'akismet/akismet.php',
+				'redirect_url' => 'admin.php?page=akismet-key-config',
+				'fallback_url' => 'plugin-install.php?s=akismet&tab=search&type=term',
 			),
 		);
 	}
@@ -117,7 +122,7 @@ class PluginRedirect {
 		}
 
 		// Sanitize and validate parameters
-		$plugin_slug = isset( $_GET['p'] ) ? sanitize_text_field( wp_unslash( $_GET['p'] ) ) : '';
+		$plugin_slug  = isset( $_GET['p'] ) ? sanitize_text_field( wp_unslash( $_GET['p'] ) ) : '';
 		$redirect_url = isset( $_GET['r'] ) ? esc_url_raw( wp_unslash( $_GET['r'] ) ) : '';
 		$fallback_url = isset( $_GET['f'] ) ? esc_url_raw( wp_unslash( $_GET['f'] ) ) : '';
 
@@ -175,7 +180,7 @@ class PluginRedirect {
 			case 'jetpack':
 				// Check if Jetpack is both active AND connected
 				if (
-					is_plugin_active( $partner_plugins[$plugin_slug]['file'] ) &&
+					is_plugin_active( $partner_plugins[ $plugin_slug ]['file'] ) &&
 					class_exists( '\Automattic\Jetpack\Connection\Manager' )
 				) {
 					$manager = new \Automattic\Jetpack\Connection\Manager();
@@ -185,7 +190,7 @@ class PluginRedirect {
 
 			default:
 				// For other plugins, just check if they're active
-				return is_plugin_active( $partner_plugins[$plugin_slug]['file'] );
+				return is_plugin_active( $partner_plugins[ $plugin_slug ]['file'] );
 		}
 	}
 }

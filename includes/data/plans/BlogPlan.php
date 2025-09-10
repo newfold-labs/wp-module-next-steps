@@ -228,7 +228,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_connect_jetpack_stats',
 										'title'    => __( 'Connect Jetpack Stats (or Google Analytics 4)', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=stats'),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ),
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
@@ -242,7 +242,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_connect_facebook',
 										'title'    => __( 'Connect Facebook Page Auto-Sharing', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=jetpack-social'),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-social' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -250,7 +250,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_add_social_sharing',
 										'title'    => __( 'Add Social-Sharing Buttons', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('site-editor.php?p=%2Fstyles&section=%2Fblocks%2Fjetpack%252Fsharing-buttons'),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'site-editor.php?p=%2Fstyles&section=%2Fblocks%2Fjetpack%252Fsharing-buttons' ),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -414,7 +414,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_speed_up_site',
 										'title'    => __( 'Speed-up Site with Jetpack Boost', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('my-jetpack#/add-boost'),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'my-jetpack#/add-boost' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -422,7 +422,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_enable_auto_backups',
 										'title'    => __( 'Enable Automatic Backups & Update Alerts', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=jetpack-backup'),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-backup' ),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -444,7 +444,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_monitor_traffic',
 										'title'    => __( 'Monitor Traffic & Engagement', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=stats'),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
