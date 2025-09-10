@@ -219,6 +219,7 @@ export const NextSteps = () => {
 						index={ trackIndex }
 						key={ track.id }
 						sectionOpenCallback={ sectionOpenCallback }
+						sectionUpdateCallback={ sectionUpdateCallback }
 						showDismissed={ showDismissed }
 						taskUpdateCallback={ taskUpdateCallback }
 						track={ track }
