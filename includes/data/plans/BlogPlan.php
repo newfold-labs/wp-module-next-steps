@@ -217,13 +217,10 @@ class BlogPlan {
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
 									),
-
-									/*
-									Hide Email Templates and Jetpack Stats for now
 									array(
 										'id'       => 'blog_customize_notification_emails',
 										'title'    => __( 'Customize Notification Emails', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=bh_email_templates_panel',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates',
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -231,25 +228,21 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_connect_jetpack_stats',
 										'title'    => __( 'Connect Jetpack Stats (or Google Analytics 4)', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=stats',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=stats'),
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
 									),
-									*/
 								),
 							),
 							array(
 								'id'    => 'blog_promote_social',
 								'label' => __( 'Social Presence', 'wp-module-next-steps' ),
 								'tasks' => array(
-
-									/*
-									Hide Jetpack Social Sharing Settings for now
 									array(
 										'id'       => 'blog_connect_facebook',
 										'title'    => __( 'Connect Facebook Page Auto-Sharing', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=jetpack-social',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=jetpack-social'),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -257,12 +250,11 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_add_social_sharing',
 										'title'    => __( 'Add Social-Sharing Buttons', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/site-editor.php?p=%2Fstyles&section=%2Fblocks%2Fjetpack%252Fsharing-buttons',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('site-editor.php?p=%2Fstyles&section=%2Fblocks%2Fjetpack%252Fsharing-buttons'),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
 									),
-									*/
 									array(
 										'id'       => 'blog_embed_social_feed',
 										'title'    => __( 'Embed a Social Media Feed on Homepage', 'wp-module-next-steps' ),
@@ -280,7 +272,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_optimize_seo',
 										'title'    => __( 'Optimize On-Page SEO', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=wpseo_dashboard',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo',
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -313,18 +305,14 @@ class BlogPlan {
 								'id'    => 'enhance_reader_experience',
 								'label' => __( 'Enhance Reader Experience', 'wp-module-next-steps' ),
 								'tasks' => array(
-
-									/*
-									Hide Akismet for now
 									array(
 										'id'       => 'blog_enable_comments',
 										'title'    => __( 'Enable & Style Comments Section', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=akismet-key-config',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=akismet',
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
 									),
-									*/
 									array(
 										'id'       => 'blog_customize_author_boxes',
 										'title'    => __( 'Customize Author/Profile Boxes', 'wp-module-next-steps' ),
@@ -412,7 +400,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_install_yoast_premium',
 										'title'    => __( 'Install Yoast Premium for Advanced Schemas', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=wpseo_dashboard',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo',
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
@@ -423,13 +411,10 @@ class BlogPlan {
 								'id'    => 'blog_performance_security',
 								'label' => __( 'Performance & Security', 'wp-module-next-steps' ),
 								'tasks' => array(
-
-									/*
-									Hide Jetpack Boost and Automatic Backups for now
 									array(
 										'id'       => 'blog_speed_up_site',
 										'title'    => __( 'Speed-up Site with Jetpack Boost', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=my-jetpack#/add-boost',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('my-jetpack#/add-boost'),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -437,12 +422,11 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_enable_auto_backups',
 										'title'    => __( 'Enable Automatic Backups & Update Alerts', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=jetpack-backup',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=jetpack-backup'),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
 									),
-									*/
 									array(
 										'id'       => 'blog_create_staging_site',
 										'title'    => __( 'Create a Staging Site', 'wp-module-next-steps' ),
@@ -453,9 +437,6 @@ class BlogPlan {
 									),
 								),
 							),
-
-							/*
-							Hide Jetpack Analytics for now
 							array(
 								'id'    => 'blog_analytics',
 								'label' => __( 'Blog Analytics', 'wp-module-next-steps' ),
@@ -463,14 +444,13 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_monitor_traffic',
 										'title'    => __( 'Monitor Traffic & Engagement', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=stats',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=stats'),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
 									),
 								),
 							),
-							*/
 						),
 					),
 				),

@@ -243,18 +243,14 @@ class CorporatePlan {
 								'id'    => 'launch_marketing_tools',
 								'label' => __( 'Launch Essential Marketing Tools', 'wp-module-next-steps' ),
 								'tasks' => array(
-
-									/*
-									Hide Jetpack Stats for now
 									array(
 										'id'       => 'corporate_setup_jetpack_stats',
 										'title'    => __( 'Set Up Jetpack Stats', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=stats',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=stats'),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
 									),
-									*/
 									array(
 										'id'       => 'corporate_connect_search_console',
 										'title'    => __( 'Connect Google Search Console', 'wp-module-next-steps' ),
@@ -271,18 +267,14 @@ class CorporatePlan {
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
 									),
-
-									/*
-									Hide Jetpack Social Sharing Settings for now
 									array(
 										'id'       => 'corporate_add_social_sharing',
 										'title'    => __( 'Add Social Sharing Settings', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/site-editor.php?p=%2Fstyles&section=%2Fblocks%2Fjetpack%252Fsharing-buttons',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=jetpack-social'),
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
 									),
-									*/
 								),
 							),
 							array(
@@ -415,13 +407,10 @@ class CorporatePlan {
 								'id'    => 'site_performance_security',
 								'label' => __( 'Site Performance & Security', 'wp-module-next-steps' ),
 								'tasks' => array(
-
-									/*
-									Hide Jetpack Boost and Automatic Backups for now
 									array(
 										'id'       => 'corporate_install_jetpack_boost',
 										'title'    => __( 'Install Jetpack Boost or Caching Plugin', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=my-jetpack#/add-boost',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('my-jetpack#/add-boost'),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -429,12 +418,11 @@ class CorporatePlan {
 									array(
 										'id'       => 'corporate_enable_auto_backups',
 										'title'    => __( 'Enable Automatic Backups & Update Alerts', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=jetpack-backup',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=jetpack-backup'),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
 									),
-									*/
 									array(
 										'id'       => 'corporate_install_security_plugin',
 										'title'    => __( 'Install a Security Plugin', 'wp-module-next-steps' ),
@@ -457,18 +445,14 @@ class CorporatePlan {
 								'id'    => 'monitor_improve',
 								'label' => __( 'Monitor & Improve', 'wp-module-next-steps' ),
 								'tasks' => array(
-
-									/*
-									Hide Jetpack Traffic for now
 									array(
 										'id'       => 'corporate_review_traffic_engagement',
 										'title'    => __( 'Review Traffic & Engagement', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=stats',
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r='.urlencode('admin.php?page=stats'),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
 									),
-									*/
 									array(
 										'id'       => 'corporate_run_speed_test',
 										'title'    => __( 'Run a Speed Test', 'wp-module-next-steps' ),
