@@ -185,6 +185,19 @@ export const Task = memo(( props ) => {
 						</button>
 					</div>
 					{ renderStepContent( getHref(), getTarget() ) }
+                    <div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
+                        <a
+                            className="nfd-nextsteps-button nfd-nextsteps-button-link"
+                            data-nfd-click="nextsteps_step_link"
+                            data-nfd-event-category="nextsteps_step"
+                            data-nfd-event-key={ id }
+                            href={ getHref() }
+                            target={ getTarget() }
+                            title={ title }
+                        >
+                            { goIcon }
+                        </a>
+                    </div>
 				</div>
 			</div>
 		);

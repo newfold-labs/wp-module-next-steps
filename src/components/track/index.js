@@ -12,6 +12,7 @@ export const Track = memo(( props ) => {
 		showDismissed,
 		taskUpdateCallback,
 		trackOpenCallback,
+		sectionUpdateCallback,
 	} = props;
 
 	const handleToggleOpen = ( event ) => {
@@ -52,6 +53,7 @@ export const Track = memo(( props ) => {
 							key={ section.id }
 							section={ section }
 							sectionOpenCallback={ sectionOpenCallback }
+							sectionUpdateCallback={ sectionUpdateCallback }
 							showDismissed={ showDismissed }
 							taskUpdateCallback={ taskUpdateCallback }
 							trackId={ track.id }

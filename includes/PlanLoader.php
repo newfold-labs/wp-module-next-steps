@@ -7,6 +7,9 @@
 
 namespace NewfoldLabs\WP\Module\NextSteps;
 
+use NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan;
+use NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan;
+use NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan;
 use function NewfoldLabs\WP\ModuleLoader\container;
 use function NewfoldLabs\WP\Context\getContext;
 
@@ -40,6 +43,8 @@ class PlanLoader {
 
 		// Hook into WooCommerce activation to potentially switch to store plan
 		\add_action( 'activated_plugin', array( __CLASS__, 'on_woocommerce_activation' ), 10, 2 );
+
+		\add_action( 'woocommerce_rest_insert_product_object', array( __CLASS__, 'on_product_creation' ), 10, 3 );
 	}
 
 	/**
@@ -100,6 +105,26 @@ class PlanLoader {
 			$plan = PlanManager::switch_plan( 'ecommerce' );
 			if ( $plan ) {
 				StepsApi::set_data( $plan->to_array() );
+			}
+		}
+	}
+
+	/**
+	 * Handle product creation to mark "Add Products" task as complete.
+	 *
+	 * @param \WC_Product      $product The product being created.
+	 * @param \WP_REST_Request $request The REST request object.
+	 * @param bool             $creating True if creating a new product, false if updating.
+	 */
+	public static function on_product_creation( $product, $request, $creating ) {
+		if ( $creating ) {
+			$current_plan = PlanManager::get_current_plan();
+			if ( $current_plan && 'store_setup' === $current_plan->id ) {
+				// Mark the "Add Products" task as complete
+				$valid = $current_plan->update_section_status( 'store_build_track', 'add_first_product', 'completed' );
+				if ( $valid ) {
+					PlanManager::save_plan( $current_plan );
+				}
 			}
 		}
 	}
@@ -252,14 +277,14 @@ class PlanLoader {
 
 		switch ( $plan_type ) {
 			case 'ecommerce':
-				$plan = PlanManager::get_ecommerce_plan();
+				$plan = StorePlan::get_plan();
 				break;
 			case 'corporate':
-				$plan = PlanManager::get_corporate_plan();
+				$plan = CorporatePlan::get_plan();
 				break;
 			case 'blog':
 			default:
-				$plan = PlanManager::get_blog_plan();
+				$plan = BlogPlan::get_plan();
 				break;
 		}
 

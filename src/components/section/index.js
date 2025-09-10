@@ -14,6 +14,7 @@ export const Section = memo(( props ) => {
 		showDismissed,
 		taskUpdateCallback,
 		trackId,
+		sectionUpdateCallback,
 	} = props;
 	
 	// Get progress data from props (calculated in parent)
@@ -39,6 +40,8 @@ export const Section = memo(( props ) => {
 		) {
 			// display success celebration (slight css-base delay and animation)
 			setShowCompleteCelebration( true );
+			// also call the sectionUpdateCallback to update the backend
+			sectionUpdateCallback( trackId, section.id, 'done' );
 		}
 		
 		// Update refs for next render

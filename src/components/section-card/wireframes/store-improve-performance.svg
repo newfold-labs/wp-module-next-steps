@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 256 160">
+  <g clip-path="url(#a)">
+    <rect width="256" height="160" fill="#E6EAEF" rx="6"/>
+    <g fill="#E6EAEF" clip-path="url(#b)">
+      <path d="M0-4h256v160H0z"/>
+      <path d="M0-1h256v160H0z"/>
+    </g>
+    <path fill="url(#c)" d="M25 2h214v155H25z"/>
+    <g clip-path="url(#d)">
+      <rect width="44" height="44" x="181" y="17" fill="#00BE28" rx="12"/>
+      <path fill="#fff" d="M203.8 37v15.7l8-15.7h-8Zm-1.6 5.4V26.7l-8 15.7h8Z"/>
+    </g>
+  </g>
+  <defs>
+    <clipPath id="a">
+      <rect width="256" height="160" fill="#fff" rx="6"/>
+    </clipPath>
+    <clipPath id="b">
+      <path fill="#fff" d="M0-4h256v160H0z"/>
+    </clipPath>
+    <clipPath id="d">
+      <rect width="44" height="44" x="181" y="17" fill="#fff" rx="12"/>
+    </clipPath>
+    <pattern id="c" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <use transform="scale(0)"/>
+    </pattern>
+  </defs>
+</svg>
