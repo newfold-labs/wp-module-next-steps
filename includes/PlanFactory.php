@@ -250,8 +250,17 @@ class PlanFactory {
 	 * @param string $plan_type Plan type to create
 	 * @return Plan The created plan
 	 */
-	public static function create_plan( string $plan_type ): Plan {
+	public static function create_plan( string $plan_type, array $custom_plan_data = array() ): Plan {
 		switch ( $plan_type ) {
+			case 'custom':
+				if ( ! empty( $custom_plan_data ) ) {
+					return new Plan( $custom_plan_data );
+				}
+				// Fallback to blog plan if no custom data provided
+				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
+					require_once __DIR__ . '/Data/Plans/BlogPlan.php';
+				}
+				return BlogPlan::get_plan();
 			case 'ecommerce':
 				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
 					require_once __DIR__ . '/Data/Plans/StorePlan.php';
@@ -332,7 +341,12 @@ class PlanFactory {
 
 		// Load fresh plan data with new language context
 		// We'll create the plan directly based on the saved plan ID
-		$new_plan = self::create_plan( $saved_plan_type );
+		if ( $saved_plan_type === 'custom' ) {
+			// For custom plans, create a new plan with the same structure but updated language
+			$new_plan = self::create_plan( $saved_plan_type, $saved_data->to_array() );
+		} else {
+			$new_plan = self::create_plan( $saved_plan_type );
+		}
 
 		if ( $new_plan ) {
 			// Use PlanRepository::merge_plan_data to combine saved data with new translations

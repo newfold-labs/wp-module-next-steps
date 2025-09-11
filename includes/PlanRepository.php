@@ -57,7 +57,12 @@ class PlanRepository {
 			// Version is outdated, need to merge with latest plan data
 
 			// Load the appropriate new plan based on the saved plan type
-			$new_plan = PlanFactory::create_plan( $saved_plan->type );
+			if ( $saved_plan->type === 'custom' ) {
+				// For custom plans, create a new plan with the same structure
+				$new_plan = PlanFactory::create_plan( $saved_plan->type, $saved_plan->to_array() );
+			} else {
+				$new_plan = PlanFactory::create_plan( $saved_plan->type );
+			}
 
 			// Merge the saved data with the new plan (version will be updated automatically)
 			$merged_plan = self::merge_plan_data( $saved_plan, $new_plan );

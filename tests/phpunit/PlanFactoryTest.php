@@ -8,6 +8,7 @@
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 use NewfoldLabs\WP\Module\NextSteps\PlanRepository;
 use NewfoldLabs\WP\Module\NextSteps\StepsApi;
+use NewfoldLabs\WP\Module\NextSteps\Tests\PHPUnit\TestPlanFactory;
 
 /**
  * Class PlanLoaderTest
@@ -51,15 +52,15 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 * Test load_default_steps when steps already exist
 	 */
 	public function test_load_default_steps_when_steps_exist() {
-		// Set existing steps data
-		$existing_data = array( 'id' => 'existing_plan' );
-		update_option( StepsApi::OPTION, $existing_data );
+		// Set existing steps data using TestPlan
+		$existing_plan = TestPlanFactory::create_minimal_plan();
+		update_option( StepsApi::OPTION, $existing_plan->to_array() );
 
 		PlanFactory::load_default_steps();
 
 		// Verify that existing steps were not overwritten
 		$steps_data = get_option( StepsApi::OPTION );
-		$this->assertEquals( 'existing_plan', $steps_data['id'] );
+		$this->assertEquals( 'test_plan_minimal', $steps_data['id'] );
 	}
 
 	/**

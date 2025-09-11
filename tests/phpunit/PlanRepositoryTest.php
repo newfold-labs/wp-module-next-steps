@@ -4,6 +4,7 @@ use NewfoldLabs\WP\Module\NextSteps\PlanRepository;
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
+use NewfoldLabs\WP\Module\NextSteps\Tests\PHPUnit\TestPlanFactory;
 
 /**
  * Class PlanManagerTest
@@ -65,21 +66,17 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 	 * Test get_current_plan returns existing plan when available
 	 */
 	public function test_get_current_plan_returns_existing_plan() {
-		// Create and save a plan
-		$test_plan_data = array(
-			'id'          => 'test_plan',
-			'label'       => 'Test Plan',
-			'description' => 'A test plan',
-			'tracks'      => array(),
-		);
-
-		update_option( PlanRepository::OPTION, $test_plan_data );
+		// Create and save a plan using TestPlan
+		$test_plan = TestPlanFactory::create_minimal_plan();
+		update_option( PlanRepository::OPTION, $test_plan->to_array() );
 
 		$plan = PlanRepository::get_current_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
-		$this->assertEquals( 'test_plan', $plan->id );
-		$this->assertEquals( 'Test Plan', $plan->label );
+		// With custom plan creation, we can now verify the exact TestPlan structure
+		$this->assertEquals( 'test_plan_minimal', $plan->id );
+		$this->assertEquals( 'Minimal Test Plan', $plan->label );
+		$this->assertEquals( 'custom', $plan->type );
 	}
 
 	/**
@@ -240,15 +237,15 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 	 * Test update_task_status with valid task
 	 */
 	public function test_update_task_status() {
-		// Load ecommerce plan which has tasks
-		$plan = PlanFactory::create_plan( 'ecommerce' );
+		// Load test plan which has tasks
+		$plan = TestPlanFactory::create_test_plan();
 		PlanRepository::save_plan( $plan );
 
 		// Update task status
 		$result = PlanRepository::update_task_status(
-			'store_build_track',
-			'customize_your_store',
-			'store_upload_logo',
+			'test_track_a',
+			'test_section_1',
+			'test_task_1',
 			'done'
 		);
 
@@ -256,7 +253,7 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 
 		// Verify the task status was updated
 		$updated_plan = PlanRepository::get_current_plan();
-		$task         = $updated_plan->get_task( 'store_build_track', 'customize_your_store', 'store_upload_logo' );
+		$task         = $updated_plan->get_task( 'test_track_a', 'test_section_1', 'test_task_1' );
 		$this->assertEquals( 'done', $task->status );
 	}
 
@@ -264,7 +261,7 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 	 * Test update_task_status with invalid IDs
 	 */
 	public function test_update_task_status_invalid_ids() {
-		$plan = PlanFactory::create_plan( 'ecommerce' );
+		$plan = TestPlanFactory::create_test_plan();
 		PlanRepository::save_plan( $plan );
 
 		// Try to update non-existent task
@@ -282,24 +279,24 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 	 * Test get_task with valid IDs
 	 */
 	public function test_get_task_valid_ids() {
-		$plan = PlanFactory::create_plan( 'ecommerce' );
+		$plan = TestPlanFactory::create_test_plan();
 		PlanRepository::save_plan( $plan );
 
 		$task = PlanRepository::get_task(
-			'store_build_track',
-			'customize_your_store',
-			'store_upload_logo'
+			'test_track_a',
+			'test_section_1',
+			'test_task_1'
 		);
 
 		$this->assertInstanceOf( Task::class, $task );
-		$this->assertEquals( 'store_upload_logo', $task->id );
+		$this->assertEquals( 'test_task_1', $task->id );
 	}
 
 	/**
 	 * Test get_task with invalid IDs
 	 */
 	public function test_get_task_invalid_ids() {
-		$plan = PlanFactory::create_plan( 'ecommerce' );
+		$plan = TestPlanFactory::create_test_plan();
 		PlanRepository::save_plan( $plan );
 
 		$task = PlanRepository::get_task(
@@ -376,12 +373,12 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 	 * Test update_section_status
 	 */
 	public function test_update_section_status() {
-		$plan = PlanFactory::create_plan( 'ecommerce' );
+		$plan = TestPlanFactory::create_test_plan();
 		PlanRepository::save_plan( $plan );
 
 		$result = PlanRepository::update_section_state(
-			'store_build_track',
-			'customize_your_store',
+			'test_track_a',
+			'test_section_1',
 			'open',
 			false
 		);
@@ -390,7 +387,7 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 
 		// Verify the section status was updated
 		$updated_plan = PlanRepository::get_current_plan();
-		$section      = $updated_plan->get_section( 'store_build_track', 'customize_your_store' );
+		$section      = $updated_plan->get_section( 'test_track_a', 'test_section_1' );
 		$this->assertFalse( $section->open );
 	}
 
