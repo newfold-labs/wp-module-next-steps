@@ -17,9 +17,9 @@ namespace NewfoldLabs\WP\Module\NextSteps;
  * - Graceful error handling with fallback redirects
  *
  * Usage Examples (find more in the plan data files):
- * - Jetpack with defaults: admin.php?page=redirect-check&p=jetpack
- * - Yoast SEO with defaults: admin.php?page=redirect-check&p=yoast-seo
- * - WooCommerce with custom URLs: 'admin.php?page=redirect-check&p=woocommerce&r=' . urlencode( 'admin.php?page=wc-orders' ) . '&f=' . urlencode( 'admin.php?page=plugin-install.php?s=woocommerce' )
+ * - Jetpack with defaults: admin.php?page=redirect-check&p=jetpack&n=' . PluginRedirect::get_redirect_nonce( 'jetpack' )
+ * - Yoast SEO with defaults: admin.php?page=redirect-check&p=yoast-seo&n=' . PluginRedirect::get_redirect_nonce( 'yoast-seo' )
+ * - WooCommerce with custom URLs: 'admin.php?page=redirect-check&p=woocommerce&r=' . urlencode( 'admin.php?page=wc-orders' ) . '&f=' . urlencode( 'admin.php?page=plugin-install.php?s=woocommerce' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'woocommerce' )
  *
  * @package NewfoldLabs\WP\Module\NextSteps
  * @since 1.0.0
@@ -109,6 +109,7 @@ class PluginRedirect {
 	 *
 	 * URL Parameters:
 	 * - p: Plugin slug to check (required)
+	 * - n: WordPress nonce for CSRF protection (required)
 	 * - r: URL to redirect to if plugin is active (optional - uses default from whitelist)
 	 * - f: URL to redirect to if plugin is not active (optional - uses default from whitelist)
 	 *
@@ -122,6 +123,14 @@ class PluginRedirect {
 			'redirect-check' !== $_GET['page']
 		) {
 			return;
+		}
+
+		// Verify nonce for CSRF protection
+		$nonce = isset( $_GET['n'] ) ? sanitize_text_field( wp_unslash( $_GET['n'] ) ) : '';
+		if ( ! wp_verify_nonce( $nonce, 'plugin_redirect_' . ( $_GET['p'] ?? '' ) ) ) {
+			// Redirect to admin dashboard if nonce verification fails
+			wp_safe_redirect( admin_url() );
+			exit;
 		}
 
 		// Sanitize and validate parameters
@@ -157,6 +166,16 @@ class PluginRedirect {
 		// Perform redirect
 		wp_safe_redirect( $final_redirect_url );
 		exit;
+	}
+
+	/**
+	 * Generate a nonce for plugin redirect URLs
+	 *
+	 * @param string $plugin_slug The plugin slug
+	 * @return string The nonce for the plugin redirect
+	 */
+	public static function get_redirect_nonce( $plugin_slug ) {
+		return wp_create_nonce( 'plugin_redirect_' . $plugin_slug );
 	}
 
 	/**

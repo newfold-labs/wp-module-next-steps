@@ -3,7 +3,7 @@
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
-
+use function NewfoldLabs\WP\Module\NextSteps\PluginRedirect\get_redirect_nonce;
 /**
  * CorporatePlan - Defines the structured plan for corporate/business website setup
  *
@@ -247,7 +247,7 @@ class CorporatePlan {
 									array(
 										'id'       => 'corporate_setup_jetpack_stats',
 										'title'    => __( 'Set Up Jetpack Stats', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -271,7 +271,7 @@ class CorporatePlan {
 									array(
 										'id'       => 'corporate_add_social_sharing',
 										'title'    => __( 'Add Social Sharing Settings', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-social' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-social' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
@@ -411,7 +411,7 @@ class CorporatePlan {
 									array(
 										'id'       => 'corporate_install_jetpack_boost',
 										'title'    => __( 'Install Jetpack Boost or Caching Plugin', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'my-jetpack#/add-boost' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'my-jetpack#/add-boost' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -419,7 +419,7 @@ class CorporatePlan {
 									array(
 										'id'       => 'corporate_enable_auto_backups',
 										'title'    => __( 'Enable Automatic Backups & Update Alerts', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-backup' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-backup' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -449,7 +449,7 @@ class CorporatePlan {
 									array(
 										'id'       => 'corporate_review_traffic_engagement',
 										'title'    => __( 'Review Traffic & Engagement', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
