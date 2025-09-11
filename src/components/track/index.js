@@ -18,8 +18,11 @@ export const Track = memo(( props ) => {
 	const handleToggleOpen = ( event ) => {
 		// Get the new open state from the details element
 		const newOpenState = event.target.open;
-		// Call the callback to update the backend
-		trackOpenCallback( track.id, newOpenState );
+		// Only call the callback if the open state has changed
+		if ( event.target.open !== track.open ) {
+			// Call the callback to update the backend
+			trackOpenCallback( track.id, newOpenState );
+		}
 	};
 
 	return (

@@ -240,7 +240,7 @@ class PlanRepository {
 
 		$updated = false;
 		if ( 'open' === $type ) {
-			$updated = $plan->update_section_open( $track_id, $section_id, $value );
+			$updated = $plan->update_section_open( $track_id, $section_id, boolval( $value ) );
 		} elseif ( 'status' === $type ) {
 			$updated = $plan->update_section_status( $track_id, $section_id, $value );
 		}
@@ -265,7 +265,7 @@ class PlanRepository {
 			return false;
 		}
 
-		$updated = $plan->update_track_open( $track_id, $open );
+		$updated = $plan->update_track_open_state( $track_id, $open );
 		if ( $updated ) {
 			return self::save_plan( $plan );
 		}

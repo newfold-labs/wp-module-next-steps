@@ -557,6 +557,49 @@ class StepsApi {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
+		// Check if the state is actually changing to avoid unnecessary updates
+		$plan = PlanRepository::get_current_plan();
+		if ( ! $plan ) {
+			return new WP_Error( 'plan_not_found', __( 'Plan not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		$section = $plan->get_section( $track_id, $section_id );
+		if ( ! $section ) {
+			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		// Check if the value is actually different from current state
+		$current_value = null;
+		if ( 'open' === $type ) {
+			$current_value = $section->open;
+		} elseif ( 'status' === $type ) {
+			$current_value = $section->status;
+		}
+
+		// If the value hasn't changed, return success without updating
+		if ( $current_value === $value ) {
+			// Return the current section data
+			$response_data = array(
+				'id' => $section->id
+			);
+
+			if ( 'status' === $type ) {
+				$response_data['status'] = $section->status;
+
+				// Also include date_completed if it exists
+				if ( ! empty( $section->date_completed ) ) {
+					$response_data['date_completed'] = $section->date_completed;
+				}
+			}
+
+			// Include open state if it was requested
+			if ( 'open' === $type ) {
+				$response_data['open'] = $section->open;
+			}
+
+			return new WP_REST_Response( $response_data, 200 );
+		}
+
 		// Use PlanRepository to update the section state
 		$success = PlanRepository::update_section_state( $track_id, $section_id, $type, $value );
 
@@ -572,7 +615,7 @@ class StepsApi {
 
 		$section = $plan->get_section( $track_id, $section_id );
 		if ( ! $section ) {
-			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+			return new WP_Error( 'section_not_found', __( 'Updated section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
 		// Return only the essential changed properties
@@ -612,7 +655,9 @@ class StepsApi {
 	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 *
-	 * @apiSuccess {boolean} true Success indicator
+	 * @apiSuccess {Object} response Minimal track update data containing:
+	 * @apiSuccess {string} response.id Track ID
+	 * @apiSuccess {boolean} response.open Updated track open state
 	 *
 	 * @apiError (400) invalid_params Invalid parameters provided
 	 * @apiError (404) track_not_found Track not found in the specified location
@@ -628,6 +673,28 @@ class StepsApi {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
+		// Check if the state is actually changing to avoid unnecessary updates
+		$plan = PlanRepository::get_current_plan();
+		if ( ! $plan ) {
+			return new WP_Error( 'plan_not_found', __( 'Plan not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		$track = $plan->get_track( $track_id );
+		if ( ! $track ) {
+			return new WP_Error( 'track_not_found', __( 'Track not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		// If the open state hasn't changed, return success without updating
+		if ( $track->open === $open ) {
+			// Return the current track data
+			$response_data = array(
+				'id' => $track->id,
+				'open' => $track->open,
+			);
+
+			return new WP_REST_Response( $response_data, 200 );
+		}
+
 		// Use PlanRepository to update the track status
 		$success = PlanRepository::update_track_status( $track_id, $open );
 
@@ -635,7 +702,24 @@ class StepsApi {
 			return new WP_Error( 'track_not_found', __( 'Track not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
-		return new WP_REST_Response( true, 200 );
+		// Get the updated track data to return minimal changed properties
+		$plan = PlanRepository::get_current_plan();
+		if ( ! $plan ) {
+			return new WP_Error( 'plan_not_found', __( 'Plan not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		$track = $plan->get_track( $track_id );
+		if ( ! $track ) {
+			return new WP_Error( 'track_not_found', __( 'Track not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		// Return only the essential changed properties
+		$response_data = array(
+			'id' => $track->id,
+			'open' => $track->open,
+		);
+
+		return new WP_REST_Response( $response_data, 200 );
 	}
 
 

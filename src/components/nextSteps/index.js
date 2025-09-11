@@ -109,7 +109,19 @@ export const NextSteps = () => {
                 // console.error( 'Error updating track open state:', error );
             },
             ( response ) => {
-                setPlan( prevPlan => updateTrackInPlan( prevPlan, trackId, open ) );
+                // Use the returned track data to update the plan state
+                if ( response && typeof response === 'object' ) {
+                    setPlan( prevPlan => {
+                        return {
+                            ...prevPlan,
+                            tracks: prevPlan.tracks.map(track =>
+                                track.id === trackId
+                                    ? { ...track, ...response }
+                                    : track
+                            )
+                        };
+                    });
+                }
             }
         );
     };

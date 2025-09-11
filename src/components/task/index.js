@@ -27,7 +27,10 @@ export const Task = memo(( props ) => {
 		setStatus( task.status );
 	}, [ task.status ] );
 
-	const updateStatus = ( newStatus ) => {
+	const updateStatus = ( e, newStatus ) => {
+		// Prevent event from bubbling up to parent track details element
+		e.stopPropagation();
+		
 		const previousStatus = status;
 		setStatus( newStatus ); // optimistic update - for immediate UI feedback
 		// update task status via API
@@ -126,7 +129,7 @@ export const Task = memo(( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'done' )
+								updateStatus( e, 'done' )
 							}
 							title={ __(
 								'Mark Complete',
@@ -144,7 +147,7 @@ export const Task = memo(( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'dismissed' )
+								updateStatus( e, 'dismissed' )
 							}
 							title={ __( 'Skip', 'wp-module-next-steps' ) }
 						>
@@ -177,7 +180,7 @@ export const Task = memo(( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'new' )
+								updateStatus( e, 'new' )
 							}
 							title={ __( 'Restart', 'wp-module-next-steps' ) }
 						>
@@ -213,7 +216,7 @@ export const Task = memo(( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'new' )
+								updateStatus( e, 'new' )
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>
@@ -228,7 +231,7 @@ export const Task = memo(( props ) => {
 							data-nfd-event-category="nextsteps_step"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'new' )
+								updateStatus( e, 'new' )
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>

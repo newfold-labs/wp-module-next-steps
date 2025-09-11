@@ -55,8 +55,11 @@ export const Section = memo(( props ) => {
 		
 		// Get the new open state from the details element
 		const newOpenState = event.target.open;
-		// Call the callback to update the backend
-		sectionOpenCallback( trackId, section.id, newOpenState );
+		// Only call the callback if the open state has changed
+		if ( newOpenState !== section.open ) {
+			// Call the callback to update the backend
+			sectionOpenCallback( trackId, section.id, newOpenState );
+		}
 	};
 
 	return (
