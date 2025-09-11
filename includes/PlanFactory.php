@@ -257,25 +257,20 @@ class PlanFactory {
 				if ( ! empty( $custom_plan_data ) ) {
 					return new Plan( $custom_plan_data );
 				}
-				// Fallback to blog plan if no custom data provided
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
-					require_once __DIR__ . '/Data/Plans/BlogPlan.php';
-				}
-				return BlogPlan::get_plan();
 			case 'ecommerce':
 				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
-					require_once __DIR__ . '/Data/Plans/StorePlan.php';
+					require_once NFD_NEXTSTEPS_DIR . 'includes/Data/Plans/StorePlan.php';
 				}
 				return StorePlan::get_plan();
 			case 'corporate':
 				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
-					require_once __DIR__ . '/Data/Plans/CorporatePlan.php';
+					require_once NFD_NEXTSTEPS_DIR . 'includes/Data/Plans/CorporatePlan.php';
 				}
 				return CorporatePlan::get_plan();
 			case 'blog':
 			default:
 				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
-					require_once __DIR__ . '/Data/Plans/BlogPlan.php';
+					require_once NFD_NEXTSTEPS_DIR . 'includes/Data/Plans/BlogPlan.php';
 				}
 				return BlogPlan::get_plan();
 		}
