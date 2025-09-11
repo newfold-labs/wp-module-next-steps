@@ -138,7 +138,7 @@ class NextSteps {
 			\wp_enqueue_style( 'next-steps-widget-style' );
 
 			// Get current plan data
-			$current_plan    = PlanManager::get_current_plan();
+			$current_plan    = PlanRepository::get_current_plan();
 			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(
@@ -188,7 +188,7 @@ class NextSteps {
 			\wp_enqueue_style( 'next-steps-portal-style' );
 
 			// Get current plan data
-			$current_plan    = PlanManager::get_current_plan();
+			$current_plan    = PlanRepository::get_current_plan();
 			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(
