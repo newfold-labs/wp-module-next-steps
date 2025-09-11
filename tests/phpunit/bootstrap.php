@@ -38,14 +38,14 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 	}
 
 	if ( ! function_exists( 'get_option' ) ) {
-	/**
-	 * Retrieves an option value based on an option name.
-	 *
-	 * @param string $option  Name of option to retrieve.
-	 * @param mixed  $default Optional. Default value to return if the option does not exist.
-	 * @return mixed Value set for the option.
-	 */
-	function get_option( $option, $default = false ) {
+		/**
+		 * Retrieves an option value based on an option name.
+		 *
+		 * @param string $option  Name of option to retrieve.
+		 * @param mixed  $default Optional. Default value to return if the option does not exist.
+		 * @return mixed Value set for the option.
+		 */
+		function get_option( $option, $default = false ) {
 			return isset( $GLOBALS['test_wp_options'][ $option ] ) ? $GLOBALS['test_wp_options'][ $option ] : $default;
 		}
 	}
@@ -101,15 +101,15 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 	}
 
 	if ( ! function_exists( 'set_transient' ) ) {
-	/**
-	 * Sets/updates the value of a transient.
-	 *
-	 * @param string $transient  Transient name.
-	 * @param mixed  $value      Transient value.
-	 * @param int    $expiration Optional. Time until expiration in seconds. Default 0 (no expiration).
-	 * @return bool True on successful set, false on failure.
-	 */
-	function set_transient( $transient, $value, $expiration = 0 ) {
+		/**
+		 * Sets/updates the value of a transient.
+		 *
+		 * @param string $transient  Transient name.
+		 * @param mixed  $value      Transient value.
+		 * @param int    $expiration Optional. Time until expiration in seconds. Default 0 (no expiration).
+		 * @return bool True on successful set, false on failure.
+		 */
+		function set_transient( $transient, $value, $expiration = 0 ) {
 			$GLOBALS['test_wp_transients'][ $transient ] = $value;
 			return true;
 		}
@@ -130,14 +130,14 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 
 	// WordPress translation function.
 	if ( ! function_exists( '__' ) ) {
-	/**
-	 * Retrieve the translation of $text.
-	 *
-	 * @param string $text   Text to translate.
-	 * @param string $domain Optional. Text domain. Default 'default'.
-	 * @return string Translated text.
-	 */
-	function __( $text, $domain = 'default' ) {
+		/**
+		 * Retrieve the translation of $text.
+		 *
+		 * @param string $text   Text to translate.
+		 * @param string $domain Optional. Text domain. Default 'default'.
+		 * @return string Translated text.
+		 */
+		function __( $text, $domain = 'default' ) {
 			return $text;
 		}
 	}
@@ -171,15 +171,15 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 
 	// WordPress page functions.
 	if ( ! function_exists( 'get_page_by_path' ) ) {
-	/**
-	 * Retrieves a page given its path.
-	 *
-	 * @param string       $page_path  Page path.
-	 * @param string       $output     Optional. The required return type. Default OBJECT.
-	 * @param string|array $post_type  Optional. Post type or array of post types. Default 'page'.
-	 * @return WP_Post|array|null WP_Post (or array) on success, or null on failure.
-	 */
-	function get_page_by_path( $page_path, $output = OBJECT, $post_type = 'page' ) {
+		/**
+		 * Retrieves a page given its path.
+		 *
+		 * @param string       $page_path  Page path.
+		 * @param string       $output     Optional. The required return type. Default OBJECT.
+		 * @param string|array $post_type  Optional. Post type or array of post types. Default 'page'.
+		 * @return WP_Post|array|null WP_Post (or array) on success, or null on failure.
+		 */
+		function get_page_by_path( $page_path, $output = OBJECT, $post_type = 'page' ) {
 			return false; // No pages exist in test environment.
 		}
 	}
@@ -198,14 +198,14 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 
 	// WordPress site info functions.
 	if ( ! function_exists( 'get_bloginfo' ) ) {
-	/**
-	 * Retrieves information about the current site.
-	 *
-	 * @param string $show   Optional. Site info to retrieve. Default empty (site name).
-	 * @param string $filter Optional. How to filter what is retrieved. Default 'raw'.
-	 * @return string Requested information.
-	 */
-	function get_bloginfo( $show = '', $filter = 'raw' ) {
+		/**
+		 * Retrieves information about the current site.
+		 *
+		 * @param string $show   Optional. Site info to retrieve. Default empty (site name).
+		 * @param string $filter Optional. How to filter what is retrieved. Default 'raw'.
+		 * @return string Requested information.
+		 */
+		function get_bloginfo( $show = '', $filter = 'raw' ) {
 			$blog_info = array(
 				'name'        => 'Test Site',
 				'description' => 'A test WordPress site',
@@ -239,14 +239,14 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 
 	// WordPress cache functions.
 	if ( ! function_exists( 'wp_cache_delete' ) ) {
-	/**
-	 * Removes the cache contents matching key and group.
-	 *
-	 * @param int|string $key   What the contents in the cache are called.
-	 * @param string     $group Optional. Where the cache contents are grouped. Default empty.
-	 * @return bool True on successful removal, false on failure.
-	 */
-	function wp_cache_delete( $key, $group = '' ) {
+		/**
+		 * Removes the cache contents matching key and group.
+		 *
+		 * @param int|string $key   What the contents in the cache are called.
+		 * @param string     $group Optional. Where the cache contents are grouped. Default empty.
+		 * @return bool True on successful removal, false on failure.
+		 */
+		function wp_cache_delete( $key, $group = '' ) {
 			return true; // Mock cache deletion
 		}
 	}
@@ -327,23 +327,23 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 		 * Minimal WordPress test case for unit testing.
 		 */
 		class WP_UnitTestCase extends PHPUnit\Framework\TestCase {
-		/**
-		 * Set up the test case.
-		 *
-		 * @return void
-		 */
-		public function setUp(): void {
-			parent::setUp();
-		}
+			/**
+			 * Set up the test case.
+			 *
+			 * @return void
+			 */
+			public function setUp(): void {
+				parent::setUp();
+			}
 
-		/**
-		 * Tear down the test case.
-		 *
-		 * @return void
-		 */
-		public function tearDown(): void {
-			parent::tearDown();
-		}
+			/**
+			 * Tear down the test case.
+			 *
+			 * @return void
+			 */
+			public function tearDown(): void {
+				parent::tearDown();
+			}
 		}
 	}
 
