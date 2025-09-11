@@ -59,7 +59,7 @@ class PlanManager {
 		$saved_plan = Plan::from_array( $plan_data );
 
 		// Check if we need to merge with new plan data
-		$saved_version   = $saved_plan->version ?: '1.0.0';
+		$saved_version   = $saved_plan->version ? $saved_plan->version : '1.0.0';
 		$current_version = self::PLAN_DATA_VERSION;
 
 		if ( version_compare( $saved_version, $current_version, '<' ) ) {
@@ -111,7 +111,7 @@ class PlanManager {
 				// If no matching plan type, fall back to loading default
 				$plan = PlanLoader::load_default_plan();
 		}
-		
+
 		return $plan;
 	}
 

@@ -343,45 +343,28 @@ class PlanLoader {
 	 * @param string $change_type The type of change ('site', 'locale_switch')
 	 */
 	private static function resync_next_steps_data( $new_locale, $change_type ) {
-		// Log the language change for debugging
-		error_log( sprintf( 
-			'PlanLoader: Language changed to %s (%s)', 
-			$new_locale, 
-			$change_type 
-		) );
-
 		// Get the saved plan data (preserves user progress)
-		$saved_data = new Plan( get_option( PlanManager::OPTION, array() ) );
+		$saved_data      = new Plan( get_option( PlanManager::OPTION, array() ) );
 		$saved_plan_type = $saved_data->type;
-		
+
 		// Load fresh plan data with new language context
 		// We'll create the plan directly based on the saved plan ID
 		$new_plan = PlanManager::get_plan_type_data( $saved_plan_type );
-		
+
 		if ( $new_plan ) {
 			// Use PlanManager::merge_plan_data to combine saved data with new translations
 			// This preserves user progress while updating language content
 			$merged_plan = PlanManager::merge_plan_data( $saved_data, $new_plan );
-			
+
 			// Save the merged plan data
 			$saved = PlanManager::save_plan( $merged_plan );
-			
+
 			if ( $saved ) {
-				error_log( sprintf( 
-					'PlanLoader: Successfully synced plan data for language: %s (preserved user progress)', 
-					$new_locale 
-				) );
-				
 				// Clear any relevant caches
 				wp_cache_delete( 'nfd_next_steps', 'options' );
-				
 				// Trigger action for other components that might need to know about the sync
 				do_action( 'nfd_next_steps_language_synced', $new_locale, $change_type, $merged_plan );
-			} else {
-				error_log( 'PlanLoader: Failed to save synced plan data' );
 			}
-		} else {
-			error_log( 'PlanLoader: Failed to load plan data for language sync' );
 		}
 	}
 }

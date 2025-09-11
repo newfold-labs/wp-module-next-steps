@@ -98,12 +98,10 @@ class Track {
 	 */
 	public function merge_with( Track $saved_track ): Track {
 		$merged_data = $this->to_array();
-		
 		// Preserve track open state from saved data
 		if ( isset( $saved_track->open ) ) {
 			$merged_data['open'] = $saved_track->open;
 		}
-		
 		// Merge sections recursively
 		$merged_sections = array();
 		foreach ( $this->sections as $section ) {
@@ -115,21 +113,18 @@ class Track {
 					break;
 				}
 			}
-			
 			if ( $saved_section ) {
 				$merged_sections[] = $section->merge_with( $saved_section );
 			} else {
 				$merged_sections[] = $section;
 			}
 		}
-		
 		$merged_data['sections'] = array_map(
 			function ( Section $section ) {
 				return $section->to_array();
 			},
 			$merged_sections
 		);
-		
 		return new Track( $merged_data );
 	}
 

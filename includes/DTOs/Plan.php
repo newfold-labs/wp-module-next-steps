@@ -107,12 +107,11 @@ class Plan {
 	 */
 	public function merge_with( Plan $saved_plan ): Plan {
 		$merged_data = $this->to_array();
-		
 		// Preserve plan ID and type from saved data
-		$merged_data['id'] = $saved_plan->id;
+		$merged_data['id']   = $saved_plan->id;
 		$merged_data['type'] = $saved_plan->type;
 		// Note: version is NOT preserved - it should be updated to current version
-		
+
 		// Merge tracks recursively
 		$merged_tracks = array();
 		foreach ( $this->tracks as $track ) {
@@ -124,21 +123,18 @@ class Plan {
 					break;
 				}
 			}
-			
 			if ( $saved_track ) {
 				$merged_tracks[] = $track->merge_with( $saved_track );
 			} else {
 				$merged_tracks[] = $track;
 			}
 		}
-		
 		$merged_data['tracks'] = array_map(
 			function ( Track $track ) {
 				return $track->to_array();
 			},
 			$merged_tracks
 		);
-		
 		return new Plan( $merged_data );
 	}
 

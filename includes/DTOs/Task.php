@@ -109,12 +109,10 @@ class Task {
 	 */
 	public function merge_with( Task $saved_task ): Task {
 		$merged_data = $this->to_array();
-		
 		// Preserve status from saved task
 		if ( ! empty( $saved_task->status ) ) {
 			$merged_data['status'] = $saved_task->status;
 		}
-		
 		return new Task( $merged_data );
 	}
 

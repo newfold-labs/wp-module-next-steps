@@ -44,42 +44,42 @@ class PluginRedirect {
 		// key value pair of plugin slug and plugin configuration
 		return array(
 			'jetpack'          => array(
-				'file'          => 'jetpack/jetpack.php',
+				'file'         => 'jetpack/jetpack.php',
 				'redirect_url' => 'admin.php?page=my-jetpack#add-boost',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=jetpack',
 			),
 			'woocommerce'      => array(
-				'file'          => 'woocommerce/woocommerce.php',
+				'file'         => 'woocommerce/woocommerce.php',
 				'redirect_url' => 'admin.php?page=wc-settings&tab=advanced',
 				'fallback_url' => 'plugin-install.php?s=woocommerce&tab=search&type=term',
 			),
 			'yoast-seo'        => array(
-				'file'          => 'wordpress-seo/wp-seo.php',
+				'file'         => 'wordpress-seo/wp-seo.php',
 				'redirect_url' => 'admin.php?page=wpseo_dashboard',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=yoast',
 			),
 			'advanced-reviews' => array(
-				'file'          => 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php',
+				'file'         => 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php',
 				'redirect_url' => 'admin.php?page=advanced-reviews',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=advanced+reviews',
 			),
-			'affiliates'        => array(
-				'file'          => 'wp-plugin-affiliates/wp-plugin-affiliates.php',
+			'affiliates'       => array(
+				'file'         => 'wp-plugin-affiliates/wp-plugin-affiliates.php',
 				'redirect_url' => 'admin.php?page=affiliates',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=affiliate',
 			),
 			'gift-cards'       => array(
-				'file'          => 'yith-woocommerce-gift-cards-premium/init.php',
+				'file'         => 'yith-woocommerce-gift-cards-premium/init.php',
 				'redirect_url' => 'admin.php?page=gift-cards',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=gift+cards',
 			),
 			'email-templates'  => array(
-				'file'          => 'wp-plugin-email-templates/wp-plugin-email-templates.php',
+				'file'         => 'wp-plugin-email-templates/wp-plugin-email-templates.php',
 				'redirect_url' => 'edit.php?post_type=bh-email-template',
 				'fallback_url' => 'admin.php?page=solutions&category=all&s=email+templates',
 			),
 			'akismet'          => array(
-				'file'          => 'akismet/akismet.php',
+				'file'         => 'akismet/akismet.php',
 				'redirect_url' => 'admin.php?page=akismet-key-config',
 				'fallback_url' => 'plugin-install.php?s=akismet&tab=search&type=term',
 			),

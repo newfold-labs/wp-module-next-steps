@@ -152,7 +152,6 @@ class Section {
 	 */
 	public function merge_with( Section $saved_section ): Section {
 		$merged_data = $this->to_array();
-		
 		// Preserve section properties from saved data
 		if ( isset( $saved_section->open ) ) {
 			$merged_data['open'] = $saved_section->open;
@@ -163,7 +162,6 @@ class Section {
 		if ( ! empty( $saved_section->date_completed ) ) {
 			$merged_data['date_completed'] = $saved_section->date_completed;
 		}
-		
 		// Merge tasks recursively
 		$merged_tasks = array();
 		foreach ( $this->tasks as $task ) {
@@ -175,21 +173,18 @@ class Section {
 					break;
 				}
 			}
-			
 			if ( $saved_task ) {
 				$merged_tasks[] = $task->merge_with( $saved_task );
 			} else {
 				$merged_tasks[] = $task;
 			}
 		}
-		
 		$merged_data['tasks'] = array_map(
 			function ( Task $task ) {
 				return $task->to_array();
 			},
 			$merged_tasks
 		);
-		
 		return new Section( $merged_data );
 	}
 
