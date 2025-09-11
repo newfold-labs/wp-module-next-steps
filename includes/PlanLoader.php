@@ -120,10 +120,11 @@ class PlanLoader {
 	public static function on_product_creation( $product, $request, $creating ) {
 		if ( $creating ) {
 			$current_plan = PlanManager::get_current_plan();
-			if ( $current_plan && 'store_setup' === $current_plan->id ) {
-				// Mark the "Add Products" task as complete
-				$valid = $current_plan->update_section_status( 'store_build_track', 'add_first_product', 'completed' );
-				if ( $valid ) {
+			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
+				// Mark the "Add Products" section and task as complete
+				$validtask    = $current_plan->update_task_status( 'store_build_track', 'setup_products', 'store_add_product', 'completed' );
+				$validsection = $current_plan->update_section_status( 'store_build_track', 'setup_products', 'completed' );
+				if ( $validtask && $validsection ) {
 					PlanManager::save_plan( $current_plan );
 				}
 			}
@@ -273,7 +274,7 @@ class PlanLoader {
 	 *
 	 * @return \NewfoldLabs\WP\Module\NextSteps\DTOs\Plan
 	 */
-	public static function load_default_plan(): \NewfoldLabs\WP\Module\NextSteps\DTOs\Plan {
+	public static function load_default_plan(): Plan {
 		$plan_type = self::determine_site_type();
 
 		switch ( $plan_type ) {
