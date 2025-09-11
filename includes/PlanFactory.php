@@ -341,7 +341,7 @@ class PlanFactory {
 
 		// Load fresh plan data with new language context
 		// We'll create the plan directly based on the saved plan ID
-		if ( $saved_plan_type === 'custom' ) {
+		if ( 'custom' === $saved_plan_type ) {
 			// For custom plans, create a new plan with the same structure but updated language
 			$new_plan = self::create_plan( $saved_plan_type, $saved_data->to_array() );
 		} else {

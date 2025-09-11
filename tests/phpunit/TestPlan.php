@@ -288,14 +288,14 @@ class TestPlan {
 		$plan_data['tracks'][1]['open'] = false; // User closed track B
 
 		// Modify section states
-		$plan_data['tracks'][0]['sections'][0]['open'] = true;
-		$plan_data['tracks'][0]['sections'][0]['status'] = 'completed';
+		$plan_data['tracks'][0]['sections'][0]['open']           = true;
+		$plan_data['tracks'][0]['sections'][0]['status']         = 'completed';
 		$plan_data['tracks'][0]['sections'][0]['date_completed'] = '2024-01-01 12:00:00';
 
-		$plan_data['tracks'][0]['sections'][1]['open'] = false;
+		$plan_data['tracks'][0]['sections'][1]['open']   = false;
 		$plan_data['tracks'][0]['sections'][1]['status'] = 'in_progress';
 
-		$plan_data['tracks'][1]['sections'][0]['open'] = true;
+		$plan_data['tracks'][1]['sections'][0]['open']   = true;
 		$plan_data['tracks'][1]['sections'][0]['status'] = 'new';
 
 		// Modify task states
@@ -314,7 +314,7 @@ class TestPlan {
 	 * @return array Plan data with old version
 	 */
 	public static function get_old_version_plan_data(): array {
-		$plan_data = self::get_plan_data();
+		$plan_data            = self::get_plan_data();
 		$plan_data['version'] = '0.9.0'; // Old version
 		return $plan_data;
 	}

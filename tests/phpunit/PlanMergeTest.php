@@ -108,9 +108,14 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create a saved plan with only one task in section 1
-		$saved_plan = TestPlanFactory::create_plan_with_task_modifications( 'test_track_a', 'test_section_1', 'test_task_1', array(
-			'status' => 'done',
-		) );
+		$saved_plan = TestPlanFactory::create_plan_with_task_modifications(
+			'test_track_a',
+			'test_section_1',
+			'test_task_1',
+			array(
+				'status' => 'done',
+			)
+		);
 
 		// Remove the second task to simulate an old plan structure
 		$saved_plan_data = $saved_plan->to_array();
@@ -135,7 +140,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 
 		// If there are other tasks, they should have default status
 		foreach ( $new_tasks as $task ) {
-			if ( $task->id !== 'test_task_1' ) {
+			if ( 'test_task_1' !== $task->id ) {
 				$this->assertEquals( 'new', $task->status );
 			}
 		}
@@ -149,11 +154,15 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create a saved plan with only one section in track A
-		$saved_plan = TestPlanFactory::create_plan_with_section_modifications( 'test_track_a', 'test_section_1', array(
-			'open' => true,
-			'status' => 'completed',
-			'date_completed' => '2024-01-01 12:00:00',
-		) );
+		$saved_plan = TestPlanFactory::create_plan_with_section_modifications(
+			'test_track_a',
+			'test_section_1',
+			array(
+				'open'           => true,
+				'status'         => 'completed',
+				'date_completed' => '2024-01-01 12:00:00',
+			)
+		);
 
 		// Remove the second section to simulate an old plan structure
 		$saved_plan_data = $saved_plan->to_array();
@@ -176,7 +185,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		// Find a section that wasn't in the saved plan
 		$new_section_found = false;
 		foreach ( $all_sections as $section ) {
-			if ( $section->id !== 'test_section_1' ) {
+			if ( 'test_section_1' !== $section->id ) {
 				$this->assertTrue( $section->open ); // Default state
 				$this->assertEquals( 'new', $section->status ); // Default state
 				$this->assertNull( $section->date_completed ); // Default state
@@ -195,9 +204,12 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create a saved plan with only one track
-		$saved_plan = TestPlanFactory::create_plan_with_track_modifications( 'test_track_a', array(
-			'open' => true, // User has opened this track
-		) );
+		$saved_plan = TestPlanFactory::create_plan_with_track_modifications(
+			'test_track_a',
+			array(
+				'open' => true, // User has opened this track
+			)
+		);
 
 		// Remove the second track to simulate an old plan structure
 		$saved_plan_data = $saved_plan->to_array();
@@ -218,7 +230,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		// Find a track that wasn't in the saved plan
 		$new_track_found = false;
 		foreach ( $all_tracks as $track ) {
-			if ( $track->id !== 'test_track_a' ) {
+			if ( 'test_track_a' !== $track->id ) {
 				$this->assertFalse( $track->open ); // Default state is false
 				$new_track_found = true;
 				break;
@@ -235,44 +247,46 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create a saved plan with extensive user progress using TestPlanFactory
-		$saved_plan = TestPlanFactory::create_custom_plan( array(
-			'tracks' => array(
-				array(
-					'id'   => 'test_track_a',
-					'open' => false, // User closed this track
-					'sections' => array(
-						array(
-							'id'             => 'test_section_1',
-							'open'           => true,
-							'status'         => 'completed',
-							'date_completed' => '2024-01-01 12:00:00',
-							'tasks' => array(
-								array(
-									'id'     => 'test_task_1',
-									'status' => 'done',
-								),
-								array(
-									'id'     => 'test_task_2',
-									'status' => 'dismissed',
+		$saved_plan = TestPlanFactory::create_custom_plan(
+			array(
+				'tracks' => array(
+					array(
+						'id'       => 'test_track_a',
+						'open'     => false, // User closed this track
+						'sections' => array(
+							array(
+								'id'             => 'test_section_1',
+								'open'           => true,
+								'status'         => 'completed',
+								'date_completed' => '2024-01-01 12:00:00',
+								'tasks' => array(
+									array(
+										'id'     => 'test_task_1',
+										'status' => 'done',
+									),
+									array(
+										'id'     => 'test_task_2',
+										'status' => 'dismissed',
+									),
 								),
 							),
-						),
-						array(
-							'id'             => 'test_section_2',
-							'open'           => false,
-							'status'         => 'in_progress',
-							'date_completed' => null,
-							'tasks' => array(
-								array(
-									'id'     => 'test_task_3',
-									'status' => 'new',
+							array(
+								'id'             => 'test_section_2',
+								'open'           => false,
+								'status'         => 'in_progress',
+								'date_completed' => null,
+								'tasks' => array(
+									array(
+										'id'     => 'test_task_3',
+										'status' => 'new',
+									),
 								),
 							),
 						),
 					),
 				),
-			),
-		) );
+			)
+		);
 
 		// Merge the plans
 		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
@@ -321,28 +335,30 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create a saved plan with user progress using TestPlanFactory
-		$saved_plan = TestPlanFactory::create_custom_plan( array(
-			'tracks' => array(
-				array(
-					'id'   => 'test_track_a',
-					'open' => true,
-					'sections' => array(
-						array(
-							'id'             => 'test_section_1',
-							'open'           => true,
-							'status'         => 'completed',
-							'date_completed' => '2024-01-01 12:00:00',
-							'tasks' => array(
-								array(
-									'id'     => 'test_task_1',
-									'status' => 'done',
+		$saved_plan = TestPlanFactory::create_custom_plan(
+			array(
+				'tracks' => array(
+					array(
+						'id'       => 'test_track_a',
+						'open'     => true,
+						'sections' => array(
+							array(
+								'id'             => 'test_section_1',
+								'open'           => true,
+								'status'         => 'completed',
+								'date_completed' => '2024-01-01 12:00:00',
+								'tasks'          => array(
+									array(
+										'id'     => 'test_task_1',
+										'status' => 'done',
+									),
 								),
 							),
 						),
 					),
 				),
-			),
-		) );
+			)
+		);
 
 		// Merge the plans (simulating language change)
 		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
@@ -376,9 +392,11 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create an empty saved plan using TestPlanFactory
-		$saved_plan = TestPlanFactory::create_custom_plan( array(
-			'tracks' => array(),
-		) );
+		$saved_plan = TestPlanFactory::create_custom_plan(
+			array(
+				'tracks' => array(),
+			)
+		);
 
 		// Merge the plans
 		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
@@ -402,24 +420,26 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create a corrupted saved plan (missing required fields) using TestPlanFactory
-		$saved_plan = TestPlanFactory::create_custom_plan( array(
-			'tracks' => array(
-				array(
-					'id'       => 'test_track_a',
-					'sections' => array(
-						array(
-							'id'    => 'test_section_1',
-							'tasks' => array(
-								array(
-									'id'     => 'test_task_1',
-									'status' => 'done',
+		$saved_plan = TestPlanFactory::create_custom_plan(
+			array(
+				'tracks' => array(
+					array(
+						'id'       => 'test_track_a',
+						'sections' => array(
+							array(
+								'id'    => 'test_section_1',
+								'tasks' => array(
+									array(
+										'id'     => 'test_task_1',
+										'status' => 'done',
+									),
 								),
 							),
 						),
 					),
 				),
-			),
-		) );
+			)
+		);
 
 		// Merge the plans
 		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );

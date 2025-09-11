@@ -36,7 +36,7 @@ class PlanRepository {
 		// $plan_data = array(); // uncomment to reset plan data for debugging
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on site type
-			$site_type = PlanFactory::determine_site_type();
+			$site_type    = PlanFactory::determine_site_type();
 			$default_plan = PlanFactory::create_plan( $site_type );
 			if ( $default_plan ) {
 				// Save the default plan for future use
@@ -57,7 +57,7 @@ class PlanRepository {
 			// Version is outdated, need to merge with latest plan data
 
 			// Load the appropriate new plan based on the saved plan type
-			if ( $saved_plan->type === 'custom' ) {
+			if ( 'custom' === $saved_plan->type ) {
 				// For custom plans, create a new plan with the same structure
 				$new_plan = PlanFactory::create_plan( $saved_plan->type, $saved_plan->to_array() );
 			} else {

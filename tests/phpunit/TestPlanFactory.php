@@ -87,7 +87,7 @@ class TestPlanFactory {
 	 * Create a test plan with specific track modifications
 	 *
 	 * @param string $track_id Track ID to modify
-	 * @param array $track_modifications Track modifications
+	 * @param array  $track_modifications Track modifications
 	 * @return Plan Modified test plan
 	 */
 	public static function create_plan_with_track_modifications( string $track_id, array $track_modifications ): Plan {
@@ -109,7 +109,7 @@ class TestPlanFactory {
 	 *
 	 * @param string $track_id Track ID containing the section
 	 * @param string $section_id Section ID to modify
-	 * @param array $section_modifications Section modifications
+	 * @param array  $section_modifications Section modifications
 	 * @return Plan Modified test plan
 	 */
 	public static function create_plan_with_section_modifications( string $track_id, string $section_id, array $section_modifications ): Plan {
@@ -136,7 +136,7 @@ class TestPlanFactory {
 	 * @param string $track_id Track ID containing the task
 	 * @param string $section_id Section ID containing the task
 	 * @param string $task_id Task ID to modify
-	 * @param array $task_modifications Task modifications
+	 * @param array  $task_modifications Task modifications
 	 * @return Plan Modified test plan
 	 */
 	public static function create_plan_with_task_modifications( string $track_id, string $section_id, string $task_id, array $task_modifications ): Plan {
