@@ -25,7 +25,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		// Clean up options before each test
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
 	}
 
@@ -34,7 +34,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 */
 	public function test_load_default_steps_when_no_steps_exist() {
 		// Ensure no steps option exists
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		// No external option setup needed - test should use intelligent detection
 		// which defaults to 'blog' in test environment
@@ -42,7 +42,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::load_default_steps();
 
 		// Verify that steps were loaded and saved to the module's own option
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'blog_setup', $steps_data['id'] );
 	}
@@ -82,7 +82,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 */
 	public function test_on_sitetype_change_no_change() {
 		// Clean slate
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		$old_value = array( 'site_type' => 'personal' );
 		$new_value = array( 'site_type' => 'personal' ); // Same as old
@@ -117,7 +117,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 */
 	public function test_on_sitetype_change_invalid_new_value() {
 		// Clean slate
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		$old_value = array( 'site_type' => 'personal' );
 
@@ -143,7 +143,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 */
 	public function test_on_sitetype_change_invalid_site_type() {
 		// Clean slate
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		$old_value = array( 'site_type' => 'personal' );
 		$new_value = array( 'site_type' => 'invalid_type' );
@@ -209,7 +209,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 			// Clean slate for each test
 			delete_option( PlanRepository::OPTION );
 
-			delete_option( StepsApi::OPTION );
+			delete_option( PlanRepository::OPTION );
 
 			// Use a different old value to ensure a change is detected
 			$old_value = array( 'site_type' => $old_site_types[ $i ] );
@@ -232,7 +232,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	public function test_on_woocommerce_activation() {
 		// Clean slate
 		delete_option( PlanRepository::OPTION );
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		// Set up initial blog steps
 		$blog_plan = PlanRepository::switch_plan( 'blog' );
@@ -260,7 +260,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	public function test_on_woocommerce_activation_ignores_other_plugins() {
 		// Clean slate
 		delete_option( PlanRepository::OPTION );
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		// Set up initial blog steps
 		$blog_plan = PlanRepository::switch_plan( 'blog' );
@@ -373,13 +373,13 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 */
 	public function test_load_default_steps_backfills_solution() {
 		// Clean slate - simulate existing site without onboarding or solution data
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		// Test the full flow - this should load default steps based on site detection
 		PlanFactory::load_default_steps();
 
 		// Verify steps were loaded using intelligent detection
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertArrayHasKey( 'id', $steps_data );
 		// Should default to blog in test environment (no ecommerce/corporate indicators)
@@ -391,7 +391,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 */
 	public function test_load_default_steps_respects_existing_solution() {
 		// Clean slate
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		// Set an existing solution via transient (primary method)
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
@@ -400,7 +400,8 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::load_default_steps();
 
 		// Verify correct plan was loaded
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
+		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'store_setup', $steps_data['id'] );
 	}
 
@@ -420,7 +421,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		// Clean up options after each test
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
-		delete_option( StepsApi::OPTION );
+		delete_option( PlanRepository::OPTION );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
 
 		parent::tearDown();

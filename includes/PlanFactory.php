@@ -84,7 +84,8 @@ class PlanFactory {
 		}
 
 		// Load default plan based on site type
-		$default_plan = self::load_default_plan();
+		$site_type = self::determine_site_type();
+		$default_plan = self::create_plan( $site_type );
 		if ( $default_plan ) {
 			PlanRepository::save_plan( $default_plan );
 		}

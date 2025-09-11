@@ -238,5 +238,4 @@ class Task {
 	public function get_completion_percentage(): int {
 		return $this->is_completed() ? 100 : 0;
 	}
-
 }

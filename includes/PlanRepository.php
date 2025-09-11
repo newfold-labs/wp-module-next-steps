@@ -35,8 +35,15 @@ class PlanRepository {
 		$plan_data = get_option( self::OPTION, array() );
 		// $plan_data = array(); // uncomment to reset plan data for debugging
 		if ( empty( $plan_data ) ) {
-			// Load default plan based on solution
-			return PlanFactory::load_default_plan();
+			// Load default plan based on site type
+			$site_type = PlanFactory::determine_site_type();
+			$default_plan = PlanFactory::create_plan( $site_type );
+			if ( $default_plan ) {
+				// Save the default plan for future use
+				self::save_plan( $default_plan );
+				return $default_plan;
+			}
+			return null;
 		}
 
 		// Convert array data to Plan object immediately

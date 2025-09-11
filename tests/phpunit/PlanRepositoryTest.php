@@ -105,7 +105,7 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
 		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $solutions_data );
 
-		$plan = PlanFactory::load_default_plan();
+		$plan = PlanRepository::get_current_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'store_setup', $plan->id );
