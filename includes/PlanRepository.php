@@ -6,16 +6,14 @@ use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Track;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Section;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
-use NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan;
-use NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan;
-use NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan;
 
 /**
- * Plan Manager
+ * PlanRepository
  *
- * Handles plan loading, switching, and management based on nfd_solution option
+ * Handles plan persistence, data management, and CRUD operations.
+ * Responsible for storing, retrieving, and managing plan data.
  */
-class PlanManager {
+class PlanRepository {
 
 	/**
 	 * Option name where the current plan is stored
@@ -29,20 +27,6 @@ class PlanManager {
 	const PLAN_DATA_VERSION = NFD_NEXTSTEPS_MODULE_VERSION;
 
 	/**
-	 * Available plan types, this maps the site_type from onboarding module to internal plan types
-	 *
-	 * Maps nfd_module_onboarding_site_info['site_type'] values to internal plan types:
-	 * - 'personal' (onboarding) -> 'blog' (internal plan)
-	 * - 'business' (onboarding) -> 'corporate' (internal plan)
-	 * - 'ecommerce' (onboarding) -> 'ecommerce' (internal plan)
-	 */
-	const PLAN_TYPES = array(
-		'personal'  => 'blog',
-		'business'  => 'corporate',
-		'ecommerce' => 'ecommerce',
-	);
-
-	/**
 	 * Get the current plan
 	 *
 	 * @return Plan|null
@@ -52,7 +36,7 @@ class PlanManager {
 		// $plan_data = array(); // uncomment to reset plan data for debugging
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on solution
-			return PlanLoader::load_default_plan();
+			return PlanFactory::load_default_plan();
 		}
 
 		// Convert array data to Plan object immediately
@@ -66,7 +50,7 @@ class PlanManager {
 			// Version is outdated, need to merge with latest plan data
 
 			// Load the appropriate new plan based on the saved plan type
-			$new_plan = self::get_plan_type_data( $saved_plan->type );
+			$new_plan = PlanFactory::create_plan( $saved_plan->type );
 
 			// Merge the saved data with the new plan (version will be updated automatically)
 			$merged_plan = self::merge_plan_data( $saved_plan, $new_plan );
@@ -78,41 +62,6 @@ class PlanManager {
 		}
 
 		return $saved_plan;
-	}
-
-	/**
-	 * Load plan type data
-	 *
-	 * @param string $plan_type Plan type
-	 * @return Plan
-	 */
-	public static function get_plan_type_data( string $plan_type ): Plan {
-		$plan = null;
-		switch ( $plan_type ) {
-			case 'blog':
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
-					require_once __DIR__ . '/includes/Data/Plans/BlogPlan.php';
-				}
-				$plan = BlogPlan::get_plan();
-				break;
-			case 'corporate':
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
-					require_once __DIR__ . '/includes/Data/Plans/CorporatePlan.php';
-				}
-				$plan = CorporatePlan::get_plan();
-				break;
-			case 'ecommerce':
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
-					require_once __DIR__ . '/includes/Data/Plans/StorePlan.php';
-				}
-				$plan = StorePlan::get_plan();
-				break;
-			default:
-				// If no matching plan type, fall back to loading default
-				$plan = PlanLoader::load_default_plan();
-		}
-
-		return $plan;
 	}
 
 	/**
@@ -139,7 +88,6 @@ class PlanManager {
 		return $new_plan->merge_with( $saved_plan );
 	}
 
-
 	/**
 	 * Switch to a different plan type
 	 *
@@ -148,19 +96,19 @@ class PlanManager {
 	 */
 	public static function switch_plan( string $plan_type ) {
 		if (
-			! in_array( $plan_type, array_values( self::PLAN_TYPES ), true ) &&
-			! in_array( $plan_type, array_keys( self::PLAN_TYPES ), true )
+			! in_array( $plan_type, array_values( PlanFactory::PLAN_TYPES ), true ) &&
+			! in_array( $plan_type, array_keys( PlanFactory::PLAN_TYPES ), true )
 		) {
 			return false;
 		}
 
 		// If we received an onboarding site_type, convert it to internal plan type
-		if ( array_key_exists( $plan_type, self::PLAN_TYPES ) ) {
-			$plan_type = self::PLAN_TYPES[ $plan_type ];
+		if ( array_key_exists( $plan_type, PlanFactory::PLAN_TYPES ) ) {
+			$plan_type = PlanFactory::PLAN_TYPES[ $plan_type ];
 		}
 
 		// Load the appropriate plan directly
-		$plan = self::get_plan_type_data( $plan_type );
+		$plan = PlanFactory::create_plan( $plan_type );
 
 		// Save the loaded plan
 		self::save_plan( $plan );
@@ -171,10 +119,10 @@ class PlanManager {
 	/**
 	 * Update task status
 	 *
-	 * @param string $track_id Track ID
+	 * @param string $track_id   Track ID
 	 * @param string $section_id Section ID
-	 * @param string $task_id Task ID
-	 * @param string $status New status
+	 * @param string $task_id    Task ID
+	 * @param string $status     New status
 	 * @return bool
 	 */
 	public static function update_task_status( string $track_id, string $section_id, string $task_id, string $status ): bool {
@@ -183,20 +131,20 @@ class PlanManager {
 			return false;
 		}
 
-		$success = $plan->update_task_status( $track_id, $section_id, $task_id, $status );
-		if ( $success ) {
-			self::save_plan( $plan );
+		$updated = $plan->update_task_status( $track_id, $section_id, $task_id, $status );
+		if ( $updated ) {
+			return self::save_plan( $plan );
 		}
 
-		return $success;
+		return false;
 	}
 
 	/**
-	 * Get task by IDs
+	 * Get a specific task
 	 *
-	 * @param string $track_id Track ID
+	 * @param string $track_id   Track ID
 	 * @param string $section_id Section ID
-	 * @param string $task_id Task ID
+	 * @param string $task_id    Task ID
 	 * @return Task|null
 	 */
 	public static function get_task( string $track_id, string $section_id, string $task_id ): ?Task {
@@ -209,11 +157,11 @@ class PlanManager {
 	}
 
 	/**
-	 * Add task to a section
+	 * Add a task to a section
 	 *
-	 * @param string $track_id Track ID
+	 * @param string $track_id   Track ID
 	 * @param string $section_id Section ID
-	 * @param Task   $task Task to add
+	 * @param Task   $task       Task to add
 	 * @return bool
 	 */
 	public static function add_task( string $track_id, string $section_id, Task $task ): bool {
@@ -222,27 +170,23 @@ class PlanManager {
 			return false;
 		}
 
-		$section = $plan->get_section( $track_id, $section_id );
-		if ( ! $section ) {
-			return false;
+		$added = $plan->add_task( $track_id, $section_id, $task );
+		if ( $added ) {
+			return self::save_plan( $plan );
 		}
 
-		$success = $section->add_task( $task );
-		if ( $success ) {
-			self::save_plan( $plan );
-		}
-
-		return $success;
+		return false;
 	}
 
 	/**
-	 * Reset plan to defaults
+	 * Reset plan to default
 	 *
 	 * @return Plan
 	 */
 	public static function reset_plan(): Plan {
-		delete_option( self::OPTION );
-		return PlanLoader::load_default_plan();
+		$default_plan = PlanFactory::load_default_plan();
+		self::save_plan( $default_plan );
+		return $default_plan;
 	}
 
 	/**
@@ -264,17 +208,16 @@ class PlanManager {
 			'completed_sections'    => $plan->get_completed_sections_count(),
 			'total_tracks'          => $plan->get_total_tracks_count(),
 			'completed_tracks'      => $plan->get_completed_tracks_count(),
-			'is_completed'          => $plan->is_completed(),
 		);
 	}
 
 	/**
-	 * Update section state (unified for both open and status)
+	 * Update section state
 	 *
-	 * @param string $track_id Track ID
+	 * @param string $track_id   Track ID
 	 * @param string $section_id Section ID
-	 * @param string $type Type of update ('open' or 'status')
-	 * @param mixed  $value Value to set (bool for 'open', string for 'status')
+	 * @param string $type       Type of update ('open' or 'status')
+	 * @param mixed  $value      New value
 	 * @return bool
 	 */
 	public static function update_section_state( string $track_id, string $section_id, string $type, $value ): bool {
@@ -283,25 +226,25 @@ class PlanManager {
 			return false;
 		}
 
-		$success = false;
+		$updated = false;
 		if ( 'open' === $type ) {
-			$success = $plan->update_section_open_state( $track_id, $section_id, (bool) $value );
+			$updated = $plan->update_section_open( $track_id, $section_id, $value );
 		} elseif ( 'status' === $type ) {
-			$success = $plan->update_status_for_section( $track_id, $section_id, (string) $value );
+			$updated = $plan->update_section_status( $track_id, $section_id, $value );
 		}
 
-		if ( $success ) {
-			self::save_plan( $plan );
+		if ( $updated ) {
+			return self::save_plan( $plan );
 		}
 
-		return $success;
+		return false;
 	}
 
 	/**
-	 * Update track open state
+	 * Update track status
 	 *
 	 * @param string $track_id Track ID
-	 * @param bool   $open Open state
+	 * @param bool   $open     Whether track should be open/expanded
 	 * @return bool
 	 */
 	public static function update_track_status( string $track_id, bool $open ): bool {
@@ -310,11 +253,11 @@ class PlanManager {
 			return false;
 		}
 
-		$success = $plan->update_track_open_state( $track_id, $open );
-		if ( $success ) {
-			self::save_plan( $plan );
+		$updated = $plan->update_track_open( $track_id, $open );
+		if ( $updated ) {
+			return self::save_plan( $plan );
 		}
 
-		return $success;
+		return false;
 	}
 }

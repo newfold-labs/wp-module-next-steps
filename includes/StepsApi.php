@@ -3,6 +3,7 @@
 namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
+use NewfoldLabs\WP\Module\NextSteps\PlanRepository;
 use WP_Error;
 use WP_HTTP_Response;
 use WP_REST_Controller;
@@ -326,7 +327,7 @@ class StepsApi {
 	 * Set the option where steps are stored.
 	 *
 	 * Helper method to store plan data in WordPress options table.
-	 * This method is used internally by the PlanManager to persist
+	 * This method is used internally by the PlanRepository to persist
 	 * plan state changes.
 	 *
 	 * @param array $steps Data to be stored in the options table
@@ -355,7 +356,7 @@ class StepsApi {
 	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function get_steps() {
-		$plan = PlanManager::get_current_plan();
+		$plan = PlanRepository::get_current_plan();
 
 		if ( ! $plan ) {
 			return new \WP_Error( 'no_plan', __( 'No plan found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
@@ -403,7 +404,7 @@ class StepsApi {
 	 */
 	public static function add_steps( $new_tasks ) {
 		// Get the current plan
-		$plan = PlanManager::get_current_plan();
+		$plan = PlanRepository::get_current_plan();
 
 		if ( ! $plan ) {
 			return new \WP_Error( 'no_plan', __( 'No plan found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
@@ -448,7 +449,7 @@ class StepsApi {
 		}
 
 		// Save the updated plan
-		PlanManager::save_plan( $plan );
+		PlanRepository::save_plan( $plan );
 
 		return new \WP_REST_Response( $plan->to_array(), 200 );
 	}
@@ -497,15 +498,15 @@ class StepsApi {
 			return new WP_Error( 'invalid_status', __( 'Invalid status provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
-		// Use PlanManager to update the task status
-		$success = PlanManager::update_task_status( $track_id, $section_id, $task_id, $status );
+		// Use PlanRepository to update the task status
+		$success = PlanRepository::update_task_status( $track_id, $section_id, $task_id, $status );
 
 		if ( ! $success ) {
 			return new WP_Error( 'step_not_found', __( 'Step not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
 		// Get the updated plan
-		// $plan = PlanManager::get_current_plan();
+		// $plan = PlanRepository::get_current_plan();
 
 		return new WP_REST_Response( true, 200 );
 	}
@@ -552,8 +553,8 @@ class StepsApi {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
-		// Use PlanManager to update the section state
-		$success = PlanManager::update_section_state( $track_id, $section_id, $type, $value );
+		// Use PlanRepository to update the section state
+		$success = PlanRepository::update_section_state( $track_id, $section_id, $type, $value );
 
 		if ( ! $success ) {
 			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
@@ -596,8 +597,8 @@ class StepsApi {
 			return new WP_Error( 'invalid_params', __( 'Invalid parameters provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
-		// Use PlanManager to update the track status
-		$success = PlanManager::update_track_status( $track_id, $open );
+		// Use PlanRepository to update the track status
+		$success = PlanRepository::update_track_status( $track_id, $open );
 
 		if ( ! $success ) {
 			return new WP_Error( 'track_not_found', __( 'Track not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
@@ -632,7 +633,7 @@ class StepsApi {
 	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function get_plan_stats() {
-		$stats = PlanManager::get_plan_stats();
+		$stats = PlanRepository::get_plan_stats();
 		return new WP_REST_Response( $stats, 200 );
 	}
 
@@ -661,7 +662,7 @@ class StepsApi {
 	public static function switch_plan( WP_REST_Request $request ) {
 		$plan_type = $request->get_param( 'plan_type' );
 
-		$plan = PlanManager::switch_plan( $plan_type );
+		$plan = PlanRepository::switch_plan( $plan_type );
 
 		if ( ! $plan ) {
 			return new WP_Error( 'invalid_plan_type', __( 'Invalid plan type provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
@@ -689,7 +690,7 @@ class StepsApi {
 	 * @apiError (403) forbidden Insufficient permissions
 	 */
 	public static function reset_plan() {
-		$plan = PlanManager::reset_plan();
+		$plan = PlanRepository::reset_plan();
 		return new WP_REST_Response( $plan->to_array(), 200 );
 	}
 
@@ -732,13 +733,13 @@ class StepsApi {
 
 		$task = Task::from_array( $task_data );
 
-		$success = PlanManager::add_task( $track_id, $section_id, $task );
+		$success = PlanRepository::add_task( $track_id, $section_id, $task );
 
 		if ( ! $success ) {
 			return new WP_Error( 'add_task_failed', __( 'Failed to add task to section.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
-		$plan = PlanManager::get_current_plan();
+		$plan = PlanRepository::get_current_plan();
 		return new WP_REST_Response( $plan->to_array(), 200 );
 	}
 }
