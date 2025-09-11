@@ -3,7 +3,7 @@
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
-use function NewfoldLabs\WP\Module\NextSteps\PluginRedirect\get_redirect_nonce;
+use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
 
 /**
  * BlogPlan - Defines the structured plan for blog/personal website setup
@@ -222,7 +222,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_customize_notification_emails',
 										'title'    => __( 'Customize Notification Emails', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates&n=' . get_redirect_nonce( 'email-templates' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates&n=' . PluginRedirect::get_redirect_nonce( 'email-templates' ),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -230,7 +230,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_connect_jetpack_stats',
 										'title'    => __( 'Connect Jetpack Stats (or Google Analytics 4)', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
@@ -244,7 +244,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_connect_facebook',
 										'title'    => __( 'Connect Facebook Page Auto-Sharing', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-social' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-social' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -252,7 +252,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_add_social_sharing',
 										'title'    => __( 'Add Social-Sharing Buttons', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'site-editor.php?p=%2Fstyles&section=%2Fblocks%2Fjetpack%252Fsharing-buttons' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'site-editor.php?p=%2Fstyles&section=%2Fblocks%2Fjetpack%252Fsharing-buttons' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -274,7 +274,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_optimize_seo',
 										'title'    => __( 'Optimize On-Page SEO', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo&n=' . get_redirect_nonce( 'yoast-seo' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo&n=' . PluginRedirect::get_redirect_nonce( 'yoast-seo' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -310,7 +310,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_enable_comments',
 										'title'    => __( 'Enable & Style Comments Section', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=akismet&n=' . get_redirect_nonce( 'akismet' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=akismet&n=' . PluginRedirect::get_redirect_nonce( 'akismet' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -402,7 +402,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_install_yoast_premium',
 										'title'    => __( 'Install Yoast Premium for Advanced Schemas', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo&n=' . get_redirect_nonce( 'yoast-seo' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo&n=' . PluginRedirect::get_redirect_nonce( 'yoast-seo' ),
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
@@ -416,7 +416,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_speed_up_site',
 										'title'    => __( 'Speed-up Site with Jetpack Boost', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'my-jetpack#/add-boost' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'my-jetpack#/add-boost' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -424,7 +424,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_enable_auto_backups',
 										'title'    => __( 'Enable Automatic Backups & Update Alerts', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-backup' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=jetpack-backup' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
@@ -446,7 +446,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_monitor_traffic',
 										'title'    => __( 'Monitor Traffic & Engagement', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ) . '&n=' . get_redirect_nonce( 'jetpack' ),
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&r=' . rawurlencode( 'admin.php?page=stats' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'jetpack' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',

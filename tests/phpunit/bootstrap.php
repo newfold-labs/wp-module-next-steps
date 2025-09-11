@@ -251,6 +251,84 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 		}
 	}
 
+	// WordPress nonce functions.
+	if ( ! function_exists( 'wp_create_nonce' ) ) {
+		/**
+		 * Creates a cryptographic token tied to a specific action, user, user session, and window of time.
+		 *
+		 * @param string|int $action Scalar value to add context to the nonce.
+		 * @return string The one use form token.
+		 */
+		function wp_create_nonce( $action = -1 ) {
+			return 'test_nonce_' . md5( $action );
+		}
+	}
+
+	if ( ! function_exists( 'wp_verify_nonce' ) ) {
+		/**
+		 * Verifies that a correct security nonce was used with time limit.
+		 *
+		 * @param string     $nonce  Nonce value that was used for verification.
+		 * @param string|int $action Should give context to what is taking place and be the same when nonce was created.
+		 * @return int|false 1 if the nonce is valid and generated between 0-12 hours ago, 2 if the nonce is valid and generated between 12-24 hours ago, false if the nonce is invalid.
+		 */
+		function wp_verify_nonce( $nonce, $action = -1 ) {
+			$expected = wp_create_nonce( $action );
+			return $nonce === $expected ? 1 : false;
+		}
+	}
+
+	if ( ! function_exists( 'wp_unslash' ) ) {
+		/**
+		 * Unslash a value.
+		 *
+		 * @param string|array $value The value to be unslashed.
+		 * @return string|array Unslashed $value.
+		 */
+		function wp_unslash( $value ) {
+			return is_array( $value ) ? array_map( 'wp_unslash', $value ) : stripslashes( $value );
+		}
+	}
+
+	if ( ! function_exists( 'sanitize_text_field' ) ) {
+		/**
+		 * Sanitizes a string from user input or from the database.
+		 *
+		 * @param string $str String to sanitize.
+		 * @return string Sanitized string.
+		 */
+		function sanitize_text_field( $str ) {
+			return trim( strip_tags( $str ) );
+		}
+	}
+
+	if ( ! function_exists( 'admin_url' ) ) {
+		/**
+		 * Retrieves the URL to the admin area for the current site.
+		 *
+		 * @param string $path   Optional. Path relative to the admin URL. Default empty.
+		 * @param string $scheme Optional. The scheme to use. Default is 'admin', which obeys force_ssl_admin() and is_ssl(). 'http' or 'https' can be passed to force those schemes.
+		 * @return string Admin URL link with optional path appended.
+		 */
+		function admin_url( $path = '', $scheme = 'admin' ) {
+			return 'http://example.com/wp-admin/' . ltrim( $path, '/' );
+		}
+	}
+
+	if ( ! function_exists( 'wp_safe_redirect' ) ) {
+		/**
+		 * Performs a safe (local) redirect, using wp_redirect().
+		 *
+		 * @param string $location The path to redirect to.
+		 * @param int    $status   Optional. HTTP status code to use. Default '302' (Moved Temporarily).
+		 * @return bool False if $location is not provided, true otherwise.
+		 */
+		function wp_safe_redirect( $location, $status = 302 ) {
+			// Mock redirect - just return true in tests
+			return true;
+		}
+	}
+
 	// Global hook storage for WordPress functions.
 	if ( ! isset( $GLOBALS['test_wp_hooks'] ) ) {
 		$GLOBALS['test_wp_hooks'] = array();
