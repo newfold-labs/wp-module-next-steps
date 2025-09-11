@@ -84,7 +84,7 @@ class PlanFactory {
 		}
 
 		// Load default plan based on site type
-		$site_type = self::determine_site_type();
+		$site_type    = self::determine_site_type();
 		$default_plan = self::create_plan( $site_type );
 		if ( $default_plan ) {
 			PlanRepository::save_plan( $default_plan );
@@ -248,6 +248,7 @@ class PlanFactory {
 	 * Create a plan by type
 	 *
 	 * @param string $plan_type Plan type to create
+	 * @param array  $custom_plan_data Custom plan data
 	 * @return Plan The created plan
 	 */
 	public static function create_plan( string $plan_type, array $custom_plan_data = array() ): Plan {

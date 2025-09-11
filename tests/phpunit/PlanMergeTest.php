@@ -259,7 +259,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 								'open'           => true,
 								'status'         => 'completed',
 								'date_completed' => '2024-01-01 12:00:00',
-								'tasks' => array(
+								'tasks'          => array(
 									array(
 										'id'     => 'test_task_1',
 										'status' => 'done',
@@ -275,7 +275,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 								'open'           => false,
 								'status'         => 'in_progress',
 								'date_completed' => null,
-								'tasks' => array(
+								'tasks'          => array(
 									array(
 										'id'     => 'test_task_3',
 										'status' => 'new',
