@@ -8,7 +8,6 @@
  * @phpcs:disable Universal.NamingConventions.NoReservedKeywordParameterNames.defaultFound
  * @phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
  * @phpcs:disable Generic.CodeAnalysis.UselessOverridingMethod.Found
- * 
  */
 
 // Load up Composer dependencies.
@@ -298,7 +297,7 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 		 * @return string Sanitized string.
 		 */
 		function sanitize_text_field( $str ) {
-			return trim( strip_tags( $str ) );
+			return trim( wp_strip_all_tags( $str ) );
 		}
 	}
 
