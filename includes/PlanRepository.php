@@ -68,7 +68,7 @@ class PlanRepository {
 	 * Save the current plan
 	 *
 	 * @param Plan $plan Plan to save
-	 * @return bool
+	 * @return bool Whether the plan was saved
 	 */
 	public static function save_plan( Plan $plan ): bool {
 		$plan_data = $plan->to_array();
@@ -192,7 +192,7 @@ class PlanRepository {
 	/**
 	 * Get plan statistics
 	 *
-	 * @return array
+	 * @return array The plan statistics
 	 */
 	public static function get_plan_stats(): array {
 		$plan = self::get_current_plan();
@@ -218,7 +218,7 @@ class PlanRepository {
 	 * @param string $section_id Section ID
 	 * @param string $type       Type of update ('open' or 'status')
 	 * @param mixed  $value      New value
-	 * @return bool
+	 * @return bool Whether the section state was updated
 	 */
 	public static function update_section_state( string $track_id, string $section_id, string $type, $value ): bool {
 		$plan = self::get_current_plan();
@@ -245,7 +245,7 @@ class PlanRepository {
 	 *
 	 * @param string $track_id Track ID
 	 * @param bool   $open     Whether track should be open/expanded
-	 * @return bool
+	 * @return bool Whether the track status was updated
 	 */
 	public static function update_track_status( string $track_id, bool $open ): bool {
 		$plan = self::get_current_plan();

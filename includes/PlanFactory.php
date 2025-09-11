@@ -68,6 +68,8 @@ class PlanFactory {
 
 	/**
 	 * Load default steps on init
+	 *
+	 * @return void
 	 */
 	public static function load_default_steps() {
 		// Only load if we're in admin or doing AJAX
@@ -90,6 +92,10 @@ class PlanFactory {
 
 	/**
 	 * Handle site type changes
+	 *
+	 * @param array $old_value The old site type
+	 * @param array $new_value The new site type
+	 * @return void
 	 */
 	public static function on_sitetype_change( $old_value, $new_value ) {
 		$old_site_type = $old_value['site_type'] ?? '';
@@ -108,6 +114,10 @@ class PlanFactory {
 
 	/**
 	 * Handle WooCommerce activation
+	 *
+	 * @param string $plugin The plugin name
+	 * @param bool $network_wide Whether the plugin is being activated on the network
+	 * @return void
 	 */
 	public static function on_woocommerce_activation( $plugin, $network_wide ) {
 		if ( 'woocommerce/woocommerce.php' !== $plugin ) {
@@ -120,6 +130,11 @@ class PlanFactory {
 
 	/**
 	 * Handle product creation
+	 *
+	 * @param object $product The product object
+	 * @param object $request The request object
+	 * @param bool $creating Whether the product is being created
+	 * @return void
 	 */
 	public static function on_product_creation( $product, $request, $creating ) {
 		if ( $creating ) {
@@ -137,6 +152,8 @@ class PlanFactory {
 
 	/**
 	 * Detect site type based on various factors
+	 *
+	 * @return string The detected site type
 	 */
 	public static function detect_site_type() {
 		// Check if WooCommerce is active
@@ -155,13 +172,17 @@ class PlanFactory {
 
 	/**
 	 * Check if site is ecommerce
+	 *
+	 * @return bool Whether the site is ecommerce
 	 */
 	private static function is_ecommerce_site() {
 		return \class_exists( 'WooCommerce' ) || \is_plugin_active( 'woocommerce/woocommerce.php' );
 	}
 
 	/**
-	 * Check if site is corporate
+	 * Check if site is corporate	
+	 *
+	 * @return bool Whether the site is corporate
 	 */
 	private static function is_corporate_site() {
 		// Check for business-related plugins or themes
@@ -182,6 +203,8 @@ class PlanFactory {
 
 	/**
 	 * Determine site type from onboarding data or detection
+	 *
+	 * @return string The determined site type
 	 */
 	public static function determine_site_type(): string {
 		// First, try to get from onboarding data
@@ -200,7 +223,7 @@ class PlanFactory {
 	 * Create a plan by type
 	 *
 	 * @param string $plan_type Plan type to create
-	 * @return Plan
+	 * @return Plan The created plan
 	 */
 	public static function create_plan( string $plan_type ): Plan {
 		switch ( $plan_type ) {
@@ -224,7 +247,9 @@ class PlanFactory {
 	}
 
 	/**
-	 * Load default plan based on site type
+	 * Load default plan based on site type	
+	 *
+	 * @return Plan The loaded plan
 	 */
 	public static function load_default_plan(): Plan {
 		$plan_type = self::determine_site_type();
@@ -233,6 +258,8 @@ class PlanFactory {
 
 	/**
 	 * Get current plan type
+	 *
+	 * @return string The current plan type
 	 */
 	public static function get_current_plan_type(): string {
 		$current_plan = PlanRepository::get_current_plan();
@@ -244,6 +271,10 @@ class PlanFactory {
 
 	/**
 	 * Handle language changes
+	 *
+	 * @param string $old_value The old language code
+	 * @param string $new_value The new language code
+	 * @return void
 	 */
 	public static function on_language_change( $old_value, $new_value ) {
 		if ( $old_value === $new_value ) {
@@ -254,6 +285,9 @@ class PlanFactory {
 
 	/**
 	 * Handle locale switch
+	 *
+	 * @param string $locale The new locale code
+	 * @return void
 	 */
 	public static function on_locale_switch( $locale ) {
 		self::resync_next_steps_data( $locale, 'locale_switch' );
@@ -264,6 +298,7 @@ class PlanFactory {
 	 *
 	 * @param string $new_locale The new locale/language code
 	 * @param string $change_type The type of change ('site', 'locale_switch')
+	 * @return void
 	 */
 	private static function resync_next_steps_data( $new_locale, $change_type ) {
 		// Get the saved plan data (preserves user progress)
