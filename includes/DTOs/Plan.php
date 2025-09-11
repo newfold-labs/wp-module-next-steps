@@ -424,7 +424,7 @@ class Plan {
 	 *
 	 * @param string $track_id Track ID
 	 * @param string $section_id Section ID
-	 * @param bool $open Open state
+	 * @param bool   $open Open state
 	 * @return bool
 	 */
 	public function update_section_open( string $track_id, string $section_id, bool $open ): bool {
