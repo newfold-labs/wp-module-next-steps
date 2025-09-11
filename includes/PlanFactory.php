@@ -116,7 +116,7 @@ class PlanFactory {
 	 * Handle WooCommerce activation
 	 *
 	 * @param string $plugin The plugin name
-	 * @param bool $network_wide Whether the plugin is being activated on the network
+	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
 	public static function on_woocommerce_activation( $plugin, $network_wide ) {
@@ -133,7 +133,7 @@ class PlanFactory {
 	 *
 	 * @param object $product The product object
 	 * @param object $request The request object
-	 * @param bool $creating Whether the product is being created
+	 * @param bool   $creating Whether the product is being created
 	 * @return void
 	 */
 	public static function on_product_creation( $product, $request, $creating ) {
@@ -180,7 +180,7 @@ class PlanFactory {
 	}
 
 	/**
-	 * Check if site is corporate	
+	 * Check if site is corporate
 	 *
 	 * @return bool Whether the site is corporate
 	 */
@@ -247,7 +247,7 @@ class PlanFactory {
 	}
 
 	/**
-	 * Load default plan based on site type	
+	 * Load default plan based on site type
 	 *
 	 * @return Plan The loaded plan
 	 */
