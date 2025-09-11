@@ -67,11 +67,26 @@
             "Task temporarily unavailable": [
                 "Tarea temporalmente no disponible"
             ],
-            "Connection Issue": [
-                "Problema de conexi\u00f3n"
+            "No Pending tasks": [
+                ""
             ],
-            "Unable to save your changes right now. Please check your connection and try again.": [
-                "No se pueden guardar los cambios en este momento. Comprueba tu conexi\u00f3n e int\u00e9ntalo de nuevo."
+            "Hooray!": [
+                ""
+            ],
+            "You don\u2019t have any pending tasks today": [
+                ""
+            ],
+            "Completed": [
+                ""
+            ],
+            "Skipped": [
+                ""
+            ],
+            "Skip it": [
+                ""
+            ],
+            "Undo": [
+                ""
             ]
         }
     }

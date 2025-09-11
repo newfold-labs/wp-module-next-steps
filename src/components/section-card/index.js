@@ -174,11 +174,11 @@ export const SectionCard = ( {
 	const getCtaText = () => {
 		let ctaText = cta;
 		// if( 'dismissed' === status ) {
-		// 	ctaText = __('SKIPPED', 'wp-module-next-step');
+		// 	ctaText = __('SKIPPED', 'wp-module-next-steps');
 		// }
 		// Change CTA text for completed "Add your first product" step
 		// if( 'done' === status && 'add_first_product' === id ) {
-		// 	ctaText = __('Add another product', 'wp-module-next-step');
+		// 	ctaText = __('Add another product', 'wp-module-next-steps');
 		// }
 		return ctaText;
 	}
@@ -222,14 +222,14 @@ export const SectionCard = ( {
 						'done' === status &&
 						<span className={ 'nfd-nextstep-step__completed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
 							<CheckCircleIcon width={ 24 }/>
-							{ __( 'Completed', 'wp-module-next-step' ) }
+							{ __( 'Completed', 'wp-module-next-steps' ) }
 						</span>
 					}
 					{
 						'dismissed' === status &&
 						<span className={ 'nfd-nextstep-step__dismissed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
 							<XCircleIcon width={ 24 }/>
-							{ __( 'Skipped', 'wp-module-next-step' ) }
+							{ __( 'Skipped', 'wp-module-next-steps' ) }
 						</span>
 					}
 				</div>
@@ -322,7 +322,7 @@ export const SectionCard = ( {
 								className="nfd-nextsteps-button nfd-nextsteps-button--skip"
 								onClick={(e) => sectionUpdateCallback( trackId, sectionId, 'dismissed' ) }
 							>
-								{ __('Skip it', 'wp-module-next-step') }
+								{ __('Skip it', 'wp-module-next-steps') }
 							</Link>
 							</div>
 						}
@@ -332,7 +332,7 @@ export const SectionCard = ( {
 								onClick={ ( e ) => sectionUpdateCallback( trackId, sectionId, 'new' ) }
 							>
 								{ redoIcon }
-								{ __('Undo', 'wp-module-next-step') }
+								{ __('Undo', 'wp-module-next-steps') }
 							</Link>
 						}
 					</div>

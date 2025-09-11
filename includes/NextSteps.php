@@ -4,6 +4,7 @@ namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\ModuleLoader\Container;
 use NewfoldLabs\WP\Module\Data\HiiveConnection;
+use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
 
 /**
  * NextSteps - Main module class for managing next steps functionality

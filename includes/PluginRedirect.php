@@ -1,4 +1,7 @@
 <?php
+
+namespace NewfoldLabs\WP\Module\NextSteps;
+
 /**
  * Plugin Redirect Handler
  *
