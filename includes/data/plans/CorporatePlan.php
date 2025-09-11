@@ -61,6 +61,7 @@ class CorporatePlan {
 		return new Plan(
 			array(
 				'id'          => 'corporate_setup',
+				'type'        => 'corporate',
 				'label'       => __( 'Corporate Setup', 'wp-module-next-steps' ),
 				'description' => __( 'Set up your corporate website with these essential steps:', 'wp-module-next-steps' ),
 				'tracks'      => array(

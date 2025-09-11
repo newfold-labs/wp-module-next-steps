@@ -6,6 +6,7 @@ use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
 use WP_Error;
 use WP_HTTP_Response;
 use WP_REST_Controller;
+use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 

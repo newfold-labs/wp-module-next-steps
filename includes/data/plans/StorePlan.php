@@ -51,6 +51,7 @@ class StorePlan {
 		return new Plan(
 			array(
 				'id'          => 'store_setup',
+				'type'        => 'ecommerce',
 				'label'       => __( 'Store Setup', 'wp-module-next-steps' ),
 				'description' => __( 'Complete your ecommerce store setup with these essential steps:', 'wp-module-next-steps' ),
 				'tracks'      => array(

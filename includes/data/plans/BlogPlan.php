@@ -42,6 +42,7 @@ class BlogPlan {
 		return new Plan(
 			array(
 				'id'          => 'blog_setup',
+				'type'        => 'blog',
 				'label'       => __( 'Blog Setup', 'wp-module-next-steps' ),
 				'description' => __( 'Get your blog up and running with these essential steps:', 'wp-module-next-steps' ),
 				'tracks'      => array(

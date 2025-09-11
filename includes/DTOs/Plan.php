@@ -17,6 +17,13 @@ class Plan {
 	public $id;
 
 	/**
+	 * Plan type
+	 *
+	 * @var string
+	 */
+	public $type;
+
+	/**
 	 * Plan label
 	 *
 	 * @var string
@@ -44,6 +51,7 @@ class Plan {
 	 */
 	public function __construct( array $data = array() ) {
 		$this->id          = $data['id'] ?? '';
+		$this->type        = $data['type'] ?? '';
 		$this->label       = $data['label'] ?? '';
 		$this->description = $data['description'] ?? '';
 		$this->tracks      = array();
@@ -68,6 +76,7 @@ class Plan {
 	public function to_array(): array {
 		return array(
 			'id'          => $this->id,
+			'type'        => $this->type,
 			'label'       => $this->label,
 			'description' => $this->description,
 			'tracks'      => array_map(

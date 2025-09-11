@@ -7,6 +7,7 @@
 
 namespace NewfoldLabs\WP\Module\NextSteps;
 
+use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan;
 use NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan;
 use NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan;
