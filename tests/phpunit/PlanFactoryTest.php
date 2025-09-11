@@ -5,8 +5,8 @@
  * @package WPModuleNextSteps
  */
 
-use NewfoldLabs\WP\Module\NextSteps\PlanLoader;
-use NewfoldLabs\WP\Module\NextSteps\PlanManager;
+use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
+use NewfoldLabs\WP\Module\NextSteps\PlanRepository;
 use NewfoldLabs\WP\Module\NextSteps\StepsApi;
 
 /**
@@ -14,7 +14,7 @@ use NewfoldLabs\WP\Module\NextSteps\StepsApi;
  *
  * @package WPModuleNextSteps
  */
-class PlanLoaderTest extends WP_UnitTestCase {
+class PlanFactoryTest extends WP_UnitTestCase {
 
 	/**
 	 * Set up test environment
@@ -23,10 +23,10 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		parent::setUp();
 
 		// Clean up options before each test
-		delete_option( PlanManager::OPTION );
-		delete_transient( PlanLoader::SOLUTIONS_TRANSIENT );
+		delete_option( PlanRepository::OPTION );
+		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 		delete_option( StepsApi::OPTION );
-		delete_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION );
+		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
 	}
 
 	/**
@@ -39,7 +39,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// No external option setup needed - test should use intelligent detection
 		// which defaults to 'blog' in test environment
 
-		PlanLoader::load_default_steps();
+		PlanFactory::load_default_steps();
 
 		// Verify that steps were loaded and saved to the module's own option
 		$steps_data = get_option( StepsApi::OPTION );
@@ -55,7 +55,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		$existing_data = array( 'id' => 'existing_plan' );
 		update_option( StepsApi::OPTION, $existing_data );
 
-		PlanLoader::load_default_steps();
+		PlanFactory::load_default_steps();
 
 		// Verify that existing steps were not overwritten
 		$steps_data = get_option( StepsApi::OPTION );
@@ -69,7 +69,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		$old_value = array( 'site_type' => 'personal' );
 		$new_value = array( 'site_type' => 'ecommerce' );
 
-		PlanLoader::on_sitetype_change( $old_value, $new_value );
+		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify steps data was updated
 		$steps_data = get_option( StepsApi::OPTION );
@@ -87,7 +87,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		$old_value = array( 'site_type' => 'personal' );
 		$new_value = array( 'site_type' => 'personal' ); // Same as old
 
-		PlanLoader::on_sitetype_change( $old_value, $new_value );
+		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no steps were loaded since there was no change
 		$steps_data = get_option( StepsApi::OPTION );
@@ -104,7 +104,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 			'other_data' => 'test',
 		);
 
-		PlanLoader::on_sitetype_change( $old_value, $new_value );
+		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify steps data was updated
 		$steps_data = get_option( StepsApi::OPTION );
@@ -123,7 +123,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 
 		// Test with non-array new value
 		$new_value = 'invalid';
-		PlanLoader::on_sitetype_change( $old_value, $new_value );
+		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no steps were loaded due to invalid input
 		$steps_data = get_option( StepsApi::OPTION );
@@ -131,7 +131,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 
 		// Test with array missing site_type key
 		$new_value = array( 'other_key' => 'value' );
-		PlanLoader::on_sitetype_change( $old_value, $new_value );
+		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no steps were loaded due to missing site_type
 		$steps_data = get_option( StepsApi::OPTION );
@@ -148,7 +148,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		$old_value = array( 'site_type' => 'personal' );
 		$new_value = array( 'site_type' => 'invalid_type' );
 
-		PlanLoader::on_sitetype_change( $old_value, $new_value );
+		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no steps were loaded for invalid site type
 		$steps_data = get_option( StepsApi::OPTION );
@@ -172,7 +172,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 			),
 		);
 
-		PlanLoader::on_sitetype_change( $old_value, $new_value );
+		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// The module should NOT modify the solution option - it's read-only
 		// We only verify that the correct plan was loaded
@@ -207,7 +207,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 
 		foreach ( $valid_types as $site_type => $expected ) {
 			// Clean slate for each test
-			delete_option( PlanManager::OPTION );
+			delete_option( PlanRepository::OPTION );
 
 			delete_option( StepsApi::OPTION );
 
@@ -216,7 +216,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 			$new_value = array( 'site_type' => $site_type );
 			++$i;
 
-			PlanLoader::on_sitetype_change( $old_value, $new_value );
+			PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 			// Verify correct plan was loaded
 			$steps_data = get_option( StepsApi::OPTION );
@@ -231,11 +231,11 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	 */
 	public function test_on_woocommerce_activation() {
 		// Clean slate
-		delete_option( PlanManager::OPTION );
+		delete_option( PlanRepository::OPTION );
 		delete_option( StepsApi::OPTION );
 
 		// Set up initial blog steps
-		$blog_plan = PlanManager::switch_plan( 'blog' );
+		$blog_plan = PlanRepository::switch_plan( 'blog' );
 		$this->assertNotFalse( $blog_plan );
 		StepsApi::set_data( $blog_plan->to_array() );
 
@@ -245,7 +245,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		$this->assertEquals( 'blog_setup', $initial_steps['id'] );
 
 		// Simulate WooCommerce activation
-		PlanLoader::on_woocommerce_activation( 'woocommerce/woocommerce.php', false );
+		PlanFactory::on_woocommerce_activation( 'woocommerce/woocommerce.php', false );
 
 		// Verify steps switched to ecommerce
 		$updated_steps = get_option( StepsApi::OPTION );
@@ -259,11 +259,11 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	 */
 	public function test_on_woocommerce_activation_ignores_other_plugins() {
 		// Clean slate
-		delete_option( PlanManager::OPTION );
+		delete_option( PlanRepository::OPTION );
 		delete_option( StepsApi::OPTION );
 
 		// Set up initial blog steps
-		$blog_plan = PlanManager::switch_plan( 'blog' );
+		$blog_plan = PlanRepository::switch_plan( 'blog' );
 		$this->assertNotFalse( $blog_plan );
 		StepsApi::set_data( $blog_plan->to_array() );
 
@@ -272,7 +272,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		$this->assertEquals( 'blog_setup', $initial_steps['id'] );
 
 		// Simulate activation of a different plugin
-		PlanLoader::on_woocommerce_activation( 'some-other-plugin/plugin.php', false );
+		PlanFactory::on_woocommerce_activation( 'some-other-plugin/plugin.php', false );
 
 		// Verify steps did NOT change
 		$unchanged_steps = get_option( StepsApi::OPTION );
@@ -284,14 +284,14 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	 * Test that PlanLoader constructor sets up hooks correctly
 	 */
 	public function test_constructor_sets_up_hooks() {
-		// Instantiate PlanLoader to trigger constructor and hook registration
-		new PlanLoader();
+		// Instantiate PlanFactory to trigger constructor and hook registration
+		new PlanFactory();
 
 		// Verify init hook is added
-		$this->assertEquals( 1, has_action( 'init', array( 'NewfoldLabs\WP\Module\NextSteps\PlanLoader', 'load_default_steps' ) ) );
+		$this->assertEquals( 1, has_action( 'init', array( 'NewfoldLabs\WP\Module\NextSteps\PlanFactory', 'load_default_steps' ) ) );
 
 		// Verify option update hook is added
-		$this->assertEquals( 10, has_action( 'update_option_' . PlanLoader::ONBOARDING_SITE_INFO_OPTION, array( 'NewfoldLabs\WP\Module\NextSteps\PlanLoader', 'on_sitetype_change' ) ) );
+		$this->assertEquals( 10, has_action( 'update_option_' . PlanFactory::ONBOARDING_SITE_INFO_OPTION, array( 'NewfoldLabs\WP\Module\NextSteps\PlanFactory', 'on_sitetype_change' ) ) );
 	}
 
 	/**
@@ -301,7 +301,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// Simulate onboarding module setting site info for the first time
 
 		// Step 1: No existing data (fresh install)
-		$this->assertFalse( get_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION ) );
+		$this->assertFalse( get_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION ) );
 		$this->assertFalse( get_option( StepsApi::OPTION ) );
 
 		// Step 2: Onboarding module sets site info
@@ -312,10 +312,10 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		);
 
 		// Simulate the option update that would trigger our hook
-		update_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION, $site_info );
+		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, $site_info );
 
 		// Manually trigger the hook (since WordPress hooks don't fire in unit tests)
-		PlanLoader::on_sitetype_change( false, $site_info );
+		PlanFactory::on_sitetype_change( false, $site_info );
 
 		// Verify that the correct plan was loaded
 		$steps_data = get_option( StepsApi::OPTION );
@@ -334,8 +334,8 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	public function test_site_type_change_after_initial_setup() {
 		// Set up initial state (blog site from 'personal' onboarding choice)
 		$initial_site_info = array( 'site_type' => 'personal' );
-		update_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION, $initial_site_info );
-		PlanLoader::on_sitetype_change( false, $initial_site_info );
+		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, $initial_site_info );
+		PlanFactory::on_sitetype_change( false, $initial_site_info );
 
 		// Verify initial setup loaded blog steps
 		$steps_data = get_option( StepsApi::OPTION );
@@ -348,7 +348,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 			'business_name' => 'My Store',
 		);
 
-		PlanLoader::on_sitetype_change( $initial_site_info, $updated_site_info );
+		PlanFactory::on_sitetype_change( $initial_site_info, $updated_site_info );
 
 		$updated_steps_data = get_option( StepsApi::OPTION );
 		$this->assertIsArray( $updated_steps_data );
@@ -363,7 +363,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		// Clean slate - no special setup needed
 
 		// Mock a simple site with no special indicators
-		$detected_type = PlanLoader::detect_site_type();
+		$detected_type = PlanFactory::detect_site_type();
 
 		$this->assertEquals( 'blog', $detected_type );
 	}
@@ -376,7 +376,7 @@ class PlanLoaderTest extends WP_UnitTestCase {
 		delete_option( StepsApi::OPTION );
 
 		// Test the full flow - this should load default steps based on site detection
-		PlanLoader::load_default_steps();
+		PlanFactory::load_default_steps();
 
 		// Verify steps were loaded using intelligent detection
 		$steps_data = get_option( StepsApi::OPTION );
@@ -395,9 +395,9 @@ class PlanLoaderTest extends WP_UnitTestCase {
 
 		// Set an existing solution via transient (primary method)
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
-		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
+		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $solutions_data );
 
-		PlanLoader::load_default_steps();
+		PlanFactory::load_default_steps();
 
 		// Verify correct plan was loaded
 		$steps_data = get_option( StepsApi::OPTION );
@@ -418,10 +418,10 @@ class PlanLoaderTest extends WP_UnitTestCase {
 	 */
 	public function tearDown(): void {
 		// Clean up options after each test
-		delete_option( PlanManager::OPTION );
-		delete_transient( PlanLoader::SOLUTIONS_TRANSIENT );
+		delete_option( PlanRepository::OPTION );
+		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 		delete_option( StepsApi::OPTION );
-		delete_option( PlanLoader::ONBOARDING_SITE_INFO_OPTION );
+		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
 
 		parent::tearDown();
 	}

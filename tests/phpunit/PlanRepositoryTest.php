@@ -1,7 +1,7 @@
 <?php
 
-use NewfoldLabs\WP\Module\NextSteps\PlanManager;
-use NewfoldLabs\WP\Module\NextSteps\PlanLoader;
+use NewfoldLabs\WP\Module\NextSteps\PlanRepository;
+use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
 
@@ -10,7 +10,7 @@ use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
  *
  * @package WPModuleNextSteps
  */
-class PlanManagerTest extends WP_UnitTestCase {
+class PlanRepositoryTest extends WP_UnitTestCase {
 
 	/**
 	 * Set up test environment
@@ -19,8 +19,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 		parent::setUp();
 
 		// Clean up options before each test
-		delete_option( PlanManager::OPTION );
-		delete_transient( PlanLoader::SOLUTIONS_TRANSIENT );
+		delete_option( PlanRepository::OPTION );
+		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 	}
 
 	/**
@@ -33,7 +33,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 			'ecommerce' => 'ecommerce',
 		);
 
-		$this->assertEquals( $expected, PlanManager::PLAN_TYPES );
+		$this->assertEquals( $expected, PlanFactory::PLAN_TYPES );
 	}
 
 	/**
@@ -41,10 +41,10 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_get_current_plan_returns_null_when_no_plan_exists() {
 		// Ensure no plan option exists
-		delete_option( PlanManager::OPTION );
+		delete_option( PlanRepository::OPTION );
 
 		// Mock load_default_plan to return null to test the no-plan scenario
-		$this->assertInstanceOf( Plan::class, PlanManager::get_current_plan() );
+		$this->assertInstanceOf( Plan::class, PlanRepository::get_current_plan() );
 	}
 
 	/**
@@ -53,9 +53,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 	public function test_get_current_plan_loads_default_plan_when_none_exists() {
 		// Set solution via transient (primary method)
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
-		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
+		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $solutions_data );
 
-		$plan = PlanManager::get_current_plan();
+		$plan = PlanRepository::get_current_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'store_setup', $plan->id );
@@ -73,9 +73,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 			'tracks'      => array(),
 		);
 
-		update_option( PlanManager::OPTION, $test_plan_data );
+		update_option( PlanRepository::OPTION, $test_plan_data );
 
-		$plan = PlanManager::get_current_plan();
+		$plan = PlanRepository::get_current_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'test_plan', $plan->id );
@@ -86,14 +86,14 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test save_plan correctly saves plan data
 	 */
 	public function test_save_plan() {
-		$plan = PlanManager::get_ecommerce_plan();
+		$plan = PlanFactory::create_plan( 'ecommerce' );
 
-		$result = PlanManager::save_plan( $plan );
+		$result = PlanRepository::save_plan( $plan );
 
 		$this->assertTrue( $result );
 
 		// Verify data was saved correctly
-		$saved_data = get_option( PlanManager::OPTION );
+		$saved_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $saved_data );
 		$this->assertEquals( 'store_setup', $saved_data['id'] );
 	}
@@ -103,15 +103,15 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_load_default_plan_ecommerce() {
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
-		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
+		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $solutions_data );
 
-		$plan = PlanLoader::load_default_plan();
+		$plan = PlanFactory::load_default_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'store_setup', $plan->id );
 
 		// Verify plan was saved
-		$this->assertTrue( get_option( PlanManager::OPTION ) !== false );
+		$this->assertTrue( get_option( PlanRepository::OPTION ) !== false );
 	}
 
 	/**
@@ -119,9 +119,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_load_default_plan_blog() {
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_CREATOR' );
-		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
+		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $solutions_data );
 
-		$plan = PlanLoader::load_default_plan();
+		$plan = PlanFactory::load_default_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'blog_setup', $plan->id );
@@ -132,9 +132,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_load_default_plan_corporate() {
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_SERVICE' );
-		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
+		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $solutions_data );
 
-		$plan = PlanLoader::load_default_plan();
+		$plan = PlanFactory::load_default_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'corporate_setup', $plan->id );
@@ -146,7 +146,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 	public function test_load_default_plan_defaults_to_blog() {
 		// Don't set any solution option
 
-		$plan = PlanLoader::load_default_plan();
+		$plan = PlanFactory::load_default_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'blog_setup', $plan->id );
@@ -158,11 +158,11 @@ class PlanManagerTest extends WP_UnitTestCase {
 	public function test_switch_plan_valid_type() {
 		// Start with ecommerce plan
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_COMMERCE' );
-		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
-		PlanLoader::load_default_plan();
+		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $solutions_data );
+		PlanFactory::load_default_plan();
 
 		// Switch to blog plan
-		$plan = PlanManager::switch_plan( 'blog' );
+		$plan = PlanRepository::switch_plan( 'blog' );
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'blog_setup', $plan->id );
@@ -171,7 +171,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 		// We only verify that the correct plan object was returned
 
 		// Verify the plan was processed correctly and saved to the module's own option
-		$saved_plan_data = get_option( PlanManager::OPTION );
+		$saved_plan_data = get_option( PlanRepository::OPTION );
 		$this->assertEquals( 'blog_setup', $saved_plan_data['id'] );
 	}
 
@@ -179,7 +179,7 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test switch_plan with invalid plan type
 	 */
 	public function test_switch_plan_invalid_type() {
-		$result = PlanManager::switch_plan( 'invalid_type' );
+		$result = PlanRepository::switch_plan( 'invalid_type' );
 
 		$this->assertFalse( $result );
 
@@ -187,16 +187,16 @@ class PlanManagerTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test get_ecommerce_plan returns correct plan structure
+	 * Test create_plan with ecommerce type returns correct plan structure
 	 */
-	public function test_get_ecommerce_plan_structure() {
-		$plan = PlanManager::get_ecommerce_plan();
+	public function test_create_plan_ecommerce_structure() {
+		$plan = PlanFactory::create_plan( 'ecommerce' );
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'store_setup', $plan->id );
 		$this->assertEquals( 'Store Setup', $plan->label );
 
-		$tracks = $plan->get_tracks();
+		$tracks = $plan->tracks;
 		$this->assertGreaterThan( 0, count( $tracks ) );
 
 		// Check first track has expected structure
@@ -205,20 +205,20 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$this->assertEquals( 'Build', $first_track->label );
 
 		// Check track has sections
-		$sections = $first_track->get_sections();
+		$sections = $first_track->sections;
 		$this->assertGreaterThan( 0, count( $sections ) );
 
 		// Check first section has tasks
 		$first_section = $sections[0];
-		$tasks         = $first_section->get_tasks();
+		$tasks         = $first_section->tasks;
 		$this->assertGreaterThan( 0, count( $tasks ) );
 	}
 
 	/**
-	 * Test get_blog_plan returns correct plan structure
+	 * Test create_plan with blog type returns correct plan structure
 	 */
-	public function test_get_blog_plan_structure() {
-		$plan = PlanManager::get_blog_plan();
+	public function test_create_plan_blog_structure() {
+		$plan = PlanFactory::create_plan( 'blog' );
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'blog_setup', $plan->id );
@@ -226,10 +226,10 @@ class PlanManagerTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test get_corporate_plan returns correct plan structure
+	 * Test create_plan with corporate type returns correct plan structure
 	 */
-	public function test_get_corporate_plan_structure() {
-		$plan = PlanManager::get_corporate_plan();
+	public function test_create_plan_corporate_structure() {
+		$plan = PlanFactory::create_plan( 'corporate' );
 
 		$this->assertInstanceOf( Plan::class, $plan );
 		$this->assertEquals( 'corporate_setup', $plan->id );
@@ -241,22 +241,22 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_update_task_status() {
 		// Load ecommerce plan which has tasks
-		$plan = PlanManager::get_ecommerce_plan();
-		PlanManager::save_plan( $plan );
+		$plan = PlanFactory::create_plan( 'ecommerce' );
+		PlanRepository::save_plan( $plan );
 
 		// Update task status
-		$result = PlanManager::update_task_status(
+		$result = PlanRepository::update_task_status(
 			'store_build_track',
-			'basic_store_setup',
-			'store_quick_setup',
+			'customize_your_store',
+			'store_upload_logo',
 			'done'
 		);
 
 		$this->assertTrue( $result );
 
 		// Verify the task status was updated
-		$updated_plan = PlanManager::get_current_plan();
-		$task         = $updated_plan->get_task( 'store_build_track', 'basic_store_setup', 'store_quick_setup' );
+		$updated_plan = PlanRepository::get_current_plan();
+		$task         = $updated_plan->get_task( 'store_build_track', 'customize_your_store', 'store_upload_logo' );
 		$this->assertEquals( 'done', $task->status );
 	}
 
@@ -264,11 +264,11 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test update_task_status with invalid IDs
 	 */
 	public function test_update_task_status_invalid_ids() {
-		$plan = PlanManager::get_ecommerce_plan();
-		PlanManager::save_plan( $plan );
+		$plan = PlanFactory::create_plan( 'ecommerce' );
+		PlanRepository::save_plan( $plan );
 
 		// Try to update non-existent task
-		$result = PlanManager::update_task_status(
+		$result = PlanRepository::update_task_status(
 			'invalid_track',
 			'invalid_section',
 			'invalid_task',
@@ -282,27 +282,27 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test get_task with valid IDs
 	 */
 	public function test_get_task_valid_ids() {
-		$plan = PlanManager::get_ecommerce_plan();
-		PlanManager::save_plan( $plan );
+		$plan = PlanFactory::create_plan( 'ecommerce' );
+		PlanRepository::save_plan( $plan );
 
-		$task = PlanManager::get_task(
+		$task = PlanRepository::get_task(
 			'store_build_track',
-			'basic_store_setup',
-			'store_quick_setup'
+			'customize_your_store',
+			'store_upload_logo'
 		);
 
 		$this->assertInstanceOf( Task::class, $task );
-		$this->assertEquals( 'store_quick_setup', $task->id );
+		$this->assertEquals( 'store_upload_logo', $task->id );
 	}
 
 	/**
 	 * Test get_task with invalid IDs
 	 */
 	public function test_get_task_invalid_ids() {
-		$plan = PlanManager::get_ecommerce_plan();
-		PlanManager::save_plan( $plan );
+		$plan = PlanFactory::create_plan( 'ecommerce' );
+		PlanRepository::save_plan( $plan );
 
-		$task = PlanManager::get_task(
+		$task = PlanRepository::get_task(
 			'invalid_track',
 			'invalid_section',
 			'invalid_task'
@@ -317,11 +317,11 @@ class PlanManagerTest extends WP_UnitTestCase {
 	public function test_reset_plan() {
 		// Set up existing plan data
 		$test_plan_data = array( 'id' => 'test_plan' );
-		update_option( PlanManager::OPTION, $test_plan_data );
+		update_option( PlanRepository::OPTION, $test_plan_data );
 		$solutions_data = array( 'solution' => 'WP_SOLUTION_CREATOR' );
-		set_transient( PlanLoader::SOLUTIONS_TRANSIENT, $solutions_data );
+		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $solutions_data );
 
-		$plan = PlanManager::reset_plan();
+		$plan = PlanRepository::reset_plan();
 
 		$this->assertInstanceOf( Plan::class, $plan );
 
@@ -329,29 +329,33 @@ class PlanManagerTest extends WP_UnitTestCase {
 		$this->assertEquals( 'blog_setup', $plan->id );
 
 		// Verify old data was cleared
-		$this->assertNotEquals( $test_plan_data, get_option( PlanManager::OPTION ) );
+		$this->assertNotEquals( $test_plan_data, get_option( PlanRepository::OPTION ) );
 	}
 
 	/**
 	 * Test get_plan_stats returns correct statistics
 	 */
 	public function test_get_plan_stats() {
-		$plan = PlanManager::get_ecommerce_plan();
-		PlanManager::save_plan( $plan );
+		$plan = PlanFactory::create_plan( 'ecommerce' );
+		PlanRepository::save_plan( $plan );
 
-		$stats = PlanManager::get_plan_stats();
+		$stats = PlanRepository::get_plan_stats();
 
 		$this->assertIsArray( $stats );
 		$this->assertArrayHasKey( 'completion_percentage', $stats );
 		$this->assertArrayHasKey( 'total_tasks', $stats );
 		$this->assertArrayHasKey( 'completed_tasks', $stats );
 		$this->assertArrayHasKey( 'total_sections', $stats );
+		$this->assertArrayHasKey( 'completed_sections', $stats );
 		$this->assertArrayHasKey( 'total_tracks', $stats );
-		$this->assertArrayHasKey( 'is_completed', $stats );
+		$this->assertArrayHasKey( 'completed_tracks', $stats );
 
 		$this->assertIsInt( $stats['total_tasks'] );
 		$this->assertIsInt( $stats['completed_tasks'] );
-		$this->assertIsBool( $stats['is_completed'] );
+		$this->assertIsInt( $stats['total_sections'] );
+		$this->assertIsInt( $stats['completed_sections'] );
+		$this->assertIsInt( $stats['total_tracks'] );
+		$this->assertIsInt( $stats['completed_tracks'] );
 		$this->assertGreaterThan( 0, $stats['total_tasks'] );
 	}
 
@@ -360,9 +364,9 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function test_get_plan_stats_no_plan() {
 		// Force no plan scenario by mocking
-		delete_option( PlanManager::OPTION );
+		delete_option( PlanRepository::OPTION );
 
-		$stats = PlanManager::get_plan_stats();
+		$stats = PlanRepository::get_plan_stats();
 
 		// Should return empty array or handle gracefully
 		$this->assertIsArray( $stats );
@@ -372,21 +376,22 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 * Test update_section_status
 	 */
 	public function test_update_section_status() {
-		$plan = PlanManager::get_ecommerce_plan();
-		PlanManager::save_plan( $plan );
+		$plan = PlanFactory::create_plan( 'ecommerce' );
+		PlanRepository::save_plan( $plan );
 
-		$result = PlanManager::update_section_status(
+		$result = PlanRepository::update_section_state(
 			'store_build_track',
-			'basic_store_setup',
+			'customize_your_store',
+			'open',
 			false
 		);
 
 		$this->assertTrue( $result );
 
 		// Verify the section status was updated
-		$updated_plan = PlanManager::get_current_plan();
-		$section      = $updated_plan->get_section( 'store_build_track', 'basic_store_setup' );
-		$this->assertFalse( $section->is_open() );
+		$updated_plan = PlanRepository::get_current_plan();
+		$section      = $updated_plan->get_section( 'store_build_track', 'customize_your_store' );
+		$this->assertFalse( $section->open );
 	}
 
 	/**
@@ -394,8 +399,8 @@ class PlanManagerTest extends WP_UnitTestCase {
 	 */
 	public function tearDown(): void {
 		// Clean up options after each test
-		delete_option( PlanManager::OPTION );
-		delete_transient( PlanLoader::SOLUTIONS_TRANSIENT );
+		delete_option( PlanRepository::OPTION );
+		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 
 		parent::tearDown();
 	}

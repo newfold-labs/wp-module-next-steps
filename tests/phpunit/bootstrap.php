@@ -210,6 +210,43 @@ if ( $wp_phpunit_dir && file_exists( $wp_phpunit_dir . '/includes/bootstrap.php'
 		}
 	}
 
+	// WordPress admin functions.
+	if ( ! function_exists( 'is_admin' ) ) {
+		/**
+		 * Determines whether the current request is for an administrative interface page.
+		 *
+		 * @return bool True if inside WordPress administration interface, false otherwise.
+		 */
+		function is_admin() {
+			return true; // Assume admin in test environment
+		}
+	}
+
+	if ( ! function_exists( 'wp_doing_ajax' ) ) {
+		/**
+		 * Determines whether the current request is a WordPress Ajax request.
+		 *
+		 * @return bool True if it's a WordPress Ajax request, false otherwise.
+		 */
+		function wp_doing_ajax() {
+			return false; // Assume not AJAX in test environment
+		}
+	}
+
+	// WordPress cache functions.
+	if ( ! function_exists( 'wp_cache_delete' ) ) {
+		/**
+		 * Removes the cache contents matching key and group.
+		 *
+		 * @param int|string $key   What the contents in the cache are called.
+		 * @param string     $group Optional. Where the cache contents are grouped. Default empty.
+		 * @return bool True on successful removal, false on failure.
+		 */
+		function wp_cache_delete( $key, $group = '' ) {
+			return true; // Mock cache deletion
+		}
+	}
+
 	// Global hook storage for WordPress functions.
 	if ( ! isset( $GLOBALS['test_wp_hooks'] ) ) {
 		$GLOBALS['test_wp_hooks'] = array();

@@ -420,6 +420,29 @@ class Plan {
 	}
 
 	/**
+	 * Update open state for a section
+	 *
+	 * @param string $track_id Track ID
+	 * @param string $section_id Section ID
+	 * @param bool $open Open state
+	 * @return bool
+	 */
+	public function update_section_open( string $track_id, string $section_id, bool $open ): bool {
+		$track = $this->get_track( $track_id );
+		if ( ! $track ) {
+			return false;
+		}
+
+		$section = $track->get_section( $section_id );
+
+		if ( ! $section ) {
+			return false;
+		}
+
+		return $section->set_open( $open );
+	}
+
+	/**
 	 * Update track open state
 	 *
 	 * @param string $track_id Track ID

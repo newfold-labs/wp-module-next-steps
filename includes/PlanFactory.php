@@ -98,6 +98,11 @@ class PlanFactory {
 	 * @return void
 	 */
 	public static function on_sitetype_change( $old_value, $new_value ) {
+		// Check if new_value is an array
+		if ( ! is_array( $new_value ) ) {
+			return;
+		}
+
 		$old_site_type = $old_value['site_type'] ?? '';
 		$new_site_type = $new_value['site_type'] ?? '';
 
@@ -105,8 +110,13 @@ class PlanFactory {
 			return;
 		}
 
+		// Check if the new site type is valid
+		if ( ! array_key_exists( $new_site_type, self::PLAN_TYPES ) ) {
+			return; // Don't load any plan for invalid site types
+		}
+
 		// Convert onboarding site type to internal plan type
-		$new_plan_type = self::PLAN_TYPES[ $new_site_type ] ?? 'blog';
+		$new_plan_type = self::PLAN_TYPES[ $new_site_type ];
 
 		// Switch to the new plan
 		PlanRepository::switch_plan( $new_plan_type );
@@ -213,6 +223,20 @@ class PlanFactory {
 
 		if ( ! empty( $site_type ) && \array_key_exists( $site_type, self::PLAN_TYPES ) ) {
 			return self::PLAN_TYPES[ $site_type ];
+		}
+
+		// Check transient for solutions data (for testing compatibility)
+		$solutions_data = \get_transient( self::SOLUTIONS_TRANSIENT );
+		if ( $solutions_data && isset( $solutions_data['solution'] ) ) {
+			$solution = $solutions_data['solution'];
+			switch ( $solution ) {
+				case 'WP_SOLUTION_COMMERCE':
+					return 'ecommerce';
+				case 'WP_SOLUTION_SERVICE':
+					return 'corporate';
+				case 'WP_SOLUTION_CREATOR':
+					return 'blog';
+			}
 		}
 
 		// Fall back to detection
