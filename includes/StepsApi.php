@@ -535,7 +535,11 @@ class StepsApi {
 	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 *
-	 * @apiSuccess {boolean} true Success indicator
+	 * @apiSuccess {Object} response Minimal section update data containing:
+	 * @apiSuccess {string} response.id Section ID
+	 * @apiSuccess {string} response.status Updated section status
+	 * @apiSuccess {string} [response.date_completed] Completion timestamp (if status changed to done/dismissed)
+	 * @apiSuccess {boolean} [response.open] Open state (if type was 'open')
 	 *
 	 * @apiError (400) invalid_params Invalid parameters provided
 	 * @apiError (404) section_not_found Section not found in the specified location
@@ -560,7 +564,34 @@ class StepsApi {
 			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
-		return new WP_REST_Response( true, 200 );
+		// Get the updated section data to return minimal changed properties
+		$plan = PlanRepository::get_current_plan();
+		if ( ! $plan ) {
+			return new WP_Error( 'plan_not_found', __( 'Plan not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		$section = $plan->get_section( $track_id, $section_id );
+		if ( ! $section ) {
+			return new WP_Error( 'section_not_found', __( 'Section not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		// Return only the essential changed properties
+		$response_data = array(
+			'id' => $section->id,
+			'status' => $section->status,
+		);
+
+		// Include date_completed if it exists (for status changes)
+		if ( ! empty( $section->date_completed ) ) {
+			$response_data['date_completed'] = $section->date_completed;
+		}
+
+		// Include open state if it was changed
+		if ( 'open' === $type ) {
+			$response_data['open'] = $section->open;
+		}
+
+		return new WP_REST_Response( $response_data, 200 );
 	}
 
 	/**

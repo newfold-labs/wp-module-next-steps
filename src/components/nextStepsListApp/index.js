@@ -49,7 +49,7 @@ export const NextStepsListApp = () => {
 		);
 	};
 
-	const sectionOpenCallback = ( trackId, sectionId, open ) => {
+    const sectionOpenCallback = ( trackId, sectionId, open ) => {
         if ( !trackId || !sectionId ) {
             // Could not find track for intendend section
             return;
@@ -69,7 +69,26 @@ export const NextStepsListApp = () => {
                 // console.error( 'Error updating section open state:', error );
             },
             ( response ) => {
-                setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, 'open', open ) );
+                // Use the returned section data to update the plan state
+                if ( response && typeof response === 'object' ) {
+                    setPlan( prevPlan => {
+                        return {
+                            ...prevPlan,
+                            tracks: prevPlan.tracks.map(track => 
+                                track.id === trackId 
+                                    ? {
+                                        ...track,
+                                        sections: track.sections.map(section =>
+                                            section.id === sectionId
+                                                ? { ...section, ...response }
+                                                : section
+                                        )
+                                    }
+                                    : track
+                            )
+                        };
+                    });
+                }
             }
         );
     };
@@ -112,7 +131,26 @@ export const NextStepsListApp = () => {
                 // console.error( 'Error updating section status state:', error );
             },
             ( response ) => {
-                setPlan( prevPlan => updateSectionInPlan( prevPlan, trackId, sectionId, 'status', status ) );
+                // Use the returned section data to update the plan state
+                if ( response && typeof response === 'object' ) {
+                    setPlan( prevPlan => {
+                        return {
+                            ...prevPlan,
+                            tracks: prevPlan.tracks.map(track => 
+                                track.id === trackId 
+                                    ? {
+                                        ...track,
+                                        sections: track.sections.map(section =>
+                                            section.id === sectionId
+                                                ? { ...section, ...response }
+                                                : section
+                                        )
+                                    }
+                                    : track
+                            )
+                        };
+                    });
+                }
             }
         );
     };
