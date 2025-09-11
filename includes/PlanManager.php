@@ -55,44 +55,21 @@ class PlanManager {
 			return PlanLoader::load_default_plan();
 		}
 
+		// Convert array data to Plan object immediately
+		$saved_plan = Plan::from_array( $plan_data );
+
 		// Check if we need to merge with new plan data
-		$saved_version   = $plan_data['version'] ?? '0.0.0';
+		$saved_version   = $saved_plan->version ?: '1.0.0';
 		$current_version = self::PLAN_DATA_VERSION;
 
 		if ( version_compare( $saved_version, $current_version, '<' ) ) {
 			// Version is outdated, need to merge with latest plan data
 
-			// First determine what plan type this is based on saved data
-			$plan_id  = $plan_data['id'] ?? '';
-			$new_plan = null;
+			// Load the appropriate new plan based on the saved plan type
+			$new_plan = self::get_plan_type_data( $saved_plan->type );
 
-			// Load the appropriate new plan based on the saved plan ID
-			switch ( $plan_id ) {
-				case 'blog':
-					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
-						require_once __DIR__ . '/includes/Data/Plans/BlogPlan.php';
-					}
-					$new_plan = BlogPlan::get_plan();
-					break;
-				case 'corporate':
-					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
-						require_once __DIR__ . '/includes/Data/Plans/CorporatePlan.php';
-					}
-					$new_plan = CorporatePlan::get_plan();
-					break;
-				case 'ecommerce':
-					if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
-						require_once __DIR__ . '/includes/Data/Plans/StorePlan.php';
-					}
-					$new_plan = StorePlan::get_plan();
-					break;
-				default:
-					// If we can't determine the plan type, fall back to loading default
-					return PlanLoader::load_default_plan();
-			}
-
-			// Merge the saved data with the new plan
-			$merged_plan = self::merge_plan_data( $plan_data, $new_plan );
+			// Merge the saved data with the new plan (version will be updated automatically)
+			$merged_plan = self::merge_plan_data( $saved_plan, $new_plan );
 
 			// Save the merged plan with updated version
 			self::save_plan( $merged_plan );
@@ -100,7 +77,42 @@ class PlanManager {
 			return $merged_plan;
 		}
 
-		return Plan::from_array( $plan_data );
+		return $saved_plan;
+	}
+
+	/**
+	 * Load plan type data
+	 *
+	 * @param string $plan_type Plan type
+	 * @return Plan
+	 */
+	public static function get_plan_type_data( string $plan_type ): Plan {
+		$plan = null;
+		switch ( $plan_type ) {
+			case 'blog':
+				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
+					require_once __DIR__ . '/includes/Data/Plans/BlogPlan.php';
+				}
+				$plan = BlogPlan::get_plan();
+				break;
+			case 'corporate':
+				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
+					require_once __DIR__ . '/includes/Data/Plans/CorporatePlan.php';
+				}
+				$plan = CorporatePlan::get_plan();
+				break;
+			case 'ecommerce':
+				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
+					require_once __DIR__ . '/includes/Data/Plans/StorePlan.php';
+				}
+				$plan = StorePlan::get_plan();
+				break;
+			default:
+				// If no matching plan type, fall back to loading default
+				$plan = PlanLoader::load_default_plan();
+		}
+		
+		return $plan;
 	}
 
 	/**
@@ -110,106 +122,23 @@ class PlanManager {
 	 * @return bool
 	 */
 	public static function save_plan( Plan $plan ): bool {
-		// Add version information to the saved data
-		$plan_data            = $plan->to_array();
-		$plan_data['version'] = self::PLAN_DATA_VERSION;
+		$plan_data = $plan->to_array();
 		return update_option( self::OPTION, $plan_data );
 	}
 
 	/**
 	 * Merge existing saved plan data with new plan data from code
-	 * Updates titles, descriptions, hrefs, priorities while preserving IDs and status
+	 * Uses DTO merge methods for clean object-oriented approach
 	 *
-	 * @param array $saved_data Existing saved plan data
-	 * @param Plan  $new_plan   New plan data from code
+	 * @param Plan $saved_plan Existing saved plan data
+	 * @param Plan $new_plan   New plan data from code
 	 * @return Plan Merged plan
 	 */
-	public static function merge_plan_data( array $saved_data, Plan $new_plan ): Plan {
-		// Create a map of existing tasks by ID for quick lookup
-		$existing_tasks = array();
-		if ( isset( $saved_data['tracks'] ) && is_array( $saved_data['tracks'] ) ) {
-			foreach ( $saved_data['tracks'] as $track ) {
-				if ( isset( $track['sections'] ) && is_array( $track['sections'] ) ) {
-					foreach ( $track['sections'] as $section ) {
-						if ( isset( $section['tasks'] ) && is_array( $section['tasks'] ) ) {
-							foreach ( $section['tasks'] as $task ) {
-								if ( isset( $task['id'] ) ) {
-									$existing_tasks[ $task['id'] ] = $task;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		// Create the merged plan by updating new plan with preserved status
-		$merged_tracks = array();
-		foreach ( $new_plan->get_tracks() as $track ) {
-			$merged_sections = array();
-			foreach ( $track->get_sections() as $section ) {
-				$merged_tasks = array();
-				foreach ( $section->get_tasks() as $task ) {
-					$task_data = $task->to_array();
-
-					// If this task exists in saved data, preserve its status and any custom data
-					if ( isset( $existing_tasks[ $task->get_id() ] ) ) {
-						$existing_task = $existing_tasks[ $task->get_id() ];
-
-						// Preserve status (this is the key user state we want to keep)
-						if ( isset( $existing_task['status'] ) ) {
-							$task_data['status'] = $existing_task['status'];
-						}
-
-						// Preserve any custom completion date if it exists
-						if ( isset( $existing_task['completed_at'] ) ) {
-							$task_data['completed_at'] = $existing_task['completed_at'];
-						}
-
-						// Preserve any custom dismissal date if it exists
-						if ( isset( $existing_task['dismissed_at'] ) ) {
-							$task_data['dismissed_at'] = $existing_task['dismissed_at'];
-						}
-
-						// Preserve any other custom metadata that might have been added
-						foreach ( $existing_task as $key => $value ) {
-							if ( ! in_array( $key, array( 'id', 'title', 'description', 'href', 'priority', 'source' ), true ) ) {
-								$task_data[ $key ] = $value;
-							}
-						}
-					}
-					$merged_tasks[] = new Task(
-						$task_data['id'],
-						$task_data['title'],
-						$task_data['description'] ?? '',
-						$task_data['href'] ?? '',
-						$task_data['status'] ?? 'new',
-						$task_data['priority'] ?? 1,
-						$task_data['source'] ?? 'wp-module-next-steps',
-						$task_data
-					);
-				}
-				$merged_sections[] = new Section(
-					$section->get_id(),
-					$section->get_label(),
-					$section->get_description(),
-					$merged_tasks
-				);
-			}
-			$merged_tracks[] = new Track(
-				$track->get_id(),
-				$track->get_label(),
-				$track->get_description(),
-				$merged_sections
-			);
-		}
-		return new Plan(
-			$new_plan->get_id(),
-			$new_plan->get_label(),
-			$new_plan->get_description(),
-			$merged_tracks
-		);
+	public static function merge_plan_data( Plan $saved_plan, Plan $new_plan ): Plan {
+		// Use the Plan DTO's merge method for clean object-oriented merging
+		return $new_plan->merge_with( $saved_plan );
 	}
+
 
 	/**
 	 * Switch to a different plan type
@@ -218,7 +147,10 @@ class PlanManager {
 	 * @return Plan|false
 	 */
 	public static function switch_plan( string $plan_type ) {
-		if ( ! in_array( $plan_type, array_values( self::PLAN_TYPES ), true ) && ! in_array( $plan_type, array_keys( self::PLAN_TYPES ), true ) ) {
+		if (
+			! in_array( $plan_type, array_values( self::PLAN_TYPES ), true ) &&
+			! in_array( $plan_type, array_keys( self::PLAN_TYPES ), true )
+		) {
 			return false;
 		}
 
@@ -228,27 +160,7 @@ class PlanManager {
 		}
 
 		// Load the appropriate plan directly
-		switch ( $plan_type ) {
-			case 'ecommerce':
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
-					require_once __DIR__ . '/includes/Data/Plans/StorePlan.php';
-				}
-				$plan = StorePlan::get_plan();
-				break;
-			case 'corporate':
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
-					require_once __DIR__ . '/includes/Data/Plans/CorporatePlan.php';
-				}
-				$plan = CorporatePlan::get_plan();
-				break;
-			case 'blog':
-			default:
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
-					require_once __DIR__ . '/includes/Data/Plans/BlogPlan.php';
-				}
-				$plan = BlogPlan::get_plan();
-				break;
-		}
+		$plan = self::get_plan_type_data( $plan_type );
 
 		// Save the loaded plan
 		self::save_plan( $plan );

@@ -24,6 +24,13 @@ class Track {
 	public $label;
 
 	/**
+	 * Track description
+	 *
+	 * @var string
+	 */
+	public $description;
+
+	/**
 	 * Track state (open or closed)
 	 *
 	 * @var boolean
@@ -43,10 +50,11 @@ class Track {
 	 * @param array $data Track data
 	 */
 	public function __construct( array $data = array() ) {
-		$this->id       = $data['id'] ?? '';
-		$this->label    = $data['label'] ?? '';
-		$this->open     = $data['open'] ?? false;
-		$this->sections = array();
+		$this->id          = $data['id'] ?? '';
+		$this->label       = $data['label'] ?? '';
+		$this->description = $data['description'] ?? '';
+		$this->open        = $data['open'] ?? false;
+		$this->sections    = array();
 
 		// Convert section arrays to Section objects
 		if ( isset( $data['sections'] ) && is_array( $data['sections'] ) ) {
@@ -67,16 +75,62 @@ class Track {
 	 */
 	public function to_array(): array {
 		return array(
-			'id'       => $this->id,
-			'label'    => $this->label,
-			'open'     => $this->open,
-			'sections' => array_map(
+			'id'          => $this->id,
+			'label'       => $this->label,
+			'open'        => $this->open,
+			'description' => $this->description,
+			'sections'    => array_map(
 				function ( Section $section ) {
 					return $section->to_array();
 				},
 				$this->sections
 			),
 		);
+	}
+
+	/**
+	 * Merge this track with saved track data
+	 * Preserves: open
+	 * Updates: everything else
+	 *
+	 * @param Track $saved_track Saved track data
+	 * @return Track Merged track
+	 */
+	public function merge_with( Track $saved_track ): Track {
+		$merged_data = $this->to_array();
+		
+		// Preserve track open state from saved data
+		if ( isset( $saved_track->open ) ) {
+			$merged_data['open'] = $saved_track->open;
+		}
+		
+		// Merge sections recursively
+		$merged_sections = array();
+		foreach ( $this->sections as $section ) {
+			// Find matching saved section by ID
+			$saved_section = null;
+			foreach ( $saved_track->sections as $saved_section_candidate ) {
+				if ( $saved_section_candidate->id === $section->id ) {
+					$saved_section = $saved_section_candidate;
+					break;
+				}
+			}
+			
+			if ( $saved_section ) {
+				$merged_sections[] = $section->merge_with( $saved_section );
+			} else {
+				$merged_sections[] = $section;
+			}
+		}
+		
+		$merged_data['sections'] = array_map(
+			function ( Section $section ) {
+				return $section->to_array();
+			},
+			$merged_sections
+		);
+		
+		return new Track( $merged_data );
 	}
 
 	/**
@@ -139,14 +193,6 @@ class Track {
 		return null;
 	}
 
-	/**
-	 * Get all sections
-	 *
-	 * @return Section[]
-	 */
-	public function get_sections(): array {
-		return $this->sections;
-	}
 
 	/**
 	 * Get all tasks from all sections
@@ -156,7 +202,7 @@ class Track {
 	public function get_all_tasks(): array {
 		$tasks = array();
 		foreach ( $this->sections as $section ) {
-			$tasks = array_merge( $tasks, $section->get_tasks() );
+			$tasks = array_merge( $tasks, $section->tasks );
 		}
 		return $tasks;
 	}

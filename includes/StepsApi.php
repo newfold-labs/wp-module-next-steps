@@ -410,13 +410,13 @@ class StepsApi {
 		}
 
 		// Add tasks to the first available section
-		$tracks = $plan->get_tracks();
+		$tracks = $plan->tracks;
 		if ( empty( $tracks ) ) {
 			return new \WP_Error( 'no_tracks', __( 'No tracks found in plan.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
 		$first_track = $tracks[0];
-		$sections    = $first_track->get_sections();
+		$sections    = $first_track->sections;
 		if ( empty( $sections ) ) {
 			return new \WP_Error( 'no_sections', __( 'No sections found in track.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}

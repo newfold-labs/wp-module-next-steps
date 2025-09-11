@@ -96,13 +96,13 @@ class Section {
 		$this->label          = $data['label'] ?? '';
 		$this->description    = $data['description'] ?? '';
 		$this->open           = $data['open'] ?? false;
-		$this->tasks          = array();
 		$this->cta            = $data['cta'] ?? null;
 		$this->status         = $data['status'] ?? 'new';
 		$this->date_completed = $data['date_completed'] ?? null;
 		$this->icon           = $data['icon'] ?? '';
 		$this->modal_title    = $data['modal_title'] ?? '';
 		$this->modal_desc     = $data['modal_desc'] ?? '';
+		$this->tasks          = array();
 
 		// Convert task arrays to Task objects
 		if ( isset( $data['tasks'] ) && is_array( $data['tasks'] ) ) {
@@ -140,6 +140,57 @@ class Section {
 				$this->tasks
 			),
 		);
+	}
+
+	/**
+	 * Merge this section with saved section data
+	 * Preserves: open, status, date_completed
+	 * Updates: everything else
+	 *
+	 * @param Section $saved_section Saved section data
+	 * @return Section Merged section
+	 */
+	public function merge_with( Section $saved_section ): Section {
+		$merged_data = $this->to_array();
+		
+		// Preserve section properties from saved data
+		if ( isset( $saved_section->open ) ) {
+			$merged_data['open'] = $saved_section->open;
+		}
+		if ( ! empty( $saved_section->status ) ) {
+			$merged_data['status'] = $saved_section->status;
+		}
+		if ( ! empty( $saved_section->date_completed ) ) {
+			$merged_data['date_completed'] = $saved_section->date_completed;
+		}
+		
+		// Merge tasks recursively
+		$merged_tasks = array();
+		foreach ( $this->tasks as $task ) {
+			// Find matching saved task by ID
+			$saved_task = null;
+			foreach ( $saved_section->tasks as $saved_task_candidate ) {
+				if ( $saved_task_candidate->id === $task->id ) {
+					$saved_task = $saved_task_candidate;
+					break;
+				}
+			}
+			
+			if ( $saved_task ) {
+				$merged_tasks[] = $task->merge_with( $saved_task );
+			} else {
+				$merged_tasks[] = $task;
+			}
+		}
+		
+		$merged_data['tasks'] = array_map(
+			function ( Task $task ) {
+				return $task->to_array();
+			},
+			$merged_tasks
+		);
+		
+		return new Section( $merged_data );
 	}
 
 	/**
@@ -257,14 +308,6 @@ class Section {
 		return true;
 	}
 
-	/**
-	 * Get all tasks
-	 *
-	 * @return Task[]
-	 */
-	public function get_tasks(): array {
-		return $this->tasks;
-	}
 
 	/**
 	 * Sort tasks by priority

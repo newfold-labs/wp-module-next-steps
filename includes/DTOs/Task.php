@@ -100,6 +100,25 @@ class Task {
 	}
 
 	/**
+	 * Merge this task with saved task data
+	 * Preserves: status
+	 * Updates: everything else
+	 *
+	 * @param Task $saved_task Saved task data
+	 * @return Task Merged task
+	 */
+	public function merge_with( Task $saved_task ): Task {
+		$merged_data = $this->to_array();
+		
+		// Preserve status from saved task
+		if ( ! empty( $saved_task->status ) ) {
+			$merged_data['status'] = $saved_task->status;
+		}
+		
+		return new Task( $merged_data );
+	}
+
+	/**
 	 * Create Task from array
 	 *
 	 * @param array $data Task data

@@ -45,6 +45,13 @@ class Plan {
 	public $tracks;
 
 	/**
+	 * Plan data version
+	 *
+	 * @var string
+	 */
+	public $version;
+
+	/**
 	 * Plan constructor
 	 *
 	 * @param array $data Plan data
@@ -54,6 +61,7 @@ class Plan {
 		$this->type        = $data['type'] ?? '';
 		$this->label       = $data['label'] ?? '';
 		$this->description = $data['description'] ?? '';
+		$this->version     = $data['version'] ?? ( defined( 'NFD_NEXTSTEPS_MODULE_VERSION' ) ? NFD_NEXTSTEPS_MODULE_VERSION : '1.0.0' );
 		$this->tracks      = array();
 
 		// Convert track arrays to Track objects
@@ -79,6 +87,7 @@ class Plan {
 			'type'        => $this->type,
 			'label'       => $this->label,
 			'description' => $this->description,
+			'version'     => $this->version,
 			'tracks'      => array_map(
 				function ( Track $track ) {
 					return $track->to_array();
@@ -86,6 +95,51 @@ class Plan {
 				$this->tracks
 			),
 		);
+	}
+
+	/**
+	 * Merge this plan with saved plan data
+	 * Preserves: id, type
+	 * Updates: everything else
+	 *
+	 * @param Plan $saved_plan Saved plan data
+	 * @return Plan Merged plan
+	 */
+	public function merge_with( Plan $saved_plan ): Plan {
+		$merged_data = $this->to_array();
+		
+		// Preserve plan ID and type from saved data
+		$merged_data['id'] = $saved_plan->id;
+		$merged_data['type'] = $saved_plan->type;
+		// Note: version is NOT preserved - it should be updated to current version
+		
+		// Merge tracks recursively
+		$merged_tracks = array();
+		foreach ( $this->tracks as $track ) {
+			// Find matching saved track by ID
+			$saved_track = null;
+			foreach ( $saved_plan->tracks as $saved_track_candidate ) {
+				if ( $saved_track_candidate->id === $track->id ) {
+					$saved_track = $saved_track_candidate;
+					break;
+				}
+			}
+			
+			if ( $saved_track ) {
+				$merged_tracks[] = $track->merge_with( $saved_track );
+			} else {
+				$merged_tracks[] = $track;
+			}
+		}
+		
+		$merged_data['tracks'] = array_map(
+			function ( Track $track ) {
+				return $track->to_array();
+			},
+			$merged_tracks
+		);
+		
+		return new Plan( $merged_data );
 	}
 
 	/**
@@ -97,6 +151,7 @@ class Plan {
 	public static function from_array( array $data ): Plan {
 		return new self( $data );
 	}
+
 
 	/**
 	 * Add track to plan
@@ -179,14 +234,6 @@ class Plan {
 		return null;
 	}
 
-	/**
-	 * Get all tracks
-	 *
-	 * @return Track[]
-	 */
-	public function get_tracks(): array {
-		return $this->tracks;
-	}
 
 	/**
 	 * Get all sections from all tracks
@@ -196,7 +243,7 @@ class Plan {
 	public function get_all_sections(): array {
 		$sections = array();
 		foreach ( $this->tracks as $track ) {
-			$sections = array_merge( $sections, $track->get_sections() );
+			$sections = array_merge( $sections, $track->sections );
 		}
 		return $sections;
 	}
