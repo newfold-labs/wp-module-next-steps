@@ -181,10 +181,9 @@ export const NextSteps = () => {
         return (
             <>
                 <div id={ 'nfd-quick-add-product-modal-only' }/>
-                <div className="nfd-nextsteps nfd-grid nfd-grid-cols-2 nfd-grid-rows-[auto_auto] nfd-gap-4" id="nfd-nextsteps">
+                <div className="nfd-nextsteps nfd-grid nfd-grid-cols-1 md:nfd-grid-cols-2 md:nfd-grid-rows-[auto_auto] nfd-gap-4" id="nfd-nextsteps">
                     { sectionsAsCards.slice( 0, maxCards ).map( ( sectionsAsCard, i ) => {
                         return <SectionCard
-                            className={ i === 2 ? 'nfd-col-span-2 nfd-row-span-1' : 'nfd-col-span-1 nfd-row-span-1' }
                             key={ sectionsAsCard.id }
                             wide={ i === 2 }
                             isPrimary={ sectionsAsCard.isPrimary === true ? true : false } // calculated in filter to determine first new section

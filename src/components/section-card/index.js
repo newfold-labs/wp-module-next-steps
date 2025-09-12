@@ -198,7 +198,7 @@ export const SectionCard = ( {
 
 	const StepContent = () => {
 		return (
-			<div className="nfd-nextsteps-section-card-content nfd-flex nfd-flex-col nfd-justify-between nfd-gap-4">
+			<div className="nfd-nextsteps-section-card-content nfd-flex nfd-flex-col nfd-shrink nfd-justify-between nfd-gap-4">
 				<div className="nfd-nextsteps-section-card-header nfd-flex nfd-align-center nfd-justify-between">
 					<span className={'nfd-nextsteps-section-card-title-wrapper'}>
 						{
@@ -236,7 +236,14 @@ export const SectionCard = ( {
 	return (
 		<>
 			<div 
-				className={ classNames( className, 'nfd-nextsteps-section-card-container' ) }
+				className={ classNames( 
+					className,
+					'nfd-nextsteps-section-card-container',
+					{
+						'nfd-col-span-1 md:nfd-col-span-2 nfd-nextsteps-section-card-container--wide': wide,
+						'nfd-col-span-1 nfd-nextsteps-section-card-container--narrow': ! wide,
+					}
+				) }
 			>
 				<div
 					id={ id }
@@ -247,7 +254,7 @@ export const SectionCard = ( {
 					className={ classNames(
 						'nfd-nextsteps-section-card nfd-nextsteps-section-card-new nfd-h-full nfd-flex nfd-justify-between nfd-items-start nfd-gap-4 nfd-h-full',
 						{
-							'nfd-nextsteps-section-card--wide nfd-flex-row': wide,
+							'nfd-nextsteps-section-card--wide nfd-flex-col md:nfd-flex-row': wide,
 							'nfd-flex-col': ! wide,
 							'nfd-nextsteps-section-card-done': 'done' === status,
 							'nfd-nextsteps-section-card-dismissed': 'dismissed' === status,
@@ -256,19 +263,18 @@ export const SectionCard = ( {
 				>
 					{
 						wireframes[ id ] &&
-						<div className={ 'nfd-nextsteps-section-card__wireframe' }>
+						<div className={ classNames(
+							'nfd-nextsteps-section-card__wireframe nfd-shrink',
+						{
+							'nfd-w-full' : !wide,
+							'nfd-h-full nfd-w-full' : wide,
+						} ) }>
 							{ wireframes[ id ] }
 						</div>
 					}
 					<StepContent/>
 					<div className={ classNames(
-							 'nfd-nextsteps-buttons nfd-flex nfd-items-center nfd-gap-2',
-							 {
-								 'nfd-justify-between' : !wide,
-								 'nfd-w-full': !wide,
-								 'nfd-justify-center' : wide,
-								 'nfd-flex-col': wide,
-							 }
+							 'nfd-nextsteps-buttons nfd-flex nfd-shrink-2 nfd-items-center nfd-gap-2 nfd-justify-between nfd-w-full'
 						 ) }>
 						<div className="nfd-nextsteps-buttons-actions-primary nfd-flex">
 							<Button

@@ -421,7 +421,11 @@
     }
   }
 
-  // # Card
+  // Section Cards
+  .nfd-nextsteps-section-card-container--wide {
+    @apply md:nfd-col-span-2 !important;
+  }
+
   .nfd-nextsteps-section-card {
     border: none;
     background: #F2F5F9;
@@ -445,12 +449,17 @@
     }
 
     &.nfd-nextsteps-section-card--wide .nfd-nextsteps-section-card__wireframe {
-      height: 100%;
       min-width: fit-content;
     }
 
     &.nfd-nextsteps-section-card--wide .nfd-nextsteps-buttons {
-      height: 100%;
+      @media screen and (min-width: 768px) {
+        height: 100%;
+        flex-direction: column;
+        justify-content: center !important;
+        width: auto !important;
+      }
+
       min-width: fit-content;
     }
 
