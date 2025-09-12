@@ -52,26 +52,26 @@ class StepsApi {
 	 * StepsApi constructor.
 	 *
 	 * Initializes the API with the namespace and base route for all endpoints.
-	 * Sets up the REST API namespace as 'newfold-next-steps/v1' and base route as '/steps'.
+	 * Sets up the REST API namespace as 'newfold-next-steps/v2' and base route as '/plans'.
 	 */
 	public function __construct() {
-		$this->namespace = 'newfold-next-steps/v1';
-		$this->rest_base = '/steps';
+		$this->namespace = 'newfold-next-steps/v2';
+		$this->rest_base = '/plans';
 	}
 
 	/**
 	 * Register all REST API routes for the Next Steps functionality.
 	 *
 	 * Registers the following endpoints:
-	 * - GET /steps - Retrieve current plan and steps
-	 * - POST /steps/add - Add new tasks to current plan
-	 * - PUT /steps/status - Update task status
-	 * - PUT /steps/section/update - Update section state (open/status)
-	 * - PUT /steps/track/open - Update track open state
-	 * - GET /steps/stats - Get plan statistics
-	 * - PUT /steps/switch - Switch to different plan type
-	 * - PUT /steps/reset - Reset plan to defaults
-	 * - POST /steps/tasks - Add task to specific section
+	 * - GET /plans - Retrieve current plan and steps
+	 * - POST /plans/add - Add new tasks to current plan
+	 * - PUT /plans/tasks/{task_id} - Update task status
+	 * - PUT /plans/sections/{section_id} - Update section state (open/status)
+	 * - PUT /plans/tracks/{track_id} - Update track open state
+	 * - GET /plans/stats - Get plan statistics
+	 * - PUT /plans/switch - Switch to different plan type
+	 * - PUT /plans/reset - Reset plan to defaults
+	 * - POST /plans/tasks - Add task to specific section
 	 *
 	 * All routes require 'manage_options' capability and include proper
 	 * parameter validation and sanitization.
@@ -79,7 +79,7 @@ class StepsApi {
 	public function register_routes() {
 
 		// Add route for fetching steps
-		// newfold-next-steps/v1/steps
+		// newfold-next-steps/v2/plans
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base,
@@ -93,7 +93,7 @@ class StepsApi {
 		);
 
 		// Add route for adding steps
-		// newfold-next-steps/v1/steps/add
+		// newfold-next-steps/v2/plans/add
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/add',
@@ -107,10 +107,10 @@ class StepsApi {
 		);
 
 		// Add route for updating a step status
-		// newfold-next-steps/v1/steps/status
+		// newfold-next-steps/v2/plans/tasks/{task_id}
 		register_rest_route(
 			$this->namespace,
-			$this->rest_base . '/status',
+			$this->rest_base . '/tasks/(?P<task_id>[a-zA-Z0-9_-]+)',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE,
 				'callback'            => array( $this, 'update_task_status' ),
@@ -153,7 +153,7 @@ class StepsApi {
 		);
 
 		// Add route for plan statistics
-		// newfold-next-steps/v1/steps/stats
+		// newfold-next-steps/v2/plans/stats
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/stats',
@@ -167,7 +167,7 @@ class StepsApi {
 		);
 
 		// Add route for switching plans
-		// newfold-next-steps/v1/steps/switch
+		// newfold-next-steps/v2/plans/switch
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/switch',
@@ -189,7 +189,7 @@ class StepsApi {
 		);
 
 		// Add route for resetting plan
-		// newfold-next-steps/v1/steps/reset
+		// newfold-next-steps/v2/plans/reset
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/reset',
@@ -203,7 +203,7 @@ class StepsApi {
 		);
 
 		// Add route for adding tasks to specific sections
-		// newfold-next-steps/v1/steps/tasks
+		// newfold-next-steps/v2/plans/tasks
 		register_rest_route(
 			$this->namespace,
 			$this->rest_base . '/tasks',
@@ -237,10 +237,10 @@ class StepsApi {
 		);
 
 		// Add route for updating section state (unified for both open and status)
-		// newfold-next-steps/v1/steps/section/update
+		// newfold-next-steps/v2/plans/sections/{section_id}
 		register_rest_route(
 			$this->namespace,
-			$this->rest_base . '/section/update',
+			$this->rest_base . '/sections/(?P<section_id>[a-zA-Z0-9_-]+)',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE,
 				'callback'            => array( $this, 'update_section_state' ),
@@ -289,10 +289,10 @@ class StepsApi {
 		);
 
 		// Add route for updating track open state
-		// newfold-next-steps/v1/steps/track/open
+		// newfold-next-steps/v2/plans/tracks/{track_id}
 		register_rest_route(
 			$this->namespace,
-			$this->rest_base . '/track/open',
+			$this->rest_base . '/tracks/(?P<track_id>[a-zA-Z0-9_-]+)',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE,
 				'callback'            => array( $this, 'update_track_status' ),
@@ -339,14 +339,14 @@ class StepsApi {
 	}
 
 	/**
-	 * GET /newfold-next-steps/v1/steps - Retrieve current plan and steps
+	 * GET /newfold-next-steps/v2/plans - Retrieve current plan and steps
 	 *
 	 * Retrieves the current active plan with all tracks, sections, and tasks.
 	 * This endpoint is used by the frontend to display the complete next steps
 	 * structure and current progress.
 	 *
-	 * @api {get} /newfold-next-steps/v1/steps Get Current Plan
-	 * @apiName GetSteps
+	 * @api {get} /newfold-next-steps/v2/plans Get Current Plan
+	 * @apiName GetPlan
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
 	 *
@@ -371,15 +371,15 @@ class StepsApi {
 	}
 
 	/**
-	 * POST /newfold-next-steps/v1/steps/add - Add new tasks to the current plan
+	 * POST /newfold-next-steps/v2/plans/add - Add new tasks to the current plan
 	 *
 	 * Adds new tasks to the first available section of the current plan.
 	 * If a task with the same ID already exists, it will be updated with new values.
 	 * This endpoint is typically used to dynamically add tasks based on user actions
 	 * or plugin installations.
 	 *
-	 * @api {post} /newfold-next-steps/v1/steps/add Add Tasks to Plan
-	 * @apiName AddSteps
+	 * @api {post} /newfold-next-steps/v2/plans/add Add Tasks to Plan
+	 * @apiName AddTasksToPlan
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
 	 *
@@ -455,14 +455,14 @@ class StepsApi {
 	}
 
 	/**
-	 * PUT /newfold-next-steps/v1/steps/status - Update task status
+	 * PUT /newfold-next-steps/v2/plans/tasks/{task_id} - Update task status
 	 *
 	 * Updates the status of a specific task within a plan. This endpoint is used
 	 * when users mark tasks as completed, dismissed, or reset them to new status.
 	 * The endpoint validates all required parameters and ensures the task exists
 	 * before updating.
 	 *
-	 * @api {put} /newfold-next-steps/v1/steps/status Update Task Status
+	 * @api {put} /newfold-next-steps/v2/plans/tasks/{task_id} Update Task Status
 	 * @apiName UpdateTaskStatus
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
@@ -471,7 +471,7 @@ class StepsApi {
 	 * $request->get_param('plan_id') Required. Plan identifier
 	 * $request->get_param('track_id') Required. Track identifier
 	 * $request->get_param('section_id') Required. Section identifier
-	 * $request->get_param('task_id') Required. Task identifier
+	 * $request->get_param('task_id') Required. Task identifier (from URL parameter)
 	 * $request->get_param('status') Required. New status ('new', 'done', 'dismissed')
 	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
@@ -489,7 +489,7 @@ class StepsApi {
 		$plan_id    = $request->get_param( 'plan_id' );
 		$track_id   = $request->get_param( 'track_id' );
 		$section_id = $request->get_param( 'section_id' );
-		$task_id    = $request->get_param( 'task_id' );
+		$task_id    = $request->get_param( 'task_id' ); // From URL parameter
 		$status     = $request->get_param( 'status' );
 
 		// validate parameters
@@ -550,14 +550,14 @@ class StepsApi {
 	}
 
 	/**
-	 * PUT /newfold-next-steps/v1/steps/section/update - Update section state
+	 * PUT /newfold-next-steps/v2/plans/sections/{section_id} - Update section state
 	 *
 	 * Updates the state of a specific section within a plan. This unified endpoint
 	 * can update both the 'open' state (expanded/collapsed) and the 'status' state
 	 * (new/done/dismissed) of a section. The type parameter determines which property
 	 * to update, and the value parameter must match the expected type.
 	 *
-	 * @api {put} /newfold-next-steps/v1/steps/section/update Update Section State
+	 * @api {put} /newfold-next-steps/v2/plans/sections/{section_id} Update Section State
 	 * @apiName UpdateSectionState
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
@@ -565,7 +565,7 @@ class StepsApi {
 	 * @param WP_REST_Request $request The REST request object containing:
 	 * $request->get_param('plan_id') Required. Plan identifier
 	 * $request->get_param('track_id') Required. Track identifier
-	 * $request->get_param('section_id') Required. Section identifier
+	 * $request->get_param('section_id') Required. Section identifier (from URL parameter)
 	 * $request->get_param('type') Required. Update type ('open' or 'status')
 	 * $request->get_param('value') Required. New value:
 	 *  - For 'open' type: boolean (true/false)
@@ -586,7 +586,7 @@ class StepsApi {
 	public static function update_section_state( WP_REST_Request $request ) {
 		$plan_id    = $request->get_param( 'plan_id' );
 		$track_id   = $request->get_param( 'track_id' );
-		$section_id = $request->get_param( 'section_id' );
+		$section_id = $request->get_param( 'section_id' ); // From URL parameter
 		$type       = $request->get_param( 'type' );
 		$value      = $request->get_param( 'value' );
 
@@ -676,19 +676,19 @@ class StepsApi {
 	}
 
 	/**
-	 * PUT /newfold-next-steps/v1/steps/track/open - Update track open state
+	 * PUT /newfold-next-steps/v2/plans/tracks/{track_id} - Update track open state
 	 *
 	 * Updates the open/expanded state of a specific track within a plan.
 	 * This endpoint is used to expand or collapse tracks in the UI.
 	 *
-	 * @api {put} /newfold-next-steps/v1/steps/track/open Update Track State
+	 * @api {put} /newfold-next-steps/v2/plans/tracks/{track_id} Update Track State
 	 * @apiName UpdateTrackStatus
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
 	 *
 	 * @param WP_REST_Request $request The REST request object containing:
 	 * $request->get_param('plan_id') Required. Plan identifier
-	 * $request->get_param('track_id') Required. Track identifier
+	 * $request->get_param('track_id') Required. Track identifier (from URL parameter)
 	 * $request->get_param('open') Required. Whether track should be open/expanded
 	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
@@ -703,7 +703,7 @@ class StepsApi {
 	 */
 	public static function update_track_status( WP_REST_Request $request ) {
 		$plan_id  = $request->get_param( 'plan_id' );
-		$track_id = $request->get_param( 'track_id' );
+		$track_id = $request->get_param( 'track_id' ); // From URL parameter
 		$open     = $request->get_param( 'open' ) ?? false;
 
 		// validate parameters
@@ -762,13 +762,13 @@ class StepsApi {
 
 
 	/**
-	 * GET /newfold-next-steps/v1/steps/stats - Get plan statistics
+	 * GET /newfold-next-steps/v2/plans/stats - Get plan statistics
 	 *
 	 * Retrieves statistical information about the current plan including
 	 * task completion counts, progress percentages, and other metrics.
 	 * This endpoint is used for analytics and progress tracking.
 	 *
-	 * @api {get} /newfold-next-steps/v1/steps/stats Get Plan Statistics
+	 * @api {get} /newfold-next-steps/v2/plans/stats Get Plan Statistics
 	 * @apiName GetPlanStats
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
@@ -791,13 +791,13 @@ class StepsApi {
 	}
 
 	/**
-	 * PUT /newfold-next-steps/v1/steps/switch - Switch to different plan type
+	 * PUT /newfold-next-steps/v2/plans/switch - Switch to different plan type
 	 *
 	 * Switches the current plan to a different plan type (blog, store, or corporate).
 	 * This endpoint loads a new plan structure and replaces the current one.
 	 * All existing progress is lost when switching plans.
 	 *
-	 * @api {put} /newfold-next-steps/v1/steps/switch Switch Plan Type
+	 * @api {put} /newfold-next-steps/v2/plans/switch Switch Plan Type
 	 * @apiName SwitchPlan
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
@@ -825,13 +825,13 @@ class StepsApi {
 	}
 
 	/**
-	 * PUT /newfold-next-steps/v1/steps/reset - Reset plan to defaults
+	 * PUT /newfold-next-steps/v2/plans/reset - Reset plan to defaults
 	 *
 	 * Resets the current plan to its default state, clearing all progress
 	 * and returning all tasks to their initial 'new' status. This endpoint
 	 * is useful for testing or when users want to start over.
 	 *
-	 * @api {put} /newfold-next-steps/v1/steps/reset Reset Plan
+	 * @api {put} /newfold-next-steps/v2/plans/reset Reset Plan
 	 * @apiName ResetPlan
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options
@@ -848,13 +848,13 @@ class StepsApi {
 	}
 
 	/**
-	 * POST /newfold-next-steps/v1/steps/tasks - Add task to specific section
+	 * POST /newfold-next-steps/v2/plans/tasks - Add task to specific section
 	 *
 	 * Adds a new task to a specific section within a track. This endpoint
 	 * allows for more precise task placement compared to the general add_steps
 	 * endpoint which adds to the first available section.
 	 *
-	 * @api {post} /newfold-next-steps/v1/steps/tasks Add Task to Section
+	 * @api {post} /newfold-next-steps/v2/plans/tasks Add Task to Section
 	 * @apiName AddTaskToSection
 	 * @apiGroup NextSteps
 	 * @apiPermission manage_options

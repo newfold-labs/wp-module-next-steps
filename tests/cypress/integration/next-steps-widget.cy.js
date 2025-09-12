@@ -129,7 +129,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)status/,
+				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)tasks/,
 			},
 			{
 				statusCode: 200,
@@ -139,7 +139,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)update/,
+				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)sections/,
 			},
 			{
 				statusCode: 200,
@@ -193,7 +193,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)status/,
+				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)tasks/,
 			},
 			{
 				statusCode: 200,
@@ -219,7 +219,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)track(\/|%2F)open/,
+				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)tracks/,
 			},
 			{
 				statusCode: 200,
@@ -229,7 +229,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)update/,
+				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)sections/,
 			},
 			{
 				statusCode: 200,

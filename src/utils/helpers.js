@@ -198,7 +198,7 @@ export const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
 		url: createEndpointUrl(
 			window.NewfoldRuntime.restUrl,
-			'newfold-next-steps/v1/steps/status'
+			`newfold-next-steps/v2/plans/tasks/${data.task_id}`
 		),
 		method: 'PUT',
 		data,
@@ -220,7 +220,7 @@ export const taskUpdateWrapper = ( data, passError, thenCallback ) => {
 			);
 			enhancedError.name = 'TaskUpdateAPIError';
 			enhancedError.originalError = error;
-			enhancedError.data = { requestData: data, endpoint: 'steps/status' };
+			enhancedError.data = { requestData: data, endpoint: 'plans/tasks' };
 			
 			// Call error handler first
 			passError( enhancedError );
@@ -243,7 +243,7 @@ export const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
 		url: createEndpointUrl( 
 			window.NewfoldRuntime.restUrl, 
-			'newfold-next-steps/v1/steps/section/update'
+			`newfold-next-steps/v2/plans/sections/${data.section_id}`
 		),
 		method: 'PUT',
 		data,
@@ -265,7 +265,7 @@ export const sectionUpdateWrapper = ( data, passError, thenCallback ) => {
 			);
 			enhancedError.name = 'SectionUpdateAPIError';
 			enhancedError.originalError = error;
-			enhancedError.data = { requestData: data, endpoint: 'steps/section/update' };
+			enhancedError.data = { requestData: data, endpoint: 'plans/sections' };
 			
 			// Call error handler first
 			passError( enhancedError );
@@ -288,7 +288,7 @@ export const trackUpdateWrapper = ( data, passError, thenCallback ) => {
 	return apiFetch( {
 		url: createEndpointUrl( 
 			window.NewfoldRuntime.restUrl, 
-			'newfold-next-steps/v1/steps/track/open'
+			`newfold-next-steps/v2/plans/tracks/${data.track_id}`
 		),
 		method: 'PUT',
 		data,
@@ -310,7 +310,7 @@ export const trackUpdateWrapper = ( data, passError, thenCallback ) => {
 			);
 			enhancedError.name = 'TrackUpdateAPIError';
 			enhancedError.originalError = error;
-			enhancedError.data = { requestData: data, endpoint: 'steps/track/open' };
+			enhancedError.data = { requestData: data, endpoint: 'plans/tracks' };
 			
 			// Call error handler first
 			passError( enhancedError );

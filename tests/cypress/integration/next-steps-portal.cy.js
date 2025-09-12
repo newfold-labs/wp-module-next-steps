@@ -25,7 +25,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)status/,
+				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)tasks/,
 			},
 			{
 				statusCode: 200,
@@ -35,7 +35,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.intercept(
 			{
 				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)update/,
+				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)sections/,
 			},
 			{
 				statusCode: 200,
