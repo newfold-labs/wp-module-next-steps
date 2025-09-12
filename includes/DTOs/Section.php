@@ -388,8 +388,7 @@ class Section {
 	 * @return bool
 	 */
 	public function set_status( string $status ): bool {
-		$this->status = $status;
-		return true;
+		return $this->update_status( $status );
 	}
 
 	/**

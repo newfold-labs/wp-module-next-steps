@@ -222,9 +222,10 @@ export const NextSteps = () => {
                 // check if date completed is in last 24 hours
                 const completedDate = getDate( section.date_completed );
                 const expiryOffset = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-                const expiryDate = dateI18n( 'Y-m-d H:i:s', new Date( completedDate.getTime() + expiryOffset ) );
+                const expiryDateObj = new Date( completedDate.getTime() + expiryOffset );
+                const expiryDate = dateI18n( 'Y-m-d H:i:s', expiryDateObj );
                 // determine if now is after expiry date and set to hide section if so
-                const shouldHide = nowDate > expiryDate;
+                const shouldHide = now > expiryDateObj;
                 // save date values to section for use in section-card component/debugging
                 section.expiresIn = humanTimeDiff( expiryDate, nowDate );
                 section.expiryDate = format( 'Y-m-d H:i:s', expiryDate );
