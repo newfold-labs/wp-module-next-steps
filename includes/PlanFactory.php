@@ -252,32 +252,33 @@ class PlanFactory {
 	 * @return Plan The created plan
 	 */
 	public static function create_plan( string $plan_type, array $custom_plan_data = array() ): Plan {
-		switch ( $plan_type ) {
-			case 'custom':
-				if ( ! empty( $custom_plan_data ) ) {
-					return new Plan( $custom_plan_data );
-				}
-				// fall-through to default case if no data was provided
-			case 'ecommerce':
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
-					require_once NFD_NEXTSTEPS_DIR . '/includes/Data/Plans/StorePlan.php';
-				}
-				return StorePlan::get_plan();
-				break;
-			case 'corporate':
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
-					require_once NFD_NEXTSTEPS_DIR . '/includes/Data/Plans/CorporatePlan.php';
-				}
-				return CorporatePlan::get_plan();
-				break;
-			case 'blog':
-			default:
-				if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
-					require_once NFD_NEXTSTEPS_DIR . '/includes/Data/Plans/BlogPlan.php';
-				}
-				return BlogPlan::get_plan();
-				break;
+
+		// ecommerce plan
+		if ( 'ecommerce' === $plan_type ) {
+			if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan' ) ) {
+				require_once NFD_NEXTSTEPS_DIR . '/includes/Data/Plans/StorePlan.php';
+			}
+			return StorePlan::get_plan();
 		}
+
+		// corporate plan
+		if ( 'corporate' === $plan_type ) {
+			if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan' ) ) {
+				require_once NFD_NEXTSTEPS_DIR . '/includes/Data/Plans/CorporatePlan.php';
+			}
+			return CorporatePlan::get_plan();
+		}
+
+		// custom plan
+		if ( 'custom' === $plan_type && ! empty( $custom_plan_data ) ) {
+			return new Plan( $custom_plan_data );
+		}
+
+		// if blog type or anything else (blog is default)
+		if ( ! class_exists( 'NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan' ) ) {
+			require_once NFD_NEXTSTEPS_DIR . '/includes/Data/Plans/BlogPlan.php';
+		}
+		return BlogPlan::get_plan();
 	}
 
 	/**

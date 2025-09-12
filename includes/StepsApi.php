@@ -63,14 +63,14 @@ class StepsApi {
 	 * Register all REST API routes for the Next Steps functionality.
 	 *
 	 * Registers the following endpoints:
-	 * - GET /plans - Retrieve current plan and steps
+	 * - GET  /plans - Retrieve current plan and steps
 	 * - POST /plans/add - Add new tasks to current plan
-	 * - PUT /plans/tasks/{task_id} - Update task status
-	 * - PUT /plans/sections/{section_id} - Update section state (open/status)
-	 * - PUT /plans/tracks/{track_id} - Update track open state
-	 * - GET /plans/stats - Get plan statistics
-	 * - PUT /plans/switch - Switch to different plan type
-	 * - PUT /plans/reset - Reset plan to defaults
+	 * - PUT  /plans/tasks/{task_id} - Update task status
+	 * - PUT  /plans/sections/{section_id} - Update section state (open/status)
+	 * - PUT  /plans/tracks/{track_id} - Update track open state
+	 * - GET  /plans/stats - Get plan statistics
+	 * - PUT  /plans/switch - Switch to different plan type
+	 * - PUT  /plans/reset - Reset plan to defaults
 	 * - POST /plans/tasks - Add task to specific section
 	 *
 	 * All routes require 'manage_options' capability and include proper
@@ -202,34 +202,34 @@ class StepsApi {
 			)
 		);
 
-		// Add route for adding tasks to specific sections
-		// newfold-next-steps/v2/plans/tasks
+		// Add route for updating track open state
+		// newfold-next-steps/v2/plans/tracks/{track_id}
 		register_rest_route(
 			$this->namespace,
-			$this->rest_base . '/tasks',
+			$this->rest_base . '/tracks/(?P<track_id>[a-zA-Z0-9_-]+)',
 			array(
-				'methods'             => \WP_REST_Server::CREATABLE,
-				'callback'            => array( $this, 'add_task_to_section' ),
+				'methods'             => \WP_REST_Server::EDITABLE,
+				'callback'            => array( $this, 'update_track_status' ),
 				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
 				'args'                => array(
-					'track_id'   => array(
+					'plan_id'  => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'section_id' => array(
+					'track_id' => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'task'       => array(
+					'open'     => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
-							return is_array( $value ) && isset( $value['id'], $value['title'] );
+							return is_bool( $value );
 						},
 					),
 				),
@@ -288,34 +288,34 @@ class StepsApi {
 			)
 		);
 
-		// Add route for updating track open state
-		// newfold-next-steps/v2/plans/tracks/{track_id}
+		// Add route for adding tasks to specific sections
+		// newfold-next-steps/v2/plans/tasks
 		register_rest_route(
 			$this->namespace,
-			$this->rest_base . '/tracks/(?P<track_id>[a-zA-Z0-9_-]+)',
+			$this->rest_base . '/tasks',
 			array(
-				'methods'             => \WP_REST_Server::EDITABLE,
-				'callback'            => array( $this, 'update_track_status' ),
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'add_task_to_section' ),
 				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
 				'args'                => array(
-					'plan_id'  => array(
+					'track_id'   => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'track_id' => array(
+					'section_id' => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
 							return is_string( $value );
 						},
 					),
-					'open'     => array(
+					'task'       => array(
 						'required'          => true,
 						'validate_callback' => function ( $value ) {
-							return is_bool( $value );
+							return is_array( $value ) && isset( $value['id'], $value['title'] );
 						},
 					),
 				),
@@ -515,7 +515,7 @@ class StepsApi {
 		if ( $task->status === $status ) {
 			// Return the current task data
 			$response_data = array(
-				'id' => $task->id,
+				'id'     => $task->id,
 				'status' => $task->status,
 			);
 
@@ -542,7 +542,7 @@ class StepsApi {
 
 		// Return only the essential changed properties
 		$response_data = array(
-			'id' => $task->id,
+			'id'     => $task->id,
 			'status' => $task->status,
 		);
 
@@ -618,7 +618,7 @@ class StepsApi {
 		if ( $current_value === $value ) {
 			// Return the current section data
 			$response_data = array(
-				'id' => $section->id
+				'id' => $section->id,
 			);
 
 			if ( 'status' === $type ) {
@@ -658,7 +658,7 @@ class StepsApi {
 
 		// Return only the essential changed properties
 		$response_data = array(
-			'id' => $section->id,
+			'id'     => $section->id,
 			'status' => $section->status,
 		);
 
@@ -726,7 +726,7 @@ class StepsApi {
 		if ( $track->open === $open ) {
 			// Return the current track data
 			$response_data = array(
-				'id' => $track->id,
+				'id'   => $track->id,
 				'open' => $track->open,
 			);
 
@@ -753,7 +753,7 @@ class StepsApi {
 
 		// Return only the essential changed properties
 		$response_data = array(
-			'id' => $track->id,
+			'id'   => $track->id,
 			'open' => $track->open,
 		);
 
