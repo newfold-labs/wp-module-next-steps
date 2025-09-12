@@ -4,6 +4,7 @@ import {
 	setTestNextStepsData,
 	resetNextStepsData
 } from '../wp-module-support/utils.cy';
+import { setupNextStepsIntercepts } from '../wp-module-support/api-intercepts.cy';
 
 describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
@@ -21,32 +22,13 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		);
 		cy.reload();
 
-		// Intercept the task status update API call
-		cy.intercept(
-			{
-				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)status/,
-			},
-			{
-				statusCode: 200,
-				body: true
-			}
-		).as( 'updateTaskStatus' );
-		cy.intercept(
-			{
-				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v1(\/|%2F)steps(\/|%2F)section(\/|%2F)open/,
-			},
-			{
-				statusCode: 200,
-				body: true
-			}
-		).as( 'updateSectionState' );
+		// Set up all Next Steps API intercepts
+		setupNextStepsIntercepts();
 	} );
 
 	it( 'portal renders and displays correctly', () => {
 		// Portal App Renders
-		cy.get('#next-steps-portal').scrollIntoView().should('be.visible');
+		cy.get( '#next-steps-portal' ).scrollIntoView().should('be.visible');
 		cy.get( '.next-steps-fill #nfd-nextsteps' ).should( 'be.visible' );
 
 		// Check Basic Structure
@@ -69,11 +51,12 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
 		// Task should be in new state
 		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'new');
-
+		cy.get( '@firstSection' ).should('have.attr', 'open');
 		// Complete task
-		cy.get( '@firstSection' ).find('#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo').click();
+		cy.get( '#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo' )
+			.click();
 		// Wait for API call
-		cy.wait('@updateTaskStatus');
+		cy.wait('@taskEndpoint');
 
 		// Task should now be in done state
 		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'done');
@@ -89,13 +72,16 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
 		// Close celebration closes section
 		cy.get( '@firstSection' ).should('have.attr', 'open');
-		cy.get( '@firstSection' ).find('.nfd-section-complete').click();
-		cy.wait( '@updateSectionState' );
+		cy.get( '@firstSection' ).find('.nfd-section-complete')
+			.click();
+		cy.wait( '@sectionEndpoint' );
 		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
 		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
 		cy.get( '@firstSection' ).should('not.have.attr', 'open');
 		// Open the section
-		cy.get( '@firstSection' ).find('.nfd-section-header').click();
+		cy.get( '@firstSection' ).find('.nfd-section-header')
+			.click();
+		cy.wait( '@sectionEndpoint' );
 		cy.get( '@firstSection' ).should('have.attr', 'open');
 	} );
 } );

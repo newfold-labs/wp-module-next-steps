@@ -1,4 +1,5 @@
 const testPlan = require( '../fixtures/test-plan.json' );
+const testCardsPlan = require( '../fixtures/test-cards-plan.json' );
 
 /**
  * Loginto WordPress.
@@ -38,6 +39,17 @@ export const setTestNextStepsData = () => {
 	wpCli(
 		`option update nfd_next_steps '${ JSON.stringify(
 			testPlan
+		) }' --format=json`
+	);
+};
+
+/**
+ * Set next steps test fixture to database option
+ */
+export const setTestCardsNextStepsData = () => {
+	wpCli(
+		`option update nfd_next_steps '${ JSON.stringify(
+			testCardsPlan
 		) }' --format=json`
 	);
 };

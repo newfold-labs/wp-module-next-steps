@@ -17,6 +17,11 @@
             "bootstrap.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "NewfoldLabs\\WP\\Module\\NextSteps\\Tests\\PHPUnit\\": "tests/phpunit"
+        }
+    },
     "repositories": {
         "newfold": {
             "type": "composer",

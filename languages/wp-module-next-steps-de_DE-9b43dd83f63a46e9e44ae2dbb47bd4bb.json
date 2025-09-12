@@ -67,11 +67,26 @@
             "Task temporarily unavailable": [
                 "Aufgabe vor\u00fcbergehend nicht verf\u00fcgbar"
             ],
-            "Connection Issue": [
-                "Problem mit der Verbindung"
+            "No Pending tasks": [
+                ""
             ],
-            "Unable to save your changes right now. Please check your connection and try again.": [
-                "Ihre \u00c4nderungen k\u00f6nnen derzeit nicht gespeichert werden. Bitte \u00fcberpr\u00fcfen Sie Ihre Verbindung und versuchen Sie es erneut."
+            "Hooray!": [
+                ""
+            ],
+            "You don\u2019t have any pending tasks today": [
+                ""
+            ],
+            "Completed": [
+                ""
+            ],
+            "Skipped": [
+                ""
+            ],
+            "Skip it": [
+                ""
+            ],
+            "Undo": [
+                ""
             ]
         }
     }

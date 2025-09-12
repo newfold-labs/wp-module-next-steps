@@ -4,9 +4,25 @@ namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\ModuleLoader\Container;
 use NewfoldLabs\WP\Module\Data\HiiveConnection;
+use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
+use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 
 /**
- * Manages all the functionalities for the module.
+ * NextSteps - Main module class for managing next steps functionality
+ *
+ * This class handles all the core functionalities for the Next Steps module,
+ * including widget and portal rendering, asset management, and integration
+ * with the PluginRedirect system for plugin-dependent tasks.
+ *
+ * Key Features:
+ * - Next Steps widget and portal rendering
+ * - Asset management and localization
+ * - Integration with PluginRedirect for plugin-dependent tasks
+ * - REST API endpoints for next steps management
+ *
+ * @package NewfoldLabs\WP\Module\NextSteps
+ * @since 1.0.0
+ * @author Newfold Labs
  */
 class NextSteps {
 	/**
@@ -30,13 +46,16 @@ class NextSteps {
 	 */
 	public function __construct( Container $container ) {
 		// Autoloader handles class loading
-		new PlanLoader();
+		new PlanFactory();
 		$hiive           = new HiiveConnection();
 		self::$steps_api = new StepsApi( $hiive );
 		$this->container = $container;
 		\add_action( 'rest_api_init', array( $this, 'init_steps_apis' ) );
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_widget' ) );
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_portal' ) );
+
+		// Initialize plugin redirect functionality
+		PluginRedirect::init();
 
 		new I18nService( $container );
 		if ( is_admin() ) {
@@ -119,7 +138,7 @@ class NextSteps {
 			\wp_enqueue_style( 'next-steps-widget-style' );
 
 			// Get current plan data
-			$current_plan    = PlanManager::get_current_plan();
+			$current_plan    = PlanRepository::get_current_plan();
 			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(
@@ -169,7 +188,7 @@ class NextSteps {
 			\wp_enqueue_style( 'next-steps-portal-style' );
 
 			// Get current plan data
-			$current_plan    = PlanManager::get_current_plan();
+			$current_plan    = PlanRepository::get_current_plan();
 			$next_steps_data = $current_plan ? $current_plan->to_array() : array();
 
 			\wp_localize_script(

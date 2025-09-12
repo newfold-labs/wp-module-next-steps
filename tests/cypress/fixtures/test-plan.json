@@ -13,6 +13,7 @@
                     "id": "section1",
                     "label": "Test Section with 1 task",
                     "open": true,
+                    "status": "new",
                     "tasks": [
                         {
                             "id": "s1task1",
@@ -32,6 +33,7 @@
                     "id": "section2",
                     "label": "Test Section with 3 tasks",
                     "open": true,
+                    "status": "new",
                     "tasks": [
                         {
                             "id": "s2task1",
@@ -63,6 +65,7 @@
                     "id": "section3",
                     "label": "Test Section with completed tasks",
                     "open": true,
+                    "status": "new",
                     "tasks": [
                         {
                             "id": "s3task1",
@@ -93,6 +96,7 @@
                     "id": "section4",
                     "label": "Test Section with all new tasks",
                     "open": true,
+                    "status": "new",
                     "tasks": [
                         {
                             "id": "s4task1",
