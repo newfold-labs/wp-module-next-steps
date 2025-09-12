@@ -301,7 +301,7 @@ export const SectionCard = ( {
 										setIsModalOpened( true );
 										return false;
 									}
-									if ( 'done' !== status ) {
+									else if ( 'done' !== status ) {
 										// TODO - clean this up - we're pausing the default action
 										// so the callbacks have time to update the status
 										// and then we manually open the link in a new tab
