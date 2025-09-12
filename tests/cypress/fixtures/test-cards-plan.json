@@ -1,0 +1,135 @@
+{
+    "id": "store_setup",
+    "label": "Test Plan",
+    "version": "2.0.0",
+    "description": "This is a test plan",
+    "tracks": [
+        {
+            "id": "track1",
+            "label": "Test Track 1",
+            "open": true,
+            "sections": [
+                {
+                    "id": "customize_your_store",
+                    "label": "Test Section with 1 task",
+                    "description": "Section 1 description.",
+                    "open": true,
+                    "status": "new",
+                    "cta": "CTA 1 Text",
+                    "icon": "paint-brush",
+                    "modal_title": "Section 1 Modal Title",
+                    "modal_desc": "Section 1 modal description.",
+                    "tasks": [
+                        {
+                            "id": "s1task1",
+                            "title": "Test Task",
+                            "href": "https://www.bluehost.com",
+                            "status": "new",
+                            "priority": 1,
+                            "source": "test",
+                            "data_attributes": {
+                                "data-test-id": "test-task-1",
+                                "data-nfd-id": "test-task-1"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "section2",
+                    "label": "Test Section with 3 tasks",
+                    "description": "Section 2 description.",
+                    "open": true,
+                    "status": "new",
+                    "cta": "CTA 2 Text",
+                    "modal_title": "Section 2 Modal Title",
+                    "modal_desc": "Section 2 modal description.",
+                    "tasks": [
+                        {
+                            "id": "s2task1",
+                            "title": "New Task",
+                            "href": "https://www.bluehost.com",
+                            "status": "new",
+                            "priority": 1,
+                            "source": "test"
+                        },
+                        {
+                            "id": "s2task2",
+                            "title": "Dismissed Task",
+                            "href": "https://www.bluehost.com",
+                            "status": "dismissed",
+                            "priority": 2,
+                            "source": "test"
+                        },
+                        {
+                            "id": "s2task3",
+                            "title": "Completed Task",
+                            "href": "https://www.bluehost.com",
+                            "status": "done",
+                            "priority": 3,
+                            "source": "test"
+                        }
+                    ]
+                },
+                {
+                    "id": "section-expired",
+                    "label": "Test Section with expired tasks",
+                    "description": "Section 4 should not render.",
+                    "open": true,
+                    "status": "done",
+                    "cta": "CTA Expired Text",
+                    "icon": "archive-box",
+                    "date_completed": "2025-01-01 00:00:00",
+                    "modal_title": "Section Expired Modal Title",
+                    "modal_desc": "Section Expired modal description.",
+                    "tasks": [
+                        {
+                            "id": "expiredtask1",
+                            "title": "Complete Task 1",
+                            "href": "https://www.bluehost.com",
+                            "status": "done",
+                            "priority": 1,
+                            "source": "test"
+                        },
+                        {
+                            "id": "expiredtask2",
+                            "title": "Complete Task 2",
+                            "href": "https://www.bluehost.com",
+                            "status": "done",
+                            "priority": 2,
+                            "source": "test"
+                        }
+                    ]
+                },
+                {
+                    "id": "section3",
+                    "label": "Test Section with completed tasks",
+                    "description": "Section 3 description. Section new but all tasks are done.",
+                    "open": true,
+                    "status": "new",
+                    "cta": "CTA 3 Text",
+                    "icon": "archive-box",
+                    "modal_title": "Section 3 Modal Title",
+                    "modal_desc": "Section 3 modal description.",
+                    "tasks": [
+                        {
+                            "id": "s3task1",
+                            "title": "Complete Task 1",
+                            "href": "https://www.bluehost.com",
+                            "status": "done",
+                            "priority": 1,
+                            "source": "test"
+                        },
+                        {
+                            "id": "s3task2",
+                            "title": "Complete Task 2",
+                            "href": "https://www.bluehost.com",
+                            "status": "done",
+                            "priority": 2,
+                            "source": "test"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

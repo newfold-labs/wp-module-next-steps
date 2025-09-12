@@ -60,6 +60,7 @@ export const SectionCard = ( {
 	expiryDate = null,
 	expiresIn = null,
 	nowDate = null,
+	index,
 	...props
 } ) => {
 
@@ -172,15 +173,7 @@ export const SectionCard = ( {
 	 * Adjust CTA text based on status
 	 */
 	const getCtaText = () => {
-		let ctaText = cta;
-		// if( 'dismissed' === status ) {
-		// 	ctaText = __('SKIPPED', 'wp-module-next-steps');
-		// }
-		// Change CTA text for completed "Add your first product" step
-		// if( 'done' === status && 'add_first_product' === id ) {
-		// 	ctaText = __('Add another product', 'wp-module-next-steps');
-		// }
-		return ctaText;
+		return cta;
 	}
 
 	// Combine custom data attributes with any other restProps
@@ -205,56 +198,65 @@ export const SectionCard = ( {
 
 	const StepContent = () => {
 		return (
-			<div className="nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between nfd-gap-4">
-				<div className="nfd-nextsteps-step-header nfd-flex nfd-align-center nfd-justify-between">
-					<span className={'nfd-nextsteps-step-title-wrapper'}>
+			<div className="nfd-nextsteps-section-card-content nfd-flex nfd-flex-col nfd-justify-between nfd-gap-4">
+				<div className="nfd-nextsteps-section-card-header nfd-flex nfd-align-center nfd-justify-between">
+					<span className={'nfd-nextsteps-section-card-title-wrapper'}>
 						{
 							Icon &&
-							<span className={`nfd-nextsteps-step-icon-wrapper nfd-nextsteps-step-icon-wrapper-${icon}`}>
+							<span className={`nfd-nextsteps-section-card-icon-wrapper nfd-nextsteps-section-card-icon-wrapper-${icon}`}>
 								<Icon width={ 16 }/>
 							</span>
 						}
-						<Title as="span" className="nfd-nextsteps-step-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center nfd-mr-4">
+						<Title as="span" className="nfd-nextsteps-section-card-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center nfd-mr-4">
 							{ label }
 						</Title>
 					</span>
 					{
 						'done' === status &&
-						<span className={ 'nfd-nextstep-step__completed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
+						<span className={ 'nfd-nextstep-section-card__completed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
 							<CheckCircleIcon width={ 24 }/>
 							{ __( 'Completed', 'wp-module-next-steps' ) }
 						</span>
 					}
 					{
 						'dismissed' === status &&
-						<span className={ 'nfd-nextstep-step__dismissed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
+						<span className={ 'nfd-nextstep-section-card__dismissed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
 							<XCircleIcon width={ 24 }/>
 							{ __( 'Skipped', 'wp-module-next-steps' ) }
 						</span>
 					}
 				</div>
-				<span>{ desc }</span>
+				<span className="nfd-nextsteps-section-card-description">
+					{ desc }
+				</span>
 			</div>
 		);
 	};
 
 	return (
 		<>
-			<div className={ classNames( className, 'nfd-nextsteps-step-container' ) } id={ id } { ...combinedAttributes }>
+			<div 
+				className={ classNames( className, 'nfd-nextsteps-section-card-container' ) }
+			>
 				<div
+					id={ id }
+					data-nfd-section-id={ sectionId }
+					data-nfd-section-index={ index }
+					data-nfd-section-status={ status }
+					{ ...combinedAttributes }
 					className={ classNames(
-						'nfd-nextsteps-step-card nfd-nextsteps-step-card-new nfd-h-full nfd-flex nfd-justify-between nfd-items-start nfd-gap-4 nfd-h-full',
+						'nfd-nextsteps-section-card nfd-nextsteps-section-card-new nfd-h-full nfd-flex nfd-justify-between nfd-items-start nfd-gap-4 nfd-h-full',
 						{
-							'nfd-nextsteps-step-card--wide nfd-flex-row': wide,
+							'nfd-nextsteps-section-card--wide nfd-flex-row': wide,
 							'nfd-flex-col': ! wide,
-							'nfd-nextsteps-step-card-done': 'done' === status,
-							'nfd-nextsteps-step-card-dismissed': 'dismissed' === status,
+							'nfd-nextsteps-section-card-done': 'done' === status,
+							'nfd-nextsteps-section-card-dismissed': 'dismissed' === status,
 						}
 					) }
 				>
 					{
 						wireframes[ id ] &&
-						<div className={ 'nfd-nextsteps-step-card__wireframe' }>
+						<div className={ 'nfd-nextsteps-section-card__wireframe' }>
 							{ wireframes[ id ] }
 						</div>
 					}

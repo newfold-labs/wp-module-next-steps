@@ -193,6 +193,7 @@ export const NextSteps = () => {
                             desc={ sectionsAsCard.description }
                             trackId={ trackId }
                             sectionId={ sectionsAsCard.id }
+                            index={ i }
                             { ...sectionsAsCard }
                         />
                     } ) }
