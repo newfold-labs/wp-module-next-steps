@@ -4,6 +4,7 @@ import {
 	setTestNextStepsData,
 	resetNextStepsData
 } from '../wp-module-support/utils.cy';
+import { setupNextStepsIntercepts } from '../wp-module-support/api-intercepts.cy';
 
 describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
@@ -21,30 +22,8 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		);
 		cy.reload();
 
-		// Intercept the task status update API call
-		cy.intercept(
-			{
-				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)tasks/,
-			},
-			{
-				statusCode: 200,
-				body: true
-			}
-		).as( 'taskStatus' );
-		cy.intercept(
-			{
-				method: 'POST',
-				url: /newfold-next-steps(\/|%2F)v2(\/|%2F)plans(\/|%2F)sections/,
-			},
-			{
-				statusCode: 200,
-				body: {
-					id: 'section1',
-					open: false
-				}
-			}
-		).as( 'sectionUpdate' );
+		// Set up all Next Steps API intercepts
+		setupNextStepsIntercepts();
 	} );
 
 	it( 'portal renders and displays correctly', () => {
@@ -77,7 +56,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get( '#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo' )
 			.click();
 		// Wait for API call
-		cy.wait('@taskStatus');
+		cy.wait('@taskEndpoint');
 
 		// Task should now be in done state
 		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'done');
@@ -91,5 +70,18 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get( '@firstSection' ).find('.nfd-section-celebrate-text').should('have.text', 'All complete!');
 		cy.get( '@firstSection' ).find('.nfd-nextsteps-section-close-button').should('be.visible');
 
+		// Close celebration closes section
+		cy.get( '@firstSection' ).should('have.attr', 'open');
+		cy.get( '@firstSection' ).find('.nfd-section-complete')
+			.click();
+		cy.wait( '@sectionEndpoint' );
+		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
+		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
+		cy.get( '@firstSection' ).should('not.have.attr', 'open');
+		// Open the section
+		cy.get( '@firstSection' ).find('.nfd-section-header')
+			.click();
+		cy.wait( '@sectionEndpoint' );
+		cy.get( '@firstSection' ).should('have.attr', 'open');
 	} );
 } );

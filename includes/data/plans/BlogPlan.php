@@ -50,7 +50,7 @@ class BlogPlan {
 					array(
 						'id'       => 'blog_build_track',
 						'label'    => __( 'Build', 'wp-module-next-steps' ),
-						'open'     => false,
+						'open'     => true,
 						'sections' => array(
 							array(
 								'id'    => 'basic_blog_setup',
