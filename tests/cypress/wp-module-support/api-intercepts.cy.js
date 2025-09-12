@@ -18,8 +18,9 @@ export function setupNextStepsIntercepts() {
 			url: /.*newfold-next-steps.*v2.*plans.*tasks.*/,
 		},
 		(req) => {
-			// Extract task ID from URL
-			const taskId = req.url.match(/\/tasks\/([^\/\?]+)/)[1] || 'task1';
+			// Extract task ID from URL - handle different URL structures
+			const taskIdMatch = req.url.match(/\/tasks\/([^\/\?]+)/);
+			const taskId = taskIdMatch ? taskIdMatch[1] : 'task1';
 			console.log('Task intercept matched:', req.url, 'Task ID:', taskId);
 			req.reply({
 				statusCode: 200,
@@ -38,8 +39,9 @@ export function setupNextStepsIntercepts() {
 			url: /.*newfold-next-steps.*v2.*plans.*sections.*/,
 		},
 		(req) => {
-			// Extract section ID from URL
-			const sectionId = req.url.match(/\/sections\/([^\/\?]+)/)[1] || 'section1';
+			// Extract section ID from URL - handle different URL structures
+			const sectionIdMatch = req.url.match(/\/sections\/([^\/\?]+)/);
+			const sectionId = sectionIdMatch ? sectionIdMatch[1] : 'section1';
 			console.log('Section intercept matched:', req.url, 'Section ID:', sectionId);
 			const response = {
 				id: sectionId
@@ -72,8 +74,9 @@ export function setupNextStepsIntercepts() {
 			url: /.*newfold-next-steps.*v2.*plans.*tracks.*/,
 		},
 		(req) => {
-			// Extract track ID from URL
-			const trackId = req.url.match(/\/tracks\/([^\/\?]+)/)[1] || 'track1';
+			// Extract track ID from URL - handle different URL structures
+			const trackIdMatch = req.url.match(/\/tracks\/([^\/\?]+)/);
+			const trackId = trackIdMatch ? trackIdMatch[1] : 'track1';
 			console.log('Track intercept matched:', req.url, 'Track ID:', trackId);
 			req.reply({
 				statusCode: 200,
