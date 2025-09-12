@@ -71,15 +71,15 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 
         // Check that completed section 3 is rendered with complete badge
         cy.get( '@section3Card' ).scrollIntoView().should( 'be.visible' );
-        cy.get( '@section3Card' ).find( '.nfd-nextstep-section-card__completed-badge' ).should( 'be.visible' );
         cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
         cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-date-completed' );
         cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-now-date' );
         cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-expiry-date' );
         cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-expires-in', 'a day from now' );
+        cy.get( '@section3Card' ).find( '.nfd-nextstep-section-card__completed-badge' ).scrollIntoView().should( 'be.visible' );
 
         // check section 1 updates when skipped
-        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' ).should( 'be.visible' );
+        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' ).scrollIntoView().should( 'be.visible' );
         cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' )
             .click();
         cy.wait( '@sectionEndpoint' );
