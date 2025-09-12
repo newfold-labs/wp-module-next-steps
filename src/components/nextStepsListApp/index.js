@@ -41,8 +41,13 @@ export const NextStepsListApp = () => {
 				errorCallback( error );
 			},
 			( response ) => {
-				// update plan state with the new task status using immutability helper
-				setPlan( prevPlan => updateTaskStatusInPlan( prevPlan, trackId, sectionId, taskId, status ) );
+				// update plan state with the response data from API
+				if ( response && response.id && response.status ) {
+					setPlan( prevPlan => updateTaskStatusInPlan( prevPlan, trackId, sectionId, taskId, response.status ) );
+				} else {
+					// fallback to local status if response is invalid
+					setPlan( prevPlan => updateTaskStatusInPlan( prevPlan, trackId, sectionId, taskId, status ) );
+				}
 				// call provided success callback
 				successCallback( response );
 			}

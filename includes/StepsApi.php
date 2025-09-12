@@ -476,7 +476,9 @@ class StepsApi {
 	 *
 	 * @return WP_REST_Response|WP_Error The response object on success, or WP_Error on failure.
 	 *
-	 * @apiSuccess {boolean} true Success indicator
+	 * @apiSuccess {Object} response Minimal task update data containing:
+	 * @apiSuccess {string} response.id Task ID
+	 * @apiSuccess {string} response.status Updated task status
 	 *
 	 * @apiError (400) invalid_params Invalid parameters provided
 	 * @apiError (400) invalid_status Invalid status value provided
@@ -498,6 +500,28 @@ class StepsApi {
 			return new WP_Error( 'invalid_status', __( 'Invalid status provided.', 'wp-module-next-steps' ), array( 'status' => 400 ) );
 		}
 
+		// Check if the state is actually changing to avoid unnecessary updates
+		$plan = PlanRepository::get_current_plan();
+		if ( ! $plan ) {
+			return new WP_Error( 'plan_not_found', __( 'Plan not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		$task = $plan->get_task( $track_id, $section_id, $task_id );
+		if ( ! $task ) {
+			return new WP_Error( 'step_not_found', __( 'Task not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		// If the status hasn't changed, return success without updating
+		if ( $task->status === $status ) {
+			// Return the current task data
+			$response_data = array(
+				'id' => $task->id,
+				'status' => $task->status,
+			);
+
+			return new WP_REST_Response( $response_data, 200 );
+		}
+
 		// Use PlanRepository to update the task status
 		$success = PlanRepository::update_task_status( $track_id, $section_id, $task_id, $status );
 
@@ -505,10 +529,24 @@ class StepsApi {
 			return new WP_Error( 'step_not_found', __( 'Step not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
 		}
 
-		// Get the updated plan
-		// $plan = PlanRepository::get_current_plan();
+		// Get the updated task data to return minimal changed properties
+		$plan = PlanRepository::get_current_plan();
+		if ( ! $plan ) {
+			return new WP_Error( 'plan_not_found', __( 'Plan not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
 
-		return new WP_REST_Response( true, 200 );
+		$task = $plan->get_task( $track_id, $section_id, $task_id );
+		if ( ! $task ) {
+			return new WP_Error( 'step_not_found', __( 'Updated task not found.', 'wp-module-next-steps' ), array( 'status' => 404 ) );
+		}
+
+		// Return only the essential changed properties
+		$response_data = array(
+			'id' => $task->id,
+			'status' => $task->status,
+		);
+
+		return new WP_REST_Response( $response_data, 200 );
 	}
 
 	/**
