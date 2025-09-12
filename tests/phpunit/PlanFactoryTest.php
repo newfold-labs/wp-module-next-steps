@@ -3,7 +3,7 @@
  * Tests for PlanLoader class
  *
  * @package WPModuleNextSteps
- * 
+ *
  * @phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_var_export
  */
 
