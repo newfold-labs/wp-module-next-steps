@@ -28,7 +28,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
 	it( 'portal renders and displays correctly', () => {
 		// Portal App Renders
-		cy.get('#next-steps-portal').scrollIntoView().should('be.visible');
+		cy.get( '#next-steps-portal' ).scrollIntoView().should('be.visible');
 		cy.get( '.next-steps-fill #nfd-nextsteps' ).should( 'be.visible' );
 
 		// Check Basic Structure
