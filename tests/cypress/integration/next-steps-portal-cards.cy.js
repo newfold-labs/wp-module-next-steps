@@ -65,6 +65,34 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get( '@section2Card' ).find( '.nfd-nextsteps-section-card-icon-wrapper svg' ).should( 'not.exist' );
         cy.get( '@section2Card' ).find( '.nfd-nextsteps-section-card__wireframe svg' ).should( 'not.exist' );
         cy.get( '@section2Card' ).should( 'have.attr', 'data-nfd-section-status', 'new' );
+
+        // Check that expired section is not rendered
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section-expired"]' ).should( 'not.exist' );
+
+        // Check that completed section 3 is rendered with complete badge
+        cy.get( '@section3Card' ).scrollIntoView().should( 'be.visible' );
+        cy.get( '@section3Card' ).find( '.nfd-nextstep-section-card__completed-badge' ).should( 'be.visible' );
+        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
+        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-date-completed' );
+        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-now-date' );
+        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-expiry-date' );
+        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-expires-in', 'a day from now' );
+
+        // check section 1 updates when skipped
+        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' ).should( 'be.visible' );
+        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' )
+            .click();
+        cy.wait( '@sectionEndpoint' );
+        cy.get( '@section1Card' ).find( '.nfd-nextstep-section-card__dismissed-badge' ).should( 'be.visible' );
+        cy.get( '@section1Card' ).should( 'have.attr', 'data-nfd-section-status', 'dismissed' );
+        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--undo' ).should( 'be.visible' );
+        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--undo' )
+            .click();
+        cy.wait( '@sectionEndpoint' );
+        cy.get( '@section1Card' ).find( '.nfd-nextstep-section-card__dismissed-badge' ).should( 'not.exist' );
+        cy.get( '@section1Card' ).should( 'have.attr', 'data-nfd-section-status', 'new' );
+        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' ).should( 'be.visible' );
+
         // check section 2 renders and task modal opens with proper tasks
         cy.get( '@section2Card' ).find( '.nfd-nextsteps-buttons .nfd-button' ).should( 'not.have.attr', 'href' );
         cy.get( '@section2Card' ).find( '.nfd-nextsteps-buttons .nfd-button' )
@@ -97,36 +125,8 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get( '.nfd-modal__layout' ).should( 'not.exist' );
         cy.get( '.nfd-nextstep-tasks-modal__tasks' ).should( 'not.exist' );
         // check section 2 card is updated to done
-        // cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section2"]' ).as( 'section2Card2' );
-        // cy.get( '@section2Card2' ).scrollIntoView().should( 'be.visible' );
-        // cy.get( '@section2Card2' ).find( '.nfd-nextstep-section-card__completed-badge' ).should( 'be.visible' );
-        // cy.get( '@section2Card2' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
-
-        // Check that expired section is not rendered
-        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section-expired"]' ).should( 'not.exist' );
-
-        // Check that completed section 3 is rendered with complete badge
-        cy.get( '@section3Card' ).scrollIntoView().should( 'be.visible' );
-        cy.get( '@section3Card' ).find( '.nfd-nextstep-section-card__completed-badge' ).should( 'be.visible' );
-        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
-        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-date-completed' );
-        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-now-date' );
-        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-expiry-date' );
-        cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-expires-in', 'a day from now' );
-
-        // check section 1 updates when skipped
-        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' ).should( 'be.visible' );
-        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' )
-            .click();
-        cy.wait( '@sectionEndpoint' );
-        cy.get( '@section1Card' ).find( '.nfd-nextstep-section-card__dismissed-badge' ).should( 'be.visible' );
-        cy.get( '@section1Card' ).should( 'have.attr', 'data-nfd-section-status', 'dismissed' );
-        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--undo' ).should( 'be.visible' );
-        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--undo' )
-            .click();
-        cy.wait( '@sectionEndpoint' );
-        cy.get( '@section1Card' ).find( '.nfd-nextstep-section-card__dismissed-badge' ).should( 'not.exist' );
-        cy.get( '@section1Card' ).should( 'have.attr', 'data-nfd-section-status', 'new' );
-        cy.get( '@section1Card' ).find( '.nfd-nextsteps-button--skip' ).should( 'be.visible' );
+        // cy.get( '@section2Card' ).scrollIntoView().should( 'be.visible' );
+        // cy.get( '@section2Card' ).find( '.nfd-nextstep-section-card__completed-badge' ).should( 'be.visible' );
+        // cy.get( '@section2Card' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
 	} );
 } );
