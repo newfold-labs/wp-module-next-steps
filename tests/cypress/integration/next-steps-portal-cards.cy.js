@@ -36,9 +36,9 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 
         // Check that section 1 is rendered with correct title, description, cta, icon, modal title, modal description
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).as( 'section1Card' );
-        cy.get( '@section1Card' ).should( 'be.visible' );
-        cy.get( '@section1Card' ).find( '.nfd-nextsteps-section-card-title' ).should( 'have.text', 'Test Section with 1 task' );
-        cy.get( '@section1Card' ).find( '.nfd-nextsteps-section-card-description' ).should( 'have.text', 'Section 1 description.' );
+        cy.get( '@section1Card' ).scrollIntoView().should( 'be.visible' );
+        cy.get( '@section1Card' ).find( '.nfd-nextsteps-section-card-title' ).should( 'have.text', 'Test Section 1' );
+        cy.get( '@section1Card' ).find( '.nfd-nextsteps-section-card-description' ).should( 'have.text', 'Section 1 with 1 task.' );
         cy.get( '@section1Card' ).find( '.nfd-nextsteps-buttons .nfd-button' ).should( 'have.text', 'CTA 1 Text' );
         // first incomplete section has primary button
         cy.get( '@section1Card' ).find( '.nfd-nextsteps-buttons .nfd-button' ).should( 'have.class', 'nfd-button--primary' );
@@ -55,10 +55,10 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         
         // following sections have secondary button
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section2"]' ).as( 'section2Card' );
-        cy.get( '@section2Card' ).should( 'be.visible' );
+        cy.get( '@section2Card' ).scrollIntoView().should( 'be.visible' );
         cy.get( '@section2Card' ).find( '.nfd-nextsteps-buttons .nfd-button' ).should( 'have.class', 'nfd-button--secondary' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section3"]' ).as( 'section3Card' );
-        cy.get( '@section3Card' ).should( 'be.visible' );
+        cy.get( '@section3Card' ).scrollIntoView().should( 'be.visible' );
         cy.get( '@section3Card' ).find( '.nfd-nextsteps-buttons .nfd-button' ).should( 'have.class', 'nfd-button--secondary' );
 
         // section 2 has no icon or wireframes
@@ -96,6 +96,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.wait( '@sectionEndpoint' );
         cy.get( '.nfd-modal__layout' ).should( 'not.exist' );
         cy.get( '.nfd-nextstep-tasks-modal__tasks' ).should( 'not.exist' );
+        cy.get( '@section2Card' ).scrollIntoView().should( 'be.visible' );
         cy.get( '@section2Card' ).find( '.nfd-nextstep-section-card__completed-badge' ).should( 'be.visible' );
         cy.get( '@section2Card' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
 
@@ -103,7 +104,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section-expired"]' ).should( 'not.exist' );
 
         // Check that completed section 3 is rendered with complete badge
-        cy.get( '@section3Card' ).should( 'be.visible' );
+        cy.get( '@section3Card' ).scrollIntoView().should( 'be.visible' );
         cy.get( '@section3Card' ).find( '.nfd-nextstep-section-card__completed-badge' ).should( 'be.visible' );
         cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
         cy.get( '@section3Card' ).should( 'have.attr', 'data-nfd-date-completed' );

@@ -11,8 +11,8 @@
             "sections": [
                 {
                     "id": "customize_your_store",
-                    "label": "Test Section with 1 task",
-                    "description": "Section 1 description.",
+                    "label": "Test Section 1",
+                    "description": "Section 1 with 1 task.",
                     "open": true,
                     "status": "new",
                     "cta": "CTA 1 Text",
@@ -36,8 +36,8 @@
                 },
                 {
                     "id": "section2",
-                    "label": "Test Section with 3 tasks",
-                    "description": "Section 2 description.",
+                    "label": "Test Section 2",
+                    "description": "Section 2 with 3 tasks.",
                     "open": true,
                     "status": "new",
                     "cta": "CTA 2 Text",
@@ -72,7 +72,7 @@
                 },
                 {
                     "id": "section-expired",
-                    "label": "Test Section with expired tasks",
+                    "label": "Test Expired Section",
                     "description": "Section 4 should not render.",
                     "open": true,
                     "status": "done",
@@ -102,8 +102,8 @@
                 },
                 {
                     "id": "section3",
-                    "label": "Test Section with completed tasks",
-                    "description": "Section 3 description. Section new but all tasks are done.",
+                    "label": "Test Section 3",
+                    "description": "Section 3 with new status but all tasks are done.",
                     "open": true,
                     "status": "new",
                     "cta": "CTA 3 Text",
