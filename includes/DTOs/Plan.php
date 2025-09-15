@@ -415,7 +415,7 @@ class Plan {
 		if ( ! $section ) {
 			return false;
 		}
-
+		// date_completed logic managed in Section DTO update_status
 		return $section->set_status( $status );
 	}
 
@@ -456,30 +456,6 @@ class Plan {
 		}
 
 		return $track->set_open( $open );
-	}
-
-	/**
-	 * Update status for a section
-	 *
-	 * @param string $track_id Track ID
-	 * @param string $section_id Section ID
-	 * @param string $status New status
-	 * @return bool
-	 */
-	public function update_status_for_section( string $track_id, string $section_id, string $status ): bool {
-
-		$track = $this->get_track( $track_id );
-		if ( ! $track ) {
-			return false;
-		}
-
-		$section = $track->get_section( $section_id );
-
-		if ( ! $section ) {
-			return false;
-		}
-		// date_completed logic managed in Section DTO
-		return $section->update_status( $status );
 	}
 
 	/**
