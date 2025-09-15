@@ -85,17 +85,17 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get('.nfd-modal__layout').find( 'p' ).should( 'have.text', 'Section 2 modal description.' );
         cy.get('.nfd-nextstep-tasks-modal__tasks').should( 'be.visible' );
         //task 1
-        cy.get( '.nfd-nextsteps-step-container[data-nfd-task-id="s2task1"]' ).as( 's2task1' );
+        cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task1"]' ).as( 's2task1' );
         cy.get( '@s2task1' ).should( 'be.visible' );
         cy.get( '@s2task1' ).should( 'have.attr', 'data-nfd-task-status', 'new' );
         cy.get( '@s2task1' ).find( '.nfd-title' ).should( 'have.text', 'New Task' );
         //task 2
-        cy.get( '.nfd-nextsteps-step-container[data-nfd-task-id="s2task2"]' ).as( 's2task2' );
+        cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task2"]' ).as( 's2task2' );
         cy.get( '@s2task2' ).should( 'be.visible' );
         cy.get( '@s2task2' ).should( 'have.attr', 'data-nfd-task-status', 'dismissed' );
         cy.get( '@s2task2' ).find( '.nfd-title' ).should( 'have.text', 'Dismissed Task' );
         //task 3
-        cy.get( '.nfd-nextsteps-step-container[data-nfd-task-id="s2task3"]' ).as( 's2task3' );
+        cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task3"]' ).as( 's2task3' );
         cy.get( '@s2task3' ).should( 'be.visible' );
         cy.get( '@s2task3' ).should( 'have.attr', 'data-nfd-task-status', 'done' );
         cy.get( '@s2task3' ).find( '.nfd-title' ).should( 'have.text', 'Completed Task' );

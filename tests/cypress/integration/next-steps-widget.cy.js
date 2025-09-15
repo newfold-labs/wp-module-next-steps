@@ -58,11 +58,11 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 				cy.get('.nfd-section-header').should('exist');
 				cy.get('.nfd-section-title').should('exist');
 
-				cy.get('.nfd-nextsteps-step-container').should('have.length', 1);
-				cy.get('.nfd-nextsteps-step-container').first().should('have.attr', 'id').and('contain', 's1task1');
+				cy.get('.nfd-nextsteps-task-container').should('have.length', 1);
+				cy.get('.nfd-nextsteps-task-container').first().should('have.attr', 'id').and('contain', 's1task1');
 				// Task should have proper data attributes
-				cy.get('.nfd-nextsteps-step-container').first().should('have.attr', 'data-test-id').and('contain', 'test-task-1');
-				cy.get('.nfd-nextsteps-step-container').first().should('have.attr', 'data-nfd-id').and('contain', 'test-task-1');
+				cy.get('.nfd-nextsteps-task-container').first().should('have.attr', 'data-test-id').and('contain', 'test-task-1');
+				cy.get('.nfd-nextsteps-task-container').first().should('have.attr', 'data-nfd-id').and('contain', 'test-task-1');
 			});
 		});
 
@@ -73,12 +73,12 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@secondSection' ).find('.nfd-progress-bar-inner').should('have.attr', 'data-percent', '50');
 
 		// Section 2 should have 2 tasks
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-container').should('have.length', 3);
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-container').should('have.length', 3);
 		// A single new task should be visible
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-container').first().should('have.attr', 'data-nfd-task-status', 'new');
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-new').scrollIntoView().should('have.length', 1);
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-new').parent().should('have.attr', 'id').and('contain', 's2task1');
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-new').as( 's2t1' );
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-container').first().should('have.attr', 'data-nfd-task-status', 'new');
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-new').scrollIntoView().should('have.length', 1);
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-new').parent().should('have.attr', 'id').and('contain', 's2task1');
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-new').as( 's2t1' );
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-todo').should('be.visible');
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-dismiss').should('exist');
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('be.visible');
@@ -87,23 +87,23 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('have.attr', 'data-nfd-event-category').and('contain', 'nextsteps_step');
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('have.attr', 'data-nfd-event-key').and('contain', 's2task1');
 		// Content should be visible
-		cy.get( '@s2t1' ).find('.nfd-nextsteps-step-content').should('contain', 'New Task');
+		cy.get( '@s2t1' ).find('.nfd-nextsteps-task-content').should('contain', 'New Task');
 		// Content should contain a link
-		cy.get( '@s2t1' ).find('.nfd-nextsteps-step-content').find('a').should('be.visible');
-		cy.get( '@s2t1' ).find('.nfd-nextsteps-step-content').find('a').should('have.attr', 'href').and('contain', 'bluehost.com');
-		cy.get( '@s2t1' ).find('.nfd-nextsteps-step-content').find('a').should('have.attr', 'target').and('contain', '_blank');
+		cy.get( '@s2t1' ).find('.nfd-nextsteps-task-content').find('a').should('be.visible');
+		cy.get( '@s2t1' ).find('.nfd-nextsteps-task-content').find('a').should('have.attr', 'href').and('contain', 'bluehost.com');
+		cy.get( '@s2t1' ).find('.nfd-nextsteps-task-content').find('a').should('have.attr', 'target').and('contain', '_blank');
 		// A single dismissed task should be visible
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-container').eq(1).should('have.attr', 'data-nfd-task-status', 'dismissed');
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-dismissed').as( 's2t2' );
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-dismissed').should('have.length', 1);
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-dismissed').parent().should('have.attr', 'id').and('contain', 's2task2');
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-container').eq(1).should('have.attr', 'data-nfd-task-status', 'dismissed');
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-dismissed').as( 's2t2' );
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-dismissed').should('have.length', 1);
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-dismissed').parent().should('have.attr', 'id').and('contain', 's2task2');
 		cy.get( '@s2t2' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-redo').should('be.visible');
 		cy.get( '@s2t2' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-dismiss').should('exist');
 		// A single done task should be visible
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-container').last().should('have.attr', 'data-nfd-task-status', 'done');
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-done').should('have.length', 1);
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-done').parent().should('have.attr', 'id').and('contain', 's2task3');
-		cy.get( '@secondSection' ).find('.nfd-nextsteps-step-done').find('.nfd-nextsteps-button.nfd-nextsteps-button-redo').should('be.visible');
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-container').last().should('have.attr', 'data-nfd-task-status', 'done');
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-done').should('have.length', 1);
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-done').parent().should('have.attr', 'id').and('contain', 's2task3');
+		cy.get( '@secondSection' ).find('.nfd-nextsteps-task-done').find('.nfd-nextsteps-button.nfd-nextsteps-button-redo').should('be.visible');
 
 		// Section 3 should have 2 complete tasks
 		cy.get('.nfd-section[data-nfd-section-id="section3"]').as( 'thirdSection' );
@@ -112,9 +112,9 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@thirdSection' ).find('span.nfd-progress-bar-label').should('have.text', '2/2');
 		cy.get( '@thirdSection' ).find('.nfd-progress-bar-inner').should('have.attr', 'data-percent', '100');
 		// Section 3 should have 2 complete tasks
-		cy.get( '@thirdSection' ).find('.nfd-nextsteps-step-container').should('have.length', 2);
-		cy.get( '@thirdSection' ).find('.nfd-nextsteps-step-container').first().should('have.attr', 'data-nfd-task-status', 'done');
-		cy.get( '@thirdSection' ).find('.nfd-nextsteps-step-container').last().should('have.attr', 'data-nfd-task-status', 'done');
+		cy.get( '@thirdSection' ).find('.nfd-nextsteps-task-container').should('have.length', 2);
+		cy.get( '@thirdSection' ).find('.nfd-nextsteps-task-container').first().should('have.attr', 'data-nfd-task-status', 'done');
+		cy.get( '@thirdSection' ).find('.nfd-nextsteps-task-container').last().should('have.attr', 'data-nfd-task-status', 'done');
 
 		// Track 2 should have 1 section with 3 new tasks
 		cy.get('.nfd-section[data-nfd-section-id="section4"]').as( 'fourthSection' );
@@ -123,9 +123,9 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@fourthSection' ).find('span.nfd-progress-bar-label').should('have.text', '0/3');
 		cy.get( '@fourthSection' ).find('.nfd-progress-bar-inner').should('have.attr', 'data-percent', '0');
 		// Section 4 should have 3 new tasks
-		cy.get( '@fourthSection' ).find('.nfd-nextsteps-step-container').should('have.length', 3);
-		cy.get( '@fourthSection' ).find('.nfd-nextsteps-step-container').first().should('have.attr', 'data-nfd-task-status', 'new');
-		cy.get( '@fourthSection' ).find('.nfd-nextsteps-step-container').last().should('have.attr', 'data-nfd-task-status', 'new');
+		cy.get( '@fourthSection' ).find('.nfd-nextsteps-task-container').should('have.length', 3);
+		cy.get( '@fourthSection' ).find('.nfd-nextsteps-task-container').first().should('have.attr', 'data-nfd-task-status', 'new');
+		cy.get( '@fourthSection' ).find('.nfd-nextsteps-task-container').last().should('have.attr', 'data-nfd-task-status', 'new');
 	});
 
 	it('marking a task complete updates task and progress bars', () => {
@@ -139,16 +139,16 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@firstSection' ).find('.nfd-progress-bar-inner').should('have.attr', 'data-percent', '0');
 
 		// Task should be in new state
-		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'new');
+		cy.get( '@firstSection' ).find('#task-s1task1').should('have.attr', 'data-nfd-task-status', 'new');
 
 		// Complete task
-		cy.get( '@firstSection' ).find('#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo')
+		cy.get( '@firstSection' ).find('#task-s1task1.nfd-nextsteps-task-container .nfd-nextsteps-task-new .nfd-nextsteps-button-todo')
 			.click();
 		// Wait for API call
 		cy.wait('@taskEndpoint');
 
 		// Task should now be in done state
-		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'done');
+		cy.get( '@firstSection' ).find('#task-s1task1').should('have.attr', 'data-nfd-task-status', 'done');
 
 		// Progress should update
 		cy.get( '@firstSection' ).find('.nfd-progress-bar-label').should('have.text', '1/1');
@@ -165,7 +165,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 			.click();
 		cy.wait( '@sectionEndpoint' );
 		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
-		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
+		cy.get( '@firstSection' ).find('.nfd-nextsteps-task-container').should('not.be.visible');
 		cy.get( '@firstSection' ).should('not.have.attr', 'open');
 		// Open the section
 		cy.get( '@firstSection' ).find('.nfd-section-header')
@@ -175,8 +175,8 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 
 	it('dismisses a task and verifies state change', () => {
 		// Find and dismiss a task
-		cy.get( '.nfd-nextsteps-step-container[data-nfd-task-status="new"]' ).first().as( 'firstNewTask' );
-		cy.get( '@firstNewTask' ).should('have.attr', 'id', 's1task1');
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-status="new"]' ).first().as( 'firstNewTask' );
+		cy.get( '@firstNewTask' ).should('have.attr', 'id', 'task-s1task1');
 		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss').should('exist');
 		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss').should('not.be.visible');
 		// Click dismiss button - force due to cypress not being able to trigger hover state
@@ -185,7 +185,7 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		// Wait for API call
 		cy.wait( '@taskEndpoint' );
 		// Task should now be dismissed
-		cy.get( '#s1task1' ).should('have.attr', 'data-nfd-task-status', 'dismissed');
+		cy.get( '#task-s1task1' ).should('have.attr', 'data-nfd-task-status', 'dismissed');
 	});
 
 	it('handles track and section toggle functionality', () => {

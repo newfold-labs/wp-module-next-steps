@@ -216,7 +216,7 @@
         }
     }
 
-    .nfd-nextsteps-step {
+    .nfd-nextsteps-task {
         border: 1px solid #D7D7D7;
         border-radius: 1rem;
         padding: 10px;
@@ -233,17 +233,17 @@
         }
     }
 
-    .nfd-nextsteps-step-done {
+    .nfd-nextsteps-task-done {
         // text-decoration: line-through;
         background-color: #F6FDE8 !important;
         border-color: #78AE144A;
 
-        .nfd-nextsteps-step-title {
+        .nfd-nextsteps-task-title {
             color: #696969;
         }
     }
 
-    .nfd-nextsteps-step-dismissed {
+    .nfd-nextsteps-task-dismissed {
         text-decoration: line-through;
     }
 

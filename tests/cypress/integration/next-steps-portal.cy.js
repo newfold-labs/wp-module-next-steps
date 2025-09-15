@@ -34,7 +34,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		// Check Basic Structure
 		cy.get( '.nfd-track' ).should( 'have.length', 2 );
 		cy.get( '.nfd-section' ).should( 'have.length', 4 );
-		cy.get( '.nfd-nextsteps-step-container' ).should( 'have.length', 9 );
+		cy.get( '.nfd-nextsteps-task-container' ).should( 'have.length', 9 );
 
 		// Check that the app has loaded with content
 		cy.get( '#nfd-nextsteps p' ).should( 'be.visible' ).and( 'contain', 'This is a test plan' );
@@ -51,8 +51,8 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get('.nfd-section[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'new');
 		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('have.attr', 'open');
 		// Complete task
-		cy.get( '#task-s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo' )
-			.click();
+		cy.get( '#task-s1task1.nfd-nextsteps-task-container .nfd-nextsteps-task-new .nfd-nextsteps-button-todo' )
+			.scrollIntoView().click();
 		// Wait for API call
 		cy.wait( '@taskEndpoint' ).then( (interception) => {
             cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
@@ -78,7 +78,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
             cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
         } );
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete').should('not.be.visible');
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-step-container').should('not.be.visible');
+		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-task-container').should('not.be.visible');
 		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('not.have.attr', 'open');
 		// Open the section
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-header')

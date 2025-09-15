@@ -101,16 +101,16 @@ export const Task = memo(( props ) => {
 
 	const renderStepContent = ( href = false, target = '' ) => {
 		return (
-			<div className="nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between">
+			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
 					<a href={ href } target={ target }>
-						<Title as="span" className="nfd-nextsteps-step-title nfd-font-normal">
+						<Title as="span" className="nfd-nextsteps-task-title nfd-font-normal">
 							{ title }
 						</Title>
 					</a>
 				) }
 				{ ! href && (
-					<Title as="span" className="nfd-nextsteps-step-title nfd-font-normal">
+					<Title as="span" className="nfd-nextsteps-task-title nfd-font-normal">
 						{ title }
 					</Title>
 				) }
@@ -121,11 +121,11 @@ export const Task = memo(( props ) => {
 	const renderNewStep = () => {
 		return (
 			<div
-				className="nfd-nextsteps-step-container"
+				className="nfd-nextsteps-task-container"
 				id={ `task-${ id }` } 
 				{ ...combinedAttributes }
 			>
-				<div className="nfd-nextsteps-step nfd-nextsteps-step-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-todo"
@@ -176,11 +176,11 @@ export const Task = memo(( props ) => {
 	const renderDoneStep = () => {
 		return (
 			<div
-				className="nfd-nextsteps-step-container"
+				className="nfd-nextsteps-task-container"
 				id={ `task-${ id }` } 
 				{ ...combinedAttributes }
 			>
-				<div className="nfd-nextsteps-step nfd-nextsteps-step-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-redo"
@@ -216,11 +216,11 @@ export const Task = memo(( props ) => {
 	const renderDismissedStep = () => {
 		return (
 			<div
-				className="nfd-nextsteps-step-container"
+				className="nfd-nextsteps-task-container"
 				id={ `task-${ id }` } 
 				{ ...combinedAttributes }
 			>
-				<div className="nfd-nextsteps-step nfd-nextsteps-step-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-redo"
