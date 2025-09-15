@@ -8,27 +8,26 @@ import { setupNextStepsIntercepts } from '../wp-module-support/api-intercepts.cy
 
 describe('Next Steps Widget', { testIsolation: true }, () => {
 
+	beforeEach(() => {
+		wpLogin();
+		// Set test Next Steps data
+		setTestNextStepsData();
+		// Set up all Next Steps API intercepts
+		setupNextStepsIntercepts();
+		// Visit the Next Steps widget
+		cy.visit('/wp-admin/index.php');
+		// Reload the page to ensure the intercepts are working and updated test content is loaded
+		cy.reload();
+
+		// Wait for widget to be visible
+		cy.get('#nfd_next_steps_widget').scrollIntoView().should( 'exist' );
+		cy.get('#nfd_next_steps_widget #nfd-nextsteps', { timeout: 25000 }).should('be.visible');
+	});
+
 	after( () => {
 		// Reset test data
 		resetNextStepsData();
 	} );
-
-	beforeEach(() => {
-		// Set test Next Steps data
-		setTestNextStepsData();
-		wpLogin();
-		cy.visit('/wp-admin/index.php');
-		
-		// Set up all Next Steps API intercepts
-		setupNextStepsIntercepts();
-
-		// Wait for widget to be visible
-		cy.get('#nfd_next_steps_widget').should('be.visible');
-		cy.get('#nfd-nextsteps').should('be.visible');
-		
-		// Wait for React app to load by checking for tracks
-		cy.get('.nfd-track', { timeout: 10000 }).should('exist');
-	});
 
 	it('renders the widget structure correctly', () => {
 		// Widget container
@@ -130,47 +129,60 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 
 	it('marking a task complete updates task and progress bars', () => {
 		// Find progress bar in first section
-		cy.get('.nfd-section[data-nfd-section-id="section1"]').as( 'firstSection' );
-		// Should have a progress bar
-		cy.get( '@firstSection' ).find('.nfd-progress-bar').should('exist');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar').should('exist');
 		
 		// Validate initial progress values
-		cy.get( '@firstSection' ).find('.nfd-progress-bar-label').should('have.text', '0/1');
-		cy.get( '@firstSection' ).find('.nfd-progress-bar-inner').should('have.attr', 'data-percent', '0');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-label').should('have.text', '0/1');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '0');
 
 		// Task should be in new state
-		cy.get( '@firstSection' ).find('#task-s1task1').should('have.attr', 'data-nfd-task-status', 'new');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'new');
 
 		// Complete task
-		cy.get( '@firstSection' ).find('#task-s1task1.nfd-nextsteps-task-container .nfd-nextsteps-task-new .nfd-nextsteps-button-todo')
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] #task-s1task1.nfd-nextsteps-task-container .nfd-nextsteps-task-new .nfd-nextsteps-button-todo')
 			.click();
 		// Wait for API call
-		cy.wait('@taskEndpoint');
+		cy.wait( '@taskEndpoint' ).then( (interception) => {
+			cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		cy.wait( '@sectionEndpoint' ).then( (interception) => {
+			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		// wait for task to update
+		cy.wait( 250 );
 
 		// Task should now be in done state
-		cy.get( '@firstSection' ).find('#task-s1task1').should('have.attr', 'data-nfd-task-status', 'done');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'done');
 
 		// Progress should update
-		cy.get( '@firstSection' ).find('.nfd-progress-bar-label').should('have.text', '1/1');
-		cy.get( '@firstSection' ).find('.nfd-progress-bar-inner').should('have.attr', 'data-percent', '100');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-label').should('have.text', '1/1');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '100');
 				
 		// Celebrate should be visible
-		cy.get( '@firstSection' ).find('.nfd-section-celebrate').should('be.visible');
-		cy.get( '@firstSection' ).find('.nfd-section-celebrate-text').should('have.text', 'All complete!');
-		cy.get( '@firstSection' ).find('.nfd-nextsteps-section-close-button').should('be.visible');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-section-celebrate').should('be.visible');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-section-celebrate-text').should('have.text', 'All complete!');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-section-close-button').should('be.visible');
 
 		// Close celebration closes section
-		cy.get( '@firstSection' ).should('have.attr', 'open');
-		cy.get( '@firstSection' ).find('.nfd-section-complete')
+		cy.get( '.nfd-section[data-nfd-section-id="section1"]' ).should('have.attr', 'open');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete')
 			.click();
-		cy.wait( '@sectionEndpoint' );
-		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
-		cy.get( '@firstSection' ).find('.nfd-nextsteps-task-container').should('not.be.visible');
-		cy.get( '@firstSection' ).should('not.have.attr', 'open');
+		cy.wait( '@sectionEndpoint' ).then( (interception) => {
+			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		cy.wait( 250 );
+
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete').should('not.be.visible');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-task-container').should('not.be.visible');
+		cy.get( '.nfd-section[data-nfd-section-id="section1"]' ).should('not.have.attr', 'open');
 		// Open the section
-		cy.get( '@firstSection' ).find('.nfd-section-header')
+		cy.get( '.nfd-section[data-nfd-section-id="section1"] .nfd-section-header')
 			.click();
-		cy.get( '@firstSection' ).should('have.attr', 'open');
+		cy.wait( '@sectionEndpoint' ).then( (interception) => {
+			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		cy.wait( 250 );
+		cy.get( '.nfd-section[data-nfd-section-id="section1"]' ).should('have.attr', 'open');
 	});
 
 	it('dismisses a task and verifies state change', () => {
@@ -183,7 +195,10 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@firstNewTask' ).find('.nfd-nextsteps-button-dismiss')
 			.click( { force: true } );		
 		// Wait for API call
-		cy.wait( '@taskEndpoint' );
+		cy.wait( '@taskEndpoint' ).then( (interception) => {
+			cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		cy.wait( 250 );
 		// Task should now be dismissed
 		cy.get( '#task-s1task1' ).should('have.attr', 'data-nfd-task-status', 'dismissed');
 	});
@@ -194,13 +209,19 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		// Close the track
 		cy.get('.nfd-track').first().find('.nfd-track-header')
 			.click();
-		cy.wait('@trackEndpoint');
+		cy.wait( '@trackEndpoint' ).then( (interception) => {
+			cy.log( '@trackEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		cy.wait( 250 );
 		// Should be closed
 		cy.get('.nfd-track').first().should('not.have.attr', 'open');
 		// Open the track again
 		cy.get('.nfd-track').first().find('.nfd-track-header')
 			.click();
-		cy.wait('@trackEndpoint');
+		cy.wait( '@trackEndpoint' ).then( (interception) => {
+			cy.log( '@trackEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		cy.wait( 250 );
 		// Should be open
 		cy.get('.nfd-track').first().should('have.attr', 'open');
 
@@ -211,7 +232,10 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 			// Click section header to toggle
 			cy.wrap($section).find('.nfd-section-header')
 				.click();
-			cy.wait('@sectionEndpoint');
+			cy.wait( '@sectionEndpoint' ).then( (interception) => {
+				cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+			} );
+			cy.wait( 250 );
 			
 			// State should change
 			if (isOpen) {

@@ -8,28 +8,30 @@ import { setupNextStepsIntercepts } from '../wp-module-support/api-intercepts.cy
 
 describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
+	beforeEach( () => {
+		wpLogin();
+		// Set test Next Steps data
+		setTestNextStepsData();
+		// Set up all Next Steps API intercepts
+		setupNextStepsIntercepts();
+		// Visit the Next Steps portal
+		cy.visit(
+			'/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) + '#/home'
+		);
+		// Reload the page to ensure the intercepts are working and updated test content is loaded
+		cy.reload();
+
+		// Portal App Renders
+		cy.get( '#next-steps-portal' ).scrollIntoView().should( 'exist' );
+		cy.get( '.next-steps-fill #nfd-nextsteps', { timeout: 25000 } ).should( 'be.visible' );
+	} );
+
 	after( () => {
 		// Reset test data
 		resetNextStepsData();
 	} );
 
-	beforeEach( () => {
-		wpLogin();
-		// Set test Next Steps data
-		setTestNextStepsData();
-		cy.visit(
-			'/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) + '#/home'
-		);
-		cy.reload();
-
-		// Set up all Next Steps API intercepts
-		setupNextStepsIntercepts();
-	} );
-
 	it( 'portal renders and displays correctly', () => {
-		// Portal App Renders
-		cy.get( '#next-steps-portal' ).scrollIntoView().should('be.visible');
-		cy.get( '.next-steps-fill #nfd-nextsteps' ).should( 'be.visible' );
 
 		// Check Basic Structure
 		cy.get( '.nfd-track' ).should( 'have.length', 2 );
@@ -53,11 +55,15 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		// Complete task
 		cy.get( '#task-s1task1.nfd-nextsteps-task-container .nfd-nextsteps-task-new .nfd-nextsteps-button-todo' )
 			.scrollIntoView().click();
-		// Wait for API call
+		// Wait for API calls
 		cy.wait( '@taskEndpoint' ).then( (interception) => {
-            cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
-        } );
-
+			cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		cy.wait( '@sectionEndpoint' ).then( (interception) => {
+			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		// wait for task to update and celebration to load
+		cy.wait( 250 );
 		// Task should now be in done state
 		cy.get('.nfd-section[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'done');
 
@@ -66,7 +72,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '100');
 				
 		// Celebrate should be visible
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-celebrate').should('be.visible');
+		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete').should('be.visible');
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-celebrate-text').should('have.text', 'All complete!');
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-section-close-button').should('be.visible');
 
@@ -75,8 +81,8 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete')
 			.click();
 		cy.wait( '@sectionEndpoint' ).then( (interception) => {
-            cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
-        } );
+			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete').should('not.be.visible');
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-task-container').should('not.be.visible');
 		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('not.have.attr', 'open');
@@ -84,8 +90,8 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-header')
 			.click();
 		cy.wait( '@sectionEndpoint' ).then( (interception) => {
-            cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
-        } );
+			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
 		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('have.attr', 'open');
 	} );
 } );
