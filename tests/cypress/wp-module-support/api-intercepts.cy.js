@@ -20,14 +20,15 @@ export function setupNextStepsIntercepts() {
 		(req) => {
 			// Extract task ID from URL - handle different URL structures
 			const taskIdMatch = req.url.match(/\/tasks\/([^\/\?]+)/);
-			const taskId = taskIdMatch ? taskIdMatch[1] : 'task1';
-			console.log('Task intercept matched:', req.url, 'Task ID:', taskId);
+			const taskId = taskIdMatch ? taskIdMatch[1] : 's1task1';
+			const response = {
+				id: taskId,
+				status: req.body.status || 'done'
+			};
+
 			req.reply({
 				statusCode: 200,
-				body: {
-					id: taskId,
-					status: req.body.status || 'done'
-				}
+				body: response
 			});
 		}
 	).as( 'taskEndpoint' );
@@ -41,8 +42,7 @@ export function setupNextStepsIntercepts() {
 		(req) => {
 			// Extract section ID from URL - handle different URL structures
 			const sectionIdMatch = req.url.match(/\/sections\/([^\/\?]+)/);
-			const sectionId = sectionIdMatch ? sectionIdMatch[1] : 'section1';
-			console.log('Section intercept matched:', req.url, 'Section ID:', sectionId);
+			const sectionId = sectionIdMatch ? sectionIdMatch[1] : 'section3';
 			const response = {
 				id: sectionId
 			};
@@ -59,7 +59,7 @@ export function setupNextStepsIntercepts() {
 			if (req.body.type === 'open') {
 				response.open = req.body.value;
 			}
-			
+
 			req.reply({
 				statusCode: 200,
 				body: response
@@ -77,13 +77,15 @@ export function setupNextStepsIntercepts() {
 			// Extract track ID from URL - handle different URL structures
 			const trackIdMatch = req.url.match(/\/tracks\/([^\/\?]+)/);
 			const trackId = trackIdMatch ? trackIdMatch[1] : 'track1';
-			console.log('Track intercept matched:', req.url, 'Track ID:', trackId);
+
+			const response = {
+				id: trackId,
+				open: req.body.open
+			};
+
 			req.reply({
 				statusCode: 200,
-				body: {
-					id: trackId,
-					open: req.body.open
-				}
+				body: response
 			});
 		}
 	).as( 'trackEndpoint' );

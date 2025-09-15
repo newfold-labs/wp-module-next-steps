@@ -32,7 +32,9 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 		cy.get( '.next-steps-fill #nfd-nextsteps' ).should( 'be.visible' );
 
         // Wait for section3 endpoint - sending complete status for section 3 since all tasks are completed
-        cy.wait( '@sectionEndpoint' );
+        // cy.wait( '@sectionEndpoint' ).then( (interception) => {
+        //     cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response) );
+        // } );
 
         // Check for 3 total sections
         cy.get( '.nfd-nextsteps-section-card' ).should( 'have.length', 3 );
@@ -59,15 +61,21 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 
         // check section 1 updates when skipped
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' ).scrollIntoView().should( 'be.visible' );
+        // CLICK skip section 1 button
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' )
             .click();
-        cy.wait( '@sectionEndpoint' );
+        cy.wait( '@sectionEndpoint' ).then( (interception) => {
+            cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response) );
+        } );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextstep-section-card__dismissed-badge' ).should( 'be.visible' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).should( 'have.attr', 'data-nfd-section-status', 'dismissed' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo' ).should( 'be.visible' );
+        // CLICK undo section 1 button
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo' )
             .click();
-        cy.wait( '@sectionEndpoint' );
+        cy.wait( '@sectionEndpoint' ).then( (interception) => {
+            cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response) );
+        } );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextstep-section-card__dismissed-badge' ).should( 'not.exist' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).should( 'have.attr', 'data-nfd-section-status', 'new' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' ).should( 'be.visible' );
@@ -99,8 +107,12 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get( '@s2task1' ).find( '.nfd-nextsteps-button-todo' ).should( 'be.visible' );
         cy.get( '@s2task1' ).find( '.nfd-nextsteps-button-todo' )
             .click();
-        cy.wait( '@taskEndpoint' );
-        cy.wait( '@sectionEndpoint' );
+        cy.wait( '@taskEndpoint' ).then( (interception) => {
+            cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response) );
+        } );
+        cy.wait( '@sectionEndpoint' ).then( (interception) => {
+            cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response) );
+        } );
         cy.get( '.nfd-modal__layout' ).should( 'not.exist' );
         cy.get( '.nfd-nextstep-tasks-modal__tasks' ).should( 'not.exist' );
         // check section 2 card is updated to done
