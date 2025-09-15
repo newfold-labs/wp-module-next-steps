@@ -47,13 +47,13 @@ class PlanRepository {
 	 * @return bool True if cache is valid and has a plan
 	 */
 	private static function is_cache_valid(): bool {
-		return self::$cache_valid && self::$cached_plan !== null;
+		return self::$cache_valid && null !== self::$cached_plan;
 	}
 
 	/**
 	 * Cache a plan and its data
 	 *
-	 * @param Plan $plan The plan to cache
+	 * @param Plan  $plan The plan to cache
 	 * @param array $plan_data The raw plan data to cache
 	 * @return void
 	 */
