@@ -31,11 +31,6 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 		cy.get( '#next-steps-portal' ).scrollIntoView().should('be.visible');
 		cy.get( '.next-steps-fill #nfd-nextsteps' ).should( 'be.visible' );
 
-        // Wait for section3 endpoint - sending complete status for section 3 since all tasks are completed
-        // cy.wait( '@sectionEndpoint' ).then( (interception) => {
-        //     cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
-        // } );
-
         // Check for 3 total sections
         cy.get( '.nfd-nextsteps-section-card' ).should( 'have.length', 3 );
         // Check that expired section is not rendered
@@ -60,6 +55,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-section-card__wireframe svg' ).should( 'be.visible' );
 
         // check section 1 updates when skipped
+        cy.get( '.nfd-nextstep-section-card__dismissed-badge' ).should( 'not.exist' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' ).scrollIntoView().should( 'be.visible' );
         // CLICK skip section 1 button
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' )
@@ -67,7 +63,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.wait( '@sectionEndpoint' ).then( (interception) => {
             cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
         } );
-        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextstep-section-card__dismissed-badge' ).should( 'be.visible' );
+        cy.get( '.nfd-nextstep-section-card__dismissed-badge' ).scrollIntoView().should( 'be.visible' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).should( 'have.attr', 'data-nfd-section-status', 'dismissed' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo' ).should( 'be.visible' );
         // CLICK undo section 1 button
