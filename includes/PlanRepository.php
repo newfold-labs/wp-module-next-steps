@@ -84,11 +84,8 @@ class PlanRepository {
 		if ( null !== self::$cached_option_data ) {
 			return self::$cached_option_data;
 		}
-
 		// Get from database and cache it
 		$plan_data = get_option( self::OPTION, array() );
-		// $plan_data = array(); // uncomment to reset plan data for debugging
-
 		self::$cached_option_data = $plan_data;
 		return $plan_data;
 	}
@@ -103,12 +100,9 @@ class PlanRepository {
 		if ( self::is_cache_valid() ) {
 			return self::$cached_plan;
 		}
-
 		// Get plan data (from cache or database)
 		$plan_data = self::get_plan_data();
-
 		$plan = null;
-
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on site type
 			$site_type    = PlanFactory::determine_site_type();
@@ -121,11 +115,9 @@ class PlanRepository {
 		} else {
 			// Convert array data to Plan object
 			$saved_plan = Plan::from_array( $plan_data );
-
 			// Check if we need to merge with new plan data
 			if ( $saved_plan->is_version_outdated() ) {
 				// Version is outdated, need to merge with latest plan data
-
 				// Load the appropriate new plan based on the saved plan type
 				if ( 'custom' === $saved_plan->type ) {
 					// For custom plans, create a new plan with the same structure
@@ -133,24 +125,19 @@ class PlanRepository {
 				} else {
 					$new_plan = PlanFactory::create_plan( $saved_plan->type );
 				}
-
 				// Merge the saved data with the new plan (version will be updated automatically)
 				$merged_plan = $new_plan->merge_with( $saved_plan );
-
 				// Save the merged plan with updated version
 				self::save_plan( $merged_plan );
-
 				$plan = $merged_plan;
 			} else {
 				$plan = $saved_plan;
 			}
 		}
-
 		// Cache the result
 		if ( null !== $plan ) {
 			self::cache_plan( $plan, $plan_data );
 		}
-
 		return $plan;
 	}
 
@@ -163,12 +150,10 @@ class PlanRepository {
 	public static function save_plan( Plan $plan ): bool {
 		$plan_data = $plan->to_array();
 		$result    = update_option( self::OPTION, $plan_data );
-
 		// Update cache with the saved plan and data after successful save
 		if ( $result ) {
 			self::cache_plan( $plan, $plan_data );
 		}
-
 		return $result;
 	}
 
@@ -186,18 +171,14 @@ class PlanRepository {
 		) {
 			return false;
 		}
-
 		// If we received an onboarding site_type, convert it to internal plan type
 		if ( array_key_exists( $plan_type, PlanFactory::PLAN_TYPES ) ) {
 			$plan_type = PlanFactory::PLAN_TYPES[ $plan_type ];
 		}
-
 		// Load the appropriate plan directly
 		$plan = PlanFactory::create_plan( $plan_type );
-
 		// Save the loaded plan (this will automatically update cache)
 		self::save_plan( $plan );
-
 		return $plan;
 	}
 
@@ -215,12 +196,10 @@ class PlanRepository {
 		if ( ! $plan ) {
 			return false;
 		}
-
 		$updated = $plan->update_task_status( $track_id, $section_id, $task_id, $status );
 		if ( $updated ) {
 			return self::save_plan( $plan );
 		}
-
 		return false;
 	}
 
@@ -237,7 +216,6 @@ class PlanRepository {
 		if ( ! $plan ) {
 			return null;
 		}
-
 		return $plan->get_task( $track_id, $section_id, $task_id );
 	}
 
@@ -254,12 +232,10 @@ class PlanRepository {
 		if ( ! $plan ) {
 			return false;
 		}
-
 		$added = $plan->add_task( $track_id, $section_id, $task );
 		if ( $added ) {
 			return self::save_plan( $plan );
 		}
-
 		return false;
 	}
 
@@ -285,7 +261,6 @@ class PlanRepository {
 		if ( ! $plan ) {
 			return array();
 		}
-
 		return array(
 			'completion_percentage' => $plan->get_completion_percentage(),
 			'total_tasks'           => $plan->get_total_tasks_count(),
@@ -311,18 +286,15 @@ class PlanRepository {
 		if ( ! $plan ) {
 			return false;
 		}
-
 		$updated = false;
 		if ( 'open' === $type ) {
 			$updated = $plan->update_section_open( $track_id, $section_id, boolval( $value ) );
 		} elseif ( 'status' === $type ) {
 			$updated = $plan->update_section_status( $track_id, $section_id, $value );
 		}
-
 		if ( $updated ) {
 			return self::save_plan( $plan );
 		}
-
 		return false;
 	}
 
@@ -338,12 +310,10 @@ class PlanRepository {
 		if ( ! $plan ) {
 			return false;
 		}
-
 		$updated = $plan->update_track_open_state( $track_id, $open );
 		if ( $updated ) {
 			return self::save_plan( $plan );
 		}
-
 		return false;
 	}
 }
