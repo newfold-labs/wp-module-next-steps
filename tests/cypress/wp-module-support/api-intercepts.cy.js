@@ -10,6 +10,19 @@
  * Call this function in your beforeEach() hook
  */
 export function setupNextStepsIntercepts() {
+	// Intercept data event endpoint as @dataEndpoint
+	cy.intercept(
+		{
+			method: 'POST',
+			url: /.*newfold-data.*v1.*events.*/,
+		},
+		(req) => {
+			req.reply({
+				statusCode: 200,
+				body: true
+			});
+		}
+	).as( 'dataEndpoint' );
 
 	// Intercept the task status update API call as @taskEndpoint
 	cy.intercept(

@@ -56,7 +56,9 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get( '#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo' )
 			.click();
 		// Wait for API call
-		cy.wait('@taskEndpoint');
+		cy.wait( '@taskEndpoint' ).then( (interception) => {
+            cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
+        } );
 
 		// Task should now be in done state
 		cy.get( '@firstSection' ).find('#s1task1').should('have.attr', 'data-nfd-task-status', 'done');
@@ -74,14 +76,18 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get( '@firstSection' ).should('have.attr', 'open');
 		cy.get( '@firstSection' ).find('.nfd-section-complete')
 			.click();
-		cy.wait( '@sectionEndpoint' );
+		cy.wait( '@sectionEndpoint' ).then( (interception) => {
+            cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+        } );
 		cy.get( '@firstSection' ).find('.nfd-section-complete').should('not.be.visible');
 		cy.get( '@firstSection' ).find('.nfd-nextsteps-step-container').should('not.be.visible');
 		cy.get( '@firstSection' ).should('not.have.attr', 'open');
 		// Open the section
 		cy.get( '@firstSection' ).find('.nfd-section-header')
 			.click();
-		cy.wait( '@sectionEndpoint' );
+		cy.wait( '@sectionEndpoint' ).then( (interception) => {
+            cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+        } );
 		cy.get( '@firstSection' ).should('have.attr', 'open');
 	} );
 } );
