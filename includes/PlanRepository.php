@@ -28,6 +28,13 @@ class PlanRepository {
 	private static $cached_plan = null;
 
 	/**
+	 * Static cache for the raw option data
+	 *
+	 * @var array|null
+	 */
+	private static $cached_option_data = null;
+
+	/**
 	 * Flag to track if the cache is valid
 	 *
 	 * @var bool
@@ -35,11 +42,26 @@ class PlanRepository {
 	private static $cache_valid = false;
 
 	/**
-	 * Cache key to track plan data version for invalidation
+	 * Check if the cache is valid and contains a plan
 	 *
-	 * @var string|null
+	 * @return bool True if cache is valid and has a plan
 	 */
-	private static $cache_key = null;
+	private static function is_cache_valid(): bool {
+		return self::$cache_valid && self::$cached_plan !== null;
+	}
+
+	/**
+	 * Cache a plan and its data
+	 *
+	 * @param Plan $plan The plan to cache
+	 * @param array $plan_data The raw plan data to cache
+	 * @return void
+	 */
+	private static function cache_plan( Plan $plan, array $plan_data ): void {
+		self::$cached_plan        = $plan;
+		self::$cached_option_data = $plan_data;
+		self::$cache_valid        = true;
+	}
 
 	/**
 	 * Invalidate the static cache
@@ -47,19 +69,28 @@ class PlanRepository {
 	 * @return void
 	 */
 	public static function invalidate_cache(): void {
-		self::$cached_plan = null;
-		self::$cache_valid = false;
-		self::$cache_key = null;
+		self::$cached_plan        = null;
+		self::$cached_option_data = null;
+		self::$cache_valid        = false;
 	}
 
 	/**
-	 * Generate a cache key based on the current plan data
+	 * Get plan data from cache or database
 	 *
-	 * @param array $plan_data The plan data array
-	 * @return string The cache key
+	 * @return array The plan data array
 	 */
-	private static function generate_cache_key( array $plan_data ): string {
-		return md5( serialize( $plan_data ) );
+	private static function get_plan_data(): array {
+		// Return cached data if available
+		if ( null !== self::$cached_option_data ) {
+			return self::$cached_option_data;
+		}
+
+		// Get from database and cache it
+		$plan_data = get_option( self::OPTION, array() );
+		// $plan_data = array(); // uncomment to reset plan data for debugging
+
+		self::$cached_option_data = $plan_data;
+		return $plan_data;
 	}
 
 	/**
@@ -68,23 +99,16 @@ class PlanRepository {
 	 * @return Plan|null
 	 */
 	public static function get_current_plan(): ?Plan {
-		$plan_data = get_option( self::OPTION, array() );
-		// $plan_data = array(); // uncomment to reset plan data for debugging
-		
-		// Generate cache key for current data
-		$current_cache_key = self::generate_cache_key( $plan_data );
-		
-		// Check if we have a valid cached plan
-		if (
-			self::$cache_valid &&
-			self::$cached_plan !== null &&
-			self::$cache_key === $current_cache_key
-		) {
+		// Return cached plan if available
+		if ( self::is_cache_valid() ) {
 			return self::$cached_plan;
 		}
 
+		// Get plan data (from cache or database)
+		$plan_data = self::get_plan_data();
+
 		$plan = null;
-		
+
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on site type
 			$site_type    = PlanFactory::determine_site_type();
@@ -123,10 +147,8 @@ class PlanRepository {
 		}
 
 		// Cache the result
-		if ( $plan !== null ) {
-			self::$cached_plan = $plan;
-			self::$cache_valid = true;
-			self::$cache_key = $current_cache_key;
+		if ( null !== $plan ) {
+			self::cache_plan( $plan, $plan_data );
 		}
 
 		return $plan;
@@ -140,15 +162,13 @@ class PlanRepository {
 	 */
 	public static function save_plan( Plan $plan ): bool {
 		$plan_data = $plan->to_array();
-		$result = update_option( self::OPTION, $plan_data );
-		
-		// Update cache with the saved plan after successful save
+		$result    = update_option( self::OPTION, $plan_data );
+
+		// Update cache with the saved plan and data after successful save
 		if ( $result ) {
-			self::$cached_plan = $plan;
-			self::$cache_valid = true;
-			self::$cache_key = self::generate_cache_key( $plan_data );
+			self::cache_plan( $plan, $plan_data );
 		}
-		
+
 		return $result;
 	}
 
