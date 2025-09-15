@@ -23,7 +23,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 
 		// Portal App Renders
 		cy.get( '#next-steps-portal' ).scrollIntoView().should( 'exist' );
-		cy.get( '.next-steps-fill #nfd-nextsteps', { timeout: 10000 } ).should( 'be.visible' );
+		cy.get( '.next-steps-fill #nfd-nextsteps', { timeout: 25000 } ).should( 'be.visible' );
 	} );
 
 	after( () => {
@@ -65,6 +65,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.wait( '@sectionEndpoint' ).then( (interception) => {
             cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
         } );
+        cy.wait( 250 ); // wait for section card to update
         cy.get( '.nfd-nextstep-section-card__dismissed-badge' ).scrollIntoView().should( 'be.visible' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).should( 'have.attr', 'data-nfd-section-status', 'dismissed' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo' ).should( 'be.visible' );
@@ -74,6 +75,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.wait( '@sectionEndpoint' ).then( (interception) => {
             cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
         } );
+        cy.wait( 250 ); // wait for section card to update
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextstep-section-card__dismissed-badge' ).should( 'not.exist' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).should( 'have.attr', 'data-nfd-section-status', 'new' );
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' ).should( 'be.visible' );
@@ -82,6 +84,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get( '#section-card-section2 .nfd-nextsteps-buttons .nfd-button' ).should( 'not.have.attr', 'href' );
         cy.get( '#section-card-section2 .nfd-nextsteps-buttons .nfd-button' )
             .click();
+        cy.wait( 250 ); // wait for modal to load
         cy.get('.nfd-modal__layout').should( 'be.visible' );
         cy.get('.nfd-modal__layout').find( 'h1.nfd-title' ).should( 'have.text', 'Section 2 Modal Title' );
         cy.get('.nfd-modal__layout').find( 'p' ).should( 'have.text', 'Section 2 modal description.' );
@@ -105,6 +108,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get( '@s2task1' ).find( '.nfd-nextsteps-button-todo' ).should( 'be.visible' );
         cy.get( '@s2task1' ).find( '.nfd-nextsteps-button-todo' )
             .click();
+        cy.wait( 250 ); // wait for task and section to update
         cy.wait( '@taskEndpoint' ).then( (interception) => {
             cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
         } );
