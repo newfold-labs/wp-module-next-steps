@@ -12,13 +12,18 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 		wpLogin();
 		// Set test Next Steps data
 		setTestCardsNextStepsData();
+		// Set up all Next Steps API intercepts
+		setupNextStepsIntercepts();
+		// Visit the Next Steps portal
 		cy.visit(
 			'/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) + '#/home'
 		);
+        // Reload the page to ensure the intercepts are working and updated test content is loaded
 		cy.reload();
 
-		// Set up all Next Steps API intercepts
-		setupNextStepsIntercepts();
+		// Portal App Renders
+		cy.get( '#next-steps-portal' ).scrollIntoView().should( 'exist' );
+		cy.get( '.next-steps-fill #nfd-nextsteps', { timeout: 10000 } ).should( 'be.visible' );
 	} );
 
 	after( () => {
@@ -27,9 +32,6 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 	} );
 
 	it( 'portal renders and displays correctly', () => {
-		// Portal App Renders
-		cy.get( '#next-steps-portal' ).scrollIntoView().should( 'be.visible' );
-		cy.get( '.next-steps-fill #nfd-nextsteps' ).should( 'be.visible' );
 
         // Check for 3 total sections
         cy.get( '.nfd-nextsteps-section-card' ).should( 'have.length', 3 );
@@ -37,44 +39,44 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
         cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section-expired"]' ).should( 'not.exist' );
 
         // Check that section 1 is rendered with correct title, description, cta, icon, modal title, modal description
-        cy.get( '#section-card-customize_your_store' ).scrollIntoView().should( 'be.visible' );
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-section-card-title' ).should( 'have.text', 'Test Section 1' );
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-section-card-description' ).should( 'have.text', 'Section 1 with 1 task.' );
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-buttons .nfd-button' ).should( 'have.text', 'CTA 1 Text' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).scrollIntoView().should( 'be.visible' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-section-card-title' ).should( 'have.text', 'Test Section 1' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-section-card-description' ).should( 'have.text', 'Section 1 with 1 task.' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-buttons .nfd-button' ).should( 'have.text', 'CTA 1 Text' );
         // first incomplete section has primary button
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-buttons .nfd-button' ).should( 'have.class', 'nfd-button--primary' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-buttons .nfd-button' ).should( 'have.class', 'nfd-button--primary' );
         // section with single task loads task href on section button
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-buttons .nfd-button' ).should( 'have.attr', 'href' )
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-buttons .nfd-button' ).should( 'have.attr', 'href' )
         .then( ( href ) => {
             expect(
                 href.includes( 'www.bluehost.com' )
             ).to.be.true;
         } );
         // check that svg images are properly loaded and visible
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-section-card-icon-wrapper svg' ).should( 'be.visible' );
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-section-card__wireframe svg' ).should( 'be.visible' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-section-card-icon-wrapper svg' ).should( 'be.visible' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-section-card__wireframe svg' ).should( 'be.visible' );
 
         // check section 1 updates when skipped
         cy.get( '.nfd-nextstep-section-card__dismissed-badge' ).should( 'not.exist' );
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-button--skip' ).scrollIntoView().should( 'be.visible' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' ).scrollIntoView().should( 'be.visible' );
         // CLICK skip section 1 button
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-button--skip' )
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' )
             .click();
         cy.wait( '@sectionEndpoint' ).then( (interception) => {
             cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
         } );
         cy.get( '.nfd-nextstep-section-card__dismissed-badge' ).scrollIntoView().should( 'be.visible' );
-        cy.get( '#section-card-customize_your_store' ).should( 'have.attr', 'data-nfd-section-status', 'dismissed' );
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-button--undo' ).should( 'be.visible' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).should( 'have.attr', 'data-nfd-section-status', 'dismissed' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo' ).should( 'be.visible' );
         // CLICK undo section 1 button
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-button--undo' )
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo' )
             .click();
         cy.wait( '@sectionEndpoint' ).then( (interception) => {
             cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
         } );
-        cy.get( '#section-card-customize_your_store .nfd-nextstep-section-card__dismissed-badge' ).should( 'not.exist' );
-        cy.get( '#section-card-customize_your_store' ).should( 'have.attr', 'data-nfd-section-status', 'new' );
-        cy.get( '#section-card-customize_your_store .nfd-nextsteps-button--skip' ).should( 'be.visible' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextstep-section-card__dismissed-badge' ).should( 'not.exist' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).should( 'have.attr', 'data-nfd-section-status', 'new' );
+        cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip' ).should( 'be.visible' );
 
         // check section 2 renders and task modal opens with proper tasks
         cy.get( '#section-card-section2 .nfd-nextsteps-buttons .nfd-button' ).should( 'not.have.attr', 'href' );

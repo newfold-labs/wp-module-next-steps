@@ -56,7 +56,7 @@ export function setupNextStepsIntercepts() {
 		(req) => {
 			// Extract section ID from URL - handle different URL structures
 			const sectionIdMatch = req.url.match(/\/sections\/([^\/\?]+)/);
-			const sectionId = sectionIdMatch ? sectionIdMatch[1] : 'section3';
+			const sectionId = sectionIdMatch ? sectionIdMatch[1] : 'not-provided';
 			const response = {
 				id: sectionId
 			};

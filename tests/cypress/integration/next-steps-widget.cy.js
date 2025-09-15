@@ -19,15 +19,15 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		wpLogin();
 		cy.visit('/wp-admin/index.php');
 		
+		// Set up all Next Steps API intercepts
+		setupNextStepsIntercepts();
+
 		// Wait for widget to be visible
 		cy.get('#nfd_next_steps_widget').should('be.visible');
 		cy.get('#nfd-nextsteps').should('be.visible');
 		
 		// Wait for React app to load by checking for tracks
 		cy.get('.nfd-track', { timeout: 10000 }).should('exist');
-
-		// Set up all Next Steps API intercepts
-		setupNextStepsIntercepts();
 	});
 
 	it('renders the widget structure correctly', () => {
@@ -83,8 +83,8 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-dismiss').should('exist');
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('be.visible');
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('have.attr', 'href').and('contain', 'bluehost.com');
-		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('have.attr', 'data-nfd-click').and('contain', 'nextsteps_step_link');
-		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('have.attr', 'data-nfd-event-category').and('contain', 'nextsteps_step');
+		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('have.attr', 'data-nfd-click').and('contain', 'nextsteps_task_link');
+		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('have.attr', 'data-nfd-event-category').and('contain', 'nextsteps_task');
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-button.nfd-nextsteps-button-link').should('have.attr', 'data-nfd-event-key').and('contain', 's2task1');
 		// Content should be visible
 		cy.get( '@s2t1' ).find('.nfd-nextsteps-task-content').should('contain', 'New Task');
