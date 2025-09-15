@@ -21,12 +21,6 @@ class PlanRepository {
 	const OPTION = 'nfd_next_steps';
 
 	/**
-	 * Current version of plan data structure
-	 * Increment this when plan data changes to trigger merges
-	 */
-	const PLAN_DATA_VERSION = NFD_NEXTSTEPS_MODULE_VERSION;
-
-	/**
 	 * Get the current plan
 	 *
 	 * @return Plan|null
@@ -46,14 +40,11 @@ class PlanRepository {
 			return null;
 		}
 
-		// Convert array data to Plan object immediately
+		// Convert array data to Plan object
 		$saved_plan = Plan::from_array( $plan_data );
 
 		// Check if we need to merge with new plan data
-		$saved_version   = $saved_plan->version ? $saved_plan->version : '1.0.0';
-		$current_version = self::PLAN_DATA_VERSION;
-
-		if ( version_compare( $saved_version, $current_version, '<' ) ) {
+		if ( $saved_plan->is_version_outdated() ) {
 			// Version is outdated, need to merge with latest plan data
 
 			// Load the appropriate new plan based on the saved plan type

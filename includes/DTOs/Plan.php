@@ -459,6 +459,18 @@ class Plan {
 	}
 
 	/**
+	 * Check if this plan needs to be merged with the current module version
+	 *
+	 * @return bool True if merge is needed, false otherwise
+	 */
+	public function is_version_outdated(): bool {
+		$saved_version = $this->version ? $this->version : '1.0.0';
+		$current_version = defined( 'NFD_NEXTSTEPS_MODULE_VERSION' ) ? NFD_NEXTSTEPS_MODULE_VERSION : '1.0.0';
+		
+		return version_compare( $saved_version, $current_version, '<' );
+	}
+
+	/**
 	 * Validate plan data
 	 *
 	 * @return bool|string True if valid, error message if not
