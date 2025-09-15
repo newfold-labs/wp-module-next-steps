@@ -353,9 +353,9 @@ class PlanFactory {
 		}
 
 		if ( $new_plan ) {
-			// Use PlanRepository::merge_plan_data to combine saved data with new translations
+			// Use Plan DTO's merge_with method to combine saved data with new translations
 			// This preserves user progress while updating language content
-			$merged_plan = PlanRepository::merge_plan_data( $saved_data, $new_plan );
+			$merged_plan = $new_plan->merge_with( $saved_data );
 
 			// Save the merged plan data
 			$saved = PlanRepository::save_plan( $merged_plan );

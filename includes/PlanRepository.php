@@ -21,6 +21,48 @@ class PlanRepository {
 	const OPTION = 'nfd_next_steps';
 
 	/**
+	 * Static cache for the current plan
+	 *
+	 * @var Plan|null
+	 */
+	private static $cached_plan = null;
+
+	/**
+	 * Flag to track if the cache is valid
+	 *
+	 * @var bool
+	 */
+	private static $cache_valid = false;
+
+	/**
+	 * Cache key to track plan data version for invalidation
+	 *
+	 * @var string|null
+	 */
+	private static $cache_key = null;
+
+	/**
+	 * Invalidate the static cache
+	 *
+	 * @return void
+	 */
+	public static function invalidate_cache(): void {
+		self::$cached_plan = null;
+		self::$cache_valid = false;
+		self::$cache_key = null;
+	}
+
+	/**
+	 * Generate a cache key based on the current plan data
+	 *
+	 * @param array $plan_data The plan data array
+	 * @return string The cache key
+	 */
+	private static function generate_cache_key( array $plan_data ): string {
+		return md5( serialize( $plan_data ) );
+	}
+
+	/**
 	 * Get the current plan
 	 *
 	 * @return Plan|null
@@ -28,6 +70,21 @@ class PlanRepository {
 	public static function get_current_plan(): ?Plan {
 		$plan_data = get_option( self::OPTION, array() );
 		// $plan_data = array(); // uncomment to reset plan data for debugging
+		
+		// Generate cache key for current data
+		$current_cache_key = self::generate_cache_key( $plan_data );
+		
+		// Check if we have a valid cached plan
+		if (
+			self::$cache_valid &&
+			self::$cached_plan !== null &&
+			self::$cache_key === $current_cache_key
+		) {
+			return self::$cached_plan;
+		}
+
+		$plan = null;
+		
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on site type
 			$site_type    = PlanFactory::determine_site_type();
@@ -35,36 +92,44 @@ class PlanRepository {
 			if ( $default_plan ) {
 				// Save the default plan for future use
 				self::save_plan( $default_plan );
-				return $default_plan;
+				$plan = $default_plan;
 			}
-			return null;
-		}
+		} else {
+			// Convert array data to Plan object
+			$saved_plan = Plan::from_array( $plan_data );
 
-		// Convert array data to Plan object
-		$saved_plan = Plan::from_array( $plan_data );
+			// Check if we need to merge with new plan data
+			if ( $saved_plan->is_version_outdated() ) {
+				// Version is outdated, need to merge with latest plan data
 
-		// Check if we need to merge with new plan data
-		if ( $saved_plan->is_version_outdated() ) {
-			// Version is outdated, need to merge with latest plan data
+				// Load the appropriate new plan based on the saved plan type
+				if ( 'custom' === $saved_plan->type ) {
+					// For custom plans, create a new plan with the same structure
+					$new_plan = PlanFactory::create_plan( $saved_plan->type, $saved_plan->to_array() );
+				} else {
+					$new_plan = PlanFactory::create_plan( $saved_plan->type );
+				}
 
-			// Load the appropriate new plan based on the saved plan type
-			if ( 'custom' === $saved_plan->type ) {
-				// For custom plans, create a new plan with the same structure
-				$new_plan = PlanFactory::create_plan( $saved_plan->type, $saved_plan->to_array() );
+				// Merge the saved data with the new plan (version will be updated automatically)
+				$merged_plan = $new_plan->merge_with( $saved_plan );
+
+				// Save the merged plan with updated version
+				self::save_plan( $merged_plan );
+
+				$plan = $merged_plan;
 			} else {
-				$new_plan = PlanFactory::create_plan( $saved_plan->type );
+				$plan = $saved_plan;
 			}
-
-			// Merge the saved data with the new plan (version will be updated automatically)
-			$merged_plan = self::merge_plan_data( $saved_plan, $new_plan );
-
-			// Save the merged plan with updated version
-			self::save_plan( $merged_plan );
-
-			return $merged_plan;
 		}
 
-		return $saved_plan;
+		// Cache the result
+		if ( $plan !== null ) {
+			self::$cached_plan = $plan;
+			self::$cache_valid = true;
+			self::$cache_key = $current_cache_key;
+		}
+
+		return $plan;
 	}
 
 	/**
@@ -75,21 +140,18 @@ class PlanRepository {
 	 */
 	public static function save_plan( Plan $plan ): bool {
 		$plan_data = $plan->to_array();
-		return update_option( self::OPTION, $plan_data );
+		$result = update_option( self::OPTION, $plan_data );
+		
+		// Update cache with the saved plan after successful save
+		if ( $result ) {
+			self::$cached_plan = $plan;
+			self::$cache_valid = true;
+			self::$cache_key = self::generate_cache_key( $plan_data );
+		}
+		
+		return $result;
 	}
 
-	/**
-	 * Merge existing saved plan data with new plan data from code
-	 * Uses DTO merge methods for clean object-oriented approach
-	 *
-	 * @param Plan $saved_plan Existing saved plan data
-	 * @param Plan $new_plan   New plan data from code
-	 * @return Plan Merged plan
-	 */
-	public static function merge_plan_data( Plan $saved_plan, Plan $new_plan ): Plan {
-		// Use the Plan DTO's merge method for clean object-oriented merging
-		return $new_plan->merge_with( $saved_plan );
-	}
 
 	/**
 	 * Switch to a different plan type
@@ -113,7 +175,7 @@ class PlanRepository {
 		// Load the appropriate plan directly
 		$plan = PlanFactory::create_plan( $plan_type );
 
-		// Save the loaded plan
+		// Save the loaded plan (this will automatically update cache)
 		self::save_plan( $plan );
 
 		return $plan;
@@ -188,6 +250,7 @@ class PlanRepository {
 	 */
 	public static function reset_plan(): Plan {
 		$default_plan = PlanFactory::load_default_plan();
+		// save_plan will automatically update cache
 		self::save_plan( $default_plan );
 		return $default_plan;
 	}
