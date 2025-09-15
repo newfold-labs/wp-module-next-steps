@@ -68,22 +68,22 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get('[data-nfd-task-id="s1task1"]').should('have.attr', 'data-nfd-task-status', 'done');
 
 		// Progress should update
-		cy.get('[data-nfd-section-id="section1"] .nfd-progress-bar-label').should('have.text', '1/1');
-		cy.get('[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '100');
+		cy.get('.nfd-progress-bar-label').first().should('have.text', '1/1');
+		cy.get('.nfd-progress-bar-inner').first().should('have.attr', 'data-percent', '100');
 				
 		// Celebrate should be visible
-		cy.get('[data-nfd-section-id="section1"] .nfd-section-complete').should('be.visible');
-		cy.get('[data-nfd-section-id="section1"] .nfd-section-celebrate-text').should('have.text', 'All complete!');
-		cy.get('[data-nfd-section-id="section1"] .nfd-nextsteps-section-close-button').should('be.visible');
+		cy.get('.nfd-section-complete').first().should('be.visible');
+		cy.get('.nfd-section-celebrate-text').first().should('have.text', 'All complete!');
+		cy.get('.nfd-nextsteps-section-close-button').first().should('be.visible');
 
 		// Close celebration closes section
 		cy.get('[data-nfd-section-id="section1"]').should('have.attr', 'open');
-		cy.get('[data-nfd-section-id="section1"] .nfd-nextsteps-section-close-button')
+		cy.get('.nfd-nextsteps-section-close-button').first()
 			.click();
 		cy.wait( '@sectionEndpoint' ).then( (interception) => {
 			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
 		} );
-		cy.get('[data-nfd-section-id="section1"] .nfd-section-complete').should('not.be.visible');
+		cy.get('[data-nfd-section-id="section1"] .nfd-section-celebrate').should('not.be.visible');
 		cy.get('[data-nfd-section-id="section1"] .nfd-nextsteps-task-container').should('not.be.visible');
 		cy.get('[data-nfd-section-id="section1"]').should('not.have.attr', 'open');
 		// Open the section

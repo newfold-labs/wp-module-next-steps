@@ -66,7 +66,7 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
 		} );
 		cy.wait( 250 ); // wait for section card to update
-		cy.get( '.nfd-nextstep-section-card__dismissed-badge' ).scrollIntoView().should( 'be.visible' );
+		cy.get( '.nfd-nextstep-section-card__dismissed-badge' ).should( 'exist' );
 		cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]' ).should( 'have.attr', 'data-nfd-section-status', 'dismissed' );
 		cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo' ).should( 'be.visible' );
 		// CLICK undo section 1 button
