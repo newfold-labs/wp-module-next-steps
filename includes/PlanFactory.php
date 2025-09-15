@@ -99,13 +99,16 @@ class PlanFactory {
 	 * @return void
 	 */
 	public static function on_sitetype_change( $old_value, $new_value ) {
-		// Check if new_value is an array
-		if ( ! is_array( $new_value ) ) {
+		// Check if values are each an array
+		if (
+			! is_array( $old_value ) ||
+			! is_array( $new_value )
+		) {
 			return;
 		}
 
-		$old_site_type = $old_value['site_type'] ?? '';
-		$new_site_type = $new_value['site_type'] ?? '';
+		$old_site_type = array_key_exists( 'site_type', $old_value ) ? $old_value['site_type'] : '';
+		$new_site_type = array_key_exists( 'site_type', $new_value ) ? $new_value['site_type'] : '';
 
 		if ( $old_site_type === $new_site_type ) {
 			return;
