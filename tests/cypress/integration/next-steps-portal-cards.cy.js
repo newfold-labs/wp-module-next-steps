@@ -32,6 +32,11 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 	} );
 
 	it( 'portal renders and displays correctly', () => {
+		// wait for inital section endpoint to be called - section3 marking as completed
+		cy.wait( '@sectionEndpoint' ).then( (interception) => {
+			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
+		} );
+		cy.wait( 250 );
 
 		// Check for 3 total sections
 		cy.get( '.nfd-nextsteps-section-card' ).should( 'have.length', 3 );
@@ -108,13 +113,13 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 		cy.get( '@s2task1' ).find( '.nfd-nextsteps-button-todo' ).should( 'be.visible' );
 		cy.get( '@s2task1' ).find( '.nfd-nextsteps-button-todo' )
 			.click();
-		cy.wait( 250 ); // wait for task and section to update
 		cy.wait( '@taskEndpoint' ).then( (interception) => {
 			cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
 		} );
 		cy.wait( '@sectionEndpoint' ).then( (interception) => {
 			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
 		} );
+		cy.wait( 250 ); // wait for task and section to update
 		cy.get( '.nfd-modal__layout' ).should( 'not.exist' );
 		cy.get( '.nfd-nextstep-tasks-modal__tasks' ).should( 'not.exist' );
 		// check section 2 card is updated to done

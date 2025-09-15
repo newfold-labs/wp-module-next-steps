@@ -55,8 +55,17 @@ export function setupNextStepsIntercepts() {
 		},
 		(req) => {
 			// Extract section ID from URL - handle different URL structures
-			const sectionIdMatch = req.url.match(/\/sections\/([^\/\?]+)/);
-			const sectionId = sectionIdMatch ? sectionIdMatch[1] : 'not-provided';
+			// Try multiple patterns to catch different URL formats
+			let sectionIdMatch = req.url.match(/\/sections\/([^\/\?]+)/);
+			if (!sectionIdMatch) {
+				// Try alternative pattern in case URL structure is different
+				sectionIdMatch = req.url.match(/sections%2F([^%&]+)/); // URL encoded
+			}
+			if (!sectionIdMatch) {
+				// Try another pattern
+				sectionIdMatch = req.url.match(/sections\/([^\/\?&]+)/);
+			}
+			const sectionId = sectionIdMatch ? sectionIdMatch[1] : 'not-found';
 			const response = {
 				id: sectionId
 			};
@@ -68,7 +77,7 @@ export function setupNextStepsIntercepts() {
 					response.date_completed = new Date().toISOString().slice(0, 19).replace('T', ' ');
 				}
 			}
-			
+
 			// Add open state for open updates
 			if (req.body.type === 'open') {
 				response.open = req.body.value;
