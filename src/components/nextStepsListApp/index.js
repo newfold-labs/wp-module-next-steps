@@ -7,8 +7,6 @@ import { NextStepsErrorBoundary } from '../ErrorBoundary';
 import { 
 	calculatePlanProgress,
 	updateTaskStatusInPlan,
-	updateSectionInPlan,
-	updateTrackInPlan,
 	taskUpdateWrapper,
 	sectionUpdateWrapper,
 	trackUpdateWrapper

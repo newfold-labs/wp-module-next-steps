@@ -34,9 +34,10 @@ export function setupNextStepsIntercepts() {
 			// Extract task ID from URL - handle different URL structures
 			const taskIdMatch = req.url.match(/\/tasks\/([^\/\?]+)/);
 			const taskId = taskIdMatch ? taskIdMatch[1] : 's1task1';
+			const taskStatus = req.body.status || 'done';
 			const response = {
 				id: taskId,
-				status: req.body.status || 'done'
+				status: taskStatus
 			};
 
 			req.reply({

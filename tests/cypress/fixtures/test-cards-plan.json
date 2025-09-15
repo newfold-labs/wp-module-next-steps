@@ -21,7 +21,7 @@
                     "modal_desc": "Section 1 modal description.",
                     "tasks": [
                         {
-                            "id": "s1task1",
+                            "id": "store_task1",
                             "title": "Test Task",
                             "href": "https://www.bluehost.com",
                             "status": "new",

@@ -48,10 +48,10 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '0');
 
 		// Task should be in new state
-		cy.get('.nfd-section[data-nfd-section-id="section1"] #s1task1').should('have.attr', 'data-nfd-task-status', 'new');
+		cy.get('.nfd-section[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'new');
 		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('have.attr', 'open');
 		// Complete task
-		cy.get( '#s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo' )
+		cy.get( '#task-s1task1.nfd-nextsteps-step-container .nfd-nextsteps-step-new .nfd-nextsteps-button-todo' )
 			.click();
 		// Wait for API call
 		cy.wait( '@taskEndpoint' ).then( (interception) => {
@@ -59,7 +59,7 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
         } );
 
 		// Task should now be in done state
-		cy.get('.nfd-section[data-nfd-section-id="section1"] #s1task1').should('have.attr', 'data-nfd-task-status', 'done');
+		cy.get('.nfd-section[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'done');
 
 		// Progress should update
 		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-label').should('have.text', '1/1');

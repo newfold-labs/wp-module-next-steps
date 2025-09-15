@@ -120,7 +120,11 @@ export const Task = memo(( props ) => {
 	};
 	const renderNewStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
+			<div
+				className="nfd-nextsteps-step-container"
+				id={ `task-${ id }` } 
+				{ ...combinedAttributes }
+			>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
@@ -171,7 +175,11 @@ export const Task = memo(( props ) => {
 	};
 	const renderDoneStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
+			<div
+				className="nfd-nextsteps-step-container"
+				id={ `task-${ id }` } 
+				{ ...combinedAttributes }
+			>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
@@ -207,7 +215,11 @@ export const Task = memo(( props ) => {
 	};
 	const renderDismissedStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
+			<div
+				className="nfd-nextsteps-step-container"
+				id={ `task-${ id }` } 
+				{ ...combinedAttributes }
+			>
 				<div className="nfd-nextsteps-step nfd-nextsteps-step-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button

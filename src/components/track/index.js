@@ -28,6 +28,7 @@ export const Track = memo(( props ) => {
 	return (
 		<details
 			className="nfd-track"
+			id={ `track-${ track.id }` }
 			onToggle={ handleToggleOpen }
 			data-nfd-track-id={ track.id }
 			data-nfd-track-index={ index }

@@ -246,7 +246,7 @@ export const SectionCard = ( {
 				) }
 			>
 				<div
-					id={ id }
+					id={ `section-card-${ sectionId }` }
 					data-nfd-section-id={ sectionId }
 					data-nfd-section-index={ index }
 					data-nfd-section-status={ status }

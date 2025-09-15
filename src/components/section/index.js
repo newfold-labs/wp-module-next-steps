@@ -66,6 +66,7 @@ export const Section = memo(( props ) => {
 		( totalCount > 0 || showDismissed === true ) && (
 		<details
 			className="nfd-section"
+			id={ `section-${ section.id }` }
 			data-nfd-section-id={ section.id }
 			data-nfd-section-index={ index }
 			onToggle={ handleToggleOpen }
