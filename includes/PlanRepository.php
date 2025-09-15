@@ -12,6 +12,8 @@ use NewfoldLabs\WP\Module\NextSteps\DTOs\Task;
  *
  * Handles plan persistence, data management, and CRUD operations.
  * Responsible for storing, retrieving, and managing plan data.
+ *
+ * @package WPModuleNextSteps
  */
 class PlanRepository {
 

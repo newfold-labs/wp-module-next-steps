@@ -43,17 +43,17 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 
 		// Marking a task complete updates task and progress bars
 		// Progress bar in first section
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar').should('exist');
+		cy.get('[data-nfd-section-id="section1"] .nfd-progress-bar').should('exist');
 		
 		// Validate initial progress values
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-label').should('have.text', '0/1');
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '0');
+		cy.get('[data-nfd-section-id="section1"] .nfd-progress-bar-label').should('have.text', '0/1');
+		cy.get('[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '0');
 
 		// Task should be in new state
-		cy.get('.nfd-section[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'new');
-		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('have.attr', 'open');
+		cy.get('[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'new');
+		cy.get('[data-nfd-section-id="section1"]').should('have.attr', 'open');
 		// Complete task
-		cy.get( '#task-s1task1.nfd-nextsteps-task-container .nfd-nextsteps-task-new .nfd-nextsteps-button-todo' )
+		cy.get( '#task-s1task1 .nfd-nextsteps-task-new .nfd-nextsteps-button-todo' )
 			.scrollIntoView().click();
 		// Wait for API calls
 		cy.wait( '@taskEndpoint' ).then( (interception) => {
@@ -65,33 +65,33 @@ describe( 'Next Steps Portal in Plugin App', { testIsolation: true }, () => {
 		// wait for task to update and celebration to load
 		cy.wait( 250 );
 		// Task should now be in done state
-		cy.get('.nfd-section[data-nfd-section-id="section1"] #task-s1task1').should('have.attr', 'data-nfd-task-status', 'done');
+		cy.get('[data-nfd-task-id="s1task1"]').should('have.attr', 'data-nfd-task-status', 'done');
 
 		// Progress should update
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-label').should('have.text', '1/1');
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '100');
+		cy.get('[data-nfd-section-id="section1"] .nfd-progress-bar-label').should('have.text', '1/1');
+		cy.get('[data-nfd-section-id="section1"] .nfd-progress-bar-inner').should('have.attr', 'data-percent', '100');
 				
 		// Celebrate should be visible
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete').should('be.visible');
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-celebrate-text').should('have.text', 'All complete!');
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-section-close-button').should('be.visible');
+		cy.get('[data-nfd-section-id="section1"] .nfd-section-complete').should('be.visible');
+		cy.get('[data-nfd-section-id="section1"] .nfd-section-celebrate-text').should('have.text', 'All complete!');
+		cy.get('[data-nfd-section-id="section1"] .nfd-nextsteps-section-close-button').should('be.visible');
 
 		// Close celebration closes section
-		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('have.attr', 'open');
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete')
+		cy.get('[data-nfd-section-id="section1"]').should('have.attr', 'open');
+		cy.get('[data-nfd-section-id="section1"] .nfd-nextsteps-section-close-button')
 			.click();
 		cy.wait( '@sectionEndpoint' ).then( (interception) => {
 			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
 		} );
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete').should('not.be.visible');
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-task-container').should('not.be.visible');
-		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('not.have.attr', 'open');
+		cy.get('[data-nfd-section-id="section1"] .nfd-section-complete').should('not.be.visible');
+		cy.get('[data-nfd-section-id="section1"] .nfd-nextsteps-task-container').should('not.be.visible');
+		cy.get('[data-nfd-section-id="section1"]').should('not.have.attr', 'open');
 		// Open the section
-		cy.get('.nfd-section[data-nfd-section-id="section1"] .nfd-section-header')
+		cy.get('[data-nfd-section-id="section1"] .nfd-section-header')
 			.click();
 		cy.wait( '@sectionEndpoint' ).then( (interception) => {
 			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
 		} );
-		cy.get('.nfd-section[data-nfd-section-id="section1"]').should('have.attr', 'open');
+		cy.get('[data-nfd-section-id="section1"]').should('have.attr', 'open');
 	} );
 } );
