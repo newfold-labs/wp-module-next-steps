@@ -59,7 +59,7 @@ export const NextSteps = () => {
 
     const sectionOpenCallback = ( trackId, sectionId, open ) => {
         if ( !trackId || !sectionId ) {
-            // Could not find track for intendend section
+            // Could not find track for intended section
             return;
         }
 
