@@ -14,6 +14,7 @@ export const Section = memo(( props ) => {
 		showDismissed,
 		taskUpdateCallback,
 		trackId,
+		sectionUpdateCallback,
 	} = props;
 	
 	// Get progress data from props (calculated in parent)
@@ -39,6 +40,8 @@ export const Section = memo(( props ) => {
 		) {
 			// display success celebration (slight css-base delay and animation)
 			setShowCompleteCelebration( true );
+			// also call the sectionUpdateCallback to update the backend
+			sectionUpdateCallback( trackId, section.id, 'done' );
 		}
 		
 		// Update refs for next render
@@ -52,14 +55,18 @@ export const Section = memo(( props ) => {
 		
 		// Get the new open state from the details element
 		const newOpenState = event.target.open;
-		// Call the callback to update the backend
-		sectionOpenCallback( trackId, section.id, newOpenState );
+		// Only call the callback if the open state has changed
+		if ( newOpenState !== section.open ) {
+			// Call the callback to update the backend
+			sectionOpenCallback( trackId, section.id, newOpenState );
+		}
 	};
 
 	return (
 		( totalCount > 0 || showDismissed === true ) && (
 		<details
 			className="nfd-section"
+			id={ `section-${ section.id }` }
 			data-nfd-section-id={ section.id }
 			data-nfd-section-index={ index }
 			onToggle={ handleToggleOpen }

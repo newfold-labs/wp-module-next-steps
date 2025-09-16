@@ -67,11 +67,26 @@
             "Task temporarily unavailable": [
                 "Taak tijdelijk niet beschikbaar"
             ],
-            "Connection Issue": [
-                "Verbindingsprobleem"
+            "No Pending tasks": [
+                ""
             ],
-            "Unable to save your changes right now. Please check your connection and try again.": [
-                "Het is niet mogelijk om uw wijzigingen op dit moment op te slaan. Controleer uw verbinding en probeer het opnieuw."
+            "Hooray!": [
+                ""
+            ],
+            "You don\u2019t have any pending tasks today": [
+                ""
+            ],
+            "Completed": [
+                ""
+            ],
+            "Skipped": [
+                ""
+            ],
+            "Skip it": [
+                ""
+            ],
+            "Undo": [
+                ""
             ]
         }
     }

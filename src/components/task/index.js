@@ -27,7 +27,10 @@ export const Task = memo(( props ) => {
 		setStatus( task.status );
 	}, [ task.status ] );
 
-	const updateStatus = ( newStatus ) => {
+	const updateStatus = ( e, newStatus ) => {
+		// Prevent event from bubbling up to parent track details element
+		e.stopPropagation();
+		
 		const previousStatus = status;
 		setStatus( newStatus ); // optimistic update - for immediate UI feedback
 		// update task status via API
@@ -98,16 +101,16 @@ export const Task = memo(( props ) => {
 
 	const renderStepContent = ( href = false, target = '' ) => {
 		return (
-			<div className="nfd-nextsteps-step-content nfd-flex nfd-flex-col nfd-justify-between">
+			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
 					<a href={ href } target={ target }>
-						<Title as="span" className="nfd-nextsteps-step-title nfd-font-normal">
+						<Title as="span" className="nfd-nextsteps-task-title nfd-font-normal">
 							{ title }
 						</Title>
 					</a>
 				) }
 				{ ! href && (
-					<Title as="span" className="nfd-nextsteps-step-title nfd-font-normal">
+					<Title as="span" className="nfd-nextsteps-task-title nfd-font-normal">
 						{ title }
 					</Title>
 				) }
@@ -117,16 +120,20 @@ export const Task = memo(( props ) => {
 	};
 	const renderNewStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
-				<div className="nfd-nextsteps-step nfd-nextsteps-step-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+			<div
+				className="nfd-nextsteps-task-container"
+				id={ `task-${ id }` } 
+				{ ...combinedAttributes }
+			>
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-todo"
-							data-nfd-click="nextsteps_step_check"
-							data-nfd-event-category="nextsteps_step"
+							data-nfd-click="nextsteps_task_check"
+							data-nfd-event-category="nextsteps_task"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'done' )
+								updateStatus( e, 'done' )
 							}
 							title={ __(
 								'Mark Complete',
@@ -140,11 +147,11 @@ export const Task = memo(( props ) => {
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
-							data-nfd-click="nextsteps_step_dismiss"
-							data-nfd-event-category="nextsteps_step"
+							data-nfd-click="nextsteps_task_dismiss"
+							data-nfd-event-category="nextsteps_task"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'dismissed' )
+								updateStatus( e, 'dismissed' )
 							}
 							title={ __( 'Skip', 'wp-module-next-steps' ) }
 						>
@@ -152,8 +159,8 @@ export const Task = memo(( props ) => {
 						</button>
 						<a
 							className="nfd-nextsteps-button nfd-nextsteps-button-link"
-							data-nfd-click="nextsteps_step_link"
-							data-nfd-event-category="nextsteps_step"
+							data-nfd-click="nextsteps_task_link"
+							data-nfd-event-category="nextsteps_task"
 							data-nfd-event-key={ id }
 							href={ getHref() }
 							target={ getTarget() }
@@ -168,16 +175,20 @@ export const Task = memo(( props ) => {
 	};
 	const renderDoneStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
-				<div className="nfd-nextsteps-step nfd-nextsteps-step-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+			<div
+				className="nfd-nextsteps-task-container"
+				id={ `task-${ id }` } 
+				{ ...combinedAttributes }
+			>
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-redo"
-							data-nfd-click="nextsteps_step_redo"
-							data-nfd-event-category="nextsteps_step"
+							data-nfd-click="nextsteps_task_redo"
+							data-nfd-event-category="nextsteps_task"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'new' )
+								updateStatus( e, 'new' )
 							}
 							title={ __( 'Restart', 'wp-module-next-steps' ) }
 						>
@@ -185,22 +196,39 @@ export const Task = memo(( props ) => {
 						</button>
 					</div>
 					{ renderStepContent( getHref(), getTarget() ) }
+                    <div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
+                        <a
+                            className="nfd-nextsteps-button nfd-nextsteps-button-link"
+                            data-nfd-click="nextsteps_task_link"
+                            data-nfd-event-category="nextsteps_task"
+                            data-nfd-event-key={ id }
+                            href={ getHref() }
+                            target={ getTarget() }
+                            title={ title }
+                        >
+                            { goIcon }
+                        </a>
+                    </div>
 				</div>
 			</div>
 		);
 	};
 	const renderDismissedStep = () => {
 		return (
-			<div className="nfd-nextsteps-step-container" id={ id } { ...combinedAttributes }>
-				<div className="nfd-nextsteps-step nfd-nextsteps-step-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+			<div
+				className="nfd-nextsteps-task-container"
+				id={ `task-${ id }` } 
+				{ ...combinedAttributes }
+			>
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-redo"
-							data-nfd-click="nextsteps_step_redo"
-							data-nfd-event-category="nextsteps_step"
+							data-nfd-click="nextsteps_task_redo"
+							data-nfd-event-category="nextsteps_task"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'new' )
+								updateStatus( e, 'new' )
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>
@@ -211,11 +239,11 @@ export const Task = memo(( props ) => {
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
-							data-nfd-click="nextsteps_step_dismiss"
-							data-nfd-event-category="nextsteps_step"
+							data-nfd-click="nextsteps_task_dismiss"
+							data-nfd-event-category="nextsteps_task"
 							data-nfd-event-key={ id }
 							onClick={ ( e ) =>
-								updateStatus( 'new' )
+								updateStatus( e, 'new' )
 							}
 							title={ __( 'Unskip', 'wp-module-next-steps' ) }
 						>

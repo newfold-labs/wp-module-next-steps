@@ -12,18 +12,23 @@ export const Track = memo(( props ) => {
 		showDismissed,
 		taskUpdateCallback,
 		trackOpenCallback,
+		sectionUpdateCallback,
 	} = props;
 
 	const handleToggleOpen = ( event ) => {
 		// Get the new open state from the details element
 		const newOpenState = event.target.open;
-		// Call the callback to update the backend
-		trackOpenCallback( track.id, newOpenState );
+		// Only call the callback if the open state has changed
+		if ( event.target.open !== track.open ) {
+			// Call the callback to update the backend
+			trackOpenCallback( track.id, newOpenState );
+		}
 	};
 
 	return (
 		<details
 			className="nfd-track"
+			id={ `track-${ track.id }` }
 			onToggle={ handleToggleOpen }
 			data-nfd-track-id={ track.id }
 			data-nfd-track-index={ index }
@@ -52,6 +57,7 @@ export const Track = memo(( props ) => {
 							key={ section.id }
 							section={ section }
 							sectionOpenCallback={ sectionOpenCallback }
+							sectionUpdateCallback={ sectionUpdateCallback }
 							showDismissed={ showDismissed }
 							taskUpdateCallback={ taskUpdateCallback }
 							trackId={ track.id }

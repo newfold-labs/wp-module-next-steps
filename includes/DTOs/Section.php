@@ -45,16 +45,64 @@ class Section {
 	public $tasks;
 
 	/**
+	 * Call-to-action (CTA) for the section.
+	 *
+	 * @var mixed|null
+	 */
+	public $cta;
+
+	/**
+	 * Status of the section (e.g. 'new', 'done', 'dismissed'
+	 *
+	 * @var string
+	 */
+	public $status;
+
+	/**
+	 * Date when the section was completed or dismissed.
+	 *
+	 * @var string|null
+	 */
+	public $date_completed;
+
+	/**
+	 * Icon associated with the section.
+	 *
+	 * @var string
+	 */
+	public $icon;
+
+	/**
+	 * Title for the modal related to the section.
+	 *
+	 * @var string
+	 */
+	public $modal_title;
+
+	/**
+	 * Description for the modal related to the section.
+	 *
+	 * @var string
+	 */
+	public $modal_desc;
+
+	/**
 	 * Section constructor
 	 *
 	 * @param array $data Section data
 	 */
 	public function __construct( array $data = array() ) {
-		$this->id          = $data['id'] ?? '';
-		$this->label       = $data['label'] ?? '';
-		$this->description = $data['description'] ?? '';
-		$this->open        = $data['open'] ?? false;
-		$this->tasks       = array();
+		$this->id             = $data['id'] ?? '';
+		$this->label          = $data['label'] ?? '';
+		$this->description    = $data['description'] ?? '';
+		$this->open           = $data['open'] ?? false;
+		$this->cta            = $data['cta'] ?? null;
+		$this->status         = $data['status'] ?? 'new';
+		$this->date_completed = $data['date_completed'] ?? null;
+		$this->icon           = $data['icon'] ?? '';
+		$this->modal_title    = $data['modal_title'] ?? '';
+		$this->modal_desc     = $data['modal_desc'] ?? '';
+		$this->tasks          = array();
 
 		// Convert task arrays to Task objects
 		if ( isset( $data['tasks'] ) && is_array( $data['tasks'] ) ) {
@@ -75,17 +123,69 @@ class Section {
 	 */
 	public function to_array(): array {
 		return array(
-			'id'          => $this->id,
-			'label'       => $this->label,
-			'description' => $this->description,
-			'open'        => $this->open,
-			'tasks'       => array_map(
+			'id'             => $this->id,
+			'label'          => $this->label,
+			'description'    => $this->description,
+			'open'           => $this->open,
+			'cta'            => $this->cta,
+			'status'         => $this->status,
+			'date_completed' => $this->date_completed,
+			'icon'           => $this->icon,
+			'modal_title'    => $this->modal_title,
+			'modal_desc'     => $this->modal_desc,
+			'tasks'          => array_map(
 				function ( Task $task ) {
 					return $task->to_array();
 				},
 				$this->tasks
 			),
 		);
+	}
+
+	/**
+	 * Merge this section with saved section data
+	 * Preserves: open, status, date_completed
+	 * Updates: everything else
+	 *
+	 * @param Section $saved_section Saved section data
+	 * @return Section Merged section
+	 */
+	public function merge_with( Section $saved_section ): Section {
+		$merged_data = $this->to_array();
+		// Preserve section properties from saved data
+		if ( isset( $saved_section->open ) ) {
+			$merged_data['open'] = $saved_section->open;
+		}
+		if ( ! empty( $saved_section->status ) ) {
+			$merged_data['status'] = $saved_section->status;
+		}
+		if ( ! empty( $saved_section->date_completed ) ) {
+			$merged_data['date_completed'] = $saved_section->date_completed;
+		}
+		// Merge tasks recursively
+		$merged_tasks = array();
+		foreach ( $this->tasks as $task ) {
+			// Find matching saved task by ID
+			$saved_task = null;
+			foreach ( $saved_section->tasks as $saved_task_candidate ) {
+				if ( $saved_task_candidate->id === $task->id ) {
+					$saved_task = $saved_task_candidate;
+					break;
+				}
+			}
+			if ( $saved_task ) {
+				$merged_tasks[] = $task->merge_with( $saved_task );
+			} else {
+				$merged_tasks[] = $task;
+			}
+		}
+		$merged_data['tasks'] = array_map(
+			function ( Task $task ) {
+				return $task->to_array();
+			},
+			$merged_tasks
+		);
+		return new Section( $merged_data );
 	}
 
 	/**
@@ -165,13 +265,44 @@ class Section {
 	}
 
 	/**
-	 * Get all tasks
+	 * Update section status
 	 *
-	 * @return Task[]
+	 * @param string $status New status
+	 * @return bool
 	 */
-	public function get_tasks(): array {
-		return $this->tasks;
+	public function update_status( string $status ): bool {
+		if ( ! in_array( $status, array( 'new', 'dismissed', 'done' ), true ) ) {
+			return false;
+		}
+		$this->status = $status;
+		// automatically record completed/dismissed
+		if ( in_array( $status, array( 'dismissed', 'done' ), true ) ) {
+			$this->set_completed_now();
+		} else {
+			// reset date completed if marked as new
+			$this->clear_completed_date();
+		}
+
+		return true;
 	}
+
+	/**
+	 * Set completed now
+	 */
+	public function set_completed_now(): bool {
+		$now = new \DateTime( 'now', new \DateTimeZone( wp_timezone_string() ) );
+		$this->set_date_completed( $now->format( 'Y-m-d H:i:s' ) );
+		return true;
+	}
+
+	/**
+	 * Clear completed date
+	 */
+	public function clear_completed_date(): bool {
+		$this->set_date_completed( null );
+		return true;
+	}
+
 
 	/**
 	 * Sort tasks by priority
@@ -247,6 +378,27 @@ class Section {
 	 */
 	public function set_open( bool $open ): bool {
 		$this->open = $open;
+		return true;
+	}
+
+	/**
+	 * Set section status state
+	 *
+	 * @param string $status Status state
+	 * @return bool
+	 */
+	public function set_status( string $status ): bool {
+		return $this->update_status( $status );
+	}
+
+	/**
+	 * Set date completed or dismissed
+	 *
+	 * @param string|null $date Date string or null
+	 * @return bool
+	 */
+	public function set_date_completed( ?string $date ): bool {
+		$this->date_completed = $date;
 		return true;
 	}
 
