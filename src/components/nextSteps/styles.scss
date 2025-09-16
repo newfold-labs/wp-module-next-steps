@@ -421,7 +421,7 @@
   }
 
   // Section Cards
-  .nfd-nextsteps-section-card-container--wide {
+  .nfd-nextsteps-section-card-container.nfd-nextsteps-section-card-container--wide {
     @apply md:nfd-col-span-2 !important;
   }
 
