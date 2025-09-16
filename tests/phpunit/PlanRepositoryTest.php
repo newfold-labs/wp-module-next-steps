@@ -22,6 +22,9 @@ class PlanRepositoryTest extends WP_UnitTestCase {
 		// Clean up options before each test
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
+		
+		// Invalidate static cache
+		PlanRepository::invalidate_cache();
 	}
 
 	/**

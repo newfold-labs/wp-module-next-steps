@@ -42,7 +42,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$saved_plan = TestPlanFactory::create_plan_with_progress();
 
 		// Merge the plans
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify the merge preserved user progress
 		$this->assertEquals( 'test_plan', $merged_plan->id );
@@ -63,7 +63,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$this->assertEquals( 'done', $merged_task->status );
 
 		// Check that version was updated to current version
-		$this->assertEquals( '1.1.1', $merged_plan->version );
+		$this->assertEquals( '1.2.0', $merged_plan->version );
 	}
 
 	/**
@@ -78,10 +78,10 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$saved_plan = TestPlanFactory::create_plan_with_progress();
 
 		// Merge the plans
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify version was updated
-		$this->assertEquals( '1.1.1', $merged_plan->version );
+		$this->assertEquals( '1.2.0', $merged_plan->version );
 
 		// Verify user progress was preserved
 		$merged_track = $merged_plan->get_track( 'test_track_a' );
@@ -123,7 +123,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$saved_plan = new Plan( $saved_plan_data );
 
 		// Merge the plans
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify existing task status was preserved
 		$existing_task = $merged_plan->get_task( 'test_track_a', 'test_section_1', 'test_task_1' );
@@ -170,7 +170,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$saved_plan = new Plan( $saved_plan_data );
 
 		// Merge the plans
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify existing section state was preserved
 		$existing_section = $merged_plan->get_section( 'test_track_a', 'test_section_1' );
@@ -217,7 +217,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		$saved_plan = new Plan( $saved_plan_data );
 
 		// Merge the plans
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify existing track state was preserved
 		$existing_track = $merged_plan->get_track( 'test_track_a' );
@@ -289,7 +289,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		);
 
 		// Merge the plans
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify track state was preserved
 		$merged_track = $merged_plan->get_track( 'test_track_a' );
@@ -361,7 +361,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		);
 
 		// Merge the plans (simulating language change)
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify user progress was preserved
 		$merged_track = $merged_plan->get_track( 'test_track_a' );
@@ -399,7 +399,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		);
 
 		// Merge the plans
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify the new plan structure is used
 		$this->assertEquals( 'test_plan', $merged_plan->id );
@@ -442,7 +442,7 @@ class PlanMergeTest extends WP_UnitTestCase {
 		);
 
 		// Merge the plans
-		$merged_plan = PlanRepository::merge_plan_data( $saved_plan, $new_plan );
+		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify the merge still works and preserves what it can
 		$this->assertEquals( 'test_plan', $merged_plan->id );

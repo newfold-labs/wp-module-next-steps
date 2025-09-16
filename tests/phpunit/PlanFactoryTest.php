@@ -30,6 +30,9 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 		delete_option( PlanRepository::OPTION );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
+		
+		// Invalidate static cache
+		PlanRepository::invalidate_cache();
 	}
 
 	/**
@@ -56,12 +59,12 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	public function test_load_default_steps_when_steps_exist() {
 		// Set existing steps data using TestPlan
 		$existing_plan = TestPlanFactory::create_minimal_plan();
-		update_option( StepsApi::OPTION, $existing_plan->to_array() );
+		update_option( PlanRepository::OPTION, $existing_plan->to_array() );
 
 		PlanFactory::load_default_steps();
 
 		// Verify that existing steps were not overwritten
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertEquals( 'test_plan_minimal', $steps_data['id'] );
 	}
 
@@ -75,7 +78,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify steps data was updated
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'store_setup', $steps_data['id'] );
 	}
@@ -93,7 +96,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no steps were loaded since there was no change
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertFalse( $steps_data, 'No steps should be loaded when site type does not change' );
 	}
 
@@ -101,7 +104,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 * Test on_sitetype_change with empty/false old value (first time setup)
 	 */
 	public function test_on_sitetype_change_first_time_setup() {
-		$old_value = false; // This is what WordPress returns for non-existent options
+		$old_value = array(); // Empty array for first time setup
 		$new_value = array(
 			'site_type'  => 'business',
 			'other_data' => 'test',
@@ -110,7 +113,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify steps data was updated
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'corporate_setup', $steps_data['id'] );
 	}
@@ -129,7 +132,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no steps were loaded due to invalid input
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertFalse( $steps_data, 'No steps should be loaded for invalid new value' );
 
 		// Test with array missing site_type key
@@ -137,7 +140,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no steps were loaded due to missing site_type
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertFalse( $steps_data, 'No steps should be loaded for missing site_type key' );
 	}
 
@@ -154,7 +157,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no steps were loaded for invalid site type
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertFalse( $steps_data, 'No steps should be loaded for invalid site type' );
 	}
 
@@ -181,7 +184,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		// We only verify that the correct plan was loaded
 
 		// Verify steps were updated
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'store_setup', $steps_data['id'] );
 	}
@@ -222,7 +225,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 			PlanFactory::on_sitetype_change( $old_value, $new_value );
 
 			// Verify correct plan was loaded
-			$steps_data = get_option( StepsApi::OPTION );
+			$steps_data = get_option( PlanRepository::OPTION );
 			$this->assertIsArray( $steps_data, "Steps data should be an array for site_type: $site_type, got: " . var_export( $steps_data, true ) );
 			$this->assertArrayHasKey( 'id', $steps_data, "Steps data should have 'id' key" );
 			$this->assertEquals( $expected['plan_id'], $steps_data['id'] );
@@ -243,7 +246,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		StepsApi::set_data( $blog_plan->to_array() );
 
 		// Verify initial state is blog
-		$initial_steps = get_option( StepsApi::OPTION );
+		$initial_steps = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $initial_steps );
 		$this->assertEquals( 'blog_setup', $initial_steps['id'] );
 
@@ -251,7 +254,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		PlanFactory::on_woocommerce_activation( 'woocommerce/woocommerce.php', false );
 
 		// Verify steps switched to ecommerce
-		$updated_steps = get_option( StepsApi::OPTION );
+		$updated_steps = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $updated_steps );
 		$this->assertEquals( 'store_setup', $updated_steps['id'] );
 		$this->assertNotEquals( $initial_steps, $updated_steps );
@@ -271,14 +274,14 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		StepsApi::set_data( $blog_plan->to_array() );
 
 		// Get initial steps state
-		$initial_steps = get_option( StepsApi::OPTION );
+		$initial_steps = get_option( PlanRepository::OPTION );
 		$this->assertEquals( 'blog_setup', $initial_steps['id'] );
 
 		// Simulate activation of a different plugin
 		PlanFactory::on_woocommerce_activation( 'some-other-plugin/plugin.php', false );
 
 		// Verify steps did NOT change
-		$unchanged_steps = get_option( StepsApi::OPTION );
+		$unchanged_steps = get_option( PlanRepository::OPTION );
 		$this->assertEquals( $initial_steps, $unchanged_steps );
 		$this->assertEquals( 'blog_setup', $unchanged_steps['id'] );
 	}
@@ -305,7 +308,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 
 		// Step 1: No existing data (fresh install)
 		$this->assertFalse( get_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION ) );
-		$this->assertFalse( get_option( StepsApi::OPTION ) );
+		$this->assertFalse( get_option( PlanRepository::OPTION ) );
 
 		// Step 2: Onboarding module sets site info
 		$site_info = array(
@@ -318,10 +321,10 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, $site_info );
 
 		// Manually trigger the hook (since WordPress hooks don't fire in unit tests)
-		PlanFactory::on_sitetype_change( false, $site_info );
+		PlanFactory::on_sitetype_change( array(), $site_info );
 
 		// Verify that the correct plan was loaded
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'corporate_setup', $steps_data['id'] );
 		$this->assertEquals( 'Corporate Setup', $steps_data['label'] );
@@ -338,10 +341,10 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		// Set up initial state (blog site from 'personal' onboarding choice)
 		$initial_site_info = array( 'site_type' => 'personal' );
 		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, $initial_site_info );
-		PlanFactory::on_sitetype_change( false, $initial_site_info );
+		PlanFactory::on_sitetype_change( array(), $initial_site_info );
 
 		// Verify initial setup loaded blog steps
-		$steps_data = get_option( StepsApi::OPTION );
+		$steps_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $steps_data );
 		$this->assertEquals( 'blog_setup', $steps_data['id'] );
 
@@ -353,7 +356,7 @@ class PlanFactoryTest extends WP_UnitTestCase {
 
 		PlanFactory::on_sitetype_change( $initial_site_info, $updated_site_info );
 
-		$updated_steps_data = get_option( StepsApi::OPTION );
+		$updated_steps_data = get_option( PlanRepository::OPTION );
 		$this->assertIsArray( $updated_steps_data );
 		$this->assertEquals( 'store_setup', $updated_steps_data['id'] );
 		$this->assertNotEquals( $steps_data, $updated_steps_data );

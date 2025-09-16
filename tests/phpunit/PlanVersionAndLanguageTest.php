@@ -27,6 +27,9 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
+		
+		// Invalidate static cache
+		PlanRepository::invalidate_cache();
 	}
 
 	/**
@@ -34,8 +37,9 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 	 */
 	public function test_version_update_triggers_merge() {
 		// Create a saved plan with old version and user progress
-		$saved_plan = TestPlanFactory::create_old_version_plan();
 		$saved_plan = TestPlanFactory::create_plan_with_progress();
+		// Manually set the old version
+		$saved_plan->version = '0.9.0';
 
 		// Save the old plan
 		update_option( PlanRepository::OPTION, $saved_plan->to_array() );
@@ -44,7 +48,7 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version was updated
-		$this->assertEquals( '1.1.1', $current_plan->version );
+		$this->assertEquals( '1.2.0', $current_plan->version );
 
 		// Verify user progress was preserved
 		$track = $current_plan->get_track( 'test_track_a' );
@@ -73,7 +77,7 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version remains the same
-		$this->assertEquals( '1.1.1', $current_plan->version );
+		$this->assertEquals( '1.2.0', $current_plan->version );
 
 		// Verify user progress was preserved exactly
 		$track = $current_plan->get_track( 'test_track_a' );
@@ -102,7 +106,7 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version was updated
-		$this->assertEquals( '1.1.1', $current_plan->version );
+		$this->assertEquals( '1.2.0', $current_plan->version );
 
 		// Verify user progress was preserved
 		$track = $current_plan->get_track( 'test_track_a' );
@@ -203,7 +207,7 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version was updated
-		$this->assertEquals( '1.1.1', $current_plan->version );
+		$this->assertEquals( '1.2.0', $current_plan->version );
 
 		// Verify user progress was preserved
 		$track = $current_plan->get_track( 'test_track_a' );
@@ -232,7 +236,7 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version was updated
-		$this->assertEquals( '1.1.1', $current_plan->version );
+		$this->assertEquals( '1.2.0', $current_plan->version );
 
 		// Verify user progress was preserved
 		$track = $current_plan->get_track( 'test_track_a' );
@@ -261,7 +265,7 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version was updated
-		$this->assertEquals( '1.1.1', $current_plan->version );
+		$this->assertEquals( '1.2.0', $current_plan->version );
 
 		// Verify user progress was preserved
 		$track = $current_plan->get_track( 'test_track_a' );
