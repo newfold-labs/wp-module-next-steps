@@ -16,4 +16,3 @@ coverage:
   enabled: true
   include:
     - /includes/*
-bootstrap: bootstrap.php

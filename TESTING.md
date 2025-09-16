@@ -1,20 +1,20 @@
 # Testing Setup
 
-This module uses both PHPUnit and Codeception for comprehensive testing, following the pattern established in other Newfold Labs modules.
+This module uses Codeception for comprehensive WordPress integration testing, providing real WordPress environment testing instead of complex mocks.
 
 ## Test Suites
 
-### PHPUnit Tests
-- **Location**: `tests/phpunit/`
-- **Purpose**: Unit tests for individual classes and methods
-- **Count**: 57 tests, 241 assertions
-- **Run**: `composer test` or `vendor/bin/phpunit --bootstrap tests/phpunit/bootstrap.php`
+### WordPress Unit Tests (wpunit)
+- **Location**: `tests/wpunit/`
+- **Purpose**: WordPress integration tests running in real WordPress environment
+- **Count**: 53 tests, 146 assertions
+- **Run**: `composer test` or `vendor/bin/codecept run wpunit`
 
-### Codeception Tests
-- **Location**: `tests/unit/` and `tests/wpunit/`
-- **Purpose**: Integration tests and WordPress-specific tests
-- **Count**: 3 wpunit tests, 3 assertions
-- **Run**: `vendor/bin/codecept run unit` or `vendor/bin/codecept run wpunit`
+### Unit Tests
+- **Location**: `tests/unit/`
+- **Purpose**: Simple unit tests for individual classes and methods
+- **Count**: 3 tests, 3 assertions
+- **Run**: `vendor/bin/codecept run unit`
 
 ## Environment Setup
 
@@ -65,16 +65,13 @@ This module uses both PHPUnit and Codeception for comprehensive testing, followi
 ### Running Tests
 
 ```bash
-# Run all tests (PHPUnit + Codeception)
+# Run all WordPress integration tests (53 tests, 146 assertions)
 composer run test
-
-# Run only PHPUnit tests (57 tests, 241 assertions)
-vendor/bin/phpunit --bootstrap tests/phpunit/bootstrap.php
 
 # Run only Codeception unit tests (no WordPress required)
 vendor/bin/codecept run unit
 
-# Run WordPress integration tests (3 tests, 3 assertions)
+# Run WordPress integration tests (53 tests, 146 assertions)
 vendor/bin/codecept run wpunit
 
 # Generate coverage report
@@ -89,7 +86,7 @@ vendor/bin/codecept run wpunit --coverage-html tests/_output/coverage
 The `codecoverage-main.yml` workflow automatically:
 - Sets up PHP 7.3-8.4 (comprehensive version testing)
 - Provides MySQL database service (port 33306)
-- Runs PHPUnit and Codeception tests
+- Runs Codeception wpunit tests (53 tests, 146 assertions)
 - Generates and merges coverage reports
 - Publishes coverage reports to GitHub Pages
 - Creates coverage badges and PR comments

@@ -78,7 +78,6 @@
         ],
         "lint": "vendor/bin/phpcs . --standard=phpcs.xml -s",
         "test": [
-            "vendor/bin/phpunit --bootstrap tests/phpunit/bootstrap.php",
             "codecept run wpunit"
         ],
         "test-coverage": [
