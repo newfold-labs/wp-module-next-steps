@@ -27,7 +27,6 @@ class PlanVersionAndLanguageTest extends WP_UnitTestCase {
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
-		
 		// Invalidate static cache
 		PlanRepository::invalidate_cache();
 	}
