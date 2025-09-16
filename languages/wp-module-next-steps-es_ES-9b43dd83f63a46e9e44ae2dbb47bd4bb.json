@@ -68,25 +68,25 @@
                 "Tarea temporalmente no disponible"
             ],
             "No Pending tasks": [
-                ""
+                "Sin tareas pendientes"
             ],
             "Hooray!": [
-                ""
+                "\u00a1Hurra!"
             ],
             "You don\u2019t have any pending tasks today": [
-                ""
+                "No tienes ninguna tarea pendiente hoy"
             ],
             "Completed": [
-                ""
+                "Completado"
             ],
             "Skipped": [
-                ""
+                "Saltamos"
             ],
             "Skip it": [
-                ""
+                "S\u00e1ltate"
             ],
             "Undo": [
-                ""
+                "Deshacer"
             ]
         }
     }

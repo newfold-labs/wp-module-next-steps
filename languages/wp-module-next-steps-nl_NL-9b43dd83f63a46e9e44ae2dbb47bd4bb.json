@@ -68,25 +68,25 @@
                 "Taak tijdelijk niet beschikbaar"
             ],
             "No Pending tasks": [
-                ""
+                "Geen taken in behandeling"
             ],
             "Hooray!": [
-                ""
+                "Hoera!"
             ],
             "You don\u2019t have any pending tasks today": [
-                ""
+                "Je hebt vandaag geen openstaande taken"
             ],
             "Completed": [
-                ""
+                "Volbracht"
             ],
             "Skipped": [
-                ""
+                "Overgeslagen"
             ],
             "Skip it": [
-                ""
+                "Sla het over"
             ],
             "Undo": [
-                ""
+                "Ongedaan maken"
             ]
         }
     }

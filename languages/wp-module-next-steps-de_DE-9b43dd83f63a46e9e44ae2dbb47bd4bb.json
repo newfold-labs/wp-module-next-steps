@@ -68,25 +68,25 @@
                 "Aufgabe vor\u00fcbergehend nicht verf\u00fcgbar"
             ],
             "No Pending tasks": [
-                ""
+                "Keine ausstehenden Aufgaben"
             ],
             "Hooray!": [
-                ""
+                "Hurra!"
             ],
             "You don\u2019t have any pending tasks today": [
-                ""
+                "Sie haben heute keine ausstehenden Aufgaben"
             ],
             "Completed": [
-                ""
+                "Abgeschlossen"
             ],
             "Skipped": [
-                ""
+                "Geh\u00fcpft"
             ],
             "Skip it": [
-                ""
+                "\u00dcberspringen Sie es"
             ],
             "Undo": [
-                ""
+                "Aufmachen"
             ]
         }
     }

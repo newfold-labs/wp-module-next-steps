@@ -68,25 +68,25 @@
                 "T\u00e2che temporairement indisponible"
             ],
             "No Pending tasks": [
-                ""
+                "Aucune t\u00e2che en attente"
             ],
             "Hooray!": [
-                ""
+                "Hourra!"
             ],
             "You don\u2019t have any pending tasks today": [
-                ""
+                "Vous n\u2019avez aucune t\u00e2che en attente aujourd\u2019hui"
             ],
             "Completed": [
-                ""
+                "Termin\u00e9"
             ],
             "Skipped": [
-                ""
+                "Saut\u00e9"
             ],
             "Skip it": [
-                ""
+                "Sautez-le"
             ],
             "Undo": [
-                ""
+                "D\u00e9faire"
             ]
         }
     }

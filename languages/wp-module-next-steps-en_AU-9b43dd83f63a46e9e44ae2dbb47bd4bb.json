@@ -68,25 +68,25 @@
                 "Task temporarily unavailable"
             ],
             "No Pending tasks": [
-                ""
+                "No Pending tasks"
             ],
             "Hooray!": [
-                ""
+                "Hooray!"
             ],
             "You don\u2019t have any pending tasks today": [
-                ""
+                "You don\u2019t have any pending tasks today"
             ],
             "Completed": [
-                ""
+                "Completed"
             ],
             "Skipped": [
-                ""
+                "Skipped"
             ],
             "Skip it": [
-                ""
+                "Skip it"
             ],
             "Undo": [
-                ""
+                "Undo"
             ]
         }
     }

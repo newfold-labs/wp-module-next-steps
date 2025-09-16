@@ -68,25 +68,25 @@
                 "Attivit\u00e0 temporaneamente non disponibile"
             ],
             "No Pending tasks": [
-                ""
+                "Nessuna attivit\u00e0 in sospeso"
             ],
             "Hooray!": [
-                ""
+                "Evviva!"
             ],
             "You don\u2019t have any pending tasks today": [
-                ""
+                "Oggi non hai attivit\u00e0 in sospeso"
             ],
             "Completed": [
-                ""
+                "Finito"
             ],
             "Skipped": [
-                ""
+                "Saltato"
             ],
             "Skip it": [
-                ""
+                "Salta"
             ],
             "Undo": [
-                ""
+                "Disfare"
             ]
         }
     }
