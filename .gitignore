@@ -1,4 +1,8 @@
 .DS_Store
-node_modules
-vendor
+/node_modules
 .vscode
+/tests/_output
+/tests/_support/_generated
+/vendor
+/wordpress
+/wp-content
