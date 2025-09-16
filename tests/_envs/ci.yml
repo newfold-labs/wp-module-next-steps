@@ -1,0 +1,27 @@
+# CI Environment Configuration for Codeception
+# This file contains environment variables for GitHub Actions
+
+modules:
+    config:
+        WPLoader:
+            # WordPress installation path for CI
+            wpRootFolder: /wordpress
+            
+            # Database configuration for CI
+            dbHost: localhost
+            dbUser: root
+            dbPassword: root
+            dbName: wp_test
+            tablePrefix: wp_
+            
+            # WordPress site configuration
+            domain: localhost
+            adminEmail: admin@example.com
+            title: "Next Steps Module Test"
+            
+            # Plugin configuration
+            plugins: []
+            activatePlugins: []
+            
+            # Security settings
+            WP_HTTP_BLOCK_EXTERNAL: true

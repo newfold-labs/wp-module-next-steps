@@ -1,6 +1,8 @@
 .DS_Store
-/node_modules
+.phpunit.cache
+.phpunit.result.cache
 .vscode
+/node_modules
 /tests/_output
 /tests/_support/_generated
 /vendor
