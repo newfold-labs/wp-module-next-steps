@@ -23,7 +23,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		// Load TestPlanFactory from phpunit directory
+		// Load TestPlanFactory from wpunit directory
 		require_once dirname( __DIR__ ) . '/wpunit/TestPlanFactory.php';
 
 		// Clean up options before each test

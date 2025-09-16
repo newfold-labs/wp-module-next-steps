@@ -82,6 +82,15 @@ jobs:
           tools: composer, jaschilz/php-coverage-badger
           extensions: zip
 
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Setup test environment
+        run: cp .env.testing.example .env.testing
+
       - name: Read .env.testing
         uses: c-py/action-dotenv-to-setenv@925b5d99a3f1e4bd7b4e9928be4e2491e29891d9 # v5
         with:
@@ -92,7 +101,7 @@ jobs:
         run: composer install -v
 
       - name: Allow writing to wp-content
-        if: ${{ hashFiles('wp-content') != '' }} # TODO: This may be incorrect since it's a directory.
+        if: ${{ hashFiles('wp-content/**') != '' }}
         run: sudo chmod -R a+w wp-content
 
       # On main, there will be a previous coverage report. On PRs we create a new directory using the commit SHA.

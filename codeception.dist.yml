@@ -15,4 +15,11 @@ params:
 coverage:
   enabled: true
   include:
-    - /includes/*
+    - includes/*
+  exclude:
+    - includes/Data/Plans/*
+    - tests/*
+    - vendor/*
+    - build/*
+    - src/*
+    - languages/*

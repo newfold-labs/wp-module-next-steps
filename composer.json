@@ -18,9 +18,7 @@
         ]
     },
     "autoload-dev": {
-        "psr-4": {
-            "NewfoldLabs\\WP\\Module\\NextSteps\\Tests\\PHPUnit\\": "tests/phpunit"
-        }
+        "psr-4": {}
     },
     "repositories": {
         "newfold": {
