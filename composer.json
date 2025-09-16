@@ -32,10 +32,10 @@
         }
     },
     "require-dev": {
-        "lucatume/wp-browser": "*",
-        "johnpbloch/wordpress": "@stable",
+        "lucatume/wp-browser": "^3.1",
+        "johnpbloch/wordpress": "^6.0",
         "newfold-labs/wp-php-standards": "^1.2.5",
-        "phpunit/phpcov": "*",
+        "phpunit/phpcov": "^8.2.1",
         "phpunit/phpunit": "^9.6",
         "wp-cli/i18n-command": "^2.6.5",
         "yoast/phpunit-polyfills": "^1.1"
@@ -83,8 +83,8 @@
         ],
         "test-coverage": [
             "codecept run wpunit --coverage wpunit.cov",
-            "phpcov merge --php tests/_output/merged.cov --html tests/_output/html tests/_output;",
-            "echo \"open tests/_output/html/index.html\" to view the report"
+            "phpcov merge --php tests/_output/merged.cov --html tests/_output/html tests/_output",
+            "echo \"open tests/_output/html/index.html to view the report\""
         ]
     },
     "scripts-descriptions": {

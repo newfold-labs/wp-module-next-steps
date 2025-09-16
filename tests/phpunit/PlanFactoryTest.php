@@ -28,7 +28,6 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		// Clean up options before each test
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
-		delete_option( PlanRepository::OPTION );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
 		
 		// Invalidate static cache
@@ -215,8 +214,6 @@ class PlanFactoryTest extends WP_UnitTestCase {
 			// Clean slate for each test
 			delete_option( PlanRepository::OPTION );
 
-			delete_option( PlanRepository::OPTION );
-
 			// Use a different old value to ensure a change is detected
 			$old_value = array( 'site_type' => $old_site_types[ $i ] );
 			$new_value = array( 'site_type' => $site_type );
@@ -237,7 +234,6 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 */
 	public function test_on_woocommerce_activation() {
 		// Clean slate
-		delete_option( PlanRepository::OPTION );
 		delete_option( PlanRepository::OPTION );
 
 		// Set up initial blog steps
@@ -265,7 +261,6 @@ class PlanFactoryTest extends WP_UnitTestCase {
 	 */
 	public function test_on_woocommerce_activation_ignores_other_plugins() {
 		// Clean slate
-		delete_option( PlanRepository::OPTION );
 		delete_option( PlanRepository::OPTION );
 
 		// Set up initial blog steps
@@ -427,7 +422,6 @@ class PlanFactoryTest extends WP_UnitTestCase {
 		// Clean up options after each test
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
-		delete_option( PlanRepository::OPTION );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
 
 		parent::tearDown();
