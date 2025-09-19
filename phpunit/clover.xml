@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1758305051">
-  <project timestamp="1758305051">
+<coverage generated="1758307935">
+  <project timestamp="1758307935">
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Plan.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan" namespace="global">
         <metrics complexity="64" methods="26" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="146" coveredstatements="105" elements="172" coveredelements="118"/>
