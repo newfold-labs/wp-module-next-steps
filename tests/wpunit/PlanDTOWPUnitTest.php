@@ -61,7 +61,7 @@ class PlanDTOWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 
 		$plan = new Plan( $plan_data );
 
-		// Should be outdated since current version is 1.2.0
+		// Should be outdated since current version is newer
 		$this->assertTrue( $plan->is_version_outdated() );
 	}
 
@@ -74,7 +74,7 @@ class PlanDTOWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 			'type'        => 'custom',
 			'label'       => 'Test Plan',
 			'description' => 'A test plan',
-			'version'     => '1.2.0',
+			'version'     => NFD_NEXTSTEPS_MODULE_VERSION,
 			'tracks'      => array(),
 		);
 

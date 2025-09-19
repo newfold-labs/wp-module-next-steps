@@ -51,7 +51,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version was updated
-		$this->assertEquals( '1.2.0', $current_plan->version );
+		$this->assertEquals( 'NFD_NEXTSTEPS_MODULE_VERSION', $current_plan->version );
 
 		// Verify user progress was preserved
 		$first_track = $current_plan->tracks[0];
@@ -71,7 +71,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	public function test_version_update_no_merge_when_versions_same() {
 		// Create a saved plan with current version
 		$saved_plan          = TestPlanFactory::create_plan_with_progress();
-		$saved_plan->version = '1.2.0'; // Current version
+		$saved_plan->version = NFD_NEXTSTEPS_MODULE_VERSION; // Current version
 
 		// Save the plan
 		update_option( PlanRepository::OPTION, $saved_plan->to_array() );
@@ -80,7 +80,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version remains the same
-		$this->assertEquals( '1.2.0', $current_plan->version );
+		$this->assertEquals( 'NFD_NEXTSTEPS_MODULE_VERSION', $current_plan->version );
 
 		// Verify user progress was preserved
 		$first_track = $current_plan->tracks[0];
@@ -111,7 +111,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	public function test_language_change_triggers_plan_reload() {
 		// Create a saved plan
 		$saved_plan          = TestPlanFactory::create_plan_with_progress();
-		$saved_plan->version = '1.2.0';
+		$saved_plan->version = 'NFD_NEXTSTEPS_MODULE_VERSION';
 
 		// Save the plan
 		update_option( PlanRepository::OPTION, $saved_plan->to_array() );
@@ -126,7 +126,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 
 		// Verify plan was reloaded
 		$this->assertInstanceOf( Plan::class, $current_plan );
-		$this->assertEquals( '1.2.0', $current_plan->version );
+		$this->assertEquals( 'NFD_NEXTSTEPS_MODULE_VERSION', $current_plan->version );
 	}
 
 	/**
@@ -145,7 +145,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 
 		// Test with current version
 		$plan3          = TestPlanFactory::create_plan_with_progress();
-		$plan3->version = '1.2.0';
+		$plan3->version = 'NFD_NEXTSTEPS_MODULE_VERSION';
 		$this->assertFalse( $plan3->is_version_outdated() );
 	}
 
@@ -194,7 +194,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	public function test_plan_merge_preserves_version_from_new_plan() {
 		// Create a new plan with current version
 		$new_plan          = TestPlanFactory::create_test_plan();
-		$new_plan->version = '1.2.0';
+		$new_plan->version = 'NFD_NEXTSTEPS_MODULE_VERSION';
 
 		// Create a saved plan with old version
 		$saved_plan          = TestPlanFactory::create_plan_with_progress();
@@ -204,7 +204,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify version is from new plan (current version)
-		$this->assertEquals( '1.2.0', $merged_plan->version );
+		$this->assertEquals( 'NFD_NEXTSTEPS_MODULE_VERSION', $merged_plan->version );
 	}
 
 	/**
@@ -223,7 +223,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version was updated
-		$this->assertEquals( '1.2.0', $current_plan->version );
+		$this->assertEquals( 'NFD_NEXTSTEPS_MODULE_VERSION', $current_plan->version );
 
 		// Verify user progress was preserved
 		$first_track = $current_plan->tracks[0];
