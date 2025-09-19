@@ -5,20 +5,15 @@ namespace NewfoldLabs\WP\Module\NextSteps;
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 
 /**
- * Unit tests for Plan DTO
+ * WPUnit tests for Plan DTO
  */
-class PlanTest extends \Codeception\Test\Unit {
-	/**
-	 * Tester
-	 *
-	 * @var \UnitTester
-	 */
-	protected $tester;
+class PlanDTOWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 
 	/**
 	 * Before test
 	 */
-	protected function _before() {
+	protected function setUp(): void {
+		parent::setUp();
 		// Load the module bootstrap
 		require_once dirname( dirname( __DIR__ ) ) . '/bootstrap.php';
 	}
@@ -26,7 +21,8 @@ class PlanTest extends \Codeception\Test\Unit {
 	/**
 	 * After test
 	 */
-	protected function _after() {
+	protected function tearDown(): void {
+		parent::tearDown();
 	}
 
 	/**

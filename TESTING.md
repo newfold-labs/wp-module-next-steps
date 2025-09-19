@@ -7,14 +7,18 @@ This module uses Codeception for comprehensive WordPress integration testing, pr
 ### WordPress Unit Tests (wpunit)
 - **Location**: `tests/wpunit/`
 - **Purpose**: WordPress integration tests running in real WordPress environment
-- **Count**: 53 tests, 146 assertions
+- **Count**: 8 test files covering module loading, API functionality, plan management, and data transfer objects
 - **Run**: `composer test` or `vendor/bin/codecept run wpunit`
 
-### Unit Tests
-- **Location**: `tests/unit/`
-- **Purpose**: Simple unit tests for individual classes and methods
-- **Count**: 3 tests, 3 assertions
-- **Run**: `vendor/bin/codecept run unit`
+**Test Files:**
+- `ModuleLoadingWPUnitTest.php` - Verifies module and core classes are properly loaded
+- `NextStepsAPIWPUnitTest.php` - Tests REST API endpoints and functionality
+- `PlanDTOWPUnitTest.php` - Tests Plan data transfer object functionality
+- `PlanFactoryWPUnitTest.php` - Tests plan creation and factory methods
+- `PlanMergeWPUnitTest.php` - Tests plan merging and update functionality
+- `PlanRepositoryWPUnitTest.php` - Tests plan persistence and data management
+- `PlanVersionAndLanguageWPUnitTest.php` - Tests version comparison and localization
+- `TestPlanFactory.php` - Test utilities for creating test plan data
 
 ## Environment Setup
 
@@ -65,13 +69,10 @@ This module uses Codeception for comprehensive WordPress integration testing, pr
 ### Running Tests
 
 ```bash
-# Run all WordPress integration tests (53 tests, 146 assertions)
+# Run all WordPress integration tests
 composer run test
 
-# Run only Codeception unit tests (no WordPress required)
-vendor/bin/codecept run unit
-
-# Run WordPress integration tests (53 tests, 146 assertions)
+# Run WordPress integration tests
 vendor/bin/codecept run wpunit
 
 # Generate coverage report
@@ -86,7 +87,7 @@ vendor/bin/codecept run wpunit --coverage-html tests/_output/coverage
 The `codecoverage-main.yml` workflow automatically:
 - Sets up PHP 7.3-8.4 (comprehensive version testing)
 - Provides MySQL database service (port 33306)
-- Runs Codeception wpunit tests (53 tests, 146 assertions)
+- Runs Codeception wpunit tests
 - Generates and merges coverage reports
 - Publishes coverage reports to GitHub Pages
 - Creates coverage badges and PR comments
@@ -136,3 +137,4 @@ If tests are failing:
 2. Check that all dependencies are installed: `composer install`
 3. Verify WordPress is properly set up in the `wordpress/` directory
 4. Ensure cache is cleared: `PlanRepository::invalidate_cache()` in tests
+5. Regenerate autoloader if you see class not found errors: `composer dump-autoload` (some recent directory name changes)
