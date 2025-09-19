@@ -37,15 +37,15 @@ class PlanTest extends \Codeception\Test\Unit {
 			'label'       => 'Test Plan',
 			'description' => 'A test plan',
 			'version'     => '1.0.0',
-			'tracks'      => []
+			'tracks'      => [],
 		];
 
-		$plan = new Plan($plan_data);
+		$plan = new Plan( $plan_data );
 
-		$this->assertEquals('test_plan', $plan->id);
-		$this->assertEquals('custom', $plan->type);
-		$this->assertEquals('Test Plan', $plan->label);
-		$this->assertEquals('1.0.0', $plan->version);
+		$this->assertEquals( 'test_plan', $plan->id );
+		$this->assertEquals( 'custom', $plan->type );
+		$this->assertEquals( 'Test Plan', $plan->label );
+		$this->assertEquals( '1.0.0', $plan->version );
 	}
 
 	/**
@@ -58,32 +58,31 @@ class PlanTest extends \Codeception\Test\Unit {
 			'label'       => 'Test Plan',
 			'description' => 'A test plan',
 			'version'     => '0.9.0',
-			'tracks'      => []
+			'tracks'      => [],
 		];
 
-		$plan = new Plan($plan_data);
+		$plan = new Plan( $plan_data );
 
 		// Should be outdated since current version is 1.2.0
-		$this->assertTrue($plan->is_version_outdated());
+		$this->assertTrue( $plan->is_version_outdated() );
 	}
 
 	/**
 	 * Test current version not outdated
 	 */
 	public function testCurrentVersionNotOutdated() {
-	{
 		$plan_data = [
 			'id'          => 'test_plan',
 			'type'        => 'custom',
 			'label'       => 'Test Plan',
 			'description' => 'A test plan',
 			'version'     => '1.2.0',
-			'tracks'      => []
+			'tracks'      => [],
 		];
 
-		$plan = new Plan($plan_data);
+		$plan = new Plan( $plan_data );
 
 		// Should not be outdated since version matches current
-		$this->assertFalse($plan->is_version_outdated());
+		$this->assertFalse( $plan->is_version_outdated() );
 	}
 }

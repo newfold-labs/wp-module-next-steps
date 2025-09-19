@@ -65,7 +65,7 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		require_once dirname( __DIR__ ) . '/wpunit/TestPlanFactory.php';
 
 		// Create test users
-		$this->admin_user = $this->factory->user->create(
+		$this->admin_user      = $this->factory->user->create(
 			array(
 				'role' => 'administrator',
 			)
@@ -159,13 +159,13 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tasks/blog_quick_setup' );
 		$request->set_body_params(
 			array(
-			'plan_id'    => 'blog_setup',
-			'track_id'   => 'blog_build_track',
-			'section_id' => 'basic_blog_setup',
-			'task_id'    => 'blog_quick_setup',
-			'status'     => 'done',
-		)
-	);
+				'plan_id'    => 'blog_setup',
+				'track_id'   => 'blog_build_track',
+				'section_id' => 'basic_blog_setup',
+				'task_id'    => 'blog_quick_setup',
+				'status'     => 'done',
+			)
+		);
 		$response = $this->steps_api->update_task_status( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
@@ -188,13 +188,13 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tasks/invalid_task' );
 		$request->set_body_params(
 			array(
-			'plan_id'    => 'blog_setup',
-			'track_id'   => 'blog_build_track',
-			'section_id' => 'basic_blog_setup',
-			'task_id'    => 'invalid_task',
-			'status'     => 'done',
-		)
-	);
+				'plan_id'    => 'blog_setup',
+				'track_id'   => 'blog_build_track',
+				'section_id' => 'basic_blog_setup',
+				'task_id'    => 'invalid_task',
+				'status'     => 'done',
+			)
+		);
 		$response = $this->steps_api->update_task_status( $request );
 
 		$this->assertInstanceOf( WP_Error::class, $response );
@@ -234,9 +234,9 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/switch' );
 		$request->set_body_params(
 			array(
-			'plan_type' => 'ecommerce',
-		)
-	);
+				'plan_type' => 'ecommerce',
+			)
+		);
 		$response = $this->steps_api->switch_plan( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
@@ -259,9 +259,9 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/switch' );
 		$request->set_body_params(
 			array(
-			'plan_type' => 'invalid_type',
-		)
-	);
+				'plan_type' => 'invalid_type',
+			)
+		);
 		$response = $this->steps_api->switch_plan( $request );
 
 		$this->assertInstanceOf( WP_Error::class, $response );
@@ -274,7 +274,7 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function test_reset_plan_method() {
 		wp_set_current_user( $this->admin_user );
 
-		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/reset' );
+		$request  = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/reset' );
 		$response = $this->steps_api->reset_plan( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
@@ -297,11 +297,11 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tracks/blog_build_track' );
 		$request->set_body_params(
 			array(
-			'plan_id'  => 'blog_setup',
-			'track_id' => 'blog_build_track',
-			'open'     => false,
-		)
-	);
+				'plan_id'  => 'blog_setup',
+				'track_id' => 'blog_build_track',
+				'open'     => false,
+			)
+		);
 		$response = $this->steps_api->update_track_status( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
@@ -324,11 +324,11 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tracks/invalid_track' );
 		$request->set_body_params(
 			array(
-			'plan_id'  => 'blog_setup',
-			'track_id' => 'invalid_track',
-			'open'     => false,
-		)
-	);
+				'plan_id'  => 'blog_setup',
+				'track_id' => 'invalid_track',
+				'open'     => false,
+			)
+		);
 		$response = $this->steps_api->update_track_status( $request );
 
 		$this->assertInstanceOf( WP_Error::class, $response );
@@ -344,13 +344,13 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/sections/basic_blog_setup' );
 		$request->set_body_params(
 			array(
-			'plan_id'    => 'blog_setup',
-			'track_id'   => 'blog_build_track',
-			'section_id' => 'basic_blog_setup',
-			'type'       => 'open',
-			'value'      => false,
-		)
-	);
+				'plan_id'    => 'blog_setup',
+				'track_id'   => 'blog_build_track',
+				'section_id' => 'basic_blog_setup',
+				'type'       => 'open',
+				'value'      => false,
+			)
+		);
 		$response = $this->steps_api->update_section_state( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
@@ -371,13 +371,13 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/sections/basic_blog_setup' );
 		$request->set_body_params(
 			array(
-			'plan_id'    => 'blog_setup',
-			'track_id'   => 'blog_build_track',
-			'section_id' => 'basic_blog_setup',
-			'type'       => 'status',
-			'value'      => 'done',
-		)
-	);
+				'plan_id'    => 'blog_setup',
+				'track_id'   => 'blog_build_track',
+				'section_id' => 'basic_blog_setup',
+				'type'       => 'status',
+				'value'      => 'done',
+			)
+		);
 		$response = $this->steps_api->update_section_state( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
@@ -400,13 +400,13 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/sections/invalid_section' );
 		$request->set_body_params(
 			array(
-			'plan_id'    => 'blog_setup',
-			'track_id'   => 'blog_build_track',
-			'section_id' => 'invalid_section',
-			'type'       => 'status',
-			'value'      => 'done',
-		)
-	);
+				'plan_id'    => 'blog_setup',
+				'track_id'   => 'blog_build_track',
+				'section_id' => 'invalid_section',
+				'type'       => 'status',
+				'value'      => 'done',
+			)
+		);
 		$response = $this->steps_api->update_section_state( $request );
 
 		$this->assertInstanceOf( WP_Error::class, $response );
