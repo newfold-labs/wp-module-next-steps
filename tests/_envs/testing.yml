@@ -1,0 +1,27 @@
+# Testing Environment Configuration for Codeception
+# This file contains environment variables for local testing
+
+modules:
+    config:
+        WPLoader:
+            # WordPress installation path (adjust as needed)
+            wpRootFolder: /wordpress
+            
+            # Database configuration
+            dbHost: localhost
+            dbUser: root
+            dbPassword: ""
+            dbName: wp_test
+            tablePrefix: wp_
+            
+            # WordPress site configuration
+            domain: localhost
+            adminEmail: admin@example.com
+            title: "Next Steps Module Test"
+            
+            # Plugin configuration
+            plugins: []
+            activatePlugins: []
+            
+            # Security settings
+            WP_HTTP_BLOCK_EXTERNAL: true

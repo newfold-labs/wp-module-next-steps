@@ -1,9 +1,12 @@
 <?php
 
-namespace NewfoldLabs\WP\Module\NextSteps\Tests\PHPUnit;
+namespace NewfoldLabs\WP\Module\NextSteps\Tests\WPUnit;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
+
+// Load TestPlan class
+require_once __DIR__ . '/TestPlan.php';
 
 /**
  * Test Plan Factory

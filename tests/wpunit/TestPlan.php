@@ -1,6 +1,6 @@
 <?php
 
-namespace NewfoldLabs\WP\Module\NextSteps\Tests\PHPUnit;
+namespace NewfoldLabs\WP\Module\NextSteps\Tests\WPUnit;
 
 /**
  * Test Plan for Unit Testing
