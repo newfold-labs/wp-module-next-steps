@@ -23,7 +23,7 @@ class ExampleWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 */
 	public function test_next_steps_module_loaded() {
 		// Test that our module is properly loaded
-		$this->assertTrue( class_exists('NewfoldLabs\WP\Module\NextSteps\NextSteps') );
+		$this->assertTrue( class_exists( 'NewfoldLabs\WP\Module\NextSteps\NextSteps' ) );
 	}
 
 	/**
@@ -31,6 +31,6 @@ class ExampleWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 */
 	public function test_plan_repository_exists() {
 		// Test that our PlanRepository class exists
-		$this->assertTrue( class_exists('NewfoldLabs\WP\Module\NextSteps\PlanRepository') );
+		$this->assertTrue( class_exists( 'NewfoldLabs\WP\Module\NextSteps\PlanRepository' ) );
 	}
 }

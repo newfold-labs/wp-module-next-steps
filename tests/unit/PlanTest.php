@@ -9,6 +9,8 @@ use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
  */
 class PlanTest extends \Codeception\Test\Unit {
 	/**
+	 * Tester
+	 *
 	 * @var \UnitTester
 	 */
 	protected $tester;
@@ -31,14 +33,14 @@ class PlanTest extends \Codeception\Test\Unit {
 	 * Test plan creation
 	 */
 	public function testPlanCreation() {
-		$plan_data = [
+		$plan_data = array(
 			'id'          => 'test_plan',
 			'type'        => 'custom',
 			'label'       => 'Test Plan',
 			'description' => 'A test plan',
 			'version'     => '1.0.0',
-			'tracks'      => [],
-		];
+			'tracks'      => array(),
+		);
 
 		$plan = new Plan( $plan_data );
 
@@ -52,14 +54,14 @@ class PlanTest extends \Codeception\Test\Unit {
 	 * Test version comparison
 	 */
 	public function testVersionComparison() {
-		$plan_data = [
+		$plan_data = array(
 			'id'          => 'test_plan',
 			'type'        => 'custom',
 			'label'       => 'Test Plan',
 			'description' => 'A test plan',
 			'version'     => '0.9.0',
-			'tracks'      => [],
-		];
+			'tracks'      => array(),
+		);
 
 		$plan = new Plan( $plan_data );
 
@@ -71,14 +73,14 @@ class PlanTest extends \Codeception\Test\Unit {
 	 * Test current version not outdated
 	 */
 	public function testCurrentVersionNotOutdated() {
-		$plan_data = [
+		$plan_data = array(
 			'id'          => 'test_plan',
 			'type'        => 'custom',
 			'label'       => 'Test Plan',
 			'description' => 'A test plan',
 			'version'     => '1.2.0',
-			'tracks'      => [],
-		];
+			'tracks'      => array(),
+		);
 
 		$plan = new Plan( $plan_data );
 
