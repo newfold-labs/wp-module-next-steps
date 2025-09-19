@@ -3,7 +3,6 @@
 namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\ModuleLoader\Container;
-use NewfoldLabs\WP\Module\Data\HiiveConnection;
 use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 
@@ -47,8 +46,7 @@ class NextSteps {
 	public function __construct( Container $container ) {
 		// Autoloader handles class loading
 		new PlanFactory();
-		$hiive           = new HiiveConnection();
-		self::$steps_api = new StepsApi( $hiive );
+		self::$steps_api = new StepsApi();
 		$this->container = $container;
 		\add_action( 'rest_api_init', array( $this, 'init_steps_apis' ) );
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_widget' ) );

@@ -11,6 +11,14 @@ if ( defined( 'NFD_NEXTSTEPS_MODULE_VERSION' ) ) {
 
 define( 'NFD_NEXTSTEPS_MODULE_VERSION', '1.2.0' );
 
+// Define constants immediately so they're available when classes are loaded
+if ( ! defined( 'NFD_NEXTSTEPS_DIR' ) ) {
+	define( 'NFD_NEXTSTEPS_DIR', __DIR__ );
+}
+if ( ! defined( 'NFD_NEXTSTEPS_BUILD_DIR' ) ) {
+	define( 'NFD_NEXTSTEPS_BUILD_DIR', __DIR__ . '/build/' );
+}
+
 if ( function_exists( 'add_action' ) ) {
 	add_action(
 		'plugins_loaded',
@@ -21,12 +29,6 @@ if ( function_exists( 'add_action' ) ) {
 					'name'     => 'next-steps',
 					'label'    => __( 'Next Steps', 'wp-module-next-steps' ),
 					'callback' => function ( Container $container ) {
-						if ( ! defined( 'NFD_NEXTSTEPS_DIR' ) ) {
-							define( 'NFD_NEXTSTEPS_DIR', __DIR__ );
-						}
-						if ( ! defined( 'NFD_NEXTSTEPS_BUILD_DIR' ) ) {
-							define( 'NFD_NEXTSTEPS_BUILD_DIR', __DIR__ . '/build/' );
-						}
 						if ( ! defined( 'NFD_NEXTSTEPS_PLUGIN_URL' ) ) {
 							define( 'NFD_NEXTSTEPS_PLUGIN_URL', $container->plugin()->url );
 						}
