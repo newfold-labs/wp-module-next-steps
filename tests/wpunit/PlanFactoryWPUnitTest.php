@@ -9,7 +9,7 @@ use NewfoldLabs\WP\Module\NextSteps\Tests\WPUnit\TestPlanFactory;
 
 /**
  * WordPress Unit Tests for PlanFactory
- * 
+ *
  * These tests run in a real WordPress environment with database access.
  * They test the actual integration with WordPress functions and database.
  *
@@ -30,7 +30,7 @@ class PlanFactoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
-		
+
 		// Invalidate static cache
 		PlanRepository::invalidate_cache();
 	}
@@ -225,7 +225,7 @@ class PlanFactoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 			'site_type' => 'ecommerce',
 		);
 		set_transient( PlanFactory::SOLUTIONS_TRANSIENT, $existing_solution, HOUR_IN_SECONDS );
-		
+
 		// Also set the onboarding site info option as a fallback
 		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, $existing_solution );
 

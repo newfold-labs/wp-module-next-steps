@@ -12,7 +12,7 @@ use WP_Error;
 
 /**
  * WordPress Unit Tests for NextSteps API Methods
- * 
+ *
  * These tests run in a real WordPress environment with database access.
  * They test all API methods for the Next Steps module.
  *
@@ -22,26 +22,36 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 
 	/**
 	 * API namespace
+	 *
+	 * @var string
 	 */
 	const NAMESPACE = 'newfold-next-steps/v2';
 
 	/**
 	 * REST base
+	 *
+	 * @var string
 	 */
 	const REST_BASE = '/plans';
 
 	/**
 	 * StepsApi instance for testing
+	 *
+	 * @var StepsApi
 	 */
 	private $steps_api;
 
 	/**
 	 * Test user with admin capabilities
+	 *
+	 * @var int
 	 */
 	private $admin_user;
 
 	/**
 	 * Test user without admin capabilities
+	 *
+	 * @var int
 	 */
 	private $subscriber_user;
 
@@ -55,18 +65,22 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		require_once dirname( __DIR__ ) . '/wpunit/TestPlanFactory.php';
 
 		// Create test users
-		$this->admin_user = $this->factory->user->create( array(
-			'role' => 'administrator',
-		) );
-		$this->subscriber_user = $this->factory->user->create( array(
-			'role' => 'subscriber',
-		) );
+		$this->admin_user = $this->factory->user->create(
+			array(
+				'role' => 'administrator',
+			)
+		);
+		$this->subscriber_user = $this->factory->user->create(
+			array(
+				'role' => 'subscriber',
+			)
+		);
 
 		// Clean up options before each test
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
-		
+
 		// Invalidate static cache
 		PlanRepository::invalidate_cache();
 
@@ -84,13 +98,13 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function test_get_steps_method() {
 		wp_set_current_user( $this->admin_user );
 
-		$request = new WP_REST_Request( 'GET', self::NAMESPACE . self::REST_BASE );
+		$request  = new WP_REST_Request( 'GET', self::NAMESPACE . self::REST_BASE );
 		$response = $this->steps_api->get_steps( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'id', $data );
 		$this->assertArrayHasKey( 'type', $data );
@@ -106,17 +120,17 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$new_tasks = array(
-			'track_id' => 'blog_build_track',
+			'track_id'   => 'blog_build_track',
 			'section_id' => 'basic_blog_setup',
-			'tasks' => array(
+			'tasks'      => array(
 				array(
-					'id' => 'new_task_1',
-					'title' => 'New Task 1',
+					'id'     => 'new_task_1',
+					'title'  => 'New Task 1',
 					'status' => 'new',
 				),
 				array(
-					'id' => 'new_task_2',
-					'title' => 'New Task 2',
+					'id'     => 'new_task_2',
+					'title'  => 'New Task 2',
 					'status' => 'new',
 				),
 			),
@@ -129,7 +143,7 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		// The add_steps method returns the updated plan data, not a success flag
 		$this->assertArrayHasKey( 'id', $data );
@@ -143,19 +157,21 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tasks/blog_quick_setup' );
-		$request->set_body_params( array(
-			'plan_id' => 'blog_setup',
-			'track_id' => 'blog_build_track',
+		$request->set_body_params(
+			array(
+			'plan_id'    => 'blog_setup',
+			'track_id'   => 'blog_build_track',
 			'section_id' => 'basic_blog_setup',
-			'task_id' => 'blog_quick_setup',
-			'status' => 'done',
-		) );
+			'task_id'    => 'blog_quick_setup',
+			'status'     => 'done',
+		)
+	);
 		$response = $this->steps_api->update_task_status( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'id', $data );
 		$this->assertArrayHasKey( 'status', $data );
@@ -170,13 +186,15 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tasks/invalid_task' );
-		$request->set_body_params( array(
-			'plan_id' => 'blog_setup',
-			'track_id' => 'blog_build_track',
+		$request->set_body_params(
+			array(
+			'plan_id'    => 'blog_setup',
+			'track_id'   => 'blog_build_track',
 			'section_id' => 'basic_blog_setup',
-			'task_id' => 'invalid_task',
-			'status' => 'done',
-		) );
+			'task_id'    => 'invalid_task',
+			'status'     => 'done',
+		)
+	);
 		$response = $this->steps_api->update_task_status( $request );
 
 		$this->assertInstanceOf( WP_Error::class, $response );
@@ -189,13 +207,13 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function test_get_plan_stats_method() {
 		wp_set_current_user( $this->admin_user );
 
-		$request = new WP_REST_Request( 'GET', self::NAMESPACE . self::REST_BASE . '/stats' );
+		$request  = new WP_REST_Request( 'GET', self::NAMESPACE . self::REST_BASE . '/stats' );
 		$response = $this->steps_api->get_plan_stats( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'total_tasks', $data );
 		$this->assertArrayHasKey( 'completed_tasks', $data );
@@ -214,15 +232,17 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/switch' );
-		$request->set_body_params( array(
+		$request->set_body_params(
+			array(
 			'plan_type' => 'ecommerce',
-		) );
+		)
+	);
 		$response = $this->steps_api->switch_plan( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'id', $data );
 		$this->assertArrayHasKey( 'type', $data );
@@ -237,9 +257,11 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/switch' );
-		$request->set_body_params( array(
+		$request->set_body_params(
+			array(
 			'plan_type' => 'invalid_type',
-		) );
+		)
+	);
 		$response = $this->steps_api->switch_plan( $request );
 
 		$this->assertInstanceOf( WP_Error::class, $response );
@@ -258,7 +280,7 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'id', $data );
 		$this->assertArrayHasKey( 'type', $data );
@@ -273,17 +295,19 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tracks/blog_build_track' );
-		$request->set_body_params( array(
-			'plan_id' => 'blog_setup',
+		$request->set_body_params(
+			array(
+			'plan_id'  => 'blog_setup',
 			'track_id' => 'blog_build_track',
-			'open' => false,
-		) );
+			'open'     => false,
+		)
+	);
 		$response = $this->steps_api->update_track_status( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'id', $data );
 		$this->assertArrayHasKey( 'open', $data );
@@ -298,11 +322,13 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tracks/invalid_track' );
-		$request->set_body_params( array(
-			'plan_id' => 'blog_setup',
+		$request->set_body_params(
+			array(
+			'plan_id'  => 'blog_setup',
 			'track_id' => 'invalid_track',
-			'open' => false,
-		) );
+			'open'     => false,
+		)
+	);
 		$response = $this->steps_api->update_track_status( $request );
 
 		$this->assertInstanceOf( WP_Error::class, $response );
@@ -316,19 +342,21 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/sections/basic_blog_setup' );
-		$request->set_body_params( array(
-			'plan_id' => 'blog_setup',
-			'track_id' => 'blog_build_track',
+		$request->set_body_params(
+			array(
+			'plan_id'    => 'blog_setup',
+			'track_id'   => 'blog_build_track',
 			'section_id' => 'basic_blog_setup',
-			'type' => 'open',
-			'value' => false,
-		) );
+			'type'       => 'open',
+			'value'      => false,
+		)
+	);
 		$response = $this->steps_api->update_section_state( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'id', $data );
 		$this->assertEquals( 'basic_blog_setup', $data['id'] );
@@ -341,19 +369,21 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/sections/basic_blog_setup' );
-		$request->set_body_params( array(
-			'plan_id' => 'blog_setup',
-			'track_id' => 'blog_build_track',
+		$request->set_body_params(
+			array(
+			'plan_id'    => 'blog_setup',
+			'track_id'   => 'blog_build_track',
 			'section_id' => 'basic_blog_setup',
-			'type' => 'status',
-			'value' => 'done',
-		) );
+			'type'       => 'status',
+			'value'      => 'done',
+		)
+	);
 		$response = $this->steps_api->update_section_state( $request );
 
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$this->assertEquals( 200, $response->get_status() );
 		$data = $response->get_data();
-		
+
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'id', $data );
 		$this->assertArrayHasKey( 'status', $data );
@@ -368,13 +398,15 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/sections/invalid_section' );
-		$request->set_body_params( array(
-			'plan_id' => 'blog_setup',
-			'track_id' => 'blog_build_track',
+		$request->set_body_params(
+			array(
+			'plan_id'    => 'blog_setup',
+			'track_id'   => 'blog_build_track',
 			'section_id' => 'invalid_section',
-			'type' => 'status',
-			'value' => 'done',
-		) );
+			'type'       => 'status',
+			'value'      => 'done',
+		)
+	);
 		$response = $this->steps_api->update_section_state( $request );
 
 		$this->assertInstanceOf( WP_Error::class, $response );
@@ -387,10 +419,10 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function test_api_route_registration() {
 		// Test that the StepsApi class can be instantiated
 		$this->assertInstanceOf( StepsApi::class, $this->steps_api );
-		
+
 		// Test that the register_routes method exists and can be called
 		$this->assertTrue( method_exists( $this->steps_api, 'register_routes' ) );
-		
+
 		// Test that all expected methods exist
 		$expected_methods = array(
 			'get_steps',
@@ -402,7 +434,7 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 			'update_track_status',
 			'update_section_state',
 		);
-		
+
 		foreach ( $expected_methods as $method ) {
 			$this->assertTrue( method_exists( $this->steps_api, $method ), "Method {$method} should exist" );
 		}
@@ -416,10 +448,12 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 
 		// Test update_track_status with missing open parameter
 		$request = new WP_REST_Request( 'PUT', self::NAMESPACE . self::REST_BASE . '/tracks/blog_build_track' );
-		$request->set_body_params( array(
-			'plan_id' => 'blog_setup',
-			'track_id' => 'blog_build_track',
-		) );
+		$request->set_body_params(
+			array(
+				'plan_id'  => 'blog_setup',
+				'track_id' => 'blog_build_track',
+			)
+		);
 		$response = $this->steps_api->update_track_status( $request );
 
 		// The API method may not validate missing parameters at the method level
@@ -435,9 +469,9 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->admin_user );
 
 		// Test get_steps response format
-		$request = new WP_REST_Request( 'GET', self::NAMESPACE . self::REST_BASE );
+		$request  = new WP_REST_Request( 'GET', self::NAMESPACE . self::REST_BASE );
 		$response = $this->steps_api->get_steps( $request );
-		
+
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$data = $response->get_data();
 		$this->assertIsArray( $data );
@@ -447,9 +481,9 @@ class NextStepsAPIWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$this->assertIsArray( $data['tracks'] );
 
 		// Test get_plan_stats response format
-		$request = new WP_REST_Request( 'GET', self::NAMESPACE . self::REST_BASE . '/stats' );
+		$request  = new WP_REST_Request( 'GET', self::NAMESPACE . self::REST_BASE . '/stats' );
 		$response = $this->steps_api->get_plan_stats( $request );
-		
+
 		$this->assertInstanceOf( WP_REST_Response::class, $response );
 		$data = $response->get_data();
 		$this->assertIsArray( $data );

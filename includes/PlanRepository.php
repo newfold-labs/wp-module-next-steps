@@ -87,7 +87,7 @@ class PlanRepository {
 			return self::$cached_option_data;
 		}
 		// Get from database and cache it
-		$plan_data = get_option( self::OPTION, array() );
+		$plan_data                = get_option( self::OPTION, array() );
 		self::$cached_option_data = $plan_data;
 		return $plan_data;
 	}
@@ -104,7 +104,7 @@ class PlanRepository {
 		}
 		// Get plan data (from cache or database)
 		$plan_data = self::get_plan_data();
-		$plan = null;
+		$plan      = null;
 		if ( empty( $plan_data ) ) {
 			// Load default plan based on site type
 			$site_type    = PlanFactory::determine_site_type();

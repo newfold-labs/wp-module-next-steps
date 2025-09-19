@@ -12,7 +12,7 @@ use NewfoldLabs\WP\Module\NextSteps\Tests\WPUnit\TestPlanFactory;
 
 /**
  * WordPress Unit Tests for Plan Merge Functionality
- * 
+ *
  * These tests run in a real WordPress environment with database access.
  * They test the actual integration with WordPress functions and database.
  *
@@ -32,7 +32,7 @@ class PlanMergeWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		// Clean up options before each test
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
-		
+
 		// Invalidate static cache
 		PlanRepository::invalidate_cache();
 	}
@@ -131,7 +131,7 @@ class PlanMergeWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$merged_plan = $new_plan->merge_with( $saved_plan );
 
 		// Verify new tasks are included
-		$first_track = $merged_plan->tracks[0];
+		$first_track   = $merged_plan->tracks[0];
 		$first_section = $first_track->sections[0];
 		$this->assertCount( 2, $first_section->tasks );
 
@@ -152,8 +152,8 @@ class PlanMergeWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create a saved plan with different ID and type
-		$saved_plan = TestPlanFactory::create_plan_with_progress();
-		$saved_plan->id = 'saved_plan_id';
+		$saved_plan       = TestPlanFactory::create_plan_with_progress();
+		$saved_plan->id   = 'saved_plan_id';
 		$saved_plan->type = 'saved_type';
 
 		// Merge the plans
@@ -188,22 +188,26 @@ class PlanMergeWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 */
 	public function test_track_merge() {
 		// Create a new track
-		$new_track = new Track( array(
-			'id'          => 'test_track',
-			'label'       => 'Test Track',
-			'description' => 'Test Description',
-			'open'        => true,
-			'sections'    => array(),
-		) );
+		$new_track = new Track(
+			array(
+				'id'          => 'test_track',
+				'label'       => 'Test Track',
+				'description' => 'Test Description',
+				'open'        => true,
+				'sections'    => array(),
+			)
+		);
 
 		// Create a saved track with user progress
-		$saved_track = new Track( array(
-			'id'          => 'test_track',
-			'label'       => 'Saved Track',
-			'description' => 'Saved Description',
-			'open'        => false, // User closed this track
-			'sections'    => array(),
-		) );
+		$saved_track = new Track(
+			array(
+				'id'          => 'test_track',
+				'label'       => 'Saved Track',
+				'description' => 'Saved Description',
+				'open'        => false, // User closed this track
+				'sections'    => array(),
+			)
+		);
 
 		// Merge the tracks
 		$merged_track = $new_track->merge_with( $saved_track );
@@ -220,25 +224,29 @@ class PlanMergeWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 */
 	public function test_section_merge() {
 		// Create a new section
-		$new_section = new Section( array(
-			'id'          => 'test_section',
-			'label'       => 'Test Section',
-			'description' => 'Test Description',
-			'open'        => true,
-			'status'      => 'new',
-			'tasks'       => array(),
-		) );
+		$new_section = new Section(
+			array(
+				'id'          => 'test_section',
+				'label'       => 'Test Section',
+				'description' => 'Test Description',
+				'open'        => true,
+				'status'      => 'new',
+				'tasks'       => array(),
+			)
+		);
 
 		// Create a saved section with user progress
-		$saved_section = new Section( array(
-			'id'             => 'test_section',
-			'label'          => 'Saved Section',
-			'description'    => 'Saved Description',
-			'open'           => false, // User closed this section
-			'status'         => 'done', // User completed this section
-			'date_completed' => '2023-01-01 12:00:00',
-			'tasks'          => array(),
-		) );
+		$saved_section = new Section(
+			array(
+				'id'             => 'test_section',
+				'label'          => 'Saved Section',
+				'description'    => 'Saved Description',
+				'open'           => false, // User closed this section
+				'status'         => 'done', // User completed this section
+				'date_completed' => '2023-01-01 12:00:00',
+				'tasks'          => array(),
+			)
+		);
 
 		// Merge the sections
 		$merged_section = $new_section->merge_with( $saved_section );
@@ -257,18 +265,22 @@ class PlanMergeWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 */
 	public function test_task_merge() {
 		// Create a new task
-		$new_task = new Task( array(
-			'id'    => 'test_task',
-			'title' => 'Test Task',
-			'status' => 'new',
-		) );
+		$new_task = new Task(
+			array(
+				'id'     => 'test_task',
+				'title'  => 'Test Task',
+				'status' => 'new',
+			)
+		);
 
 		// Create a saved task with user progress
-		$saved_task = new Task( array(
-			'id'    => 'test_task',
-			'title' => 'Saved Task',
-			'status' => 'done', // User completed this task
-		) );
+		$saved_task = new Task(
+			array(
+				'id'     => 'test_task',
+				'title'  => 'Saved Task',
+				'status' => 'done', // User completed this task
+			)
+		);
 
 		// Merge the tasks
 		$merged_task = $new_task->merge_with( $saved_task );

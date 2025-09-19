@@ -9,7 +9,7 @@ use NewfoldLabs\WP\Module\NextSteps\Tests\WPUnit\TestPlanFactory;
 
 /**
  * WordPress Unit Tests for PlanRepository
- * 
+ *
  * These tests run in a real WordPress environment with database access.
  * They test the actual integration with WordPress functions and database.
  *
@@ -29,7 +29,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		// Clean up options before each test
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
-		
+
 		// Invalidate static cache
 		PlanRepository::invalidate_cache();
 	}
@@ -80,7 +80,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function test_get_current_plan_returns_existing_plan() {
 		// Set up a test plan
 		$test_plan = TestPlanFactory::create_minimal_plan();
-		$saved = PlanRepository::save_plan( $test_plan );
+		$saved     = PlanRepository::save_plan( $test_plan );
 		$this->assertTrue( $saved );
 
 		// Retrieve the plan
@@ -95,9 +95,9 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 */
 	public function test_save_plan() {
 		// Create a test plan
-		$test_plan = TestPlanFactory::create_minimal_plan();
+		$test_plan       = TestPlanFactory::create_minimal_plan();
 		$test_plan->type = 'ecommerce'; // Change type for this test
-		$test_plan->id = 'store_setup'; // Change ID for this test
+		$test_plan->id   = 'store_setup'; // Change ID for this test
 
 		// Save the plan
 		$result = PlanRepository::save_plan( $test_plan );
@@ -130,8 +130,8 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 */
 	public function test_reset_plan() {
 		// First, save a custom plan
-		$test_plan = TestPlanFactory::create_minimal_plan();
-		$test_plan->id = 'custom_plan';
+		$test_plan       = TestPlanFactory::create_minimal_plan();
+		$test_plan->id   = 'custom_plan';
 		$test_plan->type = 'custom';
 		PlanRepository::save_plan( $test_plan );
 
@@ -269,7 +269,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 
 		// Verify the task was updated
 		$updated_plan = PlanRepository::get_current_plan();
-		$task = PlanRepository::get_task( 'blog_build_track', 'basic_blog_setup', 'blog_quick_setup' );
+		$task         = PlanRepository::get_task( 'blog_build_track', 'basic_blog_setup', 'blog_quick_setup' );
 		$this->assertInstanceOf( \NewfoldLabs\WP\Module\NextSteps\DTOs\Task::class, $task );
 		$this->assertEquals( 'done', $task->status );
 	}
@@ -344,5 +344,4 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$this->assertEquals( 0, $stats['completed_tasks'] ); // No completed tasks
 		$this->assertEquals( 0, $stats['completion_percentage'] ); // 0% completion
 	}
-
 }

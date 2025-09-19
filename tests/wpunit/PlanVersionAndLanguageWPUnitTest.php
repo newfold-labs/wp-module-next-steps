@@ -9,7 +9,7 @@ use NewfoldLabs\WP\Module\NextSteps\Tests\WPUnit\TestPlanFactory;
 
 /**
  * WordPress Unit Tests for Plan Version Updates and Language Changes
- * 
+ *
  * These tests run in a real WordPress environment with database access.
  * They test the actual integration with WordPress functions and database.
  *
@@ -30,7 +30,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		delete_option( PlanRepository::OPTION );
 		delete_transient( PlanFactory::SOLUTIONS_TRANSIENT );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
-		
+
 		// Invalidate static cache
 		PlanRepository::invalidate_cache();
 	}
@@ -70,7 +70,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	 */
 	public function test_version_update_no_merge_when_versions_same() {
 		// Create a saved plan with current version
-		$saved_plan = TestPlanFactory::create_plan_with_progress();
+		$saved_plan          = TestPlanFactory::create_plan_with_progress();
 		$saved_plan->version = '1.2.0'; // Current version
 
 		// Save the plan
@@ -92,7 +92,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	 */
 	public function test_version_update_with_newer_saved_version() {
 		// Create a saved plan with newer version (shouldn't happen in practice)
-		$saved_plan = TestPlanFactory::create_plan_with_progress();
+		$saved_plan          = TestPlanFactory::create_plan_with_progress();
 		$saved_plan->version = '2.0.0'; // Newer version
 
 		// Save the plan
@@ -110,7 +110,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	 */
 	public function test_language_change_triggers_plan_reload() {
 		// Create a saved plan
-		$saved_plan = TestPlanFactory::create_plan_with_progress();
+		$saved_plan          = TestPlanFactory::create_plan_with_progress();
 		$saved_plan->version = '1.2.0';
 
 		// Save the plan
@@ -134,17 +134,17 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	 */
 	public function test_version_comparison_different_formats() {
 		// Test with semantic versioning
-		$plan1 = TestPlanFactory::create_plan_with_progress();
+		$plan1          = TestPlanFactory::create_plan_with_progress();
 		$plan1->version = '1.0.0';
 		$this->assertTrue( $plan1->is_version_outdated() );
 
 		// Test with simple version
-		$plan2 = TestPlanFactory::create_plan_with_progress();
+		$plan2          = TestPlanFactory::create_plan_with_progress();
 		$plan2->version = '1.0';
 		$this->assertTrue( $plan2->is_version_outdated() );
 
 		// Test with current version
-		$plan3 = TestPlanFactory::create_plan_with_progress();
+		$plan3          = TestPlanFactory::create_plan_with_progress();
 		$plan3->version = '1.2.0';
 		$this->assertFalse( $plan3->is_version_outdated() );
 	}
@@ -154,7 +154,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	 */
 	public function test_version_comparison_null_version() {
 		// Create plan with null version
-		$plan = TestPlanFactory::create_plan_with_progress();
+		$plan          = TestPlanFactory::create_plan_with_progress();
 		$plan->version = null;
 
 		// Should be considered outdated
@@ -166,7 +166,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	 */
 	public function test_version_comparison_empty_version() {
 		// Create plan with empty version
-		$plan = TestPlanFactory::create_plan_with_progress();
+		$plan          = TestPlanFactory::create_plan_with_progress();
 		$plan->version = '';
 
 		// Should be considered outdated
@@ -179,9 +179,9 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	public function test_version_comparison_undefined_constant() {
 		// Temporarily undefine the constant for testing
 		$original_constant = defined( 'NFD_NEXTSTEPS_MODULE_VERSION' ) ? NFD_NEXTSTEPS_MODULE_VERSION : null;
-		
+
 		// Create plan
-		$plan = TestPlanFactory::create_plan_with_progress();
+		$plan          = TestPlanFactory::create_plan_with_progress();
 		$plan->version = '1.0.0';
 
 		// Should fall back to default version comparison
@@ -193,11 +193,11 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	 */
 	public function test_plan_merge_preserves_version_from_new_plan() {
 		// Create a new plan with current version
-		$new_plan = TestPlanFactory::create_test_plan();
+		$new_plan          = TestPlanFactory::create_test_plan();
 		$new_plan->version = '1.2.0';
 
 		// Create a saved plan with old version
-		$saved_plan = TestPlanFactory::create_plan_with_progress();
+		$saved_plan          = TestPlanFactory::create_plan_with_progress();
 		$saved_plan->version = '0.9.0';
 
 		// Merge the plans
@@ -212,8 +212,8 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 	 */
 	public function test_plan_merge_with_custom_plan_type() {
 		// Create a saved custom plan with old version
-		$saved_plan = TestPlanFactory::create_plan_with_progress();
-		$saved_plan->type = 'custom';
+		$saved_plan          = TestPlanFactory::create_plan_with_progress();
+		$saved_plan->type    = 'custom';
 		$saved_plan->version = '0.9.0';
 
 		// Save the plan
