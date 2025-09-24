@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import { Title, Button, Link } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
-import { PaintBrushIcon, CreditCardIcon, ArchiveBoxIcon, ShoppingCartIcon, RocketLaunchIcon, StarIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { PaintBrushIcon, CreditCardIcon, ArchiveBoxIcon, ShoppingCartIcon, RocketLaunchIcon, StarIcon, UsersIcon } from '@heroicons/react/24/outline';
 import { TasksModal } from '../tasks-modal';
-import { 
+import {
 	CustomizeYourStoreIcon,
 	CustomizeYourStoreWideIcon,
 	AddFirstProductIcon,
@@ -49,6 +49,7 @@ export const SectionCard = ( {
 	tasks = [],
 	wide = false,
 	data_attributes: dataAttributes = {},
+	complete_on_event: completeOnEvent = '',
 	className,
 	taskUpdateCallback,
 	sectionUpdateCallback,
@@ -67,16 +68,16 @@ export const SectionCard = ( {
 	const [ isModalOpened, setIsModalOpened ] = useState( false );
 	const [ eventCompleted, setEventCompleted ] = useState( 'done' === status );
 
-	const Icon = ICONS_IDS[icon] ?? null;
+	const Icon = ICONS_IDS[ icon ] ?? null;
 
-	useEffect(() => {
+	useEffect( () => {
 
-		if ( eventCompleted || !eventClassToCheck[id] ) return;
+		if ( eventCompleted || ! eventClassToCheck[ id ] ) return;
 
 		const checkElement = () => {
-			const el = document.querySelector( eventClassToCheck[id] );
-			if (el) {
-				setEventCompleted(true);
+			const el = document.querySelector( eventClassToCheck[ id ] );
+			if ( el ) {
+				setEventCompleted( true );
 				sectionUpdateCallback( trackId, sectionId, 'done' );
 				return true;
 			}
@@ -87,16 +88,32 @@ export const SectionCard = ( {
 			return;
 		}
 
-		const observer = new MutationObserver(() => {
+		const observer = new MutationObserver( () => {
 			if ( checkElement() ) {
 				observer.disconnect();
 			}
-		});
+		} );
 
-		observer.observe(document.body, { childList: true, subtree: true });
+		observer.observe( document.body, { childList: true, subtree: true } );
 
 		return () => observer.disconnect();
-	}, [eventCompleted]);
+	}, [ eventCompleted ] );
+
+	useEffect( () => {
+		if ( tasks.length > 1 || 'done' === status || ! eventCompleted ) {
+			return;
+		}
+
+		if ( completeOnEvent && ! eventCompleted ) {
+			const handleEvent = () => {
+				setEventCompleted( true );
+				taskUpdateCallback( trackId, sectionId, tasks[ 0 ].id, 'done' );
+				sectionUpdateCallback( trackId, sectionId, 'done' );
+			};
+			document.addEventListener( completeOnEvent, handleEvent );
+			return () => document.removeEventListener( completeOnEvent, handleEvent );
+		}
+	}, [] );
 
 
 	const getHref = ( href ) => {
@@ -105,12 +122,13 @@ export const SectionCard = ( {
 		if ( hrefValue.includes( '{siteUrl}' ) ) {
 			hrefValue = href.replace( '{siteUrl}', window.NewfoldRuntime.siteUrl );
 		}
-		return window.NewfoldRuntime?.linkTracker?.addUtmParams( hrefValue ) || hrefValue;
+		return hrefValue ? window.NewfoldRuntime?.linkTracker?.addUtmParams( hrefValue ) || hrefValue : null;
 	};
 
 	const getTarget = ( href ) => {
 		// if href is external, return target="_blank"
 		if (
+			! href ||
 			href.includes( '{siteUrl}' ) ||
 			href.includes( window.NewfoldRuntime.siteUrl )
 		) {
@@ -123,8 +141,8 @@ export const SectionCard = ( {
 		const attributes = {};
 		// if this section has only one task, add href and target for single task
 		if ( tasks.length <= 1 ) {
-			attributes[ 'href' ] = getHref( tasks[0]?.href ? tasks[0].href : '' );
-			attributes[ 'target' ] = getTarget( tasks[0]?.href ? tasks[0].href : '' );
+			attributes[ 'href' ] = getHref( tasks[ 0 ]?.href ? tasks[ 0 ].href : '' );
+			attributes[ 'target' ] = getTarget( tasks[ 0 ]?.href ? tasks[ 0 ].href : '' );
 		}
 		// Only add href and target if href is provided and either no event is set or status is 'done'
 		// if ( href && ( !event || ( event && 'done' === status ) ) ) {
@@ -140,6 +158,10 @@ export const SectionCard = ( {
 	 */
 	const formatDataAttributes = () => {
 		const formatted = {};
+
+		if ( 1 === tasks.length && tasks[ 0 ]?.data_attributes ) {
+			dataAttributes = { ...dataAttributes, ...(tasks[ 0 ]?.data_attributes ? tasks[ 0 ].data_attributes : {}) };
+		}
 
 		Object.entries( dataAttributes ).forEach( ( [ key, value ] ) => {
 			// Ensure key has 'data-' prefix
@@ -180,34 +202,34 @@ export const SectionCard = ( {
 	const combinedAttributes = { ...formatDataAttributes() };
 
 	const wireframes = {
-		'customize_your_store': !wide ? <CustomizeYourStoreWideIcon /> : <CustomizeYourStoreIcon />,
-		'setup_products': !wide ? <AddFirstProductWideIcon /> : <AddFirstProductIcon />,
-		'setup_payments_shipping': !wide ? <StoreSetupPaymentsWideIcon /> : <StoreSetupPaymentsIcon />,
-		'store_customize' : !wide ? <StoreSetupShoppingExperienceWideIcon /> : <StoreSetupShoppingExperienceIcon />,
-		'first_marketing_steps' : !wide ? <StoreMarketingStrategyWideIcon /> : <StoreMarketingStrategyIcon />,
-		'store_improve_performance' : !wide ? <StoreImprovePerformanceWideIcon /> : <StoreImprovePerformanceIcon />,
-		'store_collect_reviews' : !wide ? <StoreCollectReviewsWideIcon /> : <StoreCollectReviewsIcon />,
-		'advanced_social_marketing' : !wide ? <StoreLaunchAffiliateWideIcon /> : <StoreLaunchAffiliateIcon />,
-		'next_marketing_steps' : !wide ? <StoreSetupYoastWideIcon /> : <StoreSetupYoastIcon />,
+		'customize_your_store': ! wide ? <CustomizeYourStoreWideIcon/> : <CustomizeYourStoreIcon/>,
+		'setup_products': ! wide ? <AddFirstProductWideIcon/> : <AddFirstProductIcon/>,
+		'setup_payments_shipping': ! wide ? <StoreSetupPaymentsWideIcon/> : <StoreSetupPaymentsIcon/>,
+		'store_customize': ! wide ? <StoreSetupShoppingExperienceWideIcon/> : <StoreSetupShoppingExperienceIcon/>,
+		'first_marketing_steps': ! wide ? <StoreMarketingStrategyWideIcon/> : <StoreMarketingStrategyIcon/>,
+		'store_improve_performance': ! wide ? <StoreImprovePerformanceWideIcon/> : <StoreImprovePerformanceIcon/>,
+		'store_collect_reviews': ! wide ? <StoreCollectReviewsWideIcon/> : <StoreCollectReviewsIcon/>,
+		'advanced_social_marketing': ! wide ? <StoreLaunchAffiliateWideIcon/> : <StoreLaunchAffiliateIcon/>,
+		'next_marketing_steps': ! wide ? <StoreSetupYoastWideIcon/> : <StoreSetupYoastIcon/>,
 	}
 
 	// Map of event names to CSS selectors to check for element presence
 	const eventClassToCheck = {
-		'setup_products' : '.nfd-quick-add-product__response-product-permalink',
+		'setup_products': '.nfd-quick-add-product__response-product-permalink',
 	}
 
 	const StepContent = () => {
 		return (
 			<div className="nfd-nextsteps-section-card-content nfd-flex nfd-flex-col nfd-shrink nfd-justify-between nfd-gap-4">
 				<div className="nfd-nextsteps-section-card-header nfd-flex nfd-align-center nfd-justify-between">
-					<span className={'nfd-nextsteps-section-card-title-wrapper'}>
+					<span className={ 'nfd-nextsteps-section-card-title-wrapper' }>
 						{
 							Icon &&
-							<span className={`nfd-nextsteps-section-card-icon-wrapper nfd-nextsteps-section-card-icon-wrapper-${icon}`}>
+							<span className={ `nfd-nextsteps-section-card-icon-wrapper nfd-nextsteps-section-card-icon-wrapper-${ icon }` }>
 								<Icon width={ 16 }/>
 							</span>
 						}
-						<Title as="span" className="nfd-nextsteps-section-card-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center nfd-mr-4">
+						<Title as="span" size={ 2 } className="nfd-nextsteps-section-card-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center nfd-mr-4">
 							{ label }
 						</Title>
 					</span>
@@ -235,13 +257,13 @@ export const SectionCard = ( {
 
 	return (
 		<>
-			<div 
-				className={ classNames( 
+			<div
+				className={ classNames(
 					className,
 					'nfd-nextsteps-section-card-container',
 					{
-						'nfd-col-span-1 md:nfd-col-span-2 nfd-nextsteps-section-card-container--wide': wide,
-						'nfd-col-span-1 nfd-nextsteps-section-card-container--narrow': ! wide,
+						'nfd-nextsteps-section-card-container--wide': wide,
+						'nfd-nextsteps-section-card-container--narrow': ! wide,
 					}
 				) }
 			>
@@ -250,9 +272,8 @@ export const SectionCard = ( {
 					data-nfd-section-id={ sectionId }
 					data-nfd-section-index={ index }
 					data-nfd-section-status={ status }
-					{ ...combinedAttributes }
 					className={ classNames(
-						'nfd-nextsteps-section-card nfd-nextsteps-section-card-new nfd-h-full nfd-flex nfd-justify-between nfd-items-start nfd-gap-4 nfd-h-full',
+						'nfd-nextsteps-section-card nfd-nextsteps-section-card-new',
 						{
 							'nfd-nextsteps-section-card--wide nfd-flex-col md:nfd-flex-row': wide,
 							'nfd-flex-col': ! wide,
@@ -265,27 +286,27 @@ export const SectionCard = ( {
 						wireframes[ id ] &&
 						<div className={ classNames(
 							'nfd-nextsteps-section-card__wireframe nfd-shrink',
-						{
-							'nfd-w-full' : !wide,
-							'nfd-h-full nfd-w-full' : wide,
-						} ) }>
+							{
+								'nfd-w-full': ! wide,
+								'nfd-h-full nfd-w-full': wide,
+							} ) }>
 							{ wireframes[ id ] }
 						</div>
 					}
 					<StepContent/>
 					<div className={ classNames(
-							 'nfd-nextsteps-buttons nfd-flex nfd-shrink-2 nfd-items-center nfd-gap-2 nfd-justify-between nfd-w-full'
-						 ) }>
+						'nfd-nextsteps-buttons nfd-flex nfd-shrink-2 nfd-items-center nfd-gap-2 nfd-justify-between nfd-w-full'
+					) }>
 						<div className="nfd-nextsteps-buttons-actions-primary nfd-flex">
 							<Button
 								as={ 'a' }
-								className= {
+								className={
 									classNames(
 										'nfd-nextsteps-button',
 										{
 											'nfd-nextsteps-button--dismissed': 'dismissed' === status,
 											'nfd-nextsteps-button--completed': 'done' === status,
-											'nfd-pointer-events-none' : 'dismissed' === status,
+											'nfd-pointer-events-none': 'dismissed' === status,
 										}
 									)
 								}
@@ -300,24 +321,24 @@ export const SectionCard = ( {
 										e.preventDefault();
 										setIsModalOpened( true );
 										return false;
-									}
-									else if ( 'done' !== status ) {
+									} else if ( 'done' !== status && ! completeOnEvent ) {
 										// TODO - clean this up - we're pausing the default action
 										// so the callbacks have time to update the status
 										// and then we manually open the link in a new tab
 										if ( e.target.tagName === 'A' ) {
 											e.preventDefault();
 										}
-										taskUpdateCallback( trackId, sectionId, tasks[0].id, 'done' );
+										taskUpdateCallback( trackId, sectionId, tasks[ 0 ].id, 'done' );
 										sectionUpdateCallback( trackId, sectionId, 'done' ).then(
 											() => {
 												window.open( e.target.href );
 											}
 										);
-										
+
 										// window.dispatchEvent( new CustomEvent( event ) );
 									}
 								} }
+								{ ...combinedAttributes }
 								{ ...getLinkAttributes() }
 							>
 								{ getCtaText() }
@@ -325,22 +346,22 @@ export const SectionCard = ( {
 						</div>
 						{
 							'dismissed' !== status && <div className="nfd-nextsteps-buttons-actions-secondary">
-							<Link
-								as="button"
-								className="nfd-nextsteps-button nfd-nextsteps-button--skip"
-								onClick={(e) => sectionUpdateCallback( trackId, sectionId, 'dismissed' ) }
-							>
-								{ __('Skip it', 'wp-module-next-steps') }
-							</Link>
+								<Link
+									as="button"
+									className="nfd-nextsteps-button nfd-nextsteps-button--skip"
+									onClick={ ( e ) => sectionUpdateCallback( trackId, sectionId, 'dismissed' ) }
+								>
+									{ __( 'Skip it', 'wp-module-next-steps' ) }
+								</Link>
 							</div>
 						}
 						{ 'dismissed' === status &&
 							<Link
-								className= 'nfd-nextsteps-button nfd-nextsteps-button--undo'
+								className="nfd-nextsteps-button nfd-nextsteps-button--undo"
 								onClick={ ( e ) => sectionUpdateCallback( trackId, sectionId, 'new' ) }
 							>
 								{ redoIcon }
-								{ __('Undo', 'wp-module-next-steps') }
+								{ __( 'Undo', 'wp-module-next-steps' ) }
 							</Link>
 						}
 					</div>

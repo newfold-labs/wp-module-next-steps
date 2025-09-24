@@ -87,6 +87,13 @@ class Section {
 	public $modal_desc;
 
 	/**
+	 * JS Event that marks the section as complete.
+	 *
+	 * @var string
+	 */
+	public $complete_on_event;
+
+	/**
 	 * Section constructor
 	 *
 	 * @param array $data Section data
@@ -102,6 +109,7 @@ class Section {
 		$this->icon           = $data['icon'] ?? '';
 		$this->modal_title    = $data['modal_title'] ?? '';
 		$this->modal_desc     = $data['modal_desc'] ?? '';
+		$this->complete_on_event     = $data['complete_on_event'] ?? '';
 		$this->tasks          = array();
 
 		// Convert task arrays to Task objects
@@ -133,6 +141,7 @@ class Section {
 			'icon'           => $this->icon,
 			'modal_title'    => $this->modal_title,
 			'modal_desc'     => $this->modal_desc,
+			'complete_on_event' => $this->complete_on_event,
 			'tasks'          => array_map(
 				function ( Task $task ) {
 					return $task->to_array();

@@ -178,7 +178,7 @@ export const NextSteps = () => {
         const maxCards = 3;
         return (
             <>
-                <div id={ 'nfd-quick-add-product-modal-only' }/>
+                <div id={ 'nfd-quick-add-product-modal' }/>
                 <div className="nfd-nextsteps nfd-grid nfd-grid-cols-1 md:nfd-grid-cols-2 md:nfd-grid-rows-[auto_auto] nfd-gap-4" id="nfd-nextsteps">
                     { sectionsAsCards.slice( 0, maxCards ).map( ( sectionsAsCard, i ) => {
                         return <SectionCard
