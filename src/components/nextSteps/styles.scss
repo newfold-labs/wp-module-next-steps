@@ -465,6 +465,10 @@
       width: 100%;
     }
 
+    .nfd-nextsteps-buttons{
+      margin-top:auto;
+    }
+
     &.nfd-nextsteps-section-card--wide {
       .nfd-nextsteps-section-card__wireframe {
         min-width : fit-content;
@@ -475,6 +479,7 @@
           flex-direction: column;
           justify-content: center !important;
           width: auto !important;
+          margin-top: 0;
         }
 
         min-width: fit-content;
