@@ -166,7 +166,7 @@ class NextSteps {
 			$build_dir . 'bundle.js',
 			array_merge(
 				$asset['dependencies'],
-				array( 'newfold-hiive-events', 'bluehost-script', 'nfd-portal-registry' ),
+				array( 'newfold-hiive-events', 'bluehost-script', 'nfd-portal-registry', 'quick-add-product' ),
 			),
 			$asset['version'],
 			true
@@ -175,7 +175,7 @@ class NextSteps {
 		\wp_register_style(
 			'next-steps-portal-style',
 			$build_dir . 'next-steps-portal.css',
-			null, // still dependant on plugin styles but they are loaded on the plugin page
+			array( 'quick-add-product' ), // still dependant on plugin styles but they are loaded on the plugin page
 			$asset['version']
 		);
 

@@ -130,17 +130,17 @@ class StorePlan {
 								'cta'         => __( 'Add product', 'wp-module-next-steps' ),
 								'icon'        => 'archive-box',
 								'status'      => 'new',
+								'complete_on_event' => 'nfd-submit-quick-add-product-success',
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_add_product',
 										'title'           => __( 'Add product', 'wp-module-next-steps' ),
 										'description'     => __( 'Start bringing your store to life by adding a product in just a few simple steps.', 'wp-module-next-steps' ),
-										'href'            => '{siteUrl}/wp-admin/post-new.php?post_type=product',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'event' => 'nfd-open-quick-add-product-modal',
+											'quick-add-product-trigger' => 'true',
 										),
 									),
 								),
