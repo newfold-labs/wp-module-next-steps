@@ -422,15 +422,33 @@
 
   // Section Cards
   .nfd-nextsteps-section-card-container--wide {
-    @apply md:nfd-col-span-2 !important;
+    grid-column: span 2 / span 2;
   }
 
   .nfd-nextsteps-section-card {
+    display: flex;
+    align-items: start;
+    gap: 2rem;
+    height: 100%;
     border: none;
     background: #F2F5F9;
     border-radius: 1rem;
     padding: 20px;
     transition: .2s all ease-in-out;
+    flex-direction: column;
+
+    &--wide{
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        align-items : center;
+      }
+      .nfd-nextsteps-section-card__wireframe{
+        max-width: fit-content;
+        svg {
+          max-height : 130px;
+        }
+      }
+    }
 
     .nfd-nextsteps-section-card__wireframe {
       border-radius: 10px;
@@ -447,27 +465,34 @@
       width: 100%;
     }
 
-    &.nfd-nextsteps-section-card--wide .nfd-nextsteps-section-card__wireframe {
-      min-width: fit-content;
+    .nfd-nextsteps-buttons{
+      margin-top:auto;
     }
 
-    &.nfd-nextsteps-section-card--wide .nfd-nextsteps-buttons {
-      @media screen and (min-width: 768px) {
-        height: 100%;
-        flex-direction: column;
-        justify-content: center !important;
-        width: auto !important;
+    &.nfd-nextsteps-section-card--wide {
+      .nfd-nextsteps-section-card__wireframe {
+        min-width : fit-content;
       }
+      .nfd-nextsteps-buttons {
+        @media screen and (min-width: 768px) {
+          height: 100%;
+          flex-direction: column;
+          justify-content: center !important;
+          width: auto !important;
+          margin-top: 0;
+        }
 
-      min-width: fit-content;
+        min-width: fit-content;
+      }
     }
 
-    .nfd-nextsteps-task-title-wrapper {
+
+    .nfd-nextsteps-section-card-title-wrapper {
       display: flex;
       align-items: center;
       gap: .7rem;
 
-      .nfd-nextsteps-task-icon-wrapper:not(.nfd-nextsteps-task-icon-wrapper-jetpack):not(.nfd-nextsteps-task-icon-wrapper-yoast) {
+      .nfd-nextsteps-section-card-icon-wrapper:not(.nfd-nextsteps-section-card-icon-wrapper-jetpack):not(.nfd-nextsteps-section-card-icon-wrapper-yoast) {
         padding: 4px;
         background: #ddecff;
         border-radius: 5px;

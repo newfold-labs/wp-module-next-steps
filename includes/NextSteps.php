@@ -6,6 +6,8 @@ use NewfoldLabs\WP\ModuleLoader\Container;
 use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 
+use function NewfoldLabs\WP\ModuleLoader\container;
+
 /**
  * NextSteps - Main module class for managing next steps functionality
  *
@@ -175,13 +177,13 @@ class NextSteps {
 		\wp_register_style(
 			'next-steps-portal-style',
 			$build_dir . 'next-steps-portal.css',
-			null, // still dependant on plugin styles but they are loaded on the plugin page
+			array( ), // still dependant on plugin styles but they are loaded on the plugin page
 			$asset['version']
 		);
 
 		// Only enqueue on plugin pages
 		$screen = \get_current_screen();
-		if ( isset( $screen->id ) && false !== strpos( $screen->id, 'bluehost' ) ) {
+		if ( isset( $screen->id ) && false !== strpos( $screen->id, container()->plugin()->id ) ) {
 			\wp_enqueue_script( 'next-steps-portal' );
 			\wp_enqueue_style( 'next-steps-portal-style' );
 
