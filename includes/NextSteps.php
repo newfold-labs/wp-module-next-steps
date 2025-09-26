@@ -163,12 +163,12 @@ class NextSteps {
 			return;
 		}
 
-		$script_deps = array( 
+		$style_deps  = array();
+		$script_deps = array(
 			container()->plugin()->id . '-script',
 			'newfold-hiive-events',
 			'nfd-portal-registry',
 		);
-		$style_deps = array();
 		// check if woo is active to determins if quick-add-product should be enqueued
 		if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 			array_push( $script_deps, 'quick-add-product' );
