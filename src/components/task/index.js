@@ -104,13 +104,13 @@ export const Task = memo(( props ) => {
 			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
 					<a href={ href } target={ target }>
-						<Title as="span" className="nfd-nextsteps-task-title nfd-font-normal">
+						<Title as="span" size={5} className="nfd-nextsteps-task-title nfd-font-normal">
 							{ title }
 						</Title>
 					</a>
 				) }
 				{ ! href && (
-					<Title as="span" className="nfd-nextsteps-task-title nfd-font-normal">
+					<Title as="span" size={5} className="nfd-nextsteps-task-title nfd-font-normal">
 						{ title }
 					</Title>
 				) }
@@ -125,7 +125,7 @@ export const Task = memo(( props ) => {
 				id={ `task-${ id }` } 
 				{ ...combinedAttributes }
 			>
-				<div className="nfd-nextsteps-task nfd-nextsteps-task-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-todo"
@@ -180,7 +180,7 @@ export const Task = memo(( props ) => {
 				id={ `task-${ id }` } 
 				{ ...combinedAttributes }
 			>
-				<div className="nfd-nextsteps-task nfd-nextsteps-task-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-redo"
@@ -220,7 +220,7 @@ export const Task = memo(( props ) => {
 				id={ `task-${ id }` } 
 				{ ...combinedAttributes }
 			>
-				<div className="nfd-nextsteps-task nfd-nextsteps-task-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-4">
+				<div className="nfd-nextsteps-task nfd-nextsteps-task-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-redo"

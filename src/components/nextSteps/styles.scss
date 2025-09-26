@@ -1,5 +1,7 @@
 #nfd-nextsteps.nfd-nextsteps {
 
+  grid-template-columns: 1fr 1fr !important;
+
   .nfd-track {
     border: 1px solid #336AD7;
     border-radius: 4px;
@@ -425,6 +427,15 @@
     grid-column: span 2 / span 2;
   }
 
+  &.nfd-nextsteps--single-column {
+    grid-template-columns: 1fr !important;
+    .nfd-nextsteps-section-card {
+    }
+    .nfd-nextsteps-section-card-container--wide {
+      grid-column : span 1 / span 1;
+    }
+  }
+
   .nfd-nextsteps-section-card {
     display: flex;
     align-items: start;
@@ -438,12 +449,13 @@
     flex-direction: column;
 
     &--wide{
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 782px) {
         flex-direction: row;
         align-items : center;
       }
       .nfd-nextsteps-section-card__wireframe{
         max-width: fit-content;
+        max-height: fit-content;
         svg {
           max-height : 130px;
         }

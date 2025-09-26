@@ -57,7 +57,7 @@ export const TasksModal = ( {
 		<Modal.Panel>
 			{
 				!! title &&
-				<Modal.Title className={ 'nfd-text-xl nfd-font-semibold nfd-mb-6' }>
+				<Modal.Title className={ 'nfd-text-xl nfd-font-semibold nfd-mb-4' }>
 					{ title }
 				</Modal.Title>
 			}
@@ -68,7 +68,7 @@ export const TasksModal = ( {
 				</Modal.Description>
 
 			}
-			<div className={'nfd-nextstep-tasks-modal__tasks'}>
+			<div className={'nfd-nextstep-tasks-modal__tasks nfd-mt-6'}>
 				{
 					tasks.map(( task, taskIndex ) =>(
                     <Task
