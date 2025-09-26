@@ -68,7 +68,7 @@ export const TasksModal = ( {
 				</Modal.Description>
 
 			}
-			<div className={'nfd-nextstep-tasks-modal__tasks'}>
+			<div className={'nfd-nextstep-tasks-modal__tasks nfd-mt-4'}>
 				{
 					tasks.map(( task, taskIndex ) =>(
                     <Task
