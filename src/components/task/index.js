@@ -99,18 +99,18 @@ export const Task = memo(( props ) => {
 	// Combine custom data attributes with any other restProps
 	const combinedAttributes = { ...formatDataAttributes() };
 
-	const renderStepContent = ( href = false, target = '' ) => {
+	const renderTaskContent = ( href = false, target = '' ) => {
 		return (
 			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
 					<a href={ href } target={ target }>
-						<Title as="span" size={5} className="nfd-nextsteps-task-title nfd-font-normal">
+						<Title as="span" size={6} className="nfd-nextsteps-task-title nfd-font-normal">
 							{ title }
 						</Title>
 					</a>
 				) }
 				{ ! href && (
-					<Title as="span" size={5} className="nfd-nextsteps-task-title nfd-font-normal">
+					<Title as="span" size={6} className="nfd-nextsteps-task-title nfd-font-normal">
 						{ title }
 					</Title>
 				) }
@@ -143,7 +143,7 @@ export const Task = memo(( props ) => {
 							{ circleIcon }
 						</button>
 					</div>
-					{ renderStepContent( getHref(), getTarget() ) }
+					{ renderTaskContent( getHref(), getTarget() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
@@ -195,7 +195,7 @@ export const Task = memo(( props ) => {
 							{ doneIcon }
 						</button>
 					</div>
-					{ renderStepContent( getHref(), getTarget() ) }
+					{ renderTaskContent( getHref(), getTarget() ) }
                     <div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
                         <a
                             className="nfd-nextsteps-button nfd-nextsteps-button-link"
@@ -235,7 +235,7 @@ export const Task = memo(( props ) => {
 							{ circleDashedIcon }
 						</button>
 					</div>
-					{ renderStepContent( getHref(), getTarget() ) }
+					{ renderTaskContent( getHref(), getTarget() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"

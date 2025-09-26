@@ -6,6 +6,8 @@ use NewfoldLabs\WP\ModuleLoader\Container;
 use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 
+use function NewfoldLabs\WP\ModuleLoader\container;
+
 /**
  * NextSteps - Main module class for managing next steps functionality
  *
@@ -161,12 +163,24 @@ class NextSteps {
 			return;
 		}
 
+		$style_deps  = array();
+		$script_deps = array(
+			container()->plugin()->id . '-script',
+			'newfold-hiive-events',
+			'nfd-portal-registry',
+		);
+		// check if woo is active to determins if quick-add-product should be enqueued
+		if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+			array_push( $script_deps, 'quick-add-product' );
+			array_push( $style_deps, 'quick-add-product' );
+		}
+
 		\wp_register_script(
 			'next-steps-portal',
 			$build_dir . 'bundle.js',
 			array_merge(
 				$asset['dependencies'],
-				array( 'newfold-hiive-events', 'bluehost-script', 'nfd-portal-registry', 'quick-add-product' ),
+				$script_deps,
 			),
 			$asset['version'],
 			true
@@ -175,13 +189,13 @@ class NextSteps {
 		\wp_register_style(
 			'next-steps-portal-style',
 			$build_dir . 'next-steps-portal.css',
-			array( 'quick-add-product' ), // still dependant on plugin styles but they are loaded on the plugin page
+			$style_deps, // still dependant on plugin styles but they are loaded on the plugin page
 			$asset['version']
 		);
 
 		// Only enqueue on plugin pages
 		$screen = \get_current_screen();
-		if ( isset( $screen->id ) && false !== strpos( $screen->id, 'bluehost' ) ) {
+		if ( isset( $screen->id ) && false !== strpos( $screen->id, container()->plugin()->id ) ) {
 			\wp_enqueue_script( 'next-steps-portal' );
 			\wp_enqueue_style( 'next-steps-portal-style' );
 

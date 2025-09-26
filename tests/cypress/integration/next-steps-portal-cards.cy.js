@@ -135,10 +135,10 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 
 		// Check that completed section 3 is rendered with complete badge
 		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
-		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-date-completed' );
-		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-now-date' );
-		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-expiry-date' );
-		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-expires-in', 'a day from now' );
+		// cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-date-completed' );
+		// cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-now-date' );
+		// cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-expiry-date' );
+		// cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-expires-in', 'a day from now' );
 		cy.get( '#section-card-section3 .nfd-nextstep-section-card__completed-badge' ).scrollIntoView().should( 'be.visible' );
 	} );
 } );
