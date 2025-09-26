@@ -46,24 +46,24 @@ msgid "Customize Your Blog"
 msgstr ""
 
 #: includes/Data/Plans/BlogPlan.php:81
-#: includes/Data/Plans/StorePlan.php:76
+#: includes/Data/Plans/StorePlan.php:77
 msgid "Upload Logo"
 msgstr ""
 
 #: includes/Data/Plans/BlogPlan.php:89
-#: includes/Data/Plans/StorePlan.php:86
+#: includes/Data/Plans/StorePlan.php:87
 msgid "Choose Colors and Fonts"
 msgstr ""
 
 #: includes/Data/Plans/BlogPlan.php:97
 #: includes/Data/Plans/CorporatePlan.php:115
-#: includes/Data/Plans/StorePlan.php:96
+#: includes/Data/Plans/StorePlan.php:97
 msgid "Customize Header"
 msgstr ""
 
 #: includes/Data/Plans/BlogPlan.php:105
 #: includes/Data/Plans/CorporatePlan.php:123
-#: includes/Data/Plans/StorePlan.php:106
+#: includes/Data/Plans/StorePlan.php:107
 msgid "Customize Footer"
 msgstr ""
 
@@ -464,142 +464,142 @@ msgstr ""
 msgid "Customize the header, footer, and homepage — just few steps to give your site a personal touch."
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:116
+#: includes/Data/Plans/StorePlan.php:117
 msgid "Customize Homepage"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:128
+#: includes/Data/Plans/StorePlan.php:129
 msgid "Step 2: Add your first product"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:129
-#: includes/Data/Plans/StorePlan.php:137
+#: includes/Data/Plans/StorePlan.php:130
+#: includes/Data/Plans/StorePlan.php:140
 msgid "Start bringing your store to life by adding a product in just a few simple steps."
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:130
-#: includes/Data/Plans/StorePlan.php:136
+#: includes/Data/Plans/StorePlan.php:131
+#: includes/Data/Plans/StorePlan.php:139
 msgid "Add product"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:150
+#: includes/Data/Plans/StorePlan.php:152
 msgid "Step 3: Set Up Payments"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:151
+#: includes/Data/Plans/StorePlan.php:153
 msgid "Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks."
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:152
-#: includes/Data/Plans/StorePlan.php:158
+#: includes/Data/Plans/StorePlan.php:154
+#: includes/Data/Plans/StorePlan.php:161
 msgid "Set up Payments"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:170
+#: includes/Data/Plans/StorePlan.php:173
 msgid "Setup the Shopping Experience"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:171
+#: includes/Data/Plans/StorePlan.php:174
 msgid "Personalize your cart and checkout to match your brand and give customers a seamless shopping experience"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:172
+#: includes/Data/Plans/StorePlan.php:175
 msgid "Start Now"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:174
+#: includes/Data/Plans/StorePlan.php:177
 msgid "Setup the shopping experience"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:175
+#: includes/Data/Plans/StorePlan.php:178
 msgid "Personalize your cart and checkout experience, and configure taxes and shipping options"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:179
+#: includes/Data/Plans/StorePlan.php:182
 msgid "Customize the shop page"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:189
+#: includes/Data/Plans/StorePlan.php:192
 msgid "Customize the cart page"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:199
+#: includes/Data/Plans/StorePlan.php:202
 msgid "Customize the checkout flow"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:211
-#: includes/Data/Plans/StorePlan.php:215
+#: includes/Data/Plans/StorePlan.php:214
+#: includes/Data/Plans/StorePlan.php:218
 msgid "Build your marketing strategy"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:212
+#: includes/Data/Plans/StorePlan.php:215
 msgid "Kickstart your store’s success with smart marketing strategies. Just few steps to build visibility, attract shoppers, and turn visits into loyal sales."
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:213
-#: includes/Data/Plans/StorePlan.php:264
-#: includes/Data/Plans/StorePlan.php:285
-#: includes/Data/Plans/StorePlan.php:305
-#: includes/Data/Plans/StorePlan.php:325
+#: includes/Data/Plans/StorePlan.php:216
+#: includes/Data/Plans/StorePlan.php:267
+#: includes/Data/Plans/StorePlan.php:288
+#: includes/Data/Plans/StorePlan.php:308
+#: includes/Data/Plans/StorePlan.php:328
 msgid "Start now"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:216
+#: includes/Data/Plans/StorePlan.php:219
 msgid "Kickstart your store’s success with smart marketing strategies"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:220
+#: includes/Data/Plans/StorePlan.php:223
 msgid "Configure a welcome discount popup"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:230
+#: includes/Data/Plans/StorePlan.php:233
 msgid "Create a gift card to sell in your shop"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:240
+#: includes/Data/Plans/StorePlan.php:243
 msgid "Enable abandoned cart emails"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:250
+#: includes/Data/Plans/StorePlan.php:253
 msgid "Customize your store emails"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:262
-#: includes/Data/Plans/StorePlan.php:270
+#: includes/Data/Plans/StorePlan.php:265
+#: includes/Data/Plans/StorePlan.php:273
 msgid "Improve the performance and speed of your shop"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:263
+#: includes/Data/Plans/StorePlan.php:266
 msgid "Speed up your store by optimizing page performance with Jetpack Boost. Easily activate one-click optimizations to boost your Core Web Vitals."
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:282
+#: includes/Data/Plans/StorePlan.php:285
 msgid "Collect and show reviews for your products"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:283
+#: includes/Data/Plans/StorePlan.php:286
 msgid "Collect authentic reviews from your customers to build trust, highlight product quality, and help increase conversions."
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:290
+#: includes/Data/Plans/StorePlan.php:293
 msgid "Collect and Show Reviews for Your Products"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:302
-#: includes/Data/Plans/StorePlan.php:310
+#: includes/Data/Plans/StorePlan.php:305
+#: includes/Data/Plans/StorePlan.php:313
 msgid "Launch an affiliate program"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:303
+#: includes/Data/Plans/StorePlan.php:306
 msgid "Launch your own affiliate program to promote your products, reach new audiences and grow sales."
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:322
-#: includes/Data/Plans/StorePlan.php:330
+#: includes/Data/Plans/StorePlan.php:325
+#: includes/Data/Plans/StorePlan.php:333
 msgid "Setup Yoast Premium to drive traffic to your store"
 msgstr ""
 
-#: includes/Data/Plans/StorePlan.php:323
+#: includes/Data/Plans/StorePlan.php:326
 msgid "Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online."
 msgstr ""
 
@@ -670,125 +670,196 @@ msgstr ""
 msgid "Failed to add task to section."
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Mark Complete"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Skip"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Restart"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Unskip"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-msgid "Completed"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-msgid "Skipped"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-msgid "Skip it"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-msgid "Undo"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-msgid "No Pending tasks"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-msgid "Hooray!"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-msgid "You don’t have any pending tasks today"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4094
+#: build/next-steps-widget/bundle.js:2161
+#: build/next-steps-portal/bundle.js:2464
+#: build/next-steps-widget/bundle.js:1768
 msgid "We encountered a connection error. Please check your internet connection and try again."
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4094
+#: build/next-steps-widget/bundle.js:2161
+#: build/next-steps-portal/bundle.js:2465
+#: build/next-steps-widget/bundle.js:1769
 msgid "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists."
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4100
+#: build/next-steps-widget/bundle.js:2167
+#: build/next-steps-portal/bundle.js:2470
+#: build/next-steps-widget/bundle.js:1774
 msgid "Connection Error"
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4100
+#: build/next-steps-widget/bundle.js:2167
+#: build/next-steps-portal/bundle.js:2470
+#: build/next-steps-widget/bundle.js:1774
 msgid "Something went wrong"
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4108
+#: build/next-steps-widget/bundle.js:2175
+#: build/next-steps-portal/bundle.js:2478
+#: build/next-steps-widget/bundle.js:1782
 msgid "Try Again"
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4112
+#: build/next-steps-portal/bundle.js:4181
+#: build/next-steps-portal/bundle.js:4233
+#: build/next-steps-widget/bundle.js:2179
+#: build/next-steps-widget/bundle.js:2248
+#: build/next-steps-widget/bundle.js:2300
+#: build/next-steps-portal/bundle.js:2485
+#: build/next-steps-portal/bundle.js:2558
+#: build/next-steps-portal/bundle.js:2611
+#: build/next-steps-widget/bundle.js:1789
+#: build/next-steps-widget/bundle.js:1862
+#: build/next-steps-widget/bundle.js:1915
 msgid "Refresh Page"
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4117
+#: build/next-steps-widget/bundle.js:2184
+#: build/next-steps-portal/bundle.js:2491
+#: build/next-steps-widget/bundle.js:1795
 msgid "Technical Details"
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4175
+#: build/next-steps-widget/bundle.js:2242
+#: build/next-steps-portal/bundle.js:2550
+#: build/next-steps-widget/bundle.js:1854
 msgid "Next Steps Unavailable"
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4177
+#: build/next-steps-widget/bundle.js:2244
+#: build/next-steps-portal/bundle.js:2552
+#: build/next-steps-widget/bundle.js:1856
 msgid "The Next Steps module encountered an error and cannot be displayed right now."
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Task temporarily unavailable"
+#: build/next-steps-portal/bundle.js:4227
+#: build/next-steps-widget/bundle.js:2294
+#: build/next-steps-portal/bundle.js:2603
+#: build/next-steps-widget/bundle.js:1907
+msgid "Connection Issue"
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Close"
+#: build/next-steps-portal/bundle.js:4229
+#: build/next-steps-widget/bundle.js:2296
+#: build/next-steps-portal/bundle.js:2605
+#: build/next-steps-widget/bundle.js:1909
+msgid "Unable to save your changes right now. Please check your connection and try again."
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "All complete!"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4664
+#: build/next-steps-widget/bundle.js:2699
+#: build/next-steps-portal/bundle.js:2984
+#: build/next-steps-widget/bundle.js:2259
 msgid "Loading next steps..."
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4739
+#: build/next-steps-widget/bundle.js:2732
+#: build/next-steps-portal/bundle.js:3072
+#: build/next-steps-widget/bundle.js:2297
 msgid "Hide skipped tasks"
 msgstr ""
 
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
+#: build/next-steps-portal/bundle.js:4739
+#: build/next-steps-widget/bundle.js:2732
+#: build/next-steps-portal/bundle.js:3073
+#: build/next-steps-widget/bundle.js:2298
 msgid "View skipped tasks"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:4792
+#: build/next-steps-portal/bundle.js:3094
+msgid "No Pending tasks"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:4802
+#: build/next-steps-portal/bundle.js:3102
+msgid "Hooray!"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:4805
+#: build/next-steps-portal/bundle.js:3105
+msgid "You don’t have any pending tasks today"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:5148
+#: build/next-steps-portal/bundle.js:3414
+msgid "Completed"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:5153
+#: build/next-steps-portal/bundle.js:3421
+msgid "Skipped"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:5231
+#: build/next-steps-portal/bundle.js:3528
+msgid "Skip it"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:5236
+#: build/next-steps-portal/bundle.js:3538
+msgid "Undo"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:8920
+#: build/next-steps-widget/bundle.js:2915
+#: build/next-steps-portal/bundle.js:6824
+#: build/next-steps-widget/bundle.js:2422
+msgid "Task temporarily unavailable"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:8942
+#: build/next-steps-widget/bundle.js:2937
+#: build/next-steps-portal/bundle.js:6851
+#: build/next-steps-widget/bundle.js:2449
+msgid "Close"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:8949
+#: build/next-steps-widget/bundle.js:2944
+#: build/next-steps-portal/bundle.js:6856
+#: build/next-steps-widget/bundle.js:2454
+msgid "All complete!"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:9094
+#: build/next-steps-widget/bundle.js:3089
+#: build/next-steps-portal/bundle.js:7001
+#: build/next-steps-widget/bundle.js:2599
+msgid "Mark Complete"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:9105
+#: build/next-steps-widget/bundle.js:3100
+#: build/next-steps-portal/bundle.js:7019
+#: build/next-steps-widget/bundle.js:2617
+msgid "Skip"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:9136
+#: build/next-steps-widget/bundle.js:3131
+#: build/next-steps-portal/bundle.js:7056
+#: build/next-steps-widget/bundle.js:2654
+msgid "Restart"
+msgstr ""
+
+#: build/next-steps-portal/bundle.js:9170
+#: build/next-steps-portal/bundle.js:9181
+#: build/next-steps-widget/bundle.js:3165
+#: build/next-steps-widget/bundle.js:3176
+#: build/next-steps-portal/bundle.js:7096
+#: build/next-steps-portal/bundle.js:7111
+#: build/next-steps-widget/bundle.js:2694
+#: build/next-steps-widget/bundle.js:2709
+msgid "Unskip"
 msgstr ""

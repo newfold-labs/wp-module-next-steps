@@ -57,6 +57,7 @@ export const SectionCard = ( {
 	trackId,
 	sectionId,
 	isPrimary = false,
+	mandatory = false,
 	date_completed = null,
 	expiryDate = null,
 	expiresIn = null,
@@ -345,24 +346,29 @@ export const SectionCard = ( {
 							</Button>
 						</div>
 						{
-							'dismissed' !== status && <div className="nfd-nextsteps-buttons-actions-secondary">
-								<Link
-									as="button"
-									className="nfd-nextsteps-button nfd-nextsteps-button--skip"
-									onClick={ ( e ) => sectionUpdateCallback( trackId, sectionId, 'dismissed' ) }
-								>
-									{ __( 'Skip it', 'wp-module-next-steps' ) }
-								</Link>
-							</div>
-						}
-						{ 'dismissed' === status &&
-							<Link
-								className="nfd-nextsteps-button nfd-nextsteps-button--undo"
-								onClick={ ( e ) => sectionUpdateCallback( trackId, sectionId, 'new' ) }
-							>
-								{ redoIcon }
-								{ __( 'Undo', 'wp-module-next-steps' ) }
-							</Link>
+							!mandatory &&
+							<>
+								{
+									'dismissed' !== status && <div className="nfd-nextsteps-buttons-actions-secondary">
+										<Link
+											as="button"
+											className="nfd-nextsteps-button nfd-nextsteps-button--skip"
+											onClick={ ( e ) => sectionUpdateCallback( trackId, sectionId, 'dismissed' ) }
+										>
+											{ __( 'Skip it', 'wp-module-next-steps' ) }
+										</Link>
+									</div>
+								}
+								{ 'dismissed' === status &&
+									<Link
+										className="nfd-nextsteps-button nfd-nextsteps-button--undo"
+										onClick={ ( e ) => sectionUpdateCallback( trackId, sectionId, 'new' ) }
+									>
+										{ redoIcon }
+										{ __( 'Undo', 'wp-module-next-steps' ) }
+									</Link>
+								}
+							</>
 						}
 					</div>
 				</div>

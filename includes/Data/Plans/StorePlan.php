@@ -70,6 +70,7 @@ class StorePlan {
 								'icon'        => 'paint-brush',
 								'modal_title' => __( 'Customize your Store', 'wp-module-next-steps' ),
 								'modal_desc'  => __( 'Customize the header, footer, and homepage — just few steps to give your site a personal touch.', 'wp-module-next-steps' ),
+								'mandatory'   => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_upload_logo',
@@ -131,6 +132,7 @@ class StorePlan {
 								'icon'        => 'archive-box',
 								'status'      => 'new',
 								'complete_on_event' => 'nfd-submit-quick-add-product-success',
+								'mandatory'   => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_add_product',
@@ -152,6 +154,7 @@ class StorePlan {
 								'cta'         => __( 'Set up Payments', 'wp-module-next-steps' ),
 								'icon'        => 'credit-card',
 								'status'      => 'new',
+								'mandatory'   => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_setup_payments',
