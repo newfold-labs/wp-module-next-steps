@@ -1,20 +1,21 @@
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-next-steps/issues\n"
-"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: pt_BR <LL@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
+"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
+"Language: pt_BR\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: bootstrap.php:30 includes/NextSteps.php:79 includes/NextStepsWidget.php:39
+#: bootstrap.php:30
+#: includes/NextSteps.php:81
+#: includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Próximos passos"
 
@@ -24,9 +25,7 @@ msgstr "Configuração da loja"
 
 #: includes/Data/Plans/StorePlan.php:57
 msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr ""
-"Conclua a configuração da sua loja de comércio eletrônico com estas etapas "
-"essenciais:"
+msgstr "Conclua a configuração da sua loja de comércio eletrônico com estas etapas essenciais:"
 
 #: includes/Data/Plans/BlogPlan.php:52
 #: includes/Data/Plans/CorporatePlan.php:70
@@ -39,11 +38,13 @@ msgstr "Construir"
 msgid "Quick Setup"
 msgstr "Configuração rápida"
 
-#: includes/Data/Plans/BlogPlan.php:81 includes/Data/Plans/StorePlan.php:77
+#: includes/Data/Plans/BlogPlan.php:81
+#: includes/Data/Plans/StorePlan.php:77
 msgid "Upload Logo"
 msgstr "Carregar logotipo"
 
-#: includes/Data/Plans/BlogPlan.php:89 includes/Data/Plans/StorePlan.php:87
+#: includes/Data/Plans/BlogPlan.php:89
+#: includes/Data/Plans/StorePlan.php:87
 msgid "Choose Colors and Fonts"
 msgstr "Escolha cores e fontes"
 
@@ -367,7 +368,8 @@ msgstr "Executar um teste de velocidade"
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Planeje sua próxima atualização de conteúdo ou campanha"
 
-#: includes/StepsApi.php:362 includes/StepsApi.php:410
+#: includes/StepsApi.php:362
+#: includes/StepsApi.php:410
 msgid "No plan found."
 msgstr "Nenhum plano encontrado."
 
@@ -379,7 +381,8 @@ msgstr "Nenhuma trilha encontrada no plano."
 msgid "No sections found in track."
 msgstr "Nenhuma seção encontrada na pista."
 
-#: includes/StepsApi.php:497 includes/StepsApi.php:595
+#: includes/StepsApi.php:497
+#: includes/StepsApi.php:595
 #: includes/StepsApi.php:711
 msgid "Invalid parameters provided."
 msgstr "Parâmetros inválidos fornecidos."
@@ -392,7 +395,8 @@ msgstr "Status inválido fornecido."
 msgid "Step not found."
 msgstr "Etapa não encontrada."
 
-#: includes/StepsApi.php:606 includes/StepsApi.php:645
+#: includes/StepsApi.php:606
+#: includes/StepsApi.php:645
 msgid "Section not found."
 msgstr "Seção não encontrada."
 
@@ -404,56 +408,38 @@ msgstr "Tipo de plano inválido fornecido."
 msgid "Failed to add task to section."
 msgstr "Falha ao adicionar tarefa à seção."
 
-#: build/next-steps-portal/bundle.js:9094
-#: build/next-steps-widget/bundle.js:3089
-#: build/next-steps-portal/bundle.js:7001
-#: build/next-steps-widget/bundle.js:2599
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Mark Complete"
 msgstr "Marcar como concluído"
 
-#: build/next-steps-portal/bundle.js:9105
-#: build/next-steps-widget/bundle.js:3100
-#: build/next-steps-portal/bundle.js:7019
-#: build/next-steps-widget/bundle.js:2617
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Skip"
 msgstr "Saltitar"
 
-#: build/next-steps-portal/bundle.js:9136
-#: build/next-steps-widget/bundle.js:3131
-#: build/next-steps-portal/bundle.js:7056
-#: build/next-steps-widget/bundle.js:2654
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: build/next-steps-portal/bundle.js:9170
-#: build/next-steps-portal/bundle.js:9181
-#: build/next-steps-widget/bundle.js:3165
-#: build/next-steps-widget/bundle.js:3176
-#: build/next-steps-portal/bundle.js:7096
-#: build/next-steps-portal/bundle.js:7111
-#: build/next-steps-widget/bundle.js:2694
-#: build/next-steps-widget/bundle.js:2709
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Unskip"
 msgstr "Cancelar pular"
 
-#: build/next-steps-portal/bundle.js:4739
-#: build/next-steps-widget/bundle.js:2732
-#: build/next-steps-portal/bundle.js:3072
-#: build/next-steps-widget/bundle.js:2297
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Hide skipped tasks"
 msgstr "Ocultar tarefas ignoradas"
 
-#: build/next-steps-portal/bundle.js:4739
-#: build/next-steps-widget/bundle.js:2732
-#: build/next-steps-portal/bundle.js:3073
-#: build/next-steps-widget/bundle.js:2298
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "View skipped tasks"
 msgstr "Exibir tarefas ignoradas"
 
-#: build/next-steps-portal/bundle.js:4664
-#: build/next-steps-widget/bundle.js:2699
-#: build/next-steps-portal/bundle.js:2984
-#: build/next-steps-widget/bundle.js:2259
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Loading next steps..."
 msgstr "Carregando próximos passos..."
 
@@ -485,112 +471,69 @@ msgstr "Adicionar um formulário de contato com roteamento de e-mail"
 msgid "Add Client Logos or Testimonials or Reviews"
 msgstr "Adicione logotipos de clientes, depoimentos ou avaliações"
 
-#: includes/StepsApi.php:722 includes/StepsApi.php:740
+#: includes/StepsApi.php:722
+#: includes/StepsApi.php:740
 #: includes/StepsApi.php:751
 msgid "Track not found."
 msgstr "Faixa não encontrada."
 
-#: build/next-steps-portal/bundle.js:8949
-#: build/next-steps-widget/bundle.js:2944
-#: build/next-steps-portal/bundle.js:6856
-#: build/next-steps-widget/bundle.js:2454
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "All complete!"
 msgstr "Tudo completo!"
 
-#: build/next-steps-portal/bundle.js:8942
-#: build/next-steps-widget/bundle.js:2937
-#: build/next-steps-portal/bundle.js:6851
-#: build/next-steps-widget/bundle.js:2449
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Close"
 msgstr "Fechar"
 
-#: build/next-steps-portal/bundle.js:4094
-#: build/next-steps-widget/bundle.js:2161
-#: build/next-steps-portal/bundle.js:2464
-#: build/next-steps-widget/bundle.js:1768
-msgid ""
-"We encountered a connection error. Please check your internet connection and"
-" try again."
-msgstr ""
-"Encontramos um erro de conexão. Verifique sua conexão com a Internet e tente"
-" novamente."
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "We encountered a connection error. Please check your internet connection and try again."
+msgstr "Encontramos um erro de conexão. Verifique sua conexão com a Internet e tente novamente."
 
-#: build/next-steps-portal/bundle.js:4094
-#: build/next-steps-widget/bundle.js:2161
-#: build/next-steps-portal/bundle.js:2465
-#: build/next-steps-widget/bundle.js:1769
-msgid ""
-"We encountered an unexpected error. Please try refreshing the page or "
-"contact support if the problem persists."
-msgstr ""
-"Encontramos um erro inesperado. Tente atualizar a página ou entre em contato"
-" com o suporte se o problema persistir."
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists."
+msgstr "Encontramos um erro inesperado. Tente atualizar a página ou entre em contato com o suporte se o problema persistir."
 
-#: build/next-steps-portal/bundle.js:4100
-#: build/next-steps-widget/bundle.js:2167
-#: build/next-steps-portal/bundle.js:2470
-#: build/next-steps-widget/bundle.js:1774
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Connection Error"
 msgstr "Erro de conexão"
 
-#: build/next-steps-portal/bundle.js:4100
-#: build/next-steps-widget/bundle.js:2167
-#: build/next-steps-portal/bundle.js:2470
-#: build/next-steps-widget/bundle.js:1774
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Something went wrong"
 msgstr "Algo deu errado"
 
-#: build/next-steps-portal/bundle.js:4108
-#: build/next-steps-widget/bundle.js:2175
-#: build/next-steps-portal/bundle.js:2478
-#: build/next-steps-widget/bundle.js:1782
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Try Again"
 msgstr "Tentar novamente"
 
-#: build/next-steps-portal/bundle.js:4112
-#: build/next-steps-portal/bundle.js:4181
-#: build/next-steps-portal/bundle.js:4233
-#: build/next-steps-widget/bundle.js:2179
-#: build/next-steps-widget/bundle.js:2248
-#: build/next-steps-widget/bundle.js:2300
-#: build/next-steps-portal/bundle.js:2485
-#: build/next-steps-portal/bundle.js:2558
-#: build/next-steps-portal/bundle.js:2611
-#: build/next-steps-widget/bundle.js:1789
-#: build/next-steps-widget/bundle.js:1862
-#: build/next-steps-widget/bundle.js:1915
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Refresh Page"
 msgstr "Atualizar página"
 
-#: build/next-steps-portal/bundle.js:4117
-#: build/next-steps-widget/bundle.js:2184
-#: build/next-steps-portal/bundle.js:2491
-#: build/next-steps-widget/bundle.js:1795
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Technical Details"
 msgstr "Detalhes técnicos"
 
-#: build/next-steps-portal/bundle.js:4175
-#: build/next-steps-widget/bundle.js:2242
-#: build/next-steps-portal/bundle.js:2550
-#: build/next-steps-widget/bundle.js:1854
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Next Steps Unavailable"
 msgstr "Próximos passos indisponíveis"
 
-#: build/next-steps-portal/bundle.js:4177
-#: build/next-steps-widget/bundle.js:2244
-#: build/next-steps-portal/bundle.js:2552
-#: build/next-steps-widget/bundle.js:1856
-msgid ""
-"The Next Steps module encountered an error and cannot be displayed right "
-"now."
-msgstr ""
-"O módulo Próximas etapas encontrou um erro e não pode ser exibido no "
-"momento."
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "The Next Steps module encountered an error and cannot be displayed right now."
+msgstr "O módulo Próximas etapas encontrou um erro e não pode ser exibido no momento."
 
-#: build/next-steps-portal/bundle.js:8920
-#: build/next-steps-widget/bundle.js:2915
-#: build/next-steps-portal/bundle.js:6824
-#: build/next-steps-widget/bundle.js:2422
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
 msgid "Task temporarily unavailable"
 msgstr "Tarefa temporariamente indisponível"
 
@@ -652,14 +595,8 @@ msgid "Step 1: Build your Store"
 msgstr "Etapa 1: crie sua loja"
 
 #: includes/Data/Plans/StorePlan.php:67
-msgid ""
-"Congrats — you’ve built your store! Now it’s time to make it yours. "
-"Customize the header, footer, and homepage to give your site a personal "
-"touch."
-msgstr ""
-"Parabéns - você construiu sua loja! Agora é hora de torná-lo seu. "
-"Personalize o cabeçalho, o rodapé e a página inicial para dar um toque "
-"pessoal ao seu site."
+msgid "Congrats — you’ve built your store! Now it’s time to make it yours. Customize the header, footer, and homepage to give your site a personal touch."
+msgstr "Parabéns - você construiu sua loja! Agora é hora de torná-lo seu. Personalize o cabeçalho, o rodapé e a página inicial para dar um toque pessoal ao seu site."
 
 #: includes/Data/Plans/StorePlan.php:68
 msgid "Customize Store"
@@ -670,26 +607,20 @@ msgid "Customize your Store"
 msgstr "Personalize sua loja"
 
 #: includes/Data/Plans/StorePlan.php:72
-msgid ""
-"Customize the header, footer, and homepage — just few steps to give your "
-"site a personal touch."
-msgstr ""
-"Personalize o cabeçalho, o rodapé e a página inicial — apenas alguns passos "
-"para dar um toque pessoal ao seu site."
+msgid "Customize the header, footer, and homepage — just few steps to give your site a personal touch."
+msgstr "Personalize o cabeçalho, o rodapé e a página inicial — apenas alguns passos para dar um toque pessoal ao seu site."
 
 #: includes/Data/Plans/StorePlan.php:129
 msgid "Step 2: Add your first product"
 msgstr "Etapa 2: adicionar seu primeiro produto"
 
-#: includes/Data/Plans/StorePlan.php:130 includes/Data/Plans/StorePlan.php:140
-msgid ""
-"Start bringing your store to life by adding a product in just a few simple "
-"steps."
-msgstr ""
-"Comece a dar vida à sua loja adicionando um produto em apenas alguns passos "
-"simples."
+#: includes/Data/Plans/StorePlan.php:130
+#: includes/Data/Plans/StorePlan.php:140
+msgid "Start bringing your store to life by adding a product in just a few simple steps."
+msgstr "Comece a dar vida à sua loja adicionando um produto em apenas alguns passos simples."
 
-#: includes/Data/Plans/StorePlan.php:131 includes/Data/Plans/StorePlan.php:139
+#: includes/Data/Plans/StorePlan.php:131
+#: includes/Data/Plans/StorePlan.php:139
 msgid "Add product"
 msgstr "Adicionar produto"
 
@@ -698,14 +629,11 @@ msgid "Step 3: Set Up Payments"
 msgstr "Etapa 3: configurar pagamentos"
 
 #: includes/Data/Plans/StorePlan.php:153
-msgid ""
-"Set up payments to start selling — choose your preferred payment methods and"
-" connect them in just a few clicks."
-msgstr ""
-"Configure pagamentos para começar a vender — escolha seus métodos de "
-"pagamento preferidos e conecte-os com apenas alguns cliques."
+msgid "Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks."
+msgstr "Configure pagamentos para começar a vender — escolha seus métodos de pagamento preferidos e conecte-os com apenas alguns cliques."
 
-#: includes/Data/Plans/StorePlan.php:154 includes/Data/Plans/StorePlan.php:161
+#: includes/Data/Plans/StorePlan.php:154
+#: includes/Data/Plans/StorePlan.php:161
 msgid "Set up Payments"
 msgstr "Configurar pagamentos"
 
@@ -714,12 +642,8 @@ msgid "Setup the Shopping Experience"
 msgstr "Configure a experiência de compra"
 
 #: includes/Data/Plans/StorePlan.php:174
-msgid ""
-"Personalize your cart and checkout to match your brand and give customers a "
-"seamless shopping experience"
-msgstr ""
-"Personalize seu carrinho e finalização da compra para combinar com sua marca"
-" e oferecer aos clientes uma experiência de compra perfeita"
+msgid "Personalize your cart and checkout to match your brand and give customers a seamless shopping experience"
+msgstr "Personalize seu carrinho e finalização da compra para combinar com sua marca e oferecer aos clientes uma experiência de compra perfeita"
 
 #: includes/Data/Plans/StorePlan.php:175
 msgid "Start Now"
@@ -730,12 +654,8 @@ msgid "Setup the shopping experience"
 msgstr "Configure a experiência de compra"
 
 #: includes/Data/Plans/StorePlan.php:178
-msgid ""
-"Personalize your cart and checkout experience, and configure taxes and "
-"shipping options"
-msgstr ""
-"Personalize seu carrinho e experiência de checkout e configure impostos e "
-"opções de envio"
+msgid "Personalize your cart and checkout experience, and configure taxes and shipping options"
+msgstr "Personalize seu carrinho e experiência de checkout e configure impostos e opções de envio"
 
 #: includes/Data/Plans/StorePlan.php:182
 msgid "Customize the shop page"
@@ -749,30 +669,26 @@ msgstr "Personalizar a página do carrinho"
 msgid "Customize the checkout flow"
 msgstr "Personalizar o fluxo de checkout"
 
-#: includes/Data/Plans/StorePlan.php:214 includes/Data/Plans/StorePlan.php:218
+#: includes/Data/Plans/StorePlan.php:214
+#: includes/Data/Plans/StorePlan.php:218
 msgid "Build your marketing strategy"
 msgstr "Construa sua estratégia de marketing"
 
 #: includes/Data/Plans/StorePlan.php:215
-msgid ""
-"Kickstart your store’s success with smart marketing strategies. Just few "
-"steps to build visibility, attract shoppers, and turn visits into loyal "
-"sales."
-msgstr ""
-"Impulsione o sucesso da sua loja com estratégias de marketing inteligentes. "
-"Apenas alguns passos para criar visibilidade, atrair compradores e "
-"transformar visitas em vendas fiéis."
+msgid "Kickstart your store’s success with smart marketing strategies. Just few steps to build visibility, attract shoppers, and turn visits into loyal sales."
+msgstr "Impulsione o sucesso da sua loja com estratégias de marketing inteligentes. Apenas alguns passos para criar visibilidade, atrair compradores e transformar visitas em vendas fiéis."
 
-#: includes/Data/Plans/StorePlan.php:216 includes/Data/Plans/StorePlan.php:267
-#: includes/Data/Plans/StorePlan.php:288 includes/Data/Plans/StorePlan.php:308
+#: includes/Data/Plans/StorePlan.php:216
+#: includes/Data/Plans/StorePlan.php:267
+#: includes/Data/Plans/StorePlan.php:288
+#: includes/Data/Plans/StorePlan.php:308
 #: includes/Data/Plans/StorePlan.php:328
 msgid "Start now"
 msgstr "Comece agora"
 
 #: includes/Data/Plans/StorePlan.php:219
 msgid "Kickstart your store’s success with smart marketing strategies"
-msgstr ""
-"Impulsione o sucesso da sua loja com estratégias de marketing inteligentes"
+msgstr "Impulsione o sucesso da sua loja com estratégias de marketing inteligentes"
 
 #: includes/Data/Plans/StorePlan.php:223
 msgid "Configure a welcome discount popup"
@@ -790,98 +706,79 @@ msgstr "Ativar e-mails de carrinho abandonado"
 msgid "Customize your store emails"
 msgstr "Personalize os e-mails da sua loja"
 
-#: includes/Data/Plans/StorePlan.php:265 includes/Data/Plans/StorePlan.php:273
+#: includes/Data/Plans/StorePlan.php:265
+#: includes/Data/Plans/StorePlan.php:273
 msgid "Improve the performance and speed of your shop"
 msgstr "Melhore o desempenho e a velocidade da sua loja"
 
 #: includes/Data/Plans/StorePlan.php:266
-msgid ""
-"Speed up your store by optimizing page performance with Jetpack Boost. "
-"Easily activate one-click optimizations to boost your Core Web Vitals."
-msgstr ""
-"Acelere sua loja otimizando o desempenho da página com o Jetpack Boost. "
-"Ative facilmente otimizações com um clique para aumentar seus Core Web "
-"Vitals."
+msgid "Speed up your store by optimizing page performance with Jetpack Boost. Easily activate one-click optimizations to boost your Core Web Vitals."
+msgstr "Acelere sua loja otimizando o desempenho da página com o Jetpack Boost. Ative facilmente otimizações com um clique para aumentar seus Core Web Vitals."
 
 #: includes/Data/Plans/StorePlan.php:285
 msgid "Collect and show reviews for your products"
 msgstr "Colete e mostre avaliações de seus produtos"
 
 #: includes/Data/Plans/StorePlan.php:286
-msgid ""
-"Collect authentic reviews from your customers to build trust, highlight "
-"product quality, and help increase conversions."
-msgstr ""
-"Colete avaliações autênticas de seus clientes para criar confiança, destacar"
-" a qualidade do produto e ajudar a aumentar as conversões."
+msgid "Collect authentic reviews from your customers to build trust, highlight product quality, and help increase conversions."
+msgstr "Colete avaliações autênticas de seus clientes para criar confiança, destacar a qualidade do produto e ajudar a aumentar as conversões."
 
 #: includes/Data/Plans/StorePlan.php:293
 msgid "Collect and Show Reviews for Your Products"
 msgstr "Colete e mostre avaliações de seus produtos"
 
-#: includes/Data/Plans/StorePlan.php:305 includes/Data/Plans/StorePlan.php:313
+#: includes/Data/Plans/StorePlan.php:305
+#: includes/Data/Plans/StorePlan.php:313
 msgid "Launch an affiliate program"
 msgstr "Lançar um programa de afiliados"
 
 #: includes/Data/Plans/StorePlan.php:306
-msgid ""
-"Launch your own affiliate program to promote your products, reach new "
-"audiences and grow sales."
-msgstr ""
-"Lance seu próprio programa de afiliados para promover seus produtos, "
-"alcançar novos públicos e aumentar as vendas."
+msgid "Launch your own affiliate program to promote your products, reach new audiences and grow sales."
+msgstr "Lance seu próprio programa de afiliados para promover seus produtos, alcançar novos públicos e aumentar as vendas."
 
-#: includes/Data/Plans/StorePlan.php:325 includes/Data/Plans/StorePlan.php:333
+#: includes/Data/Plans/StorePlan.php:325
+#: includes/Data/Plans/StorePlan.php:333
 msgid "Setup Yoast Premium to drive traffic to your store"
 msgstr "Configure o Yoast Premium para direcionar o tráfego para sua loja"
 
 #: includes/Data/Plans/StorePlan.php:326
-msgid ""
-"Optimize your content for search engines to improve rankings, attract more "
-"visitors, and boost your store’s visibility online."
-msgstr ""
-"Otimize seu conteúdo para mecanismos de pesquisa para melhorar as "
-"classificações, atrair mais visitantes e aumentar a visibilidade online da "
-"sua loja."
+msgid "Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online."
+msgstr "Otimize seu conteúdo para mecanismos de pesquisa para melhorar as classificações, atrair mais visitantes e aumentar a visibilidade online da sua loja."
 
-#: build/next-steps-portal/bundle.js:4792
-#: build/next-steps-portal/bundle.js:3094
+#: build/next-steps-portal/bundle.js:1
 msgid "No Pending tasks"
 msgstr "Sem tarefas pendentes"
 
-#: build/next-steps-portal/bundle.js:4802
-#: build/next-steps-portal/bundle.js:3102
+#: build/next-steps-portal/bundle.js:1
 msgid "Hooray!"
 msgstr "Viva!"
 
-#: build/next-steps-portal/bundle.js:4805
-#: build/next-steps-portal/bundle.js:3105
+#: build/next-steps-portal/bundle.js:1
 msgid "You don’t have any pending tasks today"
 msgstr "Você não tem nenhuma tarefa pendente hoje"
 
-#: build/next-steps-portal/bundle.js:5148
-#: build/next-steps-portal/bundle.js:3414
+#: build/next-steps-portal/bundle.js:1
 msgid "Completed"
 msgstr "Concluído"
 
-#: build/next-steps-portal/bundle.js:5153
-#: build/next-steps-portal/bundle.js:3421
+#: build/next-steps-portal/bundle.js:1
 msgid "Skipped"
 msgstr "Ignorada"
 
-#: build/next-steps-portal/bundle.js:5231
-#: build/next-steps-portal/bundle.js:3528
+#: build/next-steps-portal/bundle.js:1
 msgid "Skip it"
 msgstr "Pule isso"
 
-#: build/next-steps-portal/bundle.js:5236
-#: build/next-steps-portal/bundle.js:3538
+#: build/next-steps-portal/bundle.js:1
 msgid "Undo"
 msgstr "Desfazer"
 
-#: includes/StepsApi.php:506 includes/StepsApi.php:535
-#: includes/StepsApi.php:601 includes/StepsApi.php:651
-#: includes/StepsApi.php:717 includes/StepsApi.php:746
+#: includes/StepsApi.php:506
+#: includes/StepsApi.php:535
+#: includes/StepsApi.php:601
+#: includes/StepsApi.php:651
+#: includes/StepsApi.php:717
+#: includes/StepsApi.php:746
 msgid "Plan not found."
 msgstr "Plano não encontrado."
 
@@ -896,21 +793,3 @@ msgstr "Tarefa atualizada não encontrada."
 #: includes/StepsApi.php:656
 msgid "Updated section not found."
 msgstr "Seção atualizada não encontrada."
-
-#: build/next-steps-portal/bundle.js:4227
-#: build/next-steps-widget/bundle.js:2294
-#: build/next-steps-portal/bundle.js:2603
-#: build/next-steps-widget/bundle.js:1907
-msgid "Connection Issue"
-msgstr "Problema de conexão"
-
-#: build/next-steps-portal/bundle.js:4229
-#: build/next-steps-widget/bundle.js:2296
-#: build/next-steps-portal/bundle.js:2605
-#: build/next-steps-widget/bundle.js:1909
-msgid ""
-"Unable to save your changes right now. Please check your connection and try "
-"again."
-msgstr ""
-"Não é possível salvar suas alterações no momento. Verifique sua conexão e "
-"tente novamente."
