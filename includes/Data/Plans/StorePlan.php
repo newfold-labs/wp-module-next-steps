@@ -70,6 +70,7 @@ class StorePlan {
 								'icon'        => 'paint-brush',
 								'modal_title' => __( 'Customize your Store', 'wp-module-next-steps' ),
 								'modal_desc'  => __( 'Customize the header, footer, and homepage — just few steps to give your site a personal touch.', 'wp-module-next-steps' ),
+								'mandatory'   => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_upload_logo',
@@ -131,6 +132,7 @@ class StorePlan {
 								'icon'        => 'archive-box',
 								'status'      => 'new',
 								'complete_on_event' => 'nfd-submit-quick-add-product-success',
+								'mandatory'   => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_add_product',
@@ -152,7 +154,7 @@ class StorePlan {
 								'cta'         => __( 'Set up Payments', 'wp-module-next-steps' ),
 								'icon'        => 'credit-card',
 								'status'      => 'new',
-								'dismissible' => true,
+								'mandatory'   => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_setup_payments',
@@ -174,7 +176,6 @@ class StorePlan {
 								'icon'        => 'shopping-cart',
 								'modal_title' => __( 'Setup the shopping experience', 'wp-module-next-steps' ),
 								'modal_desc'  => __( 'Personalize your cart and checkout experience, and configure taxes and shipping options', 'wp-module-next-steps' ),
-								'dismissible' => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_customize_shop_page',
@@ -216,7 +217,6 @@ class StorePlan {
 								'icon'        => 'rocket-launch',
 								'modal_title' => __( 'Build your marketing strategy', 'wp-module-next-steps' ),
 								'modal_desc'  => __( 'Kickstart your store’s success with smart marketing strategies', 'wp-module-next-steps' ),
-								'dismissible' => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_marketing_welcome_popup',
@@ -267,7 +267,6 @@ class StorePlan {
 								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
 								'icon'        => 'jetpack',
 								'status'      => 'new',
-								'dismissible' => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_improve_performance',
@@ -288,7 +287,6 @@ class StorePlan {
 								'href'        => '',
 								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
 								'icon'        => 'start',
-								'dismissible' => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_collect_reviews_task',
@@ -309,7 +307,6 @@ class StorePlan {
 								'status'      => 'new',
 								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
 								'icon'        => 'users',
-								'dismissible' => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_launch_affiliate',
@@ -330,7 +327,6 @@ class StorePlan {
 								'status'      => 'new',
 								'cta'         => __( 'Start now', 'wp-module-next-steps' ),
 								'icon'        => 'yoast',
-								'dismissible' => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_setup_yoast_premium',

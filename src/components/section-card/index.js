@@ -57,7 +57,7 @@ export const SectionCard = ( {
 	trackId,
 	sectionId,
 	isPrimary = false,
-	dismissible = false,
+	mandatory = false,
 	date_completed = null,
 	expiryDate = null,
 	expiresIn = null,
@@ -346,7 +346,7 @@ export const SectionCard = ( {
 							</Button>
 						</div>
 						{
-							dismissible &&
+							!mandatory &&
 							<>
 								{
 									'dismissed' !== status && <div className="nfd-nextsteps-buttons-actions-secondary">

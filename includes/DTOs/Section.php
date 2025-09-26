@@ -98,7 +98,7 @@ class Section {
 	 *
 	 * @var bool
 	 */
-	public $dismissible;
+	public $mandatory;
 
 	/**
 	 * Section constructor
@@ -117,7 +117,7 @@ class Section {
 		$this->modal_title    = $data['modal_title'] ?? '';
 		$this->modal_desc     = $data['modal_desc'] ?? '';
 		$this->complete_on_event     = $data['complete_on_event'] ?? '';
-		$this->dismissible     = $data['dismissible'] ?? false;
+		$this->mandatory     = $data['mandatory'] ?? false;
 		$this->tasks          = array();
 
 		// Convert task arrays to Task objects
@@ -150,7 +150,7 @@ class Section {
 			'modal_title'    => $this->modal_title,
 			'modal_desc'     => $this->modal_desc,
 			'complete_on_event' => $this->complete_on_event,
-			'dismissible' => $this->dismissible,
+			'mandatory' => $this->mandatory,
 			'tasks'          => array_map(
 				function ( Task $task ) {
 					return $task->to_array();
