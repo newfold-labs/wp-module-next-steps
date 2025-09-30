@@ -18,9 +18,9 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 		$this->assertTrue( method_exists( TemplateUrlHelper::class, 'get_url_to_active_template_editor' ) );
 		$this->assertTrue( method_exists( TemplateUrlHelper::class, 'get_url_to_home_template_editor' ) );
 		$this->assertTrue( method_exists( TemplateUrlHelper::class, 'is_block_theme' ) );
-		$this->assertTrue( is_callable( [ TemplateUrlHelper::class, 'get_url_to_active_template_editor' ] ) );
-		$this->assertTrue( is_callable( [ TemplateUrlHelper::class, 'get_url_to_home_template_editor' ] ) );
-		$this->assertTrue( is_callable( [ TemplateUrlHelper::class, 'is_block_theme' ] ) );
+		$this->assertTrue( is_callable( array( TemplateUrlHelper::class, 'get_url_to_active_template_editor' ) ) );
+		$this->assertTrue( is_callable( array( TemplateUrlHelper::class, 'get_url_to_home_template_editor' ) ) );
+		$this->assertTrue( is_callable( array( TemplateUrlHelper::class, 'is_block_theme' ) ) );
 	}
 
 	/**
@@ -52,12 +52,12 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 							'label' => 'Custom Section',
 							'tasks' => array(
 								array(
-									'id'   => 'custom_task_with_template_url',
-									'title' => 'Custom Task with Template URL',
-									'href'  => TemplateUrlHelper::get_url_to_active_template_editor( 'header' ),
-									'status' => 'new',
+									'id'       => 'custom_task_with_template_url',
+									'title'    => 'Custom Task with Template URL',
+									'href'     => TemplateUrlHelper::get_url_to_active_template_editor( 'header' ),
+									'status'   => 'new',
 									'priority' => 1,
-									'source' => 'test',
+									'source'   => 'test',
 								),
 							),
 						),
@@ -118,12 +118,12 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 			// We can't easily mock this in a unit test, so we'll just verify the logic
 			// In a real scenario, this would be tested with a classic theme
 			$is_block_theme = TemplateUrlHelper::is_block_theme();
-			
+
 			if ( ! $is_block_theme ) {
 				// If we're not in a block theme, the methods should return null
 				$header_url = TemplateUrlHelper::get_url_to_active_template_editor( 'header' );
-				$home_url = TemplateUrlHelper::get_url_to_home_template_editor();
-				
+				$home_url   = TemplateUrlHelper::get_url_to_home_template_editor();
+
 				$this->assertNull( $header_url );
 				$this->assertNull( $home_url );
 			}
