@@ -2,6 +2,8 @@
 
 namespace NewfoldLabs\WP\Module\NextSteps;
 
+use function NewfoldLabs\WP\ModuleLoader\container;
+
 /**
  * Plugin Redirect Handler
  *
@@ -46,7 +48,7 @@ class PluginRedirect {
 			'jetpack'          => array(
 				'file'         => 'jetpack/jetpack.php',
 				'redirect_url' => 'admin.php?page=my-jetpack#add-boost',
-				'fallback_url' => 'admin.php?page=solutions&category=all&s=jetpack',
+				'fallback_url' => 'admin.php?page=' . container()->plugin()->id . '&category=all&s=jetpack#/commerce',
 			),
 			'woocommerce'      => array(
 				'file'         => 'woocommerce/woocommerce.php',
@@ -56,27 +58,27 @@ class PluginRedirect {
 			'yoast-seo'        => array(
 				'file'         => 'wordpress-seo/wp-seo.php',
 				'redirect_url' => 'admin.php?page=wpseo_dashboard',
-				'fallback_url' => 'admin.php?page=solutions&category=all&s=yoast',
+				'fallback_url' => 'admin.php?page=' . container()->plugin()->id . '&category=all&s=yoast#/commerce',
 			),
 			'advanced-reviews' => array(
 				'file'         => 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php',
 				'redirect_url' => 'admin.php?page=advanced-reviews',
-				'fallback_url' => 'admin.php?page=solutions&category=all&s=advanced+reviews',
+				'fallback_url' => 'admin.php?page=' . container()->plugin()->id . '&category=all&s=advanced+reviews#/commerce',
 			),
 			'affiliates'       => array(
-				'file'         => 'wp-plugin-affiliates/wp-plugin-affiliates.php',
-				'redirect_url' => 'admin.php?page=affiliates',
-				'fallback_url' => 'admin.php?page=solutions&category=all&s=affiliate',
+				'file'         => 'yith-woocommerce-affiliates/init.php',
+				'redirect_url' => 'admin.php?page=yith_wcaf_panel',
+				'fallback_url' => 'admin.php?page=' . container()->plugin()->id . '&category=premium&s=affiliate#/commerce',
 			),
 			'gift-cards'       => array(
 				'file'         => 'yith-woocommerce-gift-cards-premium/init.php',
 				'redirect_url' => 'admin.php?page=gift-cards',
-				'fallback_url' => 'admin.php?page=solutions&category=all&s=gift+cards',
+				'fallback_url' => 'admin.php?page=' . container()->plugin()->id . '&category=all&s=gift+cards#/commerce',
 			),
 			'email-templates'  => array(
 				'file'         => 'wp-plugin-email-templates/wp-plugin-email-templates.php',
 				'redirect_url' => 'edit.php?post_type=bh-email-template',
-				'fallback_url' => 'admin.php?page=solutions&category=all&s=email+templates',
+				'fallback_url' => 'admin.php?page=' . container()->plugin()->id . '&category=all&s=email+templates#/commerce',
 			),
 			'akismet'          => array(
 				'file'         => 'akismet/akismet.php',

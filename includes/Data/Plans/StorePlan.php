@@ -6,6 +6,8 @@ use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
 use NewfoldLabs\WP\Module\NextSteps\TemplateUrlHelper;
 
+use function NewfoldLabs\WP\ModuleLoader\container;
+
 /**
  * StorePlan - Defines the structured plan for ecommerce store setup
  *
@@ -59,7 +61,7 @@ class StorePlan {
 				'tracks'      => array(
 					array( // track
 						'id'       => 'store_build_track',
-						'label'    => __( 'Build', 'wp-module-next-steps' ),
+						'label'    => __( 'Next Steps for your store', 'wp-module-next-steps' ),
 						'open'     => true,
 						'sections' => array(
 							array( // section
@@ -223,7 +225,7 @@ class StorePlan {
 										'id'              => 'store_marketing_welcome_popup',
 										'title'           => __( 'Configure a welcome discount popup', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => 'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=' . container()->plugin()->id . '#/store/sales_discounts',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -233,7 +235,7 @@ class StorePlan {
 										'id'              => 'store_create_gift_card',
 										'title'           => __( 'Create a gift card to sell in your shop', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=solutions&category=all',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=gift-cards&n=' . PluginRedirect::get_redirect_nonce( 'gift-cards' ),
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -313,7 +315,7 @@ class StorePlan {
 										'id'              => 'store_launch_affiliate',
 										'title'           => __( 'Launch an affiliate program', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=affiliates',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=affiliates&n=' . PluginRedirect::get_redirect_nonce( 'affiliates' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
