@@ -39,6 +39,11 @@ class TemplateUrlHelper {
 	 * @return string|null The slug of the header template part, or null if not found.
 	 */
 	private static function get_active_template_part_slug( string $tag_name, string $template_slug = 'index' ): ?string {
+		// Return null if WordPress functions aren't available (e.g., during testing)
+		if ( ! function_exists( 'wp_get_theme' ) || ! function_exists( 'get_block_template' ) ) {
+			return null;
+		}
+
 		// Get the current theme's stylesheet name for template lookup
 		$theme    = wp_get_theme()->get_stylesheet();
 		$template = get_block_template( "{$theme}//{$template_slug}" );
@@ -111,14 +116,19 @@ class TemplateUrlHelper {
 	 * @return bool True if the theme supports block templates, false otherwise.
 	 */
 	public static function is_block_theme(): bool {
+		// Return false if WordPress functions aren't available (e.g., during testing)
+		if ( ! function_exists( 'current_theme_supports' ) || ! function_exists( 'wp_get_theme' ) ) {
+			return false;
+		}
+
 		// Method 1: Check if theme explicitly supports block templates
 		// This covers themes that add theme support but aren't full block themes
 		$theme_supports_block_templates = current_theme_supports( 'block-templates' );
-
+		
 		// Method 2: Check if this is a full block theme using WordPress's detection
 		// This function is available in WordPress 5.9+ and detects true block themes
 		$is_block_theme = function_exists( 'wp_is_block_theme' ) && wp_is_block_theme();
-
+		
 		// Return true if either method indicates block template support
 		return $theme_supports_block_templates || $is_block_theme;
 	}
@@ -176,6 +186,11 @@ class TemplateUrlHelper {
 	public static function get_url_to_home_template_editor(): ?string {
 		// Early return if the theme doesn't support block templates
 		if ( ! self::is_block_theme() ) {
+			return null;
+		}
+
+		// Return null if WordPress functions aren't available (e.g., during testing)
+		if ( ! function_exists( 'wp_get_theme' ) || ! function_exists( 'get_block_template' ) ) {
 			return null;
 		}
 

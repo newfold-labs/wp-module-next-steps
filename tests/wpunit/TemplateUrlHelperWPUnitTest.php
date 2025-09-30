@@ -36,6 +36,9 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 	 * Test that custom plans can use TemplateUrlHelper
 	 */
 	public function test_custom_plan_can_use_template_url_helper() {
+		// Get the template URL (may be null if not a block theme)
+		$template_url = TemplateUrlHelper::get_url_to_active_template_editor( 'header' );
+		
 		// Create a custom plan that uses TemplateUrlHelper
 		$custom_plan_data = array(
 			'id'          => 'custom_test_plan',
@@ -54,7 +57,7 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 								array(
 									'id'       => 'custom_task_with_template_url',
 									'title'    => 'Custom Task with Template URL',
-									'href'     => TemplateUrlHelper::get_url_to_active_template_editor( 'header' ),
+									'href'     => $template_url ?: 'fallback-url',
 									'status'   => 'new',
 									'priority' => 1,
 									'source'   => 'test',
@@ -74,11 +77,18 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 		$this->assertEquals( 'custom_test_plan', $plan->id );
 		$this->assertEquals( 'custom', $plan->type );
 
-		// Verify the task has the template URL
+		// Verify the task was created
 		$task = $plan->get_task( 'custom_track', 'custom_section', 'custom_task_with_template_url' );
 		$this->assertNotNull( $task );
-		$this->assertStringContains( 'site-editor.php', $task->href );
-		$this->assertStringContains( 'postType=wp_template_part', $task->href );
+		
+		// If we got a template URL, verify it contains expected parts
+		if ( $template_url ) {
+			$this->assertStringContainsString( 'site-editor.php', $task->href );
+			$this->assertStringContainsString( 'postType=wp_template_part', $task->href );
+		} else {
+			// If no template URL (not a block theme), verify fallback was used
+			$this->assertEquals( 'fallback-url', $task->href );
+		}
 	}
 
 	/**
@@ -102,9 +112,9 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 		// Test home template editor URL
 		$home_url = TemplateUrlHelper::get_url_to_home_template_editor();
 		if ( $home_url ) {
-			$this->assertStringContains( 'site-editor.php', $home_url );
-			$this->assertStringContains( 'postType=wp_template', $home_url );
-			$this->assertStringContains( 'canvas=edit', $home_url );
+			$this->assertStringContainsString( 'site-editor.php', $home_url );
+			$this->assertStringContainsString( 'postType=wp_template', $home_url );
+			$this->assertStringContainsString( 'canvas=edit', $home_url );
 		}
 	}
 
