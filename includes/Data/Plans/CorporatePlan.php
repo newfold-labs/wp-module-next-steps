@@ -4,6 +4,8 @@ namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
+use NewfoldLabs\WP\Module\NextSteps\TemplateUrlHelper;
+
 /**
  * CorporatePlan - Defines the structured plan for corporate/business website setup
  *
@@ -50,7 +52,7 @@ use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
  * @since 1.0.0
  * @author Newfold Labs
  */
-class CorporatePlan extends BasePlan {
+class CorporatePlan {
 
 	/**
 	 * Get default corporate or business plan
@@ -97,7 +99,7 @@ class CorporatePlan extends BasePlan {
 									array(
 										'id'       => 'corporate_upload_logo',
 										'title'    => __( 'Upload Company Logo', 'wp-module-next-steps' ),
-										'href'     => self::get_url_to_active_template_editor( 'header' ),
+										'href'     => TemplateUrlHelper::get_url_to_active_template_editor( 'header' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -113,7 +115,7 @@ class CorporatePlan extends BasePlan {
 									array(
 										'id'       => 'corporate_customize_header',
 										'title'    => __( 'Customize Header', 'wp-module-next-steps' ),
-										'href'     => self::get_url_to_active_template_editor( 'header' ),
+										'href'     => TemplateUrlHelper::get_url_to_active_template_editor( 'header' ),
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
@@ -121,7 +123,7 @@ class CorporatePlan extends BasePlan {
 									array(
 										'id'       => 'corporate_customize_footer',
 										'title'    => __( 'Customize Footer', 'wp-module-next-steps' ),
-										'href'     => self::get_url_to_active_template_editor( 'footer' ),
+										'href'     => TemplateUrlHelper::get_url_to_active_template_editor( 'footer' ),
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
@@ -129,7 +131,7 @@ class CorporatePlan extends BasePlan {
 									array(
 										'id'       => 'corporate_customize_homepage',
 										'title'    => __( 'Customize Homepage Layout', 'wp-module-next-steps' ),
-										'href'     => self::get_url_to_home_template_editor(),
+										'href'     => TemplateUrlHelper::get_url_to_home_template_editor(),
 										'status'   => 'new',
 										'priority' => 5,
 										'source'   => 'wp-module-next-steps',

@@ -1,27 +1,34 @@
 <?php
 
-namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
+namespace NewfoldLabs\WP\Module\NextSteps;
 
 /**
- * BasePlan - Abstract base class for plan implementations
+ * Template URL Helper
  *
- * This class provides foundational methods and structure for plan implementations,
- * such as retrieving active template part slugs and generating editor URLs for
- * WordPress block themes. It is intended to be extended by specific plan classes
- * that define concrete steps and logic for various user workflows.
+ * Provides utility methods for generating WordPress admin URLs related to
+ * block theme templates and template parts. This class handles the complex
+ * logic of finding active template parts and generating appropriate editor URLs.
  *
  * Key Features:
  * - Utility methods for working with block templates and template parts
  * - Methods to generate URLs for editing templates in the site editor
- * - Designed for extensibility by plan subclasses
+ * - WordPress block theme-specific functionality
+ * - Automatic detection of block theme support
+ * - Reusable across different plan types and custom plans
+ * - Safe fallback for classic PHP themes (returns null)
  *
- * @package NewfoldLabs\WP\Module\NextSteps\Data\Plans
+ * Note: These methods only work with block themes. For classic PHP themes,
+ * the methods will return null as the site editor is not available.
+ *
+ * @package NewfoldLabs\WP\Module\NextSteps
  * @since   1.0.0
  *
  * @author  Newfold Labs
  */
-abstract class BasePlan {
-	/** Get the slug of the header template part used in a given template
+class TemplateUrlHelper {
+
+	/**
+	 * Get the slug of the header template part used in a given template
 	 *
 	 * @param string $template_slug The slug of the template (e.g., 'index', 'front-page', 'single').
 	 * @param string $tag_name      The HTML tag name to look for (e.g., 'header', 'footer').
@@ -74,13 +81,28 @@ abstract class BasePlan {
 	}
 
 	/**
+	 * Check if the current theme supports block templates
+	 *
+	 * @return bool True if the theme supports block templates, false otherwise.
+	 */
+	public static function is_block_theme(): bool {
+		// Check if the theme supports block templates
+		return current_theme_supports( 'block-templates' ) || 
+		       ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() );
+	}
+
+	/**
 	 * Get URL to edit the active header or footer template part used in a given template
 	 *
 	 * @param string $tag_name      The HTML tag name to look for (e.g., 'header', 'footer').
 	 * @param string $template_slug The slug of the template (e.g., 'index', 'front-page', 'single').
-	 * @return string|null The URL to edit the active template part, or null if not found.
+	 * @return string|null The URL to edit the active template part, or null if not found or theme doesn't support block templates.
 	 */
-	protected static function get_url_to_active_template_editor( string $tag_name, string $template_slug = 'index' ): ?string {
+	public static function get_url_to_active_template_editor( string $tag_name, string $template_slug = 'index' ): ?string {
+		// Return null if the theme doesn't support block templates
+		if ( ! self::is_block_theme() ) {
+			return null;
+		}
 		$theme = wp_get_theme()->get_stylesheet();
 		$slug  = self::get_active_template_part_slug( $tag_name, $template_slug );
 
@@ -103,9 +125,13 @@ abstract class BasePlan {
 	/**
 	 * Get URL to edit the home template (front-page or index)
 	 *
-	 * @return string|null The URL to edit the home template, or null if not found.
+	 * @return string|null The URL to edit the home template, or null if not found or theme doesn't support block templates.
 	 */
-	protected static function get_url_to_home_template_editor(): ?string {
+	public static function get_url_to_home_template_editor(): ?string {
+		// Return null if the theme doesn't support block templates
+		if ( ! self::is_block_theme() ) {
+			return null;
+		}
 		$theme = wp_get_theme()->get_stylesheet();
 
 		$template_slug = 'home';
