@@ -38,7 +38,7 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 	public function test_custom_plan_can_use_template_url_helper() {
 		// Get the template URL (may be null if not a block theme)
 		$template_url = TemplateUrlHelper::get_url_to_active_template_editor( 'header' );
-		
+
 		// Create a custom plan that uses TemplateUrlHelper
 		$custom_plan_data = array(
 			'id'          => 'custom_test_plan',
@@ -57,7 +57,7 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 								array(
 									'id'       => 'custom_task_with_template_url',
 									'title'    => 'Custom Task with Template URL',
-									'href'     => $template_url ?: 'fallback-url',
+									'href'     => $template_url ? $template_url : 'fallback-url',
 									'status'   => 'new',
 									'priority' => 1,
 									'source'   => 'test',
@@ -80,7 +80,7 @@ class TemplateUrlHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 		// Verify the task was created
 		$task = $plan->get_task( 'custom_track', 'custom_section', 'custom_task_with_template_url' );
 		$this->assertNotNull( $task );
-		
+
 		// If we got a template URL, verify it contains expected parts
 		if ( $template_url ) {
 			$this->assertStringContainsString( 'site-editor.php', $task->href );

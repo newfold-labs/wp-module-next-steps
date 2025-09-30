@@ -124,11 +124,11 @@ class TemplateUrlHelper {
 		// Method 1: Check if theme explicitly supports block templates
 		// This covers themes that add theme support but aren't full block themes
 		$theme_supports_block_templates = current_theme_supports( 'block-templates' );
-		
+
 		// Method 2: Check if this is a full block theme using WordPress's detection
 		// This function is available in WordPress 5.9+ and detects true block themes
 		$is_block_theme = function_exists( 'wp_is_block_theme' ) && wp_is_block_theme();
-		
+
 		// Return true if either method indicates block template support
 		return $theme_supports_block_templates || $is_block_theme;
 	}
