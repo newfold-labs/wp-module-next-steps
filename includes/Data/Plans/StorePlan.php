@@ -4,6 +4,7 @@ namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
+use NewfoldLabs\WP\Module\NextSteps\TemplateUrlHelper;
 
 /**
  * StorePlan - Defines the structured plan for ecommerce store setup
@@ -76,7 +77,7 @@ class StorePlan {
 										'id'              => 'store_upload_logo',
 										'title'           => __( 'Upload Logo', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=all-parts',
+										'href'            => TemplateUrlHelper::get_url_to_active_template_editor( 'header' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -96,7 +97,7 @@ class StorePlan {
 										'id'              => 'store_customize_header',
 										'title'           => __( 'Customize Header', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=header',
+										'href'            => TemplateUrlHelper::get_url_to_active_template_editor( 'header' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -106,7 +107,7 @@ class StorePlan {
 										'id'              => 'store_customize_footer',
 										'title'           => __( 'Customize Footer', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=footer',
+										'href'            => TemplateUrlHelper::get_url_to_active_template_editor( 'footer' ),
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -116,7 +117,7 @@ class StorePlan {
 										'id'              => 'store_customize_homepage',
 										'title'           => __( 'Customize Homepage', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/site-editor.php?p=%2Ftemplate',
+										'href'            => TemplateUrlHelper::get_url_to_home_template_editor(),
 										'status'          => 'new',
 										'priority'        => 5,
 										'source'          => 'wp-module-next-steps',
@@ -125,15 +126,15 @@ class StorePlan {
 								),
 							),
 							array( // section
-								'id'          => 'setup_products',
-								'label'       => __( 'Step 2: Add your first product', 'wp-module-next-steps' ),
-								'description' => __( 'Start bringing your store to life by adding a product in just a few simple steps.', 'wp-module-next-steps' ),
-								'cta'         => __( 'Add product', 'wp-module-next-steps' ),
-								'icon'        => 'archive-box',
-								'status'      => 'new',
+								'id'                => 'setup_products',
+								'label'             => __( 'Step 2: Add your first product', 'wp-module-next-steps' ),
+								'description'       => __( 'Start bringing your store to life by adding a product in just a few simple steps.', 'wp-module-next-steps' ),
+								'cta'               => __( 'Add product', 'wp-module-next-steps' ),
+								'icon'              => 'archive-box',
+								'status'            => 'new',
 								'complete_on_event' => 'nfd-submit-quick-add-product-success',
-								'mandatory'   => true,
-								'tasks'       => array(
+								'mandatory'         => true,
+								'tasks'             => array(
 									array( // task
 										'id'              => 'store_add_product',
 										'title'           => __( 'Add product', 'wp-module-next-steps' ),
