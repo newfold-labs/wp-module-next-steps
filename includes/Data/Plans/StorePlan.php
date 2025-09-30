@@ -41,7 +41,7 @@ use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
  * @since 1.0.0
  * @author Newfold Labs
  */
-class StorePlan extends BasePlan{
+class StorePlan extends BasePlan {
 
 	/**
 	 * Get default store or ecommerce plan

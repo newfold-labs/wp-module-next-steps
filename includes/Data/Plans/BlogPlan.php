@@ -32,7 +32,7 @@ use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
  * @since 1.0.0
  * @author Newfold Labs
  */
-class BlogPlan extends BasePlan{
+class BlogPlan extends BasePlan {
 
 	/**
 	 * Get default blog or personal plan

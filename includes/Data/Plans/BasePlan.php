@@ -3,36 +3,17 @@
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 /**
- * StorePlan - Defines the structured plan for ecommerce store setup
+ * BasePlan - Abstract base class for plan implementations
  *
- * This class provides a comprehensive step-by-step plan specifically designed for
- * ecommerce store owners using WooCommerce. The plan focuses on building a complete
- * online store from initial setup to advanced marketing and performance optimization.
+ * This class provides foundational methods and structure for plan implementations,
+ * such as retrieving active template part slugs and generating editor URLs for
+ * WordPress block themes. It is intended to be extended by specific plan classes
+ * that define concrete steps and logic for various user workflows.
  *
- * Plan Structure:
- * The plan is organized into a single "Build" track with multiple sections covering:
- * - Store customization (logo, colors, fonts, header, footer, homepage)
- * - Product management (adding first product)
- * - Payment setup (configuring payment methods)
- * - Shopping experience (customizing shop, cart, and checkout pages)
- * - Marketing strategy (popups, gift cards, abandoned cart emails, email customization)
- * - Performance optimization (Jetpack Boost integration)
- * - Review collection and display
- * - Affiliate program setup
- * - SEO optimization with Yoast Premium
- *
- * Each task includes:
- * - Unique identifier for tracking completion
- * - Localized title and description
- * - Direct links to WooCommerce admin areas or external resources
- * - Priority ordering for logical progression
- * - Status tracking (new, done, dismissed)
- * - Source attribution for analytics
- * - Data attributes for event tracking and modal interactions
- *
- * The plan is designed to guide users through the complete process of setting up
- * a successful ecommerce store, from initial customization to advanced marketing
- * and performance optimization strategies.
+ * Key Features:
+ * - Utility methods for working with block templates and template parts
+ * - Methods to generate URLs for editing templates in the site editor
+ * - Designed for extensibility by plan subclasses
  *
  * @package NewfoldLabs\WP\Module\NextSteps\Data\Plans
  * @since   1.0.0
