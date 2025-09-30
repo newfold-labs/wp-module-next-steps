@@ -34,8 +34,8 @@ class TemplateUrlHelper {
 	 * the specified tag name (e.g., 'header', 'footer'). It uses multiple detection
 	 * methods to ensure compatibility with different theme implementations.
 	 *
-	 * @param string $template_slug The slug of the template (e.g., 'index', 'front-page', 'single').
 	 * @param string $tag_name      The HTML tag name to look for (e.g., 'header', 'footer').
+	 * @param string $template_slug The slug of the template (e.g., 'index', 'front-page', 'single').
 	 * @return string|null The slug of the header template part, or null if not found.
 	 */
 	private static function get_active_template_part_slug( string $tag_name, string $template_slug = 'index' ): ?string {
@@ -72,7 +72,11 @@ class TemplateUrlHelper {
 					// This is how WordPress stores template part areas in the database
 					$area_tax = null;
 					if ( isset( $part->wp_id ) && $part->wp_id ) {
-						$terms = wp_get_post_terms( $part->wp_id, 'wp_template_part_area', [ 'fields' => 'slugs' ] );
+						$terms = wp_get_post_terms(
+							$part->wp_id,
+							'wp_template_part_area',
+							array( 'fields' => 'slugs' )
+						);
 						if ( ! is_wp_error( $terms ) && $terms ) {
 							$area_tax = $terms[0] ?? null; // Get the first (and usually only) area term
 						}
@@ -110,11 +114,11 @@ class TemplateUrlHelper {
 		// Method 1: Check if theme explicitly supports block templates
 		// This covers themes that add theme support but aren't full block themes
 		$theme_supports_block_templates = current_theme_supports( 'block-templates' );
-		
+
 		// Method 2: Check if this is a full block theme using WordPress's detection
 		// This function is available in WordPress 5.9+ and detects true block themes
 		$is_block_theme = function_exists( 'wp_is_block_theme' ) && wp_is_block_theme();
-		
+
 		// Return true if either method indicates block template support
 		return $theme_supports_block_templates || $is_block_theme;
 	}
@@ -138,7 +142,7 @@ class TemplateUrlHelper {
 
 		// Get the current theme name for template part lookup
 		$theme = wp_get_theme()->get_stylesheet();
-		
+
 		// Find the template part slug used in the specified template
 		$slug = self::get_active_template_part_slug( $tag_name, $template_slug );
 
