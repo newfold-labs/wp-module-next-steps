@@ -255,6 +255,7 @@ class PlanFactory {
 	 * @return Plan The created plan
 	 */
 	public static function create_plan( string $plan_type, array $custom_plan_data = array() ): Plan {
+		require_once NFD_NEXTSTEPS_DIR . '/includes/Data/Plans/BasePlan.php';
 
 		// ecommerce plan
 		if ( 'ecommerce' === $plan_type ) {

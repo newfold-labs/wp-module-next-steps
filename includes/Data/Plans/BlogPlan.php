@@ -32,7 +32,7 @@ use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
  * @since 1.0.0
  * @author Newfold Labs
  */
-class BlogPlan {
+class BlogPlan extends BasePlan{
 
 	/**
 	 * Get default blog or personal plan
@@ -79,7 +79,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_upload_logo',
 										'title'    => __( 'Upload Logo', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=all-parts',
+										'href'     => self::get_url_to_active_template_editor( 'header' ),
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
@@ -95,7 +95,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_customize_header',
 										'title'    => __( 'Customize Header', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=header',
+										'href'     => self::get_url_to_active_template_editor( 'header' ),
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
@@ -103,7 +103,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_customize_footer',
 										'title'    => __( 'Customize Footer', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=footer',
+										'href'     => self::get_url_to_active_template_editor( 'footer' ),
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
