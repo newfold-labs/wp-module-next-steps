@@ -13,31 +13,6 @@ use NewfoldLabs\WP\Module\NextSteps\TemplateUrlHelper;
  * ecommerce store owners using WooCommerce. The plan focuses on building a complete
  * online store from initial setup to advanced marketing and performance optimization.
  *
- * Plan Structure:
- * The plan is organized into a single "Build" track with multiple sections covering:
- * - Store customization (logo, colors, fonts, header, footer, homepage)
- * - Product management (adding first product)
- * - Payment setup (configuring payment methods)
- * - Shopping experience (customizing shop, cart, and checkout pages)
- * - Marketing strategy (popups, gift cards, abandoned cart emails, email customization)
- * - Performance optimization (Jetpack Boost integration)
- * - Review collection and display
- * - Affiliate program setup
- * - SEO optimization with Yoast Premium
- *
- * Each task includes:
- * - Unique identifier for tracking completion
- * - Localized title and description
- * - Direct links to WooCommerce admin areas or external resources
- * - Priority ordering for logical progression
- * - Status tracking (new, done, dismissed)
- * - Source attribution for analytics
- * - Data attributes for event tracking and modal interactions
- *
- * The plan is designed to guide users through the complete process of setting up
- * a successful ecommerce store, from initial customization to advanced marketing
- * and performance optimization strategies.
- *
  * @package NewfoldLabs\WP\Module\NextSteps\Data\Plans
  * @since 1.0.0
  * @author Newfold Labs
@@ -59,7 +34,7 @@ class StorePlan {
 				'tracks'      => array(
 					array( // track
 						'id'       => 'store_build_track',
-						'label'    => __( 'Build', 'wp-module-next-steps' ),
+						'label'    => __( 'Next Steps for your store', 'wp-module-next-steps' ),
 						'open'     => true,
 						'sections' => array(
 							array( // section
@@ -161,7 +136,7 @@ class StorePlan {
 										'id'              => 'store_setup_payments',
 										'title'           => __( 'Set up Payments', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&r=' . rawurlencode( 'admin.php?page=wc-settings&tab=checkout' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'woocommerce' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&r=' . rawurlencode( 'admin.php?page=wc-settings&tab=checkout' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -182,7 +157,7 @@ class StorePlan {
 										'id'              => 'store_customize_shop_page',
 										'title'           => __( 'Customize the shop page', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&r=' . rawurlencode( 'admin.php?page=wc-settings&tab=products' ) . '&n=' . PluginRedirect::get_redirect_nonce( 'woocommerce' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&r=' . rawurlencode( 'admin.php?page=wc-settings&tab=products' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -192,7 +167,7 @@ class StorePlan {
 										'id'              => 'store_customize_cart_page',
 										'title'           => __( 'Customize the cart page', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&n=' . PluginRedirect::get_redirect_nonce( 'woocommerce' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -202,7 +177,7 @@ class StorePlan {
 										'id'              => 'store_customize_checkout_page',
 										'title'           => __( 'Customize the checkout flow', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce&n=' . PluginRedirect::get_redirect_nonce( 'woocommerce' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=woocommerce',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -223,7 +198,7 @@ class StorePlan {
 										'id'              => 'store_marketing_welcome_popup',
 										'title'           => __( 'Configure a welcome discount popup', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => 'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=wondercart',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -233,7 +208,7 @@ class StorePlan {
 										'id'              => 'store_create_gift_card',
 										'title'           => __( 'Create a gift card to sell in your shop', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=solutions&category=all',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=gift-cards',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -243,7 +218,7 @@ class StorePlan {
 										'id'              => 'store_enable_abandoned_cart',
 										'title'           => __( 'Enable abandoned cart emails', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates&n=' . PluginRedirect::get_redirect_nonce( 'email-templates' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -253,7 +228,7 @@ class StorePlan {
 										'id'              => 'store_customize_emails',
 										'title'           => __( 'Customize your store emails', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates&n=' . PluginRedirect::get_redirect_nonce( 'email-templates' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -273,7 +248,7 @@ class StorePlan {
 										'id'              => 'store_improve_performance',
 										'title'           => __( 'Improve the performance and speed of your shop', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack&n=' . PluginRedirect::get_redirect_nonce( 'jetpack' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=jetpack',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -293,7 +268,7 @@ class StorePlan {
 										'id'              => 'store_collect_reviews_task',
 										'title'           => __( 'Collect and Show Reviews for Your Products', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=advanced-reviews&n=' . PluginRedirect::get_redirect_nonce( 'advanced-reviews' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=advanced-reviews',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -313,7 +288,7 @@ class StorePlan {
 										'id'              => 'store_launch_affiliate',
 										'title'           => __( 'Launch an affiliate program', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=affiliates',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=affiliates',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -333,7 +308,7 @@ class StorePlan {
 										'id'              => 'store_setup_yoast_premium',
 										'title'           => __( 'Setup Yoast Premium to drive traffic to your store', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo&n=' . PluginRedirect::get_redirect_nonce( 'yoast-seo' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=yoast-seo',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
