@@ -9,7 +9,7 @@ if ( defined( 'NFD_NEXTSTEPS_MODULE_VERSION' ) ) {
 	return;
 }
 
-define( 'NFD_NEXTSTEPS_MODULE_VERSION', '1.3.2' );
+define( 'NFD_NEXTSTEPS_MODULE_VERSION', '1.3.3' );
 
 // Define constants immediately so they're available when classes are loaded
 if ( ! defined( 'NFD_NEXTSTEPS_DIR' ) ) {
