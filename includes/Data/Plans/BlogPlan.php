@@ -223,7 +223,7 @@ class BlogPlan {
 									array(
 										'id'       => 'blog_customize_notification_emails',
 										'title'    => __( 'Customize Notification Emails', 'wp-module-next-steps' ),
-										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates,
+										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=email-templates',
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
