@@ -89,7 +89,7 @@ class PluginRedirect {
 			'wondercart'       => array(
 				'file'         => 'wonder-cart/init.php',
 				'redirect_url' => 'admin.php?page=' . $plugin_id . '#/store/sales_discounts',
-				'fallback_url' => 'plugin-install.php?s=akismet&tab=search&type=term',
+				'fallback_url' => 'admin.php?page=' . $plugin_id . '#/store/sales_discounts', // same used for fallback since ctb to install is on the page
 			),
 		);
 	}
