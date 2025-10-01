@@ -117,7 +117,6 @@ class PluginRedirect {
 	 *
 	 * URL Parameters:
 	 * - p: Plugin slug to check (required)
-	 * - n: WordPress nonce for CSRF protection (required)
 	 * - r: URL to redirect to if plugin is active (optional - uses default from whitelist)
 	 * - f: URL to redirect to if plugin is not active (optional - uses default from whitelist)
 	 *
@@ -133,13 +132,8 @@ class PluginRedirect {
 			return;
 		}
 
-		// Verify nonce for CSRF protection
-		$nonce = isset( $_GET['n'] ) ? sanitize_text_field( wp_unslash( $_GET['n'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'plugin_redirect_' . ( $_GET['p'] ?? '' ) ) ) {
-			// Redirect to admin dashboard if nonce verification fails
-			wp_safe_redirect( admin_url() );
-			exit;
-		}
+		// Nonce not necessary - redirects are whitelisted and nonces expire after 24 hours
+		// which causes issues with cached plan data that users may access weeks/months later
 
 		// Sanitize and validate parameters
 		$plugin_slug  = isset( $_GET['p'] ) ? sanitize_text_field( wp_unslash( $_GET['p'] ) ) : '';
@@ -176,15 +170,6 @@ class PluginRedirect {
 		exit;
 	}
 
-	/**
-	 * Generate a nonce for plugin redirect URLs
-	 *
-	 * @param string $plugin_slug The plugin slug
-	 * @return string The nonce for the plugin redirect
-	 */
-	public static function get_redirect_nonce( $plugin_slug ) {
-		return wp_create_nonce( 'plugin_redirect_' . $plugin_slug );
-	}
 
 	/**
 	 * Check if a plugin is properly configured (plugin-specific logic)
