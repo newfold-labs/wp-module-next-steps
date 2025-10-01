@@ -77,6 +77,16 @@ class PlanRepository {
 	}
 
 	/**
+	 * Reset Next Steps Data
+	 * 
+	 * Used for debugging
+	 */
+	public static function reset_next_steps_data() {
+		self::invalidate_cache();
+		delete_option( self::OPTION );
+	}
+
+	/**
 	 * Get plan data from cache or database
 	 *
 	 * @return array The plan data array

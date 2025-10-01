@@ -225,7 +225,7 @@ class StorePlan {
 										'id'              => 'store_marketing_welcome_popup',
 										'title'           => __( 'Configure a welcome discount popup', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=' . container()->plugin()->id . '#/store/sales_discounts',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&p=wondercart&n=' . PluginRedirect::get_redirect_nonce( 'wondercart' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
