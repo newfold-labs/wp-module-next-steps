@@ -80,8 +80,9 @@ class PlanRepository {
 	 * Reset Next Steps Data
 	 *
 	 * Used for debugging
+	 * @return void
 	 */
-	public static function reset_next_steps_data() {
+	private static function reset_next_steps_data(): void {
 		self::invalidate_cache();
 		delete_option( self::OPTION );
 	}
