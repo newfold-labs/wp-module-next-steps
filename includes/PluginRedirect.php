@@ -132,6 +132,7 @@ class PluginRedirect {
 			return;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		// Nonce not necessary - redirects are whitelisted and nonces expire after 24 hours
 		// which causes issues with cached plan data that users may access weeks/months later
 
