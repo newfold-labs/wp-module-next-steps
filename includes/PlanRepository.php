@@ -78,7 +78,7 @@ class PlanRepository {
 
 	/**
 	 * Reset Next Steps Data
-	 * 
+	 *
 	 * Used for debugging
 	 */
 	public static function reset_next_steps_data() {
