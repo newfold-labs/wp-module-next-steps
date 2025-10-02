@@ -110,12 +110,24 @@ class NextSteps {
 			return;
 		}
 
+		$style_deps  = array(
+			container()->plugin()->id . '-style',
+		);
+		$script_deps = array(
+			container()->plugin()->id . '-script',
+			'newfold-hiive-events',
+		);
+		// check if woo is active to determins if quick-add-product should be enqueued
+		if ( is_plugin_active( 'woocommerce/woocommerce.php' ) && wp_script_is( 'quick-add-product', 'registered' ) ) {
+			array_push( $script_deps, 'quick-add-product' ); // from ecommerce module
+			array_push( $style_deps, 'quick-add-product' ); // from ecommerce module
+		}
 		\wp_register_script(
 			'next-steps-widget',
 			$build_dir . 'bundle.js',
 			array_merge(
 				$asset['dependencies'],
-				array( 'newfold-hiive-events' ),
+				$script_deps,
 			),
 			$asset['version'],
 			true
@@ -124,7 +136,7 @@ class NextSteps {
 		\wp_register_style(
 			'next-steps-widget-style',
 			$build_dir . 'next-steps-widget.css',
-			array( 'bluehost-style' ),
+			$style_deps,
 			$asset['version']
 		);
 
@@ -163,7 +175,9 @@ class NextSteps {
 			return;
 		}
 
-		$style_deps  = array();
+		$style_deps  = array(
+			container()->plugin()->id . '-style',
+		);
 		$script_deps = array(
 			container()->plugin()->id . '-script',
 			'newfold-hiive-events',
@@ -189,7 +203,7 @@ class NextSteps {
 		\wp_register_style(
 			'next-steps-portal-style',
 			$build_dir . 'next-steps-portal.css',
-			$style_deps, // still dependant on plugin styles but they are loaded on the plugin page
+			$style_deps,
 			$asset['version']
 		);
 

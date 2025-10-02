@@ -60,8 +60,8 @@ describe('Next Steps Widget', { testIsolation: true }, () => {
 				cy.get('.nfd-nextsteps-task-container').should('have.length', 1);
 				cy.get('.nfd-nextsteps-task-container').first().should('have.attr', 'id').and('contain', 's1task1');
 				// Task should have proper data attributes
-				cy.get('.nfd-nextsteps-task-container').first().should('have.attr', 'data-test-id').and('contain', 'test-task-1');
-				cy.get('.nfd-nextsteps-task-container').first().should('have.attr', 'data-nfd-id').and('contain', 'test-task-1');
+				cy.get('.nfd-nextsteps-task-container#task-s1task1 a').first().should('have.attr', 'data-test-id').and('contain', 'test-task-1');
+				cy.get('.nfd-nextsteps-task-container#task-s1task1 a').first().should('have.attr', 'data-nfd-prevent-default').and('contain', 'true');
 			});
 		});
 

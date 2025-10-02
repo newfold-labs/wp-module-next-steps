@@ -71,16 +71,22 @@ export const Task = memo(( props ) => {
 	};
 
 	/**
-	 * Format data attributes for React components
-	 * Ensures all keys have 'data-' prefix and handles boolean values
+	 * Format task attributes for React components
 	 */
 	const formatDataAttributes = () => {
-		const formatted = {
+		return {
 			'data-nfd-task-index': index,
 			'data-nfd-task-id': id,
 			'data-nfd-task-status': status,
 		};
-		
+	}
+
+	/**
+	 * Format data attributes from task data for link
+	 * Ensures all keys have 'data-' prefix and handles boolean values
+	 */
+	const formatLinkDataAttributes = () => {
+		const formatted = {};
 		Object.entries( data_attributes ).forEach( ( [ key, value ] ) => {
 			// Ensure key has 'data-' prefix
 			const dataKey = key.startsWith( 'data-' ) ? key : `data-${ key }`;
@@ -96,14 +102,11 @@ export const Task = memo(( props ) => {
 		return formatted;
 	};
 
-	// Combine custom data attributes with any other restProps
-	const combinedAttributes = { ...formatDataAttributes() };
-
-	const renderTaskContent = ( href = false, target = '' ) => {
+	const renderTaskContent = ( href = false, target = '', dataAttributes = {} ) => {
 		return (
 			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
-					<a href={ href } target={ target }>
+					<a href={ href } target={ target } { ...dataAttributes }>
 						<Title as="span" size={6} className="nfd-nextsteps-task-title nfd-font-normal">
 							{ title }
 						</Title>
@@ -123,7 +126,7 @@ export const Task = memo(( props ) => {
 			<div
 				className="nfd-nextsteps-task-container"
 				id={ `task-${ id }` } 
-				{ ...combinedAttributes }
+				{ ...formatDataAttributes() }
 			>
 				<div className="nfd-nextsteps-task nfd-nextsteps-task-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
@@ -143,7 +146,7 @@ export const Task = memo(( props ) => {
 							{ circleIcon }
 						</button>
 					</div>
-					{ renderTaskContent( getHref(), getTarget() ) }
+					{ renderTaskContent( getHref(), getTarget(), formatLinkDataAttributes() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
@@ -162,6 +165,7 @@ export const Task = memo(( props ) => {
 							data-nfd-click="nextsteps_task_link"
 							data-nfd-event-category="nextsteps_task"
 							data-nfd-event-key={ id }
+							{ ...formatLinkDataAttributes() }
 							href={ getHref() }
 							target={ getTarget() }
 							title={ title }
@@ -178,7 +182,7 @@ export const Task = memo(( props ) => {
 			<div
 				className="nfd-nextsteps-task-container"
 				id={ `task-${ id }` } 
-				{ ...combinedAttributes }
+				{ ...formatDataAttributes() }
 			>
 				<div className="nfd-nextsteps-task nfd-nextsteps-task-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
@@ -195,13 +199,14 @@ export const Task = memo(( props ) => {
 							{ doneIcon }
 						</button>
 					</div>
-					{ renderTaskContent( getHref(), getTarget() ) }
+					{ renderTaskContent( getHref(), getTarget(), formatLinkDataAttributes() ) }
                     <div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
                         <a
                             className="nfd-nextsteps-button nfd-nextsteps-button-link"
                             data-nfd-click="nextsteps_task_link"
                             data-nfd-event-category="nextsteps_task"
                             data-nfd-event-key={ id }
+                            { ...formatLinkDataAttributes() }
                             href={ getHref() }
                             target={ getTarget() }
                             title={ title }
@@ -218,7 +223,7 @@ export const Task = memo(( props ) => {
 			<div
 				className="nfd-nextsteps-task-container"
 				id={ `task-${ id }` } 
-				{ ...combinedAttributes }
+				{ ...formatDataAttributes() }
 			>
 				<div className="nfd-nextsteps-task nfd-nextsteps-task-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
@@ -235,7 +240,7 @@ export const Task = memo(( props ) => {
 							{ circleDashedIcon }
 						</button>
 					</div>
-					{ renderTaskContent( getHref(), getTarget() ) }
+					{ renderTaskContent( getHref(), getTarget(), formatLinkDataAttributes() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"

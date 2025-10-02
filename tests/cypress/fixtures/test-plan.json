@@ -24,7 +24,7 @@
                             "source": "test",
                             "data_attributes": {
                                 "data-test-id": "test-task-1",
-                                "data-nfd-id": "test-task-1"
+                                "data-nfd-prevent-default": "true"
                             }
                         }
                     ]
