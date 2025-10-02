@@ -277,7 +277,12 @@ class Section {
 	public function update_task_status( string $task_id, string $status ): bool {
 		$task = $this->get_task( $task_id );
 		if ( $task ) {
-			return $task->update_status( $status );
+			$result = $task->update_status( $status );
+			if ( $result ) {
+				// Re-evaluate section status based on task states
+				$this->sync_section_status_with_tasks();
+			}
+			return $result;
 		}
 		return false;
 	}
@@ -321,6 +326,43 @@ class Section {
 		return true;
 	}
 
+	/**
+	 * Sync section status with task states
+	 * 
+	 * Updates section status based on current task states:
+	 * - If all active tasks are completed, section becomes 'done' with completion date
+	 * - If any active task is 'new' and section is 'done', section becomes 'new' and completion date is cleared
+	 * - Dismissed tasks are ignored in this logic
+	 */
+	private function sync_section_status_with_tasks(): void {
+		if ( empty( $this->tasks ) ) {
+			return;
+		}
+
+		// Use completion logic to check if all active tasks are done
+		$section_should_be_completed = $this->is_completed();
+
+		// Check if any active task is new (only matters if section is currently marked done)
+		// essentially if a task was unchecked, the section should be marked as new also
+		$has_new_task = false;
+		if ( $this->status === 'done' ) {
+			foreach ( $this->tasks as $task ) {
+				if ( ! $task->is_dismissed() && $task->status === 'new' ) {
+					$has_new_task = true;
+					break;
+				}
+			}
+		}
+
+		if ( $section_should_be_completed && $this->status !== 'done' ) {
+			// All active tasks done - mark section as done
+			$this->update_status( 'done' );
+		} elseif ( $has_new_task ) {
+			// Has new tasks but section is marked done - revert to new
+			$this->update_status( 'new' );
+		}
+	}
+
 
 	/**
 	 * Sort tasks by priority
@@ -336,6 +378,8 @@ class Section {
 
 	/**
 	 * Get section completion percentage
+	 * 
+	 * Calculates completion based on active (non-dismissed) tasks only
 	 *
 	 * @return int
 	 */
@@ -344,14 +388,26 @@ class Section {
 			return 0;
 		}
 
-		$completed_tasks = array_filter(
+		// Filter out dismissed tasks
+		$active_tasks = array_filter(
 			$this->tasks,
+			function ( Task $task ) {
+				return ! $task->is_dismissed();
+			}
+		);
+
+		if ( empty( $active_tasks ) ) {
+			return 0;
+		}
+
+		$completed_tasks = array_filter(
+			$active_tasks,
 			function ( Task $task ) {
 				return $task->is_completed();
 			}
 		);
 
-		return intval( ( count( $completed_tasks ) / count( $this->tasks ) ) * 100 );
+		return intval( ( count( $completed_tasks ) / count( $active_tasks ) ) * 100 );
 	}
 
 	/**

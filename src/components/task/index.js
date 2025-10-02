@@ -107,13 +107,13 @@ export const Task = memo(( props ) => {
 			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
 					<a href={ href } target={ target } { ...dataAttributes }>
-						<Title as="span" size={6} className="nfd-nextsteps-task-title nfd-font-normal">
+						<Title as="span" size="5" className="nfd-nextsteps-task-title nfd-font-normal">
 							{ title }
 						</Title>
 					</a>
 				) }
 				{ ! href && (
-					<Title as="span" size={6} className="nfd-nextsteps-task-title nfd-font-normal">
+					<Title as="span" size="5" className="nfd-nextsteps-task-title nfd-font-normal">
 						{ title }
 					</Title>
 				) }

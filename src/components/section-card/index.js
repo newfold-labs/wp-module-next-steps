@@ -230,7 +230,7 @@ export const SectionCard = ( {
 								<Icon width={ 16 }/>
 							</span>
 						}
-						<Title as="span" size={ 2 } className="nfd-nextsteps-section-card-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center nfd-mr-4">
+						<Title as="span" size="2" className="nfd-nextsteps-section-card-title nfd-items-center nfd-font-bold nfd-flex nfd-align-center nfd-mr-4">
 							{ label }
 						</Title>
 					</span>
@@ -255,6 +255,50 @@ export const SectionCard = ( {
 			</div>
 		);
 	};
+	/**
+	 * Handle card button link click
+	 */
+	const handleCardLinkClick = ( e ) => {
+		// if there are multiple tasks, open the modal
+		if ( tasks.length > 1 ) {
+			e.preventDefault();
+			setIsModalOpened( true );
+			return false;
+		} else if ( e.target.hasAttribute( 'data-nfd-prevent-default' 	) ) { 
+			// if the link has the data-nfd-prevent-default attribute, do not open the link
+			return false;
+		} else { // if there is only one task
+			e.preventDefault();
+			// if the status is not done
+			let newStatus = status === 'done' ? 'new' : 'done';
+			// update the status via task callback
+			taskUpdateCallback( 
+				trackId,
+				sectionId,
+				tasks[ 0 ].id,
+				newStatus,
+				( er ) => { // error callback
+					console.error( 'Error updating task status: ', er );
+				},
+				( response ) => { // success callback
+					// update the status via section callback
+					sectionUpdateCallback(
+						trackId,
+						sectionId,
+						newStatus,
+						( er ) => { // error callback
+							console.error( 'Error updating section status: ', er );
+						},
+						( response ) => { // success callback
+							// finally open the link
+							window.open( e.target.href, '_self' );
+						}
+					);
+				}
+			);
+			return false;
+		}
+	}
 
 	return (
 		<>
@@ -317,13 +361,7 @@ export const SectionCard = ( {
 								title={ label }
 								variant={ isPrimary ? 'primary' : 'secondary' }
 								disabled={ 'new' !== status }
-								onClick={ ( e ) => {
-									if ( tasks.length > 1 ) {
-										e.preventDefault();
-										setIsModalOpened( true );
-										return false;
-									}
-								} }
+								onClick={ handleCardLinkClick }
 								{ ...combinedAttributes }
 								{ ...getLinkAttributes() }
 							>
@@ -368,6 +406,7 @@ export const SectionCard = ( {
 					desc={ props?.modal_desc }
 					trackId={ trackId }
 					sectionId={ sectionId }
+					sectionStatus={ status }
 					taskUpdateCallback={ taskUpdateCallback }
 					sectionUpdateCallback={ sectionUpdateCallback }
 				/> }
