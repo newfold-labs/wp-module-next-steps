@@ -199,7 +199,7 @@ export const Task = memo(( props ) => {
 							{ doneIcon }
 						</button>
 					</div>
-					{ renderTaskContent( getHref(), getTarget() ) }
+					{ renderTaskContent( getHref(), getTarget(), formatLinkDataAttributes() ) }
                     <div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
                         <a
                             className="nfd-nextsteps-button nfd-nextsteps-button-link"
@@ -240,7 +240,7 @@ export const Task = memo(( props ) => {
 							{ circleDashedIcon }
 						</button>
 					</div>
-					{ renderTaskContent( getHref(), getTarget() ) }
+					{ renderTaskContent( getHref(), getTarget(), formatLinkDataAttributes() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
