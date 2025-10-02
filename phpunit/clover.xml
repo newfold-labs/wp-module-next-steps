@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1759420438">
-  <project timestamp="1759420438">
+<coverage generated="1759421523">
+  <project timestamp="1759421523">
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Plan.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan" namespace="global">
         <metrics complexity="64" methods="26" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="146" coveredstatements="105" elements="172" coveredelements="118"/>
@@ -600,7 +600,7 @@
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/NextSteps.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\NextSteps" namespace="global">
-        <metrics complexity="17" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="95" coveredstatements="0" elements="101" coveredelements="0"/>
+        <metrics complexity="19" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="107" coveredstatements="0" elements="113" coveredelements="0"/>
       </class>
       <line num="48" type="method" name="__construct" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="50" type="stmt" count="0"/>
@@ -626,7 +626,7 @@
       <line num="87" type="stmt" count="0"/>
       <line num="95" type="method" name="render_next_steps_page" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="96" type="stmt" count="0"/>
-      <line num="102" type="method" name="nextsteps_widget" visibility="public" complexity="6" crap="42" count="0"/>
+      <line num="102" type="method" name="nextsteps_widget" visibility="public" complexity="8" crap="72" count="0"/>
       <line num="104" type="stmt" count="0"/>
       <line num="105" type="stmt" count="0"/>
       <line num="107" type="stmt" count="0"/>
@@ -639,42 +639,43 @@
       <line num="117" type="stmt" count="0"/>
       <line num="118" type="stmt" count="0"/>
       <line num="119" type="stmt" count="0"/>
-      <line num="120" type="stmt" count="0"/>
       <line num="121" type="stmt" count="0"/>
       <line num="122" type="stmt" count="0"/>
-      <line num="124" type="stmt" count="0"/>
+      <line num="123" type="stmt" count="0"/>
       <line num="125" type="stmt" count="0"/>
       <line num="126" type="stmt" count="0"/>
       <line num="127" type="stmt" count="0"/>
       <line num="128" type="stmt" count="0"/>
       <line num="129" type="stmt" count="0"/>
+      <line num="130" type="stmt" count="0"/>
+      <line num="131" type="stmt" count="0"/>
       <line num="132" type="stmt" count="0"/>
       <line num="133" type="stmt" count="0"/>
       <line num="134" type="stmt" count="0"/>
-      <line num="135" type="stmt" count="0"/>
+      <line num="136" type="stmt" count="0"/>
       <line num="137" type="stmt" count="0"/>
       <line num="138" type="stmt" count="0"/>
+      <line num="139" type="stmt" count="0"/>
+      <line num="140" type="stmt" count="0"/>
       <line num="141" type="stmt" count="0"/>
-      <line num="142" type="stmt" count="0"/>
       <line num="144" type="stmt" count="0"/>
       <line num="145" type="stmt" count="0"/>
       <line num="146" type="stmt" count="0"/>
       <line num="147" type="stmt" count="0"/>
-      <line num="148" type="stmt" count="0"/>
-      <line num="155" type="method" name="nextsteps_portal" visibility="public" complexity="6" crap="42" count="0"/>
+      <line num="149" type="stmt" count="0"/>
+      <line num="150" type="stmt" count="0"/>
+      <line num="153" type="stmt" count="0"/>
+      <line num="154" type="stmt" count="0"/>
+      <line num="156" type="stmt" count="0"/>
       <line num="157" type="stmt" count="0"/>
       <line num="158" type="stmt" count="0"/>
+      <line num="159" type="stmt" count="0"/>
       <line num="160" type="stmt" count="0"/>
-      <line num="161" type="stmt" count="0"/>
-      <line num="163" type="stmt" count="0"/>
-      <line num="166" type="stmt" count="0"/>
-      <line num="167" type="stmt" count="0"/>
-      <line num="168" type="stmt" count="0"/>
+      <line num="167" type="method" name="nextsteps_portal" visibility="public" complexity="6" crap="42" count="0"/>
       <line num="169" type="stmt" count="0"/>
       <line num="170" type="stmt" count="0"/>
-      <line num="171" type="stmt" count="0"/>
+      <line num="172" type="stmt" count="0"/>
       <line num="173" type="stmt" count="0"/>
-      <line num="174" type="stmt" count="0"/>
       <line num="175" type="stmt" count="0"/>
       <line num="178" type="stmt" count="0"/>
       <line num="179" type="stmt" count="0"/>
@@ -684,26 +685,37 @@
       <line num="183" type="stmt" count="0"/>
       <line num="184" type="stmt" count="0"/>
       <line num="185" type="stmt" count="0"/>
-      <line num="186" type="stmt" count="0"/>
       <line num="187" type="stmt" count="0"/>
+      <line num="188" type="stmt" count="0"/>
       <line num="189" type="stmt" count="0"/>
-      <line num="190" type="stmt" count="0"/>
-      <line num="191" type="stmt" count="0"/>
       <line num="192" type="stmt" count="0"/>
       <line num="193" type="stmt" count="0"/>
       <line num="194" type="stmt" count="0"/>
+      <line num="195" type="stmt" count="0"/>
+      <line num="196" type="stmt" count="0"/>
       <line num="197" type="stmt" count="0"/>
       <line num="198" type="stmt" count="0"/>
       <line num="199" type="stmt" count="0"/>
       <line num="200" type="stmt" count="0"/>
+      <line num="201" type="stmt" count="0"/>
       <line num="203" type="stmt" count="0"/>
       <line num="204" type="stmt" count="0"/>
+      <line num="205" type="stmt" count="0"/>
       <line num="206" type="stmt" count="0"/>
       <line num="207" type="stmt" count="0"/>
       <line num="208" type="stmt" count="0"/>
-      <line num="209" type="stmt" count="0"/>
-      <line num="210" type="stmt" count="0"/>
-      <metrics loc="214" ncloc="151" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="95" coveredstatements="0" elements="101" coveredelements="0"/>
+      <line num="211" type="stmt" count="0"/>
+      <line num="212" type="stmt" count="0"/>
+      <line num="213" type="stmt" count="0"/>
+      <line num="214" type="stmt" count="0"/>
+      <line num="217" type="stmt" count="0"/>
+      <line num="218" type="stmt" count="0"/>
+      <line num="220" type="stmt" count="0"/>
+      <line num="221" type="stmt" count="0"/>
+      <line num="222" type="stmt" count="0"/>
+      <line num="223" type="stmt" count="0"/>
+      <line num="224" type="stmt" count="0"/>
+      <metrics loc="228" ncloc="163" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="107" coveredstatements="0" elements="113" coveredelements="0"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/NextStepsWidget.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\NextStepsWidget" namespace="global">
@@ -1560,6 +1572,6 @@
       <line num="27" type="stmt" count="0"/>
       <metrics loc="58" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="11" coveredelements="0"/>
     </file>
-    <metrics files="13" loc="4081" ncloc="2435" classes="12" methods="149" coveredmethods="52" conditionals="0" coveredconditionals="0" statements="1335" coveredstatements="583" elements="1484" coveredelements="635"/>
+    <metrics files="13" loc="4095" ncloc="2447" classes="12" methods="149" coveredmethods="52" conditionals="0" coveredconditionals="0" statements="1347" coveredstatements="583" elements="1496" coveredelements="635"/>
   </project>
 </coverage>
