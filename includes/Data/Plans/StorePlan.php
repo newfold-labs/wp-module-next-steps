@@ -46,6 +46,7 @@ class StorePlan {
 								'modal_title' => __( 'Customize your Store', 'wp-module-next-steps' ),
 								'modal_desc'  => __( 'Customize the header, footer, and homepage — just few steps to give your site a personal touch.', 'wp-module-next-steps' ),
 								'mandatory'   => true,
+								'open'        => true,
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_upload_logo',

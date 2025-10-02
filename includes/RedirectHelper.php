@@ -294,7 +294,7 @@ class RedirectHelper {
 	 * @param string $template_slug The template slug to search in (default: 'index')
 	 * @return string|null The site editor URL or null if not available
 	 */
-	private static function get_template_part_editor_url( string $area_name, string $template_slug = 'index' ): ?string {
+	public static function get_template_part_editor_url( string $area_name, string $template_slug = 'index' ): ?string {
 		// Check if this is a block theme
 		if ( ! self::is_block_theme() ) {
 			return null;
@@ -308,8 +308,26 @@ class RedirectHelper {
 		// Get the current theme name for template part lookup
 		$theme = wp_get_theme()->get_stylesheet();
 
-		// Find the template part slug used in the specified template
+		// First try to find the template part slug used in the specified template
 		$slug = self::get_active_template_part_slug( $area_name, $template_slug );
+
+		// If not found, try common template part naming conventions
+		if ( ! $slug ) {
+			// Try common naming patterns for template parts
+			$common_names = array(
+				$area_name,                    // e.g., "header"
+				"{$area_name}-default",        // e.g., "header-default"  
+				"template-part-{$area_name}",  // e.g., "template-part-header"
+			);
+
+			foreach ( $common_names as $potential_slug ) {
+				$template_part = get_block_template( "{$theme}//{$potential_slug}", 'wp_template_part' );
+				if ( $template_part ) {
+					$slug = $potential_slug;
+					break;
+				}
+			}
+		}
 
 		if ( ! $slug ) {
 			return null;
@@ -332,7 +350,7 @@ class RedirectHelper {
 	 * @param string $template_slug The template slug (e.g., 'home', 'index')
 	 * @return string|null The site editor URL or null if not available
 	 */
-	private static function get_template_editor_url( string $template_slug = 'home' ): ?string {
+	public static function get_template_editor_url( string $template_slug = 'home' ): ?string {
 		// Check if this is a block theme
 		if ( ! self::is_block_theme() ) {
 			return null;
@@ -370,7 +388,7 @@ class RedirectHelper {
 	 *
 	 * @return bool True if the theme supports block templates, false otherwise.
 	 */
-	private static function is_block_theme(): bool {
+	public static function is_block_theme(): bool {
 		// Return false if WordPress functions aren't available (e.g., during testing)
 		if ( ! function_exists( 'current_theme_supports' ) || ! function_exists( 'wp_get_theme' ) ) {
 			return false;
@@ -413,6 +431,20 @@ class RedirectHelper {
 		// Traverse all blocks in the template (including nested ones)
 		while ( $stack ) {
 			$block = array_shift( $stack );
+
+			// Handle pattern blocks by resolving their content
+			if ( 'core/pattern' === $block['blockName'] ) {
+				$pattern_slug = $block['attrs']['slug'] ?? null;
+				if ( $pattern_slug && function_exists( 'get_block_pattern' ) ) {
+					$pattern = get_block_pattern( $pattern_slug );
+					if ( $pattern && isset( $pattern['content'] ) ) {
+						$pattern_blocks = parse_blocks( $pattern['content'] );
+						// Add pattern blocks to the stack for processing
+						$stack = array_merge( $stack, $pattern_blocks );
+					}
+				}
+				continue;
+			}
 
 			// Look for template-part blocks specifically
 			if ( 'core/template-part' === $block['blockName'] ) {
