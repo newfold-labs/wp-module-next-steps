@@ -371,7 +371,7 @@ class Section {
 		$has_new_task = false;
 		if ( 'done' === $this->status ) {
 			foreach ( $this->tasks as $task ) {
-				if ( ! $task->is_dismissed() && $task->status === 'new' ) {
+				if ( ! $task->is_dismissed() && 'new' === $task->status ) {
 					$has_new_task = true;
 					break;
 				}

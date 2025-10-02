@@ -264,7 +264,7 @@ export const SectionCard = ( {
 			e.preventDefault();
 			setIsModalOpened( true );
 			return false;
-		} else if ( e.target.hasAttribute( 'data-nfd-prevent-default' 	) ) { 
+		} else if ( e.target.hasAttribute( 'data-nfd-prevent-default' ) ) { 
 			// if the link has the data-nfd-prevent-default attribute, do not open the link
 			return false;
 		} else { // if there is only one task
