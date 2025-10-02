@@ -3,7 +3,7 @@
 namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\ModuleLoader\Container;
-use NewfoldLabs\WP\Module\NextSteps\PluginRedirect;
+use NewfoldLabs\WP\Module\NextSteps\RedirectHelper;
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 
 use function NewfoldLabs\WP\ModuleLoader\container;
@@ -13,12 +13,12 @@ use function NewfoldLabs\WP\ModuleLoader\container;
  *
  * This class handles all the core functionalities for the Next Steps module,
  * including widget and portal rendering, asset management, and integration
- * with the PluginRedirect system for plugin-dependent tasks.
+ * with the RedirectHelper system for plugin-dependent tasks.
  *
  * Key Features:
  * - Next Steps widget and portal rendering
  * - Asset management and localization
- * - Integration with PluginRedirect for plugin-dependent tasks
+ * - Integration with RedirectHelper for plugin-dependent tasks
  * - REST API endpoints for next steps management
  *
  * @package NewfoldLabs\WP\Module\NextSteps
@@ -55,7 +55,7 @@ class NextSteps {
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_portal' ) );
 
 		// Initialize plugin redirect functionality
-		PluginRedirect::init();
+		RedirectHelper::init();
 
 		new I18nService( $container );
 		if ( is_admin() ) {
