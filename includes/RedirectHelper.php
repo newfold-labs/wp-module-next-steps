@@ -24,7 +24,7 @@ use function NewfoldLabs\WP\ModuleLoader\container;
  * Plugin Redirects:
  * - Jetpack with defaults: admin.php?page=redirect-check&type=plugin&p=jetpack
  * - WooCommerce with custom URL: admin.php?page=redirect-check&type=plugin&p=woocommerce&r=admin.php?page=wc-orders
- * 
+ *
  * Template Redirects:
  * - Header template part: admin.php?page=redirect-check&type=template&area=header&template=index
  * - Home template: admin.php?page=redirect-check&type=template&template=home
@@ -124,12 +124,12 @@ class RedirectHelper {
 	 * URL Parameters:
 	 * Common:
 	 * - type: 'plugin' or 'template' (required)
-	 * 
+	 *
 	 * Plugin redirects:
 	 * - p: Plugin slug to check (required for plugin type)
 	 * - r: URL to redirect to if plugin is active (optional - uses default from whitelist)
 	 * - f: URL to redirect to if plugin is not active (optional - uses default from whitelist)
-	 * 
+	 *
 	 * Template redirects:
 	 * - area: Template part area (e.g., 'header', 'footer') - for template parts
 	 * - template: Template slug (e.g., 'index', 'home') - required for template type
@@ -316,7 +316,7 @@ class RedirectHelper {
 			// Try common naming patterns for template parts
 			$common_names = array(
 				$area_name,                    // e.g., "header"
-				"{$area_name}-default",        // e.g., "header-default"  
+				"{$area_name}-default",        // e.g., "header-default"
 				"template-part-{$area_name}",  // e.g., "template-part-header"
 			);
 

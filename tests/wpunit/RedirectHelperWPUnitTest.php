@@ -147,7 +147,7 @@ class RedirectHelperWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		// Test that the init method exists
 		$this->assertTrue( method_exists( RedirectHelper::class, 'init' ) );
 		$this->assertTrue( is_callable( array( RedirectHelper::class, 'init' ) ) );
-		
+
 		// Test that the redirect check method exists
 		$this->assertTrue( method_exists( RedirectHelper::class, 'check_redirect' ) );
 		$this->assertTrue( is_callable( array( RedirectHelper::class, 'check_redirect' ) ) );
