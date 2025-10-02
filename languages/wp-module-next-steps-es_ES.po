@@ -623,124 +623,124 @@ msgstr "Comience a dar vida a su tienda agregando un producto en solo unos simpl
 msgid "Add product"
 msgstr "Añadir producto"
 
-#: includes/Data/Plans/StorePlan.php:128
+#: includes/Data/Plans/StorePlan.php:130
 msgid "Step 3: Set Up Payments"
 msgstr "Paso 3: Configurar pagos"
 
-#: includes/Data/Plans/StorePlan.php:129
+#: includes/Data/Plans/StorePlan.php:131
 msgid "Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks."
 msgstr "Configura los pagos para empezar a vender: elige tus métodos de pago preferidos y conéctalos con solo unos clics."
 
-#: includes/Data/Plans/StorePlan.php:130
-#: includes/Data/Plans/StorePlan.php:137
+#: includes/Data/Plans/StorePlan.php:132
+#: includes/Data/Plans/StorePlan.php:139
 msgid "Set up Payments"
 msgstr "Configurar pagos"
 
-#: includes/Data/Plans/StorePlan.php:149
+#: includes/Data/Plans/StorePlan.php:151
 msgid "Setup the Shopping Experience"
 msgstr "Configurar la experiencia de compra"
 
-#: includes/Data/Plans/StorePlan.php:150
+#: includes/Data/Plans/StorePlan.php:152
 msgid "Personalize your cart and checkout to match your brand and give customers a seamless shopping experience"
 msgstr "Personaliza tu carrito y pago para que coincida con tu marca y brinda a los clientes una experiencia de compra perfecta"
 
-#: includes/Data/Plans/StorePlan.php:151
+#: includes/Data/Plans/StorePlan.php:153
 msgid "Start Now"
 msgstr "Empezar ahora"
 
-#: includes/Data/Plans/StorePlan.php:153
+#: includes/Data/Plans/StorePlan.php:155
 msgid "Setup the shopping experience"
 msgstr "Configurar la experiencia de compra"
 
-#: includes/Data/Plans/StorePlan.php:154
+#: includes/Data/Plans/StorePlan.php:156
 msgid "Personalize your cart and checkout experience, and configure taxes and shipping options"
 msgstr "Personaliza tu carrito y tu experiencia de pago, y configura los impuestos y las opciones de envío"
 
-#: includes/Data/Plans/StorePlan.php:158
+#: includes/Data/Plans/StorePlan.php:160
 msgid "Customize the shop page"
 msgstr "Personaliza la página de la tienda"
 
-#: includes/Data/Plans/StorePlan.php:168
+#: includes/Data/Plans/StorePlan.php:170
 msgid "Customize the cart page"
 msgstr "Personaliza la página del carrito"
 
-#: includes/Data/Plans/StorePlan.php:178
+#: includes/Data/Plans/StorePlan.php:180
 msgid "Customize the checkout flow"
 msgstr "Personalizar el flujo de pago"
 
-#: includes/Data/Plans/StorePlan.php:190
-#: includes/Data/Plans/StorePlan.php:194
+#: includes/Data/Plans/StorePlan.php:192
+#: includes/Data/Plans/StorePlan.php:196
 msgid "Build your marketing strategy"
 msgstr "Construye tu estrategia de marketing"
 
-#: includes/Data/Plans/StorePlan.php:191
+#: includes/Data/Plans/StorePlan.php:193
 msgid "Kickstart your store’s success with smart marketing strategies. Just few steps to build visibility, attract shoppers, and turn visits into loyal sales."
 msgstr "Impulse el éxito de su tienda con estrategias de marketing inteligentes. Solo unos pocos pasos para generar visibilidad, atraer compradores y convertir las visitas en ventas leales."
 
-#: includes/Data/Plans/StorePlan.php:192
-#: includes/Data/Plans/StorePlan.php:243
-#: includes/Data/Plans/StorePlan.php:264
-#: includes/Data/Plans/StorePlan.php:284
-#: includes/Data/Plans/StorePlan.php:304
+#: includes/Data/Plans/StorePlan.php:194
+#: includes/Data/Plans/StorePlan.php:245
+#: includes/Data/Plans/StorePlan.php:266
+#: includes/Data/Plans/StorePlan.php:286
+#: includes/Data/Plans/StorePlan.php:306
 msgid "Start now"
 msgstr "Empieza ahora"
 
-#: includes/Data/Plans/StorePlan.php:195
+#: includes/Data/Plans/StorePlan.php:197
 msgid "Kickstart your store’s success with smart marketing strategies"
 msgstr "Impulse el éxito de su tienda con estrategias de marketing inteligentes"
 
-#: includes/Data/Plans/StorePlan.php:199
+#: includes/Data/Plans/StorePlan.php:201
 msgid "Configure a welcome discount popup"
 msgstr "Configurar una ventana emergente de descuento de bienvenida"
 
-#: includes/Data/Plans/StorePlan.php:209
+#: includes/Data/Plans/StorePlan.php:211
 msgid "Create a gift card to sell in your shop"
 msgstr "Crea una tarjeta de regalo para vender en tu tienda"
 
-#: includes/Data/Plans/StorePlan.php:219
+#: includes/Data/Plans/StorePlan.php:221
 msgid "Enable abandoned cart emails"
 msgstr "Habilitar correos electrónicos de carritos abandonados"
 
-#: includes/Data/Plans/StorePlan.php:229
+#: includes/Data/Plans/StorePlan.php:231
 msgid "Customize your store emails"
 msgstr "Personaliza los correos electrónicos de tu tienda"
 
-#: includes/Data/Plans/StorePlan.php:241
-#: includes/Data/Plans/StorePlan.php:249
+#: includes/Data/Plans/StorePlan.php:243
+#: includes/Data/Plans/StorePlan.php:251
 msgid "Improve the performance and speed of your shop"
 msgstr "Mejora el rendimiento y la velocidad de tu tienda"
 
-#: includes/Data/Plans/StorePlan.php:242
+#: includes/Data/Plans/StorePlan.php:244
 msgid "Speed up your store by optimizing page performance with Jetpack Boost. Easily activate one-click optimizations to boost your Core Web Vitals."
 msgstr "Acelera tu tienda optimizando el rendimiento de la página con Jetpack Boost. Active fácilmente las optimizaciones con un solo clic para impulsar sus Core Web Vitals."
 
-#: includes/Data/Plans/StorePlan.php:261
+#: includes/Data/Plans/StorePlan.php:263
 msgid "Collect and show reviews for your products"
 msgstr "Recopila y muestra reseñas de tus productos"
 
-#: includes/Data/Plans/StorePlan.php:262
+#: includes/Data/Plans/StorePlan.php:264
 msgid "Collect authentic reviews from your customers to build trust, highlight product quality, and help increase conversions."
 msgstr "Recopila reseñas auténticas de tus clientes para generar confianza, resaltar la calidad del producto y ayudar a aumentar las conversiones."
 
-#: includes/Data/Plans/StorePlan.php:269
+#: includes/Data/Plans/StorePlan.php:271
 msgid "Collect and Show Reviews for Your Products"
 msgstr "Recopile y muestre reseñas de sus productos"
 
-#: includes/Data/Plans/StorePlan.php:281
-#: includes/Data/Plans/StorePlan.php:289
+#: includes/Data/Plans/StorePlan.php:283
+#: includes/Data/Plans/StorePlan.php:291
 msgid "Launch an affiliate program"
 msgstr "Lanzar un programa de afiliados"
 
-#: includes/Data/Plans/StorePlan.php:282
+#: includes/Data/Plans/StorePlan.php:284
 msgid "Launch your own affiliate program to promote your products, reach new audiences and grow sales."
 msgstr "Lanza tu propio programa de afiliados para promocionar tus productos, llegar a nuevas audiencias y aumentar las ventas."
 
-#: includes/Data/Plans/StorePlan.php:301
-#: includes/Data/Plans/StorePlan.php:309
+#: includes/Data/Plans/StorePlan.php:303
+#: includes/Data/Plans/StorePlan.php:311
 msgid "Setup Yoast Premium to drive traffic to your store"
 msgstr "Configura Yoast Premium para atraer tráfico a tu tienda"
 
-#: includes/Data/Plans/StorePlan.php:302
+#: includes/Data/Plans/StorePlan.php:304
 msgid "Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online."
 msgstr "Optimiza tu contenido para los motores de búsqueda para mejorar la clasificación, atraer a más visitantes y aumentar la visibilidad de tu tienda en línea."
 
