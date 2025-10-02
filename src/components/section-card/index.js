@@ -271,31 +271,21 @@ export const SectionCard = ( {
 			e.preventDefault();
 			// if the status is not done
 			let newStatus = status === 'done' ? 'new' : 'done';
-			// update the status via task callback
-			taskUpdateCallback( 
+			// update the status via section callback
+			// tasks will be updated automatically when the section is marked complete
+			sectionUpdateCallback(
 				trackId,
 				sectionId,
-				tasks[ 0 ].id,
 				newStatus,
 				( er ) => { // error callback
-					console.error( 'Error updating task status: ', er );
+					console.error( 'Error updating section status: ', er );
 				},
 				( response ) => { // success callback
-					// update the status via section callback
-					sectionUpdateCallback(
-						trackId,
-						sectionId,
-						newStatus,
-						( er ) => { // error callback
-							console.error( 'Error updating section status: ', er );
-						},
-						( response ) => { // success callback
-							// finally open the link
-							window.open( e.target.href, '_self' );
-						}
-					);
+					// finally open the link
+					window.open( e.target.href, '_self' );
 				}
 			);
+
 			return false;
 		}
 	}
