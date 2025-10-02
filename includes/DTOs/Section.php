@@ -106,19 +106,19 @@ class Section {
 	 * @param array $data Section data
 	 */
 	public function __construct( array $data = array() ) {
-		$this->id             = $data['id'] ?? '';
-		$this->label          = $data['label'] ?? '';
-		$this->description    = $data['description'] ?? '';
-		$this->open           = $data['open'] ?? false;
-		$this->cta            = $data['cta'] ?? null;
-		$this->status         = $data['status'] ?? 'new';
-		$this->date_completed = $data['date_completed'] ?? null;
-		$this->icon           = $data['icon'] ?? '';
-		$this->modal_title    = $data['modal_title'] ?? '';
-		$this->modal_desc     = $data['modal_desc'] ?? '';
-		$this->complete_on_event     = $data['complete_on_event'] ?? '';
-		$this->mandatory     = $data['mandatory'] ?? false;
-		$this->tasks          = array();
+		$this->id                = $data['id'] ?? '';
+		$this->label             = $data['label'] ?? '';
+		$this->description       = $data['description'] ?? '';
+		$this->open              = $data['open'] ?? false;
+		$this->cta               = $data['cta'] ?? null;
+		$this->status            = $data['status'] ?? 'new';
+		$this->date_completed    = $data['date_completed'] ?? null;
+		$this->icon              = $data['icon'] ?? '';
+		$this->modal_title       = $data['modal_title'] ?? '';
+		$this->modal_desc        = $data['modal_desc'] ?? '';
+		$this->complete_on_event = $data['complete_on_event'] ?? '';
+		$this->mandatory         = $data['mandatory'] ?? false;
+		$this->tasks             = array();
 
 		// Convert task arrays to Task objects
 		if ( isset( $data['tasks'] ) && is_array( $data['tasks'] ) ) {
@@ -139,19 +139,19 @@ class Section {
 	 */
 	public function to_array(): array {
 		return array(
-			'id'             => $this->id,
-			'label'          => $this->label,
-			'description'    => $this->description,
-			'open'           => $this->open,
-			'cta'            => $this->cta,
-			'status'         => $this->status,
-			'date_completed' => $this->date_completed,
-			'icon'           => $this->icon,
-			'modal_title'    => $this->modal_title,
-			'modal_desc'     => $this->modal_desc,
+			'id'                => $this->id,
+			'label'             => $this->label,
+			'description'       => $this->description,
+			'open'              => $this->open,
+			'cta'               => $this->cta,
+			'status'            => $this->status,
+			'date_completed'    => $this->date_completed,
+			'icon'              => $this->icon,
+			'modal_title'       => $this->modal_title,
+			'modal_desc'        => $this->modal_desc,
 			'complete_on_event' => $this->complete_on_event,
-			'mandatory' => $this->mandatory,
-			'tasks'          => array_map(
+			'mandatory'         => $this->mandatory,
+			'tasks'             => array_map(
 				function ( Task $task ) {
 					return $task->to_array();
 				},
@@ -277,7 +277,12 @@ class Section {
 	public function update_task_status( string $task_id, string $status ): bool {
 		$task = $this->get_task( $task_id );
 		if ( $task ) {
-			return $task->update_status( $status );
+			$result = $task->update_status( $status );
+			if ( $result ) {
+				// Re-evaluate section status based on task states
+				$this->sync_section_status_with_tasks();
+			}
+			return $result;
 		}
 		return false;
 	}
@@ -296,6 +301,10 @@ class Section {
 		// automatically record completed/dismissed
 		if ( in_array( $status, array( 'dismissed', 'done' ), true ) ) {
 			$this->set_completed_now();
+			// If marking section as done, mark all active tasks as done too
+			if ( 'done' === $status ) {
+				$this->mark_all_active_tasks_complete();
+			}
 		} else {
 			// reset date completed if marked as new
 			$this->clear_completed_date();
@@ -321,6 +330,63 @@ class Section {
 		return true;
 	}
 
+	/**
+	 * Mark all active (non-dismissed) tasks as complete
+	 *
+	 * Used when a section is marked as complete to ensure all tasks are also complete
+	 *
+	 * @return int Number of tasks that were updated
+	 */
+	public function mark_all_active_tasks_complete(): int {
+		$updated_count = 0;
+
+		foreach ( $this->tasks as $task ) {
+			if ( ! $task->is_dismissed() && ! $task->is_completed() ) {
+				$task->update_status( 'done' );
+				++$updated_count;
+			}
+		}
+
+		return $updated_count;
+	}
+
+	/**
+	 * Sync section status with task states
+	 *
+	 * Updates section status based on current task states:
+	 * - If all active tasks are completed, section becomes 'done' with completion date
+	 * - If any active task is 'new' and section is 'done', section becomes 'new' and completion date is cleared
+	 * - Dismissed tasks are ignored in this logic
+	 */
+	private function sync_section_status_with_tasks(): void {
+		if ( empty( $this->tasks ) ) {
+			return;
+		}
+
+		// Use completion logic to check if all active tasks are done
+		$section_should_be_completed = $this->is_completed();
+
+		// Check if any active task is new (only matters if section is currently marked done)
+		// essentially if a task was unchecked, the section should be marked as new also
+		$has_new_task = false;
+		if ( 'done' === $this->status ) {
+			foreach ( $this->tasks as $task ) {
+				if ( ! $task->is_dismissed() && 'new' === $task->status ) {
+					$has_new_task = true;
+					break;
+				}
+			}
+		}
+
+		if ( $section_should_be_completed && 'done' !== $this->status ) {
+			// All active tasks done - mark section as done
+			$this->update_status( 'done' );
+		} elseif ( $has_new_task ) {
+			// Has new tasks but section is marked done - revert to new
+			$this->update_status( 'new' );
+		}
+	}
+
 
 	/**
 	 * Sort tasks by priority
@@ -337,6 +403,8 @@ class Section {
 	/**
 	 * Get section completion percentage
 	 *
+	 * Calculates completion based on active (non-dismissed) tasks only
+	 *
 	 * @return int
 	 */
 	public function get_completion_percentage(): int {
@@ -344,14 +412,26 @@ class Section {
 			return 0;
 		}
 
-		$completed_tasks = array_filter(
+		// Filter out dismissed tasks
+		$active_tasks = array_filter(
 			$this->tasks,
+			function ( Task $task ) {
+				return ! $task->is_dismissed();
+			}
+		);
+
+		if ( empty( $active_tasks ) ) {
+			return 0;
+		}
+
+		$completed_tasks = array_filter(
+			$active_tasks,
 			function ( Task $task ) {
 				return $task->is_completed();
 			}
 		);
 
-		return intval( ( count( $completed_tasks ) / count( $this->tasks ) ) * 100 );
+		return intval( ( count( $completed_tasks ) / count( $active_tasks ) ) * 100 );
 	}
 
 	/**

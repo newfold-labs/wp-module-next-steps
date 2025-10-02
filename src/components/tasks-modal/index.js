@@ -14,6 +14,7 @@ export const TasksModal = ( {
 	className,
 	taskUpdateCallback,
 	sectionUpdateCallback,
+	sectionStatus,
 	...props
 } ) => {
 	// Track if we've already sent the completion callback to prevent endless calls
@@ -43,6 +44,10 @@ export const TasksModal = ( {
 		} else if ( !allTasksCompleted ) {
 			// Reset the completion flag if tasks are no longer all completed
 			hasCompletedRef.current = false;
+			// If the section started as done, reset the section status to new if tasks are marked new
+			if ( sectionStatus === 'done' ) {
+				sectionUpdateCallback( trackId, sectionId, 'new' );
+			}
 		}
 	}, [tasks, sectionUpdateCallback, trackId, sectionId, onClose]);
 
