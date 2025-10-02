@@ -21,6 +21,37 @@ module.exports = apps.map( ( app ) =>
 					include: [ path.resolve( __dirname, `src/${ app }` ) ],
 					use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
 				},
+				{
+					test: /\.svg$/i,
+					use: [
+						{
+							loader: '@svgr/webpack',
+							options: {
+								svgo: true,
+								svgoConfig: {
+									plugins: [
+										{ name: 'preset-default' },
+										{
+											name: 'prefixIds',
+											params: {
+												delim: '-',
+												prefix( node, info ) {
+													const p = info?.path;
+													const baseRaw = p?.basename || p?.path?.split( /[\\/]/ ).pop() || 'svg';
+													const base = baseRaw.replace( /\.[^/.]+$/, '' );
+													const cls = node?.attributes?.class ? String( node.attributes.class ).trim().split( /\s+/ )[ 0 ] : null;
+
+													return cls ? `${ base }__${ cls }` : `${ base }`;
+												},
+											},
+										},
+										{ name: 'inlineStyles', params: { onlyMatchedOnce: false } },
+									],
+								},
+							},
+						},
+					],
+				}
 			],
 		},
 		plugins: [
