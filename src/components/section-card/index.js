@@ -322,21 +322,6 @@ export const SectionCard = ( {
 										e.preventDefault();
 										setIsModalOpened( true );
 										return false;
-									} else if ( 'done' !== status && ! completeOnEvent ) {
-										// TODO - clean this up - we're pausing the default action
-										// so the callbacks have time to update the status
-										// and then we manually open the link in a new tab
-										if ( e.target.tagName === 'A' ) {
-											e.preventDefault();
-										}
-										taskUpdateCallback( trackId, sectionId, tasks[ 0 ].id, 'done' );
-										sectionUpdateCallback( trackId, sectionId, 'done' ).then(
-											() => {
-												window.open( e.target.href );
-											}
-										);
-
-										// window.dispatchEvent( new CustomEvent( event ) );
 									}
 								} }
 								{ ...combinedAttributes }
