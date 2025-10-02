@@ -116,9 +116,11 @@ class StorePlan {
 										'description'     => __( 'Start bringing your store to life by adding a product in just a few simple steps.', 'wp-module-next-steps' ),
 										'status'          => 'new',
 										'priority'        => 1,
+										'href'            => '#quick-add-product',
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'quick-add-product-trigger' => 'true',
+											'data-quick-add-product-trigger' => 'true',
+											'data-nfd-prevent-default' => 'true',
 										),
 									),
 								),
