@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1759434371">
-  <project timestamp="1759434371">
+<coverage generated="1759441893">
+  <project timestamp="1759441893">
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Plan.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan" namespace="global">
         <metrics complexity="64" methods="26" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="146" coveredstatements="105" elements="172" coveredelements="118"/>
@@ -181,7 +181,7 @@
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Section.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Section" namespace="global">
-        <metrics complexity="47" methods="22" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="137" coveredstatements="99" elements="159" coveredelements="109"/>
+        <metrics complexity="63" methods="24" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="169" coveredstatements="123" elements="193" coveredelements="134"/>
       </class>
       <line num="108" type="method" name="__construct" visibility="public" complexity="5" crap="5.00" count="60"/>
       <line num="109" type="stmt" count="60"/>
@@ -269,84 +269,118 @@
       <line num="263" type="stmt" count="5"/>
       <line num="264" type="stmt" count="4"/>
       <line num="267" type="stmt" count="1"/>
-      <line num="277" type="method" name="update_task_status" visibility="public" complexity="2" crap="2.06" count="2"/>
+      <line num="277" type="method" name="update_task_status" visibility="public" complexity="3" crap="3.03" count="2"/>
       <line num="278" type="stmt" count="2"/>
       <line num="279" type="stmt" count="2"/>
       <line num="280" type="stmt" count="2"/>
-      <line num="282" type="stmt" count="0"/>
-      <line num="291" type="method" name="update_status" visibility="public" complexity="3" crap="3.21" count="1"/>
-      <line num="292" type="stmt" count="1"/>
-      <line num="293" type="stmt" count="0"/>
-      <line num="295" type="stmt" count="1"/>
-      <line num="297" type="stmt" count="1"/>
-      <line num="298" type="stmt" count="1"/>
-      <line num="301" type="stmt" count="0"/>
-      <line num="304" type="stmt" count="1"/>
-      <line num="310" type="method" name="set_completed_now" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="311" type="stmt" count="1"/>
-      <line num="312" type="stmt" count="1"/>
-      <line num="313" type="stmt" count="1"/>
-      <line num="319" type="method" name="clear_completed_date" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="320" type="stmt" count="0"/>
-      <line num="321" type="stmt" count="0"/>
-      <line num="328" type="method" name="sort_tasks" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="281" type="stmt" count="2"/>
+      <line num="283" type="stmt" count="2"/>
+      <line num="285" type="stmt" count="2"/>
+      <line num="287" type="stmt" count="0"/>
+      <line num="296" type="method" name="update_status" visibility="public" complexity="4" crap="4.18" count="3"/>
+      <line num="297" type="stmt" count="3"/>
+      <line num="298" type="stmt" count="0"/>
+      <line num="300" type="stmt" count="3"/>
+      <line num="302" type="stmt" count="3"/>
+      <line num="303" type="stmt" count="3"/>
+      <line num="305" type="stmt" count="3"/>
+      <line num="306" type="stmt" count="3"/>
+      <line num="310" type="stmt" count="0"/>
+      <line num="313" type="stmt" count="3"/>
+      <line num="319" type="method" name="set_completed_now" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="320" type="stmt" count="3"/>
+      <line num="321" type="stmt" count="3"/>
+      <line num="322" type="stmt" count="3"/>
+      <line num="328" type="method" name="clear_completed_date" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="329" type="stmt" count="0"/>
       <line num="330" type="stmt" count="0"/>
-      <line num="331" type="stmt" count="0"/>
-      <line num="332" type="stmt" count="0"/>
-      <line num="333" type="stmt" count="0"/>
-      <line num="334" type="stmt" count="0"/>
-      <line num="342" type="method" name="get_completion_percentage" visibility="public" complexity="2" crap="2.01" count="4"/>
-      <line num="343" type="stmt" count="4"/>
-      <line num="344" type="stmt" count="0"/>
-      <line num="347" type="stmt" count="4"/>
-      <line num="348" type="stmt" count="4"/>
-      <line num="349" type="stmt" count="4"/>
-      <line num="350" type="stmt" count="4"/>
-      <line num="351" type="stmt" count="4"/>
-      <line num="352" type="stmt" count="4"/>
-      <line num="354" type="stmt" count="4"/>
-      <line num="362" type="method" name="is_completed" visibility="public" complexity="1" crap="1" count="4"/>
-      <line num="363" type="stmt" count="4"/>
-      <line num="371" type="method" name="get_completed_tasks_count" visibility="public" complexity="1" crap="1" count="4"/>
-      <line num="372" type="stmt" count="4"/>
-      <line num="373" type="stmt" count="4"/>
-      <line num="374" type="stmt" count="4"/>
-      <line num="375" type="stmt" count="4"/>
-      <line num="376" type="stmt" count="4"/>
-      <line num="377" type="stmt" count="4"/>
-      <line num="378" type="stmt" count="4"/>
-      <line num="379" type="stmt" count="4"/>
-      <line num="387" type="method" name="get_total_tasks_count" visibility="public" complexity="1" crap="1" count="4"/>
-      <line num="388" type="stmt" count="4"/>
-      <line num="397" type="method" name="set_open" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="398" type="stmt" count="1"/>
-      <line num="399" type="stmt" count="1"/>
-      <line num="408" type="method" name="set_status" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="409" type="stmt" count="1"/>
-      <line num="418" type="method" name="set_date_completed" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="419" type="stmt" count="1"/>
-      <line num="420" type="stmt" count="1"/>
-      <line num="428" type="method" name="is_open" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="429" type="stmt" count="0"/>
-      <line num="437" type="method" name="toggle_open" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="438" type="stmt" count="0"/>
-      <line num="439" type="stmt" count="0"/>
-      <line num="447" type="method" name="validate" visibility="public" complexity="5" crap="30" count="0"/>
-      <line num="448" type="stmt" count="0"/>
-      <line num="449" type="stmt" count="0"/>
-      <line num="452" type="stmt" count="0"/>
-      <line num="453" type="stmt" count="0"/>
-      <line num="457" type="stmt" count="0"/>
-      <line num="458" type="stmt" count="0"/>
-      <line num="459" type="stmt" count="0"/>
-      <line num="460" type="stmt" count="0"/>
-      <line num="464" type="stmt" count="0"/>
-      <metrics loc="467" ncloc="270" classes="1" methods="22" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="137" coveredstatements="99" elements="159" coveredelements="109"/>
+      <line num="340" type="method" name="mark_all_active_tasks_complete" visibility="public" complexity="4" crap="4" count="3"/>
+      <line num="341" type="stmt" count="3"/>
+      <line num="343" type="stmt" count="3"/>
+      <line num="344" type="stmt" count="3"/>
+      <line num="345" type="stmt" count="1"/>
+      <line num="346" type="stmt" count="1"/>
+      <line num="350" type="stmt" count="3"/>
+      <line num="361" type="method" name="sync_section_status_with_tasks" visibility="private" complexity="9" crap="21.65" count="2"/>
+      <line num="362" type="stmt" count="2"/>
+      <line num="363" type="stmt" count="0"/>
+      <line num="367" type="stmt" count="2"/>
+      <line num="371" type="stmt" count="2"/>
+      <line num="372" type="stmt" count="2"/>
+      <line num="373" type="stmt" count="0"/>
+      <line num="374" type="stmt" count="0"/>
+      <line num="375" type="stmt" count="0"/>
+      <line num="376" type="stmt" count="0"/>
+      <line num="381" type="stmt" count="2"/>
+      <line num="383" type="stmt" count="2"/>
+      <line num="384" type="stmt" count="0"/>
+      <line num="386" type="stmt" count="0"/>
+      <line num="394" type="method" name="sort_tasks" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="395" type="stmt" count="0"/>
+      <line num="396" type="stmt" count="0"/>
+      <line num="397" type="stmt" count="0"/>
+      <line num="398" type="stmt" count="0"/>
+      <line num="399" type="stmt" count="0"/>
+      <line num="400" type="stmt" count="0"/>
+      <line num="410" type="method" name="get_completion_percentage" visibility="public" complexity="3" crap="3.01" count="6"/>
+      <line num="411" type="stmt" count="6"/>
+      <line num="412" type="stmt" count="0"/>
+      <line num="416" type="stmt" count="6"/>
+      <line num="417" type="stmt" count="6"/>
+      <line num="418" type="stmt" count="6"/>
+      <line num="419" type="stmt" count="6"/>
+      <line num="420" type="stmt" count="6"/>
+      <line num="421" type="stmt" count="6"/>
+      <line num="423" type="stmt" count="6"/>
+      <line num="424" type="stmt" count="0"/>
+      <line num="427" type="stmt" count="6"/>
+      <line num="428" type="stmt" count="6"/>
+      <line num="429" type="stmt" count="6"/>
+      <line num="430" type="stmt" count="6"/>
+      <line num="431" type="stmt" count="6"/>
+      <line num="432" type="stmt" count="6"/>
+      <line num="434" type="stmt" count="6"/>
+      <line num="442" type="method" name="is_completed" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="443" type="stmt" count="6"/>
+      <line num="451" type="method" name="get_completed_tasks_count" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="452" type="stmt" count="4"/>
+      <line num="453" type="stmt" count="4"/>
+      <line num="454" type="stmt" count="4"/>
+      <line num="455" type="stmt" count="4"/>
+      <line num="456" type="stmt" count="4"/>
+      <line num="457" type="stmt" count="4"/>
+      <line num="458" type="stmt" count="4"/>
+      <line num="459" type="stmt" count="4"/>
+      <line num="467" type="method" name="get_total_tasks_count" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="468" type="stmt" count="4"/>
+      <line num="477" type="method" name="set_open" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="478" type="stmt" count="1"/>
+      <line num="479" type="stmt" count="1"/>
+      <line num="488" type="method" name="set_status" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="489" type="stmt" count="1"/>
+      <line num="498" type="method" name="set_date_completed" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="499" type="stmt" count="3"/>
+      <line num="500" type="stmt" count="3"/>
+      <line num="508" type="method" name="is_open" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="509" type="stmt" count="0"/>
+      <line num="517" type="method" name="toggle_open" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="518" type="stmt" count="0"/>
+      <line num="519" type="stmt" count="0"/>
+      <line num="527" type="method" name="validate" visibility="public" complexity="5" crap="30" count="0"/>
+      <line num="528" type="stmt" count="0"/>
+      <line num="529" type="stmt" count="0"/>
+      <line num="532" type="stmt" count="0"/>
+      <line num="533" type="stmt" count="0"/>
+      <line num="537" type="stmt" count="0"/>
+      <line num="538" type="stmt" count="0"/>
+      <line num="539" type="stmt" count="0"/>
+      <line num="540" type="stmt" count="0"/>
+      <line num="544" type="stmt" count="0"/>
+      <metrics loc="547" ncloc="325" classes="1" methods="24" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="169" coveredstatements="123" elements="193" coveredelements="134"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Task.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Task" namespace="global">
-        <metrics complexity="22" methods="13" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="27" elements="60" coveredelements="32"/>
+        <metrics complexity="22" methods="13" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="28" elements="60" coveredelements="34"/>
       </class>
       <line num="73" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="60"/>
       <line num="74" type="stmt" count="60"/>
@@ -385,11 +419,11 @@
       <line num="147" type="stmt" count="0"/>
       <line num="148" type="stmt" count="0"/>
       <line num="151" type="stmt" count="0"/>
-      <line num="160" type="method" name="update_status" visibility="public" complexity="2" crap="2.06" count="2"/>
-      <line num="161" type="stmt" count="2"/>
+      <line num="160" type="method" name="update_status" visibility="public" complexity="2" crap="2.06" count="3"/>
+      <line num="161" type="stmt" count="3"/>
       <line num="162" type="stmt" count="0"/>
-      <line num="165" type="stmt" count="2"/>
-      <line num="166" type="stmt" count="2"/>
+      <line num="165" type="stmt" count="3"/>
+      <line num="166" type="stmt" count="3"/>
       <line num="175" type="method" name="set_data_attributes" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="176" type="stmt" count="0"/>
       <line num="186" type="method" name="add_data_attribute" visibility="public" complexity="1" crap="2" count="0"/>
@@ -402,13 +436,13 @@
       <line num="209" type="stmt" count="0"/>
       <line num="210" type="stmt" count="0"/>
       <line num="212" type="stmt" count="0"/>
-      <line num="220" type="method" name="is_completed" visibility="public" complexity="1" crap="1" count="4"/>
-      <line num="221" type="stmt" count="4"/>
-      <line num="229" type="method" name="is_dismissed" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="230" type="stmt" count="0"/>
+      <line num="220" type="method" name="is_completed" visibility="public" complexity="1" crap="1" count="7"/>
+      <line num="221" type="stmt" count="7"/>
+      <line num="229" type="method" name="is_dismissed" visibility="public" complexity="1" crap="1" count="7"/>
+      <line num="230" type="stmt" count="7"/>
       <line num="238" type="method" name="get_completion_percentage" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="239" type="stmt" count="0"/>
-      <metrics loc="242" ncloc="121" classes="1" methods="13" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="27" elements="60" coveredelements="32"/>
+      <metrics loc="242" ncloc="121" classes="1" methods="13" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="28" elements="60" coveredelements="34"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Track.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Track" namespace="global">
@@ -1610,6 +1644,6 @@
       <line num="27" type="stmt" count="0"/>
       <metrics loc="58" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="11" coveredelements="0"/>
     </file>
-    <metrics files="12" loc="4154" ncloc="2513" classes="11" methods="151" coveredmethods="53" conditionals="0" coveredconditionals="0" statements="1389" coveredstatements="606" elements="1540" coveredelements="659"/>
+    <metrics files="12" loc="4234" ncloc="2568" classes="11" methods="153" coveredmethods="55" conditionals="0" coveredconditionals="0" statements="1421" coveredstatements="631" elements="1574" coveredelements="686"/>
   </project>
 </coverage>
