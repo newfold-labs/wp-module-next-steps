@@ -126,7 +126,7 @@ export const Task = memo(( props ) => {
 			<div
 				className="nfd-nextsteps-task-container"
 				id={ `task-${ id }` } 
-				{ ...formatDataAttributes()() }
+				{ ...formatDataAttributes() }
 			>
 				<div className="nfd-nextsteps-task nfd-nextsteps-task-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
@@ -182,7 +182,7 @@ export const Task = memo(( props ) => {
 			<div
 				className="nfd-nextsteps-task-container"
 				id={ `task-${ id }` } 
-				{ ...formatDataAttributes()() }
+				{ ...formatDataAttributes() }
 			>
 				<div className="nfd-nextsteps-task nfd-nextsteps-task-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end">
@@ -206,6 +206,7 @@ export const Task = memo(( props ) => {
                             data-nfd-click="nextsteps_task_link"
                             data-nfd-event-category="nextsteps_task"
                             data-nfd-event-key={ id }
+                            { ...formatLinkDataAttributes() }
                             href={ getHref() }
                             target={ getTarget() }
                             title={ title }
