@@ -109,7 +109,7 @@ class NextSteps {
 		} else {
 			return;
 		}
-		
+
 		$style_deps  = array(
 			container()->plugin()->id . '-style',
 		);
