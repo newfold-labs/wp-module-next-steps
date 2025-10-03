@@ -213,5 +213,4 @@ class PlanFactory {
 		}
 		return self::determine_site_type();
 	}
-
 }

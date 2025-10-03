@@ -563,12 +563,12 @@ class Plan {
 		if ( ! $track ) {
 			return false;
 		}
-		
+
 		$section = $track->get_section( $section_id );
 		if ( ! $section ) {
 			return false;
 		}
-		
+
 		return $section->get_task( $task_id ) !== null;
 	}
 

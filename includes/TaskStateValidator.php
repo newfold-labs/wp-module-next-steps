@@ -20,7 +20,7 @@ class TaskStateValidator {
 
 	/**
 	 * Registry of task validators
-	 * 
+	 *
 	 * Format: ['plan_id.track_id.section_id.task_id' => callable]
 	 *
 	 * @var array
@@ -40,7 +40,7 @@ class TaskStateValidator {
 
 	/**
 	 * Validate existing state for all registered tasks
-	 * 
+	 *
 	 * Checks current site state against all registered validators and marks
 	 * tasks as complete if their conditions are already met.
 	 *
@@ -77,18 +77,18 @@ class TaskStateValidator {
 			// Run the validation callback
 			try {
 				$should_be_complete = call_user_func( $validation_callback );
-				
+
 				if ( $should_be_complete ) {
 					// Mark task as complete
 					$success = $plan->update_task_status( $track_id, $section_id, $task_id, 'done' );
-					
+
 					if ( $success ) {
 						$completed_tasks[] = $task_path;
 					}
 				}
 			} catch ( \Exception $e ) {
 				// Log error but continue with other validators
-				error_log( "TaskStateValidator error for {$task_path}: " . $e->getMessage() );
+				// error_log( "TaskStateValidator error for {$task_path}: " . $e->getMessage() );
 			}
 		}
 
@@ -98,7 +98,7 @@ class TaskStateValidator {
 
 	/**
 	 * Get all registered validators
-	 * 
+	 *
 	 * @return array Array of registered validators
 	 */
 	public static function get_registered_validators(): array {
@@ -107,7 +107,7 @@ class TaskStateValidator {
 
 	/**
 	 * Clear all registered validators (useful for testing)
-	 * 
+	 *
 	 * @return void
 	 */
 	public static function clear_validators(): void {
@@ -116,7 +116,7 @@ class TaskStateValidator {
 
 	/**
 	 * Get count of registered validators
-	 * 
+	 *
 	 * @return int Number of registered validators
 	 */
 	public static function get_validator_count(): int {

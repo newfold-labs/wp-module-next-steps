@@ -51,7 +51,7 @@ class NextSteps {
 		new PlanSwitchTriggers( $container );
 		new TaskCompletionTriggers( $container );
 		self::$steps_api = new StepsApi();
-		
+
 		\add_action( 'rest_api_init', array( $this, 'init_steps_apis' ) );
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_widget' ) );
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_portal' ) );

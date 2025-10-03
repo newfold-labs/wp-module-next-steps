@@ -348,8 +348,8 @@ class StorePlan {
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-action'                => 'load-nfd-ctb',
-											'data-ctb-id'                => '57d6a568-783c-45e2-a388-847cff155897',
+											'data-action' => 'load-nfd-ctb',
+											'data-ctb-id' => '57d6a568-783c-45e2-a388-847cff155897',
 											'data-nfd-complete-on-click' => 'false',
 										),
 									),

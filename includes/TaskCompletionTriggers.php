@@ -11,13 +11,13 @@ namespace NewfoldLabs\WP\Module\NextSteps;
  * - Registration method that sets up both hooks and validators
  * - Handler methods that respond to WordPress/plugin events
  * - Validation methods that check existing site state on plan initialization
- * 
+ *
  * Architecture:
  * - Task paths are defined once in TASK_PATHS constant
  * - Registration methods combine hook and validator setup
  * - Handlers use mark_task_as_complete_by_path() with constants
  * - Validators reuse the same logic as handlers for consistency
- * 
+ *
  * File Organization:
  * # Constructor & Setup
  * # Product Tasks (WooCommerce)
@@ -35,22 +35,22 @@ class TaskCompletionTriggers {
 	const TASK_PATHS = array(
 		// Product tasks
 		'store_add_product' => 'store_setup.store_build_track.setup_products.store_add_product',
-		
+
 		// Payment tasks
 		'store_setup_payments' => 'store_setup.store_build_track.setup_payments_shipping.store_setup_payments',
-		
+
 		// Blog tasks
 		'blog_first_post' => 'blog_setup.blog_build_track.create_content.blog_first_post',
-		
+
 		// Jetpack tasks
-		'store_improve_performance' => 'store_setup.store_build_track.store_improve_performance.store_improve_performance',
-		'blog_speed_up_site' => 'blog_setup.blog_grow_track.blog_performance_security.blog_speed_up_site',
-		'blog_connect_jetpack_stats' => 'blog_setup.blog_brand_track.first_audience_building.blog_connect_jetpack_stats',
+		'store_improve_performance'       => 'store_setup.store_build_track.store_improve_performance.store_improve_performance',
+		'blog_speed_up_site'              => 'blog_setup.blog_grow_track.blog_performance_security.blog_speed_up_site',
+		'blog_connect_jetpack_stats'      => 'blog_setup.blog_brand_track.first_audience_building.blog_connect_jetpack_stats',
 		'corporate_install_jetpack_boost' => 'corporate_setup.corporate_grow_track.site_performance_security.corporate_install_jetpack_boost',
-		'corporate_setup_jetpack_stats' => 'corporate_setup.corporate_brand_track.launch_marketing_tools.corporate_setup_jetpack_stats',
-		
+		'corporate_setup_jetpack_stats'   => 'corporate_setup.corporate_brand_track.launch_marketing_tools.corporate_setup_jetpack_stats',
+
 		// Yoast tasks
-		'store_setup_yoast_premium' => 'store_setup.store_build_track.next_marketing_steps.store_setup_yoast_premium',
+		'store_setup_yoast_premium'  => 'store_setup.store_build_track.next_marketing_steps.store_setup_yoast_premium',
 		'blog_install_yoast_premium' => 'blog_setup.blog_grow_track.content_traffic_strategy.blog_install_yoast_premium',
 	);
 
@@ -74,7 +74,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Register hooks and validators for product-related tasks
-	 * 
+	 *
 	 * @return void
 	 */
 	private function register_product_hooks_and_validators(): void {
@@ -82,7 +82,7 @@ class TaskCompletionTriggers {
 		\add_action( 'woocommerce_rest_insert_product_object', array( __CLASS__, 'on_product_creation' ), 10, 3 );
 		// Product creation via post publish (covers admin interface and other methods)
 		\add_action( 'publish_product', array( __CLASS__, 'on_product_published' ), 10, 2 );
-		
+
 		TaskStateValidator::register_validator(
 			self::TASK_PATHS['store_add_product'],
 			array( __CLASS__, 'validate_product_creation_state' )
@@ -91,7 +91,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Register hooks and validators for payment-related tasks
-	 * 
+	 *
 	 * @return void
 	 */
 	private function register_payment_hooks_and_validators(): void {
@@ -108,7 +108,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Register hooks and validators for blog-related tasks
-	 * 
+	 *
 	 * @return void
 	 */
 	private function register_blog_hooks_and_validators(): void {
@@ -123,7 +123,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Register hooks and validators for Jetpack-related tasks
-	 * 
+	 *
 	 * @return void
 	 */
 	private function register_jetpack_hooks_and_validators(): void {
@@ -162,7 +162,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Register hooks and validators for Yoast-related tasks
-	 * 
+	 *
 	 * @return void
 	 */
 	private function register_yoast_hooks_and_validators(): void {
@@ -212,7 +212,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Validate if products already exist
-	 * 
+	 *
 	 * @return bool True if products are already created
 	 */
 	public static function validate_product_creation_state(): bool {
@@ -222,21 +222,23 @@ class TaskCompletionTriggers {
 		}
 
 		// Check if any published products exist
-		$products = get_posts( array(
-			'post_type'      => 'product',
-			'post_status'    => 'publish',
-			'posts_per_page' => 1,
-			'fields'         => 'ids',
-		) );
+		$products = get_posts(
+			array(
+				'post_type'      => 'product',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			)
+		);
 
 		return ! empty( $products );
 	}
 
 	/**
 	 * Register hooks for individual payment gateway updates
-	 * 
+	 *
 	 * This dynamically registers hooks for all available payment gateways
-	 * 
+	 *
 	 * @return void
 	 */
 	public static function register_payment_gateway_hooks() {
@@ -252,7 +254,7 @@ class TaskCompletionTriggers {
 		}
 
 		$available_gateways = $payment_gateways->payment_gateways();
-		
+
 		// Register hooks for each individual payment gateway
 		foreach ( $available_gateways as $gateway_id => $gateway ) {
 			$hook_name = "woocommerce_update_options_payment_gateways_{$gateway_id}";
@@ -266,7 +268,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Validate if payment setup is already complete
-	 * 
+	 *
 	 * @return bool True if payment gateways are already configured
 	 */
 	public static function validate_payment_setup_state(): bool {
@@ -275,13 +277,13 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Handle product published via post publish hook
-	 * 
+	 *
 	 * This covers product creation through the WordPress admin interface and other methods
 	 * that don't go through the REST API
 	 *
 	 * @param int     $post_id The post ID
 	 * @param WP_Post $post The post object
-	 * @return void
+	 * @return bool True if the task was marked as complete, false otherwise
 	 */
 	public static function on_product_published( $post_id, $post ) {
 		// Only proceed if this is a new product (not an update)
@@ -292,11 +294,11 @@ class TaskCompletionTriggers {
 				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_add_product'] );
 			}
 		}
-	}	
+	}
 
 	/**
 	 * Handle payment gateway settings updated
-	 * 
+	 *
 	 * This triggers when any payment gateway settings are updated
 	 *
 	 * @return void
@@ -323,7 +325,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Handle blog post published
-	 * 
+	 *
 	 * This triggers when a blog post is published
 	 *
 	 * @param int     $post_id The post ID
@@ -348,17 +350,19 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Validate if a blog post has already been created
-	 * 
+	 *
 	 * @return bool True if a non-Hello World blog post exists
 	 */
 	public static function validate_blog_post_creation_state(): bool {
 		// Get published posts, excluding the default Hello World post
-		$posts = get_posts( array(
-			'post_type'      => 'post',
-			'post_status'    => 'publish',
-			'posts_per_page' => 2, // Get a few posts to check
-			'fields'         => 'all',
-		) );
+		$posts = get_posts(
+			array(
+				'post_type'      => 'post',
+				'post_status'    => 'publish',
+				'posts_per_page' => 2, // Get a few posts to check
+				'fields'         => 'all',
+			)
+		);
 
 		if ( empty( $posts ) ) {
 			return false;
@@ -380,7 +384,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Handle Jetpack connection
-	 * 
+	 *
 	 * This triggers when Jetpack is successfully connected to WordPress.com
 	 *
 	 * @return void
@@ -404,7 +408,7 @@ class TaskCompletionTriggers {
 			case 'blog':
 				// Mark Jetpack Stats connection task as complete
 				self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_connect_jetpack_stats'] );
-				
+
 				// Also check if Jetpack Boost is active for performance task
 				if ( self::is_jetpack_performance_ready() ) {
 					self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_speed_up_site'] );
@@ -414,7 +418,7 @@ class TaskCompletionTriggers {
 			case 'corporate':
 				// Mark Jetpack Stats setup task as complete
 				self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
-				
+
 				// Also check if Jetpack Boost is active for performance task
 				if ( self::is_jetpack_performance_ready() ) {
 					self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_install_jetpack_boost'] );
@@ -464,7 +468,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Handle Jetpack module activation
-	 * 
+	 *
 	 * This triggers when any Jetpack module is activated, including Boost-related modules
 	 *
 	 * @param string $module The module name that was activated
@@ -497,10 +501,10 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Handle Jetpack boost activation
-	 * 
+	 *
 	 * This triggers when Jetpack Boost is activated
 	 *
-	 * @return void
+	 * @return bool True if the task was marked as complete, false otherwise
 	 */
 	public static function on_jetpack_boost_activated() {
 		$current_plan = PlanRepository::get_current_plan();
@@ -515,7 +519,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Validate if Jetpack performance setup is already complete
-	 * 
+	 *
 	 * @return bool True if Jetpack is connected and Boost is active
 	 */
 	public static function validate_jetpack_performance_state(): bool {
@@ -524,7 +528,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Validate if Jetpack Stats is already connected
-	 * 
+	 *
 	 * @return bool True if Jetpack is connected and Stats module is active
 	 */
 	public static function validate_jetpack_stats_state(): bool {
@@ -592,7 +596,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Validate if Yoast SEO Premium is already active
-	 * 
+	 *
 	 * @return bool True if Yoast SEO Premium is already active
 	 */
 	public static function validate_yoast_premium_state(): bool {
@@ -617,7 +621,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Helper method to mark a task as complete using task path
-	 * 
+	 *
 	 * @param string $task_path The full task path (plan_id.track_id.section_id.task_id)
 	 * @return bool True if the task was marked as complete, false otherwise
 	 */
@@ -626,18 +630,18 @@ class TaskCompletionTriggers {
 		if ( count( $parts ) !== 4 ) {
 			return false;
 		}
-		
+
 		list( $plan_id, $track_id, $section_id, $task_id ) = $parts;
 		return self::mark_task_as_complete( $track_id, $section_id, $task_id );
 	}
 
 	/**
 	 * Helper method to mark a task as complete for hooks to use
-	 * 
+	 *
 	 * This method will mark a task as complete and save the plan
 	 * If the section has multiple tasks, it will mark the task as complete
 	 * If the section has one tasks, it will mark the section as complete
-	 * 
+	 *
 	 * @param string $track_id The track id
 	 * @param string $section_id The section id
 	 * @param string $task_id The task id
@@ -667,7 +671,7 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Check if any payment gateways are enabled
-	 * 
+	 *
 	 * @return bool True if at least one payment gateway is enabled, false otherwise
 	 */
 	private static function has_enabled_payment_gateways(): bool {
@@ -684,16 +688,16 @@ class TaskCompletionTriggers {
 
 		// Get available payment gateways
 		$available_gateways = $payment_gateways->get_available_payment_gateways();
-		
+
 		// Check if any gateways are enabled (available gateways are already filtered to enabled ones)
 		return ! empty( $available_gateways );
 	}
 
 	/**
 	 * Check if Jetpack performance setup is ready
-	 * 
+	 *
 	 * Validates that both Jetpack is connected and Jetpack Boost is active
-	 * 
+	 *
 	 * @return bool True if both conditions are met, false otherwise
 	 */
 	private static function is_jetpack_performance_ready(): bool {
@@ -716,13 +720,13 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Check if a post is the default "Hello World" post
-	 * 
+	 *
 	 * @param WP_Post $post The post object
 	 * @return bool True if this is the default Hello World post
 	 */
 	private static function is_hello_world_post( $post ): bool {
 		// Check post title
-		if ( false !== stripos( $post->post_title, "Hello world!" ) ) {
+		if ( false !== stripos( $post->post_title, 'Hello world!' ) ) {
 			return true;
 		}
 		// Check post slug
@@ -731,6 +735,4 @@ class TaskCompletionTriggers {
 		}
 		return false;
 	}
-
-
 }
