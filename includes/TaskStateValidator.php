@@ -30,7 +30,7 @@ class TaskStateValidator {
 	/**
 	 * Register a task state validator
 	 *
-	 * @param string $task_path Task path in format 'plan_id.track_id.section_id.task_id'
+	 * @param string   $task_path Task path in format 'plan_id.track_id.section_id.task_id'
 	 * @param callable $validation_callback Callback that returns bool indicating if task should be complete
 	 * @return void
 	 */

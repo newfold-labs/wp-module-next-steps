@@ -34,13 +34,13 @@ class TaskCompletionTriggers {
 	 */
 	const TASK_PATHS = array(
 		// Product tasks
-		'store_add_product' => 'store_setup.store_build_track.setup_products.store_add_product',
+		'store_add_product'               => 'store_setup.store_build_track.setup_products.store_add_product',
 
 		// Payment tasks
-		'store_setup_payments' => 'store_setup.store_build_track.setup_payments_shipping.store_setup_payments',
+		'store_setup_payments'            => 'store_setup.store_build_track.setup_payments_shipping.store_setup_payments',
 
 		// Blog tasks
-		'blog_first_post' => 'blog_setup.blog_build_track.create_content.blog_first_post',
+		'blog_first_post'                  => 'blog_setup.blog_build_track.create_content.blog_first_post',
 
 		// Jetpack tasks
 		'store_improve_performance'       => 'store_setup.store_build_track.store_improve_performance.store_improve_performance',
@@ -50,8 +50,8 @@ class TaskCompletionTriggers {
 		'corporate_setup_jetpack_stats'   => 'corporate_setup.corporate_brand_track.launch_marketing_tools.corporate_setup_jetpack_stats',
 
 		// Yoast tasks
-		'store_setup_yoast_premium'  => 'store_setup.store_build_track.next_marketing_steps.store_setup_yoast_premium',
-		'blog_install_yoast_premium' => 'blog_setup.blog_grow_track.content_traffic_strategy.blog_install_yoast_premium',
+		'store_setup_yoast_premium'       => 'store_setup.store_build_track.next_marketing_steps.store_setup_yoast_premium',
+		'blog_install_yoast_premium'      => 'blog_setup.blog_grow_track.content_traffic_strategy.blog_install_yoast_premium',
 	);
 
 	// ========================================
