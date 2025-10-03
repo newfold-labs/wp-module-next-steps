@@ -471,6 +471,108 @@ class Plan {
 	}
 
 	/**
+	 * Check if a track exists in the plan
+	 *
+	 * @param string $track_id Track ID to check
+	 * @return bool True if track exists, false otherwise
+	 */
+	public function has_track( string $track_id ): bool {
+		return $this->get_track( $track_id ) !== null;
+	}
+
+	/**
+	 * Check if a section exists in the plan
+	 *
+	 * @param string $section_id Section ID to check
+	 * @param string $track_id Optional track ID to limit search to specific track
+	 * @return bool True if section exists, false otherwise
+	 */
+	public function has_section( string $section_id, string $track_id = '' ): bool {
+		if ( ! empty( $track_id ) ) {
+			// Search in specific track only - most efficient path
+			$track = $this->get_track( $track_id );
+			return $track && $track->get_section( $section_id ) !== null;
+		}
+
+		// Search in all tracks - less efficient but necessary for flexibility
+		foreach ( $this->tracks as $track ) {
+			if ( $track->get_section( $section_id ) !== null ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Check if a task exists in the plan
+	 *
+	 * @param string $task_id Task ID to check
+	 * @param string $section_id Optional section ID to limit search to specific section
+	 * @param string $track_id Optional track ID to limit search to specific track
+	 * @return bool True if task exists, false otherwise
+	 */
+	public function has_task( string $task_id, string $section_id = '', string $track_id = '' ): bool {
+		if ( ! empty( $track_id ) && ! empty( $section_id ) ) {
+			// Most efficient path: delegate to has_exact_task when all IDs provided
+			return $this->has_exact_task( $track_id, $section_id, $task_id );
+		} elseif ( ! empty( $section_id ) ) {
+			// Search in specific section across all tracks: O(n) where n = tracks
+			foreach ( $this->tracks as $track ) {
+				$section = $track->get_section( $section_id );
+				if ( $section && $section->get_task( $task_id ) !== null ) {
+					return true;
+				}
+			}
+			return false;
+		} elseif ( ! empty( $track_id ) ) {
+			// Search in specific track across all sections: O(m) where m = sections in track
+			$track = $this->get_track( $track_id );
+			if ( ! $track ) {
+				return false;
+			}
+			foreach ( $track->sections as $section ) {
+				if ( $section->get_task( $task_id ) !== null ) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		// Least efficient: search everywhere O(n*m*k) - use sparingly
+		foreach ( $this->tracks as $track ) {
+			foreach ( $track->sections as $section ) {
+				if ( $section->get_task( $task_id ) !== null ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Optimized method to validate a complete track->section->task path
+	 * More efficient than calling has_track(), has_section(), has_task() separately
+	 *
+	 * @param string $track_id Track ID to check
+	 * @param string $section_id Section ID to check
+	 * @param string $task_id Task ID to check
+	 * @return bool True if the complete path exists, false otherwise
+	 */
+	public function has_exact_task( string $track_id, string $section_id, string $task_id ): bool {
+		$track = $this->get_track( $track_id );
+		if ( ! $track ) {
+			return false;
+		}
+		
+		$section = $track->get_section( $section_id );
+		if ( ! $section ) {
+			return false;
+		}
+		
+		return $section->get_task( $task_id ) !== null;
+	}
+
+	/**
 	 * Validate plan data
 	 *
 	 * @return bool|string True if valid, error message if not
