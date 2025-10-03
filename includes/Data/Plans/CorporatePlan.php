@@ -86,6 +86,7 @@ class CorporatePlan {
 										'data_attributes' => array(
 											'data-test-id' => 'corporate_quick_setup',
 											'data-nfd-id'  => 'corporate_quick_start',
+											'data-nfd-complete-on-click' => 'false',
 										),
 									),
 								),
@@ -102,6 +103,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_choose_brand_colors',
@@ -110,6 +114,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_customize_header',
@@ -117,7 +124,7 @@ class CorporatePlan {
 										'href'     => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=template&area=header&template=index',
 										'status'   => 'new',
 										'priority' => 3,
-										'source'   => 'wp-module-next-steps',
+										'source'   => 'wp-module-next-steps',	
 									),
 									array(
 										'id'       => 'corporate_customize_footer',
@@ -126,6 +133,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_customize_homepage',
@@ -134,6 +144,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 5,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -148,6 +161,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_create_primary_menu',
@@ -156,6 +172,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_add_footer_menu',
@@ -164,6 +183,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -177,7 +199,10 @@ class CorporatePlan {
 										'href'     => '{siteUrl}/wp-admin/options-privacy.php',
 										'status'   => 'new',
 										'priority' => 1,
-										'source'   => 'wp-module-next-steps',
+										'source'   => 'wp-module-next-steps',	
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_terms_conditions',
@@ -186,6 +211,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_accessibility_statement',
@@ -194,6 +222,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -214,6 +245,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_create_favicon',
@@ -221,7 +255,10 @@ class CorporatePlan {
 										'href'     => '{siteUrl}/wp-admin/customize.php?autofocus[section]=title_tagline',
 										'status'   => 'new',
 										'priority' => 2,
-										'source'   => 'wp-module-next-steps',
+										'source'   => 'wp-module-next-steps',	
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_connect_google_business',
@@ -230,6 +267,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_create_branded_email',
@@ -238,6 +278,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 								),
 							),
@@ -252,6 +295,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_connect_search_console',
@@ -260,6 +306,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_install_seo_plugin',
@@ -268,6 +317,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_add_social_sharing',
@@ -276,6 +328,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -290,6 +345,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_embed_map',
@@ -298,6 +356,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_link_social_profiles',
@@ -306,6 +367,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -326,6 +390,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_add_certifications',
@@ -334,6 +401,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -348,6 +418,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_create_faq_page',
@@ -356,6 +429,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_optimize_key_pages',
@@ -364,6 +440,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_generate_submit_sitemap',
@@ -372,6 +451,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 								),
 							),
@@ -386,6 +468,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_connect_crm',
@@ -394,6 +479,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_add_cta_section',
@@ -402,6 +490,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 								),
 							),
@@ -416,6 +507,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_enable_auto_backups',
@@ -424,6 +518,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_install_security_plugin',
@@ -432,6 +529,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_setup_staging_site',
@@ -440,6 +540,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -454,6 +557,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'corporate_run_speed_test',
@@ -462,6 +568,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'corporate_plan_next_content',
@@ -470,6 +579,9 @@ class CorporatePlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 								),
 							),

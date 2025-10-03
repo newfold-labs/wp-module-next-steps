@@ -67,6 +67,7 @@ class BlogPlan {
 										'data_attributes' => array(
 											'data-test-id' => 'blog_quick_setup',
 											'data-nfd-id'  => 'blog_quick_start',
+											'data-nfd-complete-on-click' => 'false',
 										),
 									),
 								),
@@ -83,6 +84,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_choose_colors_fonts',
@@ -91,6 +95,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_customize_header',
@@ -99,6 +106,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_customize_footer',
@@ -107,6 +117,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -121,6 +134,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_about_page',
@@ -129,6 +145,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_set_featured_image',
@@ -137,6 +156,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -151,6 +173,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_create_primary_menu',
@@ -159,6 +184,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_create_footer_menu',
@@ -167,6 +195,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -181,6 +212,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_terms_conditions',
@@ -189,6 +223,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_accessibility_statement',
@@ -197,6 +234,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -218,6 +258,9 @@ class BlogPlan {
 										'status'      => 'new',
 										'priority'    => 1,
 										'source'      => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'blog_customize_notification_emails',
@@ -226,6 +269,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_connect_jetpack_stats',
@@ -234,6 +280,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -248,6 +297,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_add_social_sharing',
@@ -256,6 +308,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_embed_social_feed',
@@ -264,6 +319,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 								),
 							),
@@ -278,6 +336,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_submit_search_console',
@@ -286,6 +347,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'blog_generate_sitemap',
@@ -294,6 +358,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 								),
 							),
@@ -314,6 +381,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_customize_author_boxes',
@@ -322,6 +392,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_display_testimonials',
@@ -330,6 +403,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'blog_create_favicon',
@@ -338,6 +414,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -352,6 +431,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'blog_draft_outreach_list',
@@ -360,6 +442,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'blog_run_first_ad',
@@ -368,6 +453,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'blog_track_utm_campaigns',
@@ -376,6 +464,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 4,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 								),
 							),
@@ -390,6 +481,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'blog_implement_internal_linking',
@@ -398,6 +492,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 									array(
 										'id'       => 'blog_install_yoast_premium',
@@ -406,6 +503,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -420,6 +520,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_enable_auto_backups',
@@ -428,6 +531,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 2,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array(
 										'id'       => 'blog_create_staging_site',
@@ -436,6 +542,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 3,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'true',
+										),
 									),
 								),
 							),
@@ -450,6 +559,9 @@ class BlogPlan {
 										'status'   => 'new',
 										'priority' => 1,
 										'source'   => 'wp-module-next-steps',
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),

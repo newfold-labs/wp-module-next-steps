@@ -266,8 +266,9 @@ export const SectionCard = ( {
 			return false;
 		} else if ( e.target.hasAttribute( 'data-nfd-prevent-default' ) ) { 
 			// if the link has the data-nfd-prevent-default attribute, do not open the link
+			// this is because there is a custom modal for this section/task
 			return false;
-		} else { // if there is only one task
+		} else if ( e.target.hasAttribute( 'data-nfd-complete-on-click' ) && 'true' === e.target.getAttribute( 'data-nfd-complete-on-click' ) ) { // if there is only one task and the data-nfd-complete-on-click attribute is set
 			e.preventDefault();
 			// if the status is not done
 			let newStatus = status === 'done' ? 'new' : 'done';
@@ -280,12 +281,10 @@ export const SectionCard = ( {
 				( er ) => { // error callback
 					console.error( 'Error updating section status: ', er );
 				},
-				( response ) => { // success callback
-					// finally open the link
-					window.open( e.target.href, '_self' );
-				}
 			);
-
+		} else { // if there is only one task and the data-nfd-complete-on-click attribute is not set or is set to false
+			// do nothing, allow link to open, and do not update status
+			// this is because there are custom hooks defined for this task
 			return false;
 		}
 	}

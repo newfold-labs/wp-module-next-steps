@@ -56,7 +56,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_choose_colors_fonts',
@@ -66,7 +68,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_customize_header',
@@ -76,7 +80,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_customize_footer',
@@ -86,7 +92,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_customize_homepage',
@@ -96,7 +104,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 5,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -121,6 +131,7 @@ class StorePlan {
 										'data_attributes' => array(
 											'data-quick-add-product-trigger' => 'true',
 											'data-nfd-prevent-default' => 'true',
+											'data-nfd-complete-on-click' => 'false',
 										),
 									),
 								),
@@ -142,7 +153,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -163,7 +176,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_customize_cart_page',
@@ -173,7 +188,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_customize_checkout_page',
@@ -183,7 +200,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -204,7 +223,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_create_gift_card',
@@ -214,7 +235,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_enable_abandoned_cart',
@@ -224,7 +247,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 									array( // task
 										'id'              => 'store_customize_emails',
@@ -234,7 +259,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -254,7 +281,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -274,7 +303,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -294,7 +325,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
@@ -314,7 +347,9 @@ class StorePlan {
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(),
+										'data_attributes' => array(
+											'data-nfd-complete-on-click' => 'false',
+										),
 									),
 								),
 							),
