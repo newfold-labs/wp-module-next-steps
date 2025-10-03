@@ -102,6 +102,17 @@ export const Task = memo(( props ) => {
 		return formatted;
 	};
 
+	/**
+	 * Render the task content
+	 * 
+	 * If href is provided, render a link with the href, target, and data attributes
+	 * Otherwise, render a span with the title
+	 * 
+	 * @param {*} href - The href to use for the link
+	 * @param {*} target - The target to use for the link
+	 * @param {*} dataAttributes - The data attributes to use for the link
+	 * @returns 
+	 */
 	const renderTaskContent = ( href = false, target = '', dataAttributes = {} ) => {
 		return (
 			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
@@ -199,7 +210,7 @@ export const Task = memo(( props ) => {
 							{ doneIcon }
 						</button>
 					</div>
-					{ renderTaskContent( getHref(), getTarget(), formatLinkDataAttributes() ) }
+					{ renderTaskContent() }
                     <div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
                         <a
                             className="nfd-nextsteps-button nfd-nextsteps-button-link"
@@ -240,7 +251,7 @@ export const Task = memo(( props ) => {
 							{ circleDashedIcon }
 						</button>
 					</div>
-					{ renderTaskContent( getHref(), getTarget(), formatLinkDataAttributes() ) }
+					{ renderTaskContent() }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
 						<button
 							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
