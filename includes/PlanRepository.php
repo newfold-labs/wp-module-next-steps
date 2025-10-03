@@ -92,6 +92,7 @@ class PlanRepository {
 	 * @return array The plan data array
 	 */
 	private static function get_plan_data(): array {
+		// self::reset_next_steps_data(); // manual reset - for debugging
 		// Return cached data if available
 		if ( null !== self::$cached_option_data ) {
 			return self::$cached_option_data;
@@ -159,16 +160,62 @@ class PlanRepository {
 	 * Save the current plan
 	 *
 	 * @param Plan $plan Plan to save
+	 * @param bool $force_check Whether to force check for existing conditions
 	 * @return bool Whether the plan was saved
 	 */
-	public static function save_plan( Plan $plan ): bool {
+	public static function save_plan( Plan $plan, bool $force_check = false ): bool {
+		// Check if this is a new plan before saving
+		$is_new_plan = self::is_new_plan();
+
 		$plan_data = $plan->to_array();
 		$result    = update_option( self::OPTION, $plan_data );
+
 		// Update cache with the saved plan and data after successful save
 		if ( $result ) {
 			self::cache_plan( $plan, $plan_data );
+
+			// If this was a new plan, check for existing conditions that should auto-complete tasks
+			if ( $is_new_plan || $force_check ) {
+				self::check_new_plan( $plan );
+			}
 		}
 		return $result;
+	}
+
+	/**
+	 * Check if a newly created plan has existing conditions that should auto-complete tasks
+	 *
+	 * This method validates existing site state against task completion criteria
+	 * and marks applicable tasks as complete for sites that already meet the requirements.
+	 *
+	 * @param Plan $plan The plan to check for auto-completable tasks
+	 * @return array Array of task paths that were marked complete
+	 */
+	public static function check_new_plan( Plan $plan ): array {
+		// Validate existing state and mark applicable tasks as complete
+		$completed_tasks = TaskStateValidator::validate_existing_state( $plan );
+
+		// If tasks were completed, save the updated plan
+		if ( ! empty( $completed_tasks ) ) {
+			$plan_data = $plan->to_array();
+			update_option( self::OPTION, $plan_data );
+			self::cache_plan( $plan, $plan_data );
+
+			// Log completed tasks for debugging
+			// error_log( 'TaskStateValidator auto-completed tasks: ' . implode( ', ', $completed_tasks ) );
+		}
+
+		return $completed_tasks;
+	}
+
+	/**
+	 * Check if no plan currently exists (indicating this would be a new plan)
+	 *
+	 * @return bool True if no plan exists, false if a plan already exists
+	 */
+	private static function is_new_plan(): bool {
+		$plan_data = self::get_plan_data();
+		return empty( $plan_data );
 	}
 
 
@@ -191,8 +238,9 @@ class PlanRepository {
 		}
 		// Load the appropriate plan directly
 		$plan = PlanFactory::create_plan( $plan_type );
-		// Save the loaded plan (this will automatically update cache)
-		self::save_plan( $plan );
+
+		// Save the loaded plan (this will automatically update cache and check for existing smart taskconditions)
+		self::save_plan( $plan, true );
 		return $plan;
 	}
 

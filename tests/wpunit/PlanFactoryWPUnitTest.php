@@ -4,6 +4,7 @@ namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
 use NewfoldLabs\WP\Module\NextSteps\PlanRepository;
+use NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers;
 use NewfoldLabs\WP\Module\NextSteps\StepsApi;
 use NewfoldLabs\WP\Module\NextSteps\Tests\WPUnit\TestPlanFactory;
 
@@ -65,7 +66,7 @@ class PlanFactoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$new_value = array( 'site_type' => 'personal' );
 
 		// Should not trigger any changes
-		PlanFactory::on_sitetype_change( $old_value, $new_value );
+		PlanSwitchTriggers::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no plan was created
 		$plan_data = get_option( PlanRepository::OPTION );
@@ -83,7 +84,7 @@ class PlanFactoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$new_value = array( 'site_type' => 'invalid_type' );
 
 		// Should not trigger any changes for invalid type
-		PlanFactory::on_sitetype_change( $old_value, $new_value );
+		PlanSwitchTriggers::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no plan was created
 		$plan_data = get_option( PlanRepository::OPTION );
@@ -101,7 +102,7 @@ class PlanFactoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$new_value = array( 'invalid_key' => 'ecommerce' );
 
 		// Should not trigger any changes for invalid key
-		PlanFactory::on_sitetype_change( $old_value, $new_value );
+		PlanSwitchTriggers::on_sitetype_change( $old_value, $new_value );
 
 		// Verify no plan was created
 		$plan_data = get_option( PlanRepository::OPTION );
@@ -131,7 +132,7 @@ class PlanFactoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 			++$i;
 
 			// Trigger the change
-			PlanFactory::on_sitetype_change( $old_value, $new_value );
+			PlanSwitchTriggers::on_sitetype_change( $old_value, $new_value );
 
 			// Verify the correct plan was created
 			$plan_data = get_option( PlanRepository::OPTION );
@@ -157,7 +158,7 @@ class PlanFactoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$this->assertEquals( 'blog_setup', $initial_plan->id );
 
 		// Simulate WooCommerce activation
-		PlanFactory::on_woocommerce_activation( 'woocommerce/woocommerce.php', false );
+		PlanSwitchTriggers::on_woocommerce_activation( 'woocommerce/woocommerce.php', false );
 
 		// Verify plan switched to ecommerce
 		$final_plan = PlanRepository::get_current_plan();
@@ -182,7 +183,7 @@ class PlanFactoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$this->assertEquals( 'blog_setup', $initial_plan->id );
 
 		// Simulate activation of non-WooCommerce plugin
-		PlanFactory::on_woocommerce_activation( 'other-plugin/other-plugin.php', false );
+		PlanSwitchTriggers::on_woocommerce_activation( 'other-plugin/other-plugin.php', false );
 
 		// Verify plan did NOT switch (non-WooCommerce plugin should not trigger switch)
 		$final_plan = PlanRepository::get_current_plan();

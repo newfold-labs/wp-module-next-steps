@@ -178,7 +178,12 @@ export const NextSteps = () => {
 
 	const renderCards = ( sectionsAsCards, trackId ) => {
 		const isLargeViewport = useViewportMatch( 'medium' );
-		const maxCards = 3;
+		let maxCards = 3;
+		// check url for showallsteps query parameter that is true
+		const showAllSteps = new URLSearchParams( window.location.search ).get( 'showallsteps' ) === 'true';
+		if ( showAllSteps ) {
+			maxCards = sectionsAsCards.length;
+		}
 		return (
 			<>
 				<div id={ 'nfd-quick-add-product-modal' }/>
@@ -192,7 +197,7 @@ export const NextSteps = () => {
 					{ sectionsAsCards.slice( 0, maxCards ).map( ( sectionsAsCard, i ) => {
 						return <SectionCard
 							key={ sectionsAsCard.id }
-							wide={ i === 2 && isLargeViewport }
+							wide={ i % 3 == 2 && isLargeViewport }
 							isPrimary={ sectionsAsCard.isPrimary === true } // calculated in filter to determine first new section
 							taskUpdateCallback={ taskUpdateCallback }
 							sectionUpdateCallback={ sectionUpdateCallback }
