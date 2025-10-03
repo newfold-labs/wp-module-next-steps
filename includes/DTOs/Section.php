@@ -305,6 +305,10 @@ class Section {
 			if ( 'done' === $status ) {
 				$this->mark_all_active_tasks_complete();
 			}
+			// If marking section as dismissed, mark all active tasks as dismissed too
+			if ( 'dismissed' === $status ) {
+				$this->mark_all_active_tasks_dismissed();
+			}
 		} else {
 			// reset date completed if marked as new
 			$this->clear_completed_date();
@@ -338,15 +342,27 @@ class Section {
 	 * @return int Number of tasks that were updated
 	 */
 	public function mark_all_active_tasks_complete(): int {
-		$updated_count = 0;
-
 		foreach ( $this->tasks as $task ) {
 			if ( ! $task->is_dismissed() && ! $task->is_completed() ) {
 				$task->update_status( 'done' );
-				++$updated_count;
 			}
 		}
+		return $updated_count;
+	}
 
+	/**
+	 * Mark all active (non-dismissed) tasks as dismissed
+	 *
+	 * Used when a section is dismissed to ensure all tasks are also dismissed
+	 *
+	 * @return int Number of tasks that were updated
+	 */
+	public function mark_all_active_tasks_dismissed(): int {
+		foreach ( $this->tasks as $task ) {
+			if ( ! $task->is_dismissed() ) {
+				$task->update_status( 'dismissed' );
+			}
+		}
 		return $updated_count;
 	}
 
