@@ -92,7 +92,7 @@ class PlanRepository {
 	 * @return array The plan data array
 	 */
 	private static function get_plan_data(): array {
-		self::reset_next_steps_data(); // manual reset - for debugging
+		// self::reset_next_steps_data(); // manual reset - for debugging
 		// Return cached data if available
 		if ( null !== self::$cached_option_data ) {
 			return self::$cached_option_data;
