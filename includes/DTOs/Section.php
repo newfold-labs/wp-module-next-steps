@@ -342,9 +342,11 @@ class Section {
 	 * @return int Number of tasks that were updated
 	 */
 	public function mark_all_active_tasks_complete(): int {
+		$updated_count = 0;
 		foreach ( $this->tasks as $task ) {
 			if ( ! $task->is_dismissed() && ! $task->is_completed() ) {
 				$task->update_status( 'done' );
+				++$updated_count;
 			}
 		}
 		return $updated_count;
@@ -358,9 +360,11 @@ class Section {
 	 * @return int Number of tasks that were updated
 	 */
 	public function mark_all_active_tasks_dismissed(): int {
+		$updated_count = 0;
 		foreach ( $this->tasks as $task ) {
 			if ( ! $task->is_dismissed() ) {
 				$task->update_status( 'dismissed' );
+				++$updated_count;
 			}
 		}
 		return $updated_count;
