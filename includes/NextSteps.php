@@ -46,10 +46,11 @@ class NextSteps {
 	 * @param Container $container The module container.
 	 */
 	public function __construct( Container $container ) {
-		// Autoloader handles class loading
-		new PlanFactory();
-		self::$steps_api = new StepsApi();
 		$this->container = $container;
+		new PlanFactory();
+		new PlanSwitchTriggers( $container );
+		self::$steps_api = new StepsApi();
+		
 		\add_action( 'rest_api_init', array( $this, 'init_steps_apis' ) );
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_widget' ) );
 		\add_action( 'admin_enqueue_scripts', array( __CLASS__, 'nextsteps_portal' ) );
