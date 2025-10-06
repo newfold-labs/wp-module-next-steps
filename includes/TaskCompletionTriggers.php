@@ -25,6 +25,8 @@ namespace NewfoldLabs\WP\Module\NextSteps;
  * # Blog Tasks (Content Creation)
  * # Jetpack Tasks (Performance & Stats)
  * # Yoast Tasks (SEO)
+ * # Advanced Reviews Tasks
+ * # Affiliates Tasks
  * # Utility Methods
  */
 class TaskCompletionTriggers {
@@ -43,15 +45,23 @@ class TaskCompletionTriggers {
 		'blog_first_post'                 => 'blog_setup.blog_build_track.create_content.blog_first_post',
 
 		// Jetpack tasks
+		// Boost
 		'store_improve_performance'       => 'store_setup.store_build_track.store_improve_performance.store_improve_performance',
 		'blog_speed_up_site'              => 'blog_setup.blog_grow_track.blog_performance_security.blog_speed_up_site',
-		'blog_connect_jetpack_stats'      => 'blog_setup.blog_brand_track.first_audience_building.blog_connect_jetpack_stats',
 		'corporate_install_jetpack_boost' => 'corporate_setup.corporate_grow_track.site_performance_security.corporate_install_jetpack_boost',
+		// Stats
+		'blog_connect_jetpack_stats'      => 'blog_setup.blog_brand_track.first_audience_building.blog_connect_jetpack_stats',
 		'corporate_setup_jetpack_stats'   => 'corporate_setup.corporate_brand_track.launch_marketing_tools.corporate_setup_jetpack_stats',
 
 		// Yoast tasks
 		'store_setup_yoast_premium'       => 'store_setup.store_build_track.next_marketing_steps.store_setup_yoast_premium',
 		'blog_install_yoast_premium'      => 'blog_setup.blog_grow_track.content_traffic_strategy.blog_install_yoast_premium',
+
+		// Advanced Reviews tasks
+		'store_collect_reviews'           => 'store_setup.store_build_track.store_collect_reviews.store_collect_reviews_task',
+
+		// Affiliate program tasks
+		'store_setup_affiliate_program'   => 'store_setup.store_build_track.advanced_social_marketing.store_launch_affiliate',
 	);
 
 	// ========================================
@@ -70,6 +80,8 @@ class TaskCompletionTriggers {
 		$this->register_blog_hooks_and_validators();
 		$this->register_jetpack_hooks_and_validators();
 		$this->register_yoast_hooks_and_validators();
+		$this->register_advanced_reviews_hooks_and_validators();
+		$this->register_affiliates_hooks_and_validators();
 	}
 
 	/**
@@ -187,6 +199,36 @@ class TaskCompletionTriggers {
 		TaskStateValidator::register_validator(
 			self::TASK_PATHS['blog_install_yoast_premium'],
 			array( __CLASS__, 'validate_yoast_premium_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for Advanced Reviews-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_advanced_reviews_hooks_and_validators(): void {
+		// Advanced Reviews plugin activation
+		\add_action( 'activated_plugin', array( __CLASS__, 'on_advanced_reviews_activation' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_collect_reviews'],
+			array( __CLASS__, 'validate_advanced_reviews_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for Affiliates-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_affiliates_hooks_and_validators(): void {
+		// YITH WooCommerce Affiliates plugin activation
+		\add_action( 'activated_plugin', array( __CLASS__, 'on_affiliates_activation' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_setup_affiliate_program'],
+			array( __CLASS__, 'validate_affiliates_state' )
 		);
 	}
 
@@ -621,6 +663,80 @@ class TaskCompletionTriggers {
 		}
 
 		return false;
+	}
+
+	// ========================================
+	// # Advanced Reviews Tasks
+	// ========================================
+
+	/**
+	 * Handle Advanced Reviews plugin activation
+	 *
+	 * @param string $plugin       The plugin name
+	 * @param bool   $network_wide Whether the plugin is being activated on the network
+	 * @return void
+	 */
+	public static function on_advanced_reviews_activation( $plugin, $network_wide ) {
+		// Check if this is Advanced Reviews being activated
+		if ( 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php' !== $plugin ) {
+			return;
+		}
+
+		$current_plan = PlanRepository::get_current_plan();
+		if ( ! $current_plan ) {
+			return;
+		}
+
+		// Only mark complete for store/ecommerce plan
+		if ( 'ecommerce' === $current_plan->type ) {
+			self::mark_task_as_complete_by_path( self::TASK_PATHS['store_collect_reviews'] );
+		}
+	}
+
+	/**
+	 * Validate if Advanced Reviews plugin is already active
+	 *
+	 * @return bool True if Advanced Reviews is already active
+	 */
+	public static function validate_advanced_reviews_state(): bool {
+		return is_plugin_active( 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php' );
+	}
+
+	// ========================================
+	// # Affiliates Tasks
+	// ========================================
+
+	/**
+	 * Handle YITH WooCommerce Affiliates plugin activation
+	 *
+	 * @param string $plugin       The plugin name
+	 * @param bool   $network_wide Whether the plugin is being activated on the network
+	 * @return void
+	 */
+	public static function on_affiliates_activation( $plugin, $network_wide ) {
+		// Check if this is YITH WooCommerce Affiliates being activated
+		if ( 'yith-woocommerce-affiliates/init.php' !== $plugin ) {
+			return;
+		}
+
+		$current_plan = PlanRepository::get_current_plan();
+		if ( ! $current_plan ) {
+			return;
+		}
+
+		// Only mark complete for store/ecommerce plan
+		if ( 'ecommerce' === $current_plan->type ) {
+			self::mark_task_as_complete_by_path( self::TASK_PATHS['store_setup_affiliate_program'] );
+		}
+	}
+
+	/**
+	 * Validate if YITH WooCommerce Affiliates plugin is already active
+	 *
+	 * @return bool True if Affiliates plugin is already active
+	 */
+	public static function validate_affiliates_state(): bool {
+		return is_plugin_active( 'yith-woocommerce-affiliates/init.php' );
 	}
 
 	// ========================================
