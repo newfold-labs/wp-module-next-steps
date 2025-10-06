@@ -144,6 +144,8 @@ class PlanRepository {
 				$merged_plan = $new_plan->merge_with( $saved_plan );
 				// Save the merged plan with updated version
 				self::save_plan( $merged_plan );
+				// Check for any auto-complete validations after merge
+				self::check_new_plan( $merged_plan );
 				$plan = $merged_plan;
 			} else {
 				$plan = $saved_plan;

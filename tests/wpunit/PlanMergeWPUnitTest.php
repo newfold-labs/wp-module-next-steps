@@ -292,6 +292,247 @@ class PlanMergeWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	}
 
 	/**
+	 * Test plan merge with multiple completed tasks
+	 *
+	 * @covers ::merge_with
+	 */
+	public function test_plan_merge_preserves_multiple_completed_tasks() {
+		// Create a new plan
+		$new_plan = TestPlanFactory::create_test_plan();
+
+		// Create a saved plan with multiple completed tasks
+		$saved_plan = TestPlanFactory::create_plan_with_progress();
+
+		// Get the first task from the first track/section
+		$first_track   = $saved_plan->tracks[0];
+		$first_section = $first_track->sections[0];
+		$first_task    = $first_section->tasks[0];
+
+		// Mark the first task as complete
+		$saved_plan->update_task_status( $first_track->id, $first_section->id, $first_task->id, 'done' );
+
+		// If there's a second track with tasks, mark one there too
+		if ( isset( $saved_plan->tracks[1] ) ) {
+			$second_track   = $saved_plan->tracks[1];
+			$second_section = $second_track->sections[0];
+			$second_task    = $second_section->tasks[0];
+			$saved_plan->update_task_status( $second_track->id, $second_section->id, $second_task->id, 'done' );
+		}
+
+		// Merge the plans
+		$merged_plan = $new_plan->merge_with( $saved_plan );
+
+		// Verify first task completion is preserved
+		$task1 = $merged_plan->get_task( $first_track->id, $first_section->id, $first_task->id );
+		$this->assertNotNull( $task1 );
+		$this->assertEquals( 'done', $task1->status );
+
+		// Verify second task if it exists
+		if ( isset( $saved_plan->tracks[1] ) ) {
+			$task2 = $merged_plan->get_task( $second_track->id, $second_section->id, $second_task->id );
+			$this->assertNotNull( $task2 );
+			$this->assertEquals( 'done', $task2->status );
+		}
+	}
+
+	/**
+	 * Test plan merge with dismissed tasks
+	 *
+	 * @covers ::merge_with
+	 */
+	public function test_plan_merge_preserves_dismissed_tasks() {
+		// Create a new plan
+		$new_plan = TestPlanFactory::create_test_plan();
+
+		// Create a saved plan with dismissed tasks
+		$saved_plan = TestPlanFactory::create_plan_with_progress();
+
+		// Get the first task from the first track/section
+		$first_track   = $saved_plan->tracks[0];
+		$first_section = $first_track->sections[0];
+		$first_task    = $first_section->tasks[0];
+
+		// Mark as dismissed
+		$saved_plan->update_task_status( $first_track->id, $first_section->id, $first_task->id, 'dismissed' );
+
+		// Merge the plans
+		$merged_plan = $new_plan->merge_with( $saved_plan );
+
+		// Verify dismissed status is preserved
+		$task = $merged_plan->get_task( $first_track->id, $first_section->id, $first_task->id );
+		$this->assertNotNull( $task );
+		$this->assertEquals( 'dismissed', $task->status );
+	}
+
+	/**
+	 * Test plan merge with completed sections
+	 *
+	 * @covers ::merge_with
+	 */
+	public function test_plan_merge_preserves_completed_sections() {
+		// Create a new plan
+		$new_plan = TestPlanFactory::create_test_plan();
+
+		// Create a saved plan with completed sections
+		$saved_plan = TestPlanFactory::create_plan_with_progress();
+
+		// Get the first track and section
+		$first_track   = $saved_plan->tracks[0];
+		$first_section = $first_track->sections[0];
+
+		// Mark section as done
+		$saved_plan->update_section_status( $first_track->id, $first_section->id, 'done' );
+
+		// Merge the plans
+		$merged_plan = $new_plan->merge_with( $saved_plan );
+
+		// Verify section completion is preserved
+		$section = $merged_plan->get_section( $first_track->id, $first_section->id );
+		$this->assertNotNull( $section );
+		$this->assertEquals( 'done', $section->status );
+	}
+
+	/**
+	 * Test plan merge with track open/close state
+	 *
+	 * @covers ::merge_with
+	 */
+	public function test_plan_merge_preserves_track_state() {
+		// Create a new plan with tracks
+		$new_plan = TestPlanFactory::create_test_plan();
+
+		// Create a saved plan with specific track states
+		$saved_plan                  = TestPlanFactory::create_plan_with_progress();
+		$saved_plan->tracks[0]->open = false; // User closed first track
+		if ( isset( $saved_plan->tracks[1] ) ) {
+			$saved_plan->tracks[1]->open = true; // User opened second track
+		}
+
+		// Merge the plans
+		$merged_plan = $new_plan->merge_with( $saved_plan );
+
+		// Verify track states are preserved
+		$this->assertFalse( $merged_plan->tracks[0]->open );
+		if ( isset( $merged_plan->tracks[1] ) ) {
+			$this->assertTrue( $merged_plan->tracks[1]->open );
+		}
+	}
+
+	/**
+	 * Test plan merge with mixed task statuses
+	 *
+	 * @covers ::merge_with
+	 */
+	public function test_plan_merge_with_mixed_task_statuses() {
+		// Create a new plan
+		$new_plan = TestPlanFactory::create_test_plan();
+
+		// Create a saved plan with mixed task statuses
+		$saved_plan = TestPlanFactory::create_plan_with_progress();
+
+		// Get the first track and section
+		$first_track   = $saved_plan->tracks[0];
+		$first_section = $first_track->sections[0];
+
+		// Mark first task as done
+		if ( ! empty( $first_section->tasks ) ) {
+			$first_task = $first_section->tasks[0];
+			$saved_plan->update_task_status( $first_track->id, $first_section->id, $first_task->id, 'done' );
+
+			// If there's a second task, mark it as dismissed
+			if ( count( $first_section->tasks ) > 1 ) {
+				$second_task = $first_section->tasks[1];
+				$saved_plan->update_task_status( $first_track->id, $first_section->id, $second_task->id, 'dismissed' );
+			}
+		}
+
+		// Merge the plans
+		$merged_plan = $new_plan->merge_with( $saved_plan );
+
+		// Verify all task statuses are preserved
+		if ( ! empty( $first_section->tasks ) ) {
+			$task1 = $merged_plan->get_task( $first_track->id, $first_section->id, $first_task->id );
+			$this->assertNotNull( $task1 );
+			$this->assertEquals( 'done', $task1->status );
+
+			if ( count( $first_section->tasks ) > 1 ) {
+				$task2 = $merged_plan->get_task( $first_track->id, $first_section->id, $second_task->id );
+				$this->assertNotNull( $task2 );
+				$this->assertEquals( 'dismissed', $task2->status );
+			}
+		}
+	}
+
+	/**
+	 * Test plan merge after version update scenario
+	 *
+	 * @covers ::merge_with
+	 */
+	public function test_plan_merge_version_update_scenario() {
+		// Simulate a real-world scenario: user has progress on v1.0.0, we're updating to v1.1.0
+		$saved_plan          = TestPlanFactory::create_plan_with_progress();
+		$saved_plan->version = '1.0.0';
+
+		// Get the first task
+		$first_track   = $saved_plan->tracks[0];
+		$first_section = $first_track->sections[0];
+		$first_task    = $first_section->tasks[0];
+
+		// Mark some progress
+		$saved_plan->update_task_status( $first_track->id, $first_section->id, $first_task->id, 'done' );
+
+		// Create new plan with updated version
+		$new_plan          = TestPlanFactory::create_test_plan();
+		$new_plan->version = '1.1.0';
+
+		// Merge
+		$merged_plan = $new_plan->merge_with( $saved_plan );
+
+		// Verify version is updated
+		$this->assertEquals( '1.1.0', $merged_plan->version );
+
+		// Verify progress is preserved
+		$task = $merged_plan->get_task( $first_track->id, $first_section->id, $first_task->id );
+		$this->assertNotNull( $task );
+		$this->assertEquals( 'done', $task->status );
+	}
+
+	/**
+	 * Test plan merge with removed tasks (tasks in saved plan but not in new plan)
+	 *
+	 * @covers ::merge_with
+	 */
+	public function test_plan_merge_handles_removed_tasks() {
+		// Create a saved plan with a task
+		$saved_plan = TestPlanFactory::create_plan_with_progress();
+
+		// Get the first task
+		$first_track   = $saved_plan->tracks[0];
+		$first_section = $first_track->sections[0];
+		$first_task    = $first_section->tasks[0];
+
+		// Mark it as done
+		$saved_plan->update_task_status( $first_track->id, $first_section->id, $first_task->id, 'done' );
+
+		// Create a new plan without that task (simulate task removal)
+		$new_plan = TestPlanFactory::create_test_plan();
+		// Remove the task from the new plan
+		$track   = $new_plan->get_track( $first_track->id );
+		$section = $track->get_section( $first_section->id );
+		if ( $section && ! empty( $section->tasks ) ) {
+			// Remove first task
+			array_shift( $section->tasks );
+		}
+
+		// Merge
+		$merged_plan = $new_plan->merge_with( $saved_plan );
+
+		// Verify the removed task is not in the merged plan
+		$task = $merged_plan->get_task( $first_track->id, $first_section->id, $first_task->id );
+		$this->assertNull( $task );
+	}
+
+	/**
 	 * Tear down test environment
 	 */
 	public function tearDown(): void {

@@ -23,8 +23,14 @@ namespace NewfoldLabs\WP\Module\NextSteps;
  * # Product Tasks (WooCommerce)
  * # Payment Tasks (WooCommerce)
  * # Blog Tasks (Content Creation)
+ * # Gift Card Tasks
+ * # Welcome Popup Tasks
+ * # Logo Upload Tasks
  * # Jetpack Tasks (Performance & Stats)
  * # Yoast Tasks (SEO)
+ * # Advanced Reviews Tasks
+ * # Affiliates Tasks
+ * # Email Templates Tasks
  * # Utility Methods
  */
 class TaskCompletionTriggers {
@@ -33,25 +39,54 @@ class TaskCompletionTriggers {
 	 * Task path constants for each task type for easy reference and reuse
 	 */
 	const TASK_PATHS = array(
-		// Product tasks
+		// Product tasks - new post (post type product) created
 		'store_add_product'               => 'store_setup.store_build_track.setup_products.store_add_product',
 
-		// Payment tasks
+		// Payment tasks - any payment method configured
 		'store_setup_payments'            => 'store_setup.store_build_track.setup_payments_shipping.store_setup_payments',
 
-		// Blog tasks
+		// Blog tasks - new blog post created
 		'blog_first_post'                 => 'blog_setup.blog_build_track.create_content.blog_first_post',
 
 		// Jetpack tasks
+		// Boost - Jetpack connected and boost module activated
 		'store_improve_performance'       => 'store_setup.store_build_track.store_improve_performance.store_improve_performance',
 		'blog_speed_up_site'              => 'blog_setup.blog_grow_track.blog_performance_security.blog_speed_up_site',
-		'blog_connect_jetpack_stats'      => 'blog_setup.blog_brand_track.first_audience_building.blog_connect_jetpack_stats',
 		'corporate_install_jetpack_boost' => 'corporate_setup.corporate_grow_track.site_performance_security.corporate_install_jetpack_boost',
+		// Stats - jetpack connected and stats module activated
+		'blog_connect_jetpack_stats'      => 'blog_setup.blog_brand_track.first_audience_building.blog_connect_jetpack_stats',
 		'corporate_setup_jetpack_stats'   => 'corporate_setup.corporate_brand_track.launch_marketing_tools.corporate_setup_jetpack_stats',
 
-		// Yoast tasks
+		// Yoast tasks - plugin installed
 		'store_setup_yoast_premium'       => 'store_setup.store_build_track.next_marketing_steps.store_setup_yoast_premium',
 		'blog_install_yoast_premium'      => 'blog_setup.blog_grow_track.content_traffic_strategy.blog_install_yoast_premium',
+
+		// Advanced Reviews tasks - plugin installed
+		'store_collect_reviews'           => 'store_setup.store_build_track.store_collect_reviews.store_collect_reviews_task',
+
+		// Affiliate program tasks - plugin installed
+		'store_setup_affiliate_program'   => 'store_setup.store_build_track.advanced_social_marketing.store_launch_affiliate',
+
+		// Welcome discount popup - discount campaign created
+		'store_marketing_welcome_popup'   => 'store_setup.store_build_track.first_marketing_steps.store_marketing_welcome_popup',
+		// Gift card tasks - discount product type post created
+		'store_create_gift_card'          => 'store_setup.store_build_track.first_marketing_steps.store_create_gift_card',
+		// Email templates - plugin installed
+		'store_customize_emails'          => 'store_setup.store_build_track.first_marketing_steps.store_customize_emails',
+
+		// Logo upload - site logo set
+		'store_upload_logo'               => 'store_setup.store_build_track.customize_your_store.store_upload_logo',
+		'blog_upload_logo'                => 'blog_setup.blog_build_track.customize_blog.blog_upload_logo',
+		'corporate_upload_logo'           => 'corporate_setup.corporate_build_track.customize_website.corporate_upload_logo',
+	);
+
+	/**
+	 * Map of plan_id prefixes to plan types
+	 */
+	const PLAN_ID_TO_TYPE_MAP = array(
+		'store_setup'     => 'ecommerce',
+		'blog_setup'      => 'blog',
+		'corporate_setup' => 'corporate',
 	);
 
 	// ========================================
@@ -68,8 +103,14 @@ class TaskCompletionTriggers {
 		$this->register_product_hooks_and_validators();
 		$this->register_payment_hooks_and_validators();
 		$this->register_blog_hooks_and_validators();
+		$this->register_gift_card_hooks_and_validators();
+		$this->register_welcome_popup_hooks_and_validators();
+		$this->register_logo_hooks_and_validators();
 		$this->register_jetpack_hooks_and_validators();
 		$this->register_yoast_hooks_and_validators();
+		$this->register_advanced_reviews_hooks_and_validators();
+		$this->register_affiliates_hooks_and_validators();
+		$this->register_email_templates_hooks_and_validators();
 	}
 
 	/**
@@ -115,6 +156,30 @@ class TaskCompletionTriggers {
 	}
 
 	/**
+	 * Check if any payment gateways are enabled
+	 *
+	 * @return bool True if at least one payment gateway is enabled, false otherwise
+	 */
+	private static function has_enabled_payment_gateways(): bool {
+		// Check if WooCommerce is active and loaded
+		if ( ! function_exists( 'WC' ) || ! WC() ) {
+			return false;
+		}
+
+		// Check if payment gateways are available
+		$payment_gateways = WC()->payment_gateways();
+		if ( ! $payment_gateways ) {
+			return false;
+		}
+
+		// Get available payment gateways
+		$available_gateways = $payment_gateways->get_available_payment_gateways();
+
+		// Check if any gateways are enabled (available gateways are already filtered to enabled ones)
+		return ! empty( $available_gateways );
+	}
+
+	/**
 	 * Register hooks and validators for blog-related tasks
 	 *
 	 * @return void
@@ -126,6 +191,55 @@ class TaskCompletionTriggers {
 		TaskStateValidator::register_validator(
 			self::TASK_PATHS['blog_first_post'],
 			array( __CLASS__, 'validate_blog_post_creation_state' )
+		);
+	}
+
+
+	/**
+	 * Register hooks and validators for gift card-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_gift_card_hooks_and_validators(): void {
+		// Gift card creation (custom post type)
+		\add_action( 'publish_post', array( __CLASS__, 'on_gift_card_published' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_create_gift_card'],
+			array( __CLASS__, 'validate_gift_card_creation_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for welcome popup-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_welcome_popup_hooks_and_validators(): void {
+		// Welcome popup creation (YITH campaign custom post type)
+		\add_action( 'publish_post', array( __CLASS__, 'on_welcome_popup_published' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_marketing_welcome_popup'],
+			array( __CLASS__, 'validate_welcome_popup_creation_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for logo upload-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_logo_hooks_and_validators(): void {
+		// Logo upload via Customizer (theme_mod changes)
+		\add_action( 'customize_save_after', array( __CLASS__, 'on_logo_updated' ), 10 );
+
+		// Logo upload via Site Editor (site_logo option changes)
+		\add_action( 'update_option_site_logo', array( __CLASS__, 'on_logo_updated' ), 10 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_upload_logo'],
+			array( __CLASS__, 'validate_logo_upload_state' )
 		);
 	}
 
@@ -190,6 +304,51 @@ class TaskCompletionTriggers {
 		);
 	}
 
+	/**
+	 * Register hooks and validators for Advanced Reviews-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_advanced_reviews_hooks_and_validators(): void {
+		// Advanced Reviews plugin activation
+		\add_action( 'activated_plugin', array( __CLASS__, 'on_advanced_reviews_activation' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_collect_reviews'],
+			array( __CLASS__, 'validate_advanced_reviews_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for Affiliates-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_affiliates_hooks_and_validators(): void {
+		// YITH WooCommerce Affiliates plugin activation
+		\add_action( 'activated_plugin', array( __CLASS__, 'on_affiliates_activation' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_setup_affiliate_program'],
+			array( __CLASS__, 'validate_affiliates_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for Email Templates-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_email_templates_hooks_and_validators(): void {
+		// Email Templates plugin activation
+		\add_action( 'activated_plugin', array( __CLASS__, 'on_email_templates_activation' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_customize_emails'],
+			array( __CLASS__, 'validate_email_templates_state' )
+		);
+	}
+
 
 	// ========================================
 	// # Product Tasks (WooCommerce)
@@ -203,18 +362,15 @@ class TaskCompletionTriggers {
 	 * @param bool   $creating Whether the product is being created
 	 * @return void
 	 */
-	public static function on_product_creation( $product, $request, $creating ) {
+	public static function on_product_creation( $product, $request, $creating ): void {
 		// Check if WooCommerce is active and loaded
 		if ( ! function_exists( 'WC' ) || ! WC() ) {
 			return;
 		}
 
 		if ( $creating ) {
-			$current_plan = PlanRepository::get_current_plan();
-			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-				// Mark the "Add Products" section and task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_add_product'] );
-			}
+			// Mark the "Add Products" section and task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_add_product'] );
 		}
 	}
 
@@ -291,16 +447,13 @@ class TaskCompletionTriggers {
 	 *
 	 * @param int     $post_id The post ID
 	 * @param WP_Post $post    The post object
-	 * @return bool True if the task was marked as complete, false otherwise
+	 * @return void
 	 */
-	public static function on_product_published( $post_id, $post ) {
+	public static function on_product_published( $post_id, $post ): void {
 		// Only proceed if this is a new product (not an update)
-		if ( 'product' === $post->post_type && 'auto-draft' !== $post->post_status ) {
-			$current_plan = PlanRepository::get_current_plan();
-			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-				// Mark the "Add Products" section and task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_add_product'] );
-			}
+		if ( 'product' === $post->post_type && 'publish' === $post->post_status ) {
+			// Mark the "Add Products" section and task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_add_product'] );
 		}
 	}
 
@@ -311,19 +464,16 @@ class TaskCompletionTriggers {
 	 *
 	 * @return void
 	 */
-	public static function on_payment_gateway_updated() {
+	public static function on_payment_gateway_updated(): void {
 		// Check if WooCommerce is active and loaded
 		if ( ! function_exists( 'WC' ) || ! WC() ) {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-			// Check if any payment gateways are enabled
-			if ( self::has_enabled_payment_gateways() ) {
-				// Mark the "Setup Payments" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_setup_payments'] );
-			}
+		// Check if any payment gateways are enabled
+		if ( self::has_enabled_payment_gateways() ) {
+			// Mark the "Setup Payments" task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_setup_payments'] );
 		}
 	}
 
@@ -340,7 +490,7 @@ class TaskCompletionTriggers {
 	 * @param WP_Post $post    The post object
 	 * @return void
 	 */
-	public static function on_blog_post_published( $post_id, $post ) {
+	public static function on_blog_post_published( $post_id, $post ): void {
 		// Only proceed if this is a published post (not an update from draft)
 		if ( 'post' === $post->post_type && 'publish' === $post->post_status ) {
 			// Skip the default "Hello World" post
@@ -348,11 +498,8 @@ class TaskCompletionTriggers {
 				return;
 			}
 
-			$current_plan = PlanRepository::get_current_plan();
-			if ( $current_plan && 'blog' === $current_plan->type ) {
-				// Mark the "Add Your First Blog Post" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_first_post'] );
-			}
+			// Mark the "Add Your First Blog Post" task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_first_post'] );
 		}
 	}
 
@@ -362,28 +509,210 @@ class TaskCompletionTriggers {
 	 * @return bool True if a non-Hello World blog post exists
 	 */
 	public static function validate_blog_post_creation_state(): bool {
-		// Get published posts, excluding the default Hello World post
+		// Get minimal data and check count first
 		$posts = get_posts(
 			array(
 				'post_type'      => 'post',
 				'post_status'    => 'publish',
-				'posts_per_page' => 2, // Get a few posts to check
-				'fields'         => 'all',
+				'posts_per_page' => 2, // Get max 2 posts
+				'fields'         => 'ids', // Only get IDs for performance
+				'orderby'        => 'date',
+				'order'          => 'DESC',
 			)
 		);
 
+		// No posts at all
 		if ( empty( $posts ) ) {
 			return false;
 		}
 
-		// Check if any of the posts are NOT the Hello World post
-		foreach ( $posts as $post ) {
-			if ( ! self::is_hello_world_post( $post ) ) {
-				return true; // Found a real blog post
+		// If we have 2+ posts, at least one must be real (not Hello World)
+		if ( count( $posts ) > 1 ) {
+			return true;
+		}
+
+		// If we have exactly 1 post, check if it's Hello World
+		$post = get_post( $posts[0] );
+		return $post && ! self::is_hello_world_post( $post );
+	}
+
+
+
+	/**
+	 * Check if a post is the default "Hello World" post
+	 *
+	 * For now this is limited to the default post in English.
+	 * We may need to expand this to other languages in the future.
+	 *
+	 * @param WP_Post $post The post object
+	 * @return bool True if this is the default Hello World post
+	 */
+	private static function is_hello_world_post( $post ): bool {
+		// Check post title
+		if ( false !== stripos( $post->post_title, 'Hello world!' ) ) {
+			return true;
+		}
+		// Check post slug
+		if ( 'hello-world' === $post->post_name ) {
+			return true;
+		}
+		return false;
+	}
+
+	// ========================================
+	// # Gift Card Tasks
+	// ========================================
+
+	/**
+	 * Handle gift card published
+	 *
+	 * This triggers when a gift card (custom post type) is published
+	 *
+	 * @param int     $post_id The post ID
+	 * @param WP_Post $post    The post object
+	 * @return void
+	 */
+	public static function on_gift_card_published( $post_id, $post ): void {
+		// Only proceed if this is a published gift card post
+		if ( 'bh_gift_card' === $post->post_type && 'publish' === $post->post_status ) {
+			// Mark the "Create Gift Card" task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_create_gift_card'] );
+		}
+	}
+
+	/**
+	 * Validate if a gift card has already been created
+	 *
+	 * @return bool True if a gift card post exists
+	 */
+	public static function validate_gift_card_creation_state(): bool {
+		// Check if any published gift card posts exist
+		$gift_cards = get_posts(
+			array(
+				'post_type'      => 'bh_gift_card',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			)
+		);
+
+		return ! empty( $gift_cards );
+	}
+
+	// ========================================
+	// # Welcome Popup Tasks
+	// ========================================
+
+	/**
+	 * Handle welcome popup published
+	 *
+	 * This triggers when a YITH campaign (custom post type) is published
+	 *
+	 * @param int     $post_id The post ID
+	 * @param WP_Post $post    The post object
+	 * @return void
+	 */
+	public static function on_welcome_popup_published( $post_id, $post ): void {
+		// Only proceed if this is a published YITH campaign post
+		if ( 'yith_campaign' === $post->post_type && 'publish' === $post->post_status ) {
+			// Mark the "Create Welcome Popup" task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_marketing_welcome_popup'] );
+		}
+	}
+
+	/**
+	 * Validate if a welcome popup has already been created
+	 *
+	 * @return bool True if a YITH campaign post exists
+	 */
+	public static function validate_welcome_popup_creation_state(): bool {
+		// Check if any published YITH campaign posts exist
+		$campaigns = get_posts(
+			array(
+				'post_type'      => 'yith_campaign',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			)
+		);
+
+		return ! empty( $campaigns );
+	}
+
+	// ========================================
+	// # Logo Upload Tasks
+	// ========================================
+
+	/**
+	 * Handle logo upload/update
+	 *
+	 * This triggers when a site logo is set via Customizer or Site Editor
+	 *
+	 * @return void
+	 */
+	public static function on_logo_updated(): void {
+		// Check custom_logo theme mod (classic themes, customizer)
+		$custom_logo = get_theme_mod( 'custom_logo' );
+
+		// Check site_logo option (block themes, site editor)
+		$site_logo = get_option( 'site_logo' );
+
+		// Check if logo exists in either location
+		$has_logo = ! empty( $custom_logo ) || ! empty( $site_logo );
+
+		// For block themes, also check if site-logo block exists in header template
+		if ( ! $has_logo ) {
+			$has_logo = self::check_template_for_logo();
+		}
+
+		if ( ! $has_logo ) {
+			return;
+		}
+
+		// Mark the "Upload Logo" task as complete for the current plan
+		// Each plan has its own logo task path
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_upload_logo'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_upload_logo'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_upload_logo'] );
+	}
+
+	/**
+	 * Check if the template for the logo exists
+	 *
+	 * @return bool True if the template for the logo exists
+	 */
+	public static function check_template_for_logo(): bool {
+		// For block themes, also check if site-logo block exists in header template
+		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+			$header_template = get_block_template( get_stylesheet() . '//header', 'wp_template_part' );
+			if ( $header_template && ! empty( $header_template->content ) ) {
+				return strpos( $header_template->content, 'wp:site-logo' ) !== false;
 			}
 		}
 
-		return false; // Only Hello world post found
+		return false;
+	}
+
+	/**
+	 * Validate if a logo has already been uploaded
+	 *
+	 * @return bool True if a site logo is set
+	 */
+	public static function validate_logo_upload_state(): bool {
+		// Check custom_logo theme mod (classic themes, customizer)
+		$custom_logo = get_theme_mod( 'custom_logo' );
+		if ( ! empty( $custom_logo ) ) {
+			return true;
+		}
+
+		// Check site_logo option (block themes, site editor)
+		$site_logo = get_option( 'site_logo' );
+		if ( ! empty( $site_logo ) ) {
+			return true;
+		}
+
+		// For block themes, check if site-logo block exists in header template
+		return self::check_template_for_logo();
 	}
 
 	// ========================================
@@ -397,41 +726,18 @@ class TaskCompletionTriggers {
 	 *
 	 * @return void
 	 */
-	public static function on_jetpack_connected() {
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
-			return;
+	public static function on_jetpack_connected(): void {
+		// Check if Jetpack Boost is active - if so, mark performance tasks
+		if ( self::is_jetpack_performance_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 		}
 
-		// Handle different plan types
-		switch ( $current_plan->type ) {
-			case 'ecommerce':
-				// Check if both Jetpack is connected AND Jetpack Boost is active
-				if ( self::is_jetpack_performance_ready() ) {
-					// Mark the "Improve Performance" task as complete
-					self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
-				}
-				break;
-
-			case 'blog':
-				// Mark Jetpack Stats connection task as complete
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_connect_jetpack_stats'] );
-
-				// Also check if Jetpack Boost is active for performance task
-				if ( self::is_jetpack_performance_ready() ) {
-					self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_speed_up_site'] );
-				}
-				break;
-
-			case 'corporate':
-				// Mark Jetpack Stats setup task as complete
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
-
-				// Also check if Jetpack Boost is active for performance task
-				if ( self::is_jetpack_performance_ready() ) {
-					self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_install_jetpack_boost'] );
-				}
-				break;
+		// Check if Stats module is active - if so, mark stats tasks
+		if ( self::is_jetpack_stats_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_connect_jetpack_stats'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
 		}
 	}
 
@@ -442,14 +748,9 @@ class TaskCompletionTriggers {
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
-	public static function on_jetpack_boost_activation( $plugin, $network_wide ) {
+	public static function on_jetpack_boost_activation( $plugin, $network_wide ): void {
 		// Check if this is Jetpack Boost being activated
 		if ( 'jetpack-boost/jetpack-boost.php' !== $plugin ) {
-			return;
-		}
-
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
 			return;
 		}
 
@@ -458,31 +759,21 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		// Handle different plan types
-		switch ( $current_plan->type ) {
-			case 'ecommerce':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
-				break;
-
-			case 'blog':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_speed_up_site'] );
-				break;
-
-			case 'corporate':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_install_jetpack_boost'] );
-				break;
-		}
+		// Mark Jetpack Boost performance tasks as complete
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 	}
 
 	/**
 	 * Handle Jetpack module activation
 	 *
-	 * This triggers when any Jetpack module is activated, including Boost-related modules
+	 * This triggers when any Jetpack module is activated, including Boost and Stats modules
 	 *
 	 * @param string $module The module name that was activated
 	 * @return void
 	 */
-	public static function on_jetpack_module_activated( $module ) {
+	public static function on_jetpack_module_activated( $module ): void {
 		// Check if this is a Boost-related module or performance module
 		$boost_modules = array(
 			'boost',
@@ -492,18 +783,17 @@ class TaskCompletionTriggers {
 			'minify',
 		);
 
-		// Only proceed if it's a performance-related module
-		if ( ! in_array( $module, $boost_modules, true ) ) {
-			return;
+		// Handle Boost module activation
+		if ( in_array( $module, $boost_modules, true ) && self::is_jetpack_performance_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-			// Check if both Jetpack is connected AND Jetpack Boost is active
-			if ( self::is_jetpack_performance_ready() ) {
-				// Mark the "Improve Performance" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
-			}
+		// Handle Stats module activation
+		if ( 'stats' === $module && self::is_jetpack_stats_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_connect_jetpack_stats'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
 		}
 	}
 
@@ -512,17 +802,18 @@ class TaskCompletionTriggers {
 	 *
 	 * This triggers when Jetpack Boost is activated
 	 *
-	 * @return bool True if the task was marked as complete, false otherwise
+	 * @return void
 	 */
-	public static function on_jetpack_boost_activated() {
-		$current_plan = PlanRepository::get_current_plan();
-		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-			// Check if both Jetpack is connected AND Jetpack Boost is active
-			if ( self::is_jetpack_performance_ready() ) {
-				// Mark the "Improve Performance" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
-			}
+	public static function on_jetpack_boost_activated(): void {
+		// Check if both Jetpack is connected AND Jetpack Boost is active
+		if ( ! self::is_jetpack_performance_ready() ) {
+			return;
 		}
+
+		// Mark Jetpack Boost performance tasks as complete
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 	}
 
 	/**
@@ -540,13 +831,67 @@ class TaskCompletionTriggers {
 	 * @return bool True if Jetpack is connected and Stats module is active
 	 */
 	public static function validate_jetpack_stats_state(): bool {
+		return self::is_jetpack_stats_ready();
+	}
+
+	/**
+	 * Check if Jetpack is connected
+	 *
+	 * Checks multiple methods to determine if Jetpack has an active connection
+	 *
+	 * @return bool True if Jetpack is connected, false otherwise
+	 */
+	private static function is_jetpack_connected(): bool {
 		// Check if Jetpack class exists
 		if ( ! class_exists( 'Jetpack' ) ) {
 			return false;
 		}
 
+		// Primary method: is_connection_ready()
+		if ( method_exists( 'Jetpack', 'is_connection_ready' ) ) {
+			return \Jetpack::is_connection_ready();
+		}
+
+		// Fallback: jetpack_is_connected() function
+		if ( function_exists( 'jetpack_is_connected' ) ) {
+			return jetpack_is_connected();
+		}
+
+		// Final fallback: check if Jetpack has connection data
+		if ( class_exists( 'Jetpack_Options' ) && method_exists( 'Jetpack_Options', 'get_option' ) ) {
+			return ! empty( \Jetpack_Options::get_option( 'id' ) );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if Jetpack performance setup is ready
+	 *
+	 * Validates that both Jetpack is connected and Jetpack Boost is active
+	 *
+	 * @return bool True if both conditions are met, false otherwise
+	 */
+	private static function is_jetpack_performance_ready(): bool {
 		// Check if Jetpack is connected
-		if ( ! \Jetpack::is_connection_ready() ) {
+		if ( ! self::is_jetpack_connected() ) {
+			return false;
+		}
+
+		// Check if Jetpack Boost is active
+		return is_plugin_active( 'jetpack-boost/jetpack-boost.php' ) || class_exists( 'Automattic\Jetpack_Boost\Jetpack_Boost' );
+	}
+
+	/**
+	 * Check if Jetpack Stats setup is ready
+	 *
+	 * Validates that both Jetpack is connected and Stats module is active
+	 *
+	 * @return bool True if both conditions are met, false otherwise
+	 */
+	private static function is_jetpack_stats_ready(): bool {
+		// Check if Jetpack is connected
+		if ( ! self::is_jetpack_connected() ) {
 			return false;
 		}
 
@@ -570,36 +915,24 @@ class TaskCompletionTriggers {
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
-	public static function on_yoast_premium_activation( $plugin, $network_wide ) {
+	public static function on_yoast_premium_activation( $plugin, $network_wide ): void {
 		// Check if this is Yoast SEO Premium being activated
 		$yoast_premium_plugins = array(
 			'wordpress-seo-premium/wp-seo-premium.php',
 			'yoast-seo-premium/wp-seo-premium.php',
-			'wordpress-seo/wp-seo.php', // to test with free version
+			// 'wordpress-seo/wp-seo.php', // to test with free version
 		);
 
 		if ( ! in_array( $plugin, $yoast_premium_plugins, true ) ) {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
-			return;
-		}
+		// Handle different plan types using the helper method
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_setup_yoast_premium'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_install_yoast_premium'] );
 
-		// Handle different plan types
-		switch ( $current_plan->type ) {
-			case 'ecommerce':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_setup_yoast_premium'] );
-				break;
-
-			case 'blog':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_install_yoast_premium'] );
-				break;
-
-			// Note: Corporate plan doesn't have a specific Yoast Premium task
-			// but has general SEO tasks that could be marked complete
-		}
+		// Note: Corporate plan doesn't have a specific Yoast Premium task
+		// but has general SEO tasks that could be marked complete
 	}
 
 	/**
@@ -621,6 +954,96 @@ class TaskCompletionTriggers {
 		}
 
 		return false;
+	}
+
+	// ========================================
+	// # Advanced Reviews Tasks
+	// ========================================
+
+	/**
+	 * Handle Advanced Reviews plugin activation
+	 *
+	 * @param string $plugin       The plugin name
+	 * @param bool   $network_wide Whether the plugin is being activated on the network
+	 * @return void
+	 */
+	public static function on_advanced_reviews_activation( $plugin, $network_wide ): void {
+		// Check if this is Advanced Reviews being activated
+		if ( 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php' !== $plugin ) {
+			return;
+		}
+
+		// Mark complete for store/ecommerce plan
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_collect_reviews'] );
+	}
+
+	/**
+	 * Validate if Advanced Reviews plugin is already active
+	 *
+	 * @return bool True if Advanced Reviews is already active
+	 */
+	public static function validate_advanced_reviews_state(): bool {
+		return is_plugin_active( 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php' );
+	}
+
+	// ========================================
+	// # Affiliates Tasks
+	// ========================================
+
+	/**
+	 * Handle YITH WooCommerce Affiliates plugin activation
+	 *
+	 * @param string $plugin       The plugin name
+	 * @param bool   $network_wide Whether the plugin is being activated on the network
+	 * @return void
+	 */
+	public static function on_affiliates_activation( $plugin, $network_wide ): void {
+		// Check if this is YITH WooCommerce Affiliates being activated
+		if ( 'yith-woocommerce-affiliates/init.php' !== $plugin ) {
+			return;
+		}
+
+		// Mark complete for store/ecommerce plan
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_setup_affiliate_program'] );
+	}
+
+	/**
+	 * Validate if YITH WooCommerce Affiliates plugin is already active
+	 *
+	 * @return bool True if Affiliates plugin is already active
+	 */
+	public static function validate_affiliates_state(): bool {
+		return is_plugin_active( 'yith-woocommerce-affiliates/init.php' );
+	}
+
+	// ========================================
+	// # Email Templates Tasks
+	// ========================================
+
+	/**
+	 * Handle Email Templates plugin activation
+	 *
+	 * @param string $plugin       The plugin name
+	 * @param bool   $network_wide Whether the plugin is being activated on the network
+	 * @return void
+	 */
+	public static function on_email_templates_activation( $plugin, $network_wide ): void {
+		// Check if this is Email Templates being activated
+		if ( 'wp-plugin-email-templates/wp-plugin-email-templates.php' !== $plugin ) {
+			return;
+		}
+
+		// Mark complete for store/ecommerce plan
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_customize_emails'] );
+	}
+
+	/**
+	 * Validate if Email Templates plugin is already active
+	 *
+	 * @return bool True if Email Templates is already active
+	 */
+	public static function validate_email_templates_state(): bool {
+		return is_plugin_active( 'wp-plugin-email-templates/wp-plugin-email-templates.php' );
 	}
 
 	// ========================================
@@ -657,90 +1080,94 @@ class TaskCompletionTriggers {
 	 */
 	public static function mark_task_as_complete( $track_id, $section_id, $task_id ): bool {
 		$current_plan = PlanRepository::get_current_plan(); // Plan object
-		if ( $current_plan ) {
-			// validate the track section and task exist - optimized single call
-			$validtask = $current_plan->has_exact_task( $track_id, $section_id, $task_id );
-			if ( $validtask ) {
-				// see if section has more tasks, if not, just mark section as complete
-				$section = $current_plan->get_section( $track_id, $section_id );
-				if ( $section && count( $section->tasks ) === 1 ) {
-					$current_plan->update_section_status( $track_id, $section_id, 'done' );
-				} else {
-					// otherwise mark task as complete
-					$current_plan->update_task_status( $track_id, $section_id, $task_id, 'done' );
-				}
-				// save the plan
-				PlanRepository::save_plan( $current_plan );
-				return true;
-			}
-			return false;
-		}
-	}
-
-	/**
-	 * Check if any payment gateways are enabled
-	 *
-	 * @return bool True if at least one payment gateway is enabled, false otherwise
-	 */
-	private static function has_enabled_payment_gateways(): bool {
-		// Check if WooCommerce is active and loaded
-		if ( ! function_exists( 'WC' ) || ! WC() ) {
+		if ( ! $current_plan ) {
 			return false;
 		}
 
-		// Check if payment gateways are available
-		$payment_gateways = WC()->payment_gateways();
-		if ( ! $payment_gateways ) {
+		// validate the track section and task exist - optimized single call
+		$validtask = $current_plan->has_exact_task( $track_id, $section_id, $task_id );
+		if ( ! $validtask ) {
 			return false;
 		}
 
-		// Get available payment gateways
-		$available_gateways = $payment_gateways->get_available_payment_gateways();
+		// see if section has more tasks, if not, just mark section as complete
+		$section = $current_plan->get_section( $track_id, $section_id );
+		if ( $section && count( $section->tasks ) === 1 ) {
+			$current_plan->update_section_status( $track_id, $section_id, 'done' );
+		} else {
+			// otherwise mark task as complete
+			$current_plan->update_task_status( $track_id, $section_id, $task_id, 'done' );
+		}
 
-		// Check if any gateways are enabled (available gateways are already filtered to enabled ones)
-		return ! empty( $available_gateways );
+		// save the plan
+		PlanRepository::save_plan( $current_plan );
+		return true;
 	}
 
 	/**
-	 * Check if Jetpack performance setup is ready
+	 * Check if the current plan matches the expected plan type for a task path
 	 *
-	 * Validates that both Jetpack is connected and Jetpack Boost is active
+	 * This extracts the plan_id from the task path and compares it to the current plan type.
 	 *
-	 * @return bool True if both conditions are met, false otherwise
+	 * @param string $task_path The full task path (plan_id.track_id.section_id.task_id)
+	 * @return bool True if current plan matches the task path's plan type
 	 */
-	private static function is_jetpack_performance_ready(): bool {
-		// Check if Jetpack is connected
-		$jetpack_connected = false;
-		if ( class_exists( 'Jetpack' ) && method_exists( 'Jetpack', 'is_connection_ready' ) ) {
-			$jetpack_connected = \Jetpack::is_connection_ready();
-		} elseif ( function_exists( 'jetpack_is_connected' ) ) {
-			$jetpack_connected = jetpack_is_connected();
-		} elseif ( class_exists( 'Jetpack_Options' ) && method_exists( 'Jetpack_Options', 'get_option' ) ) {
-			// Fallback: check if Jetpack has connection data
-			$jetpack_connected = ! empty( \Jetpack_Options::get_option( 'id' ) );
+	private static function is_current_plan_for_task( string $task_path ): bool {
+		$current_plan = PlanRepository::get_current_plan();
+		if ( ! $current_plan ) {
+			return false;
 		}
 
-		// Check if Jetpack Boost is active
-		$jetpack_boost_active = is_plugin_active( 'jetpack-boost/jetpack-boost.php' ) || class_exists( 'Automattic\Jetpack_Boost\Jetpack_Boost' );
+		// Extract plan_id from task path (first segment)
+		$path_parts = explode( '.', $task_path );
+		if ( empty( $path_parts[0] ) ) {
+			return false;
+		}
 
-		return $jetpack_connected && $jetpack_boost_active;
+		$plan_id = $path_parts[0];
+
+		// Map plan_id to plan type
+		if ( ! isset( self::PLAN_ID_TO_TYPE_MAP[ $plan_id ] ) ) {
+			return false;
+		}
+
+		$expected_plan_type = self::PLAN_ID_TO_TYPE_MAP[ $plan_id ];
+
+		return $current_plan->type === $expected_plan_type;
 	}
 
 	/**
-	 * Check if a post is the default "Hello World" post
+	 * Get the plan type for a given task path
 	 *
-	 * @param WP_Post $post The post object
-	 * @return bool True if this is the default Hello World post
+	 * @param string $task_path The full task path (plan_id.track_id.section_id.task_id)
+	 * @return string|null The plan type ('ecommerce', 'blog', 'corporate') or null if invalid
 	 */
-	private static function is_hello_world_post( $post ): bool {
-		// Check post title
-		if ( false !== stripos( $post->post_title, 'Hello world!' ) ) {
-			return true;
+	private static function get_plan_type_from_task_path( string $task_path ): ?string {
+		// Extract plan_id from task path (first segment)
+		$path_parts = explode( '.', $task_path );
+		if ( empty( $path_parts[0] ) ) {
+			return null;
 		}
-		// Check post slug
-		if ( 'hello-world' === $post->post_name ) {
-			return true;
+
+		$plan_id = $path_parts[0];
+
+		// Map plan_id to plan type
+		return self::PLAN_ID_TO_TYPE_MAP[ $plan_id ] ?? null;
+	}
+
+	/**
+	 * Mark task complete if current plan matches the task path's plan type
+	 *
+	 * This is a convenience method that combines plan type checking with task completion.
+	 *
+	 * @param string $task_path The full task path (plan_id.track_id.section_id.task_id)
+	 * @return bool True if task was marked complete, false otherwise
+	 */
+	private static function mark_task_complete_if_plan_matches( string $task_path ): bool {
+		if ( ! self::is_current_plan_for_task( $task_path ) ) {
+			return false;
 		}
-		return false;
+
+		return self::mark_task_as_complete_by_path( $task_path );
 	}
 }
