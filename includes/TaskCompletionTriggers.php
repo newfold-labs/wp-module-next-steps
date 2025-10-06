@@ -718,35 +718,17 @@ class TaskCompletionTriggers {
 	 * @return void
 	 */
 	public static function on_jetpack_connected(): void {
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
-			return;
-		}
-
-		// Handle different plan types using the helper method
-		// For ecommerce plan - check if Jetpack Boost is active
+		// Check if Jetpack Boost is active - if so, mark performance tasks
 		if ( self::is_jetpack_performance_ready() ) {
 			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 		}
 
-		// For blog plan - mark Jetpack Stats connection (if Stats module is active)
+		// Check if Stats module is active - if so, mark stats tasks
 		if ( self::is_jetpack_stats_ready() ) {
 			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_connect_jetpack_stats'] );
-		}
-
-		// For blog plan - also check if Jetpack Boost is active
-		if ( self::is_jetpack_performance_ready() ) {
-			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
-		}
-
-		// For corporate plan - mark Jetpack Stats setup (if Stats module is active)
-		if ( self::is_jetpack_stats_ready() ) {
 			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
-		}
-
-		// For corporate plan - also check if Jetpack Boost is active
-		if ( self::is_jetpack_performance_ready() ) {
-			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 		}
 	}
 
@@ -763,17 +745,12 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
-			return;
-		}
-
 		// Check if both Jetpack is connected AND Jetpack Boost is now active
 		if ( ! self::is_jetpack_performance_ready() ) {
 			return;
 		}
 
-		// Handle different plan types using the helper method
+		// Mark Jetpack Boost performance tasks as complete
 		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
 		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
 		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
@@ -798,24 +775,16 @@ class TaskCompletionTriggers {
 		);
 
 		// Handle Boost module activation
-		if ( in_array( $module, $boost_modules, true ) ) {
-			// Check if both Jetpack is connected AND Jetpack Boost is active
-			if ( self::is_jetpack_performance_ready() ) {
-				// Mark the "Improve Performance" task as complete for the current plan
-				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
-				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
-				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
-			}
+		if ( in_array( $module, $boost_modules, true ) && self::is_jetpack_performance_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 		}
 
 		// Handle Stats module activation
-		if ( 'stats' === $module ) {
-			// Check if both Jetpack is connected AND Stats module is active
-			if ( self::is_jetpack_stats_ready() ) {
-				// Mark the "Stats" task as complete for the current plan
-				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_connect_jetpack_stats'] );
-				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
-			}
+		if ( 'stats' === $module && self::is_jetpack_stats_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_connect_jetpack_stats'] );
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
 		}
 	}
 
@@ -828,10 +797,14 @@ class TaskCompletionTriggers {
 	 */
 	public static function on_jetpack_boost_activated(): void {
 		// Check if both Jetpack is connected AND Jetpack Boost is active
-		if ( self::is_jetpack_performance_ready() ) {
-			// Mark the "Improve Performance" task as complete for the current plan
-			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+		if ( ! self::is_jetpack_performance_ready() ) {
+			return;
 		}
+
+		// Mark Jetpack Boost performance tasks as complete
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 	}
 
 	/**
@@ -853,55 +826,34 @@ class TaskCompletionTriggers {
 	}
 
 	/**
-	 * Check if Jetpack performance setup is ready
+	 * Check if Jetpack is connected
 	 *
-	 * Validates that both Jetpack is connected and Jetpack Boost is active
+	 * Checks multiple methods to determine if Jetpack has an active connection
 	 *
-	 * @return bool True if both conditions are met, false otherwise
+	 * @return bool True if Jetpack is connected, false otherwise
 	 */
-	private static function is_jetpack_performance_ready(): bool {
-		// Check if Jetpack is connected
-		$jetpack_connected = false;
-		if ( class_exists( 'Jetpack' ) && method_exists( 'Jetpack', 'is_connection_ready' ) ) {
-			$jetpack_connected = \Jetpack::is_connection_ready();
-		} elseif ( function_exists( 'jetpack_is_connected' ) ) {
-			$jetpack_connected = jetpack_is_connected();
-		} elseif ( class_exists( 'Jetpack_Options' ) && method_exists( 'Jetpack_Options', 'get_option' ) ) {
-			// Fallback: check if Jetpack has connection data
-			$jetpack_connected = ! empty( \Jetpack_Options::get_option( 'id' ) );
-		}
-
-		// Check if Jetpack Boost is active
-		$jetpack_boost_active = is_plugin_active( 'jetpack-boost/jetpack-boost.php' ) || class_exists( 'Automattic\Jetpack_Boost\Jetpack_Boost' );
-
-		return $jetpack_connected && $jetpack_boost_active;
-	}
-
-	/**
-	 * Check if Jetpack Stats setup is ready
-	 *
-	 * Validates that both Jetpack is connected and Stats module is active
-	 *
-	 * @return bool True if both conditions are met, false otherwise
-	 */
-	private static function is_jetpack_stats_ready(): bool {
+	private static function is_jetpack_connected(): bool {
 		// Check if Jetpack class exists
 		if ( ! class_exists( 'Jetpack' ) ) {
 			return false;
 		}
 
-		// Check if Jetpack is connected
-		if ( ! method_exists( 'Jetpack', 'is_connection_ready' ) || ! \Jetpack::is_connection_ready() ) {
-			return false;
+		// Primary method: is_connection_ready()
+		if ( method_exists( 'Jetpack', 'is_connection_ready' ) ) {
+			return \Jetpack::is_connection_ready();
 		}
 
-		// Check if Stats module is active (it's usually active by default when connected)
-		if ( method_exists( 'Jetpack', 'is_module_active' ) ) {
-			return \Jetpack::is_module_active( 'stats' );
+		// Fallback: jetpack_is_connected() function
+		if ( function_exists( 'jetpack_is_connected' ) ) {
+			return jetpack_is_connected();
 		}
 
-		// If we can't check module status but Jetpack is connected, assume stats is available
-		return true;
+		// Final fallback: check if Jetpack has connection data
+		if ( class_exists( 'Jetpack_Options' ) && method_exists( 'Jetpack_Options', 'get_option' ) ) {
+			return ! empty( \Jetpack_Options::get_option( 'id' ) );
+		}
+
+		return false;
 	}
 
 	/**
@@ -913,20 +865,12 @@ class TaskCompletionTriggers {
 	 */
 	private static function is_jetpack_performance_ready(): bool {
 		// Check if Jetpack is connected
-		$jetpack_connected = false;
-		if ( class_exists( 'Jetpack' ) && method_exists( 'Jetpack', 'is_connection_ready' ) ) {
-			$jetpack_connected = \Jetpack::is_connection_ready();
-		} elseif ( function_exists( 'jetpack_is_connected' ) ) {
-			$jetpack_connected = jetpack_is_connected();
-		} elseif ( class_exists( 'Jetpack_Options' ) && method_exists( 'Jetpack_Options', 'get_option' ) ) {
-			// Fallback: check if Jetpack has connection data
-			$jetpack_connected = ! empty( \Jetpack_Options::get_option( 'id' ) );
+		if ( ! self::is_jetpack_connected() ) {
+			return false;
 		}
 
 		// Check if Jetpack Boost is active
-		$jetpack_boost_active = is_plugin_active( 'jetpack-boost/jetpack-boost.php' ) || class_exists( 'Automattic\Jetpack_Boost\Jetpack_Boost' );
-
-		return $jetpack_connected && $jetpack_boost_active;
+		return is_plugin_active( 'jetpack-boost/jetpack-boost.php' ) || class_exists( 'Automattic\Jetpack_Boost\Jetpack_Boost' );
 	}
 
 	/**
@@ -937,13 +881,8 @@ class TaskCompletionTriggers {
 	 * @return bool True if both conditions are met, false otherwise
 	 */
 	private static function is_jetpack_stats_ready(): bool {
-		// Check if Jetpack class exists
-		if ( ! class_exists( 'Jetpack' ) ) {
-			return false;
-		}
-
 		// Check if Jetpack is connected
-		if ( ! method_exists( 'Jetpack', 'is_connection_ready' ) || ! \Jetpack::is_connection_ready() ) {
+		if ( ! self::is_jetpack_connected() ) {
 			return false;
 		}
 
