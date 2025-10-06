@@ -61,12 +61,18 @@ class TaskStateValidatorWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCa
 		$task_path_1 = 'blog_setup.blog_build_track.create_content.blog_first_post';
 		$task_path_2 = 'store_setup.store_build_track.setup_products.store_add_product';
 
-		TaskStateValidator::register_validator( $task_path_1, function () {
-			return true;
-		} );
-		TaskStateValidator::register_validator( $task_path_2, function () {
-			return false;
-		} );
+		TaskStateValidator::register_validator(
+			$task_path_1,
+			function () {
+				return true;
+			}
+		);
+		TaskStateValidator::register_validator(
+			$task_path_2,
+			function () {
+				return false;
+			}
+		);
 
 		// Get the validators
 		$reflection = new \ReflectionClass( TaskStateValidator::class );
@@ -329,4 +335,3 @@ class TaskStateValidatorWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCa
 		parent::tearDown();
 	}
 }
-

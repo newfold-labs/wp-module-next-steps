@@ -242,4 +242,3 @@ class PlanHelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		parent::tearDown();
 	}
 }
-

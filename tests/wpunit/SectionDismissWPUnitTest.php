@@ -259,4 +259,3 @@ class SectionDismissWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		parent::tearDown();
 	}
 }
-
