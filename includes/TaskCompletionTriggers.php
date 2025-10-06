@@ -23,6 +23,7 @@ namespace NewfoldLabs\WP\Module\NextSteps;
  * # Product Tasks (WooCommerce)
  * # Payment Tasks (WooCommerce)
  * # Blog Tasks (Content Creation)
+ * # Gift Card Tasks
  * # Jetpack Tasks (Performance & Stats)
  * # Yoast Tasks (SEO)
  * # Advanced Reviews Tasks
@@ -62,6 +63,8 @@ class TaskCompletionTriggers {
 
 		// Affiliate program tasks
 		'store_setup_affiliate_program'   => 'store_setup.store_build_track.advanced_social_marketing.store_launch_affiliate',
+		// Gift card tasks - discount product type post created
+		'store_create_gift_card'          => 'store_setup.store_build_track.first_marketing_steps.store_create_gift_card',
 	);
 
 	// ========================================
@@ -78,6 +81,7 @@ class TaskCompletionTriggers {
 		$this->register_product_hooks_and_validators();
 		$this->register_payment_hooks_and_validators();
 		$this->register_blog_hooks_and_validators();
+		$this->register_gift_card_hooks_and_validators();
 		$this->register_jetpack_hooks_and_validators();
 		$this->register_yoast_hooks_and_validators();
 		$this->register_advanced_reviews_hooks_and_validators();
@@ -138,6 +142,21 @@ class TaskCompletionTriggers {
 		TaskStateValidator::register_validator(
 			self::TASK_PATHS['blog_first_post'],
 			array( __CLASS__, 'validate_blog_post_creation_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for gift card-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_gift_card_hooks_and_validators(): void {
+		// Gift card creation (custom post type)
+		\add_action( 'publish_post', array( __CLASS__, 'on_gift_card_published' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_create_gift_card'],
+			array( __CLASS__, 'validate_gift_card_creation_state' )
 		);
 	}
 
@@ -426,6 +445,49 @@ class TaskCompletionTriggers {
 		}
 
 		return false; // Only Hello world post found
+	}
+
+	// ========================================
+	// # Gift Card Tasks
+	// ========================================
+
+	/**
+	 * Handle gift card published
+	 *
+	 * This triggers when a gift card (custom post type) is published
+	 *
+	 * @param int     $post_id The post ID
+	 * @param WP_Post $post    The post object
+	 * @return void
+	 */
+	public static function on_gift_card_published( $post_id, $post ) {
+		// Only proceed if this is a published gift card post
+		if ( 'bh_gift_card' === $post->post_type && 'publish' === $post->post_status ) {
+			$current_plan = PlanRepository::get_current_plan();
+			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
+				// Mark the "Create Gift Card" task as complete
+				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_create_gift_card'] );
+			}
+		}
+	}
+
+	/**
+	 * Validate if a gift card has already been created
+	 *
+	 * @return bool True if a gift card post exists
+	 */
+	public static function validate_gift_card_creation_state(): bool {
+		// Check if any published gift card posts exist
+		$gift_cards = get_posts(
+			array(
+				'post_type'      => 'bh_gift_card',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			)
+		);
+
+		return ! empty( $gift_cards );
 	}
 
 	// ========================================
