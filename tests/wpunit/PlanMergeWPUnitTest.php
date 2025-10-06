@@ -402,7 +402,7 @@ class PlanMergeWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$new_plan = TestPlanFactory::create_test_plan();
 
 		// Create a saved plan with specific track states
-		$saved_plan                = TestPlanFactory::create_plan_with_progress();
+		$saved_plan                  = TestPlanFactory::create_plan_with_progress();
 		$saved_plan->tracks[0]->open = false; // User closed first track
 		if ( isset( $saved_plan->tracks[1] ) ) {
 			$saved_plan->tracks[1]->open = true; // User opened second track

@@ -16,10 +16,10 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	 */
 	public function setUp(): void {
 		parent::setUp();
-		
+
 		// Clean up any existing plan
 		delete_option( 'nfd_next_steps' );
-		
+
 		// Clear any registered validators
 		$reflection = new \ReflectionClass( TaskStateValidator::class );
 		$property   = $reflection->getProperty( 'validators' );
@@ -137,12 +137,12 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		PlanRepository::save_plan( $plan );
 
 		// Create mock blog post
-		$post               = new \stdClass();
-		$post->ID           = 123;
-		$post->post_type    = 'post';
-		$post->post_status  = 'publish';
-		$post->post_title   = 'My First Real Post';
-		$post->post_name    = 'my-first-real-post';
+		$post              = new \stdClass();
+		$post->ID          = 123;
+		$post->post_type   = 'post';
+		$post->post_status = 'publish';
+		$post->post_title  = 'My First Real Post';
+		$post->post_name   = 'my-first-real-post';
 
 		// Trigger the handler
 		TaskCompletionTriggers::on_blog_post_published( 123, $post );
@@ -165,12 +165,12 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		PlanRepository::save_plan( $plan );
 
 		// Create mock Hello World post
-		$post               = new \stdClass();
-		$post->ID           = 1;
-		$post->post_type    = 'post';
-		$post->post_status  = 'publish';
-		$post->post_title   = 'Hello world!';
-		$post->post_name    = 'hello-world';
+		$post              = new \stdClass();
+		$post->ID          = 1;
+		$post->post_type   = 'post';
+		$post->post_status = 'publish';
+		$post->post_title  = 'Hello world!';
+		$post->post_name   = 'hello-world';
 
 		// Trigger the handler
 		TaskCompletionTriggers::on_blog_post_published( 1, $post );
@@ -188,26 +188,26 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	 */
 	public function test_is_hello_world_post_detection() {
 		// Test with title match
-		$post1              = new \stdClass();
-		$post1->post_title  = 'Hello world!';
-		$post1->post_name   = 'some-other-slug';
-		
+		$post1             = new \stdClass();
+		$post1->post_title = 'Hello world!';
+		$post1->post_name  = 'some-other-slug';
+
 		$reflection = new \ReflectionClass( TaskCompletionTriggers::class );
 		$method     = $reflection->getMethod( 'is_hello_world_post' );
 		$method->setAccessible( true );
-		
+
 		$this->assertTrue( $method->invoke( null, $post1 ) );
 
 		// Test with slug match
-		$post2              = new \stdClass();
-		$post2->post_title  = 'Some Other Title';
-		$post2->post_name   = 'hello-world';
+		$post2             = new \stdClass();
+		$post2->post_title = 'Some Other Title';
+		$post2->post_name  = 'hello-world';
 		$this->assertTrue( $method->invoke( null, $post2 ) );
 
 		// Test with neither match
-		$post3              = new \stdClass();
-		$post3->post_title  = 'My Real Post';
-		$post3->post_name   = 'my-real-post';
+		$post3             = new \stdClass();
+		$post3->post_title = 'My Real Post';
+		$post3->post_name  = 'my-real-post';
 		$this->assertFalse( $method->invoke( null, $post3 ) );
 	}
 
@@ -735,7 +735,7 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		// Verify blog plan was not affected (ecommerce task doesn't exist in blog plan)
 		$updated_plan = PlanRepository::get_current_plan();
 		$this->assertEquals( 'blog', $updated_plan->type );
-		
+
 		// The task shouldn't exist in blog plan
 		$task = $updated_plan->get_task( 'store_build_track', 'setup_products', 'store_add_product' );
 		$this->assertNull( $task );

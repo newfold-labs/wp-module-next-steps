@@ -14,7 +14,7 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function setUp(): void {
 		parent::setUp();
-		
+
 		// Clean up any existing plan
 		delete_option( 'nfd_next_steps' );
 		delete_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION );
@@ -104,7 +104,7 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 
 		// Verify task is complete
 		$current_plan = PlanRepository::get_current_plan();
-		$task = $current_plan->get_task( 'blog_build_track', 'create_content', 'blog_first_post' );
+		$task         = $current_plan->get_task( 'blog_build_track', 'create_content', 'blog_first_post' );
 		$this->assertTrue( $task->is_completed() );
 
 		// Simulate language change
@@ -113,7 +113,7 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 		// Verify plan was resynced (new plan loaded with fresh data)
 		$updated_plan = PlanRepository::get_current_plan();
 		$this->assertEquals( 'blog', $updated_plan->type );
-		
+
 		// Task completion should be preserved through merge
 		$updated_task = $updated_plan->get_task( 'blog_build_track', 'create_content', 'blog_first_post' );
 		$this->assertTrue( $updated_task->is_completed() );
@@ -173,5 +173,4 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 		$restored_blog_plan = PlanRepository::get_current_plan();
 		$this->assertEquals( 'blog', $restored_blog_plan->type );
 	}
-
 }

@@ -78,7 +78,7 @@ class TaskCompletionTriggers {
 		'store_upload_logo'               => 'store_setup.store_build_track.customize_your_store.store_upload_logo',
 		'blog_upload_logo'                => 'blog_setup.blog_build_track.customize_blog.blog_upload_logo',
 		'corporate_upload_logo'           => 'corporate_setup.corporate_build_track.customize_website.corporate_upload_logo',
-);
+	);
 
 	/**
 	 * Map of plan_id prefixes to plan types
@@ -251,7 +251,7 @@ class TaskCompletionTriggers {
 	private function register_logo_hooks_and_validators(): void {
 		// Logo upload via Customizer (theme_mod changes)
 		\add_action( 'customize_save_after', array( __CLASS__, 'on_logo_updated' ), 10 );
-		
+
 		// Logo upload via Site Editor (site_logo option changes)
 		\add_action( 'update_option_site_logo', array( __CLASS__, 'on_logo_updated' ), 10 );
 
@@ -644,18 +644,18 @@ class TaskCompletionTriggers {
 	public static function on_logo_updated(): void {
 		// Check custom_logo theme mod (classic themes, customizer)
 		$custom_logo = get_theme_mod( 'custom_logo' );
-		
+
 		// Check site_logo option (block themes, site editor)
 		$site_logo = get_option( 'site_logo' );
-		
+
 		// Check if logo exists in either location
 		$has_logo = ! empty( $custom_logo ) || ! empty( $site_logo );
-		
+
 		// For block themes, also check if site-logo block exists in header template
 		if ( ! $has_logo ) {
 			$has_logo = self::check_template_for_logo();
 		}
-		
+
 		if ( ! $has_logo ) {
 			return;
 		}
@@ -695,13 +695,13 @@ class TaskCompletionTriggers {
 		if ( ! empty( $custom_logo ) ) {
 			return true;
 		}
-		
+
 		// Check site_logo option (block themes, site editor)
 		$site_logo = get_option( 'site_logo' );
 		if ( ! empty( $site_logo ) ) {
 			return true;
 		}
-		
+
 		// For block themes, check if site-logo block exists in header template
 		return self::check_template_for_logo();
 	}
