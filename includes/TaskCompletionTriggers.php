@@ -25,6 +25,7 @@ namespace NewfoldLabs\WP\Module\NextSteps;
  * # Blog Tasks (Content Creation)
  * # Gift Card Tasks
  * # Welcome Popup Tasks
+ * # Logo Upload Tasks
  * # Jetpack Tasks (Performance & Stats)
  * # Yoast Tasks (SEO)
  * # Advanced Reviews Tasks
@@ -72,6 +73,11 @@ class TaskCompletionTriggers {
 		'store_create_gift_card'          => 'store_setup.store_build_track.first_marketing_steps.store_create_gift_card',
 		// Email templates - plugin installed
 		'store_customize_emails'          => 'store_setup.store_build_track.first_marketing_steps.store_customize_emails',
+
+		// Logo upload - site logo set
+		'store_upload_logo'               => 'store_setup.store_build_track.customize_your_store.store_upload_logo',
+		'blog_upload_logo'                => 'blog_setup.blog_build_track.customize_blog.blog_upload_logo',
+		'corporate_upload_logo'           => 'corporate_setup.corporate_build_track.customize_website.corporate_upload_logo',
 	);
 
 	// ========================================
@@ -90,6 +96,7 @@ class TaskCompletionTriggers {
 		$this->register_blog_hooks_and_validators();
 		$this->register_gift_card_hooks_and_validators();
 		$this->register_welcome_popup_hooks_and_validators();
+		$this->register_logo_hooks_and_validators();
 		$this->register_jetpack_hooks_and_validators();
 		$this->register_yoast_hooks_and_validators();
 		$this->register_advanced_reviews_hooks_and_validators();
@@ -181,6 +188,24 @@ class TaskCompletionTriggers {
 		TaskStateValidator::register_validator(
 			self::TASK_PATHS['store_marketing_welcome_popup'],
 			array( __CLASS__, 'validate_welcome_popup_creation_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for logo upload-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_logo_hooks_and_validators(): void {
+		// Logo upload via Customizer (theme_mod changes)
+		\add_action( 'customize_save_after', array( __CLASS__, 'on_logo_updated' ), 10 );
+		
+		// Logo upload via Site Editor (site_logo option changes)
+		\add_action( 'update_option_site_logo', array( __CLASS__, 'on_logo_updated' ), 10 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_upload_logo'],
+			array( __CLASS__, 'validate_logo_upload_state' )
 		);
 	}
 
@@ -570,6 +595,88 @@ class TaskCompletionTriggers {
 		);
 
 		return ! empty( $campaigns );
+	}
+
+	// ========================================
+	// # Logo Upload Tasks
+	// ========================================
+
+	/**
+	 * Handle logo upload/update
+	 *
+	 * This triggers when a site logo is set via Customizer or Site Editor
+	 *
+	 * @return void
+	 */
+	public static function on_logo_updated() {
+		// Check custom_logo theme mod (classic themes, customizer)
+		$custom_logo = get_theme_mod( 'custom_logo' );
+		
+		// Check site_logo option (block themes, site editor)
+		$site_logo = get_option( 'site_logo' );
+		
+		// Check if logo exists in either location
+		$has_logo = ! empty( $custom_logo ) || ! empty( $site_logo );
+		
+		// For block themes, also check if site-logo block exists in header template
+		if ( ! $has_logo ) {
+			$has_logo = self::check_template_for_logo();
+		}
+		
+		if ( ! $has_logo ) {
+			return;
+		}
+
+		$current_plan = PlanRepository::get_current_plan();
+		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
+			// Mark the "Upload Logo" task as complete
+			return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_upload_logo'] );
+		} elseif ( $current_plan && 'blog' === $current_plan->type ) {
+			// Mark the "Upload Logo" task as complete
+			return self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_upload_logo'] );
+		} elseif ( $current_plan && 'corporate' === $current_plan->type ) {
+			// Mark the "Upload Logo" task as complete
+			return self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_upload_logo'] );
+		}
+	}
+
+	/**
+	 * Check if the template for the logo exists
+	 *
+	 * @return bool True if the template for the logo exists
+	 */
+	public static function check_template_for_logo(): bool {
+		// For block themes, also check if site-logo block exists in header template
+		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+			$header_template = get_block_template( get_stylesheet() . '//header', 'wp_template_part' );
+			if ( $header_template && ! empty( $header_template->content ) ) {
+				return strpos( $header_template->content, 'wp:site-logo' ) !== false;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Validate if a logo has already been uploaded
+	 *
+	 * @return bool True if a site logo is set
+	 */
+	public static function validate_logo_upload_state(): bool {
+		// Check custom_logo theme mod (classic themes, customizer)
+		$custom_logo = get_theme_mod( 'custom_logo' );
+		if ( ! empty( $custom_logo ) ) {
+			return true;
+		}
+		
+		// Check site_logo option (block themes, site editor)
+		$site_logo = get_option( 'site_logo' );
+		if ( ! empty( $site_logo ) ) {
+			return true;
+		}
+		
+		// For block themes, check if site-logo block exists in header template
+		return self::check_template_for_logo();
 	}
 
 	// ========================================
