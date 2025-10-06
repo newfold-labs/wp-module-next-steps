@@ -540,8 +540,8 @@ class TaskCompletionTriggers {
 
 	/**
 	 * Check if a post is the default "Hello World" post
-	 * 
-	 * For now this is limited to the default post in English. 
+	 *
+	 * For now this is limited to the default post in English.
 	 * We may need to expand this to other languages in the future.
 	 *
 	 * @param WP_Post $post The post object
