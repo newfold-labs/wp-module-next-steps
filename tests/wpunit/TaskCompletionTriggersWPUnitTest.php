@@ -878,4 +878,94 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		$result = $method->invoke( null, 'blog_setup.blog_build_track.create_content.blog_first_post' );
 		$this->assertFalse( $result );
 	}
+
+	// ========================================
+	// # Plugin Activation Validator Tests
+	// ========================================
+
+	/**
+	 * Test validate_advanced_reviews_state
+	 */
+	public function test_validate_advanced_reviews_state_when_plugin_inactive() {
+		// Ensure plugin is not active
+		deactivate_plugins( 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php' );
+
+		// Should return false when plugin is not active
+		$this->assertFalse( TaskCompletionTriggers::validate_advanced_reviews_state() );
+	}
+
+	/**
+	 * Test validate_advanced_reviews_state when plugin is active
+	 */
+	public function test_validate_advanced_reviews_state_when_plugin_active() {
+		// Mock the plugin as active
+		// Note: We can't actually activate a plugin that doesn't exist,
+		// so we'll use update_option to simulate it
+		$active_plugins = get_option( 'active_plugins', array() );
+		$active_plugins[] = 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php';
+		update_option( 'active_plugins', $active_plugins );
+
+		// Should return true when plugin is active
+		$this->assertTrue( TaskCompletionTriggers::validate_advanced_reviews_state() );
+
+		// Clean up
+		$active_plugins = array_diff( $active_plugins, array( 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php' ) );
+		update_option( 'active_plugins', array_values( $active_plugins ) );
+	}
+
+	/**
+	 * Test validate_affiliates_state
+	 */
+	public function test_validate_affiliates_state_when_plugin_inactive() {
+		// Ensure plugin is not active
+		deactivate_plugins( 'yith-woocommerce-affiliates/init.php' );
+
+		// Should return false when plugin is not active
+		$this->assertFalse( TaskCompletionTriggers::validate_affiliates_state() );
+	}
+
+	/**
+	 * Test validate_affiliates_state when plugin is active
+	 */
+	public function test_validate_affiliates_state_when_plugin_active() {
+		// Mock the plugin as active
+		$active_plugins = get_option( 'active_plugins', array() );
+		$active_plugins[] = 'yith-woocommerce-affiliates/init.php';
+		update_option( 'active_plugins', $active_plugins );
+
+		// Should return true when plugin is active
+		$this->assertTrue( TaskCompletionTriggers::validate_affiliates_state() );
+
+		// Clean up
+		$active_plugins = array_diff( $active_plugins, array( 'yith-woocommerce-affiliates/init.php' ) );
+		update_option( 'active_plugins', array_values( $active_plugins ) );
+	}
+
+	/**
+	 * Test validate_email_templates_state
+	 */
+	public function test_validate_email_templates_state_when_plugin_inactive() {
+		// Ensure plugin is not active
+		deactivate_plugins( 'wp-plugin-email-templates/wp-plugin-email-templates.php' );
+
+		// Should return false when plugin is not active
+		$this->assertFalse( TaskCompletionTriggers::validate_email_templates_state() );
+	}
+
+	/**
+	 * Test validate_email_templates_state when plugin is active
+	 */
+	public function test_validate_email_templates_state_when_plugin_active() {
+		// Mock the plugin as active
+		$active_plugins = get_option( 'active_plugins', array() );
+		$active_plugins[] = 'wp-plugin-email-templates/wp-plugin-email-templates.php';
+		update_option( 'active_plugins', $active_plugins );
+
+		// Should return true when plugin is active
+		$this->assertTrue( TaskCompletionTriggers::validate_email_templates_state() );
+
+		// Clean up
+		$active_plugins = array_diff( $active_plugins, array( 'wp-plugin-email-templates/wp-plugin-email-templates.php' ) );
+		update_option( 'active_plugins', array_values( $active_plugins ) );
+	}
 }
