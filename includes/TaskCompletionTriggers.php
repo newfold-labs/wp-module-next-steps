@@ -74,10 +74,19 @@ class TaskCompletionTriggers {
 		// Email templates - plugin installed
 		'store_customize_emails'          => 'store_setup.store_build_track.first_marketing_steps.store_customize_emails',
 
-		// Logo upload - site logo set
-		'store_upload_logo'               => 'store_setup.store_build_track.customize_your_store.store_upload_logo',
-		'blog_upload_logo'                => 'blog_setup.blog_build_track.customize_blog.blog_upload_logo',
-		'corporate_upload_logo'           => 'corporate_setup.corporate_build_track.customize_website.corporate_upload_logo',
+	// Logo upload - site logo set
+	'store_upload_logo'               => 'store_setup.store_build_track.customize_your_store.store_upload_logo',
+	'blog_upload_logo'                => 'blog_setup.blog_build_track.customize_blog.blog_upload_logo',
+	'corporate_upload_logo'           => 'corporate_setup.corporate_build_track.customize_website.corporate_upload_logo',
+);
+
+	/**
+	 * Map of plan_id prefixes to plan types
+	 */
+	const PLAN_ID_TO_TYPE_MAP = array(
+		'store_setup'     => 'ecommerce',
+		'blog_setup'      => 'blog',
+		'corporate_setup' => 'corporate',
 	);
 
 	// ========================================
@@ -328,7 +337,7 @@ class TaskCompletionTriggers {
 	 * @param bool   $creating Whether the product is being created
 	 * @return void
 	 */
-	public static function on_product_creation( $product, $request, $creating ) {
+	public static function on_product_creation( $product, $request, $creating ): void {
 		// Check if WooCommerce is active and loaded
 		if ( ! function_exists( 'WC' ) || ! WC() ) {
 			return;
@@ -338,7 +347,7 @@ class TaskCompletionTriggers {
 			$current_plan = PlanRepository::get_current_plan();
 			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
 				// Mark the "Add Products" section and task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_add_product'] );
+				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_add_product'] );
 			}
 		}
 	}
@@ -416,16 +425,13 @@ class TaskCompletionTriggers {
 	 *
 	 * @param int     $post_id The post ID
 	 * @param WP_Post $post    The post object
-	 * @return bool True if the task was marked as complete, false otherwise
+	 * @return void
 	 */
-	public static function on_product_published( $post_id, $post ) {
+	public static function on_product_published( $post_id, $post ): void {
 		// Only proceed if this is a new product (not an update)
-		if ( 'product' === $post->post_type && 'auto-draft' !== $post->post_status ) {
-			$current_plan = PlanRepository::get_current_plan();
-			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-				// Mark the "Add Products" section and task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_add_product'] );
-			}
+		if ( 'product' === $post->post_type && 'publish' === $post->post_status ) {
+			// Mark the "Add Products" section and task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_add_product'] );
 		}
 	}
 
@@ -436,7 +442,7 @@ class TaskCompletionTriggers {
 	 *
 	 * @return void
 	 */
-	public static function on_payment_gateway_updated() {
+	public static function on_payment_gateway_updated(): void {
 		// Check if WooCommerce is active and loaded
 		if ( ! function_exists( 'WC' ) || ! WC() ) {
 			return;
@@ -447,7 +453,7 @@ class TaskCompletionTriggers {
 			// Check if any payment gateways are enabled
 			if ( self::has_enabled_payment_gateways() ) {
 				// Mark the "Setup Payments" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_setup_payments'] );
+				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_setup_payments'] );
 			}
 		}
 	}
@@ -465,7 +471,7 @@ class TaskCompletionTriggers {
 	 * @param WP_Post $post    The post object
 	 * @return void
 	 */
-	public static function on_blog_post_published( $post_id, $post ) {
+	public static function on_blog_post_published( $post_id, $post ): void {
 		// Only proceed if this is a published post (not an update from draft)
 		if ( 'post' === $post->post_type && 'publish' === $post->post_status ) {
 			// Skip the default "Hello World" post
@@ -473,11 +479,8 @@ class TaskCompletionTriggers {
 				return;
 			}
 
-			$current_plan = PlanRepository::get_current_plan();
-			if ( $current_plan && 'blog' === $current_plan->type ) {
-				// Mark the "Add Your First Blog Post" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_first_post'] );
-			}
+			// Mark the "Add Your First Blog Post" task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_first_post'] );
 		}
 	}
 
@@ -492,8 +495,7 @@ class TaskCompletionTriggers {
 			array(
 				'post_type'      => 'post',
 				'post_status'    => 'publish',
-				'posts_per_page' => 2, // Get a few posts to check
-				'fields'         => 'all',
+				'posts_per_page' => 2, // Get 2 posts to check, in case first is Hello World
 			)
 		);
 
@@ -524,14 +526,11 @@ class TaskCompletionTriggers {
 	 * @param WP_Post $post    The post object
 	 * @return void
 	 */
-	public static function on_gift_card_published( $post_id, $post ) {
+	public static function on_gift_card_published( $post_id, $post ): void {
 		// Only proceed if this is a published gift card post
 		if ( 'bh_gift_card' === $post->post_type && 'publish' === $post->post_status ) {
-			$current_plan = PlanRepository::get_current_plan();
-			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-				// Mark the "Create Gift Card" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_create_gift_card'] );
-			}
+			// Mark the "Create Gift Card" task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_create_gift_card'] );
 		}
 	}
 
@@ -567,14 +566,11 @@ class TaskCompletionTriggers {
 	 * @param WP_Post $post    The post object
 	 * @return void
 	 */
-	public static function on_welcome_popup_published( $post_id, $post ) {
+	public static function on_welcome_popup_published( $post_id, $post ): void {
 		// Only proceed if this is a published YITH campaign post
 		if ( 'yith_campaign' === $post->post_type && 'publish' === $post->post_status ) {
-			$current_plan = PlanRepository::get_current_plan();
-			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-				// Mark the "Create Welcome Popup" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_marketing_welcome_popup'] );
-			}
+			// Mark the "Create Welcome Popup" task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_marketing_welcome_popup'] );
 		}
 	}
 
@@ -608,7 +604,7 @@ class TaskCompletionTriggers {
 	 *
 	 * @return void
 	 */
-	public static function on_logo_updated() {
+	public static function on_logo_updated(): void {
 		// Check custom_logo theme mod (classic themes, customizer)
 		$custom_logo = get_theme_mod( 'custom_logo' );
 		
@@ -627,17 +623,11 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-			// Mark the "Upload Logo" task as complete
-			return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_upload_logo'] );
-		} elseif ( $current_plan && 'blog' === $current_plan->type ) {
-			// Mark the "Upload Logo" task as complete
-			return self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_upload_logo'] );
-		} elseif ( $current_plan && 'corporate' === $current_plan->type ) {
-			// Mark the "Upload Logo" task as complete
-			return self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_upload_logo'] );
-		}
+		// Mark the "Upload Logo" task as complete for the current plan
+		// Each plan has its own logo task path
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_upload_logo'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_upload_logo'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_upload_logo'] );
 	}
 
 	/**
@@ -690,7 +680,7 @@ class TaskCompletionTriggers {
 	 *
 	 * @return void
 	 */
-	public static function on_jetpack_connected() {
+	public static function on_jetpack_connected(): void {
 		$current_plan = PlanRepository::get_current_plan();
 		if ( ! $current_plan ) {
 			return;
@@ -735,7 +725,7 @@ class TaskCompletionTriggers {
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
-	public static function on_jetpack_boost_activation( $plugin, $network_wide ) {
+	public static function on_jetpack_boost_activation( $plugin, $network_wide ): void {
 		// Check if this is Jetpack Boost being activated
 		if ( 'jetpack-boost/jetpack-boost.php' !== $plugin ) {
 			return;
@@ -775,7 +765,7 @@ class TaskCompletionTriggers {
 	 * @param string $module The module name that was activated
 	 * @return void
 	 */
-	public static function on_jetpack_module_activated( $module ) {
+	public static function on_jetpack_module_activated( $module ): void {
 		// Check if this is a Boost-related module or performance module
 		$boost_modules = array(
 			'boost',
@@ -795,7 +785,7 @@ class TaskCompletionTriggers {
 			// Check if both Jetpack is connected AND Jetpack Boost is active
 			if ( self::is_jetpack_performance_ready() ) {
 				// Mark the "Improve Performance" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
+				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
 			}
 		}
 	}
@@ -805,15 +795,15 @@ class TaskCompletionTriggers {
 	 *
 	 * This triggers when Jetpack Boost is activated
 	 *
-	 * @return bool True if the task was marked as complete, false otherwise
+	 * @return void
 	 */
-	public static function on_jetpack_boost_activated() {
+	public static function on_jetpack_boost_activated(): void {
 		$current_plan = PlanRepository::get_current_plan();
 		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
 			// Check if both Jetpack is connected AND Jetpack Boost is active
 			if ( self::is_jetpack_performance_ready() ) {
 				// Mark the "Improve Performance" task as complete
-				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
+				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
 			}
 		}
 	}
@@ -863,7 +853,7 @@ class TaskCompletionTriggers {
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
-	public static function on_yoast_premium_activation( $plugin, $network_wide ) {
+	public static function on_yoast_premium_activation( $plugin, $network_wide ): void {
 		// Check if this is Yoast SEO Premium being activated
 		$yoast_premium_plugins = array(
 			'wordpress-seo-premium/wp-seo-premium.php',
@@ -927,7 +917,7 @@ class TaskCompletionTriggers {
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
-	public static function on_advanced_reviews_activation( $plugin, $network_wide ) {
+	public static function on_advanced_reviews_activation( $plugin, $network_wide ): void {
 		// Check if this is Advanced Reviews being activated
 		if ( 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php' !== $plugin ) {
 			return;
@@ -964,7 +954,7 @@ class TaskCompletionTriggers {
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
-	public static function on_affiliates_activation( $plugin, $network_wide ) {
+	public static function on_affiliates_activation( $plugin, $network_wide ): void {
 		// Check if this is YITH WooCommerce Affiliates being activated
 		if ( 'yith-woocommerce-affiliates/init.php' !== $plugin ) {
 			return;
@@ -1001,7 +991,7 @@ class TaskCompletionTriggers {
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
-	public static function on_email_templates_activation( $plugin, $network_wide ) {
+	public static function on_email_templates_activation( $plugin, $network_wide ): void {
 		// Check if this is Email Templates being activated
 		if ( 'wp-plugin-email-templates/wp-plugin-email-templates.php' !== $plugin ) {
 			return;
@@ -1146,5 +1136,72 @@ class TaskCompletionTriggers {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Check if the current plan matches the expected plan type for a task path
+	 *
+	 * This extracts the plan_id from the task path and compares it to the current plan type.
+	 *
+	 * @param string $task_path The full task path (plan_id.track_id.section_id.task_id)
+	 * @return bool True if current plan matches the task path's plan type
+	 */
+	private static function is_current_plan_for_task( string $task_path ): bool {
+		$current_plan = PlanRepository::get_current_plan();
+		if ( ! $current_plan ) {
+			return false;
+		}
+
+		// Extract plan_id from task path (first segment)
+		$path_parts = explode( '.', $task_path );
+		if ( empty( $path_parts[0] ) ) {
+			return false;
+		}
+
+		$plan_id = $path_parts[0];
+
+		// Map plan_id to plan type
+		if ( ! isset( self::PLAN_ID_TO_TYPE_MAP[ $plan_id ] ) ) {
+			return false;
+		}
+
+		$expected_plan_type = self::PLAN_ID_TO_TYPE_MAP[ $plan_id ];
+
+		return $current_plan->type === $expected_plan_type;
+	}
+
+	/**
+	 * Get the plan type for a given task path
+	 *
+	 * @param string $task_path The full task path (plan_id.track_id.section_id.task_id)
+	 * @return string|null The plan type ('ecommerce', 'blog', 'corporate') or null if invalid
+	 */
+	private static function get_plan_type_from_task_path( string $task_path ): ?string {
+		// Extract plan_id from task path (first segment)
+		$path_parts = explode( '.', $task_path );
+		if ( empty( $path_parts[0] ) ) {
+			return null;
+		}
+
+		$plan_id = $path_parts[0];
+
+		// Map plan_id to plan type
+		return self::PLAN_ID_TO_TYPE_MAP[ $plan_id ] ?? null;
+	}
+
+	/**
+	 * Mark task complete if current plan matches the task path's plan type
+	 *
+	 * This is a convenience method that combines plan type checking with task completion.
+	 *
+	 * @param string $task_path The full task path (plan_id.track_id.section_id.task_id)
+	 * @return bool True if task was marked complete, false otherwise
+	 */
+	private static function mark_task_complete_if_plan_matches( string $task_path ): bool {
+		if ( ! self::is_current_plan_for_task( $task_path ) ) {
+			return false;
+		}
+
+		return self::mark_task_as_complete_by_path( $task_path );
 	}
 }
