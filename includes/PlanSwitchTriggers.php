@@ -93,7 +93,7 @@ class PlanSwitchTriggers {
 	 * @param string $new_value The new language code
 	 * @return void
 	 */
-	public static function on_language_change( $old_value, $new_value ) {
+	public static function on_language_change( $old_value, $new_value ):void {
 		if ( $old_value === $new_value ) {
 			return;
 		}

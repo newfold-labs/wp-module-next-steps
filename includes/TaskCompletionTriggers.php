@@ -575,7 +575,7 @@ class TaskCompletionTriggers {
 		$yoast_premium_plugins = array(
 			'wordpress-seo-premium/wp-seo-premium.php',
 			'yoast-seo-premium/wp-seo-premium.php',
-			'wordpress-seo/wp-seo.php', // to test with free version
+			// 'wordpress-seo/wp-seo.php', // to test with free version
 		);
 
 		if ( ! in_array( $plugin, $yoast_premium_plugins, true ) ) {
