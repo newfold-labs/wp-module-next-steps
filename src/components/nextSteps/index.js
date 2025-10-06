@@ -231,6 +231,9 @@ export const NextSteps = () => {
 		const sectionsAsCards = planWithProgress.tracks[ 0 ].sections.filter( ( section ) => {
 			// if section is done or skipped and has a date completed
 			if ( section.status !== 'new' && section.date_completed ) {
+                if( section.completed_by === 'system' ) {
+                    return false; // hide system completed tasks
+                }
 				// check if date completed is in last 24 hours
 				const completedDate = getDate( section.date_completed );
 				const expiryOffset = 24 * 60 * 60 * 1000; // 24 hours in milliseconds

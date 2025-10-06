@@ -83,6 +83,12 @@ class TaskStateValidator {
 					$success = $plan->update_task_status( $track_id, $section_id, $task_id, 'done' );
 
 					if ( $success ) {
+						$track   = $plan->get_track( $track_id );
+						$section = $track->get_section( $section_id );
+						if ( 'done' === $section->status ) {
+							$section->set_completed_by( 'system' );
+						}
+
 						$completed_tasks[] = $task_path;
 					}
 				}

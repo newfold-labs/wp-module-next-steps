@@ -101,6 +101,13 @@ class Section {
 	public $mandatory;
 
 	/**
+	 * Indicates if the section was completed by a user or the system.
+	 *
+	 * @var string 'user' or 'system'
+	 */
+	public $completed_by;
+
+	/**
 	 * Section constructor
 	 *
 	 * @param array $data Section data
@@ -119,6 +126,7 @@ class Section {
 		$this->complete_on_event = $data['complete_on_event'] ?? '';
 		$this->mandatory         = $data['mandatory'] ?? false;
 		$this->tasks             = array();
+		$this->completed_by      = $data['completed_by'] ?? '';
 
 		// Convert task arrays to Task objects
 		if ( isset( $data['tasks'] ) && is_array( $data['tasks'] ) ) {
@@ -151,6 +159,7 @@ class Section {
 			'modal_desc'        => $this->modal_desc,
 			'complete_on_event' => $this->complete_on_event,
 			'mandatory'         => $this->mandatory,
+			'completed_by'      => $this->completed_by,
 			'tasks'             => array_map(
 				function ( Task $task ) {
 					return $task->to_array();
@@ -517,6 +526,17 @@ class Section {
 	 */
 	public function set_date_completed( ?string $date ): bool {
 		$this->date_completed = $date;
+		return true;
+	}
+
+	/**
+	 * Set if the section is completed by a user or the system
+	 *
+	 * @param string $type 'user' or 'system'
+	 * @return bool
+	 */
+	public function set_completed_by( string $type = 'user' ): bool {
+		$this->completed_by = $type;
 		return true;
 	}
 
