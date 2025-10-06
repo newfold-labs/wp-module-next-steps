@@ -36,35 +36,37 @@ class TaskCompletionTriggers {
 	 * Task path constants for each task type for easy reference and reuse
 	 */
 	const TASK_PATHS = array(
-		// Product tasks
+		// Product tasks - new post (post type product) created
 		'store_add_product'               => 'store_setup.store_build_track.setup_products.store_add_product',
 
-		// Payment tasks
+		// Payment tasks - any payment method configured
 		'store_setup_payments'            => 'store_setup.store_build_track.setup_payments_shipping.store_setup_payments',
 
-		// Blog tasks
+		// Blog tasks - new blog post created
 		'blog_first_post'                 => 'blog_setup.blog_build_track.create_content.blog_first_post',
 
 		// Jetpack tasks
-		// Boost
+		// Boost - Jetpack connected and boost module activated
 		'store_improve_performance'       => 'store_setup.store_build_track.store_improve_performance.store_improve_performance',
 		'blog_speed_up_site'              => 'blog_setup.blog_grow_track.blog_performance_security.blog_speed_up_site',
 		'corporate_install_jetpack_boost' => 'corporate_setup.corporate_grow_track.site_performance_security.corporate_install_jetpack_boost',
-		// Stats
+		// Stats - jetpack connected and stats module activated
 		'blog_connect_jetpack_stats'      => 'blog_setup.blog_brand_track.first_audience_building.blog_connect_jetpack_stats',
 		'corporate_setup_jetpack_stats'   => 'corporate_setup.corporate_brand_track.launch_marketing_tools.corporate_setup_jetpack_stats',
 
-		// Yoast tasks
+		// Yoast tasks - plugin installed
 		'store_setup_yoast_premium'       => 'store_setup.store_build_track.next_marketing_steps.store_setup_yoast_premium',
 		'blog_install_yoast_premium'      => 'blog_setup.blog_grow_track.content_traffic_strategy.blog_install_yoast_premium',
 
-		// Advanced Reviews tasks
+		// Advanced Reviews tasks - plugin installed
 		'store_collect_reviews'           => 'store_setup.store_build_track.store_collect_reviews.store_collect_reviews_task',
 
-		// Affiliate program tasks
+		// Affiliate program tasks - pluign installed
 		'store_setup_affiliate_program'   => 'store_setup.store_build_track.advanced_social_marketing.store_launch_affiliate',
 		// Gift card tasks - discount product type post created
 		'store_create_gift_card'          => 'store_setup.store_build_track.first_marketing_steps.store_create_gift_card',
+		// Email templates - plugin installed
+		'store_customize_emails'          => 'store_setup.store_build_track.first_marketing_steps.store_customize_emails',
 	);
 
 	// ========================================
@@ -86,6 +88,7 @@ class TaskCompletionTriggers {
 		$this->register_yoast_hooks_and_validators();
 		$this->register_advanced_reviews_hooks_and_validators();
 		$this->register_affiliates_hooks_and_validators();
+		$this->register_email_templates_hooks_and_validators();
 	}
 
 	/**
@@ -248,6 +251,21 @@ class TaskCompletionTriggers {
 		TaskStateValidator::register_validator(
 			self::TASK_PATHS['store_setup_affiliate_program'],
 			array( __CLASS__, 'validate_affiliates_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for Email Templates-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_email_templates_hooks_and_validators(): void {
+		// Email Templates plugin activation
+		\add_action( 'activated_plugin', array( __CLASS__, 'on_email_templates_activation' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_customize_emails'],
+			array( __CLASS__, 'validate_email_templates_state' )
 		);
 	}
 
@@ -799,6 +817,43 @@ class TaskCompletionTriggers {
 	 */
 	public static function validate_affiliates_state(): bool {
 		return is_plugin_active( 'yith-woocommerce-affiliates/init.php' );
+	}
+
+	// ========================================
+	// # Email Templates Tasks
+	// ========================================
+
+	/**
+	 * Handle Email Templates plugin activation
+	 *
+	 * @param string $plugin       The plugin name
+	 * @param bool   $network_wide Whether the plugin is being activated on the network
+	 * @return void
+	 */
+	public static function on_email_templates_activation( $plugin, $network_wide ) {
+		// Check if this is Email Templates being activated
+		if ( 'wp-plugin-email-templates/wp-plugin-email-templates.php' !== $plugin ) {
+			return;
+		}
+
+		$current_plan = PlanRepository::get_current_plan();
+		if ( ! $current_plan ) {
+			return;
+		}
+
+		// Only mark complete for store/ecommerce plan
+		if ( 'ecommerce' === $current_plan->type ) {
+			self::mark_task_as_complete_by_path( self::TASK_PATHS['store_customize_emails'] );
+		}
+	}
+
+	/**
+	 * Validate if Email Templates plugin is already active
+	 *
+	 * @return bool True if Email Templates is already active
+	 */
+	public static function validate_email_templates_state(): bool {
+		return is_plugin_active( 'wp-plugin-email-templates/wp-plugin-email-templates.php' );
 	}
 
 	// ========================================
