@@ -64,7 +64,7 @@ class TaskCompletionTriggers {
 		// Advanced Reviews tasks - plugin installed
 		'store_collect_reviews'           => 'store_setup.store_build_track.store_collect_reviews.store_collect_reviews_task',
 
-		// Affiliate program tasks - pluign installed
+		// Affiliate program tasks - plugin installed
 		'store_setup_affiliate_program'   => 'store_setup.store_build_track.advanced_social_marketing.store_launch_affiliate',
 
 		// Welcome discount popup - discount campaign created
