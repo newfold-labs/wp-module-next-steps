@@ -28,6 +28,7 @@ namespace NewfoldLabs\WP\Module\NextSteps;
  * # Yoast Tasks (SEO)
  * # Advanced Reviews Tasks
  * # Affiliates Tasks
+ * # Email Templates Tasks
  * # Utility Methods
  */
 class TaskCompletionTriggers {
@@ -63,6 +64,9 @@ class TaskCompletionTriggers {
 
 		// Affiliate program tasks - pluign installed
 		'store_setup_affiliate_program'   => 'store_setup.store_build_track.advanced_social_marketing.store_launch_affiliate',
+
+		// Welcome discount popup - welcome discount popup created
+		'store_marketing_welcome_popup'   => 'store_setup.store_build_track.first_marketing_steps.store_marketing_welcome_popup',
 		// Gift card tasks - discount product type post created
 		'store_create_gift_card'          => 'store_setup.store_build_track.first_marketing_steps.store_create_gift_card',
 		// Email templates - plugin installed
