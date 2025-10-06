@@ -39,6 +39,19 @@ const ICONS_IDS = {
 	'yoast': yoastIcon,
 }
 
+const CompletedBadge = ({ className, ...props }) => (
+	<span className={ 'nfd-nextstep-section-card__completed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto ' + className  } {...props}>
+		<CheckCircleIcon width={ 24 }/>
+		{ __( 'Completed', 'wp-module-next-steps' ) }
+	</span>
+);
+const DismissedBadge = ( { className, ...props }) => (
+	<span className={ 'nfd-nextstep-section-card__dismissed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto ' + className } {...props}>
+		<XCircleIcon width={ 24 }/>
+		{ __( 'Skipped', 'wp-module-next-steps' ) }
+	</span>
+);
+
 export const SectionCard = ( {
 	id,
 	label,
@@ -159,7 +172,7 @@ export const SectionCard = ( {
 		Object.entries( dataAttributes ).forEach( ( [ key, value ] ) => {
 			// Ensure key has 'data-' prefix
 			const dataKey = key.startsWith( 'data-' ) ? key : `data-${ key }`;
-			
+
 			// Handle boolean values (convert to string or use key as flag)
 			if ( typeof value === 'boolean' ) {
 				formatted[ dataKey ] = value ? 'true' : 'false';
@@ -204,20 +217,8 @@ export const SectionCard = ( {
 							{ label }
 						</Title>
 					</span>
-					{
-						'done' === status &&
-						<span className={ 'nfd-nextstep-section-card__completed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
-							<CheckCircleIcon width={ 24 }/>
-							{ __( 'Completed', 'wp-module-next-steps' ) }
-						</span>
-					}
-					{
-						'dismissed' === status &&
-						<span className={ 'nfd-nextstep-section-card__dismissed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto' }>
-							<XCircleIcon width={ 24 }/>
-							{ __( 'Skipped', 'wp-module-next-steps' ) }
-						</span>
-					}
+					{ 'done' === status && ! wide && <CompletedBadge/> }
+					{ 'dismissed' === status && ! wide && <DismissedBadge/> }
 				</div>
 				<span className="nfd-nextsteps-section-card-description">
 					{ desc }
@@ -234,7 +235,7 @@ export const SectionCard = ( {
 			e.preventDefault();
 			setIsModalOpened( true );
 			return false;
-		} else if ( e.target.hasAttribute( 'data-nfd-prevent-default' ) ) { 
+		} else if ( e.target.hasAttribute( 'data-nfd-prevent-default' ) ) {
 			// if the link has the data-nfd-prevent-default attribute, do not open the link
 			// this is because there is a custom modal for this section/task
 			return false;
@@ -300,8 +301,10 @@ export const SectionCard = ( {
 					}
 					<StepContent/>
 					<div className={ classNames(
-						'nfd-nextsteps-buttons nfd-flex nfd-shrink-2 nfd-items-center nfd-gap-2 nfd-justify-between nfd-w-full'
+						'nfd-nextsteps-buttons nfd-flex nfd-shrink-2 nfd-items-center nfd-gap-2 nfd-justify-between nfd-w-full nfd-relative'
 					) }>
+						{ 'done' === status && wide && <CompletedBadge className={'nfd-absolute nfd-top-0 nfd-right-0'}/> }
+						{ 'dismissed' === status && wide && <DismissedBadge className={'nfd-absolute nfd-top-0 nfd-right-0'}/> }
 						<div className="nfd-nextsteps-buttons-actions-primary nfd-flex">
 							<Button
 								as={ 'a' }
@@ -315,8 +318,8 @@ export const SectionCard = ( {
 										}
 									)
 								}
-								data-nfd-click={ "nextsteps_step_link" }
-								data-nfd-event-category={ "nextsteps_step" }
+								data-nfd-click={ 'nextsteps_step_link' }
+								data-nfd-event-category={ 'nextsteps_step' }
 								data-nfd-event-key={ id }
 								title={ label }
 								variant={ isPrimary ? 'primary' : 'secondary' }
@@ -328,7 +331,7 @@ export const SectionCard = ( {
 							</Button>
 						</div>
 						{
-							! mandatory &&
+							! mandatory && 'done' !== status &&
 							<>
 								{
 									'dismissed' !== status && <div className="nfd-nextsteps-buttons-actions-secondary">

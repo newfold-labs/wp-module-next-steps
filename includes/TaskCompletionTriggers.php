@@ -40,7 +40,7 @@ class TaskCompletionTriggers {
 		'store_setup_payments'            => 'store_setup.store_build_track.setup_payments_shipping.store_setup_payments',
 
 		// Blog tasks
-		'blog_first_post'                  => 'blog_setup.blog_build_track.create_content.blog_first_post',
+		'blog_first_post'                 => 'blog_setup.blog_build_track.create_content.blog_first_post',
 
 		// Jetpack tasks
 		'store_improve_performance'       => 'store_setup.store_build_track.store_improve_performance.store_improve_performance',
@@ -95,8 +95,16 @@ class TaskCompletionTriggers {
 	 * @return void
 	 */
 	private function register_payment_hooks_and_validators(): void {
+
 		// Payment method configuration - hook into payment gateway settings updates
-		\add_action( 'woocommerce_update_options_payment_gateways', array( __CLASS__, 'on_payment_gateway_updated' ), 10 );
+		if ( class_exists( '\WC_Payment_Gateways' ) ) {
+			$gateways = \WC_Payment_Gateways::instance()->get_payment_gateway_ids();
+
+			foreach ( $gateways as $gateway_id ) {
+				add_action( "update_option_woocommerce_{$gateway_id}_settings", array( __CLASS__, 'on_payment_gateway_updated' ) );
+			}
+		}
+
 		// Also hook into individual payment gateway updates for better coverage
 		\add_action( 'init', array( __CLASS__, 'register_payment_gateway_hooks' ), 20 );
 
@@ -190,8 +198,8 @@ class TaskCompletionTriggers {
 	/**
 	 * Handle product creation via REST API
 	 *
-	 * @param object $product The product object
-	 * @param object $request The request object
+	 * @param object $product  The product object
+	 * @param object $request  The request object
 	 * @param bool   $creating Whether the product is being created
 	 * @return void
 	 */
@@ -282,7 +290,7 @@ class TaskCompletionTriggers {
 	 * that don't go through the REST API
 	 *
 	 * @param int     $post_id The post ID
-	 * @param WP_Post $post The post object
+	 * @param WP_Post $post    The post object
 	 * @return bool True if the task was marked as complete, false otherwise
 	 */
 	public static function on_product_published( $post_id, $post ) {
@@ -329,7 +337,7 @@ class TaskCompletionTriggers {
 	 * This triggers when a blog post is published
 	 *
 	 * @param int     $post_id The post ID
-	 * @param WP_Post $post The post object
+	 * @param WP_Post $post    The post object
 	 * @return void
 	 */
 	public static function on_blog_post_published( $post_id, $post ) {
@@ -430,7 +438,7 @@ class TaskCompletionTriggers {
 	/**
 	 * Handle Jetpack Boost activation via plugin activation hook
 	 *
-	 * @param string $plugin The plugin name
+	 * @param string $plugin       The plugin name
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
@@ -558,7 +566,7 @@ class TaskCompletionTriggers {
 	/**
 	 * Handle Yoast SEO Premium activation
 	 *
-	 * @param string $plugin The plugin name
+	 * @param string $plugin       The plugin name
 	 * @param bool   $network_wide Whether the plugin is being activated on the network
 	 * @return void
 	 */
@@ -642,9 +650,9 @@ class TaskCompletionTriggers {
 	 * If the section has multiple tasks, it will mark the task as complete
 	 * If the section has one tasks, it will mark the section as complete
 	 *
-	 * @param string $track_id The track id
+	 * @param string $track_id   The track id
 	 * @param string $section_id The section id
-	 * @param string $task_id The task id
+	 * @param string $task_id    The task id
 	 * @return bool True if the task was marked as complete, false otherwise
 	 */
 	public static function mark_task_as_complete( $track_id, $section_id, $task_id ): bool {
