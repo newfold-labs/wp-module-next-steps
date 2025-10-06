@@ -675,160 +675,123 @@ msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:6945
 msgid "Mark Complete"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:6963
 msgid "Skip"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:7001
 msgid "Restart"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:7042
-#: build/next-steps-portal/bundle.js:7057
 msgid "Unskip"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
-#: build/next-steps-portal/bundle.js:3157
 msgid "Completed"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
-#: build/next-steps-portal/bundle.js:3163
 msgid "Skipped"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
-#: build/next-steps-portal/bundle.js:3455
 msgid "Skip it"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
-#: build/next-steps-portal/bundle.js:3465
 msgid "Undo"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
-#: build/next-steps-portal/bundle.js:3032
 msgid "No Pending tasks"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
-#: build/next-steps-portal/bundle.js:3040
 msgid "Hooray!"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
-#: build/next-steps-portal/bundle.js:3043
 msgid "You don’t have any pending tasks today"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2388
 msgid "We encountered a connection error. Please check your internet connection and try again."
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2389
 msgid "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists."
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2394
 msgid "Connection Error"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2394
 msgid "Something went wrong"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2402
 msgid "Try Again"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2409
-#: build/next-steps-portal/bundle.js:2482
-#: build/next-steps-portal/bundle.js:2535
 msgid "Refresh Page"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2415
 msgid "Technical Details"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2474
 msgid "Next Steps Unavailable"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2476
 msgid "The Next Steps module encountered an error and cannot be displayed right now."
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:6754
 msgid "Task temporarily unavailable"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:6781
 msgid "Close"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:6786
 msgid "All complete!"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:2922
 msgid "Loading next steps..."
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:3010
 msgid "Hide skipped tasks"
 msgstr ""
 
 #: build/next-steps-portal/bundle.js:1
 #: build/next-steps-widget/bundle.js:1
-#: build/next-steps-portal/bundle.js:3011
 msgid "View skipped tasks"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:2527
-msgid "Connection Issue"
-msgstr ""
-
-#: build/next-steps-portal/bundle.js:2529
-msgid "Unable to save your changes right now. Please check your connection and try again."
 msgstr ""
