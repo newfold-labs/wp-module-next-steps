@@ -74,10 +74,10 @@ class TaskCompletionTriggers {
 		// Email templates - plugin installed
 		'store_customize_emails'          => 'store_setup.store_build_track.first_marketing_steps.store_customize_emails',
 
-	// Logo upload - site logo set
-	'store_upload_logo'               => 'store_setup.store_build_track.customize_your_store.store_upload_logo',
-	'blog_upload_logo'                => 'blog_setup.blog_build_track.customize_blog.blog_upload_logo',
-	'corporate_upload_logo'           => 'corporate_setup.corporate_build_track.customize_website.corporate_upload_logo',
+		// Logo upload - site logo set
+		'store_upload_logo'               => 'store_setup.store_build_track.customize_your_store.store_upload_logo',
+		'blog_upload_logo'                => 'blog_setup.blog_build_track.customize_blog.blog_upload_logo',
+		'corporate_upload_logo'           => 'corporate_setup.corporate_build_track.customize_website.corporate_upload_logo',
 );
 
 	/**
@@ -156,6 +156,30 @@ class TaskCompletionTriggers {
 	}
 
 	/**
+	 * Check if any payment gateways are enabled
+	 *
+	 * @return bool True if at least one payment gateway is enabled, false otherwise
+	 */
+	private static function has_enabled_payment_gateways(): bool {
+		// Check if WooCommerce is active and loaded
+		if ( ! function_exists( 'WC' ) || ! WC() ) {
+			return false;
+		}
+
+		// Check if payment gateways are available
+		$payment_gateways = WC()->payment_gateways();
+		if ( ! $payment_gateways ) {
+			return false;
+		}
+
+		// Get available payment gateways
+		$available_gateways = $payment_gateways->get_available_payment_gateways();
+
+		// Check if any gateways are enabled (available gateways are already filtered to enabled ones)
+		return ! empty( $available_gateways );
+	}
+
+	/**
 	 * Register hooks and validators for blog-related tasks
 	 *
 	 * @return void
@@ -169,6 +193,25 @@ class TaskCompletionTriggers {
 			array( __CLASS__, 'validate_blog_post_creation_state' )
 		);
 	}
+
+	/**
+	 * Check if a post is the default "Hello World" post
+	 *
+	 * @param WP_Post $post The post object
+	 * @return bool True if this is the default Hello World post
+	 */
+	private static function is_hello_world_post( $post ): bool {
+		// Check post title
+		if ( false !== stripos( $post->post_title, 'Hello world!' ) ) {
+			return true;
+		}
+		// Check post slug
+		if ( 'hello-world' === $post->post_name ) {
+			return true;
+		}
+		return false;
+	}
+
 
 	/**
 	 * Register hooks and validators for gift card-related tasks
@@ -344,11 +387,8 @@ class TaskCompletionTriggers {
 		}
 
 		if ( $creating ) {
-			$current_plan = PlanRepository::get_current_plan();
-			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-				// Mark the "Add Products" section and task as complete
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_add_product'] );
-			}
+			// Mark the "Add Products" section and task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_add_product'] );
 		}
 	}
 
@@ -448,13 +488,10 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-			// Check if any payment gateways are enabled
-			if ( self::has_enabled_payment_gateways() ) {
-				// Mark the "Setup Payments" task as complete
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_setup_payments'] );
-			}
+		// Check if any payment gateways are enabled
+		if ( self::has_enabled_payment_gateways() ) {
+			// Mark the "Setup Payments" task as complete
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_setup_payments'] );
 		}
 	}
 
@@ -686,35 +723,30 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		// Handle different plan types
-		switch ( $current_plan->type ) {
-			case 'ecommerce':
-				// Check if both Jetpack is connected AND Jetpack Boost is active
-				if ( self::is_jetpack_performance_ready() ) {
-					// Mark the "Improve Performance" task as complete
-					self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
-				}
-				break;
+		// Handle different plan types using the helper method
+		// For ecommerce plan - check if Jetpack Boost is active
+		if ( self::is_jetpack_performance_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+		}
 
-			case 'blog':
-				// Mark Jetpack Stats connection task as complete
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_connect_jetpack_stats'] );
+		// For blog plan - mark Jetpack Stats connection (if Stats module is active)
+		if ( self::is_jetpack_stats_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_connect_jetpack_stats'] );
+		}
 
-				// Also check if Jetpack Boost is active for performance task
-				if ( self::is_jetpack_performance_ready() ) {
-					self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_speed_up_site'] );
-				}
-				break;
+		// For blog plan - also check if Jetpack Boost is active
+		if ( self::is_jetpack_performance_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+		}
 
-			case 'corporate':
-				// Mark Jetpack Stats setup task as complete
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
+		// For corporate plan - mark Jetpack Stats setup (if Stats module is active)
+		if ( self::is_jetpack_stats_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
+		}
 
-				// Also check if Jetpack Boost is active for performance task
-				if ( self::is_jetpack_performance_ready() ) {
-					self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_install_jetpack_boost'] );
-				}
-				break;
+		// For corporate plan - also check if Jetpack Boost is active
+		if ( self::is_jetpack_performance_ready() ) {
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 		}
 	}
 
@@ -741,26 +773,16 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		// Handle different plan types
-		switch ( $current_plan->type ) {
-			case 'ecommerce':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
-				break;
-
-			case 'blog':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_speed_up_site'] );
-				break;
-
-			case 'corporate':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['corporate_install_jetpack_boost'] );
-				break;
-		}
+		// Handle different plan types using the helper method
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
 	}
 
 	/**
 	 * Handle Jetpack module activation
 	 *
-	 * This triggers when any Jetpack module is activated, including Boost-related modules
+	 * This triggers when any Jetpack module is activated, including Boost and Stats modules
 	 *
 	 * @param string $module The module name that was activated
 	 * @return void
@@ -775,17 +797,24 @@ class TaskCompletionTriggers {
 			'minify',
 		);
 
-		// Only proceed if it's a performance-related module
-		if ( ! in_array( $module, $boost_modules, true ) ) {
-			return;
-		}
-
-		$current_plan = PlanRepository::get_current_plan();
-		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
+		// Handle Boost module activation
+		if ( in_array( $module, $boost_modules, true ) ) {
 			// Check if both Jetpack is connected AND Jetpack Boost is active
 			if ( self::is_jetpack_performance_ready() ) {
-				// Mark the "Improve Performance" task as complete
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
+				// Mark the "Improve Performance" task as complete for the current plan
+				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
+				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_speed_up_site'] );
+				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_install_jetpack_boost'] );
+			}
+		}
+
+		// Handle Stats module activation
+		if ( 'stats' === $module ) {
+			// Check if both Jetpack is connected AND Stats module is active
+			if ( self::is_jetpack_stats_ready() ) {
+				// Mark the "Stats" task as complete for the current plan
+				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_connect_jetpack_stats'] );
+				self::mark_task_complete_if_plan_matches( self::TASK_PATHS['corporate_setup_jetpack_stats'] );
 			}
 		}
 	}
@@ -798,13 +827,10 @@ class TaskCompletionTriggers {
 	 * @return void
 	 */
 	public static function on_jetpack_boost_activated(): void {
-		$current_plan = PlanRepository::get_current_plan();
-		if ( $current_plan && 'ecommerce' === $current_plan->type ) {
-			// Check if both Jetpack is connected AND Jetpack Boost is active
-			if ( self::is_jetpack_performance_ready() ) {
-				// Mark the "Improve Performance" task as complete
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_improve_performance'] );
-			}
+		// Check if both Jetpack is connected AND Jetpack Boost is active
+		if ( self::is_jetpack_performance_ready() ) {
+			// Mark the "Improve Performance" task as complete for the current plan
+			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_improve_performance'] );
 		}
 	}
 
@@ -823,13 +849,101 @@ class TaskCompletionTriggers {
 	 * @return bool True if Jetpack is connected and Stats module is active
 	 */
 	public static function validate_jetpack_stats_state(): bool {
+		return self::is_jetpack_stats_ready();
+	}
+
+	/**
+	 * Check if Jetpack performance setup is ready
+	 *
+	 * Validates that both Jetpack is connected and Jetpack Boost is active
+	 *
+	 * @return bool True if both conditions are met, false otherwise
+	 */
+	private static function is_jetpack_performance_ready(): bool {
+		// Check if Jetpack is connected
+		$jetpack_connected = false;
+		if ( class_exists( 'Jetpack' ) && method_exists( 'Jetpack', 'is_connection_ready' ) ) {
+			$jetpack_connected = \Jetpack::is_connection_ready();
+		} elseif ( function_exists( 'jetpack_is_connected' ) ) {
+			$jetpack_connected = jetpack_is_connected();
+		} elseif ( class_exists( 'Jetpack_Options' ) && method_exists( 'Jetpack_Options', 'get_option' ) ) {
+			// Fallback: check if Jetpack has connection data
+			$jetpack_connected = ! empty( \Jetpack_Options::get_option( 'id' ) );
+		}
+
+		// Check if Jetpack Boost is active
+		$jetpack_boost_active = is_plugin_active( 'jetpack-boost/jetpack-boost.php' ) || class_exists( 'Automattic\Jetpack_Boost\Jetpack_Boost' );
+
+		return $jetpack_connected && $jetpack_boost_active;
+	}
+
+	/**
+	 * Check if Jetpack Stats setup is ready
+	 *
+	 * Validates that both Jetpack is connected and Stats module is active
+	 *
+	 * @return bool True if both conditions are met, false otherwise
+	 */
+	private static function is_jetpack_stats_ready(): bool {
 		// Check if Jetpack class exists
 		if ( ! class_exists( 'Jetpack' ) ) {
 			return false;
 		}
 
 		// Check if Jetpack is connected
-		if ( ! \Jetpack::is_connection_ready() ) {
+		if ( ! method_exists( 'Jetpack', 'is_connection_ready' ) || ! \Jetpack::is_connection_ready() ) {
+			return false;
+		}
+
+		// Check if Stats module is active (it's usually active by default when connected)
+		if ( method_exists( 'Jetpack', 'is_module_active' ) ) {
+			return \Jetpack::is_module_active( 'stats' );
+		}
+
+		// If we can't check module status but Jetpack is connected, assume stats is available
+		return true;
+	}
+
+	/**
+	 * Check if Jetpack performance setup is ready
+	 *
+	 * Validates that both Jetpack is connected and Jetpack Boost is active
+	 *
+	 * @return bool True if both conditions are met, false otherwise
+	 */
+	private static function is_jetpack_performance_ready(): bool {
+		// Check if Jetpack is connected
+		$jetpack_connected = false;
+		if ( class_exists( 'Jetpack' ) && method_exists( 'Jetpack', 'is_connection_ready' ) ) {
+			$jetpack_connected = \Jetpack::is_connection_ready();
+		} elseif ( function_exists( 'jetpack_is_connected' ) ) {
+			$jetpack_connected = jetpack_is_connected();
+		} elseif ( class_exists( 'Jetpack_Options' ) && method_exists( 'Jetpack_Options', 'get_option' ) ) {
+			// Fallback: check if Jetpack has connection data
+			$jetpack_connected = ! empty( \Jetpack_Options::get_option( 'id' ) );
+		}
+
+		// Check if Jetpack Boost is active
+		$jetpack_boost_active = is_plugin_active( 'jetpack-boost/jetpack-boost.php' ) || class_exists( 'Automattic\Jetpack_Boost\Jetpack_Boost' );
+
+		return $jetpack_connected && $jetpack_boost_active;
+	}
+
+	/**
+	 * Check if Jetpack Stats setup is ready
+	 *
+	 * Validates that both Jetpack is connected and Stats module is active
+	 *
+	 * @return bool True if both conditions are met, false otherwise
+	 */
+	private static function is_jetpack_stats_ready(): bool {
+		// Check if Jetpack class exists
+		if ( ! class_exists( 'Jetpack' ) ) {
+			return false;
+		}
+
+		// Check if Jetpack is connected
+		if ( ! method_exists( 'Jetpack', 'is_connection_ready' ) || ! \Jetpack::is_connection_ready() ) {
 			return false;
 		}
 
@@ -865,24 +979,12 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
-			return;
-		}
+		// Handle different plan types using the helper method
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_setup_yoast_premium'] );
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['blog_install_yoast_premium'] );
 
-		// Handle different plan types
-		switch ( $current_plan->type ) {
-			case 'ecommerce':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['store_setup_yoast_premium'] );
-				break;
-
-			case 'blog':
-				self::mark_task_as_complete_by_path( self::TASK_PATHS['blog_install_yoast_premium'] );
-				break;
-
-			// Note: Corporate plan doesn't have a specific Yoast Premium task
-			// but has general SEO tasks that could be marked complete
-		}
+		// Note: Corporate plan doesn't have a specific Yoast Premium task
+		// but has general SEO tasks that could be marked complete
 	}
 
 	/**
@@ -923,15 +1025,8 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
-			return;
-		}
-
-		// Only mark complete for store/ecommerce plan
-		if ( 'ecommerce' === $current_plan->type ) {
-			self::mark_task_as_complete_by_path( self::TASK_PATHS['store_collect_reviews'] );
-		}
+		// Mark complete for store/ecommerce plan
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_collect_reviews'] );
 	}
 
 	/**
@@ -960,15 +1055,8 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
-			return;
-		}
-
-		// Only mark complete for store/ecommerce plan
-		if ( 'ecommerce' === $current_plan->type ) {
-			self::mark_task_as_complete_by_path( self::TASK_PATHS['store_setup_affiliate_program'] );
-		}
+		// Mark complete for store/ecommerce plan
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_setup_affiliate_program'] );
 	}
 
 	/**
@@ -997,15 +1085,8 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		$current_plan = PlanRepository::get_current_plan();
-		if ( ! $current_plan ) {
-			return;
-		}
-
-		// Only mark complete for store/ecommerce plan
-		if ( 'ecommerce' === $current_plan->type ) {
-			self::mark_task_as_complete_by_path( self::TASK_PATHS['store_customize_emails'] );
-		}
+		// Mark complete for store/ecommerce plan
+		self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_customize_emails'] );
 	}
 
 	/**
@@ -1069,73 +1150,6 @@ class TaskCompletionTriggers {
 			}
 			return false;
 		}
-	}
-
-	/**
-	 * Check if any payment gateways are enabled
-	 *
-	 * @return bool True if at least one payment gateway is enabled, false otherwise
-	 */
-	private static function has_enabled_payment_gateways(): bool {
-		// Check if WooCommerce is active and loaded
-		if ( ! function_exists( 'WC' ) || ! WC() ) {
-			return false;
-		}
-
-		// Check if payment gateways are available
-		$payment_gateways = WC()->payment_gateways();
-		if ( ! $payment_gateways ) {
-			return false;
-		}
-
-		// Get available payment gateways
-		$available_gateways = $payment_gateways->get_available_payment_gateways();
-
-		// Check if any gateways are enabled (available gateways are already filtered to enabled ones)
-		return ! empty( $available_gateways );
-	}
-
-	/**
-	 * Check if Jetpack performance setup is ready
-	 *
-	 * Validates that both Jetpack is connected and Jetpack Boost is active
-	 *
-	 * @return bool True if both conditions are met, false otherwise
-	 */
-	private static function is_jetpack_performance_ready(): bool {
-		// Check if Jetpack is connected
-		$jetpack_connected = false;
-		if ( class_exists( 'Jetpack' ) && method_exists( 'Jetpack', 'is_connection_ready' ) ) {
-			$jetpack_connected = \Jetpack::is_connection_ready();
-		} elseif ( function_exists( 'jetpack_is_connected' ) ) {
-			$jetpack_connected = jetpack_is_connected();
-		} elseif ( class_exists( 'Jetpack_Options' ) && method_exists( 'Jetpack_Options', 'get_option' ) ) {
-			// Fallback: check if Jetpack has connection data
-			$jetpack_connected = ! empty( \Jetpack_Options::get_option( 'id' ) );
-		}
-
-		// Check if Jetpack Boost is active
-		$jetpack_boost_active = is_plugin_active( 'jetpack-boost/jetpack-boost.php' ) || class_exists( 'Automattic\Jetpack_Boost\Jetpack_Boost' );
-
-		return $jetpack_connected && $jetpack_boost_active;
-	}
-
-	/**
-	 * Check if a post is the default "Hello World" post
-	 *
-	 * @param WP_Post $post The post object
-	 * @return bool True if this is the default Hello World post
-	 */
-	private static function is_hello_world_post( $post ): bool {
-		// Check post title
-		if ( false !== stripos( $post->post_title, 'Hello world!' ) ) {
-			return true;
-		}
-		// Check post slug
-		if ( 'hello-world' === $post->post_name ) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
