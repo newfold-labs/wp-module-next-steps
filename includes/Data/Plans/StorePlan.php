@@ -248,7 +248,7 @@ class StorePlan {
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'click',
+											'data-nfd-complete-on-click' => 'false',
 										),
 									),
 								),
