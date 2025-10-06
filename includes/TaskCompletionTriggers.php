@@ -194,24 +194,6 @@ class TaskCompletionTriggers {
 		);
 	}
 
-	/**
-	 * Check if a post is the default "Hello World" post
-	 *
-	 * @param WP_Post $post The post object
-	 * @return bool True if this is the default Hello World post
-	 */
-	private static function is_hello_world_post( $post ): bool {
-		// Check post title
-		if ( false !== stripos( $post->post_title, 'Hello world!' ) ) {
-			return true;
-		}
-		// Check post slug
-		if ( 'hello-world' === $post->post_name ) {
-			return true;
-		}
-		return false;
-	}
-
 
 	/**
 	 * Register hooks and validators for gift card-related tasks
@@ -527,27 +509,54 @@ class TaskCompletionTriggers {
 	 * @return bool True if a non-Hello World blog post exists
 	 */
 	public static function validate_blog_post_creation_state(): bool {
-		// Get published posts, excluding the default Hello World post
+		// Get minimal data and check count first
 		$posts = get_posts(
 			array(
 				'post_type'      => 'post',
 				'post_status'    => 'publish',
-				'posts_per_page' => 2, // Get 2 posts to check, in case first is Hello World
+				'posts_per_page' => 2, // Get max 2 posts
+				'fields'         => 'ids', // Only get IDs for performance
+				'orderby'        => 'date',
+				'order'          => 'DESC',
 			)
 		);
 
+		// No posts at all
 		if ( empty( $posts ) ) {
 			return false;
 		}
 
-		// Check if any of the posts are NOT the Hello World post
-		foreach ( $posts as $post ) {
-			if ( ! self::is_hello_world_post( $post ) ) {
-				return true; // Found a real blog post
-			}
+		// If we have 2+ posts, at least one must be real (not Hello World)
+		if ( count( $posts ) > 1 ) {
+			return true;
 		}
 
-		return false; // Only Hello world post found
+		// If we have exactly 1 post, check if it's Hello World
+		$post = get_post( $posts[0] );
+		return $post && ! self::is_hello_world_post( $post );
+	}
+
+
+
+	/**
+	 * Check if a post is the default "Hello World" post
+	 * 
+	 * For now this is limited to the default post in English. 
+	 * We may need to expand this to other languages in the future.
+	 *
+	 * @param WP_Post $post The post object
+	 * @return bool True if this is the default Hello World post
+	 */
+	private static function is_hello_world_post( $post ): bool {
+		// Check post title
+		if ( false !== stripos( $post->post_title, 'Hello world!' ) ) {
+			return true;
+		}
+		// Check post slug
+		if ( 'hello-world' === $post->post_name ) {
+			return true;
+		}
+		return false;
 	}
 
 	// ========================================
@@ -1071,24 +1080,28 @@ class TaskCompletionTriggers {
 	 */
 	public static function mark_task_as_complete( $track_id, $section_id, $task_id ): bool {
 		$current_plan = PlanRepository::get_current_plan(); // Plan object
-		if ( $current_plan ) {
-			// validate the track section and task exist - optimized single call
-			$validtask = $current_plan->has_exact_task( $track_id, $section_id, $task_id );
-			if ( $validtask ) {
-				// see if section has more tasks, if not, just mark section as complete
-				$section = $current_plan->get_section( $track_id, $section_id );
-				if ( $section && count( $section->tasks ) === 1 ) {
-					$current_plan->update_section_status( $track_id, $section_id, 'done' );
-				} else {
-					// otherwise mark task as complete
-					$current_plan->update_task_status( $track_id, $section_id, $task_id, 'done' );
-				}
-				// save the plan
-				PlanRepository::save_plan( $current_plan );
-				return true;
-			}
+		if ( ! $current_plan ) {
 			return false;
 		}
+
+		// validate the track section and task exist - optimized single call
+		$validtask = $current_plan->has_exact_task( $track_id, $section_id, $task_id );
+		if ( ! $validtask ) {
+			return false;
+		}
+
+		// see if section has more tasks, if not, just mark section as complete
+		$section = $current_plan->get_section( $track_id, $section_id );
+		if ( $section && count( $section->tasks ) === 1 ) {
+			$current_plan->update_section_status( $track_id, $section_id, 'done' );
+		} else {
+			// otherwise mark task as complete
+			$current_plan->update_task_status( $track_id, $section_id, $task_id, 'done' );
+		}
+
+		// save the plan
+		PlanRepository::save_plan( $current_plan );
+		return true;
 	}
 
 	/**
