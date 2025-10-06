@@ -24,6 +24,7 @@ namespace NewfoldLabs\WP\Module\NextSteps;
  * # Payment Tasks (WooCommerce)
  * # Blog Tasks (Content Creation)
  * # Gift Card Tasks
+ * # Welcome Popup Tasks
  * # Jetpack Tasks (Performance & Stats)
  * # Yoast Tasks (SEO)
  * # Advanced Reviews Tasks
@@ -65,7 +66,7 @@ class TaskCompletionTriggers {
 		// Affiliate program tasks - pluign installed
 		'store_setup_affiliate_program'   => 'store_setup.store_build_track.advanced_social_marketing.store_launch_affiliate',
 
-		// Welcome discount popup - welcome discount popup created
+		// Welcome discount popup - discount campaign created
 		'store_marketing_welcome_popup'   => 'store_setup.store_build_track.first_marketing_steps.store_marketing_welcome_popup',
 		// Gift card tasks - discount product type post created
 		'store_create_gift_card'          => 'store_setup.store_build_track.first_marketing_steps.store_create_gift_card',
@@ -88,6 +89,7 @@ class TaskCompletionTriggers {
 		$this->register_payment_hooks_and_validators();
 		$this->register_blog_hooks_and_validators();
 		$this->register_gift_card_hooks_and_validators();
+		$this->register_welcome_popup_hooks_and_validators();
 		$this->register_jetpack_hooks_and_validators();
 		$this->register_yoast_hooks_and_validators();
 		$this->register_advanced_reviews_hooks_and_validators();
@@ -164,6 +166,21 @@ class TaskCompletionTriggers {
 		TaskStateValidator::register_validator(
 			self::TASK_PATHS['store_create_gift_card'],
 			array( __CLASS__, 'validate_gift_card_creation_state' )
+		);
+	}
+
+	/**
+	 * Register hooks and validators for welcome popup-related tasks
+	 *
+	 * @return void
+	 */
+	private function register_welcome_popup_hooks_and_validators(): void {
+		// Welcome popup creation (YITH campaign custom post type)
+		\add_action( 'publish_post', array( __CLASS__, 'on_welcome_popup_published' ), 10, 2 );
+
+		TaskStateValidator::register_validator(
+			self::TASK_PATHS['store_marketing_welcome_popup'],
+			array( __CLASS__, 'validate_welcome_popup_creation_state' )
 		);
 	}
 
@@ -510,6 +527,49 @@ class TaskCompletionTriggers {
 		);
 
 		return ! empty( $gift_cards );
+	}
+
+	// ========================================
+	// # Welcome Popup Tasks
+	// ========================================
+
+	/**
+	 * Handle welcome popup published
+	 *
+	 * This triggers when a YITH campaign (custom post type) is published
+	 *
+	 * @param int     $post_id The post ID
+	 * @param WP_Post $post    The post object
+	 * @return void
+	 */
+	public static function on_welcome_popup_published( $post_id, $post ) {
+		// Only proceed if this is a published YITH campaign post
+		if ( 'yith_campaign' === $post->post_type && 'publish' === $post->post_status ) {
+			$current_plan = PlanRepository::get_current_plan();
+			if ( $current_plan && 'ecommerce' === $current_plan->type ) {
+				// Mark the "Create Welcome Popup" task as complete
+				return self::mark_task_as_complete_by_path( self::TASK_PATHS['store_marketing_welcome_popup'] );
+			}
+		}
+	}
+
+	/**
+	 * Validate if a welcome popup has already been created
+	 *
+	 * @return bool True if a YITH campaign post exists
+	 */
+	public static function validate_welcome_popup_creation_state(): bool {
+		// Check if any published YITH campaign posts exist
+		$campaigns = get_posts(
+			array(
+				'post_type'      => 'yith_campaign',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			)
+		);
+
+		return ! empty( $campaigns );
 	}
 
 	// ========================================
