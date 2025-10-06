@@ -240,18 +240,6 @@ class StorePlan {
 										),
 									),
 									array( // task
-										'id'              => 'store_enable_abandoned_cart',
-										'title'           => __( 'Enable abandoned cart emails', 'wp-module-next-steps' ),
-										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=plugin&p=email-templates',
-										'status'          => 'new',
-										'priority'        => 3,
-										'source'          => 'wp-module-next-steps',
-										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
-										),
-									),
-									array( // task
 										'id'              => 'store_customize_emails',
 										'title'           => __( 'Customize your store emails', 'wp-module-next-steps' ),
 										'description'     => '',
