@@ -69,7 +69,7 @@ class StorePlan {
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
+											'data-nfd-complete-on-click' => 'true',
 										),
 									),
 									array( // task
@@ -81,7 +81,7 @@ class StorePlan {
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
+											'data-nfd-complete-on-click' => 'true',
 										),
 									),
 									array( // task
@@ -93,7 +93,7 @@ class StorePlan {
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
+											'data-nfd-complete-on-click' => 'true',
 										),
 									),
 									array( // task
@@ -105,7 +105,7 @@ class StorePlan {
 										'priority'        => 5,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
+											'data-nfd-complete-on-click' => 'true',
 										),
 									),
 								),
@@ -177,7 +177,7 @@ class StorePlan {
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
+											'data-nfd-complete-on-click' => 'true',
 										),
 									),
 									array( // task
@@ -189,7 +189,7 @@ class StorePlan {
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
+											'data-nfd-complete-on-click' => 'true',
 										),
 									),
 									array( // task
@@ -201,7 +201,7 @@ class StorePlan {
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
+											'data-nfd-complete-on-click' => 'true',
 										),
 									),
 								),
@@ -248,7 +248,7 @@ class StorePlan {
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
 										'data_attributes' => array(
-											'data-nfd-complete-on-click' => 'false',
+											'data-nfd-complete-on-click' => 'click',
 										),
 									),
 								),
