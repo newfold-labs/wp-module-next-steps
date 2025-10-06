@@ -178,7 +178,12 @@ export const NextSteps = () => {
 
 	const renderCards = ( sectionsAsCards, trackId ) => {
 		const isLargeViewport = useViewportMatch( 'medium' );
-		const maxCards = 3;
+		let maxCards = 3;
+		// check url for showallsteps query parameter that is true
+		const showAllSteps = new URLSearchParams( window.location.search ).get( 'showallsteps' ) === 'true';
+		if ( showAllSteps ) {
+			maxCards = sectionsAsCards.length;
+		}
 		return (
 			<>
 				<div id={ 'nfd-quick-add-product-modal' }/>
@@ -192,7 +197,7 @@ export const NextSteps = () => {
 					{ sectionsAsCards.slice( 0, maxCards ).map( ( sectionsAsCard, i ) => {
 						return <SectionCard
 							key={ sectionsAsCard.id }
-							wide={ i === 2 && isLargeViewport }
+							wide={ i % 3 == 2 && isLargeViewport }
 							isPrimary={ sectionsAsCard.isPrimary === true } // calculated in filter to determine first new section
 							taskUpdateCallback={ taskUpdateCallback }
 							sectionUpdateCallback={ sectionUpdateCallback }
@@ -226,6 +231,9 @@ export const NextSteps = () => {
 		const sectionsAsCards = planWithProgress.tracks[ 0 ].sections.filter( ( section ) => {
 			// if section is done or skipped and has a date completed
 			if ( section.status !== 'new' && section.date_completed ) {
+                if( section.completed_by === 'system' ) {
+                    return false; // hide system completed tasks
+                }
 				// check if date completed is in last 24 hours
 				const completedDate = getDate( section.date_completed );
 				const expiryOffset = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
