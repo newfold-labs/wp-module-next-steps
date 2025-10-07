@@ -78,7 +78,7 @@ export const spinner = (
 		xmlns="http://www.w3.org/2000/svg/"
 		fill="none"
 		viewBox="0 0 24 24"
-		class="next-steps-spinner nfd-animate-spin nfd-w-8 nfd-h-8"
+		class="next-steps-spinner nfd-animate-spin nfd-w-6 nfd-h-6"
 		role="img"
 		aria-hidden="true"
 	>
