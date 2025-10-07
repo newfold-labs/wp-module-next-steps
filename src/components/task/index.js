@@ -73,7 +73,7 @@ export const Task = memo(( props ) => {
 		return true;
 	};
 
-	const updateStatus = ( e, newStatus, successCallback ) => {
+	const updateStatus = ( e, newStatus, successCallback = () => {} ) => {
 		// Prevent event from bubbling up to parent track details element
 		e.stopPropagation();
 		
@@ -85,16 +85,14 @@ export const Task = memo(( props ) => {
 			sectionId,
 			id,
 			newStatus,
-			( error ) => {
+			( error ) => { // error callback
 				// If error, revert optimistic task update to previous status
 				setStatus( previousStatus );
 				// further error handling done in the error boundary
 			},
-			( response ) => {
+			( response ) => { // success callback
 				setStatus( newStatus ); // redundant since we optimistically set it above
-				if ( successCallback ) {
-					successCallback( response );
-				}
+				successCallback( response );
 			}
 		);
 	};
