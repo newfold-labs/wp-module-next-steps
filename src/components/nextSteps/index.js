@@ -29,7 +29,7 @@ export const NextSteps = () => {
 		return plan ? calculatePlanProgress( plan ) : null;
 	}, [ plan ] );
 
-	const taskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback, successCallback ) => {
+	const taskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback = () => {}, successCallback = () => {} ) => {
 		// send update to endpoint
 		const data = {
 			plan_id: plan.id,
@@ -131,7 +131,7 @@ export const NextSteps = () => {
 		);
 	};
 
-	const sectionUpdateCallback = ( trackId, sectionId, status ) => {
+	const sectionUpdateCallback = ( trackId, sectionId, status, errorCallback = () => {}, successCallback = () => {} ) => {
 		if ( ! trackId || ! sectionId ) {
 			// Could not find track for intendend section
 			return;
@@ -149,6 +149,7 @@ export const NextSteps = () => {
 			data,
 			( error ) => {
 				// console.error( 'Error updating section status state:', error );
+				errorCallback( error );
 			},
 			( response ) => {
 				// Use the returned section data to update the plan state
@@ -171,6 +172,8 @@ export const NextSteps = () => {
 						};
 					} );
 				}
+				// call provided success callback
+				successCallback( response );
 			}
 		);
 	};
