@@ -361,7 +361,7 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 
 		// Test the validation method directly
 		$result = TaskCompletionTriggers::validate_payment_setup_state();
-		
+
 		// The result depends on the current WooCommerce configuration
 		// We just want to ensure the method runs without errors
 		$this->assertIsBool( $result );
@@ -375,20 +375,16 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	public function test_has_enabled_payment_gateways_without_woocommerce() {
 		// Test the method using reflection since it's private
 		$reflection = new \ReflectionClass( TaskCompletionTriggers::class );
-		$method = $reflection->getMethod( 'has_enabled_payment_gateways' );
+		$method     = $reflection->getMethod( 'has_enabled_payment_gateways' );
 		$method->setAccessible( true );
 
-		// Temporarily mock WC() to return false
-		$original_wc = null;
-		if ( function_exists( 'WC' ) ) {
-			// We can't easily mock WC() function, so we'll test the logic path
-			// by ensuring the method handles the case gracefully
-		}
+		// We can't easily mock WC() function, so we'll test the logic path
+		// by ensuring the method handles the case gracefully
 
 		// The method should return false when WooCommerce is not available
 		// This tests the early return logic
 		$result = $method->invoke( null );
-		
+
 		// Since we can't easily mock WC(), we just verify it returns a boolean
 		$this->assertIsBool( $result );
 	}
@@ -401,9 +397,9 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	public function test_has_enabled_payment_gateways_method_exists() {
 		// Test that the private method exists and is callable
 		$reflection = new \ReflectionClass( TaskCompletionTriggers::class );
-		
+
 		$this->assertTrue( $reflection->hasMethod( 'has_enabled_payment_gateways' ) );
-		
+
 		$method = $reflection->getMethod( 'has_enabled_payment_gateways' );
 		$this->assertTrue( $method->isPrivate() );
 		$this->assertTrue( $method->isStatic() );
@@ -417,9 +413,9 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	public function test_validate_payment_setup_state_method_exists() {
 		// Test that the public method exists and is callable
 		$reflection = new \ReflectionClass( TaskCompletionTriggers::class );
-		
+
 		$this->assertTrue( $reflection->hasMethod( 'validate_payment_setup_state' ) );
-		
+
 		$method = $reflection->getMethod( 'validate_payment_setup_state' );
 		$this->assertTrue( $method->isPublic() );
 		$this->assertTrue( $method->isStatic() );
@@ -433,9 +429,9 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	public function test_on_payment_gateway_updated_method_exists() {
 		// Test that the public method exists and is callable
 		$reflection = new \ReflectionClass( TaskCompletionTriggers::class );
-		
+
 		$this->assertTrue( $reflection->hasMethod( 'on_payment_gateway_updated' ) );
-		
+
 		$method = $reflection->getMethod( 'on_payment_gateway_updated' );
 		$this->assertTrue( $method->isPublic() );
 		$this->assertTrue( $method->isStatic() );
@@ -455,7 +451,7 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		// Test that the method returns consistent results when called multiple times
 		$result1 = TaskCompletionTriggers::validate_payment_setup_state();
 		$result2 = TaskCompletionTriggers::validate_payment_setup_state();
-		
+
 		// Results should be consistent (same state, same result)
 		$this->assertEquals( $result1, $result2 );
 		$this->assertIsBool( $result1 );
@@ -470,15 +466,15 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	public function test_has_enabled_payment_gateways_edge_cases() {
 		// Test the method using reflection since it's private
 		$reflection = new \ReflectionClass( TaskCompletionTriggers::class );
-		$method = $reflection->getMethod( 'has_enabled_payment_gateways' );
+		$method    = $reflection->getMethod( 'has_enabled_payment_gateways' );
 		$method->setAccessible( true );
 
 		// Test that the method handles various edge cases without throwing exceptions
 		$result = $method->invoke( null );
-		
+
 		// Should always return a boolean, never throw an exception
 		$this->assertIsBool( $result );
-		
+
 		// Should not be null or any other unexpected type
 		$this->assertNotEquals( null, $result );
 	}
@@ -1037,7 +1033,7 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		// Mock the plugin as active
 		// Note: We can't actually activate a plugin that doesn't exist,
 		// so we'll use update_option to simulate it
-		$active_plugins = get_option( 'active_plugins', array() );
+		$active_plugins   = get_option( 'active_plugins', array() );
 		$active_plugins[] = 'wp-plugin-advanced-reviews/wp-plugin-advanced-reviews.php';
 		update_option( 'active_plugins', $active_plugins );
 
@@ -1065,7 +1061,7 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	 */
 	public function test_validate_affiliates_state_when_plugin_active() {
 		// Mock the plugin as active
-		$active_plugins = get_option( 'active_plugins', array() );
+		$active_plugins   = get_option( 'active_plugins', array() );
 		$active_plugins[] = 'yith-woocommerce-affiliates/init.php';
 		update_option( 'active_plugins', $active_plugins );
 
@@ -1093,7 +1089,7 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	 */
 	public function test_validate_email_templates_state_when_plugin_active() {
 		// Mock the plugin as active
-		$active_plugins = get_option( 'active_plugins', array() );
+		$active_plugins   = get_option( 'active_plugins', array() );
 		$active_plugins[] = 'wp-plugin-email-templates/wp-plugin-email-templates.php';
 		update_option( 'active_plugins', $active_plugins );
 
