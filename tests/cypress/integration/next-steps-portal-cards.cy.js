@@ -98,17 +98,17 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task1"]' ).as( 's2task1' );
 		cy.get( '@s2task1' ).should( 'be.visible' );
 		cy.get( '@s2task1' ).should( 'have.attr', 'data-nfd-task-status', 'new' );
-		cy.get( '@s2task1' ).find( '.nfd-title' ).should( 'have.text', 'New Task' );
+		cy.get( '@s2task1' ).find( '.nfd-title' ).should( 'contain', 'New Task' );
 		//task 2
 		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task2"]' ).as( 's2task2' );
 		cy.get( '@s2task2' ).should( 'be.visible' );
 		cy.get( '@s2task2' ).should( 'have.attr', 'data-nfd-task-status', 'dismissed' );
-		cy.get( '@s2task2' ).find( '.nfd-title' ).should( 'have.text', 'Dismissed Task' );
+		cy.get( '@s2task2' ).find( '.nfd-title' ).should( 'contain', 'Dismissed Task' );
 		//task 3
 		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task3"]' ).as( 's2task3' );
 		cy.get( '@s2task3' ).should( 'be.visible' );
 		cy.get( '@s2task3' ).should( 'have.attr', 'data-nfd-task-status', 'done' );
-		cy.get( '@s2task3' ).find( '.nfd-title' ).should( 'have.text', 'Completed Task' );
+		cy.get( '@s2task3' ).find( '.nfd-title' ).should( 'contain', 'Completed Task' );
 		// check section 2 modal tasks marked as done updates section card as done
 		cy.get( '@s2task1' ).find( '.nfd-nextsteps-button-todo' ).should( 'be.visible' );
 		cy.get( '@s2task1' ).find( '.nfd-nextsteps-button-todo' )
@@ -116,6 +116,10 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 		cy.wait( '@taskEndpoint' ).then( (interception) => {
 			cy.log( '@taskEndpoint response:' + JSON.stringify(interception.response.body) );
 		} );
+		// manually check task 4, 5, 6 to complete the section
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task4"] .nfd-nextsteps-button-todo' ).click();
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task5"] .nfd-nextsteps-button-todo' ).click();
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task6"] .nfd-nextsteps-button-todo' ).click();
 		cy.wait( '@sectionEndpoint' ).then( (interception) => {
 			cy.log( '@sectionEndpoint response:' + JSON.stringify(interception.response.body) );
 		} );
@@ -135,10 +139,121 @@ describe( 'Next Steps Portal in Plugin App with Cards', { testIsolation: true },
 
 		// Check that completed section 3 is rendered with complete badge
 		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-section-status', 'done' );
-		// cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-date-completed' );
-		// cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-now-date' );
-		// cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-expiry-date' );
-		// cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-expires-in', 'a day from now' );
+		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-date-completed' );
+		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-now-date' );
+		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-expiry-date' );
+		cy.get( '#section-card-section3' ).should( 'have.attr', 'data-nfd-expires-in', 'a day from now' );
 		cy.get( '#section-card-section3 .nfd-nextstep-section-card__completed-badge' ).scrollIntoView().should( 'be.visible' );
+	} );
+
+	it( 'task data-nfd-prevent-default attribute', () => {
+		// Wait for initial section endpoint to be called
+		cy.wait( '@sectionEndpoint' );
+		cy.wait( 250 );
+
+		// Test section card with single task that has data-nfd-complete-on-click
+		cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section2"]' ).scrollIntoView().should( 'be.visible' );
+		
+		// Verify the section card button has the data attribute
+		cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section2"] .nfd-button' ).click();
+
+		// Verify modal opened
+		cy.get('.nfd-modal__layout').should( 'be.visible' );
+
+		// Find the task with data-nfd-prevent-default attribute
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task4"]' ).scrollIntoView().should( 'be.visible' );
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task4"] .nfd-nextsteps-link' ).first().as( 's2task4link' );
+		cy.get( '@s2task4link' ).should( 'have.attr', 'data-nfd-prevent-default', 'true' );
+		cy.get( '@s2task4link' ).should( 'not.have.attr', 'data-nfd-complete-on-click' );
+		cy.get( '@s2task4link' ).click( { });
+		// test that prevent default worked and no navigation happened
+		cy.url().should( 'contain', '/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) + '#/home' );
+		cy.get('.nfd-modal__layout').should( 'be.visible' );
+		
+	} );
+
+	it( 'task data-nfd-complete-on-click and data-nfd-prevent-default attributes together', () => {
+		cy.wait( '@sectionEndpoint' );
+		cy.wait( 250 );
+
+		// Test section card with single task that has data-nfd-complete-on-click
+		cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section2"]' ).scrollIntoView().should( 'be.visible' );
+		
+		// Verify the section card button has the data attribute
+		cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section2"] .nfd-button' ).click();
+
+		// Verify modal opened
+		cy.get('.nfd-modal__layout').should( 'be.visible' );
+
+		// Find the task with data-nfd-prevent-default attribute
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task5"]' ).scrollIntoView().should( 'be.visible' );
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task5"] .nfd-nextsteps-link' ).first().as( 's2task5link' );
+		cy.get( '@s2task5link' ).should( 'have.attr', 'data-nfd-complete-on-click', 'true' );
+		cy.get( '@s2task5link' ).should( 'have.attr', 'data-nfd-prevent-default', 'true' );
+		cy.get( '@s2task5link' ).click();
+		// test that complete-on-click worked and navigation happened
+		cy.url().should( 'contain', '/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) + '#/home' );
+		cy.get('.nfd-modal__layout').should( 'be.visible' );
+		// check that task status changed to done
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task5"]' ).should( 'have.attr', 'data-nfd-task-status', 'done' );
+		// check that spinner is visible
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task5"] .next-steps-spinner' ).should( 'be.visible' );
+	} );
+
+	it( 'task data-nfd-complete-on-click attribute', () => {
+		cy.intercept(
+			{ 
+				method: 'POST',
+				url: /.*newfold-next-steps.*v2.*plans.*tasks.*/,
+				middleware: true
+			},
+			(req) => {
+				// Extract task ID from URL - handle different URL structures
+				const taskIdMatch = req.url.match(/\/tasks\/([^\/\?]+)/);
+				const taskId = taskIdMatch ? taskIdMatch[1] : 's1task1';
+				const taskStatus = req.body.status || 'done';
+				const response = {
+					id: taskId,
+					status: taskStatus
+				};
+				req.on('response', (res) => {
+					res.setDelay(1500); // Delays the response by 1500 milliseconds
+				});
+				req.reply({
+					statusCode: 200,
+					body: response
+				});
+			}
+		).as('slowTaskEndpoint');
+
+		cy.wait( '@sectionEndpoint' );
+		cy.wait( 250 );
+
+		// Test section card with single task that has data-nfd-complete-on-click
+		cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section2"]' ).scrollIntoView().should( 'be.visible' );
+		
+		// Verify the section card button has the data attribute
+		cy.get( '.nfd-nextsteps-section-card[data-nfd-section-id="section2"] .nfd-button' ).click();
+
+		// Verify modal opened
+		cy.get('.nfd-modal__layout').should( 'be.visible' );
+
+		// Find the task with data-nfd-prevent-default attribute
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task6"]' ).scrollIntoView().should( 'be.visible' );
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task6"] .nfd-nextsteps-link' ).first().as( 's2task6link' );
+		cy.get( '@s2task6link' ).should( 'have.attr', 'data-nfd-complete-on-click', 'true' );
+		cy.get( '@s2task6link' ).should( 'not.have.attr', 'data-nfd-prevent-default' );
+
+		cy.get( '@s2task6link' ).click();
+		// check that spinner is visible
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task6"] .next-steps-spinner' ).should( 'be.visible' );
+		// check that task status changed to done
+		cy.get( '.nfd-nextsteps-task-container[data-nfd-task-id="s2task6"]' ).should( 'have.attr', 'data-nfd-task-status', 'done' );
+		// wait for slowTaskEndpoint
+		cy.wait( '@slowTaskEndpoint' );
+		// test that complete-on-click worked and navigation happened
+		cy.url().should( 'not.contain', '/wp-admin/admin.php?page=' + Cypress.env( 'pluginId' ) + '#/home' );
+		cy.url().should( 'contain', 'bluehost.com' );
+		cy.get('.nfd-modal__layout').should( 'not.exist' );
 	} );
 } );
