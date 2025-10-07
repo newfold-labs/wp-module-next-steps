@@ -146,6 +146,11 @@ export const SectionCard = ( {
 
 		return formatted;
 	};
+
+	/**
+	 * Get task link attributes
+	 * If this section has only one task, add href and target for single task
+	 */
 	const getTaskLinkAttributes = () => {
 		const attributes = {};
 		// if this section has only one task, add href and target for single task
@@ -155,6 +160,7 @@ export const SectionCard = ( {
 		}
 		return attributes;
 	}
+
 	/**
 	 * Format link attributes for React components
 	 * Ensures all keys have 'data-' prefix and handles boolean values
@@ -238,7 +244,7 @@ export const SectionCard = ( {
 			e.preventDefault();
 			// open tasks modal
 			setIsModalOpened( true );
-			return false; // restate prevent default
+			return false;
 		}
 
 		const isCompleteOnClick = e.target.closest( '.nfd-nextsteps-link[data-nfd-complete-on-click]' );
@@ -258,19 +264,22 @@ export const SectionCard = ( {
 				'done',
 				( er ) => { // error callback
 					console.error( 'Error updating section status: ', er );
+					setIsLoading( false );
 				},
-				( response ) => {
+				( response ) => { // success callback
 					// then take user to the href, unless data-nfd-prevent-default is set
 					if ( isPreventDefault ) {
-						return false; // restate prevent default
+						return false;
 					}
-					window.location.href = getHref();
+					const linkhref = e.target.closest( 'a[href]' ).getAttribute( 'href' );
+					window.location.href = linkhref;
 				}
 			);
 		}
 		// if the link has the data-nfd-prevent-default attribute, do not open the link
 		// there may be a custom listener for this section/task and it is handled elsewhere
 		if ( isPreventDefault ) {
+			e.preventDefault();
 			return false;
 		}
 		// if there is only one task and the data-nfd-complete-on-click attribute is not true or set
