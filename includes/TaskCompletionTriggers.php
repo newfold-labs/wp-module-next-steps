@@ -156,9 +156,9 @@ class TaskCompletionTriggers {
 	}
 
 	/**
-	 * Check if any payment gateways are enabled
+	 * Check if any payment gateways are available
 	 *
-	 * @return bool True if at least one payment gateway is enabled, false otherwise
+	 * @return bool True if at least one payment gateway is available, false otherwise
 	 */
 	private static function has_enabled_payment_gateways(): bool {
 		// Check if WooCommerce is active and loaded
@@ -172,12 +172,13 @@ class TaskCompletionTriggers {
 			return false;
 		}
 
-		// Get available payment gateways
+		// Get available payment gateways (this filters for enabled AND properly configured)
 		$available_gateways = $payment_gateways->get_available_payment_gateways();
 
-		// Check if any gateways are enabled (available gateways are already filtered to enabled ones)
+		// If any gateways are available, payment setup is complete
 		return ! empty( $available_gateways );
 	}
+
 
 	/**
 	 * Register hooks and validators for blog-related tasks
@@ -470,8 +471,8 @@ class TaskCompletionTriggers {
 			return;
 		}
 
-		// Check if any payment gateways are enabled
-		if ( self::has_enabled_payment_gateways() ) {
+		// Check if any payment gateways are enabled or manual payments are configured
+		if ( self::validate_payment_setup_state() ) {
 			// Mark the "Setup Payments" task as complete
 			self::mark_task_complete_if_plan_matches( self::TASK_PATHS['store_setup_payments'] );
 		}
