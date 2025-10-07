@@ -678,10 +678,10 @@ msgid "Kickstart your store’s success with smart marketing strategies. Just fe
 msgstr "Impulsione o sucesso da sua loja com estratégias de marketing inteligentes. Apenas alguns passos para criar visibilidade, atrair compradores e transformar visitas em vendas fiéis."
 
 #: includes/Data/Plans/StorePlan.php:213
-#: includes/Data/Plans/StorePlan.php:272
-#: includes/Data/Plans/StorePlan.php:295
-#: includes/Data/Plans/StorePlan.php:317
-#: includes/Data/Plans/StorePlan.php:339
+#: includes/Data/Plans/StorePlan.php:260
+#: includes/Data/Plans/StorePlan.php:283
+#: includes/Data/Plans/StorePlan.php:305
+#: includes/Data/Plans/StorePlan.php:327
 msgid "Start now"
 msgstr "Comece agora"
 
@@ -698,49 +698,45 @@ msgid "Create a gift card to sell in your shop"
 msgstr "Crie um cartão-presente para vender em sua loja"
 
 #: includes/Data/Plans/StorePlan.php:244
-msgid "Enable abandoned cart emails"
-msgstr "Ativar e-mails de carrinho abandonado"
-
-#: includes/Data/Plans/StorePlan.php:256
 msgid "Customize your store emails"
 msgstr "Personalize os e-mails da sua loja"
 
-#: includes/Data/Plans/StorePlan.php:270
-#: includes/Data/Plans/StorePlan.php:278
+#: includes/Data/Plans/StorePlan.php:258
+#: includes/Data/Plans/StorePlan.php:266
 msgid "Improve the performance and speed of your shop"
 msgstr "Melhore o desempenho e a velocidade da sua loja"
 
-#: includes/Data/Plans/StorePlan.php:271
+#: includes/Data/Plans/StorePlan.php:259
 msgid "Speed up your store by optimizing page performance with Jetpack Boost. Easily activate one-click optimizations to boost your Core Web Vitals."
 msgstr "Acelere sua loja otimizando o desempenho da página com o Jetpack Boost. Ative facilmente otimizações com um clique para aumentar seus Core Web Vitals."
 
-#: includes/Data/Plans/StorePlan.php:292
+#: includes/Data/Plans/StorePlan.php:280
 msgid "Collect and show reviews for your products"
 msgstr "Colete e mostre avaliações de seus produtos"
 
-#: includes/Data/Plans/StorePlan.php:293
+#: includes/Data/Plans/StorePlan.php:281
 msgid "Collect authentic reviews from your customers to build trust, highlight product quality, and help increase conversions."
 msgstr "Colete avaliações autênticas de seus clientes para criar confiança, destacar a qualidade do produto e ajudar a aumentar as conversões."
 
-#: includes/Data/Plans/StorePlan.php:300
+#: includes/Data/Plans/StorePlan.php:288
 msgid "Collect and Show Reviews for Your Products"
 msgstr "Colete e mostre avaliações de seus produtos"
 
-#: includes/Data/Plans/StorePlan.php:314
-#: includes/Data/Plans/StorePlan.php:322
+#: includes/Data/Plans/StorePlan.php:302
+#: includes/Data/Plans/StorePlan.php:310
 msgid "Launch an affiliate program"
 msgstr "Lançar um programa de afiliados"
 
-#: includes/Data/Plans/StorePlan.php:315
+#: includes/Data/Plans/StorePlan.php:303
 msgid "Launch your own affiliate program to promote your products, reach new audiences and grow sales."
 msgstr "Lance seu próprio programa de afiliados para promover seus produtos, alcançar novos públicos e aumentar as vendas."
 
-#: includes/Data/Plans/StorePlan.php:336
-#: includes/Data/Plans/StorePlan.php:344
+#: includes/Data/Plans/StorePlan.php:324
+#: includes/Data/Plans/StorePlan.php:332
 msgid "Setup Yoast Premium to drive traffic to your store"
 msgstr "Configure o Yoast Premium para direcionar o tráfego para sua loja"
 
-#: includes/Data/Plans/StorePlan.php:337
+#: includes/Data/Plans/StorePlan.php:325
 msgid "Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online."
 msgstr "Otimize seu conteúdo para mecanismos de pesquisa para melhorar as classificações, atrair mais visitantes e aumentar a visibilidade online da sua loja."
 
