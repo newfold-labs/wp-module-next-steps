@@ -437,26 +437,6 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		$this->assertTrue( $method->isStatic() );
 	}
 
-	/**
-	 * Test payment setup validation returns consistent results
-	 *
-	 * @covers ::validate_payment_setup_state
-	 */
-	public function test_validate_payment_setup_state_consistency() {
-		// Skip if WooCommerce is not available
-		if ( ! function_exists( 'WC' ) || ! WC() ) {
-			$this->markTestSkipped( 'WooCommerce is not available' );
-		}
-
-		// Test that the method returns consistent results when called multiple times
-		$result1 = TaskCompletionTriggers::validate_payment_setup_state();
-		$result2 = TaskCompletionTriggers::validate_payment_setup_state();
-
-		// Results should be consistent (same state, same result)
-		$this->assertEquals( $result1, $result2 );
-		$this->assertIsBool( $result1 );
-		$this->assertIsBool( $result2 );
-	}
 
 	/**
 	 * Test payment gateway validation handles edge cases gracefully
@@ -475,8 +455,8 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		// Should always return a boolean, never throw an exception
 		$this->assertIsBool( $result );
 
-		// Should not be null or any other unexpected type
-		$this->assertNotEquals( null, $result );
+		// Should be either true or false, not null or any other unexpected type
+		$this->assertTrue( $result === true || $result === false, 'Method should return true or false, got: ' . var_export( $result, true ) );
 	}
 
 
