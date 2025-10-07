@@ -4,6 +4,7 @@ import { Title, Button, Link } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { PaintBrushIcon, CreditCardIcon, ArchiveBoxIcon, ShoppingCartIcon, RocketLaunchIcon, StarIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { spinner } from '../icons';
 import { TasksModal } from '../tasks-modal';
 import {
 	CustomizeYourStoreIcon,
@@ -81,6 +82,7 @@ export const SectionCard = ( {
 
 	const [ isModalOpened, setIsModalOpened ] = useState( false );
 	const [ eventCompleted, setEventCompleted ] = useState( 'done' === status );
+	const [ isLoading, setIsLoading ] = useState( false );
 
 	const Icon = ICONS_IDS[ icon ] ?? null;
 
@@ -230,34 +232,52 @@ export const SectionCard = ( {
 	 * Handle card button link click
 	 */
 	const handleCardLinkClick = ( e ) => {
+		// Modal behavior - MULTIPLE TASKS
 		// if there are multiple tasks, open the modal
 		if ( tasks.length > 1 ) {
 			e.preventDefault();
+			// open tasks modal
 			setIsModalOpened( true );
-			return false;
-		} else if ( e.target.hasAttribute( 'data-nfd-prevent-default' ) ) {
-			// if the link has the data-nfd-prevent-default attribute, do not open the link
-			// this is because there is a custom modal for this section/task
-			return false;
-		} else if ( e.target.hasAttribute( 'data-nfd-complete-on-click' ) && 'true' === e.target.getAttribute( 'data-nfd-complete-on-click' ) ) { // if there is only one task and the data-nfd-complete-on-click attribute is set
+			return false; // restate prevent default
+		}
+
+		const isCompleteOnClick = e.target.closest( '.nfd-nextsteps-link[data-nfd-complete-on-click]' );
+		const isPreventDefault = e.target.closest( '.nfd-nextsteps-link[data-nfd-prevent-default]' );
+
+		// Link behavior - SINGLE TASK
+		// with data-nfd-complete-on-click set to true
+		if ( isCompleteOnClick ) {
 			e.preventDefault();
-			// if the status is not done
-			let newStatus = status === 'done' ? 'new' : 'done';
+			// add loading state
+			setIsLoading( true );
 			// update the status via section callback
-			// tasks will be updated automatically when the section is marked complete
+			// note: tasks in this section will be updated also
 			sectionUpdateCallback(
 				trackId,
 				sectionId,
-				newStatus,
+				'done',
 				( er ) => { // error callback
 					console.error( 'Error updating section status: ', er );
 				},
+				( response ) => {
+					// then take user to the href, unless data-nfd-prevent-default is set
+					if ( isPreventDefault ) {
+						return false; // restate prevent default
+					}
+					window.location.href = getHref();
+				}
 			);
-		} else { // if there is only one task and the data-nfd-complete-on-click attribute is not set or is set to false
-			// do nothing, allow link to open, and do not update status
-			// this is because there are custom hooks defined for this task
+		}
+		// if the link has the data-nfd-prevent-default attribute, do not open the link
+		// there may be a custom listener for this section/task and it is handled elsewhere
+		if ( isPreventDefault ) {
 			return false;
 		}
+		// if there is only one task and the data-nfd-complete-on-click attribute is not true or set
+		// and data-nfd-prevent-default is not set
+		// do nothing, allow link to open, and do not update status
+		// there may be custom hooks defined for this task elsewhere
+		return true;
 	}
 
 	return (
@@ -310,7 +330,7 @@ export const SectionCard = ( {
 								as={ 'a' }
 								className={
 									classNames(
-										'nfd-nextsteps-button',
+										'nfd-nextsteps-button nfd-nextsteps-link',
 										{
 											'nfd-nextsteps-button--dismissed': 'dismissed' === status,
 											'nfd-nextsteps-button--completed': 'done' === status,
@@ -323,11 +343,12 @@ export const SectionCard = ( {
 								data-nfd-event-key={ id }
 								title={ label }
 								variant={ isPrimary ? 'primary' : 'secondary' }
-								disabled={ 'new' !== status }
+								disabled={ 'new' !== status || isLoading }
 								onClick={ 'new' === status ? handleCardLinkClick : null }
 								{ ...formatLinkDataAttributes() }
 							>
 								{ getCtaText() }
+								{ isLoading && spinner }
 							</Button>
 						</div>
 						{
