@@ -40,14 +40,170 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	// ========================================
 
 	/**
+	 * Install WooCommerce for testing
+	 *
+	 * @return bool True if installation was successful, false otherwise
+	 */
+	private function installWooCommerceForTest() {
+		try {
+			// Suppress PHP warnings during WooCommerce installation
+			$old_error_reporting = error_reporting();
+			error_reporting( E_ERROR | E_PARSE );
+			
+			// Get the WordPress root folder from environment or use default
+			$wp_root = getenv( 'WP_ROOT_FOLDER' ) ?: 'wordpress';
+			$wp_path = dirname( dirname( __DIR__ ) ) . '/' . $wp_root;
+			$plugins_path = $wp_path . '/wp-content/plugins';
+			$woocommerce_path = $plugins_path . '/woocommerce';
+			
+			// Check if WooCommerce is already installed
+			if ( is_dir( $woocommerce_path ) ) {
+				// Just activate it
+				if ( function_exists( 'activate_plugin' ) ) {
+					activate_plugin( 'woocommerce/woocommerce.php' );
+					error_reporting( $old_error_reporting );
+					return true;
+				}
+				error_reporting( $old_error_reporting );
+				return false;
+			}
+			
+			// Download WooCommerce
+			$download_url = 'https://downloads.wordpress.org/plugin/woocommerce.latest-stable.zip';
+			$zip_path = $plugins_path . '/woocommerce.zip';
+			
+			// Download the plugin
+			if ( function_exists( 'file_get_contents' ) ) {
+				$zip_content = file_get_contents( $download_url );
+				if ( $zip_content !== false ) {
+					file_put_contents( $zip_path, $zip_content );
+					
+					// Extract the zip file
+					if ( class_exists( 'ZipArchive' ) ) {
+						$zip = new \ZipArchive();
+						if ( $zip->open( $zip_path ) === TRUE ) {
+							$zip->extractTo( $plugins_path );
+							$zip->close();
+							unlink( $zip_path ); // Clean up
+							
+							// Activate the plugin
+							if ( function_exists( 'activate_plugin' ) ) {
+								activate_plugin( 'woocommerce/woocommerce.php' );
+								error_reporting( $old_error_reporting );
+								return true;
+							}
+						}
+					}
+				}
+			}
+			
+			error_reporting( $old_error_reporting );
+			return false;
+		} catch ( Exception $e ) {
+			// Restore error reporting
+			if ( isset( $old_error_reporting ) ) {
+				error_reporting( $old_error_reporting );
+			}
+			return false;
+		}
+	}
+	
+	/**
+	 * Deactivate WooCommerce after testing (but keep files for reuse)
+	 */
+	private function deactivateWooCommerceAfterTest() {
+		try {
+			// Suppress PHP warnings during WooCommerce deactivation
+			$old_error_reporting = error_reporting();
+			error_reporting( E_ERROR | E_PARSE );
+			
+			// Deactivate the plugin (but keep the files)
+			if ( function_exists( 'deactivate_plugins' ) ) {
+				deactivate_plugins( 'woocommerce/woocommerce.php' );
+			}
+			
+			error_reporting( $old_error_reporting );
+		} catch ( Exception $e ) {
+			// Restore error reporting
+			if ( isset( $old_error_reporting ) ) {
+				error_reporting( $old_error_reporting );
+			}
+		}
+	}
+	
+	/**
+	 * Completely remove WooCommerce files (for manual cleanup if needed)
+	 */
+	private function removeWooCommerceFiles() {
+		try {
+			// Suppress PHP warnings during WooCommerce removal
+			$old_error_reporting = error_reporting();
+			error_reporting( E_ERROR | E_PARSE );
+			
+			// Get the WordPress root folder from environment or use default
+			$wp_root = getenv( 'WP_ROOT_FOLDER' ) ?: 'wordpress';
+			$wp_path = dirname( dirname( __DIR__ ) ) . '/' . $wp_root;
+			$plugins_path = $wp_path . '/wp-content/plugins';
+			$woocommerce_path = $plugins_path . '/woocommerce';
+			
+			// Deactivate the plugin first
+			if ( function_exists( 'deactivate_plugins' ) ) {
+				deactivate_plugins( 'woocommerce/woocommerce.php' );
+			}
+			
+			// Remove the plugin directory completely
+			if ( is_dir( $woocommerce_path ) ) {
+				$this->removeDirectory( $woocommerce_path );
+			}
+			
+			error_reporting( $old_error_reporting );
+		} catch ( Exception $e ) {
+			// Restore error reporting
+			if ( isset( $old_error_reporting ) ) {
+				error_reporting( $old_error_reporting );
+			}
+		}
+	}
+	
+	/**
+	 * Recursively remove a directory
+	 *
+	 * @param string $dir Directory path to remove
+	 */
+	private function removeDirectory( $dir ) {
+		if ( ! is_dir( $dir ) ) {
+			return;
+		}
+		
+		$files = array_diff( scandir( $dir ), array( '.', '..' ) );
+		foreach ( $files as $file ) {
+			$path = $dir . '/' . $file;
+			if ( is_dir( $path ) ) {
+				$this->removeDirectory( $path );
+			} else {
+				unlink( $path );
+			}
+		}
+		rmdir( $dir );
+	}
+
+	/**
 	 * Test product creation via REST API marks task complete
 	 *
 	 * @covers ::on_product_creation
 	 */
 	public function test_on_product_creation_marks_task_complete() {
-		// Skip if WooCommerce is not available
+		// Install WooCommerce for this test
+		$woocommerce_installed = $this->installWooCommerceForTest();
+		
+		// Skip if WooCommerce installation failed
+		if ( ! $woocommerce_installed ) {
+			$this->markTestSkipped( 'Failed to install WooCommerce for testing.' );
+		}
+		
+		// Ensure WooCommerce is available
 		if ( ! function_exists( 'WC' ) || ! WC() ) {
-			$this->markTestSkipped( 'WooCommerce is not available' );
+			$this->markTestSkipped( 'WooCommerce is not available after installation.' );
 		}
 
 		// Create and save ecommerce plan
@@ -70,6 +226,9 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		$updated_plan = PlanRepository::get_current_plan();
 		$updated_task = $updated_plan->get_task( 'store_build_track', 'setup_products', 'store_add_product' );
 		$this->assertTrue( $updated_task->is_completed() );
+		
+		// Clean up: Deactivate WooCommerce after test (keep files for reuse)
+		$this->deactivateWooCommerceAfterTest();
 	}
 
 	/**
@@ -329,9 +488,17 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	 * @covers ::on_payment_gateway_updated
 	 */
 	public function test_on_payment_gateway_updated_marks_task_complete() {
-		// Skip if WooCommerce is not available
+		// Install WooCommerce for this test
+		$woocommerce_installed = $this->installWooCommerceForTest();
+		
+		// Skip if WooCommerce installation failed
+		if ( ! $woocommerce_installed ) {
+			$this->markTestSkipped( 'Failed to install WooCommerce for testing.' );
+		}
+		
+		// Ensure WooCommerce is available
 		if ( ! function_exists( 'WC' ) || ! WC() ) {
-			$this->markTestSkipped( 'WooCommerce is not available' );
+			$this->markTestSkipped( 'WooCommerce is not available after installation.' );
 		}
 
 		// Create and save ecommerce plan
@@ -346,6 +513,9 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		// Note: This test is limited because we can't easily mock WooCommerce gateway state
 		// In a real scenario, the task would be marked complete if gateways are enabled
 		$this->assertTrue( true ); // Test passes if no errors
+		
+		// Clean up: Deactivate WooCommerce after test (keep files for reuse)
+		$this->deactivateWooCommerceAfterTest();
 	}
 
 	/**
@@ -354,9 +524,17 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	 * @covers ::validate_payment_setup_state
 	 */
 	public function test_validate_payment_setup_state_checks_available_gateways() {
-		// Skip if WooCommerce is not available
+		// Install WooCommerce for this test
+		$woocommerce_installed = $this->installWooCommerceForTest();
+		
+		// Skip if WooCommerce installation failed
+		if ( ! $woocommerce_installed ) {
+			$this->markTestSkipped( 'Failed to install WooCommerce for testing.' );
+		}
+		
+		// Ensure WooCommerce is available
 		if ( ! function_exists( 'WC' ) || ! WC() ) {
-			$this->markTestSkipped( 'WooCommerce is not available' );
+			$this->markTestSkipped( 'WooCommerce is not available after installation.' );
 		}
 
 		// Test the validation method directly
@@ -365,6 +543,9 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		// The result depends on the current WooCommerce configuration
 		// We just want to ensure the method runs without errors
 		$this->assertIsBool( $result );
+		
+		// Clean up: Deactivate WooCommerce after test (keep files for reuse)
+		$this->deactivateWooCommerceAfterTest();
 	}
 
 	/**
@@ -437,6 +618,38 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		$this->assertTrue( $method->isStatic() );
 	}
 
+
+	/**
+	 * Test payment setup validation returns consistent results
+	 *
+	 * @covers ::validate_payment_setup_state
+	 */
+	public function test_validate_payment_setup_state_consistency() {
+		// Install WooCommerce for this test
+		$woocommerce_installed = $this->installWooCommerceForTest();
+		
+		// Skip if WooCommerce installation failed
+		if ( ! $woocommerce_installed ) {
+			$this->markTestSkipped( 'Failed to install WooCommerce for testing.' );
+		}
+		
+		// Ensure WooCommerce is available
+		if ( ! function_exists( 'WC' ) || ! WC() ) {
+			$this->markTestSkipped( 'WooCommerce is not available after installation.' );
+		}
+
+		// Test that the method returns consistent results when called multiple times
+		$result1 = TaskCompletionTriggers::validate_payment_setup_state();
+		$result2 = TaskCompletionTriggers::validate_payment_setup_state();
+
+		// Results should be consistent (same state, same result)
+		$this->assertEquals( $result1, $result2 );
+		$this->assertIsBool( $result1 );
+		$this->assertIsBool( $result2 );
+		
+		// Clean up: Deactivate WooCommerce after test (keep files for reuse)
+		$this->deactivateWooCommerceAfterTest();
+	}
 
 	/**
 	 * Test payment gateway validation handles edge cases gracefully
