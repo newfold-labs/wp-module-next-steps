@@ -40,12 +40,25 @@ const ICONS_IDS = {
 	'yoast': yoastIcon,
 }
 
+/**
+ * Render the completed badge
+ *
+ * @param {object} props - The props for the completed badge
+ * @returns {JSX.Element}
+ */
 const CompletedBadge = ({ className, ...props }) => (
 	<span className={ 'nfd-nextstep-section-card__completed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto ' + className  } {...props}>
 		<CheckCircleIcon width={ 24 }/>
 		{ __( 'Completed', 'wp-module-next-steps' ) }
 	</span>
 );
+
+/**
+ * Render the dismissed badge
+ *
+ * @param {object} props - The props for the dismissed badge
+ * @returns {JSX.Element}
+ */
 const DismissedBadge = ( { className, ...props }) => (
 	<span className={ 'nfd-nextstep-section-card__dismissed-badge nfd-flex nfd-rounded-full nfd-font-bold nfd-ml-auto ' + className } {...props}>
 		<XCircleIcon width={ 24 }/>
@@ -86,6 +99,9 @@ export const SectionCard = ( {
 
 	const Icon = ICONS_IDS[ icon ] ?? null;
 
+	/**
+	 * Handle the complete on event
+	 */
 	useEffect( () => {
 		if ( tasks.length > 1 || 'done' === status || ! eventCompleted ) {
 			return;
@@ -103,6 +119,12 @@ export const SectionCard = ( {
 	}, [] );
 
 
+	/**
+	 * Get the href for the link
+	 *
+	 * @param {string} href - The href value to process for a link
+	 * @returns {string}
+	 */
 	const getHref = ( href ) => {
 		let hrefValue = href;
 		// replace {siteUrl} placeholder with the actual site URL
@@ -112,6 +134,12 @@ export const SectionCard = ( {
 		return hrefValue ? window.NewfoldRuntime?.linkTracker?.addUtmParams( hrefValue ) || hrefValue : null;
 	};
 
+	/**
+	 * Get the target for the link
+	 *
+	 * @param {string} href - The href to get the target for
+	 * @returns {string}
+	 */
 	const getTarget = ( href ) => {
 		// if href is external, return target="_blank"
 		if (
@@ -127,6 +155,8 @@ export const SectionCard = ( {
 	/**
 	 * Format data attributes for React components
 	 * Ensures all keys have 'data-' prefix and handles boolean values
+	 *
+	 * @returns {object}
 	 */
 	const formatCardDataAttributes = () => {
 		const formatted = {};
@@ -146,6 +176,13 @@ export const SectionCard = ( {
 
 		return formatted;
 	};
+
+	/**
+	 * Get task link attributes
+	 * If this section has only one task, add href and target for single task
+	 *
+	 * @returns {object}
+	 */
 	const getTaskLinkAttributes = () => {
 		const attributes = {};
 		// if this section has only one task, add href and target for single task
@@ -155,9 +192,12 @@ export const SectionCard = ( {
 		}
 		return attributes;
 	}
+
 	/**
 	 * Format link attributes for React components
 	 * Ensures all keys have 'data-' prefix and handles boolean values
+	 *
+	 * @returns {object}
 	 */
 	const formatLinkDataAttributes = () => {
 		const attributes = {};
@@ -187,11 +227,18 @@ export const SectionCard = ( {
 
 	/**
 	 * Adjust CTA text based on status
+	 *
+	 * @returns {string}
 	 */
 	const getCtaText = () => {
 		return cta;
 	}
 
+	/**
+	 * Determine the wireframe based on id and wide prop
+	 *
+	 * @returns {JSX.Element}
+	 */
 	const wireframes = {
 		'customize_your_store': ! wide ? <CustomizeYourStoreWideIcon/> : <CustomizeYourStoreIcon/>,
 		'setup_products': ! wide ? <AddFirstProductWideIcon/> : <AddFirstProductIcon/>,
@@ -204,6 +251,11 @@ export const SectionCard = ( {
 		'next_marketing_steps': ! wide ? <StoreSetupYoastWideIcon/> : <StoreSetupYoastIcon/>,
 	};
 
+	/**
+	 * Render the step content
+	 *
+	 * @returns {JSX.Element}
+	 */
 	const StepContent = () => {
 		return (
 			<div className="nfd-nextsteps-section-card-content nfd-flex nfd-flex-col nfd-shrink nfd-justify-between nfd-gap-4">
@@ -228,8 +280,12 @@ export const SectionCard = ( {
 			</div>
 		);
 	};
+
 	/**
 	 * Handle card button link click
+	 * 
+	 * @param {Event} e - The event object
+	 * @returns {boolean}
 	 */
 	const handleCardLinkClick = ( e ) => {
 		// Modal behavior - MULTIPLE TASKS
@@ -238,7 +294,7 @@ export const SectionCard = ( {
 			e.preventDefault();
 			// open tasks modal
 			setIsModalOpened( true );
-			return false; // restate prevent default
+			return false;
 		}
 
 		const isCompleteOnClick = e.target.closest( '.nfd-nextsteps-link[data-nfd-complete-on-click]' );
@@ -258,19 +314,28 @@ export const SectionCard = ( {
 				'done',
 				( er ) => { // error callback
 					console.error( 'Error updating section status: ', er );
+					setIsLoading( false );
 				},
-				( response ) => {
+				( response ) => { // success callback
 					// then take user to the href, unless data-nfd-prevent-default is set
 					if ( isPreventDefault ) {
-						return false; // restate prevent default
+						setIsLoading( false );
+						return false;
 					}
-					window.location.href = getHref();
+					const linkElement = e.target.closest( 'a[href]' );
+					if ( linkElement ) {
+						window.location.href = linkElement.getAttribute( 'href' );
+					} else {
+						console.warn( 'No link/href element found for navigation' );
+						setIsLoading( false );
+					}
 				}
 			);
 		}
-		// if the link has the data-nfd-prevent-default attribute, do not open the link
-		// there may be a custom listener for this section/task and it is handled elsewhere
+		// if the link has the data-nfd-prevent-default attribute, but not data-nfd-complete-on-click,
+		// still do not open the link, there may be a custom listener for this section/task and it is handled elsewhere
 		if ( isPreventDefault ) {
+			e.preventDefault();
 			return false;
 		}
 		// if there is only one task and the data-nfd-complete-on-click attribute is not true or set
@@ -280,6 +345,11 @@ export const SectionCard = ( {
 		return true;
 	}
 
+	/**
+	 * Render the section card
+	 *
+	 * @returns {JSX.Element}
+	 */
 	return (
 		<>
 			<div

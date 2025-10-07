@@ -32,7 +32,7 @@ export const Task = memo(( props ) => {
 	 * Handle link clicks
 	 * 
 	 * @param {Event} e 
-	 * @returns {void}
+	 * @returns {boolean}
 	 */
 	const handleLinkClick = ( e ) => {
 		const isCompleteOnClick = e.target.closest( '.nfd-nextsteps-link[data-nfd-complete-on-click]' );
@@ -73,7 +73,14 @@ export const Task = memo(( props ) => {
 		return true;
 	};
 
-	const updateStatus = ( e, newStatus, successCallback ) => {
+	/**
+	 * Update the status of the task
+	 *
+	 * @param {Event} e - The event object
+	 * @param {string} newStatus - The new status to update to
+	 * @param {Function} successCallback - The callback to call on success (optional)
+	 */
+	const updateStatus = ( e, newStatus, successCallback = () => {} ) => {
 		// Prevent event from bubbling up to parent track details element
 		e.stopPropagation();
 		
@@ -85,20 +92,23 @@ export const Task = memo(( props ) => {
 			sectionId,
 			id,
 			newStatus,
-			( error ) => {
+			( error ) => { // error callback
 				// If error, revert optimistic task update to previous status
 				setStatus( previousStatus );
 				// further error handling done in the error boundary
 			},
-			( response ) => {
+			( response ) => { // success callback
 				setStatus( newStatus ); // redundant since we optimistically set it above
-				if ( successCallback ) {
-					successCallback( response );
-				}
+				successCallback( response );
 			}
 		);
 	};
 	
+	/**
+	 * Get the href for the task
+	 *
+	 * @returns {string}
+	 */
 	const getHref = () => {
         let hrefValue = href;
 		// replace {siteUrl} placeholder with the actual site URL
@@ -108,6 +118,11 @@ export const Task = memo(( props ) => {
 		return window.NewfoldRuntime?.linkTracker?.addUtmParams( hrefValue ) || hrefValue;
 	};
 
+	/**
+	 * Get the target for the task
+	 *
+	 * @returns {string}
+	 */
 	const getTarget = () => {
 		// if href is external, return target="_blank"
 		if (
@@ -192,6 +207,12 @@ export const Task = memo(( props ) => {
 			</div>
 		);
 	};
+
+	/**
+	 * Render a new step (not marked complete or skipped)
+	 *
+	 * @returns {JSX.Element}
+	 */
 	const renderNewStep = () => {
 		return (
 			<div
@@ -255,6 +276,12 @@ export const Task = memo(( props ) => {
 			</div>
 		);
 	};
+
+	/**
+	 * Render a done step (marked complete)
+	 *
+	 * @returns {JSX.Element}
+	 */
 	const renderDoneStep = () => {
 		return (
 			<div
@@ -286,6 +313,12 @@ export const Task = memo(( props ) => {
 			</div>
 		);
 	};
+
+	/**
+	 * Render a dismissed step (marked skipped)
+	 *
+	 * @returns {JSX.Element}
+	 */
 	const renderDismissedStep = () => {
 		return (
 			<div
