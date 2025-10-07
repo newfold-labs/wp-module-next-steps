@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1759865885">
-  <project timestamp="1759865885">
+<coverage generated="1759867533">
+  <project timestamp="1759867533">
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Plan.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan" namespace="global">
         <metrics complexity="87" methods="30" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="182" coveredstatements="139" elements="212" coveredelements="155"/>
@@ -1043,25 +1043,25 @@
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/PlanSwitchTriggers.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers" namespace="global">
-        <metrics complexity="17" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="16" elements="39" coveredelements="18"/>
+        <metrics complexity="17" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="20" elements="39" coveredelements="23"/>
       </class>
-      <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="28" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="45" type="method" name="on_sitetype_change" visibility="public" complexity="7" crap="7.04" count="5"/>
-      <line num="48" type="stmt" count="5"/>
-      <line num="49" type="stmt" count="5"/>
+      <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="28" type="stmt" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="45" type="method" name="on_sitetype_change" visibility="public" complexity="7" crap="7.04" count="8"/>
+      <line num="48" type="stmt" count="8"/>
+      <line num="49" type="stmt" count="8"/>
       <line num="51" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="5"/>
-      <line num="55" type="stmt" count="5"/>
-      <line num="57" type="stmt" count="5"/>
-      <line num="58" type="stmt" count="2"/>
-      <line num="62" type="stmt" count="3"/>
+      <line num="54" type="stmt" count="8"/>
+      <line num="55" type="stmt" count="8"/>
+      <line num="57" type="stmt" count="8"/>
+      <line num="58" type="stmt" count="3"/>
+      <line num="62" type="stmt" count="5"/>
       <line num="63" type="stmt" count="2"/>
-      <line num="67" type="stmt" count="1"/>
-      <line num="70" type="stmt" count="1"/>
+      <line num="67" type="stmt" count="3"/>
+      <line num="70" type="stmt" count="3"/>
       <line num="80" type="method" name="on_woocommerce_activation" visibility="public" complexity="2" crap="2" count="3"/>
       <line num="81" type="stmt" count="3"/>
       <line num="82" type="stmt" count="1"/>
@@ -1084,7 +1084,7 @@
       <line num="142" type="stmt" count="0"/>
       <line num="144" type="stmt" count="0"/>
       <line num="146" type="stmt" count="0"/>
-      <metrics loc="151" ncloc="83" classes="1" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="16" elements="39" coveredelements="18"/>
+      <metrics loc="151" ncloc="83" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="20" elements="39" coveredelements="23"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/RedirectHelper.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\RedirectHelper" namespace="global">
@@ -2128,6 +2128,6 @@
       <line num="27" type="stmt" count="0"/>
       <metrics loc="58" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="11" coveredelements="0"/>
     </file>
-    <metrics files="15" loc="5739" ncloc="3417" classes="14" methods="217" coveredmethods="78" conditionals="0" coveredconditionals="0" statements="1823" coveredstatements="844" elements="2040" coveredelements="922"/>
+    <metrics files="15" loc="5739" ncloc="3417" classes="14" methods="217" coveredmethods="79" conditionals="0" coveredconditionals="0" statements="1823" coveredstatements="848" elements="2040" coveredelements="927"/>
   </project>
 </coverage>
