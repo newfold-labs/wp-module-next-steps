@@ -221,17 +221,23 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 		$this->assertEquals( 'blog', $current_plan->type );
 
 		// Set initial site info to establish old_value
-		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, array(
-			'experience_level' => 'beginner',
-			'site_type'        => 'personal'
-		) );
+		update_option(
+			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
+			array(
+				'experience_level' => 'beginner',
+				'site_type'        => 'personal',
+			)
+		);
 
 		// Simulate onboarding wizard completion (this should trigger the hook)
 		// This matches what StatusService::save_site_info() does in the PR
-		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, array(
-			'experience_level' => 'beginner',
-			'site_type'        => 'business'
-		) );
+		update_option(
+			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
+			array(
+				'experience_level' => 'beginner',
+				'site_type'        => 'business',
+			)
+		);
 
 		// Verify plan switched to corporate
 		$updated_plan = PlanRepository::get_current_plan();
@@ -259,16 +265,22 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 		$this->assertTrue( $task->is_completed() );
 
 		// Set initial site info to establish old_value
-		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, array(
-			'experience_level' => 'beginner',
-			'site_type'        => 'personal'
-		) );
+		update_option(
+			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
+			array(
+				'experience_level' => 'beginner',
+				'site_type'        => 'personal',
+			)
+		);
 
 		// Simulate onboarding wizard restart with different site type
-		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, array(
-			'experience_level' => 'advanced',
-			'site_type'        => 'ecommerce'
-		) );
+		update_option(
+			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
+			array(
+				'experience_level' => 'advanced',
+				'site_type'        => 'ecommerce',
+			)
+		);
 
 		// Verify plan switched to ecommerce
 		$updated_plan = PlanRepository::get_current_plan();
@@ -294,20 +306,26 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 		PlanRepository::save_plan( $blog_plan );
 
 		// Set initial site info
-		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, array(
-			'experience_level' => 'beginner',
-			'site_type'        => 'personal'
-		) );
+		update_option(
+			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
+			array(
+				'experience_level' => 'beginner',
+				'site_type'        => 'personal',
+			)
+		);
 
 		// Verify we have a blog plan
 		$current_plan = PlanRepository::get_current_plan();
 		$this->assertEquals( 'blog', $current_plan->type );
 
 		// Simulate onboarding wizard completion with same site_type
-		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, array(
-			'experience_level' => 'advanced', // Changed
-			'site_type'        => 'personal'  // Same
-		) );
+		update_option(
+			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
+			array(
+				'experience_level' => 'advanced', // Changed
+				'site_type'        => 'personal'  // Same
+			)
+		);
 
 		// Verify plan is still blog (no change)
 		$updated_plan = PlanRepository::get_current_plan();
@@ -333,10 +351,13 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 		$this->assertEquals( 'blog', $current_plan->type );
 
 		// Simulate onboarding wizard completion with invalid site_type
-		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, array(
-			'experience_level' => 'beginner',
-			'site_type'        => 'invalid_type'
-		) );
+		update_option(
+			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
+			array(
+				'experience_level' => 'beginner',
+				'site_type'        => 'invalid_type',
+			)
+		);
 
 		// Verify plan is still blog (no change for invalid type)
 		$updated_plan = PlanRepository::get_current_plan();
@@ -362,10 +383,13 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 		$this->assertEquals( 'blog', $current_plan->type );
 
 		// Simulate onboarding wizard completion with missing site_type key
-		update_option( PlanFactory::ONBOARDING_SITE_INFO_OPTION, array(
-			'experience_level' => 'beginner'
-			// Missing 'site_type' key
-		) );
+		update_option(
+			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
+			array(
+				'experience_level' => 'beginner',
+				// Missing 'site_type' key
+			)
+		);
 
 		// Verify plan is still blog (no change without site_type key)
 		$updated_plan = PlanRepository::get_current_plan();
