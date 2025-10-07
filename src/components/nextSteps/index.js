@@ -29,6 +29,16 @@ export const NextSteps = () => {
 		return plan ? calculatePlanProgress( plan ) : null;
 	}, [ plan ] );
 
+	/**
+	 * Update the status of the task
+	 *
+	 * @param {string} trackId - The id of the track
+	 * @param {string} sectionId - The id of the section
+	 * @param {string} taskId - The id of the task
+	 * @param {string} status - The new status to update to
+	 * @param {Function} errorCallback - The callback to call on error (optional)
+	 * @param {Function} successCallback - The callback to call on success (optional)
+	 */
 	const taskUpdateCallback = ( trackId, sectionId, taskId, status, errorCallback = () => {}, successCallback = () => {} ) => {
 		// send update to endpoint
 		const data = {
@@ -57,6 +67,13 @@ export const NextSteps = () => {
 		);
 	};
 
+	/**
+	 * Update the open state of the section
+	 *
+	 * @param {string} trackId - The id of the track
+	 * @param {string} sectionId - The id of the section
+	 * @param {boolean} open - The new open state to update to
+	 */
 	const sectionOpenCallback = ( trackId, sectionId, open ) => {
 		if ( ! trackId || ! sectionId ) {
 			// Could not find track for intended section
@@ -101,6 +118,12 @@ export const NextSteps = () => {
 		);
 	};
 
+	/**
+	 * Update the open state of the track
+	 *
+	 * @param {string} trackId - The id of the track
+	 * @param {boolean} open - The new open state to update to
+	 */
 	const trackOpenCallback = ( trackId, open ) => {
 		const data = {
 			plan_id: plan.id,
@@ -131,6 +154,15 @@ export const NextSteps = () => {
 		);
 	};
 
+	/**
+	 * Update the status of the section
+	 *
+	 * @param {string} trackId - The id of the track
+	 * @param {string} sectionId - The id of the section
+	 * @param {string} status - The new status to update to
+	 * @param {Function} errorCallback - The callback to call on error (optional)
+	 * @param {Function} successCallback - The callback to call on success (optional)
+	 */
 	const sectionUpdateCallback = ( trackId, sectionId, status, errorCallback = () => {}, successCallback = () => {} ) => {
 		if ( ! trackId || ! sectionId ) {
 			// Could not find track for intendend section
@@ -178,7 +210,12 @@ export const NextSteps = () => {
 		);
 	};
 
-
+	/**
+	 * Render the cards
+	 *
+	 * @param {array} sectionsAsCards - The sections as cards
+	 * @param {string} trackId - The id of the track
+	 */
 	const renderCards = ( sectionsAsCards, trackId ) => {
 		const isLargeViewport = useViewportMatch( 'medium' );
 		let maxCards = 3;
@@ -280,7 +317,6 @@ export const NextSteps = () => {
 	}
 
 	return (
-
 		<NextStepsErrorBoundary>
 			<div
 				className="nfd-nextsteps"
