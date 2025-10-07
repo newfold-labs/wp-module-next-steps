@@ -1,7 +1,7 @@
 import { Title } from '@newfold/ui-component-library';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, memo } from '@wordpress/element';
-import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon } from '../icons';
+import { doneIcon, hideIcon, showIcon, goIcon, circleDashedIcon, circleIcon, spinner } from '../icons';
 
 export const Task = memo(( props ) => {
 	const {
@@ -22,12 +22,58 @@ export const Task = memo(( props ) => {
 	} = task;
 	// task status uses state to track the current status
 	const [ status, setStatus ] = useState( task.status );
+	const [ isLoading, setIsLoading ] = useState( false );
 
 	useEffect( () => {
 		setStatus( task.status );
 	}, [ task.status ] );
 
-	const updateStatus = ( e, newStatus ) => {
+	/**
+	 * Handle link clicks
+	 * 
+	 * @param {Event} e 
+	 * @returns {void}
+	 */
+	const handleLinkClick = ( e ) => {
+		const isCompleteOnClick = e.target.closest( '.nfd-nextsteps-link[data-nfd-complete-on-click]' );
+		const isPreventDefault = e.target.closest( '.nfd-nextsteps-link[data-nfd-prevent-default]' );
+
+		// if the link has the data-nfd-complete-on-click attribute and it is set to true
+		if ( isCompleteOnClick ) {
+			// prevent opening link until status updates
+			e.preventDefault();
+			// add loading state
+			setIsLoading( true );
+			// update status via API
+			updateStatus(
+				e,
+				'done',
+				( response ) => { // success callback
+					// unless prevent default is set
+					if ( isPreventDefault ) {
+						return false; // restate prevent default
+					}
+					// then take user to the href
+					window.location.href = getHref();
+					return true;
+				}
+			);
+			return false; // restate prevent default
+		}
+		// if the link has the data-nfd-prevent-default attribute, do not open the link
+		// there may be a custom listener for this task and it is handled elsewhere
+		if ( isPreventDefault ) {
+			e.preventDefault();
+			return false; // restate prevent default
+		}
+		// if the data-nfd-complete-on-click attribute is not true or set
+		// and data-nfd-prevent-default is not set
+		// do nothing, allow link to open, and do not update status
+		// there may be custom hooks defined for this task elsewhere
+		return true;
+	};
+
+	const updateStatus = ( e, newStatus, successCallback ) => {
 		// Prevent event from bubbling up to parent track details element
 		e.stopPropagation();
 		
@@ -46,6 +92,9 @@ export const Task = memo(( props ) => {
 			},
 			( response ) => {
 				setStatus( newStatus ); // redundant since we optimistically set it above
+				if ( successCallback ) {
+					successCallback( response );
+				}
 			}
 		);
 	};
@@ -117,7 +166,18 @@ export const Task = memo(( props ) => {
 		return (
 			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
-					<a href={ href } target={ target } { ...dataAttributes }>
+					<a
+						className="nfd-nextsteps-link"
+						data-nfd-click="nextsteps_task_link"
+						data-nfd-event-category="nextsteps_task"
+						data-nfd-event-key={ id }
+						href={ href }
+						target={ target }
+						{ ...dataAttributes }
+						onClick={ ( e ) => {
+							handleLinkClick( e );
+						} }
+					>
 						<Title as="span" size="5" className="nfd-nextsteps-task-title nfd-font-normal">
 							{ title }
 						</Title>
@@ -159,30 +219,37 @@ export const Task = memo(( props ) => {
 					</div>
 					{ renderTaskContent( getHref(), getTarget(), formatLinkDataAttributes() ) }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
-						<button
-							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
-							data-nfd-click="nextsteps_task_dismiss"
-							data-nfd-event-category="nextsteps_task"
-							data-nfd-event-key={ id }
-							onClick={ ( e ) =>
-								updateStatus( e, 'dismissed' )
-							}
-							title={ __( 'Skip', 'wp-module-next-steps' ) }
-						>
-							{ hideIcon }
-						</button>
-						<a
-							className="nfd-nextsteps-button nfd-nextsteps-button-link"
-							data-nfd-click="nextsteps_task_link"
-							data-nfd-event-category="nextsteps_task"
-							data-nfd-event-key={ id }
-							{ ...formatLinkDataAttributes() }
-							href={ getHref() }
-							target={ getTarget() }
-							title={ title }
-						>
-							{ goIcon }
-						</a>
+						{ isLoading ? spinner : (
+							<>
+								<button
+									className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
+									data-nfd-click="nextsteps_task_dismiss"
+									data-nfd-event-category="nextsteps_task"
+									data-nfd-event-key={ id }
+									onClick={ ( e ) =>
+										updateStatus( e, 'dismissed' )
+									}
+									title={ __( 'Skip', 'wp-module-next-steps' ) }
+								>
+									{ hideIcon }
+								</button>
+								<a
+									className="nfd-nextsteps-button nfd-nextsteps-button-link nfd-nextsteps-link"
+									data-nfd-click="nextsteps_task_link"
+									data-nfd-event-category="nextsteps_task"
+									data-nfd-event-key={ id }
+									{ ...formatLinkDataAttributes() }
+									href={ getHref() }
+									onClick={ (e) => {
+										handleLinkClick( e );
+									}}
+									target={ getTarget() }
+									title={ title }
+								>
+									{ goIcon }
+								</a>
+							</>
+						) }
 					</div>
 				</div>
 			</div>
@@ -212,18 +279,8 @@ export const Task = memo(( props ) => {
 					</div>
 					{ renderTaskContent() }
                     <div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
-                        <a
-                            className="nfd-nextsteps-button nfd-nextsteps-button-link"
-                            data-nfd-click="nextsteps_task_link"
-                            data-nfd-event-category="nextsteps_task"
-                            data-nfd-event-key={ id }
-                            { ...formatLinkDataAttributes() }
-                            href={ getHref() }
-                            target={ getTarget() }
-                            title={ title }
-                        >
-                            { goIcon }
-                        </a>
+						{ isLoading && spinner }
+						{/* No buttons needed for task that is already complete */}
                     </div>
 				</div>
 			</div>
@@ -253,18 +310,20 @@ export const Task = memo(( props ) => {
 					</div>
 					{ renderTaskContent() }
 					<div className="nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto">
-						<button
-							className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
-							data-nfd-click="nextsteps_task_dismiss"
-							data-nfd-event-category="nextsteps_task"
-							data-nfd-event-key={ id }
-							onClick={ ( e ) =>
-								updateStatus( e, 'new' )
-							}
-							title={ __( 'Unskip', 'wp-module-next-steps' ) }
-						>
-							{ showIcon }
-						</button>
+						{ isLoading ? spinner : (
+							<button
+								className="nfd-nextsteps-button nfd-nextsteps-button-dismiss"
+								data-nfd-click="nextsteps_task_dismiss"
+								data-nfd-event-category="nextsteps_task"
+								data-nfd-event-key={ id }
+								onClick={ ( e ) =>
+									updateStatus( e, 'new' )
+								}
+								title={ __( 'Unskip', 'wp-module-next-steps' ) }
+							>
+								{ showIcon }
+							</button>
+						) }
 					</div>
 				</div>
 			</div>
