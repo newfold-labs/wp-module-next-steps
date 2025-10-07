@@ -167,12 +167,14 @@ class TaskCompletionTriggers {
 		}
 
 		// Check if payment gateways are available
+		// This filters for enabled AND properly configured payment methods
+		// So a user must enable and configure the payment method to complete the task
 		$payment_gateways = WC()->payment_gateways();
 		if ( ! $payment_gateways ) {
 			return false;
 		}
 
-		// Get available payment gateways (this filters for enabled AND properly configured)
+		// Get available payment gateways
 		$available_gateways = $payment_gateways->get_available_payment_gateways();
 
 		// If any gateways are available, payment setup is complete
