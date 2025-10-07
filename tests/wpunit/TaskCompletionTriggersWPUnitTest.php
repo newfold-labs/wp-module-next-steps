@@ -51,8 +51,11 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 			error_reporting( E_ERROR | E_PARSE );
 
 			// Get the WordPress root folder from environment or use default
-			$wp_root = getenv( 'WP_ROOT_FOLDER' ) ?: 'wordpress';
-			$wp_path = dirname( dirname( __DIR__ ) ) . '/' . $wp_root;
+			$wp_root = getenv( 'WP_ROOT_FOLDER' );
+			if ( ! $wp_root ) {
+				$wp_root = 'wordpress';
+			}
+			$wp_path      = dirname( dirname( __DIR__ ) ) . '/' . $wp_root;
 			$plugins_path = $wp_path . '/wp-content/plugins';
 			$woocommerce_path = $plugins_path . '/woocommerce';
 
@@ -75,13 +78,13 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 			// Download the plugin
 			if ( function_exists( 'file_get_contents' ) ) {
 				$zip_content = file_get_contents( $download_url );
-				if ( $zip_content !== false ) {
+				if ( false !== $zip_content ) {
 					file_put_contents( $zip_path, $zip_content );
 
 					// Extract the zip file
 					if ( class_exists( 'ZipArchive' ) ) {
 						$zip = new \ZipArchive();
-						if ( $zip->open( $zip_path ) === TRUE ) {
+						if ( true === $zip->open( $zip_path ) ) {
 							$zip->extractTo( $plugins_path );
 							$zip->close();
 							unlink( $zip_path ); // Clean up
@@ -141,8 +144,11 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 			error_reporting( E_ERROR | E_PARSE );
 
 			// Get the WordPress root folder from environment or use default
-			$wp_root = getenv( 'WP_ROOT_FOLDER' ) ?: 'wordpress';
-			$wp_path = dirname( dirname( __DIR__ ) ) . '/' . $wp_root;
+			$wp_root = getenv( 'WP_ROOT_FOLDER' );
+			if ( ! $wp_root ) {
+				$wp_root = 'wordpress';
+			}
+			$wp_path      = dirname( dirname( __DIR__ ) ) . '/' . $wp_root;
 			$plugins_path = $wp_path . '/wp-content/plugins';
 			$woocommerce_path = $plugins_path . '/woocommerce';
 
@@ -659,7 +665,7 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	public function test_has_enabled_payment_gateways_edge_cases() {
 		// Test the method using reflection since it's private
 		$reflection = new \ReflectionClass( TaskCompletionTriggers::class );
-		$method    = $reflection->getMethod( 'has_enabled_payment_gateways' );
+		$method     = $reflection->getMethod( 'has_enabled_payment_gateways' );
 		$method->setAccessible( true );
 
 		// Test that the method handles various edge cases without throwing exceptions
@@ -669,7 +675,7 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 		$this->assertIsBool( $result );
 
 		// Should be either true or false, not null or any other unexpected type
-		$this->assertTrue( $result === true || $result === false, 'Method should return true or false, got: ' . var_export( $result, true ) );
+		$this->assertTrue( true === $result || false === $result, 'Method should return true or false, got: ' . var_export( $result, true ) );
 	}
 
 
