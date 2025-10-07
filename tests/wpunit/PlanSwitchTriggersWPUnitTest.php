@@ -261,7 +261,7 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 
 		// Verify task is complete
 		$current_plan = PlanRepository::get_current_plan();
-		$task = $current_plan->get_task( 'blog_build_track', 'create_content', 'blog_first_post' );
+		$task         = $current_plan->get_task( 'blog_build_track', 'create_content', 'blog_first_post' );
 		$this->assertTrue( $task->is_completed() );
 
 		// Set initial site info to establish old_value
@@ -323,7 +323,7 @@ class PlanSwitchTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase {
 			PlanFactory::ONBOARDING_SITE_INFO_OPTION,
 			array(
 				'experience_level' => 'advanced', // Changed
-				'site_type'        => 'personal'  // Same
+				'site_type'        => 'personal',  // Same
 			)
 		);
 
