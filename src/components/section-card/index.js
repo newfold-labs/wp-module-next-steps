@@ -297,8 +297,8 @@ export const SectionCard = ( {
 			return false;
 		}
 
-		const isCompleteOnClick = e.target.closest( '.nfd-nextsteps-link[data-nfd-complete-on-click]' );
-		const isPreventDefault = e.target.closest( '.nfd-nextsteps-link[data-nfd-prevent-default]' );
+		const isCompleteOnClick = e.target.closest( '.nfd-nextsteps-link[data-nfd-complete-on-click="true"]' );
+		const isPreventDefault = e.target.closest( '.nfd-nextsteps-link[data-nfd-prevent-default="true"]' );
 
 		// Link behavior - SINGLE TASK
 		// with data-nfd-complete-on-click set to true
