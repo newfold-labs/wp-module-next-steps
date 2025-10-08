@@ -54,7 +54,7 @@ class BlogPlan {
 						'sections' => array(
 							array(
 								'id'    => 'basic_blog_setup',
-								'label' => __( 'Basic Blog Setup', 'wp-module-next-steps' ),
+								'label' => __( 'Basic blog setup', 'wp-module-next-steps' ),
 								'open'  => true,
 								'tasks' => array(
 									array(
@@ -74,7 +74,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'customize_blog',
-								'label' => __( 'Customize Your Blog', 'wp-module-next-steps' ),
+								'label' => __( 'Customize your blog', 'wp-module-next-steps' ),
 								'open'  => true,
 								'tasks' => array(
 									array(
@@ -125,7 +125,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'create_content',
-								'label' => __( 'Create Content', 'wp-module-next-steps' ),
+								'label' => __( 'Create content', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_first_post',
@@ -164,7 +164,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'setup_navigation',
-								'label' => __( 'Set Up Navigation', 'wp-module-next-steps' ),
+								'label' => __( 'Set up navigation', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_add_pages',
@@ -203,7 +203,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'setup_essential_pages',
-								'label' => __( 'Set Up Essential Pages', 'wp-module-next-steps' ),
+								'label' => __( 'Set up essential pages', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_privacy_policy',
@@ -288,7 +288,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'blog_promote_social',
-								'label' => __( 'Social Presence', 'wp-module-next-steps' ),
+								'label' => __( 'Social presence', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_connect_facebook',
@@ -327,7 +327,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'blog_promote_seo',
-								'label' => __( 'SEO & Visibility', 'wp-module-next-steps' ),
+								'label' => __( 'SEO & visibility', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_optimize_seo',
@@ -372,7 +372,7 @@ class BlogPlan {
 						'sections' => array(
 							array(
 								'id'    => 'enhance_reader_experience',
-								'label' => __( 'Enhance Reader Experience', 'wp-module-next-steps' ),
+								'label' => __( 'Enhance reader experience', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_enable_comments',
@@ -422,7 +422,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'advanced_promotion_partnerships',
-								'label' => __( 'Advanced Social & Influencer Marketing', 'wp-module-next-steps' ),
+								'label' => __( 'Advanced social & influencer marketing', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_build_newsletter',
@@ -472,7 +472,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'content_traffic_strategy',
-								'label' => __( 'Content & Traffic Strategy', 'wp-module-next-steps' ),
+								'label' => __( 'Content & traffic strategy', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_plan_content_series',
@@ -511,7 +511,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'blog_performance_security',
-								'label' => __( 'Performance & Security', 'wp-module-next-steps' ),
+								'label' => __( 'Performance & security', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_speed_up_site',
@@ -550,7 +550,7 @@ class BlogPlan {
 							),
 							array(
 								'id'    => 'blog_analytics',
-								'label' => __( 'Blog Analytics', 'wp-module-next-steps' ),
+								'label' => __( 'Blog analytics', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'blog_monitor_traffic',
