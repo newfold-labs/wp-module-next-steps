@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1759951371">
-  <project timestamp="1759951371">
+<coverage generated="1759954304">
+  <project timestamp="1759954304">
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Plan.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan" namespace="global">
         <metrics complexity="87" methods="30" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="182" coveredstatements="139" elements="212" coveredelements="155"/>
@@ -1088,7 +1088,7 @@
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/RedirectHelper.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\RedirectHelper" namespace="global">
-        <metrics complexity="75" methods="11" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="199" coveredstatements="67" elements="210" coveredelements="68"/>
+        <metrics complexity="75" methods="11" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="200" coveredstatements="67" elements="211" coveredelements="68"/>
       </class>
       <line num="41" type="method" name="init" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="43" type="stmt" count="1"/>
@@ -1150,157 +1150,158 @@
       <line num="112" type="stmt" count="0"/>
       <line num="113" type="stmt" count="0"/>
       <line num="114" type="stmt" count="0"/>
-      <line num="140" type="method" name="check_redirect" visibility="public" complexity="8" crap="72" count="0"/>
-      <line num="143" type="stmt" count="0"/>
-      <line num="144" type="stmt" count="0"/>
+      <line num="116" type="stmt" count="0"/>
+      <line num="142" type="method" name="check_redirect" visibility="public" complexity="8" crap="72" count="0"/>
       <line num="145" type="stmt" count="0"/>
+      <line num="146" type="stmt" count="0"/>
       <line num="147" type="stmt" count="0"/>
-      <line num="155" type="stmt" count="0"/>
-      <line num="159" type="stmt" count="0"/>
-      <line num="160" type="stmt" count="0"/>
+      <line num="149" type="stmt" count="0"/>
+      <line num="157" type="stmt" count="0"/>
       <line num="161" type="stmt" count="0"/>
       <line num="162" type="stmt" count="0"/>
+      <line num="163" type="stmt" count="0"/>
       <line num="164" type="stmt" count="0"/>
-      <line num="165" type="stmt" count="0"/>
-      <line num="174" type="method" name="handle_plugin_redirect" visibility="private" complexity="9" crap="90" count="0"/>
-      <line num="176" type="stmt" count="0"/>
-      <line num="177" type="stmt" count="0"/>
+      <line num="166" type="stmt" count="0"/>
+      <line num="167" type="stmt" count="0"/>
+      <line num="176" type="method" name="handle_plugin_redirect" visibility="private" complexity="9" crap="90" count="0"/>
       <line num="178" type="stmt" count="0"/>
-      <line num="181" type="stmt" count="0"/>
+      <line num="179" type="stmt" count="0"/>
+      <line num="180" type="stmt" count="0"/>
       <line num="183" type="stmt" count="0"/>
-      <line num="184" type="stmt" count="0"/>
-      <line num="188" type="stmt" count="0"/>
-      <line num="189" type="stmt" count="0"/>
+      <line num="185" type="stmt" count="0"/>
+      <line num="186" type="stmt" count="0"/>
+      <line num="190" type="stmt" count="0"/>
       <line num="191" type="stmt" count="0"/>
-      <line num="192" type="stmt" count="0"/>
-      <line num="196" type="stmt" count="0"/>
-      <line num="197" type="stmt" count="0"/>
-      <line num="200" type="stmt" count="0"/>
-      <line num="203" type="stmt" count="0"/>
-      <line num="206" type="stmt" count="0"/>
-      <line num="207" type="stmt" count="0"/>
-      <line num="215" type="method" name="handle_template_redirect" visibility="private" complexity="8" crap="72" count="0"/>
-      <line num="217" type="stmt" count="0"/>
-      <line num="218" type="stmt" count="0"/>
+      <line num="193" type="stmt" count="0"/>
+      <line num="194" type="stmt" count="0"/>
+      <line num="198" type="stmt" count="0"/>
+      <line num="199" type="stmt" count="0"/>
+      <line num="202" type="stmt" count="0"/>
+      <line num="205" type="stmt" count="0"/>
+      <line num="208" type="stmt" count="0"/>
+      <line num="209" type="stmt" count="0"/>
+      <line num="217" type="method" name="handle_template_redirect" visibility="private" complexity="8" crap="72" count="0"/>
       <line num="219" type="stmt" count="0"/>
-      <line num="222" type="stmt" count="0"/>
-      <line num="223" type="stmt" count="0"/>
+      <line num="220" type="stmt" count="0"/>
+      <line num="221" type="stmt" count="0"/>
       <line num="224" type="stmt" count="0"/>
       <line num="225" type="stmt" count="0"/>
-      <line num="229" type="stmt" count="0"/>
+      <line num="226" type="stmt" count="0"/>
+      <line num="227" type="stmt" count="0"/>
       <line num="231" type="stmt" count="0"/>
       <line num="233" type="stmt" count="0"/>
-      <line num="236" type="stmt" count="0"/>
-      <line num="240" type="stmt" count="0"/>
+      <line num="235" type="stmt" count="0"/>
+      <line num="238" type="stmt" count="0"/>
       <line num="242" type="stmt" count="0"/>
-      <line num="243" type="stmt" count="0"/>
-      <line num="246" type="stmt" count="0"/>
+      <line num="244" type="stmt" count="0"/>
+      <line num="245" type="stmt" count="0"/>
       <line num="248" type="stmt" count="0"/>
-      <line num="258" type="method" name="check_plugin" visibility="private" complexity="7" crap="56" count="0"/>
-      <line num="260" type="stmt" count="0"/>
-      <line num="261" type="stmt" count="0"/>
-      <line num="264" type="stmt" count="0"/>
-      <line num="267" type="stmt" count="0"/>
-      <line num="268" type="stmt" count="0"/>
-      <line num="273" type="stmt" count="0"/>
-      <line num="276" type="stmt" count="0"/>
-      <line num="277" type="stmt" count="0"/>
+      <line num="250" type="stmt" count="0"/>
+      <line num="260" type="method" name="check_plugin" visibility="private" complexity="7" crap="56" count="0"/>
+      <line num="262" type="stmt" count="0"/>
+      <line num="263" type="stmt" count="0"/>
+      <line num="266" type="stmt" count="0"/>
+      <line num="269" type="stmt" count="0"/>
+      <line num="270" type="stmt" count="0"/>
+      <line num="275" type="stmt" count="0"/>
+      <line num="278" type="stmt" count="0"/>
       <line num="279" type="stmt" count="0"/>
-      <line num="280" type="stmt" count="0"/>
+      <line num="281" type="stmt" count="0"/>
       <line num="282" type="stmt" count="0"/>
-      <line num="286" type="stmt" count="0"/>
-      <line num="297" type="method" name="get_template_part_editor_url" visibility="public" complexity="8" crap="8.09" count="2"/>
-      <line num="299" type="stmt" count="2"/>
-      <line num="300" type="stmt" count="0"/>
-      <line num="304" type="stmt" count="2"/>
-      <line num="305" type="stmt" count="0"/>
-      <line num="309" type="stmt" count="2"/>
-      <line num="312" type="stmt" count="2"/>
-      <line num="315" type="stmt" count="2"/>
+      <line num="284" type="stmt" count="0"/>
+      <line num="288" type="stmt" count="0"/>
+      <line num="299" type="method" name="get_template_part_editor_url" visibility="public" complexity="8" crap="8.09" count="2"/>
+      <line num="301" type="stmt" count="2"/>
+      <line num="302" type="stmt" count="0"/>
+      <line num="306" type="stmt" count="2"/>
+      <line num="307" type="stmt" count="0"/>
+      <line num="311" type="stmt" count="2"/>
+      <line num="314" type="stmt" count="2"/>
       <line num="317" type="stmt" count="2"/>
-      <line num="318" type="stmt" count="2"/>
       <line num="319" type="stmt" count="2"/>
       <line num="320" type="stmt" count="2"/>
       <line num="321" type="stmt" count="2"/>
+      <line num="322" type="stmt" count="2"/>
       <line num="323" type="stmt" count="2"/>
-      <line num="324" type="stmt" count="2"/>
       <line num="325" type="stmt" count="2"/>
       <line num="326" type="stmt" count="2"/>
       <line num="327" type="stmt" count="2"/>
-      <line num="332" type="stmt" count="2"/>
-      <line num="333" type="stmt" count="0"/>
-      <line num="337" type="stmt" count="2"/>
-      <line num="338" type="stmt" count="2"/>
+      <line num="328" type="stmt" count="2"/>
+      <line num="329" type="stmt" count="2"/>
+      <line num="334" type="stmt" count="2"/>
+      <line num="335" type="stmt" count="0"/>
       <line num="339" type="stmt" count="2"/>
       <line num="340" type="stmt" count="2"/>
       <line num="341" type="stmt" count="2"/>
       <line num="342" type="stmt" count="2"/>
       <line num="343" type="stmt" count="2"/>
       <line num="344" type="stmt" count="2"/>
-      <line num="353" type="method" name="get_template_editor_url" visibility="public" complexity="6" crap="6.24" count="1"/>
-      <line num="355" type="stmt" count="1"/>
-      <line num="356" type="stmt" count="0"/>
-      <line num="360" type="stmt" count="1"/>
-      <line num="361" type="stmt" count="0"/>
-      <line num="365" type="stmt" count="1"/>
-      <line num="368" type="stmt" count="1"/>
-      <line num="371" type="stmt" count="1"/>
-      <line num="372" type="stmt" count="0"/>
-      <line num="376" type="stmt" count="1"/>
-      <line num="377" type="stmt" count="1"/>
+      <line num="345" type="stmt" count="2"/>
+      <line num="346" type="stmt" count="2"/>
+      <line num="355" type="method" name="get_template_editor_url" visibility="public" complexity="6" crap="6.24" count="1"/>
+      <line num="357" type="stmt" count="1"/>
+      <line num="358" type="stmt" count="0"/>
+      <line num="362" type="stmt" count="1"/>
+      <line num="363" type="stmt" count="0"/>
+      <line num="367" type="stmt" count="1"/>
+      <line num="370" type="stmt" count="1"/>
+      <line num="373" type="stmt" count="1"/>
+      <line num="374" type="stmt" count="0"/>
       <line num="378" type="stmt" count="1"/>
       <line num="379" type="stmt" count="1"/>
       <line num="380" type="stmt" count="1"/>
       <line num="381" type="stmt" count="1"/>
       <line num="382" type="stmt" count="1"/>
       <line num="383" type="stmt" count="1"/>
-      <line num="391" type="method" name="is_block_theme" visibility="public" complexity="5" crap="5.20" count="4"/>
-      <line num="393" type="stmt" count="4"/>
-      <line num="394" type="stmt" count="0"/>
-      <line num="398" type="stmt" count="4"/>
-      <line num="401" type="stmt" count="4"/>
+      <line num="384" type="stmt" count="1"/>
+      <line num="385" type="stmt" count="1"/>
+      <line num="393" type="method" name="is_block_theme" visibility="public" complexity="5" crap="5.20" count="4"/>
+      <line num="395" type="stmt" count="4"/>
+      <line num="396" type="stmt" count="0"/>
+      <line num="400" type="stmt" count="4"/>
       <line num="403" type="stmt" count="4"/>
-      <line num="413" type="method" name="get_active_template_part_slug" visibility="private" complexity="21" crap="41.40" count="2"/>
-      <line num="415" type="stmt" count="2"/>
-      <line num="416" type="stmt" count="0"/>
-      <line num="420" type="stmt" count="2"/>
-      <line num="421" type="stmt" count="2"/>
+      <line num="405" type="stmt" count="4"/>
+      <line num="415" type="method" name="get_active_template_part_slug" visibility="private" complexity="21" crap="41.40" count="2"/>
+      <line num="417" type="stmt" count="2"/>
+      <line num="418" type="stmt" count="0"/>
+      <line num="422" type="stmt" count="2"/>
       <line num="423" type="stmt" count="2"/>
-      <line num="424" type="stmt" count="0"/>
-      <line num="428" type="stmt" count="2"/>
-      <line num="429" type="stmt" count="2"/>
-      <line num="432" type="stmt" count="2"/>
-      <line num="433" type="stmt" count="2"/>
-      <line num="436" type="stmt" count="2"/>
-      <line num="437" type="stmt" count="2"/>
+      <line num="425" type="stmt" count="2"/>
+      <line num="426" type="stmt" count="0"/>
+      <line num="430" type="stmt" count="2"/>
+      <line num="431" type="stmt" count="2"/>
+      <line num="434" type="stmt" count="2"/>
+      <line num="435" type="stmt" count="2"/>
       <line num="438" type="stmt" count="2"/>
-      <line num="439" type="stmt" count="0"/>
-      <line num="440" type="stmt" count="0"/>
+      <line num="439" type="stmt" count="2"/>
+      <line num="440" type="stmt" count="2"/>
       <line num="441" type="stmt" count="0"/>
+      <line num="442" type="stmt" count="0"/>
       <line num="443" type="stmt" count="0"/>
-      <line num="446" type="stmt" count="2"/>
-      <line num="450" type="stmt" count="2"/>
+      <line num="445" type="stmt" count="0"/>
+      <line num="448" type="stmt" count="2"/>
       <line num="452" type="stmt" count="2"/>
-      <line num="453" type="stmt" count="2"/>
+      <line num="454" type="stmt" count="2"/>
       <line num="455" type="stmt" count="2"/>
       <line num="457" type="stmt" count="2"/>
-      <line num="460" type="stmt" count="2"/>
-      <line num="463" type="stmt" count="2"/>
-      <line num="464" type="stmt" count="2"/>
-      <line num="465" type="stmt" count="0"/>
-      <line num="466" type="stmt" count="0"/>
+      <line num="459" type="stmt" count="2"/>
+      <line num="462" type="stmt" count="2"/>
+      <line num="465" type="stmt" count="2"/>
+      <line num="466" type="stmt" count="2"/>
       <line num="467" type="stmt" count="0"/>
       <line num="468" type="stmt" count="0"/>
       <line num="469" type="stmt" count="0"/>
       <line num="470" type="stmt" count="0"/>
       <line num="471" type="stmt" count="0"/>
-      <line num="476" type="stmt" count="2"/>
-      <line num="479" type="stmt" count="2"/>
-      <line num="480" type="stmt" count="0"/>
-      <line num="486" type="stmt" count="2"/>
-      <line num="487" type="stmt" count="2"/>
-      <line num="491" type="stmt" count="2"/>
-      <metrics loc="494" ncloc="324" classes="1" methods="11" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="199" coveredstatements="67" elements="210" coveredelements="68"/>
+      <line num="472" type="stmt" count="0"/>
+      <line num="473" type="stmt" count="0"/>
+      <line num="478" type="stmt" count="2"/>
+      <line num="481" type="stmt" count="2"/>
+      <line num="482" type="stmt" count="0"/>
+      <line num="488" type="stmt" count="2"/>
+      <line num="489" type="stmt" count="2"/>
+      <line num="493" type="stmt" count="2"/>
+      <metrics loc="496" ncloc="326" classes="1" methods="11" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="200" coveredstatements="67" elements="211" coveredelements="68"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/StepsApi.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\StepsApi" namespace="global">
@@ -2128,6 +2129,6 @@
       <line num="27" type="stmt" count="0"/>
       <metrics loc="58" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="11" coveredelements="0"/>
     </file>
-    <metrics files="15" loc="5742" ncloc="3418" classes="14" methods="217" coveredmethods="79" conditionals="0" coveredconditionals="0" statements="1823" coveredstatements="850" elements="2040" coveredelements="929"/>
+    <metrics files="15" loc="5744" ncloc="3420" classes="14" methods="217" coveredmethods="79" conditionals="0" coveredconditionals="0" statements="1824" coveredstatements="850" elements="2041" coveredelements="929"/>
   </project>
 </coverage>
