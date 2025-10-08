@@ -12,7 +12,7 @@ export const Task = memo(( props ) => {
 		taskUpdateCallback,
 		trackId,
 	} = props;
-	
+
 	// Destructure task properties
 	const {
 		id,
@@ -30,8 +30,8 @@ export const Task = memo(( props ) => {
 
 	/**
 	 * Handle link clicks
-	 * 
-	 * @param {Event} e 
+	 *
+	 * @param {Event} e
 	 * @returns {boolean}
 	 */
 	const handleLinkClick = ( e ) => {
@@ -83,11 +83,11 @@ export const Task = memo(( props ) => {
 	const updateStatus = ( e, newStatus, successCallback = () => {} ) => {
 		// Prevent event from bubbling up to parent track details element
 		e.stopPropagation();
-		
+
 		const previousStatus = status;
 		setStatus( newStatus ); // optimistic update - for immediate UI feedback
 		// update task status via API
-		taskUpdateCallback( 
+		taskUpdateCallback(
 			trackId,
 			sectionId,
 			id,
@@ -103,7 +103,7 @@ export const Task = memo(( props ) => {
 			}
 		);
 	};
-	
+
 	/**
 	 * Get the href for the task
 	 *
@@ -154,7 +154,7 @@ export const Task = memo(( props ) => {
 		Object.entries( data_attributes ).forEach( ( [ key, value ] ) => {
 			// Ensure key has 'data-' prefix
 			const dataKey = key.startsWith( 'data-' ) ? key : `data-${ key }`;
-			
+
 			// Handle boolean values (convert to string or use key as flag)
 			if ( typeof value === 'boolean' ) {
 				formatted[ dataKey ] = value ? 'true' : 'false';
@@ -162,20 +162,20 @@ export const Task = memo(( props ) => {
 				formatted[ dataKey ] = value;
 			}
 		} );
-		
+
 		return formatted;
 	};
 
 	/**
 	 * Render the task content
-	 * 
+	 *
 	 * If href is provided, render a link with the href, target, and data attributes
 	 * Otherwise, render a span with the title
-	 * 
+	 *
 	 * @param {*} href - The href to use for the link
 	 * @param {*} target - The target to use for the link
 	 * @param {*} dataAttributes - The data attributes to use for the link
-	 * @returns 
+	 * @returns
 	 */
 	const renderTaskContent = ( href = false, target = '', dataAttributes = {} ) => {
 		return (
@@ -193,13 +193,13 @@ export const Task = memo(( props ) => {
 							handleLinkClick( e );
 						} }
 					>
-						<Title as="span" size="5" className="nfd-nextsteps-task-title nfd-font-normal">
+						<Title as="span" size="5" className="nfd-nextsteps-task-title nfd-font-normal nfd-h-auto">
 							{ title }
 						</Title>
 					</a>
 				) }
 				{ ! href && (
-					<Title as="span" size="5" className="nfd-nextsteps-task-title nfd-font-normal">
+					<Title as="span" size="5" className="nfd-nextsteps-task-title nfd-font-normal nfd-h-auto">
 						{ title }
 					</Title>
 				) }
@@ -217,7 +217,7 @@ export const Task = memo(( props ) => {
 		return (
 			<div
 				className="nfd-nextsteps-task-container"
-				id={ `task-${ id }` } 
+				id={ `task-${ id }` }
 				{ ...formatDataAttributes() }
 			>
 				<div className="nfd-nextsteps-task nfd-nextsteps-task-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
@@ -286,7 +286,7 @@ export const Task = memo(( props ) => {
 		return (
 			<div
 				className="nfd-nextsteps-task-container"
-				id={ `task-${ id }` } 
+				id={ `task-${ id }` }
 				{ ...formatDataAttributes() }
 			>
 				<div className="nfd-nextsteps-task nfd-nextsteps-task-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
@@ -323,7 +323,7 @@ export const Task = memo(( props ) => {
 		return (
 			<div
 				className="nfd-nextsteps-task-container"
-				id={ `task-${ id }` } 
+				id={ `task-${ id }` }
 				{ ...formatDataAttributes() }
 			>
 				<div className="nfd-nextsteps-task nfd-nextsteps-task-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2">
