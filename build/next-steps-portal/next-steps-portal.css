@@ -1,6 +1,6 @@
-/*!*************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/nextSteps/styles.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/nextSteps/styles.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
 #nfd-nextsteps.nfd-nextsteps {
   grid-template-columns: 1fr 1fr !important;
 }
@@ -528,7 +528,6 @@
 #nfd-nextsteps.nfd-nextsteps .nfd-nextsteps-section-card-skipped .nfd-nextsteps-task-title-wrapper {
   opacity: 50%;
 }
-
 .nfd-nextstep-tasks-modal p {
   margin-bottom: 1.5rem;
 }
@@ -593,11 +592,9 @@
   width: 1.5rem;
   color: #ABAE14;
 }
-
 .nfd-nextstep-tasks-modal h1.nfd-title {
   font-size: 1.25rem !important;
 }
-
 .nfd-nextsteps-section-card-none {
   border: 1px dashed #A8A8A8;
   padding: 20px;
@@ -607,7 +604,6 @@
   height: auto;
   display: block;
 }
-
 .ndf-nextsteps-no-cards-content {
   background: #FCFCFC;
 }

@@ -1,10 +1,10 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/ArrowRightIcon.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/ArrowRightIcon.js ***!
-  \************************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/ArrowRightIcon.js":
+/*!*******************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/ArrowRightIcon.js ***!
+  \*******************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -42,10 +42,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(A
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/ArrowUturnLeftIcon.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/ArrowUturnLeftIcon.js ***!
-  \****************************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/ArrowUturnLeftIcon.js":
+/*!***********************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/ArrowUturnLeftIcon.js ***!
+  \***********************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -83,10 +83,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(A
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/ChevronUpIcon.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/ChevronUpIcon.js ***!
-  \***********************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/ChevronUpIcon.js":
+/*!******************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/ChevronUpIcon.js ***!
+  \******************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -124,10 +124,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(C
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/EyeIcon.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/EyeIcon.js ***!
-  \*****************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/EyeIcon.js":
+/*!************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/EyeIcon.js ***!
+  \************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -169,10 +169,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(E
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/EyeSlashIcon.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/EyeSlashIcon.js ***!
-  \**********************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/EyeSlashIcon.js":
+/*!*****************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/EyeSlashIcon.js ***!
+  \*****************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -210,10 +210,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(E
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/MinusCircleIcon.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/MinusCircleIcon.js ***!
-  \*************************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/MinusCircleIcon.js":
+/*!********************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/MinusCircleIcon.js ***!
+  \********************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -251,10 +251,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(M
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/PlusCircleIcon.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/PlusCircleIcon.js ***!
-  \************************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/PlusCircleIcon.js":
+/*!*******************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/PlusCircleIcon.js ***!
+  \*******************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -292,10 +292,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(P
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/TrophyIcon.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/TrophyIcon.js ***!
-  \********************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/TrophyIcon.js":
+/*!***************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/TrophyIcon.js ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -333,10 +333,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(T
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/outline/esm/XCircleIcon.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/outline/esm/XCircleIcon.js ***!
-  \*********************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/outline/esm/XCircleIcon.js":
+/*!****************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/outline/esm/XCircleIcon.js ***!
+  \****************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -374,10 +374,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(X
 
 /***/ }),
 
-/***/ "./node_modules/@heroicons/react/24/solid/esm/CheckCircleIcon.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@heroicons/react/24/solid/esm/CheckCircleIcon.js ***!
-  \***********************************************************************/
+/***/ "../../../node_modules/@heroicons/react/24/solid/esm/CheckCircleIcon.js":
+/*!******************************************************************************!*\
+  !*** ../../../node_modules/@heroicons/react/24/solid/esm/CheckCircleIcon.js ***!
+  \******************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -413,10 +413,10 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(C
 
 /***/ }),
 
-/***/ "./node_modules/@newfold/ui-component-library/components/page/index.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@newfold/ui-component-library/components/page/index.js ***!
-  \*****************************************************************************/
+/***/ "../../../node_modules/@newfold/ui-component-library/components/page/index.js":
+/*!************************************************************************************!*\
+  !*** ../../../node_modules/@newfold/ui-component-library/components/page/index.js ***!
+  \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -424,33 +424,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "../../../node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
-const Page = (0,react__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(({
+const Page = (0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(({
   as: Component = "div",
   children,
   className = "",
   ...props
-}, ref) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Component, {
+}, ref) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Component, {
   ...props,
-  className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("nfd-page", className),
+  className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("nfd-page", className),
   ref: ref,
   children: children
 }));
 Page.propTypes = {
-  as: prop_types__WEBPACK_IMPORTED_MODULE_0__.PropTypes.element,
-  children: prop_types__WEBPACK_IMPORTED_MODULE_0__.PropTypes.node.isRequired,
-  className: prop_types__WEBPACK_IMPORTED_MODULE_0__.PropTypes.string
+  as: prop_types__WEBPACK_IMPORTED_MODULE_3__.PropTypes.element,
+  children: prop_types__WEBPACK_IMPORTED_MODULE_3__.PropTypes.node.isRequired,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3__.PropTypes.string
 };
 Page.defaultProps = {
   as: "div",
@@ -461,10 +461,10 @@ Page.displayName = "Page";
 
 /***/ }),
 
-/***/ "./node_modules/@newfold/ui-component-library/components/root/index.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@newfold/ui-component-library/components/root/index.js ***!
-  \*****************************************************************************/
+/***/ "../../../node_modules/@newfold/ui-component-library/components/root/index.js":
+/*!************************************************************************************!*\
+  !*** ../../../node_modules/@newfold/ui-component-library/components/root/index.js ***!
+  \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -473,19 +473,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   RootContext: () => (/* binding */ RootContext),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "../../../node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
 const defaultRootContext = {
   isRtl: false
 };
-const RootContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)(defaultRootContext);
+const RootContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(defaultRootContext);
 
 /**
  * @param {JSX.node} children The React children.
@@ -497,12 +497,12 @@ const Root = ({
   context = {},
   ...props
 }) => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(RootContext.Provider, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(RootContext.Provider, {
     value: {
       ...defaultRootContext,
       ...context
     },
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "nfd-root",
       ...props,
       children: children
@@ -510,19 +510,19 @@ const Root = ({
   });
 };
 Root.propTypes = {
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_0___default().node).isRequired,
-  context: prop_types__WEBPACK_IMPORTED_MODULE_0___default().shape({
-    isRtl: (prop_types__WEBPACK_IMPORTED_MODULE_0___default().bool)
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node).isRequired,
+  context: prop_types__WEBPACK_IMPORTED_MODULE_2___default().shape({
+    isRtl: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool)
   })
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Root);
 
 /***/ }),
 
-/***/ "./node_modules/@newfold/ui-component-library/elements/button/index.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@newfold/ui-component-library/elements/button/index.js ***!
-  \*****************************************************************************/
+/***/ "../../../node_modules/@newfold/ui-component-library/elements/button/index.js":
+/*!************************************************************************************!*\
+  !*** ../../../node_modules/@newfold/ui-component-library/elements/button/index.js ***!
+  \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -532,17 +532,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   classNameMap: () => (/* binding */ classNameMap),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "../../../node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../spinner */ "./node_modules/@newfold/ui-component-library/elements/spinner/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prop-types */ "../../../node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../spinner */ "../../../node_modules/@newfold/ui-component-library/elements/spinner/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -574,7 +574,7 @@ const classNameMap = {
  * @param {string} [className] CSS class.
  * @returns {JSX.Element} Button component.
  */
-const Button = (0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)(({
+const Button = (0,react__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(({
   children,
   as: Component,
   type,
@@ -584,7 +584,7 @@ const Button = (0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)(({
   disabled,
   className,
   ...props
-}, ref) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(Component
+}, ref) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(Component
 // eslint-disable-next-line no-undefined
 , {
   type: type || Component === "button" && "button" || undefined,
@@ -592,20 +592,20 @@ const Button = (0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)(({
   ref: ref,
   className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("nfd-button", classNameMap.variant[variant], classNameMap.size[size], isLoading && "nfd-cursor-wait", disabled && "nfd-button--disabled", className),
   ...props,
-  children: [isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_spinner__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  children: [isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_spinner__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: size === "small" ? "3" : "4",
     className: "nfd-mr-2"
   }), children]
 }));
 const propTypes = {
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().node).isRequired,
-  as: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().elementType),
-  type: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf(["button", "submit", "reset"]),
-  variant: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf((0,lodash__WEBPACK_IMPORTED_MODULE_1__.keys)(classNameMap.variant)),
-  size: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf((0,lodash__WEBPACK_IMPORTED_MODULE_1__.keys)(classNameMap.size)),
-  isLoading: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
-  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().bool),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().node).isRequired,
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().elementType),
+  type: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOf(["button", "submit", "reset"]),
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOf((0,lodash__WEBPACK_IMPORTED_MODULE_1__.keys)(classNameMap.variant)),
+  size: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOf((0,lodash__WEBPACK_IMPORTED_MODULE_1__.keys)(classNameMap.size)),
+  isLoading: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string)
 };
 Button.propTypes = propTypes;
 Button.defaultProps = {
@@ -622,7 +622,7 @@ Button.displayName = "Button";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Button);
 
 // eslint-disable-next-line require-jsdoc
-const StoryComponent = props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Button, {
+const StoryComponent = props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Button, {
   ...props
 });
 StoryComponent.propTypes = propTypes;
@@ -631,10 +631,10 @@ StoryComponent.displayName = "Button";
 
 /***/ }),
 
-/***/ "./node_modules/@newfold/ui-component-library/elements/spinner/index.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/@newfold/ui-component-library/elements/spinner/index.js ***!
-  \******************************************************************************/
+/***/ "../../../node_modules/@newfold/ui-component-library/elements/spinner/index.js":
+/*!*************************************************************************************!*\
+  !*** ../../../node_modules/@newfold/ui-component-library/elements/spinner/index.js ***!
+  \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -644,17 +644,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   classNameMap: () => (/* binding */ classNameMap),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "../../../node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks */ "./node_modules/@newfold/ui-component-library/hooks/use-svg-aria.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prop-types */ "../../../node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks */ "../../../node_modules/@newfold/ui-component-library/hooks/use-svg-aria.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -681,27 +681,27 @@ const classNameMap = {
  * @param {string} [className] The HTML class.
  * @returns {JSX.Element} The spinner.
  */
-const Spinner = (0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)(({
+const Spinner = (0,react__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(({
   variant,
   size,
   className
 }, ref) => {
-  const svgAriaProps = (0,_hooks__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
+  const svgAriaProps = (0,_hooks__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
     ref: ref,
     xmlns: "http://www.w3.org/2000/svg/",
     fill: "none",
     viewBox: "0 0 24 24",
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("nfd-animate-spin", classNameMap.variant[variant], classNameMap.size[size], className),
     ...svgAriaProps,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("circle", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("circle", {
       className: "nfd-opacity-25",
       cx: "12",
       cy: "12",
       r: "10",
       stroke: "currentColor",
       strokeWidth: "4"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
       className: "nfd-opacity-75",
       fill: "currentColor",
       d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
@@ -709,9 +709,9 @@ const Spinner = (0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)(({
   });
 });
 const propTypes = {
-  variant: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf((0,lodash__WEBPACK_IMPORTED_MODULE_1__.keys)(classNameMap.variant)),
-  size: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOf((0,lodash__WEBPACK_IMPORTED_MODULE_1__.keys)(classNameMap.size)),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOf((0,lodash__WEBPACK_IMPORTED_MODULE_1__.keys)(classNameMap.variant)),
+  size: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOf((0,lodash__WEBPACK_IMPORTED_MODULE_1__.keys)(classNameMap.size)),
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string)
 };
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = {
@@ -722,7 +722,7 @@ Spinner.defaultProps = {
 Spinner.displayName = "Spinner";
 
 // eslint-disable-next-line require-jsdoc
-const StoryComponent = props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Spinner, {
+const StoryComponent = props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Spinner, {
   ...props
 });
 StoryComponent.propTypes = propTypes;
@@ -732,10 +732,10 @@ StoryComponent.displayName = "Spinner";
 
 /***/ }),
 
-/***/ "./node_modules/@newfold/ui-component-library/elements/title/index.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@newfold/ui-component-library/elements/title/index.js ***!
-  \****************************************************************************/
+/***/ "../../../node_modules/@newfold/ui-component-library/elements/title/index.js":
+/*!***********************************************************************************!*\
+  !*** ../../../node_modules/@newfold/ui-component-library/elements/title/index.js ***!
+  \***********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -745,14 +745,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   classNameMap: () => (/* binding */ classNameMap),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "../../../node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 /* eslint-disable no-undefined */
 
 
@@ -772,7 +772,7 @@ const classNameMap = {
  * @param {Object} props Props object.
  * @returns {JSX.Element} Title component.
  */
-const Title = (0,react__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(({
+const Title = (0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(({
   children,
   as: Component = "h1",
   size,
@@ -794,19 +794,19 @@ const Title = (0,react__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(({
     // default size
     return "1";
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Component, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Component, {
     ref: ref,
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("nfd-title", classNameMap.size[getDefaultSize()], className),
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("nfd-title", classNameMap.size[getDefaultSize()], className),
     ...props,
     children: children
   });
 });
 Title.displayName = "Title";
 const propTypes = {
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_0___default().node).isRequired,
-  as: (prop_types__WEBPACK_IMPORTED_MODULE_0___default().elementType),
-  size: prop_types__WEBPACK_IMPORTED_MODULE_0___default().oneOf(Object.keys(classNameMap.size)),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_0___default().string)
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node).isRequired,
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType),
+  size: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(Object.keys(classNameMap.size)),
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)
 };
 Title.propTypes = propTypes;
 Title.defaultProps = {
@@ -816,7 +816,7 @@ Title.defaultProps = {
 };
 
 // eslint-disable-next-line require-jsdoc
-const StoryComponent = props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Title, {
+const StoryComponent = props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Title, {
   ...props
 });
 StoryComponent.propTypes = propTypes;
@@ -826,10 +826,10 @@ StoryComponent.displayName = "Title";
 
 /***/ }),
 
-/***/ "./node_modules/@newfold/ui-component-library/hooks/use-svg-aria.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@newfold/ui-component-library/hooks/use-svg-aria.js ***!
-  \**************************************************************************/
+/***/ "../../../node_modules/@newfold/ui-component-library/hooks/use-svg-aria.js":
+/*!*********************************************************************************!*\
+  !*** ../../../node_modules/@newfold/ui-component-library/hooks/use-svg-aria.js ***!
+  \*********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -862,10 +862,10 @@ const useSvgAria = (isFocusable = null) => {
 
 /***/ }),
 
-/***/ "./node_modules/classnames/index.js":
-/*!******************************************!*\
-  !*** ./node_modules/classnames/index.js ***!
-  \******************************************/
+/***/ "../../../node_modules/classnames/index.js":
+/*!*************************************************!*\
+  !*** ../../../node_modules/classnames/index.js ***!
+  \*************************************************/
 /***/ ((module, exports) => {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -942,17 +942,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 			return classNames;
 		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else // removed by dead control flow
-{}
+	} else {}
 }());
 
 
 /***/ }),
 
-/***/ "./node_modules/object-assign/index.js":
-/*!*********************************************!*\
-  !*** ./node_modules/object-assign/index.js ***!
-  \*********************************************/
+/***/ "../../../node_modules/object-assign/index.js":
+/*!****************************************************!*\
+  !*** ../../../node_modules/object-assign/index.js ***!
+  \****************************************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1050,10 +1049,10 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /***/ }),
 
-/***/ "./node_modules/prop-types/checkPropTypes.js":
-/*!***************************************************!*\
-  !*** ./node_modules/prop-types/checkPropTypes.js ***!
-  \***************************************************/
+/***/ "../../../node_modules/prop-types/checkPropTypes.js":
+/*!**********************************************************!*\
+  !*** ../../../node_modules/prop-types/checkPropTypes.js ***!
+  \**********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -1069,9 +1068,9 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 var printWarning = function() {};
 
 if (true) {
-  var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+  var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "../../../node_modules/prop-types/lib/ReactPropTypesSecret.js");
   var loggedTypeFailures = {};
-  var has = __webpack_require__(/*! ./lib/has */ "./node_modules/prop-types/lib/has.js");
+  var has = __webpack_require__(/*! ./lib/has */ "../../../node_modules/prop-types/lib/has.js");
 
   printWarning = function(text) {
     var message = 'Warning: ' + text;
@@ -1164,10 +1163,10 @@ module.exports = checkPropTypes;
 
 /***/ }),
 
-/***/ "./node_modules/prop-types/factoryWithTypeCheckers.js":
-/*!************************************************************!*\
-  !*** ./node_modules/prop-types/factoryWithTypeCheckers.js ***!
-  \************************************************************/
+/***/ "../../../node_modules/prop-types/factoryWithTypeCheckers.js":
+/*!*******************************************************************!*\
+  !*** ../../../node_modules/prop-types/factoryWithTypeCheckers.js ***!
+  \*******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -1180,12 +1179,12 @@ module.exports = checkPropTypes;
 
 
 
-var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/prop-types/node_modules/react-is/index.js");
-var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
+var ReactIs = __webpack_require__(/*! react-is */ "../../../node_modules/react-is/index.js");
+var assign = __webpack_require__(/*! object-assign */ "../../../node_modules/object-assign/index.js");
 
-var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
-var has = __webpack_require__(/*! ./lib/has */ "./node_modules/prop-types/lib/has.js");
-var checkPropTypes = __webpack_require__(/*! ./checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");
+var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "../../../node_modules/prop-types/lib/ReactPropTypesSecret.js");
+var has = __webpack_require__(/*! ./lib/has */ "../../../node_modules/prop-types/lib/has.js");
+var checkPropTypes = __webpack_require__(/*! ./checkPropTypes */ "../../../node_modules/prop-types/checkPropTypes.js");
 
 var printWarning = function() {};
 
@@ -1785,10 +1784,10 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 /***/ }),
 
-/***/ "./node_modules/prop-types/index.js":
-/*!******************************************!*\
-  !*** ./node_modules/prop-types/index.js ***!
-  \******************************************/
+/***/ "../../../node_modules/prop-types/index.js":
+/*!*************************************************!*\
+  !*** ../../../node_modules/prop-types/index.js ***!
+  \*************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 /**
@@ -1799,22 +1798,21 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
  */
 
 if (true) {
-  var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/prop-types/node_modules/react-is/index.js");
+  var ReactIs = __webpack_require__(/*! react-is */ "../../../node_modules/react-is/index.js");
 
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "./node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
-} else // removed by dead control flow
-{}
+  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "../../../node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
+} else {}
 
 
 /***/ }),
 
-/***/ "./node_modules/prop-types/lib/ReactPropTypesSecret.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/prop-types/lib/ReactPropTypesSecret.js ***!
-  \*************************************************************/
+/***/ "../../../node_modules/prop-types/lib/ReactPropTypesSecret.js":
+/*!********************************************************************!*\
+  !*** ../../../node_modules/prop-types/lib/ReactPropTypesSecret.js ***!
+  \********************************************************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1834,10 +1832,10 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ "./node_modules/prop-types/lib/has.js":
-/*!********************************************!*\
-  !*** ./node_modules/prop-types/lib/has.js ***!
-  \********************************************/
+/***/ "../../../node_modules/prop-types/lib/has.js":
+/*!***************************************************!*\
+  !*** ../../../node_modules/prop-types/lib/has.js ***!
+  \***************************************************/
 /***/ ((module) => {
 
 module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
@@ -1845,10 +1843,10 @@ module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
 
 /***/ }),
 
-/***/ "./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js":
-/*!***********************************************************************************!*\
-  !*** ./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js ***!
-  \***********************************************************************************/
+/***/ "../../../node_modules/react-is/cjs/react-is.development.js":
+/*!******************************************************************!*\
+  !*** ../../../node_modules/react-is/cjs/react-is.development.js ***!
+  \******************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -2037,18 +2035,17 @@ exports.typeOf = typeOf;
 
 /***/ }),
 
-/***/ "./node_modules/prop-types/node_modules/react-is/index.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/prop-types/node_modules/react-is/index.js ***!
-  \****************************************************************/
+/***/ "../../../node_modules/react-is/index.js":
+/*!***********************************************!*\
+  !*** ../../../node_modules/react-is/index.js ***!
+  \***********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-if (false) // removed by dead control flow
-{} else {
-  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js");
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "../../../node_modules/react-is/cjs/react-is.development.js");
 }
 
 
@@ -2073,9 +2070,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/button/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @newfold/ui-component-library */ "../../../node_modules/@newfold/ui-component-library/elements/button/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -2159,30 +2156,30 @@ class ErrorBoundary extends _wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Comp
       // Check if this is an API error
       const isApiError = this.state.error?.name?.includes('APIError');
       const errorMessage = isApiError ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('We encountered a connection error. Please check your internet connection and try again.', 'wp-module-next-steps') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists.', 'wp-module-next-steps');
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "nfd-error-boundary",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "nfd-error-boundary-content",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
             children: isApiError ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Connection Error', 'wp-module-next-steps') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Something went wrong', 'wp-module-next-steps')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
             children: errorMessage
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
             className: "nfd-error-boundary-actions",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
               variant: "primary",
               onClick: this.handleRetry,
               children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Try Again', 'wp-module-next-steps')
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
               variant: "secondary",
               onClick: () => window.location.reload(),
               children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Refresh Page', 'wp-module-next-steps')
             })]
-          }), showDetails && this.state.error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("details", {
+          }), showDetails && this.state.error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("details", {
             className: "nfd-error-boundary-details",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("summary", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("summary", {
               children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Technical Details', 'wp-module-next-steps')
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("pre", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("pre", {
               className: "nfd-error-boundary-stack",
               children: [this.state.error.toString(), this.state.errorInfo.componentStack]
             })]
@@ -2234,15 +2231,15 @@ class NextStepsErrorBoundary extends _wordpress_element__WEBPACK_IMPORTED_MODULE
   };
   render() {
     if (this.state.hasError) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "nfd-nextsteps-error",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "nfd-nextsteps-error-content",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Next Steps Unavailable', 'wp-module-next-steps')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The Next Steps module encountered an error and cannot be displayed right now.', 'wp-module-next-steps')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
             variant: "primary",
             onClick: () => window.location.reload(),
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Refresh Page', 'wp-module-next-steps')
@@ -2286,15 +2283,15 @@ class APIErrorBoundary extends _wordpress_element__WEBPACK_IMPORTED_MODULE_0__.C
   }
   render() {
     if (this.state.hasError) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "nfd-api-error-boundary",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "nfd-api-error-content",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Connection Issue', 'wp-module-next-steps')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unable to save your changes right now. Please check your connection and try again.', 'wp-module-next-steps')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
             variant: "secondary",
             onClick: () => window.location.reload(),
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Refresh Page', 'wp-module-next-steps')
@@ -2314,9 +2311,9 @@ class APIErrorBoundary extends _wordpress_element__WEBPACK_IMPORTED_MODULE_0__.C
  */
 const withErrorBoundary = (WrappedComponent, options = {}) => {
   const WithErrorBoundaryComponent = props => {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ErrorBoundary, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ErrorBoundary, {
       ...options,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(WrappedComponent, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(WrappedComponent, {
         ...props
       })
     });
@@ -2332,8 +2329,8 @@ const withErrorBoundary = (WrappedComponent, options = {}) => {
  */
 const withAPIErrorBoundary = WrappedComponent => {
   const WithAPIErrorBoundaryComponent = props => {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(APIErrorBoundary, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(WrappedComponent, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(APIErrorBoundary, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(WrappedComponent, {
         ...props
       })
     });
@@ -2370,56 +2367,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   trophyIcon: () => (/* binding */ trophyIcon),
 /* harmony export */   yoastIcon: () => (/* binding */ yoastIcon)
 /* harmony export */ });
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/ArrowRightIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/ArrowUturnLeftIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/ChevronUpIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/EyeSlashIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/EyeIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/MinusCircleIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/PlusCircleIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/TrophyIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/XCircleIcon.js");
-/* harmony import */ var _heroicons_react_24_solid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/react/24/solid */ "./node_modules/@heroicons/react/24/solid/esm/CheckCircleIcon.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/ChevronUpIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/PlusCircleIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/MinusCircleIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/EyeSlashIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/EyeIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/ArrowRightIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/TrophyIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/XCircleIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @heroicons/react/24/outline */ "../../../node_modules/@heroicons/react/24/outline/esm/ArrowUturnLeftIcon.js");
+/* harmony import */ var _heroicons_react_24_solid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/react/24/solid */ "../../../node_modules/@heroicons/react/24/solid/esm/CheckCircleIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 
 
 
 // Using Heroicons components
 
-const chevronIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"], {
+const chevronIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_1__["default"], {
   className: "size-6"
 });
-const plusCircleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"], {
+const plusCircleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"], {
   className: "size-6"
 });
-const minusCircleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"], {
+const minusCircleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"], {
   className: "size-6"
 });
-const hideIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"], {
+const hideIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"], {
   className: "size-6"
 });
-const showIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"], {
+const showIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"], {
   className: "size-6"
 });
-const doneIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_solid__WEBPACK_IMPORTED_MODULE_9__["default"], {
+const doneIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_solid__WEBPACK_IMPORTED_MODULE_6__["default"], {
   className: "size-6"
 });
-const goIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_0__["default"], {
+const goIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"], {
   className: "size-6"
 });
-const trophyIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"], {
+const trophyIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_8__["default"], {
   className: "size-6"
 });
-const closeCircleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_8__["default"], {
+const closeCircleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__["default"], {
   className: "size-6"
 });
-const redoIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_1__["default"], {
+const redoIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_10__["default"], {
   className: "size-6"
 });
 
 // Circle dashed icon from https://sidekickicons.com/?iconset=Sidekickicons&code=JSX&icon=circle-dashed
-const circleDashedIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
+const circleDashedIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
   strokeWidth: 1.5,
@@ -2427,14 +2424,14 @@ const circleDashedIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MOD
   "aria-hidden": "true",
   fill: "none",
   className: "size-6",
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     strokeLinecap: "round",
     strokeLinejoin: "round",
     d: "M13.716 3.165a9 9 0 0 1 3.315 1.373m2.43 2.429a9 9 0 0 1 1.374 3.316m0 3.434a9 9 0 0 1-1.373 3.315m-2.43 2.43a9 9 0 0 1-3.316 1.373m-3.432 0a9 9 0 0 1-3.316-1.373m-2.43-2.43a9 9 0 0 1-1.373-3.315m0-3.434a9 9 0 0 1 1.373-3.315m2.43-2.43a9 9 0 0 1 3.316-1.373"
   })
 });
 // Circle icon from https://sidekickicons.com/?iconset=Sidekickicons&code=JSX&icon=circle
-const circleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
+const circleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
   strokeWidth: 1.5,
@@ -2442,7 +2439,7 @@ const circleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10
   "aria-hidden": "true",
   fill: "none",
   className: "size-6",
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     strokeLinecap: "round",
     strokeLinejoin: "round",
     d: "M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
@@ -2450,13 +2447,13 @@ const circleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10
 });
 
 // Custom icons (keeping as SVG)
-const todoIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
+const todoIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   className: "h-6 w-6 stroke-current",
   fill: "none",
   "aria-hidden": "true",
   viewBox: "0 0 24 24",
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("circle", {
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", {
     cx: "12",
     cy: "12",
     r: "10",
@@ -2464,68 +2461,68 @@ const todoIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__
     stroke: "currentColor"
   })
 });
-const spinner = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("svg", {
+const spinner = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
   xmlns: "http://www.w3.org/2000/svg/",
   fill: "none",
   viewBox: "0 0 24 24",
   class: "next-steps-spinner nfd-animate-spin nfd-w-6 nfd-h-6",
   role: "img",
   "aria-hidden": "true",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("circle", {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", {
     class: "nfd-opacity-25",
     cx: "12",
     cy: "12",
     r: "10",
     stroke: "currentColor",
     "stroke-width": "4"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     class: "nfd-opacity-75",
     fill: "currentColor",
     d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
   })]
 });
-const jetPackIcon = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("svg", {
+const jetPackIcon = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
   width: "24",
   height: "25",
   viewBox: "0 0 24 25",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("rect", {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
     y: "0.5",
     width: "24",
     height: "24",
     rx: "6",
     fill: "#00BE28"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     d: "M12.4395 11.3986V19.9829L16.7656 11.3986H12.4395Z",
     fill: "white"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     d: "M11.5597 14.3629V5.77875L7.2334 14.3629H11.5597Z",
     fill: "white"
   })]
 });
-const yoastIcon = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("svg", {
+const yoastIcon = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
   width: "22",
   height: "27",
   viewBox: "0 0 22 27",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("rect", {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
     y: "0.5",
     width: "22",
     height: "26",
     fill: "url(#pattern0_3755_1584)"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("defs", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("pattern", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("pattern", {
       id: "pattern0_3755_1584",
       patternContentUnits: "objectBoundingBox",
       width: "1",
       height: "1",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("use", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("use", {
         xlinkHref: "#image0_3755_1584",
         transform: "matrix(0.00121951 0 0 0.00103189 0 -0.0159475)"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("image", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("image", {
       id: "image0_3755_1584",
       width: "820",
       height: "1000",
@@ -2552,15 +2549,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/button/index.js");
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/components/page/index.js");
-/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../icons */ "./src/components/icons/index.js");
-/* harmony import */ var _track__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../track */ "./src/components/track/index.js");
-/* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/components/ErrorBoundary/index.js");
-/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/helpers */ "./src/utils/helpers.js");
-/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./styles.scss */ "./src/components/nextStepsListApp/styles.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @newfold/ui-component-library */ "../../../node_modules/@newfold/ui-component-library/components/page/index.js");
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @newfold/ui-component-library */ "../../../node_modules/@newfold/ui-component-library/elements/button/index.js");
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons */ "./src/components/icons/index.js");
+/* harmony import */ var _track__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../track */ "./src/components/track/index.js");
+/* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/components/ErrorBoundary/index.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/helpers */ "./src/utils/helpers.js");
+/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles.scss */ "./src/components/nextStepsListApp/styles.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
@@ -2577,7 +2574,7 @@ const NextStepsListApp = () => {
 
   // Calculate progress data on initial load, then updated per-section
   const planWithProgress = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
-    return plan ? (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_7__.calculatePlanProgress)(plan) : null;
+    return plan ? (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.calculatePlanProgress)(plan) : null;
   }, [plan]);
   const taskUpdateCallback = (trackId, sectionId, taskId, status, errorCallback, successCallback) => {
     // send update to endpoint
@@ -2588,15 +2585,15 @@ const NextStepsListApp = () => {
       task_id: taskId,
       status
     };
-    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_7__.taskUpdateWrapper)(data, error => {
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.taskUpdateWrapper)(data, error => {
       errorCallback(error);
     }, response => {
       // update plan state with the response data from API
       if (response && response.id && response.status) {
-        setPlan(prevPlan => (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_7__.updateTaskStatusInPlan)(prevPlan, trackId, sectionId, taskId, response.status));
+        setPlan(prevPlan => (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.updateTaskStatusInPlan)(prevPlan, trackId, sectionId, taskId, response.status));
       } else {
         // fallback to local status if response is invalid
-        setPlan(prevPlan => (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_7__.updateTaskStatusInPlan)(prevPlan, trackId, sectionId, taskId, status));
+        setPlan(prevPlan => (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.updateTaskStatusInPlan)(prevPlan, trackId, sectionId, taskId, status));
       }
       // call provided success callback
       successCallback(response);
@@ -2614,7 +2611,7 @@ const NextStepsListApp = () => {
       type: 'open',
       value: open
     };
-    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_7__.sectionUpdateWrapper)(data, error => {
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.sectionUpdateWrapper)(data, error => {
       // console.error( 'Error updating section open state:', error );
     }, response => {
       // Use the returned section data to update the plan state
@@ -2640,7 +2637,7 @@ const NextStepsListApp = () => {
       track_id: trackId,
       open: open
     };
-    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_7__.trackUpdateWrapper)(data, error => {
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.trackUpdateWrapper)(data, error => {
       // console.error( 'Error updating track open state:', error );
     }, response => {
       // Use the returned track data to update the plan state
@@ -2669,7 +2666,7 @@ const NextStepsListApp = () => {
       type: 'status',
       value: status
     };
-    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_7__.sectionUpdateWrapper)(data, error => {
+    (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_5__.sectionUpdateWrapper)(data, error => {
       // console.error( 'Error updating section status state:', error );
     }, response => {
       // Use the returned section data to update the plan state
@@ -2692,25 +2689,25 @@ const NextStepsListApp = () => {
 
   // Handle case where plan might not be loaded yet
   if (!planWithProgress || !planWithProgress.tracks) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "nfd-nextsteps",
       id: "nfd-nextsteps",
-      children: [_icons__WEBPACK_IMPORTED_MODULE_4__.spinner, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
+      children: [_icons__WEBPACK_IMPORTED_MODULE_2__.spinner, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
         children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Loading next steps...', 'wp-module-next-steps')
       })]
     });
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_8__["default"], {
     className: "nfd-next-steps-list-app-container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ErrorBoundary__WEBPACK_IMPORTED_MODULE_6__.NextStepsErrorBoundary, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ErrorBoundary__WEBPACK_IMPORTED_MODULE_4__.NextStepsErrorBoundary, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "nfd-nextsteps",
         "data-nfd-plan-id": planWithProgress.id,
         id: "nfd-nextsteps",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
           className: "nfd-pb-4",
           children: planWithProgress.description
-        }), planWithProgress.tracks.map((track, trackIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_track__WEBPACK_IMPORTED_MODULE_5__.Track, {
+        }), planWithProgress.tracks.map((track, trackIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_track__WEBPACK_IMPORTED_MODULE_3__.Track, {
           index: trackIndex,
           sectionOpenCallback: sectionOpenCallback,
           sectionUpdateCallback: sectionUpdateCallback,
@@ -2718,9 +2715,9 @@ const NextStepsListApp = () => {
           taskUpdateCallback: taskUpdateCallback,
           track: track,
           trackOpenCallback: trackOpenCallback
-        }, track.id)), showControls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        }, track.id)), showControls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "nfd-nextsteps-filters nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_9__["default"], {
             className: "nfd-nextsteps-filter-button",
             "data-nfd-click": "nextsteps_step_toggle",
             "data-nfd-event-category": "nextsteps_toggle",
@@ -2729,7 +2726,7 @@ const NextStepsListApp = () => {
               setShowDismissed(!showDismissed);
             },
             variant: "secondary",
-            children: [_icons__WEBPACK_IMPORTED_MODULE_4__.hideIcon, showDismissed ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hide skipped tasks', 'wp-module-next-steps') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('View skipped tasks', 'wp-module-next-steps')]
+            children: [_icons__WEBPACK_IMPORTED_MODULE_2__.hideIcon, showDismissed ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hide skipped tasks', 'wp-module-next-steps') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('View skipped tasks', 'wp-module-next-steps')]
           })
         })]
       })
@@ -2806,13 +2803,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/title/index.js");
-/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../icons */ "./src/components/icons/index.js");
-/* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../progressBar */ "./src/components/progressBar/index.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../task */ "./src/components/task/index.js");
-/* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/components/ErrorBoundary/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @newfold/ui-component-library */ "../../../node_modules/@newfold/ui-component-library/elements/title/index.js");
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons */ "./src/components/icons/index.js");
+/* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../progressBar */ "./src/components/progressBar/index.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../task */ "./src/components/task/index.js");
+/* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/components/ErrorBoundary/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -2880,42 +2877,42 @@ const Section = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.memo)(props =
       sectionOpenCallback(trackId, section.id, newOpenState);
     }
   };
-  return (totalCount > 0 || showDismissed === true) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("details", {
+  return (totalCount > 0 || showDismissed === true) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("details", {
     className: "nfd-section",
     id: `section-${section.id}`,
     "data-nfd-section-id": section.id,
     "data-nfd-section-index": index,
     onToggle: handleToggleOpen,
     open: section.open,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("summary", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("summary", {
       className: "nfd-section-header",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_7__["default"], {
         className: "nfd-section-title mb-0",
         as: "h3",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
           className: "nfd-section-header-icon nfd-header-icon",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             className: "nfd-section-header-icon-closed",
-            children: _icons__WEBPACK_IMPORTED_MODULE_3__.plusCircleIcon
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            children: _icons__WEBPACK_IMPORTED_MODULE_2__.plusCircleIcon
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             className: "nfd-section-header-icon-opened",
-            children: _icons__WEBPACK_IMPORTED_MODULE_3__.minusCircleIcon
+            children: _icons__WEBPACK_IMPORTED_MODULE_2__.minusCircleIcon
           })]
         }), section.label]
-      }), totalCount > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_progressBar__WEBPACK_IMPORTED_MODULE_4__.ProgressBar, {
+      }), totalCount > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_progressBar__WEBPACK_IMPORTED_MODULE_3__.ProgressBar, {
         completed: completedCount,
         total: totalCount
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "nfd-section-steps",
-      children: section.tasks.map((task, taskIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ErrorBoundary__WEBPACK_IMPORTED_MODULE_6__.ErrorBoundary, {
-        fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      children: section.tasks.map((task, taskIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ErrorBoundary__WEBPACK_IMPORTED_MODULE_5__.ErrorBoundary, {
+        fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "nfd-task-error",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Task temporarily unavailable', 'wp-module-next-steps')
           })
         }),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_task__WEBPACK_IMPORTED_MODULE_5__.Task, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_task__WEBPACK_IMPORTED_MODULE_4__.Task, {
           index: taskIndex,
           sectionId: section.id,
           showDismissed: showDismissed,
@@ -2924,7 +2921,7 @@ const Section = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.memo)(props =
           trackId: trackId
         }, task.id)
       }, `task-boundary-${task.id}`))
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "nfd-section-complete",
       "data-complete": isComplete,
       "data-show-celebration": showCompleteCelebration,
@@ -2932,14 +2929,14 @@ const Section = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.memo)(props =
         setShowCompleteCelebration(false);
         sectionOpenCallback(trackId, section.id, false);
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         className: "nfd-nextsteps-section-close-button",
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Close', 'wp-module-next-steps'),
-        children: _icons__WEBPACK_IMPORTED_MODULE_3__.closeCircleIcon
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        children: _icons__WEBPACK_IMPORTED_MODULE_2__.closeCircleIcon
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "nfd-section-celebrate",
-        children: _icons__WEBPACK_IMPORTED_MODULE_3__.trophyIcon
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+        children: _icons__WEBPACK_IMPORTED_MODULE_2__.trophyIcon
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
         className: "nfd-section-celebrate-text",
         children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('All complete!', 'wp-module-next-steps')
       })]
@@ -2960,20 +2957,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Task: () => (/* binding */ Task)
 /* harmony export */ });
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/title/index.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../icons */ "./src/components/icons/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @newfold/ui-component-library */ "../../../node_modules/@newfold/ui-component-library/elements/title/index.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons */ "./src/components/icons/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
 
-const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
+const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.memo)(props => {
   const {
     index,
     sectionId,
@@ -2991,9 +2988,9 @@ const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
     data_attributes = {}
   } = task;
   // task status uses state to track the current status
-  const [status, setStatus] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(task.status);
-  const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+  const [status, setStatus] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(task.status);
+  const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     setStatus(task.status);
   }, [task.status]);
 
@@ -3134,9 +3131,9 @@ const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
    * @returns
    */
   const renderTaskContent = (href = false, target = '', dataAttributes = {}) => {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between",
-      children: [href && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+      children: [href && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
         className: "nfd-nextsteps-link nfd-no-underline",
         "data-nfd-click": "nextsteps_task_link",
         "data-nfd-event-category": "nextsteps_task",
@@ -3147,13 +3144,13 @@ const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
         onClick: e => {
           handleLinkClick(e);
         },
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
           as: "span",
           size: "5",
           className: "nfd-nextsteps-task-title nfd-font-normal nfd-h-auto",
           children: title
         })
-      }), !href && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      }), !href && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
         as: "span",
         size: "5",
         className: "nfd-nextsteps-task-title nfd-font-normal nfd-h-auto",
@@ -3168,35 +3165,35 @@ const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
    * @returns {JSX.Element}
    */
   const renderNewStep = () => {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "nfd-nextsteps-task-container",
       id: `task-${id}`,
       ...formatDataAttributes(),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "nfd-nextsteps-task nfd-nextsteps-task-new nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             className: "nfd-nextsteps-button nfd-nextsteps-button-todo",
             "data-nfd-click": "nextsteps_task_check",
             "data-nfd-event-category": "nextsteps_task",
             "data-nfd-event-key": id,
             onClick: e => updateStatus(e, 'done'),
-            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mark Complete', 'wp-module-next-steps'),
-            children: _icons__WEBPACK_IMPORTED_MODULE_3__.circleIcon
+            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Mark Complete', 'wp-module-next-steps'),
+            children: _icons__WEBPACK_IMPORTED_MODULE_2__.circleIcon
           })
-        }), renderTaskContent(getHref(), getTarget(), formatLinkDataAttributes()), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        }), renderTaskContent(getHref(), getTarget(), formatLinkDataAttributes()), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto",
-          children: isLoading ? _icons__WEBPACK_IMPORTED_MODULE_3__.spinner : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: isLoading ? _icons__WEBPACK_IMPORTED_MODULE_2__.spinner : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               className: "nfd-nextsteps-button nfd-nextsteps-button-dismiss",
               "data-nfd-click": "nextsteps_task_dismiss",
               "data-nfd-event-category": "nextsteps_task",
               "data-nfd-event-key": id,
               onClick: e => updateStatus(e, 'dismissed'),
-              title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Skip', 'wp-module-next-steps'),
-              children: _icons__WEBPACK_IMPORTED_MODULE_3__.hideIcon
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+              title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Skip', 'wp-module-next-steps'),
+              children: _icons__WEBPACK_IMPORTED_MODULE_2__.hideIcon
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
               className: "nfd-nextsteps-button nfd-nextsteps-button-link nfd-nextsteps-link",
               "data-nfd-click": "nextsteps_task_link",
               "data-nfd-event-category": "nextsteps_task",
@@ -3208,7 +3205,7 @@ const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
               },
               target: getTarget(),
               title: title,
-              children: _icons__WEBPACK_IMPORTED_MODULE_3__.goIcon
+              children: _icons__WEBPACK_IMPORTED_MODULE_2__.goIcon
             })]
           })
         })]
@@ -3222,26 +3219,26 @@ const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
    * @returns {JSX.Element}
    */
   const renderDoneStep = () => {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "nfd-nextsteps-task-container",
       id: `task-${id}`,
       ...formatDataAttributes(),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "nfd-nextsteps-task nfd-nextsteps-task-done nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             className: "nfd-nextsteps-button nfd-nextsteps-button-redo",
             "data-nfd-click": "nextsteps_task_redo",
             "data-nfd-event-category": "nextsteps_task",
             "data-nfd-event-key": id,
             onClick: e => updateStatus(e, 'new'),
-            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Restart', 'wp-module-next-steps'),
-            children: _icons__WEBPACK_IMPORTED_MODULE_3__.doneIcon
+            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Restart', 'wp-module-next-steps'),
+            children: _icons__WEBPACK_IMPORTED_MODULE_2__.doneIcon
           })
-        }), renderTaskContent(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        }), renderTaskContent(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto",
-          children: isLoading && _icons__WEBPACK_IMPORTED_MODULE_3__.spinner
+          children: isLoading && _icons__WEBPACK_IMPORTED_MODULE_2__.spinner
         })]
       })
     });
@@ -3253,39 +3250,39 @@ const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
    * @returns {JSX.Element}
    */
   const renderDismissedStep = () => {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "nfd-nextsteps-task-container",
       id: `task-${id}`,
       ...formatDataAttributes(),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "nfd-nextsteps-task nfd-nextsteps-task-dismissed nfd-flex nfd-flex-row nfd-justify-start nfd-items-center nfd-gap-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-2 nfd-justify-end",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             className: "nfd-nextsteps-button nfd-nextsteps-button-redo",
             "data-nfd-click": "nextsteps_task_redo",
             "data-nfd-event-category": "nextsteps_task",
             "data-nfd-event-key": id,
             onClick: e => updateStatus(e, 'new'),
-            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unskip', 'wp-module-next-steps'),
-            children: _icons__WEBPACK_IMPORTED_MODULE_3__.circleDashedIcon
+            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Unskip', 'wp-module-next-steps'),
+            children: _icons__WEBPACK_IMPORTED_MODULE_2__.circleDashedIcon
           })
-        }), renderTaskContent(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        }), renderTaskContent(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "nfd-nextsteps-buttons nfd-flex nfd-flex-row nfd-gap-4 nfd-justify-end nfd-ml-auto",
-          children: isLoading ? _icons__WEBPACK_IMPORTED_MODULE_3__.spinner : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: isLoading ? _icons__WEBPACK_IMPORTED_MODULE_2__.spinner : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             className: "nfd-nextsteps-button nfd-nextsteps-button-dismiss",
             "data-nfd-click": "nextsteps_task_dismiss",
             "data-nfd-event-category": "nextsteps_task",
             "data-nfd-event-key": id,
             onClick: e => updateStatus(e, 'new'),
-            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Unskip', 'wp-module-next-steps'),
-            children: _icons__WEBPACK_IMPORTED_MODULE_3__.showIcon
+            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Unskip', 'wp-module-next-steps'),
+            children: _icons__WEBPACK_IMPORTED_MODULE_2__.showIcon
           })
         })]
       })
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [status === 'new' && renderNewStep(), status === 'done' && renderDoneStep(), status === 'dismissed' && showDismissed && renderDismissedStep()]
   });
 });
@@ -3305,12 +3302,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/elements/title/index.js");
-/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons */ "./src/components/icons/index.js");
-/* harmony import */ var _section__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../section */ "./src/components/section/index.js");
-/* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/components/ErrorBoundary/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @newfold/ui-component-library */ "../../../node_modules/@newfold/ui-component-library/elements/title/index.js");
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../icons */ "./src/components/icons/index.js");
+/* harmony import */ var _section__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../section */ "./src/components/section/index.js");
+/* harmony import */ var _ErrorBoundary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ErrorBoundary */ "./src/components/ErrorBoundary/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -3336,33 +3333,33 @@ const Track = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.memo)(props => 
       trackOpenCallback(track.id, newOpenState);
     }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("details", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("details", {
     className: "nfd-track",
     id: `track-${track.id}`,
     onToggle: handleToggleOpen,
     "data-nfd-track-id": track.id,
     "data-nfd-track-index": index,
     open: track.open,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("summary", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("summary", {
       className: "nfd-track-header",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_5__["default"], {
         className: "nfd-track-title mb-0",
         as: "h2",
         children: track.label
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
         className: "nfd-track-header-icon nfd-header-icon",
-        children: _icons__WEBPACK_IMPORTED_MODULE_2__.chevronIcon
+        children: _icons__WEBPACK_IMPORTED_MODULE_1__.chevronIcon
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "nfd-track-sections",
-      children: track.sections.map((section, sectionIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ErrorBoundary__WEBPACK_IMPORTED_MODULE_4__.ErrorBoundary, {
-        fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: track.sections.map((section, sectionIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ErrorBoundary__WEBPACK_IMPORTED_MODULE_3__.ErrorBoundary, {
+        fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "nfd-section-error",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
             children: "Section temporarily unavailable"
           })
         }),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_section__WEBPACK_IMPORTED_MODULE_3__.Section, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_section__WEBPACK_IMPORTED_MODULE_2__.Section, {
           index: sectionIndex,
           section: section,
           sectionOpenCallback: sectionOpenCallback,
@@ -3866,10 +3863,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @newfold/ui-component-library */ "./node_modules/@newfold/ui-component-library/components/root/index.js");
-/* harmony import */ var _components_nextStepsListApp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/nextStepsListApp */ "./src/components/nextStepsListApp/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @newfold/ui-component-library */ "../../../node_modules/@newfold/ui-component-library/components/root/index.js");
+/* harmony import */ var _components_nextStepsListApp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/nextStepsListApp */ "./src/components/nextStepsListApp/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -3877,15 +3874,15 @@ __webpack_require__.r(__webpack_exports__);
 
 const WP_NEXTSTEPS_ROOT_ELEMENT = 'nfd-next-steps-app';
 const App = () => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_nextStepsListApp__WEBPACK_IMPORTED_MODULE_3__.NextStepsListApp, {})
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_newfold_ui_component_library__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_nextStepsListApp__WEBPACK_IMPORTED_MODULE_2__.NextStepsListApp, {})
   });
 };
 const NextStepsAppRender = () => {
   const DOM_ELEMENT = document.getElementById(WP_NEXTSTEPS_ROOT_ELEMENT);
   if (null !== DOM_ELEMENT) {
     if ('undefined' !== typeof _wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot) {
-      (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot)(DOM_ELEMENT).render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(App, {}));
+      (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot)(DOM_ELEMENT).render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(App, {}));
     }
   }
 };
