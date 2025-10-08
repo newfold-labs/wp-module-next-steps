@@ -194,35 +194,55 @@ export const SectionCard = ( {
 	}
 
 	/**
-	 * Format link attributes for React components
-	 * Ensures all keys have 'data-' prefix and handles boolean values
+	 * Formats link attributes for React components.
+	 * 
+	 * This method handles two main responsibilities:
+	 * 1. For single-task sections: adds href/target from the task
+	 * 2. Formats all data attributes with proper 'data-' prefix and boolean handling
 	 *
-	 * @returns {object}
+	 * @returns {object} Combined attributes object with href/target and formatted data attributes
 	 */
 	const formatLinkDataAttributes = () => {
-		const attributes = {};
-		const formatted = {};
-
-		// if this section has only one task, add tasks data attributes
-		if ( 1 === tasks.length && tasks[ 0 ]?.data_attributes ) {
-			attributes[ 'href' ] = getHref( tasks[ 0 ]?.href ? tasks[ 0 ].href : '' );
-			attributes[ 'target' ] = getTarget( tasks[ 0 ]?.href ? tasks[ 0 ].href : '' );
-			// add tasks data attributes to any existing attributes
-			dataAttributes = { ...dataAttributes, ...(tasks[ 0 ]?.data_attributes ? tasks[ 0 ].data_attributes : {}) };
+		// Step 0: only return attributes if status is new
+		if ( 'new' !== status ) {
+			return {};
 		}
-		// format attributes
-		Object.entries( dataAttributes ).forEach( ( [ key, value ] ) => {
-			// Ensure key has 'data-' prefix
+
+		// Step 1: Handle single-task sections - add href and target attributes
+		const linkAttributes = {};
+		let combinedDataAttributes = dataAttributes;
+		
+		if ( tasks.length === 1 ) {
+			const task = tasks[ 0 ];
+			linkAttributes.href = getHref( task?.href || '' );
+			linkAttributes.target = getTarget( task?.href || '' );
+			
+			// Merge task data attributes (task attributes override section attributes)
+			if ( task?.data_attributes ) {
+				// combinedDataAttributes contains the section data attributes
+                // task.data_attributes is the task data attributes
+                // last item in spread overrides earlier items in spread
+                // so task attributes override section attributes if there are any matching keys
+				combinedDataAttributes = { ...combinedDataAttributes, ...task.data_attributes };
+			}
+		}
+
+		// Step 2: Format all data attributes with proper prefix and type handling
+		const formattedDataAttributes = {};
+		Object.entries( combinedDataAttributes ).forEach( ( [ key, value ] ) => {
+			// Ensure all keys have 'data-' prefix for HTML compliance
 			const dataKey = key.startsWith( 'data-' ) ? key : `data-${ key }`;
 
-			// Handle boolean values (convert to string or use key as flag)
+			// Convert boolean values to strings (React/HTML requirement)
 			if ( typeof value === 'boolean' ) {
-				formatted[ dataKey ] = value ? 'true' : 'false';
+				formattedDataAttributes[ dataKey ] = value.toString();
 			} else {
-				formatted[ dataKey ] = value;
+				formattedDataAttributes[ dataKey ] = value;
 			}
 		} );
-		return { ...attributes, ...formatted };
+
+		// Step 3: Combine link attributes with formatted data attributes
+		return { ...linkAttributes, ...formattedDataAttributes };
 	};
 
 	/**
