@@ -77,14 +77,6 @@ msgstr "Inviare il sito a Google Search Console"
 msgid "Grow"
 msgstr "Crescere"
 
-#: includes/Data/Plans/BlogPlan.php:425
-msgid "Advanced Social & Influencer Marketing"
-msgstr "Social & Influencer Marketing Avanzato"
-
-#: includes/Data/Plans/BlogPlan.php:514
-msgid "Performance & Security"
-msgstr "Prestazioni e sicurezza"
-
 #: includes/Data/Plans/BlogPlan.php:47
 msgid "Blog Setup"
 msgstr "Configurazione del blog"
@@ -92,18 +84,6 @@ msgstr "Configurazione del blog"
 #: includes/Data/Plans/BlogPlan.php:48
 msgid "Get your blog up and running with these essential steps:"
 msgstr "Metti in funzione il tuo blog con questi passaggi essenziali:"
-
-#: includes/Data/Plans/BlogPlan.php:57
-msgid "Basic Blog Setup"
-msgstr "Configurazione di base del blog"
-
-#: includes/Data/Plans/BlogPlan.php:77
-msgid "Customize Your Blog"
-msgstr "Personalizza il tuo blog"
-
-#: includes/Data/Plans/BlogPlan.php:128
-msgid "Create Content"
-msgstr "Crea contenuti"
 
 #: includes/Data/Plans/BlogPlan.php:132
 msgid "Add Your First Blog Post"
@@ -116,10 +96,6 @@ msgstr "Crea una pagina \"Informazioni\""
 #: includes/Data/Plans/BlogPlan.php:154
 msgid "Set a Featured Image for One Post"
 msgstr "Imposta un'immagine in primo piano per un post"
-
-#: includes/Data/Plans/BlogPlan.php:167
-msgid "Set Up Navigation"
-msgstr "Configura la navigazione"
 
 #: includes/Data/Plans/BlogPlan.php:171
 #: includes/Data/Plans/CorporatePlan.php:162
@@ -134,10 +110,6 @@ msgstr "Creazione di un menu principale"
 #: includes/Data/Plans/BlogPlan.php:193
 msgid "Create a Footer Menu"
 msgstr "Creare un menu a piè di pagina"
-
-#: includes/Data/Plans/BlogPlan.php:206
-msgid "Set Up Essential Pages"
-msgstr "Configurare le pagine essenziali"
 
 #: includes/Data/Plans/BlogPlan.php:210
 #: includes/Data/Plans/CorporatePlan.php:201
@@ -174,10 +146,6 @@ msgstr "Ottimizza la SEO on-page"
 msgid "Generate & Submit XML Sitemap"
 msgstr "Genera e invia una Sitemap XML"
 
-#: includes/Data/Plans/BlogPlan.php:375
-msgid "Enhance Reader Experience"
-msgstr "Migliora l'esperienza del lettore"
-
 #: includes/Data/Plans/BlogPlan.php:390
 msgid "Customize Author/Profile Boxes"
 msgstr "Personalizza le caselle Autore/Profilo"
@@ -187,7 +155,6 @@ msgid "Display Testimonials or Highlighted Comments"
 msgstr "Mostra testimonianze o commenti in evidenza"
 
 #: includes/Data/Plans/BlogPlan.php:412
-#: includes/Data/Plans/CorporatePlan.php:257
 msgid "Create a Favicon"
 msgstr "Crea una Favicon"
 
@@ -202,10 +169,6 @@ msgstr "Redigere un elenco di influencer/guest post outreach"
 #: includes/Data/Plans/BlogPlan.php:462
 msgid "Track Campaigns with UTM Links"
 msgstr "Traccia le campagne con i link UTM"
-
-#: includes/Data/Plans/BlogPlan.php:475
-msgid "Content & Traffic Strategy"
-msgstr "Strategia di contenuti e traffico"
 
 #: includes/Data/Plans/BlogPlan.php:479
 msgid "Plan a Content Series or Editorial Calendar"
@@ -223,21 +186,9 @@ msgstr "Installa Yoast Premium per schemi avanzati"
 msgid "Create a Staging Site"
 msgstr "Creazione di un sito di gestione temporanea"
 
-#: includes/Data/Plans/CorporatePlan.php:66
-msgid "Corporate Setup"
-msgstr "Configurazione aziendale"
-
 #: includes/Data/Plans/CorporatePlan.php:67
 msgid "Set up your corporate website with these essential steps:"
 msgstr "Configura il tuo sito web aziendale con questi passaggi essenziali:"
-
-#: includes/Data/Plans/CorporatePlan.php:76
-msgid "Basic Site Setup"
-msgstr "Configurazione di base del sito"
-
-#: includes/Data/Plans/CorporatePlan.php:96
-msgid "Customize Your Website"
-msgstr "Personalizza il tuo sito web"
 
 #: includes/Data/Plans/CorporatePlan.php:101
 msgid "Upload Company Logo"
@@ -251,21 +202,9 @@ msgstr "Scegli i colori e i caratteri del marchio"
 msgid "Customize Homepage Layout"
 msgstr "Personalizza il layout della home page"
 
-#: includes/Data/Plans/CorporatePlan.php:158
-msgid "Configure Navigation"
-msgstr "Configura navigazione"
-
 #: includes/Data/Plans/CorporatePlan.php:184
 msgid "Add a Footer Menu"
 msgstr "Aggiungere un menu a piè di pagina"
-
-#: includes/Data/Plans/CorporatePlan.php:197
-msgid "Add Legal & Trust Content"
-msgstr "Aggiungi contenuti legali e fiduciari"
-
-#: includes/Data/Plans/CorporatePlan.php:242
-msgid "Establish Your Brand Online"
-msgstr "Stabilisci il tuo marchio online"
 
 #: includes/Data/Plans/CorporatePlan.php:246
 msgid "Set Up a Custom Domain"
@@ -279,17 +218,9 @@ msgstr "Collega il tuo profilo dell'attività su Google"
 msgid "Create a Branded Email Address"
 msgstr "Crea un indirizzo e-mail con marchio"
 
-#: includes/Data/Plans/CorporatePlan.php:292
-msgid "Launch Essential Marketing Tools"
-msgstr "Lancia gli strumenti di marketing essenziali"
-
 #: includes/Data/Plans/CorporatePlan.php:307
 msgid "Connect Google Search Console"
 msgstr "Collega Google Search Console"
-
-#: includes/Data/Plans/CorporatePlan.php:342
-msgid "Set Up Contact & Engagement"
-msgstr "Imposta contatto e coinvolgimento"
 
 #: includes/Data/Plans/CorporatePlan.php:357
 msgid "Embed a Map or Location"
@@ -299,17 +230,9 @@ msgstr "Incorporare una mappa o una posizione"
 msgid "Link to Social Media Profiles"
 msgstr "Link ai profili dei social media"
 
-#: includes/Data/Plans/CorporatePlan.php:387
-msgid "Strengthen Online Presence"
-msgstr "Rafforza la presenza online"
-
 #: includes/Data/Plans/CorporatePlan.php:402
 msgid "Add Certifications, Memberships, or Awards"
 msgstr "Aggiungi certificazioni, iscrizioni o premi"
-
-#: includes/Data/Plans/CorporatePlan.php:415
-msgid "Build Content for SEO & Trust"
-msgstr "Crea contenuti per SEO e fiducia"
 
 #: includes/Data/Plans/CorporatePlan.php:419
 msgid "Publish Your First Company Blog Post"
@@ -327,10 +250,6 @@ msgstr "Ottimizza le tue pagine chiave per le parole chiave"
 msgid "Generate and Submit XML Sitemap"
 msgstr "Genera e invia una Sitemap XML"
 
-#: includes/Data/Plans/CorporatePlan.php:465
-msgid "Marketing & Lead Generation"
-msgstr "Marketing e generazione di lead"
-
 #: includes/Data/Plans/CorporatePlan.php:469
 msgid "Set Up an Email Capture Form"
 msgstr "Impostazione di un modulo di acquisizione e-mail"
@@ -343,10 +262,6 @@ msgstr "Connettiti a CRM o strumento di posta elettronica"
 msgid "Add a Call-to-Action Section to Homepage"
 msgstr "Aggiungi una sezione di invito all'azione alla home page"
 
-#: includes/Data/Plans/CorporatePlan.php:504
-msgid "Site Performance & Security"
-msgstr "Prestazioni e sicurezza del sito"
-
 #: includes/Data/Plans/CorporatePlan.php:530
 msgid "Install a Security Plugin"
 msgstr "Installa un plug-in di sicurezza"
@@ -354,10 +269,6 @@ msgstr "Installa un plug-in di sicurezza"
 #: includes/Data/Plans/CorporatePlan.php:541
 msgid "Set Up a Staging Site"
 msgstr "Impostazione di un sito di gestione temporanea"
-
-#: includes/Data/Plans/CorporatePlan.php:554
-msgid "Monitor & Improve"
-msgstr "Monitora e migliora"
 
 #: includes/Data/Plans/CorporatePlan.php:569
 msgid "Run a Speed Test"
@@ -445,14 +356,6 @@ msgstr "Caricamento dei prossimi passi..."
 #: includes/Data/Plans/BlogPlan.php:256
 msgid "Convert visitors to email subscribers."
 msgstr "Converti i visitatori in abbonati e-mail."
-
-#: includes/Data/Plans/BlogPlan.php:291
-msgid "Social Presence"
-msgstr "Presenza sui social"
-
-#: includes/Data/Plans/BlogPlan.php:330
-msgid "SEO & Visibility"
-msgstr "SEO e visibilità"
 
 #: includes/Data/Plans/BlogPlan.php:451
 msgid "Run pillar article promotion on social ad"
@@ -565,10 +468,6 @@ msgstr "Velocizza il sito con Jetpack Boost"
 msgid "Enable Automatic Backups & Update Alerts"
 msgstr "Abilita backup automatici e avvisi di aggiornamento"
 
-#: includes/Data/Plans/BlogPlan.php:553
-msgid "Blog Analytics"
-msgstr "Analisi dei blog"
-
 #: includes/Data/Plans/BlogPlan.php:557
 msgid "Monitor Traffic & Engagement"
 msgstr "Monitora il traffico e il coinvolgimento"
@@ -588,10 +487,6 @@ msgstr "Installa Jetpack Boost o il plug-in di memorizzazione nella cache"
 #: includes/Data/Plans/CorporatePlan.php:558
 msgid "Review Traffic & Engagement"
 msgstr "Esamina il traffico e il coinvolgimento"
-
-#: includes/Data/Plans/StorePlan.php:41
-msgid "Step 1: Build your Store"
-msgstr "Passaggio 1: crea il tuo negozio"
 
 #: includes/Data/Plans/StorePlan.php:42
 msgid "Congrats — you’ve built your store! Now it’s time to make it yours. Customize the header, footer, and homepage to give your site a personal touch."
@@ -623,22 +518,13 @@ msgstr "Inizia a dare vita al tuo negozio aggiungendo un prodotto in pochi sempl
 msgid "Add product"
 msgstr "Aggiungi prodotto"
 
-#: includes/Data/Plans/StorePlan.php:141
-msgid "Step 3: Set Up Payments"
-msgstr "Passaggio 3: Imposta i pagamenti"
-
 #: includes/Data/Plans/StorePlan.php:142
 msgid "Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks."
 msgstr "Imposta i pagamenti per iniziare a vendere: scegli i tuoi metodi di pagamento preferiti e collegali in pochi clic."
 
 #: includes/Data/Plans/StorePlan.php:143
-#: includes/Data/Plans/StorePlan.php:150
 msgid "Set up Payments"
 msgstr "Impostare i pagamenti"
-
-#: includes/Data/Plans/StorePlan.php:164
-msgid "Setup the Shopping Experience"
-msgstr "Configura l'esperienza di acquisto"
 
 #: includes/Data/Plans/StorePlan.php:165
 msgid "Personalize your cart and checkout to match your brand and give customers a seamless shopping experience"
@@ -648,6 +534,7 @@ msgstr "Personalizza il carrello e il checkout in modo che corrispondano al tuo 
 msgid "Start Now"
 msgstr "Parti ora"
 
+#: includes/Data/Plans/StorePlan.php:164
 #: includes/Data/Plans/StorePlan.php:168
 msgid "Setup the shopping experience"
 msgstr "Configura l'esperienza di acquisto"
@@ -792,3 +679,119 @@ msgstr "Sezione aggiornata non trovata."
 #: includes/Data/Plans/StorePlan.php:36
 msgid "Next Steps for your store"
 msgstr "Prossimi passi per il tuo negozio"
+
+#: includes/Data/Plans/BlogPlan.php:57
+msgid "Basic blog setup"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:77
+msgid "Customize your blog"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:128
+msgid "Create content"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:167
+msgid "Set up navigation"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:206
+msgid "Set up essential pages"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:291
+msgid "Social presence"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:330
+msgid "SEO & visibility"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:375
+msgid "Enhance reader experience"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:425
+msgid "Advanced social & influencer marketing"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:475
+msgid "Content & traffic strategy"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:514
+msgid "Performance & security"
+msgstr ""
+
+#: includes/Data/Plans/BlogPlan.php:553
+msgid "Blog analytics"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:66
+msgid "Corporate setup"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:76
+msgid "Basic site setup"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:96
+msgid "Customize your website"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:158
+msgid "Configure navigation"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:197
+msgid "Add legal & trust content"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:242
+msgid "Establish your brand online"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:257
+msgid "Create a favicon"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:292
+msgid "Launch essential marketing tools"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:342
+msgid "Set up contact & engagement"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:387
+msgid "Strengthen online presence"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:415
+msgid "Build content for SEO & trust"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:465
+msgid "Marketing & lead generation"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:504
+msgid "Site performance & security"
+msgstr ""
+
+#: includes/Data/Plans/CorporatePlan.php:554
+msgid "Monitor & improve"
+msgstr ""
+
+#: includes/Data/Plans/StorePlan.php:41
+msgid "Step 1: Build your store"
+msgstr ""
+
+#: includes/Data/Plans/StorePlan.php:141
+msgid "Step 3: Set up payments"
+msgstr ""
+
+#: includes/Data/Plans/StorePlan.php:150
+msgid "Set up payments"
+msgstr ""
