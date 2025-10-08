@@ -104,14 +104,16 @@ class RedirectHelper {
 	 * Registers a hidden submenu page for checking partner plugin status and redirecting.
 	 */
 	public static function add_redirect_page() {
-		\add_submenu_page(
+		$hook = \add_submenu_page(
 			null, // No parent, so it won't appear in any menu
 			'Checking Partner Plugin Before Redirect',
 			'',
 			'manage_options',
 			'redirect-check',
-			array( __CLASS__, 'check_redirect' ),
+			'__return_null',
 		);
+
+		add_action("load-$hook", array( __CLASS__, 'check_redirect' ));
 	}
 
 	/**
