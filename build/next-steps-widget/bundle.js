@@ -3137,7 +3137,7 @@ const Task = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.memo)(props => {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between",
       children: [href && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-        className: "nfd-nextsteps-link",
+        className: "nfd-nextsteps-link nfd-no-underline",
         "data-nfd-click": "nextsteps_task_link",
         "data-nfd-event-category": "nextsteps_task",
         "data-nfd-event-key": id,

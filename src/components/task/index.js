@@ -182,7 +182,7 @@ export const Task = memo(( props ) => {
 			<div className="nfd-nextsteps-task-content nfd-flex nfd-flex-col nfd-justify-between">
 				{ href && (
 					<a
-						className="nfd-nextsteps-link"
+						className="nfd-nextsteps-link nfd-no-underline"
 						data-nfd-click="nextsteps_task_link"
 						data-nfd-event-category="nextsteps_task"
 						data-nfd-event-key={ id }
