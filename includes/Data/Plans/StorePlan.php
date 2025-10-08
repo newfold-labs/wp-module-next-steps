@@ -38,7 +38,7 @@ class StorePlan {
 						'sections' => array(
 							array( // section
 								'id'          => 'customize_your_store',
-								'label'       => __( 'Step 1: Build your Store', 'wp-module-next-steps' ),
+								'label'       => __( 'Step 1: Build your store', 'wp-module-next-steps' ),
 								'description' => __( 'Congrats — you’ve built your store! Now it’s time to make it yours. Customize the header, footer, and homepage to give your site a personal touch.', 'wp-module-next-steps' ),
 								'cta'         => __( 'Customize Store', 'wp-module-next-steps' ),
 								'status'      => 'new',
@@ -138,7 +138,7 @@ class StorePlan {
 							),
 							array( // section
 								'id'          => 'setup_payments_shipping',
-								'label'       => __( 'Step 3: Set Up Payments', 'wp-module-next-steps' ),
+								'label'       => __( 'Step 3: Set up payments', 'wp-module-next-steps' ),
 								'description' => __( 'Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks.', 'wp-module-next-steps' ),
 								'cta'         => __( 'Set up Payments', 'wp-module-next-steps' ),
 								'icon'        => 'credit-card',
@@ -147,7 +147,7 @@ class StorePlan {
 								'tasks'       => array(
 									array( // task
 										'id'              => 'store_setup_payments',
-										'title'           => __( 'Set up Payments', 'wp-module-next-steps' ),
+										'title'           => __( 'Set up payments', 'wp-module-next-steps' ),
 										'description'     => '',
 										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=plugin&p=woocommerce&r=' . rawurlencode( 'admin.php?page=wc-settings&tab=checkout' ),
 										'status'          => 'new',
@@ -161,7 +161,7 @@ class StorePlan {
 							),
 							array( // section
 								'id'          => 'store_customize',
-								'label'       => __( 'Setup the Shopping Experience', 'wp-module-next-steps' ),
+								'label'       => __( 'Setup the shopping experience', 'wp-module-next-steps' ),
 								'description' => __( 'Personalize your cart and checkout to match your brand and give customers a seamless shopping experience', 'wp-module-next-steps' ),
 								'cta'         => __( 'Start Now', 'wp-module-next-steps' ),
 								'icon'        => 'shopping-cart',
@@ -172,7 +172,7 @@ class StorePlan {
 										'id'              => 'store_customize_shop_page',
 										'title'           => __( 'Customize the shop page', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=plugin&p=woocommerce&r=' . rawurlencode( 'admin.php?page=wc-settings&tab=products' ),
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=template&template=archive-product',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -184,7 +184,7 @@ class StorePlan {
 										'id'              => 'store_customize_cart_page',
 										'title'           => __( 'Customize the cart page', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=plugin&p=woocommerce',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=template&template=page-cart',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -196,7 +196,7 @@ class StorePlan {
 										'id'              => 'store_customize_checkout_page',
 										'title'           => __( 'Customize the checkout flow', 'wp-module-next-steps' ),
 										'description'     => '',
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=plugin&p=woocommerce',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=redirect-check&type=template&template=page-checkout',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',

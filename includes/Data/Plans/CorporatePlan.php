@@ -63,7 +63,7 @@ class CorporatePlan {
 			array(
 				'id'          => 'corporate_setup',
 				'type'        => 'corporate',
-				'label'       => __( 'Corporate Setup', 'wp-module-next-steps' ),
+				'label'       => __( 'Corporate setup', 'wp-module-next-steps' ),
 				'description' => __( 'Set up your corporate website with these essential steps:', 'wp-module-next-steps' ),
 				'tracks'      => array(
 					array(
@@ -73,7 +73,7 @@ class CorporatePlan {
 						'sections' => array(
 							array(
 								'id'    => 'basic_site_setup',
-								'label' => __( 'Basic Site Setup', 'wp-module-next-steps' ),
+								'label' => __( 'Basic site setup', 'wp-module-next-steps' ),
 								'open'  => true,
 								'tasks' => array(
 									array(
@@ -93,7 +93,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'customize_website',
-								'label' => __( 'Customize Your Website', 'wp-module-next-steps' ),
+								'label' => __( 'Customize your website', 'wp-module-next-steps' ),
 								'open'  => true,
 								'tasks' => array(
 									array(
@@ -155,7 +155,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'configure_navigation',
-								'label' => __( 'Configure Navigation', 'wp-module-next-steps' ),
+								'label' => __( 'Configure navigation', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_add_navigation_pages',
@@ -194,7 +194,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'add_legal_trust_content',
-								'label' => __( 'Add Legal & Trust Content', 'wp-module-next-steps' ),
+								'label' => __( 'Add legal & trust content', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_privacy_policy',
@@ -239,7 +239,7 @@ class CorporatePlan {
 						'sections' => array(
 							array(
 								'id'    => 'establish_brand_online',
-								'label' => __( 'Establish Your Brand Online', 'wp-module-next-steps' ),
+								'label' => __( 'Establish your brand online', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_setup_custom_domain',
@@ -254,7 +254,7 @@ class CorporatePlan {
 									),
 									array(
 										'id'              => 'corporate_create_favicon',
-										'title'           => __( 'Create a Favicon', 'wp-module-next-steps' ),
+										'title'           => __( 'Create a favicon', 'wp-module-next-steps' ),
 										'href'            => '{siteUrl}/wp-admin/customize.php?autofocus[section]=title_tagline',
 										'status'          => 'new',
 										'priority'        => 2,
@@ -289,7 +289,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'launch_marketing_tools',
-								'label' => __( 'Launch Essential Marketing Tools', 'wp-module-next-steps' ),
+								'label' => __( 'Launch essential marketing tools', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_setup_jetpack_stats',
@@ -339,7 +339,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'setup_contact_engagement',
-								'label' => __( 'Set Up Contact & Engagement', 'wp-module-next-steps' ),
+								'label' => __( 'Set up contact & engagement', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_add_contact_form',
@@ -384,7 +384,7 @@ class CorporatePlan {
 						'sections' => array(
 							array(
 								'id'    => 'strengthen_online_presence',
-								'label' => __( 'Strengthen Online Presence', 'wp-module-next-steps' ),
+								'label' => __( 'Strengthen online presence', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_add_client_testimonials',
@@ -412,7 +412,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'build_content_seo_trust',
-								'label' => __( 'Build Content for SEO & Trust', 'wp-module-next-steps' ),
+								'label' => __( 'Build content for SEO & trust', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_publish_first_blog_post',
@@ -462,7 +462,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'marketing_lead_generation',
-								'label' => __( 'Marketing & Lead Generation', 'wp-module-next-steps' ),
+								'label' => __( 'Marketing & lead generation', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_setup_email_capture',
@@ -501,7 +501,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'site_performance_security',
-								'label' => __( 'Site Performance & Security', 'wp-module-next-steps' ),
+								'label' => __( 'Site performance & security', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_install_jetpack_boost',
@@ -551,7 +551,7 @@ class CorporatePlan {
 							),
 							array(
 								'id'    => 'monitor_improve',
-								'label' => __( 'Monitor & Improve', 'wp-module-next-steps' ),
+								'label' => __( 'Monitor & improve', 'wp-module-next-steps' ),
 								'tasks' => array(
 									array(
 										'id'              => 'corporate_review_traffic_engagement',

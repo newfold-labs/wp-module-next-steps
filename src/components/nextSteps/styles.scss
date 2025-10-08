@@ -3,14 +3,19 @@
   grid-template-columns: 1fr 1fr !important;
 
   .nfd-track {
-    border: 1px solid #336AD7;
-    border-radius: 4px;
+    border: 1px solid #d7d7d7;
+    border-radius: .5rem;
     margin-bottom: 1.5rem;
     transition: all .2s ease;
 
     &:hover {
       background-color: #EAF4FB;
+      border-color: #336AD7;
     }
+
+	  &:nth-last-child(1){
+        margin-bottom: 0;
+      }
 
     .nfd-track-header,
     .nfd-track-sections {
@@ -49,18 +54,20 @@
   }
 
   .nfd-track-header-icon {
-    width: 2rem;
+    width: 1.5rem;
     transform: rotate(180deg);
   }
 
   .nfd-track[open] {
     background-color: #EAF4FB;
+    border-color: #336AD7;
 
     .nfd-track-title {
       color: #336AD7;
     }
 
     .nfd-track-header-icon {
+      color: #336AD7;
       transform: rotate(0deg);
     }
   }
