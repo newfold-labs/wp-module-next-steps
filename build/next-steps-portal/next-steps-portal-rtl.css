@@ -14,6 +14,9 @@
   background-color: #EAF4FB;
   border-color: #336AD7;
 }
+#nfd-nextsteps.nfd-nextsteps .nfd-track:nth-last-child(1) {
+  margin-bottom: 0;
+}
 #nfd-nextsteps.nfd-nextsteps .nfd-track .nfd-track-header,
 #nfd-nextsteps.nfd-nextsteps .nfd-track .nfd-track-sections {
   padding: 1rem;

@@ -13,6 +13,10 @@
       border-color: #336AD7;
     }
 
+	  &:nth-last-child(1){
+        margin-bottom: 0;
+      }
+
     .nfd-track-header,
     .nfd-track-sections {
       padding: 1rem;
