@@ -94,30 +94,36 @@ export const SectionCard = ( {
 } ) => {
 
 	const [ isModalOpened, setIsModalOpened ] = useState( false );
-	const [ eventCompleted, setEventCompleted ] = useState( 'done' === status );
 	const [ isLoading, setIsLoading ] = useState( false );
 
 	const Icon = ICONS_IDS[ icon ] ?? null;
 
 	/**
-	 * Handle the complete on event
+	 * Handle any custom completeOnEvent
+	 */
+	const handleCompleteOnEvent = ( e ) => {
+		// any tasks will be updated in sectionUpdateCallback
+		sectionUpdateCallback( trackId, sectionId, 'done' );
+	};
+
+	/**
+	 * Set up event listener for complete on event
 	 */
 	useEffect( () => {
-		if ( tasks.length > 1 || 'done' === status || ! eventCompleted ) {
+		// Only set up listener for single-task sections that aren't already done
+		if ( tasks.length > 1 || 'done' === status || ! completeOnEvent ) {
 			return;
 		}
 
-		if ( completeOnEvent && ! eventCompleted ) {
-			const handleEvent = () => {
-				setEventCompleted( true );
-				taskUpdateCallback( trackId, sectionId, tasks[ 0 ].id, 'done' );
-				sectionUpdateCallback( trackId, sectionId, 'done' );
-			};
-			document.addEventListener( completeOnEvent, handleEvent );
-			return () => document.removeEventListener( completeOnEvent, handleEvent );
-		}
-	}, [] );
-
+		// add event listener for the custom completeOnEvent
+		// Note: looking for event dispatched on WINDOW, NOT DOCUMENT
+		window.addEventListener( completeOnEvent, handleCompleteOnEvent );
+		
+		// Cleanup function to remove event listener
+		return () => {
+			window.removeEventListener( completeOnEvent, handleCompleteOnEvent );
+		};
+	}, [ completeOnEvent, tasks.length, status ] ); // Dependencies ensure proper cleanup/re-setup
 
 	/**
 	 * Get the href for the link
