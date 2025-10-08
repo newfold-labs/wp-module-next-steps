@@ -113,7 +113,7 @@ class RedirectHelper {
 			'__return_null',
 		);
 
-		add_action("load-$hook", array( __CLASS__, 'check_redirect' ));
+		add_action( "load-$hook", array( __CLASS__, 'check_redirect' ) );
 	}
 
 	/**
