@@ -2,6 +2,7 @@
     "id": "testplan",
     "label": "Test Plan",
     "version": "2.0.0",
+    "type": "blog",
     "description": "This is a test plan",
     "tracks": [
         {
