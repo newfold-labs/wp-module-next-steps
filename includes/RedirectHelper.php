@@ -105,7 +105,7 @@ class RedirectHelper {
 	 */
 	public static function add_redirect_page() {
 		$hook = \add_submenu_page(
-			null, // No parent, so it won't appear in any menu
+			'', // No parent, so it won't appear in any menu
 			'Checking Partner Plugin Before Redirect',
 			'',
 			'manage_options',
