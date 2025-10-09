@@ -115,10 +115,11 @@ class PlanRepository {
 		}
 		// Get plan data (from cache or database)
 		$plan_data = self::get_plan_data();
-		$plan      = null;
-		if ( empty( $plan_data ) ) {
+		$plan      = ! empty( $plan_data ) ? Plan::from_array( $plan_data ) : null;
+		$site_type = PlanFactory::determine_site_type();
+
+		if ( ! $plan || $plan->type !== $site_type ) {
 			// Load default plan based on site type
-			$site_type    = PlanFactory::determine_site_type();
 			$default_plan = PlanFactory::create_plan( $site_type );
 			if ( $default_plan ) {
 				// Save the default plan for future use
