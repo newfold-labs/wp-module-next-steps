@@ -142,7 +142,7 @@ class PlanRepository {
 		if ( ! $plan ) {
 			// Create new plan based on current site type
 			$site_type = PlanFactory::determine_site_type();
-			$new_plan = PlanFactory::create_plan( $site_type );
+			$new_plan  = PlanFactory::create_plan( $site_type );
 			if ( $new_plan ) {
 				// Save the new plan for future use
 				self::save_plan( $new_plan );
@@ -150,38 +150,21 @@ class PlanRepository {
 			}
 		} 
 		// Plan exists but check if site type has changed (only for non-custom plans)
-		elseif ( $plan->type !== 'custom' ) {
+		elseif ( 'custom' !== $plan->type ) {
 			$site_type = PlanFactory::determine_site_type();
 			if ( $plan->type !== $site_type ) {
 				// Site type has changed, replace with new plan
 				$new_plan = PlanFactory::create_plan( $site_type );
+				// Note: No merge needed since this is a new plan 
+				// Next Steps are unique to the site type and data across plans is not relevant
 				if ( $new_plan ) {
 					// Save the new plan for future use
 					self::save_plan( $new_plan );
 					$plan = $new_plan;
 				}
-			} else {
-				// Site type matches, check if version needs updating
-				if ( $plan->is_version_outdated() ) {
-					// Version is outdated, need to merge with latest plan data
-					$new_plan = PlanFactory::create_plan( $plan->type );
-					// Merge the saved data with the new plan (version will be updated automatically)
-					$merged_plan = $new_plan->merge_with( $plan );
-					// Save the merged plan with updated version
-					self::save_plan( $merged_plan );
-					// Check for any auto-complete validations after merge
-					self::check_new_plan( $merged_plan );
-					$plan = $merged_plan;
-				}
-			}
-		} else {
-			// Custom plan exists, only check for version updates
-			if ( $plan->is_version_outdated() ) {
-				// Version is outdated, need to merge with latest plan data
-				// For custom plans, create a new plan with the same structure but without the old version
-				$plan_data = $plan->to_array();
-				unset( $plan_data['version'] ); // Remove old version so new plan gets current version
-				$new_plan = PlanFactory::create_plan( $plan->type, $plan_data );
+			} elseif ( $plan->is_version_outdated() ) {
+				// Site type matches but version is outdated, need to merge with latest plan data
+				$new_plan = PlanFactory::create_plan( $plan->type );
 				// Merge the saved data with the new plan (version will be updated automatically)
 				$merged_plan = $new_plan->merge_with( $plan );
 				// Save the merged plan with updated version
@@ -190,10 +173,24 @@ class PlanRepository {
 				self::check_new_plan( $merged_plan );
 				$plan = $merged_plan;
 			}
+		} elseif ( $plan->is_version_outdated() ) {
+			// Custom plan exists and version is outdated, need to merge with latest plan data
+			// For custom plans, create a new plan with the same structure but without the old version
+			$plan_data = $plan->to_array();
+			unset( $plan_data['version'] ); // Remove old version so new plan gets current version
+			$new_plan = PlanFactory::create_plan( $plan->type, $plan_data );
+			// Merge the saved data with the new plan (version will be updated automatically)
+			$merged_plan = $new_plan->merge_with( $plan );
+			// Save the merged plan with updated version
+			self::save_plan( $merged_plan );
+			// Check for any auto-complete validations after merge
+			self::check_new_plan( $merged_plan );
+			$plan = $merged_plan;
 		}
 		// Cache the result
 		if ( null !== $plan ) {
-			self::cache_plan( $plan, $plan_data );
+			// Generate fresh plan data to ensure it matches the current plan object
+			self::cache_plan( $plan, $plan->to_array() );
 		}
 		return $plan;
 	}
