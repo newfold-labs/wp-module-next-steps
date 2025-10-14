@@ -118,7 +118,7 @@ class PlanRepository {
 		$plan      = ! empty( $plan_data ) ? Plan::from_array( $plan_data ) : null;
 		$site_type = PlanFactory::determine_site_type();
 
-		if ( ! $plan || ( $plan->type !== $site_type && $plan->type !== 'custom' ) ) {
+		if ( ! $plan || ( $plan->type !== $site_type && 'custom' !== $plan->type ) ) {
 			// Load default plan based on site type
 			// Only replace if no plan exists or if plan type doesn't match site type
 			// but preserve custom plans - mainly used in tests

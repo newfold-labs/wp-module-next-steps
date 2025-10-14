@@ -198,10 +198,10 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$this->assertInstanceOf( Plan::class, $result );
 
 		// Verify it's reset to default plan based on site type
-		$reset_plan = PlanRepository::get_current_plan();
+		$reset_plan         = PlanRepository::get_current_plan();
 		$expected_site_type = PlanFactory::determine_site_type();
 		$this->assertEquals( $expected_site_type, $reset_plan->type );
-		
+
 		// Verify the plan ID matches the expected site type
 		switch ( $expected_site_type ) {
 			case 'blog':
