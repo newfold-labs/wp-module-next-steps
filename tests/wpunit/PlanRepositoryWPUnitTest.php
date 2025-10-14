@@ -75,11 +75,11 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		// The method should detect the empty data and load the default plan
 		$plan = PlanRepository::get_current_plan();
 		$this->assertInstanceOf( Plan::class, $plan );
-		
+
 		// The plan should match the determined site type
 		$expected_site_type = PlanFactory::determine_site_type();
 		$this->assertEquals( $expected_site_type, $plan->type );
-		
+
 		// Verify the invalid data was replaced with a proper plan
 		$saved_data = get_option( PlanRepository::OPTION );
 		$this->assertNotEmpty( $saved_data );
@@ -110,7 +110,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function test_get_current_plan_replaces_plan_when_site_type_mismatch() {
 		// Create and save a plan with a specific type (e.g., blog)
 		$blog_plan = PlanFactory::create_plan( 'blog' );
-		$saved = PlanRepository::save_plan( $blog_plan );
+		$saved     = PlanRepository::save_plan( $blog_plan );
 		$this->assertTrue( $saved );
 
 		// Verify the blog plan is saved
@@ -120,7 +120,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 
 		// Now simulate a site type change by manually changing the plan type in the database
 		// This simulates what happens when a user changes their site type
-		$plan_data = $retrieved_plan->to_array();
+		$plan_data         = $retrieved_plan->to_array();
 		$plan_data['type'] = 'ecommerce'; // Change to different type
 		update_option( PlanRepository::OPTION, $plan_data );
 		PlanRepository::invalidate_cache(); // Clear cache to force reload
@@ -128,17 +128,17 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		// Now get the current plan - it should detect the mismatch and load the correct plan
 		$current_plan = PlanRepository::get_current_plan();
 		$this->assertInstanceOf( Plan::class, $current_plan );
-		
+
 		// The plan should match the determined site type, not the mismatched type
 		$expected_site_type = PlanFactory::determine_site_type();
 		$this->assertEquals( $expected_site_type, $current_plan->type );
-		
+
 		// The plan should be the appropriate default for the site type
-		if ( $expected_site_type === 'blog' ) {
+		if ( 'blog' === $expected_site_type ) {
 			$this->assertEquals( 'blog_setup', $current_plan->id );
-		} elseif ( $expected_site_type === 'ecommerce' ) {
+		} elseif ( 'ecommerce' === $expected_site_type ) {
 			$this->assertEquals( 'store_setup', $current_plan->id );
-		} elseif ( $expected_site_type === 'corporate' ) {
+		} elseif ( 'corporate' === $expected_site_type ) {
 			$this->assertEquals( 'corporate_setup', $current_plan->id );
 		}
 	}
@@ -197,10 +197,23 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$result = PlanRepository::reset_plan();
 		$this->assertInstanceOf( Plan::class, $result );
 
-		// Verify it's reset to default blog plan
+		// Verify it's reset to default plan based on site type
 		$reset_plan = PlanRepository::get_current_plan();
-		$this->assertEquals( 'blog_setup', $reset_plan->id );
-		$this->assertEquals( 'blog', $reset_plan->type );
+		$expected_site_type = PlanFactory::determine_site_type();
+		$this->assertEquals( $expected_site_type, $reset_plan->type );
+		
+		// Verify the plan ID matches the expected site type
+		switch ( $expected_site_type ) {
+			case 'blog':
+				$this->assertEquals( 'blog_setup', $reset_plan->id );
+				break;
+			case 'ecommerce':
+				$this->assertEquals( 'store_setup', $reset_plan->id );
+				break;
+			case 'corporate':
+				$this->assertEquals( 'corporate_setup', $reset_plan->id );
+				break;
+		}
 	}
 
 	/**
@@ -224,7 +237,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		// Get the plan again (should load default plan since cache was invalidated and option deleted)
 		$plan2 = PlanRepository::get_current_plan();
 		$this->assertInstanceOf( Plan::class, $plan2 );
-		
+
 		// The plan should match the determined site type
 		$expected_site_type = PlanFactory::determine_site_type();
 		$this->assertEquals( $expected_site_type, $plan2->type );
@@ -266,6 +279,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function test_load_default_plan_defaults_to_blog() {
 		$plan = PlanFactory::create_plan( 'invalid_type' );
 		$this->assertInstanceOf( Plan::class, $plan );
+		// When an invalid type is passed, it should default to blog
 		$this->assertEquals( 'blog_setup', $plan->id );
 		$this->assertEquals( 'blog', $plan->type );
 	}
@@ -417,7 +431,7 @@ class PlanRepositoryWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 
 		// Simulate a site type change by directly modifying the stored plan data
 		// This mimics what could happen if the site type changes but the plan doesn't update
-		$plan_data = $saved_plan->to_array();
+		$plan_data         = $saved_plan->to_array();
 		$plan_data['type'] = 'corporate'; // Change to a different type
 		update_option( PlanRepository::OPTION, $plan_data );
 		PlanRepository::invalidate_cache();
