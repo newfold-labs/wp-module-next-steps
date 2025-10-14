@@ -148,14 +148,13 @@ class PlanRepository {
 				self::save_plan( $new_plan );
 				$plan = $new_plan;
 			}
-		} 
-		// Plan exists but check if site type has changed (only for non-custom plans)
-		elseif ( 'custom' !== $plan->type ) {
+		} elseif ( 'custom' !== $plan->type ) {
+			// Plan exists but check if site type has changed (only for non-custom plans)
 			$site_type = PlanFactory::determine_site_type();
 			if ( $plan->type !== $site_type ) {
 				// Site type has changed, replace with new plan
 				$new_plan = PlanFactory::create_plan( $site_type );
-				// Note: No merge needed since this is a new plan 
+				// Note: No merge needed since this is a new plan
 				// Next Steps are unique to the site type and data across plans is not relevant
 				if ( $new_plan ) {
 					// Save the new plan for future use
