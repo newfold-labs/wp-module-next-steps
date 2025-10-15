@@ -43,6 +43,8 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		$saved_plan = TestPlanFactory::create_plan_with_progress();
 		// Manually set the old version
 		$saved_plan->version = '0.9.0';
+		// Keep the plan as custom type to ensure proper merge behavior
+		$saved_plan->type = 'custom';
 
 		// Save the old plan
 		update_option( PlanRepository::OPTION, $saved_plan->to_array() );
@@ -72,6 +74,8 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		// Create a saved plan with current version
 		$saved_plan          = TestPlanFactory::create_plan_with_progress();
 		$saved_plan->version = NFD_NEXTSTEPS_MODULE_VERSION; // Current version
+		// Set the plan type to match the determined site type to avoid type mismatch
+		$saved_plan->type = PlanFactory::determine_site_type();
 
 		// Save the plan
 		update_option( PlanRepository::OPTION, $saved_plan->to_array() );
@@ -94,6 +98,8 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		// Create a saved plan with newer version (shouldn't happen in practice)
 		$saved_plan          = TestPlanFactory::create_plan_with_progress();
 		$saved_plan->version = '2.0.0'; // Newer version
+		// Set the plan type to match the determined site type to avoid type mismatch
+		$saved_plan->type = PlanFactory::determine_site_type();
 
 		// Save the plan
 		update_option( PlanRepository::OPTION, $saved_plan->to_array() );
@@ -112,6 +118,8 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		// Create a saved plan
 		$saved_plan          = TestPlanFactory::create_plan_with_progress();
 		$saved_plan->version = NFD_NEXTSTEPS_MODULE_VERSION;
+		// Set the plan type to match the determined site type to avoid type mismatch
+		$saved_plan->type = PlanFactory::determine_site_type();
 
 		// Save the plan
 		update_option( PlanRepository::OPTION, $saved_plan->to_array() );
@@ -209,6 +217,7 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 
 	/**
 	 * Test plan merge with custom plan type
+	 * This tests the special handling for custom plans in the version update logic
 	 */
 	public function test_plan_merge_with_custom_plan_type() {
 		// Create a saved custom plan with old version
@@ -223,6 +232,33 @@ class PlanVersionAndLanguageWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTe
 		$current_plan = PlanRepository::get_current_plan();
 
 		// Verify version was updated
+		$this->assertEquals( NFD_NEXTSTEPS_MODULE_VERSION, $current_plan->version );
+
+		// Verify user progress was preserved
+		$first_track = $current_plan->tracks[0];
+		$this->assertTrue( $first_track->open ); // User progress preserved
+	}
+
+	/**
+	 * Test that custom plans are handled correctly when site type changes
+	 * This tests the new behavior where custom plans are preserved even if site type changes
+	 */
+	public function test_custom_plan_preserved_when_site_type_changes() {
+		// Create a custom plan with old version
+		$saved_plan          = TestPlanFactory::create_plan_with_progress();
+		$saved_plan->type    = 'custom';
+		$saved_plan->version = '0.9.0';
+
+		// Save the plan
+		update_option( PlanRepository::OPTION, $saved_plan->to_array() );
+
+		// Get current plan - custom plans should be preserved and merged, not replaced
+		$current_plan = PlanRepository::get_current_plan();
+
+		// Verify it's still a custom plan
+		$this->assertEquals( 'custom', $current_plan->type );
+
+		// Verify version was updated through merge
 		$this->assertEquals( NFD_NEXTSTEPS_MODULE_VERSION, $current_plan->version );
 
 		// Verify user progress was preserved

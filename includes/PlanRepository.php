@@ -104,9 +104,30 @@ class PlanRepository {
 	}
 
 	/**
-	 * Get the current plan
+	 * Get the current plan, loading from database if needed
 	 *
-	 * @return Plan|null
+	 * This method implements three optimized code paths for maximum performance:
+	 *
+	 * 1. **Cache Hit Path** (most common):
+	 *    - Returns cached plan immediately if cache is valid
+	 *    - No database queries or expensive operations
+	 *    - Zero overhead for repeated calls
+	 *
+	 * 2. **No Plan Path**:
+	 *    - Called when no plan exists in database
+	 *    - Determines current site type once
+	 *    - Creates and saves appropriate plan based on site type
+	 *    - Caches result for future calls
+	 *
+	 * 3. **Existing Plan Path**:
+	 *    - Handles existing plans with different scenarios:
+	 *      - **Site Type Mismatch**: Replaces non-custom plans when site type changes
+	 *      - **Custom Plans**: Preserves custom plans regardless of site type
+	 *      - **Version Updates**: Merges outdated plans with latest version
+	 *    - Only calls determine_site_type() when actually needed
+	 *    - Preserves user progress during merges
+	 *
+	 * @return Plan|null The current plan or null if none exists
 	 */
 	public static function get_current_plan(): ?Plan {
 		// Return cached plan if available
@@ -115,45 +136,60 @@ class PlanRepository {
 		}
 		// Get plan data (from cache or database)
 		$plan_data = self::get_plan_data();
-		$plan      = null;
-		if ( empty( $plan_data ) ) {
-			// Load default plan based on site type
-			$site_type    = PlanFactory::determine_site_type();
-			$default_plan = PlanFactory::create_plan( $site_type );
-			if ( $default_plan ) {
-				// Save the default plan for future use
-				self::save_plan( $default_plan );
-				$plan = $default_plan;
+		$plan      = ! empty( $plan_data ) ? Plan::from_array( $plan_data ) : null;
+
+		// No plan exists
+		if ( ! $plan ) {
+			// Create new plan based on current site type
+			$site_type = PlanFactory::determine_site_type();
+			$new_plan  = PlanFactory::create_plan( $site_type );
+			if ( $new_plan ) {
+				// Save the new plan for future use
+				self::save_plan( $new_plan );
+				$plan = $new_plan;
 			}
-		} else {
-			// Convert array data to Plan object
-			$saved_plan = Plan::from_array( $plan_data );
-			// Check if we need to merge with new plan data
-			if ( $saved_plan->is_version_outdated() ) {
-				// Version is outdated, need to merge with latest plan data
-				// Load the appropriate new plan based on the saved plan type
-				if ( 'custom' === $saved_plan->type ) {
-					// For custom plans, create a new plan with the same structure but without the old version
-					$plan_data = $saved_plan->to_array();
-					unset( $plan_data['version'] ); // Remove old version so new plan gets current version
-					$new_plan = PlanFactory::create_plan( $saved_plan->type, $plan_data );
-				} else {
-					$new_plan = PlanFactory::create_plan( $saved_plan->type );
+		} elseif ( 'custom' !== $plan->type ) {
+			// Plan exists but check if site type has changed (only for non-custom plans)
+			$site_type = PlanFactory::determine_site_type();
+			if ( $plan->type !== $site_type ) {
+				// Site type has changed, replace with new plan
+				$new_plan = PlanFactory::create_plan( $site_type );
+				// Note: No merge needed since this is a new plan
+				// Next Steps are unique to the site type and data across plans is not relevant
+				if ( $new_plan ) {
+					// Save the new plan for future use
+					self::save_plan( $new_plan );
+					$plan = $new_plan;
 				}
+			} elseif ( $plan->is_version_outdated() ) {
+				// Site type matches but version is outdated, need to merge with latest plan data
+				$new_plan = PlanFactory::create_plan( $plan->type );
 				// Merge the saved data with the new plan (version will be updated automatically)
-				$merged_plan = $new_plan->merge_with( $saved_plan );
+				$merged_plan = $new_plan->merge_with( $plan );
 				// Save the merged plan with updated version
 				self::save_plan( $merged_plan );
 				// Check for any auto-complete validations after merge
 				self::check_new_plan( $merged_plan );
 				$plan = $merged_plan;
-			} else {
-				$plan = $saved_plan;
 			}
+		} elseif ( $plan->is_version_outdated() ) {
+			// Custom plan exists and version is outdated, need to merge with latest plan data
+			// For custom plans, create a new plan with the same structure but without the old version
+			$plan_data = $plan->to_array();
+			unset( $plan_data['version'] ); // Remove old version so new plan gets current version
+			$new_plan = PlanFactory::create_plan( $plan->type, $plan_data );
+			// Merge the saved data with the new plan (version will be updated automatically)
+			$merged_plan = $new_plan->merge_with( $plan );
+			// Save the merged plan with updated version
+			self::save_plan( $merged_plan );
+			// Check for any auto-complete validations after merge
+			self::check_new_plan( $merged_plan );
+			$plan = $merged_plan;
 		}
 		// Cache the result
 		if ( null !== $plan ) {
-			self::cache_plan( $plan, $plan_data );
+			// Generate fresh plan data to ensure it matches the current plan object
+			self::cache_plan( $plan, $plan->to_array() );
 		}
 		return $plan;
 	}
