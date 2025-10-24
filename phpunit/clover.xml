@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1761317756">
-  <project timestamp="1761317756">
+<coverage generated="1761318464">
+  <project timestamp="1761318464">
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Plan.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan" namespace="global">
         <metrics complexity="87" methods="30" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="182" coveredstatements="139" elements="212" coveredelements="155"/>
@@ -839,7 +839,7 @@
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/PlanFactory.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\PlanFactory" namespace="global">
-        <metrics complexity="30" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="52" coveredstatements="32" elements="61" coveredelements="35"/>
+        <metrics complexity="31" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="33" elements="62" coveredelements="36"/>
       </class>
       <line num="52" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="54" type="stmt" count="0"/>
@@ -871,38 +871,39 @@
       <line num="126" type="stmt" count="13"/>
       <line num="127" type="stmt" count="0"/>
       <line num="131" type="stmt" count="13"/>
-      <line num="139" type="method" name="determine_site_type" visibility="public" complexity="8" crap="16.00" count="14"/>
+      <line num="139" type="method" name="determine_site_type" visibility="public" complexity="9" crap="17.23" count="14"/>
       <line num="141" type="stmt" count="14"/>
       <line num="142" type="stmt" count="14"/>
-      <line num="144" type="stmt" count="14"/>
-      <line num="145" type="stmt" count="1"/>
-      <line num="149" type="stmt" count="13"/>
+      <line num="143" type="stmt" count="14"/>
+      <line num="145" type="stmt" count="14"/>
+      <line num="146" type="stmt" count="1"/>
       <line num="150" type="stmt" count="13"/>
-      <line num="151" type="stmt" count="0"/>
-      <line num="153" type="stmt" count="0"/>
+      <line num="151" type="stmt" count="13"/>
+      <line num="152" type="stmt" count="0"/>
       <line num="154" type="stmt" count="0"/>
       <line num="155" type="stmt" count="0"/>
       <line num="156" type="stmt" count="0"/>
       <line num="157" type="stmt" count="0"/>
       <line num="158" type="stmt" count="0"/>
-      <line num="163" type="stmt" count="13"/>
-      <line num="173" type="method" name="create_plan" visibility="public" complexity="5" crap="5" count="91"/>
-      <line num="176" type="stmt" count="91"/>
-      <line num="177" type="stmt" count="9"/>
-      <line num="181" type="stmt" count="86"/>
-      <line num="182" type="stmt" count="4"/>
-      <line num="186" type="stmt" count="84"/>
-      <line num="187" type="stmt" count="21"/>
-      <line num="191" type="stmt" count="65"/>
-      <line num="199" type="method" name="load_default_plan" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="200" type="stmt" count="2"/>
+      <line num="159" type="stmt" count="0"/>
+      <line num="164" type="stmt" count="13"/>
+      <line num="174" type="method" name="create_plan" visibility="public" complexity="5" crap="5" count="91"/>
+      <line num="177" type="stmt" count="91"/>
+      <line num="178" type="stmt" count="9"/>
+      <line num="182" type="stmt" count="86"/>
+      <line num="183" type="stmt" count="4"/>
+      <line num="187" type="stmt" count="84"/>
+      <line num="188" type="stmt" count="21"/>
+      <line num="192" type="stmt" count="65"/>
+      <line num="200" type="method" name="load_default_plan" visibility="public" complexity="1" crap="1" count="2"/>
       <line num="201" type="stmt" count="2"/>
-      <line num="209" type="method" name="get_current_plan_type" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="210" type="stmt" count="0"/>
+      <line num="202" type="stmt" count="2"/>
+      <line num="210" type="method" name="get_current_plan_type" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="211" type="stmt" count="0"/>
       <line num="212" type="stmt" count="0"/>
-      <line num="214" type="stmt" count="0"/>
-      <metrics loc="217" ncloc="132" classes="1" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="52" coveredstatements="32" elements="61" coveredelements="35"/>
+      <line num="213" type="stmt" count="0"/>
+      <line num="215" type="stmt" count="0"/>
+      <metrics loc="218" ncloc="133" classes="1" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="33" elements="62" coveredelements="36"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/PlanRepository.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\PlanRepository" namespace="global">
@@ -1053,7 +1054,7 @@
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/PlanSwitchTriggers.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers" namespace="global">
-        <metrics complexity="17" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="20" elements="39" coveredelements="23"/>
+        <metrics complexity="18" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="20" elements="41" coveredelements="23"/>
       </class>
       <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="28" type="stmt" count="1"/>
@@ -1082,19 +1083,21 @@
       <line num="100" type="stmt" count="1"/>
       <line num="109" type="method" name="on_locale_switch" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="110" type="stmt" count="1"/>
-      <line num="120" type="method" name="resync_next_steps_data" visibility="private" complexity="4" crap="20" count="0"/>
+      <line num="120" type="method" name="resync_next_steps_data" visibility="private" complexity="5" crap="30" count="0"/>
       <line num="122" type="stmt" count="0"/>
       <line num="123" type="stmt" count="0"/>
-      <line num="127" type="stmt" count="0"/>
+      <line num="124" type="stmt" count="0"/>
+      <line num="125" type="stmt" count="0"/>
       <line num="129" type="stmt" count="0"/>
       <line num="131" type="stmt" count="0"/>
-      <line num="134" type="stmt" count="0"/>
-      <line num="137" type="stmt" count="0"/>
-      <line num="140" type="stmt" count="0"/>
+      <line num="133" type="stmt" count="0"/>
+      <line num="136" type="stmt" count="0"/>
+      <line num="139" type="stmt" count="0"/>
       <line num="142" type="stmt" count="0"/>
       <line num="144" type="stmt" count="0"/>
       <line num="146" type="stmt" count="0"/>
-      <metrics loc="151" ncloc="83" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="20" elements="39" coveredelements="23"/>
+      <line num="148" type="stmt" count="0"/>
+      <metrics loc="153" ncloc="85" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="20" elements="41" coveredelements="23"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/RedirectHelper.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\RedirectHelper" namespace="global">
@@ -2139,6 +2142,6 @@
       <line num="27" type="stmt" count="0"/>
       <metrics loc="58" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="11" coveredelements="0"/>
     </file>
-    <metrics files="15" loc="5781" ncloc="3428" classes="14" methods="217" coveredmethods="79" conditionals="0" coveredconditionals="0" statements="1834" coveredstatements="857" elements="2051" coveredelements="936"/>
+    <metrics files="15" loc="5784" ncloc="3431" classes="14" methods="217" coveredmethods="79" conditionals="0" coveredconditionals="0" statements="1837" coveredstatements="858" elements="2054" coveredelements="937"/>
   </project>
 </coverage>
