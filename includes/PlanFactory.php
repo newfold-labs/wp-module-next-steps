@@ -139,6 +139,7 @@ class PlanFactory {
 	public static function determine_site_type(): string {
 		// First, try to get from onboarding data
 		$onboarding_data = \get_option( self::ONBOARDING_SITE_INFO_OPTION, array() );
+		$onboarding_data = is_array( $onboarding_data ) ? $onboarding_data : array();
 		$site_type       = $onboarding_data['site_type'] ?? '';
 
 		if ( ! empty( $site_type ) && \array_key_exists( $site_type, self::PLAN_TYPES ) ) {

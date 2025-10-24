@@ -119,7 +119,9 @@ class PlanSwitchTriggers {
 	 */
 	private static function resync_next_steps_data( $new_locale, $change_type ) {
 		// Get the saved plan data (preserves user progress)
-		$saved_data      = new Plan( \get_option( PlanRepository::OPTION, array() ) );
+		$plan_repository = \get_option( PlanRepository::OPTION, array() );
+		$plan_repository = is_array( $plan_repository ) ? $plan_repository : array();
+		$saved_data      = new Plan( $plan_repository );
 		$saved_plan_type = $saved_data->type;
 
 		// Load fresh plan data with new language context
