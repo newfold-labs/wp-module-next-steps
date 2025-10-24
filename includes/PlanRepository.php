@@ -99,6 +99,7 @@ class PlanRepository {
 		}
 		// Get from database and cache it
 		$plan_data                = get_option( self::OPTION, array() );
+		$plan_data                = is_array( $plan_data ) ? $plan_data : array();
 		self::$cached_option_data = $plan_data;
 		return $plan_data;
 	}
