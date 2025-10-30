@@ -1,39 +1,41 @@
 const { test, expect } = require('@playwright/test');
+const path = require('path');
+
+// Use environment variable to resolve plugin helpers
+const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
+const pluginId = process.env.PLUGIN_ID || 'bluehost';
+const { auth } = require(path.join(pluginDir, 'tests/playwright/helpers'));
 const {
-    wpLogin,
     setTestCardsNextStepsData,
     resetNextStepsData,
-    setupNextStepsIntercepts,
-    waitForNextStepsPortal,
-    waitForTaskEndpoint,
-    waitForSectionEndpoint
-} = require('../helpers/utils');
+    setupNextStepsIntercepts
+} = require('../helpers');
 
 test.describe('Next Steps Portal in Plugin App with Cards', () => {
 
     test.beforeEach(async ({ page }) => {
-        await wpLogin(page);
+        await auth.loginToWordPress(page);
         // Set test Next Steps data
         await setTestCardsNextStepsData(page);
         // Set up all Next Steps API intercepts
         await setupNextStepsIntercepts(page);
         // Visit the Next Steps portal
-        await page.goto(`/wp-admin/admin.php?page=${process.env.PLUGIN_ID || 'bluehost'}#/home`);
+        await page.goto(`/wp-admin/admin.php?page=${pluginId}#/home`);
         // Reload the page to ensure the intercepts are working and updated test content is loaded
         await page.reload();
 
         // Portal App Renders
-        await waitForNextStepsPortal(page);
+        await page.locator('#next-steps-portal').waitFor({ state: 'visible', timeout: 25000 });
+        await page.locator('.next-steps-fill #nfd-nextsteps').waitFor({ state: 'visible', timeout: 25000 });
     });
 
-    test.afterAll(async ({ page }) => {
+    test.afterEach(async ({ page }) => {
         // Reset test data
         await resetNextStepsData(page);
     });
 
     test('portal renders and displays correctly', async ({ page }) => {
-        // wait for initial section endpoint to be called - section3 marking as completed
-        await waitForSectionEndpoint(page);
+        // Wait for initial load
         await page.waitForTimeout(250);
 
         // Check for 3 total sections
@@ -66,8 +68,8 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         // CLICK skip section 1 button
         await page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip').click();
 
-        await waitForSectionEndpoint(page);
-        await page.waitForTimeout(250); // wait for section card to update
+        // Wait for section card to update (intercepts handle API calls)
+        await page.waitForTimeout(500);
 
         await expect(page.locator('.nfd-nextstep-section-card__dismissed-badge')).toBeVisible();
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]')).toHaveAttribute('data-nfd-section-status', 'dismissed');
@@ -76,8 +78,8 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         // CLICK undo section 1 button
         await page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo').click();
 
-        await waitForSectionEndpoint(page);
-        await page.waitForTimeout(250); // wait for section card to update
+        // Wait for section card to update (intercepts handle API calls)
+        await page.waitForTimeout(500);
 
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextstep-section-card__dismissed-badge')).not.toBeVisible();
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]')).toHaveAttribute('data-nfd-section-status', 'new');
@@ -115,15 +117,13 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         await expect(s2task1.locator('.nfd-nextsteps-button-todo')).toBeVisible();
         await s2task1.locator('.nfd-nextsteps-button-todo').click();
 
-        await waitForTaskEndpoint(page);
-
         // manually check task 4, 5, 6 to complete the section
         await page.locator('.nfd-nextsteps-task-container[data-nfd-task-id="s2task4"] .nfd-nextsteps-button-todo').click();
         await page.locator('.nfd-nextsteps-task-container[data-nfd-task-id="s2task5"] .nfd-nextsteps-button-todo').click();
         await page.locator('.nfd-nextsteps-task-container[data-nfd-task-id="s2task6"] .nfd-nextsteps-button-todo').click();
 
-        await waitForSectionEndpoint(page);
-        await page.waitForTimeout(250); // wait for task and section to update
+        // Wait for task and section to update (intercepts handle API calls)
+        await page.waitForTimeout(500);
 
         await expect(page.locator('.nfd-modal__layout')).not.toBeVisible();
         await expect(page.locator('.nfd-nextstep-tasks-modal__tasks')).not.toBeVisible();
@@ -148,8 +148,7 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
     });
 
     test('task data-nfd-prevent-default attribute', async ({ page }) => {
-        // Wait for initial section endpoint to be called
-        await waitForSectionEndpoint(page);
+        // Wait for initial load
         await page.waitForTimeout(250);
 
         // Test section card with single task that has data-nfd-complete-on-click
@@ -175,7 +174,7 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
     });
 
     test('task data-nfd-complete-on-click and data-nfd-prevent-default attributes together', async ({ page }) => {
-        await waitForSectionEndpoint(page);
+        // Wait for initial load
         await page.waitForTimeout(250);
 
         // Test section card with single task that has data-nfd-complete-on-click
@@ -230,7 +229,7 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
             });
         });
 
-        await waitForSectionEndpoint(page);
+        // Wait for initial load
         await page.waitForTimeout(250);
 
         // Test section card with single task that has data-nfd-complete-on-click

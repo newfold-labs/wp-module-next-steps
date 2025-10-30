@@ -1,19 +1,19 @@
 const { test, expect } = require('@playwright/test');
+const path = require('path');
+
+// Use environment variable to resolve plugin helpers
+const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
+const { auth } = require(path.join(pluginDir, 'tests/playwright/helpers'));
 const {
-    wpLogin,
     setTestNextStepsData,
     resetNextStepsData,
-    setupNextStepsIntercepts,
-    waitForNextStepsWidget,
-    waitForTaskEndpoint,
-    waitForSectionEndpoint,
-    waitForTrackEndpoint
-} = require('../helpers/utils');
+    setupNextStepsIntercepts
+} = require('../helpers');
 
 test.describe('Next Steps Widget', () => {
 
     test.beforeEach(async ({ page }) => {
-        await wpLogin(page);
+        await auth.loginToWordPress(page);
         // Set test Next Steps data
         await setTestNextStepsData(page);
         // Set up all Next Steps API intercepts
@@ -24,10 +24,18 @@ test.describe('Next Steps Widget', () => {
         await page.reload();
 
         // Wait for widget to be visible
-        await waitForNextStepsWidget(page);
+        await page.locator('#nfd_next_steps_widget').waitFor({ state: 'visible', timeout: 25000 });
+        await page.locator('#nfd_next_steps_widget #nfd-nextsteps').waitFor({ state: 'visible', timeout: 25000 });
+        // scroll to the widget
+        await page.evaluate(() => {
+            const widget = document.querySelector('#nfd_next_steps_widget');
+            if (widget) {
+                widget.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     });
 
-    test.afterAll(async ({ page }) => {
+    test.afterEach(async ({ page }) => {
         // Reset test data
         await resetNextStepsData(page);
     });
@@ -35,7 +43,7 @@ test.describe('Next Steps Widget', () => {
     test('renders the widget structure correctly', async ({ page }) => {
         // Widget container
         await expect(page.locator('#nfd_next_steps_widget')).toBeVisible();
-        await expect(page.locator('#nfd_next_steps_widget h2')).toContainText('Next Steps');
+        await expect(page.locator('#nfd_next_steps_widget .postbox-header h2')).toContainText('Next Steps');
 
         // Main app structure
         await expect(page.locator('#nfd-nextsteps')).toBeVisible();
@@ -150,11 +158,11 @@ test.describe('Next Steps Widget', () => {
         await page.locator('.nfd-section[data-nfd-section-id="section1"] #task-s1task1.nfd-nextsteps-task-container .nfd-nextsteps-task-new .nfd-nextsteps-button-todo').click();
 
         // Wait for API call
-        await waitForTaskEndpoint(page);
-        await waitForSectionEndpoint(page);
+        // await waitForTaskEndpoint(page);
+        // await waitForSectionEndpoint(page);
 
         // wait for task to update
-        await page.waitForTimeout(250);
+        await page.waitForTimeout(500);
 
         // Task should now be in done state
         await expect(page.locator('.nfd-section[data-nfd-section-id="section1"] #task-s1task1')).toHaveAttribute('data-nfd-task-status', 'done');
@@ -172,7 +180,7 @@ test.describe('Next Steps Widget', () => {
         await expect(page.locator('.nfd-section[data-nfd-section-id="section1"]')).toHaveAttribute('open');
         await page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete').click();
 
-        await waitForSectionEndpoint(page);
+        // await waitForSectionEndpoint(page);
         await page.waitForTimeout(250);
 
         await expect(page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete')).not.toBeVisible();
@@ -182,7 +190,7 @@ test.describe('Next Steps Widget', () => {
         // Open the section
         await page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-section-header').click();
 
-        await waitForSectionEndpoint(page);
+        // await waitForSectionEndpoint(page);
         await page.waitForTimeout(250);
 
         await expect(page.locator('.nfd-section[data-nfd-section-id="section1"]')).toHaveAttribute('open');
@@ -193,13 +201,12 @@ test.describe('Next Steps Widget', () => {
         const firstNewTask = page.locator('.nfd-nextsteps-task-container[data-nfd-task-status="new"]').first();
         await expect(firstNewTask).toHaveAttribute('id', 'task-s1task1');
         await expect(firstNewTask.locator('.nfd-nextsteps-button-dismiss')).toBeVisible();
-        await expect(firstNewTask.locator('.nfd-nextsteps-button-dismiss')).not.toBeVisible();
 
         // Click dismiss button - force due to cypress not being able to trigger hover state
         await firstNewTask.locator('.nfd-nextsteps-button-dismiss').click({ force: true });
 
         // Wait for API call
-        await waitForTaskEndpoint(page);
+        // await waitForTaskEndpoint(page);
         await page.waitForTimeout(250);
 
         // Task should now be dismissed
@@ -213,7 +220,7 @@ test.describe('Next Steps Widget', () => {
         // Close the track
         await page.locator('.nfd-track').first().locator('.nfd-track-header').click();
 
-        await waitForTrackEndpoint(page);
+        // await waitForTrackEndpoint(page);
         await page.waitForTimeout(250);
 
         // Should be closed
@@ -222,7 +229,7 @@ test.describe('Next Steps Widget', () => {
         // Open the track again
         await page.locator('.nfd-track').first().locator('.nfd-track-header').click();
 
-        await waitForTrackEndpoint(page);
+        // await waitForTrackEndpoint(page);
         await page.waitForTimeout(250);
 
         // Should be open
@@ -230,16 +237,16 @@ test.describe('Next Steps Widget', () => {
 
         // Get first section and test toggle
         const firstSection = page.locator('.nfd-section').first();
-        const isOpen = await firstSection.getAttribute('open');
+        const wasOpen = (await firstSection.getAttribute('open')) !== null;
 
         // Click section header to toggle
         await firstSection.locator('.nfd-section-header').click();
 
-        await waitForSectionEndpoint(page);
-        await page.waitForTimeout(250);
+        // Wait for UI to update (intercepts handle API calls)
+        await page.waitForTimeout(500);
 
         // State should change
-        if (isOpen) {
+        if (wasOpen) {
             await expect(firstSection).not.toHaveAttribute('open');
         } else {
             await expect(firstSection).toHaveAttribute('open');

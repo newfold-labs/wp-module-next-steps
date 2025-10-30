@@ -1,26 +1,20 @@
 /**
- * Next Steps Module Test Utilities for Playwright
+ * Next Steps Module Test Helpers for Playwright
  * 
  * Utilities for testing the Next Steps module functionality.
- * Includes WordPress login, test data setup, and API mocking.
+ * Includes test data setup and API mocking.
  */
 
-const { expect } = require('@playwright/test');
-const wordpress = require('./wordpress');
+const path = require('path');
+
+// Use environment variable to resolve plugin helpers
+const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
+const { wordpress } = require(path.join(pluginDir, 'tests/playwright/helpers'));
+const { wpCli } = wordpress;
 
 // Test data fixtures
 const testPlan = require('../fixtures/test-plan.json');
 const testCardsPlan = require('../fixtures/test-cards-plan.json');
-
-/**
- * Login to WordPress
- * 
- * @param {import('@playwright/test').Page} page - Playwright page object
- */
-async function wpLogin(page) {
-    const { loginToWordPress } = require('../../../../wordpress/content/plugins/bluehost-wordpress-plugin/tests/playwright/helpers/auth');
-    await loginToWordPress(page);
-}
 
 /**
  * Set next steps test fixture to database option
@@ -28,7 +22,7 @@ async function wpLogin(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function setTestNextStepsData(page) {
-    await wordpress.wpCli(
+    await wpCli(
         `option update nfd_next_steps '${JSON.stringify(testPlan)}' --format=json`
     );
 }
@@ -39,7 +33,7 @@ async function setTestNextStepsData(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function setTestCardsNextStepsData(page) {
-    await wordpress.wpCli(
+    await wpCli(
         `option update nfd_next_steps '${JSON.stringify(testCardsPlan)}' --format=json`
     );
 }
@@ -50,8 +44,11 @@ async function setTestCardsNextStepsData(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function resetNextStepsData(page) {
-    await wordpress.wpCli('option delete nfd_next_steps', { failOnNonZeroExit: false });
+    await wpCli('option delete nfd_next_steps', { failOnNonZeroExit: false });
 }
+
+// Track fulfilled requests for wait functions
+const fulfilledRequests = new Map();
 
 /**
  * Setup Next Steps API intercepts with Playwright
@@ -59,6 +56,8 @@ async function resetNextStepsData(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function setupNextStepsIntercepts(page) {
+    // Clear previous fulfilled requests
+    fulfilledRequests.clear();
     // Intercept data event endpoint
     await page.route('**/newfold-data*/v1/events/**', async (route) => {
         await route.fulfill({
@@ -149,43 +148,46 @@ async function setupNextStepsIntercepts(page) {
 }
 
 /**
- * Wait for Next Steps portal to be visible
- * 
- * @param {import('@playwright/test').Page} page - Playwright page object
- * @param {number} timeout - Timeout in milliseconds (default: 25000)
- */
-async function waitForNextStepsPortal(page, timeout = 25000) {
-    await page.locator('#next-steps-portal').waitFor({ state: 'visible', timeout });
-    await page.locator('.next-steps-fill #nfd-nextsteps').waitFor({ state: 'visible', timeout });
-}
-
-/**
- * Wait for Next Steps widget to be visible
- * 
- * @param {import('@playwright/test').Page} page - Playwright page object
- * @param {number} timeout - Timeout in milliseconds (default: 25000)
- */
-async function waitForNextStepsWidget(page, timeout = 25000) {
-    await page.locator('#nfd_next_steps_widget').waitFor({ state: 'visible', timeout });
-    await page.locator('#nfd_next_steps_widget #nfd-nextsteps').waitFor({ state: 'visible', timeout });
-}
-
-/**
- * Wait for API response and log it
+ * Wait for API request (works with intercepted requests)
  * 
  * @param {import('@playwright/test').Page} page - Playwright page object
  * @param {string} urlPattern - URL pattern to wait for
  * @param {string} alias - Alias for the request
+ * @param {string} method - HTTP method to wait for (default: 'POST')
  */
-async function waitForApiResponse(page, urlPattern, alias) {
-    const response = await page.waitForResponse(response =>
-        response.url().includes(urlPattern) && response.request().method() === 'POST'
-    );
+async function waitForApiResponse(page, urlPattern, alias, method = 'POST', timeout = 30000) {
+    try {
+        // Wait for the request to be made (intercepts will fulfill it)
+        const request = await page.waitForRequest(request => {
+            const url = request.url();
+            const reqMethod = request.method();
+            const matches = url.includes(urlPattern) && reqMethod === method;
+            if (matches) {
+                console.log(`${alias} request matched: ${reqMethod} ${url}`);
+            }
+            return matches;
+        }, { timeout });
 
-    const responseBody = await response.json();
-    console.log(`${alias} response:`, JSON.stringify(responseBody));
+        console.log(`${alias} request intercepted: ${request.method()} ${request.url()}`);
+        
+        // Try to get response body if available (for intercepted requests, we may not have a real response)
+        try {
+            const response = await request.response();
+            if (response) {
+                const responseBody = await response.json();
+                console.log(`${alias} response:`, JSON.stringify(responseBody));
+                return responseBody;
+            }
+        } catch (e) {
+            // Response may not be available if intercepted, that's okay
+            console.log(`${alias} request fulfilled by intercept`);
+        }
 
-    return responseBody;
+        return { intercepted: true, url: request.url() };
+    } catch (error) {
+        console.log(`${alias} timeout - request not found within ${timeout}ms`);
+        throw error;
+    }
 }
 
 /**
@@ -194,16 +196,26 @@ async function waitForApiResponse(page, urlPattern, alias) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function waitForTaskEndpoint(page) {
-    return await waitForApiResponse(page, 'newfold-next-steps', 'taskEndpoint');
+    return await waitForApiResponse(page, '/tasks/', 'taskEndpoint');
 }
 
 /**
  * Wait for section endpoint response
  * 
  * @param {import('@playwright/test').Page} page - Playwright page object
+ * @param {number} timeout - Timeout in milliseconds (default: 10000)
+ * @param {boolean} optional - If true, don't throw on timeout (default: false)
  */
-async function waitForSectionEndpoint(page) {
-    return await waitForApiResponse(page, 'newfold-next-steps', 'sectionEndpoint');
+async function waitForSectionEndpoint(page, timeout = 10000, optional = false) {
+    try {
+        return await waitForApiResponse(page, '/sections/', 'sectionEndpoint', 'POST', timeout);
+    } catch (error) {
+        if (optional) {
+            console.log('sectionEndpoint wait optional - continuing');
+            return null;
+        }
+        throw error;
+    }
 }
 
 /**
@@ -212,17 +224,14 @@ async function waitForSectionEndpoint(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function waitForTrackEndpoint(page) {
-    return await waitForApiResponse(page, 'newfold-next-steps', 'trackEndpoint');
+    return await waitForApiResponse(page, '/tracks/', 'trackEndpoint');
 }
 
 module.exports = {
-    wpLogin,
     setTestNextStepsData,
     setTestCardsNextStepsData,
     resetNextStepsData,
     setupNextStepsIntercepts,
-    waitForNextStepsPortal,
-    waitForNextStepsWidget,
     waitForApiResponse,
     waitForTaskEndpoint,
     waitForSectionEndpoint,
