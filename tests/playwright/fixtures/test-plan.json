@@ -1,0 +1,131 @@
+{
+    "id": "testplan",
+    "label": "Test Plan",
+    "version": "2.0.0",
+    "type": "blog",
+    "description": "This is a test plan",
+    "tracks": [
+        {
+            "id": "track1",
+            "label": "Test Track 1",
+            "open": true,
+            "sections": [
+                {
+                    "id": "section1",
+                    "label": "Test Section with 1 task",
+                    "open": true,
+                    "status": "new",
+                    "tasks": [
+                        {
+                            "id": "s1task1",
+                            "title": "Test Task",
+                            "href": "https://www.bluehost.com",
+                            "status": "new",
+                            "priority": 1,
+                            "source": "test",
+                            "data_attributes": {
+                                "data-test-id": "test-task-1",
+                                "data-nfd-prevent-default": "true"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "section2",
+                    "label": "Test Section with 3 tasks",
+                    "open": true,
+                    "status": "new",
+                    "tasks": [
+                        {
+                            "id": "s2task1",
+                            "title": "New Task",
+                            "href": "https://www.bluehost.com",
+                            "status": "new",
+                            "priority": 1,
+                            "source": "test"
+                        },
+                        {
+                            "id": "s2task2",
+                            "title": "Dismissed Task",
+                            "href": "https://www.bluehost.com",
+                            "status": "dismissed",
+                            "priority": 2,
+                            "source": "test"
+                        },
+                        {
+                            "id": "s2task3",
+                            "title": "Completed Task",
+                            "href": "https://www.bluehost.com",
+                            "status": "done",
+                            "priority": 3,
+                            "source": "test"
+                        }
+                    ]
+                },
+                {
+                    "id": "section3",
+                    "label": "Test Section with completed tasks",
+                    "open": true,
+                    "status": "new",
+                    "tasks": [
+                        {
+                            "id": "s3task1",
+                            "title": "Complete Task 1",
+                            "href": "https://www.bluehost.com",
+                            "status": "done",
+                            "priority": 1,
+                            "source": "test"
+                        },
+                        {
+                            "id": "s3task2",
+                            "title": "Complete Task 2",
+                            "href": "https://www.bluehost.com",
+                            "status": "done",
+                            "priority": 2,
+                            "source": "test"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "track2",
+            "label": "Test Track 2",
+            "open": true,
+            "sections": [
+                {
+                    "id": "section4",
+                    "label": "Test Section with all new tasks",
+                    "open": true,
+                    "status": "new",
+                    "tasks": [
+                        {
+                            "id": "s4task1",
+                            "title": "Test Task 1",
+                            "href": "https://www.bluehost.com",
+                            "status": "new",
+                            "priority": 1,
+                            "source": "test"
+                        },
+                        {
+                            "id": "s4task2",
+                            "title": "Test Task 2",
+                            "href": "https://www.bluehost.com",
+                            "status": "new",
+                            "priority": 2,
+                            "source": "test"
+                        },
+                        {
+                            "id": "s4task3",
+                            "title": "Test Task 3",
+                            "href": "https://www.bluehost.com",
+                            "status": "new",
+                            "priority": 3,
+                            "source": "test"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
