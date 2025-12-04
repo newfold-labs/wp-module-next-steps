@@ -32,14 +32,23 @@ if (!existsSync(helpersPath)) {
 }
 
 // Load plugin helpers and Playwright (to ensure single instance)
+// Use file:// URL for absolute path imports in ES modules
+const helpersUrl = helpersPath.startsWith('/')
+    ? `file://${helpersPath}`
+    : helpersPath;
+
 let pluginHelpers;
 try {
-    pluginHelpers = await import(helpersPath);
+    pluginHelpers = await import(helpersUrl);
 } catch (error) {
     throw new Error(
-        `Failed to import plugin helpers from ${helpersPath}.\n` +
+        `Failed to import plugin helpers from ${helpersUrl}.\n` +
+        `Resolved path: ${helpersPath}\n` +
         `Plugin directory: ${pluginDir}\n` +
-        `Error: ${error.message}`
+        `Module __dirname: ${__dirname}\n` +
+        `PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}\n` +
+        `Error: ${error.message}\n` +
+        `Stack: ${error.stack}`
     );
 }
 
@@ -51,12 +60,29 @@ if (!pluginHelpers || typeof pluginHelpers !== 'object') {
     );
 }
 
-const { auth, wordpress, newfold, a11y, utils } = pluginHelpers;
+// Plugin helpers may use default export or named exports
+// Dynamic imports sometimes wrap named exports in a default export
+let auth, wordpress, newfold, a11y, utils;
+
+if (pluginHelpers.default && typeof pluginHelpers.default === 'object') {
+    // Has a default export - use it
+    ({ auth, wordpress, newfold, a11y, utils } = pluginHelpers.default);
+} else if (pluginHelpers.auth || pluginHelpers.wordpress) {
+    // Has named exports directly
+    ({ auth, wordpress, newfold, a11y, utils } = pluginHelpers);
+} else {
+    throw new Error(
+        `Could not find expected exports in plugin helpers.\n` +
+        `Available keys: ${Object.keys(pluginHelpers).join(', ')}\n` +
+        `Default export keys: ${pluginHelpers.default ? Object.keys(pluginHelpers.default).join(', ') : 'none'}`
+    );
+}
 
 if (!wordpress) {
     throw new Error(
         `Plugin helpers imported but 'wordpress' is undefined.\n` +
         `Available exports: ${Object.keys(pluginHelpers).join(', ')}\n` +
+        `Default export keys: ${pluginHelpers.default ? Object.keys(pluginHelpers.default).join(', ') : 'none'}\n` +
         `Import path: ${helpersPath}\n` +
         `Plugin directory: ${pluginDir}`
     );
