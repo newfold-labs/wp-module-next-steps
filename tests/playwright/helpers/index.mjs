@@ -18,9 +18,13 @@ const __dirname = dirname(__filename);
 const pluginDir = process.env.PLUGIN_DIR || resolve(__dirname, '../../../../../../');
 
 // Load plugin helpers once and export them for use in spec files
+// Also re-export Playwright from the plugin to ensure we use the same instance
 const pluginHelpers = await import(join(pluginDir, 'tests/playwright/helpers/index.js'));
 const { auth, wordpress, newfold, a11y, utils } = pluginHelpers;
 const { wpCli } = wordpress;
+
+// Import Playwright from the plugin's node_modules to avoid double-loading
+const playwrightModule = await import(join(pluginDir, 'node_modules/@playwright/test/index.js'));
 
 // Test data fixtures
 const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
@@ -238,6 +242,9 @@ async function waitForTrackEndpoint(page) {
 }
 
 export {
+    // Re-export Playwright from plugin to ensure single instance
+    test: playwrightModule.test,
+    expect: playwrightModule.expect,
     // Plugin helpers (re-exported for convenience)
     auth,
     wordpress,
