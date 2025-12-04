@@ -17,13 +17,10 @@ const __dirname = dirname(__filename);
 // Use environment variable to resolve plugin helpers
 const pluginDir = process.env.PLUGIN_DIR || resolve(__dirname, '../../../../../../');
 
-// Dynamic import for plugin helpers (will be loaded when needed)
-let wordpress, wpCli;
-const pluginHelpersPromise = import(join(pluginDir, 'tests/playwright/helpers/index.js')).then(module => {
-    wordpress = module.wordpress;
-    wpCli = wordpress.wpCli;
-    return module;
-});
+// Load plugin helpers once and export them for use in spec files
+const pluginHelpers = await import(join(pluginDir, 'tests/playwright/helpers/index.js'));
+const { auth, wordpress, newfold, a11y, utils } = pluginHelpers;
+const { wpCli } = wordpress;
 
 // Test data fixtures
 const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
@@ -35,8 +32,6 @@ const testCardsPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function setTestNextStepsData(page) {
-    // Ensure plugin helpers are loaded
-    await pluginHelpersPromise;
     await wpCli(
         `option update nfd_next_steps '${JSON.stringify(testPlan)}' --format=json`
     );
@@ -48,8 +43,6 @@ async function setTestNextStepsData(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function setTestCardsNextStepsData(page) {
-    // Ensure plugin helpers are loaded
-    await pluginHelpersPromise;
     await wpCli(
         `option update nfd_next_steps '${JSON.stringify(testCardsPlan)}' --format=json`
     );
@@ -61,8 +54,6 @@ async function setTestCardsNextStepsData(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function resetNextStepsData(page) {
-    // Ensure plugin helpers are loaded
-    await pluginHelpersPromise;
     await wpCli('option delete nfd_next_steps', { failOnNonZeroExit: false });
 }
 
@@ -247,6 +238,13 @@ async function waitForTrackEndpoint(page) {
 }
 
 export {
+    // Plugin helpers (re-exported for convenience)
+    auth,
+    wordpress,
+    newfold,
+    a11y,
+    utils,
+    // Next Steps specific helpers
     setTestNextStepsData,
     setTestCardsNextStepsData,
     resetNextStepsData,
