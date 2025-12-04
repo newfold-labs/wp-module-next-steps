@@ -1,13 +1,31 @@
 import { test, expect } from '@playwright/test';
 import { resolve as _resolve, join } from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// ES module equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Use environment variable to resolve plugin helpers
 const pluginDir = process.env.PLUGIN_DIR || _resolve(__dirname, '../../../../../../');
 const pluginId = process.env.PLUGIN_ID || 'bluehost';
-const { auth } = require(join(pluginDir, 'tests/playwright/helpers'));
-import { setTestCardsNextStepsData, resetNextStepsData, setupNextStepsIntercepts } from '../helpers';
+
+// Dynamic import for plugin helpers (path is resolved at runtime)
+let auth;
+const pluginHelpersPromise = import(join(pluginDir, 'tests/playwright/helpers/index.js')).then(module => {
+    auth = module.auth;
+    return module;
+});
+
+import { setTestCardsNextStepsData, resetNextStepsData, setupNextStepsIntercepts } from '../helpers/index.js';
 
 test.describe('Next Steps Portal in Plugin App with Cards', () => {
+
+    test.beforeAll(async () => {
+        // Ensure plugin helpers are loaded
+        await pluginHelpersPromise;
+    });
 
     test.beforeEach(async ({ page }) => {
         await auth.loginToWordPress(page);

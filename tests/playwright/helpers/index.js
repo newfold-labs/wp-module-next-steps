@@ -5,16 +5,29 @@
  * Includes test data setup and API mocking.
  */
 
-const path = require('path');
+import { resolve, join } from 'path';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// ES module equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Use environment variable to resolve plugin helpers
-const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
-const { wordpress } = require(path.join(pluginDir, 'tests/playwright/helpers'));
-const { wpCli } = wordpress;
+const pluginDir = process.env.PLUGIN_DIR || resolve(__dirname, '../../../../../../');
+
+// Dynamic import for plugin helpers (will be loaded when needed)
+let wordpress, wpCli;
+const pluginHelpersPromise = import(join(pluginDir, 'tests/playwright/helpers/index.js')).then(module => {
+    wordpress = module.wordpress;
+    wpCli = wordpress.wpCli;
+    return module;
+});
 
 // Test data fixtures
-const testPlan = require('../fixtures/test-plan.json');
-const testCardsPlan = require('../fixtures/test-cards-plan.json');
+const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
+const testCardsPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-cards-plan.json'), 'utf8'));
 
 /**
  * Set next steps test fixture to database option
@@ -22,6 +35,8 @@ const testCardsPlan = require('../fixtures/test-cards-plan.json');
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function setTestNextStepsData(page) {
+    // Ensure plugin helpers are loaded
+    await pluginHelpersPromise;
     await wpCli(
         `option update nfd_next_steps '${JSON.stringify(testPlan)}' --format=json`
     );
@@ -33,6 +48,8 @@ async function setTestNextStepsData(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function setTestCardsNextStepsData(page) {
+    // Ensure plugin helpers are loaded
+    await pluginHelpersPromise;
     await wpCli(
         `option update nfd_next_steps '${JSON.stringify(testCardsPlan)}' --format=json`
     );
@@ -44,6 +61,8 @@ async function setTestCardsNextStepsData(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function resetNextStepsData(page) {
+    // Ensure plugin helpers are loaded
+    await pluginHelpersPromise;
     await wpCli('option delete nfd_next_steps', { failOnNonZeroExit: false });
 }
 
@@ -169,7 +188,7 @@ async function waitForApiResponse(page, urlPattern, alias, method = 'POST', time
         }, { timeout });
 
         console.log(`${alias} request intercepted: ${request.method()} ${request.url()}`);
-        
+
         // Try to get response body if available (for intercepted requests, we may not have a real response)
         try {
             const response = await request.response();
@@ -227,7 +246,7 @@ async function waitForTrackEndpoint(page) {
     return await waitForApiResponse(page, '/tracks/', 'trackEndpoint');
 }
 
-module.exports = {
+export {
     setTestNextStepsData,
     setTestCardsNextStepsData,
     resetNextStepsData,
