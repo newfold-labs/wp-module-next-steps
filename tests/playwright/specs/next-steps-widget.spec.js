@@ -1,14 +1,10 @@
-const { test, expect } = require('@playwright/test');
-const path = require('path');
+import { test, expect } from '@playwright/test';
+import { resolve, join } from 'path';
 
 // Use environment variable to resolve plugin helpers
-const pluginDir = process.env.PLUGIN_DIR || path.resolve(__dirname, '../../../../../../');
-const { auth } = require(path.join(pluginDir, 'tests/playwright/helpers'));
-const {
-    setTestNextStepsData,
-    resetNextStepsData,
-    setupNextStepsIntercepts
-} = require('../helpers');
+const pluginDir = process.env.PLUGIN_DIR || resolve(__dirname, '../../../../../../');
+const { auth } = require(join(pluginDir, 'tests/playwright/helpers'));
+import { setTestNextStepsData, resetNextStepsData, setupNextStepsIntercepts } from '../helpers';
 
 test.describe('Next Steps Widget', () => {
 
