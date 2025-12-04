@@ -6,7 +6,7 @@
  */
 
 import { resolve, join } from 'path';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -21,10 +21,54 @@ const pluginDir = process.env.PLUGIN_DIR || resolve(__dirname, '../../../../../.
 // Verify we can find the plugin helpers (will throw clear error if path is wrong)
 const helpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
 
+// Check if the file exists before trying to import
+if (!existsSync(helpersPath)) {
+    throw new Error(
+        `Plugin helpers file not found at: ${helpersPath}\n` +
+        `Plugin directory: ${pluginDir}\n` +
+        `Module __dirname: ${__dirname}\n` +
+        `PLUGIN_DIR env var: ${process.env.PLUGIN_DIR || 'not set'}`
+    );
+}
+
 // Load plugin helpers and Playwright (to ensure single instance)
-const pluginHelpers = await import(helpersPath);
+let pluginHelpers;
+try {
+    pluginHelpers = await import(helpersPath);
+} catch (error) {
+    throw new Error(
+        `Failed to import plugin helpers from ${helpersPath}.\n` +
+        `Plugin directory: ${pluginDir}\n` +
+        `Error: ${error.message}`
+    );
+}
+
+// Check what we actually got
+if (!pluginHelpers || typeof pluginHelpers !== 'object') {
+    throw new Error(
+        `Plugin helpers import returned unexpected type: ${typeof pluginHelpers}.\n` +
+        `Expected object with exports: auth, wordpress, newfold, a11y, utils`
+    );
+}
+
 const { auth, wordpress, newfold, a11y, utils } = pluginHelpers;
+
+if (!wordpress) {
+    throw new Error(
+        `Plugin helpers imported but 'wordpress' is undefined.\n` +
+        `Available exports: ${Object.keys(pluginHelpers).join(', ')}\n` +
+        `Import path: ${helpersPath}\n` +
+        `Plugin directory: ${pluginDir}`
+    );
+}
+
 const { wpCli } = wordpress;
+if (!wpCli) {
+    throw new Error(
+        `Plugin helpers imported but 'wordpress.wpCli' is undefined.\n` +
+        `Available wordpress properties: ${Object.keys(wordpress).join(', ')}`
+    );
+}
 
 // Import Playwright from plugin to avoid double-loading
 const { test, expect } = await import(join(pluginDir, 'node_modules/@playwright/test/index.js'));
