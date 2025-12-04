@@ -4,7 +4,7 @@ import {
     setTestNextStepsData,
     resetNextStepsData,
     setupNextStepsIntercepts
-} from '../helpers/index.js';
+} from '../helpers/index.mjs';
 
 test.describe('Next Steps Portal in Plugin App', () => {
 
