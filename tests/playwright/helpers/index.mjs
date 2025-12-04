@@ -14,18 +14,20 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Use environment variable to resolve plugin helpers
+// Use environment variable to resolve plugin helpers (set by playwright.config.mjs)
+// but if it's not set, use fallback path
 const pluginDir = process.env.PLUGIN_DIR || resolve(__dirname, '../../../../../../');
 
-// Load plugin helpers once and export them for use in spec files
-// Also re-export Playwright from the plugin to ensure we use the same instance
-const pluginHelpers = await import(join(pluginDir, 'tests/playwright/helpers/index.js'));
+// Verify we can find the plugin helpers (will throw clear error if path is wrong)
+const helpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
+
+// Load plugin helpers and Playwright (to ensure single instance)
+const pluginHelpers = await import(helpersPath);
 const { auth, wordpress, newfold, a11y, utils } = pluginHelpers;
 const { wpCli } = wordpress;
 
-// Import Playwright from the plugin's node_modules to avoid double-loading
-const playwrightModule = await import(join(pluginDir, 'node_modules/@playwright/test/index.js'));
-const { test, expect } = playwrightModule;
+// Import Playwright from plugin to avoid double-loading
+const { test, expect } = await import(join(pluginDir, 'node_modules/@playwright/test/index.js'));
 
 // Test data fixtures
 const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
