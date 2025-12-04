@@ -25,6 +25,7 @@ const { wpCli } = wordpress;
 
 // Import Playwright from the plugin's node_modules to avoid double-loading
 const playwrightModule = await import(join(pluginDir, 'node_modules/@playwright/test/index.js'));
+const { test, expect } = playwrightModule;
 
 // Test data fixtures
 const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
@@ -243,8 +244,8 @@ async function waitForTrackEndpoint(page) {
 
 export {
     // Re-export Playwright from plugin to ensure single instance
-    test: playwrightModule.test,
-    expect: playwrightModule.expect,
+    test,
+    expect,
     // Plugin helpers (re-exported for convenience)
     auth,
     wordpress,
