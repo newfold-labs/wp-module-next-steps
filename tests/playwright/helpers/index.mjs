@@ -14,65 +14,55 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Use environment variable to resolve plugin helpers (set by playwright.config.mjs)
-// If not set, try multiple fallback strategies to find the plugin directory
-let pluginDir = process.env.PLUGIN_DIR;
+// Resolve plugin directory - Playwright runs from the plugin root, so process.cwd() should be reliable
+// Priority: 1) PLUGIN_DIR env var (set by playwright.config.mjs), 2) process.cwd() (where Playwright runs from)
+let pluginDir = process.env.PLUGIN_DIR || process.cwd();
 
-if (!pluginDir) {
-    // Try multiple possible paths based on common CI/local structures
-    const possiblePaths = [
-        resolve(__dirname, '../../../../../../'), // From vendor/newfold-labs/wp-module-next-steps/tests/playwright/helpers (7 levels)
-        resolve(__dirname, '../../../../../'),   // Alternative structure (6 levels)
-        process.cwd(),                            // Current working directory (might be plugin root in CI)
-    ];
+// Verify this is actually the plugin directory by checking for expected files
+const initialPlaywrightPath = join(pluginDir, 'node_modules/@playwright/test/index.js');
+const initialHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
 
-    // Also try to find playwright.config.mjs by walking up the directory tree
+// If the primary path doesn't have what we need, try to find it by looking for playwright.config.mjs
+if (!existsSync(initialPlaywrightPath) || !existsSync(initialHelpersPath)) {
+    // Walk up from the module's location to find the plugin root (where playwright.config.mjs lives)
     let currentDir = __dirname;
     for (let i = 0; i < 10; i++) {
-        const configPath = join(currentDir, 'playwright.config.mjs');
-        if (existsSync(configPath)) {
-            possiblePaths.push(currentDir);
-            break;
+        const testConfigPath = join(currentDir, 'playwright.config.mjs');
+        if (existsSync(testConfigPath)) {
+            const testPlaywrightPath = join(currentDir, 'node_modules/@playwright/test/index.js');
+            const testHelpersPath = join(currentDir, 'tests/playwright/helpers/index.js');
+            if (existsSync(testPlaywrightPath) && existsSync(testHelpersPath)) {
+                pluginDir = currentDir;
+                break;
+            }
         }
         const parent = resolve(currentDir, '..');
         if (parent === currentDir) break; // Reached root
         currentDir = parent;
     }
-
-    // Find the first path that contains both node_modules/@playwright/test and tests/playwright/helpers
-    for (const possiblePath of possiblePaths) {
-        const playwrightPath = join(possiblePath, 'node_modules/@playwright/test/index.js');
-        const helpersPath = join(possiblePath, 'tests/playwright/helpers/index.js');
-        if (existsSync(playwrightPath) && existsSync(helpersPath)) {
-            pluginDir = possiblePath;
-            break;
-        }
-    }
-
-    // If still not found, use the first fallback and let the error handling catch it
-    if (!pluginDir) {
-        pluginDir = possiblePaths[0];
-    }
 }
 
-// Verify we can find the plugin helpers (will throw clear error if path is wrong)
-const helpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
+// Re-resolve paths after potentially updating pluginDir
+const finalPlaywrightPath = join(pluginDir, 'node_modules/@playwright/test/index.js');
+const finalHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
 
+// Verify we can find the plugin helpers (will throw clear error if path is wrong)
 // Check if the file exists before trying to import
-if (!existsSync(helpersPath)) {
+if (!existsSync(finalHelpersPath)) {
     throw new Error(
-        `Plugin helpers file not found at: ${helpersPath}\n` +
+        `Plugin helpers file not found at: ${finalHelpersPath}\n` +
         `Plugin directory: ${pluginDir}\n` +
         `Module __dirname: ${__dirname}\n` +
-        `PLUGIN_DIR env var: ${process.env.PLUGIN_DIR || 'not set'}`
+        `PLUGIN_DIR env var: ${process.env.PLUGIN_DIR || 'not set'}\n` +
+        `Current working directory: ${process.cwd()}`
     );
 }
 
 // Load plugin helpers and Playwright (to ensure single instance)
 // Use file:// URL for absolute path imports in ES modules
-const helpersUrl = helpersPath.startsWith('/')
-    ? `file://${helpersPath}`
-    : helpersPath;
+const helpersUrl = finalHelpersPath.startsWith('/')
+    ? `file://${finalHelpersPath}`
+    : finalHelpersPath;
 
 let pluginHelpers;
 try {
@@ -135,7 +125,6 @@ if (!wpCli) {
 
 // Import Playwright from plugin's node_modules to ensure single instance
 // This prevents "Requiring @playwright/test second time" errors
-const playwrightPath = join(pluginDir, 'node_modules/@playwright/test/index.js');
 
 // Debug logging (only in CI or when DEBUG is set)
 if (process.env.CI || process.env.DEBUG) {
@@ -143,35 +132,27 @@ if (process.env.CI || process.env.DEBUG) {
     console.log(`  Module __dirname: ${__dirname}`);
     console.log(`  Plugin directory: ${pluginDir}`);
     console.log(`  PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}`);
-    console.log(`  Playwright path: ${playwrightPath}`);
-    console.log(`  Playwright exists: ${existsSync(playwrightPath)}`);
     console.log(`  Current working directory: ${process.cwd()}`);
+    console.log(`  Playwright path: ${finalPlaywrightPath}`);
+    console.log(`  Playwright exists: ${existsSync(finalPlaywrightPath)}`);
+    console.log(`  Plugin helpers path: ${finalHelpersPath}`);
+    console.log(`  Plugin helpers exist: ${existsSync(finalHelpersPath)}`);
 }
 
 // Check if Playwright exists at the expected path
-if (!existsSync(playwrightPath)) {
-    // Try to find Playwright in alternative locations for better error message
-    const altPaths = [
-        join(process.cwd(), 'node_modules/@playwright/test/index.js'),
-        join(__dirname, '../../../node_modules/@playwright/test/index.js'),
-    ];
-
-    const foundPaths = altPaths.filter(p => existsSync(p));
-
+if (!existsSync(finalPlaywrightPath)) {
     throw new Error(
-        `Playwright not found at: ${playwrightPath}\n` +
+        `Playwright not found at: ${finalPlaywrightPath}\n` +
         `Plugin directory: ${pluginDir}\n` +
         `Module __dirname: ${__dirname}\n` +
         `PLUGIN_DIR env var: ${process.env.PLUGIN_DIR || 'not set'}\n` +
         `Current working directory: ${process.cwd()}\n` +
-        (foundPaths.length > 0
-            ? `Found Playwright at alternative location(s): ${foundPaths.join(', ')}\n`
-            : '') +
-        `Please ensure @playwright/test is installed in the plugin's node_modules.`
+        `Please ensure @playwright/test is installed in the plugin's node_modules.\n` +
+        `Note: Playwright should be run from the plugin directory, so process.cwd() should be the plugin root.`
     );
 }
 
-const playwrightUrl = `file://${playwrightPath}`;
+const playwrightUrl = `file://${finalPlaywrightPath}`;
 
 let playwrightModule;
 try {
@@ -179,7 +160,7 @@ try {
 } catch (error) {
     throw new Error(
         `Failed to import Playwright from ${playwrightUrl}.\n` +
-        `Resolved path: ${playwrightPath}\n` +
+        `Resolved path: ${finalPlaywrightPath}\n` +
         `Plugin directory: ${pluginDir}\n` +
         `Module __dirname: ${__dirname}\n` +
         `PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}\n` +
@@ -194,7 +175,7 @@ if (!playwrightModule || !playwrightModule.test || !playwrightModule.expect) {
         `Playwright module imported but missing expected exports.\n` +
         `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
         `Expected: test, expect\n` +
-        `Import path: ${playwrightPath}`
+        `Import path: ${finalPlaywrightPath}`
     );
 }
 
