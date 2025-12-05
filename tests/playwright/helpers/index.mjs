@@ -197,6 +197,19 @@ try {
 // Handle both named exports and default export wrapping (common with dynamic imports)
 let test, expect;
 
+// Debug: log what we got
+if (process.env.CI || process.env.DEBUG) {
+    console.log('[Module Helpers] Playwright import debug:');
+    console.log(`  playwrightModule type: ${typeof playwrightModule}`);
+    console.log(`  playwrightModule.default exists: ${!!playwrightModule.default}`);
+    console.log(`  playwrightModule.default type: ${playwrightModule.default ? typeof playwrightModule.default : 'N/A'}`);
+    console.log(`  playwrightModule.default is object: ${playwrightModule.default ? typeof playwrightModule.default === 'object' : 'N/A'}`);
+    console.log(`  'test' in default: ${playwrightModule.default ? 'test' in playwrightModule.default : 'N/A'}`);
+    console.log(`  'expect' in default: ${playwrightModule.default ? 'expect' in playwrightModule.default : 'N/A'}`);
+    console.log(`  'test' in root: ${'test' in playwrightModule}`);
+    console.log(`  'expect' in root: ${'expect' in playwrightModule}`);
+}
+
 // Check if default export exists and has test/expect
 if (playwrightModule.default && typeof playwrightModule.default === 'object') {
     // Check if properties exist (using 'in' operator to be more robust)
@@ -204,6 +217,9 @@ if (playwrightModule.default && typeof playwrightModule.default === 'object') {
         // Dynamic import wrapped it in a default export
         test = playwrightModule.default.test;
         expect = playwrightModule.default.expect;
+        if (process.env.CI || process.env.DEBUG) {
+            console.log(`  ✓ Extracted test and expect from default export`);
+        }
     } else {
         throw new Error(
             `Playwright default export exists but missing test or expect.\n` +
@@ -219,11 +235,16 @@ if (playwrightModule.default && typeof playwrightModule.default === 'object') {
     // Named exports directly available
     test = playwrightModule.test;
     expect = playwrightModule.expect;
+    if (process.env.CI || process.env.DEBUG) {
+        console.log(`  ✓ Extracted test and expect from root exports`);
+    }
 } else {
     throw new Error(
         `Playwright module imported but missing expected exports.\n` +
         `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
         `Default export exists: ${!!playwrightModule.default}\n` +
+        `Default export type: ${playwrightModule.default ? typeof playwrightModule.default : 'none'}\n` +
+        `Default export is object: ${playwrightModule.default ? typeof playwrightModule.default === 'object' : 'N/A'}\n` +
         `Default export keys: ${playwrightModule.default ? Object.keys(playwrightModule.default).join(', ') : 'none'}\n` +
         `Expected: test, expect\n` +
         `Import path: ${finalPlaywrightPath}`
