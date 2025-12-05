@@ -35,10 +35,12 @@ composer test-coverage-html  # generates HTML report in tests/coverage/
 vendor/bin/phpunit tests/phpunit/PlanFactoryTest.php
 vendor/bin/phpunit --filter test_method_name
 
-# Run Cypress E2E tests (requires WordPress environment)
-npx cypress run --spec "tests/cypress/integration/next-steps-widget.cy.js"
-npx cypress run --spec "tests/cypress/integration/next-steps-portal.cy.js"
-npx cypress run --spec "tests/cypress/integration/next-steps-portal-cards.cy.js"
+# Run Playwright E2E tests (requires WordPress environment)
+npx playwright test tests/playwright/specs/next-steps-widget.spec.mjs
+npx playwright test tests/playwright/specs/next-steps-portal.spec.mjs
+npx playwright test tests/playwright/specs/next-steps-portal-cards.spec.mjs
+# Or run all tests
+npx playwright test
 ```
 
 ### Code Quality
