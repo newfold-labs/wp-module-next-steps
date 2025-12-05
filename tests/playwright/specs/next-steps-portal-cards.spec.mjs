@@ -1,10 +1,11 @@
-import { test, expect } from '@playwright/test';
 import {
+    test,
+    expect,
     auth,
     setTestCardsNextStepsData,
     resetNextStepsData,
     setupNextStepsIntercepts
-} from '../helpers/index.mjs';
+} from '../helpers';
 
 const pluginId = process.env.PLUGIN_ID || 'bluehost';
 

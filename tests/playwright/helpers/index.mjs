@@ -96,8 +96,12 @@ if (!wpCli) {
     );
 }
 
-// Note: Playwright (test, expect) should be imported directly in spec files from '@playwright/test'
-// We don't re-export it here to avoid double-loading issues
+// Import Playwright from plugin's node_modules to ensure single instance
+// This prevents "Requiring @playwright/test second time" errors
+const playwrightPath = join(pluginDir, 'node_modules/@playwright/test/index.js');
+const playwrightUrl = `file://${playwrightPath}`;
+const playwrightModule = await import(playwrightUrl);
+const { test, expect } = playwrightModule;
 
 // Test data fixtures
 const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
@@ -315,6 +319,9 @@ async function waitForTrackEndpoint(page) {
 }
 
 export {
+    // Playwright (from plugin's installation to prevent double-loading)
+    test,
+    expect,
     // Plugin helpers (re-exported for convenience)
     auth,
     wordpress,

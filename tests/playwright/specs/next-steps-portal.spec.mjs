@@ -1,10 +1,11 @@
-import { test, expect } from '@playwright/test';
 import {
+    test,
+    expect,
     auth,
     setTestNextStepsData,
     resetNextStepsData,
     setupNextStepsIntercepts
-} from '../helpers/index.mjs';
+} from '../helpers';
 
 test.describe('Next Steps Portal in Plugin App', () => {
 
