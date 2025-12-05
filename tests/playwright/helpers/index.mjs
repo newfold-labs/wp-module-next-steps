@@ -19,15 +19,13 @@ const __dirname = dirname(__filename);
 let pluginDir = process.env.PLUGIN_DIR || process.cwd();
 
 // Verify this is actually the plugin directory by checking for expected files
-const initialPlaywrightPath = join(pluginDir, 'node_modules/@playwright/test/index.js');
 const initialHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
 
 // If the primary path doesn't have what we need, try to find it by looking for playwright.config.mjs
-if (!existsSync(initialPlaywrightPath) || !existsSync(initialHelpersPath)) {
+if (!existsSync(initialHelpersPath)) {
     // Debug: log what we tried
     if (process.env.CI || process.env.DEBUG) {
         console.log('[Module Helpers] Primary paths not found, searching...');
-        console.log(`  Initial Playwright path: ${initialPlaywrightPath} (exists: ${existsSync(initialPlaywrightPath)})`);
         console.log(`  Initial helpers path: ${initialHelpersPath} (exists: ${existsSync(initialHelpersPath)})`);
     }
 
@@ -38,15 +36,13 @@ if (!existsSync(initialPlaywrightPath) || !existsSync(initialHelpersPath)) {
         triedPaths.push(currentDir);
         const testConfigPath = join(currentDir, 'playwright.config.mjs');
         if (existsSync(testConfigPath)) {
-            const testPlaywrightPath = join(currentDir, 'node_modules/@playwright/test/index.js');
             const testHelpersPath = join(currentDir, 'tests/playwright/helpers/index.js');
             if (process.env.CI || process.env.DEBUG) {
                 console.log(`  Checking: ${currentDir}`);
                 console.log(`    Config exists: ${existsSync(testConfigPath)}`);
-                console.log(`    Playwright exists: ${existsSync(testPlaywrightPath)}`);
                 console.log(`    Helpers exist: ${existsSync(testHelpersPath)}`);
             }
-            if (existsSync(testPlaywrightPath) && existsSync(testHelpersPath)) {
+            if (existsSync(testHelpersPath)) {
                 pluginDir = currentDir;
                 if (process.env.CI || process.env.DEBUG) {
                     console.log(`  ✓ Found plugin directory: ${pluginDir}`);
@@ -66,8 +62,6 @@ if (!existsSync(initialPlaywrightPath) || !existsSync(initialHelpersPath)) {
     }
 }
 
-// Re-resolve paths after potentially updating pluginDir
-const finalPlaywrightPath = join(pluginDir, 'node_modules/@playwright/test/index.js');
 // Use .mjs extension (plugin's index.js has been renamed to index.mjs)
 const finalHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.mjs');
 
@@ -83,7 +77,7 @@ if (!existsSync(finalHelpersPath)) {
     );
 }
 
-// Load plugin helpers and Playwright (to ensure single instance)
+// Load plugin helpers
 // Try relative import from plugin directory (avoids file:// URL strictness)
 let pluginHelpers;
 const originalCwd = process.cwd();
@@ -163,108 +157,6 @@ if (!wpCli) {
     throw new Error(
         `Plugin helpers imported but 'wordpress.wpCli' is undefined.\n` +
         `Available wordpress properties: ${Object.keys(wordpress).join(', ')}`
-    );
-}
-
-// Import Playwright from plugin's node_modules to ensure single instance
-// This prevents "Requiring @playwright/test second time" errors
-
-// Debug logging (only in CI or when DEBUG is set)
-if (process.env.CI || process.env.DEBUG) {
-    console.log('[Module Helpers] Debug Info:');
-    console.log(`  Module __dirname: ${__dirname}`);
-    console.log(`  Plugin directory: ${pluginDir}`);
-    console.log(`  PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}`);
-    console.log(`  Current working directory: ${process.cwd()}`);
-    console.log(`  Playwright path: ${finalPlaywrightPath}`);
-    console.log(`  Playwright exists: ${existsSync(finalPlaywrightPath)}`);
-    console.log(`  Plugin helpers path: ${finalHelpersPath}`);
-    console.log(`  Plugin helpers exist: ${existsSync(finalHelpersPath)}`);
-}
-
-// Check if Playwright exists at the expected path
-if (!existsSync(finalPlaywrightPath)) {
-    throw new Error(
-        `Playwright not found at: ${finalPlaywrightPath}\n` +
-        `Plugin directory: ${pluginDir}\n` +
-        `Module __dirname: ${__dirname}\n` +
-        `PLUGIN_DIR env var: ${process.env.PLUGIN_DIR || 'not set'}\n` +
-        `Current working directory: ${process.cwd()}\n` +
-        `Please ensure @playwright/test is installed in the plugin's node_modules.\n` +
-        `Note: Playwright should be run from the plugin directory, so process.cwd() should be the plugin root.`
-    );
-}
-
-const playwrightUrl = `file://${finalPlaywrightPath}`;
-
-let playwrightModule;
-try {
-    playwrightModule = await import(playwrightUrl);
-} catch (error) {
-    throw new Error(
-        `Failed to import Playwright from ${playwrightUrl}.\n` +
-        `Resolved path: ${finalPlaywrightPath}\n` +
-        `Plugin directory: ${pluginDir}\n` +
-        `Module __dirname: ${__dirname}\n` +
-        `PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}\n` +
-        `Error: ${error.message}\n` +
-        `Stack: ${error.stack}`
-    );
-}
-
-// Handle both named exports and default export wrapping (common with dynamic imports)
-let test, expect;
-
-// Debug: log what we got
-if (process.env.CI || process.env.DEBUG) {
-    console.log('[Module Helpers] Playwright import debug:');
-    console.log(`  playwrightModule type: ${typeof playwrightModule}`);
-    console.log(`  playwrightModule.default exists: ${!!playwrightModule.default}`);
-    console.log(`  playwrightModule.default type: ${playwrightModule.default ? typeof playwrightModule.default : 'N/A'}`);
-    console.log(`  playwrightModule.default is object: ${playwrightModule.default ? typeof playwrightModule.default === 'object' : 'N/A'}`);
-    console.log(`  'test' in default: ${playwrightModule.default ? 'test' in playwrightModule.default : 'N/A'}`);
-    console.log(`  'expect' in default: ${playwrightModule.default ? 'expect' in playwrightModule.default : 'N/A'}`);
-    console.log(`  'test' in root: ${'test' in playwrightModule}`);
-    console.log(`  'expect' in root: ${'expect' in playwrightModule}`);
-}
-
-// Check for test and expect - dynamic import() provides both named exports AND a default export
-// Prefer named exports (mod.test) if available, fall back to default export properties (mod.default.test)
-if ('test' in playwrightModule && 'expect' in playwrightModule) {
-    // Named exports directly available (preferred - cleaner)
-    test = playwrightModule.test;
-    expect = playwrightModule.expect;
-    if (process.env.CI || process.env.DEBUG) {
-        console.log(`  ✓ Extracted test and expect from named exports`);
-    }
-} else if (playwrightModule.default && ('test' in playwrightModule.default && 'expect' in playwrightModule.default)) {
-    // Fall back to default export properties (dynamic import with file:// URL wraps it)
-    test = playwrightModule.default.test;
-    expect = playwrightModule.default.expect;
-    if (process.env.CI || process.env.DEBUG) {
-        console.log(`  ✓ Extracted test and expect from default export (type: ${typeof playwrightModule.default})`);
-    }
-} else {
-    throw new Error(
-        `Playwright module imported but missing expected exports.\n` +
-        `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
-        `Default export exists: ${!!playwrightModule.default}\n` +
-        `Default export type: ${playwrightModule.default ? typeof playwrightModule.default : 'none'}\n` +
-        `Default export is object: ${playwrightModule.default ? typeof playwrightModule.default === 'object' : 'N/A'}\n` +
-        `Default export keys: ${playwrightModule.default ? Object.keys(playwrightModule.default).join(', ') : 'none'}\n` +
-        `Expected: test, expect\n` +
-        `Import path: ${finalPlaywrightPath}`
-    );
-}
-
-// Verify we actually got test and expect
-if (!test || !expect) {
-    throw new Error(
-        `Playwright module imported but test or expect is undefined after extraction.\n` +
-        `test: ${typeof test}, expect: ${typeof expect}\n` +
-        `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
-        `Default export keys: ${playwrightModule.default ? Object.keys(playwrightModule.default).join(', ') : 'none'}\n` +
-        `Import path: ${finalPlaywrightPath}`
     );
 }
 
@@ -484,9 +376,6 @@ async function waitForTrackEndpoint(page) {
 }
 
 export {
-    // Playwright (from plugin's installation to prevent double-loading)
-    test,
-    expect,
     // Plugin helpers (re-exported for convenience)
     auth,
     wordpress,
