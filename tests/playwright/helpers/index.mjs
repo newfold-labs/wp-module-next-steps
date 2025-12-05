@@ -5,116 +5,32 @@
  * Includes test data setup and API mocking.
  */
 
-import { resolve, join } from 'path';
+import { join, dirname } from 'path';
 import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { dirname } from 'path';
 
 // ES module equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Resolve plugin directory - Playwright runs from the plugin root, so process.cwd() should be reliable
-// Priority: 1) PLUGIN_DIR env var (set by playwright.config.mjs), 2) process.cwd() (where Playwright runs from)
-let pluginDir = process.env.PLUGIN_DIR || process.cwd();
+// Resolve plugin directory from PLUGIN_DIR env var (set by playwright.config.mjs) or process.cwd()
+const pluginDir = process.env.PLUGIN_DIR || process.cwd();
 
-// Verify this is actually the plugin directory by checking for expected files
-const initialHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
-
-// If the primary path doesn't have what we need, try to find it by looking for playwright.config.mjs
-if (!existsSync(initialHelpersPath)) {
-    // Debug: log what we tried
-    if (process.env.CI || process.env.DEBUG) {
-        console.log('[Module Helpers] Primary paths not found, searching...');
-        console.log(`  Initial helpers path: ${initialHelpersPath} (exists: ${existsSync(initialHelpersPath)})`);
-    }
-
-    // Walk up from the module's location to find the plugin root (where playwright.config.mjs lives)
-    let currentDir = __dirname;
-    const triedPaths = [];
-    for (let i = 0; i < 10; i++) {
-        triedPaths.push(currentDir);
-        const testConfigPath = join(currentDir, 'playwright.config.mjs');
-        if (existsSync(testConfigPath)) {
-            const testHelpersPath = join(currentDir, 'tests/playwright/helpers/index.js');
-            if (process.env.CI || process.env.DEBUG) {
-                console.log(`  Checking: ${currentDir}`);
-                console.log(`    Config exists: ${existsSync(testConfigPath)}`);
-                console.log(`    Helpers exist: ${existsSync(testHelpersPath)}`);
-            }
-            if (existsSync(testHelpersPath)) {
-                pluginDir = currentDir;
-                if (process.env.CI || process.env.DEBUG) {
-                    console.log(`  ✓ Found plugin directory: ${pluginDir}`);
-                }
-                break;
-            }
-        }
-        const parent = resolve(currentDir, '..');
-        if (parent === currentDir) break; // Reached root
-        currentDir = parent;
-    }
-
-    if (process.env.CI || process.env.DEBUG) {
-        if (pluginDir === (process.env.PLUGIN_DIR || process.cwd())) {
-            console.log(`  ✗ Plugin directory not found after searching. Tried ${triedPaths.length} paths.`);
-        }
-    }
-}
-
-// Use .mjs extension (plugin's index.js has been renamed to index.mjs)
+// Build path to plugin helpers (.mjs extension for ES module compatibility)
 const finalHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.mjs');
 
-// Verify we can find the plugin helpers (will throw clear error if path is wrong)
-// Check if the file exists before trying to import
+// Verify plugin helpers exist
 if (!existsSync(finalHelpersPath)) {
     throw new Error(
-        `Plugin helpers file not found at: ${finalHelpersPath}\n` +
-        `Plugin directory: ${pluginDir}\n` +
-        `Module __dirname: ${__dirname}\n` +
-        `PLUGIN_DIR env var: ${process.env.PLUGIN_DIR || 'not set'}\n` +
-        `Current working directory: ${process.cwd()}`
+        `Plugin helpers not found at: ${finalHelpersPath}\n` +
+        `PLUGIN_DIR: ${process.env.PLUGIN_DIR || 'not set'}\n` +
+        `cwd: ${process.cwd()}`
     );
 }
 
-// Load plugin helpers
-// Try relative import from plugin directory (avoids file:// URL strictness)
-let pluginHelpers;
-const originalCwd = process.cwd();
-try {
-    // Change to plugin directory to use relative import
-    process.chdir(pluginDir);
-    // Use relative path with .mjs extension (explicit ES module)
-    pluginHelpers = await import('./tests/playwright/helpers/index.mjs');
-    if (process.env.CI || process.env.DEBUG) {
-        console.log(`  ✓ Imported plugin helpers using relative path from plugin directory`);
-    }
-} catch (error) {
-    // Fall back to file:// URL if relative import fails
-    const helpersUrl = pathToFileURL(finalHelpersPath).href;
-    try {
-        pluginHelpers = await import(helpersUrl);
-        if (process.env.CI || process.env.DEBUG) {
-            console.log(`  ✓ Imported plugin helpers using file:// URL`);
-        }
-    } catch (error2) {
-        throw new Error(
-            `Failed to import plugin helpers using both strategies.\n` +
-            `Strategy 1 (relative): ${error.message}\n` +
-            `Strategy 2 (file:// URL): ${error2.message}\n` +
-            `Resolved path: ${finalHelpersPath}\n` +
-            `Plugin directory: ${pluginDir}\n` +
-            `Module __dirname: ${__dirname}\n` +
-            `PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}\n` +
-            `Current working directory: ${process.cwd()}\n` +
-            `\nNote: Plugin helpers use ES module syntax. Consider adding "type": "module" to package.json\n` +
-            `or renaming helper files to .mjs extension.`
-        );
-    }
-} finally {
-    // Always restore original working directory
-    process.chdir(originalCwd);
-}
+// Import plugin helpers using file:// URL
+const helpersUrl = pathToFileURL(finalHelpersPath).href;
+const pluginHelpers = await import(helpersUrl);
 
 // Check what we actually got
 if (!pluginHelpers || typeof pluginHelpers !== 'object') {
