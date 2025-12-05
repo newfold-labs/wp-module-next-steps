@@ -211,25 +211,13 @@ if (process.env.CI || process.env.DEBUG) {
 }
 
 // Check if default export exists and has test/expect
-if (playwrightModule.default && typeof playwrightModule.default === 'object') {
-    // Check if properties exist (using 'in' operator to be more robust)
-    if ('test' in playwrightModule.default && 'expect' in playwrightModule.default) {
-        // Dynamic import wrapped it in a default export
-        test = playwrightModule.default.test;
-        expect = playwrightModule.default.expect;
-        if (process.env.CI || process.env.DEBUG) {
-            console.log(`  ✓ Extracted test and expect from default export`);
-        }
-    } else {
-        throw new Error(
-            `Playwright default export exists but missing test or expect.\n` +
-            `Default export has 'test' key: ${'test' in playwrightModule.default}\n` +
-            `Default export has 'expect' key: ${'expect' in playwrightModule.default}\n` +
-            `test value: ${typeof playwrightModule.default.test}\n` +
-            `expect value: ${typeof playwrightModule.default.expect}\n` +
-            `Default export keys: ${Object.keys(playwrightModule.default).join(', ')}\n` +
-            `Import path: ${finalPlaywrightPath}`
-        );
+// Note: default export can be a function (which can have properties) or an object
+if (playwrightModule.default && ('test' in playwrightModule.default && 'expect' in playwrightModule.default)) {
+    // Dynamic import wrapped it in a default export (could be function or object)
+    test = playwrightModule.default.test;
+    expect = playwrightModule.default.expect;
+    if (process.env.CI || process.env.DEBUG) {
+        console.log(`  ✓ Extracted test and expect from default export (type: ${typeof playwrightModule.default})`);
     }
 } else if ('test' in playwrightModule && 'expect' in playwrightModule) {
     // Named exports directly available
