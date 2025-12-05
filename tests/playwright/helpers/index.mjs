@@ -19,36 +19,18 @@ const pluginDir = process.env.PLUGIN_DIR || process.cwd();
 // Build path to plugin helpers (.mjs extension for ES module compatibility)
 const finalHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.mjs');
 
-// Verify plugin helpers exist
-if (!existsSync(finalHelpersPath)) {
-    throw new Error(
-        `Plugin helpers not found at: ${finalHelpersPath}\n` +
-        `PLUGIN_DIR: ${process.env.PLUGIN_DIR || 'not set'}\n` +
-        `cwd: ${process.cwd()}`
-    );
-}
-
 // Import plugin helpers using file:// URL
 const helpersUrl = pathToFileURL(finalHelpersPath).href;
 const pluginHelpers = await import(helpersUrl);
-
-// Check what we actually got
-if (!pluginHelpers || typeof pluginHelpers !== 'object') {
-    throw new Error(
-        `Plugin helpers import returned unexpected type: ${typeof pluginHelpers}.\n` +
-        `Expected object with exports: auth, wordpress, newfold, a11y, utils`
-    );
-}
-
-// Plugin helpers may use default export or named exports
-// Dynamic imports sometimes wrap named exports in a default export
 let auth, wordpress, newfold, a11y, utils;
 
 if (pluginHelpers.default && typeof pluginHelpers.default === 'object') {
     // Has a default export - use it
+    console.log('pluginHelpers has default export', pluginHelpers.default);
     ({ auth, wordpress, newfold, a11y, utils } = pluginHelpers.default);
 } else if (pluginHelpers.auth || pluginHelpers.wordpress) {
     // Has named exports directly
+    console.log('pluginHelpers has named exports', pluginHelpers);
     ({ auth, wordpress, newfold, a11y, utils } = pluginHelpers);
 } else {
     throw new Error(
@@ -58,23 +40,7 @@ if (pluginHelpers.default && typeof pluginHelpers.default === 'object') {
     );
 }
 
-if (!wordpress) {
-    throw new Error(
-        `Plugin helpers imported but 'wordpress' is undefined.\n` +
-        `Available exports: ${Object.keys(pluginHelpers).join(', ')}\n` +
-        `Default export keys: ${pluginHelpers.default ? Object.keys(pluginHelpers.default).join(', ') : 'none'}\n` +
-        `Import path: ${helpersPath}\n` +
-        `Plugin directory: ${pluginDir}`
-    );
-}
-
 const { wpCli } = wordpress;
-if (!wpCli) {
-    throw new Error(
-        `Plugin helpers imported but 'wordpress.wpCli' is undefined.\n` +
-        `Available wordpress properties: ${Object.keys(wordpress).join(', ')}`
-    );
-}
 
 // Test data fixtures
 const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
@@ -108,6 +74,7 @@ async function setTestCardsNextStepsData(page) {
  * @param {import('@playwright/test').Page} page - Playwright page object
  */
 async function resetNextStepsData(page) {
+    // ignores error if option doesn't exist
     await wpCli('option delete nfd_next_steps', { failOnNonZeroExit: false });
 }
 
