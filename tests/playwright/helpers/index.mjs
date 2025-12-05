@@ -7,7 +7,7 @@
 
 import { resolve, join } from 'path';
 import { readFileSync, existsSync } from 'fs';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname } from 'path';
 
 // ES module equivalent of __dirname
@@ -68,7 +68,8 @@ if (!existsSync(initialPlaywrightPath) || !existsSync(initialHelpersPath)) {
 
 // Re-resolve paths after potentially updating pluginDir
 const finalPlaywrightPath = join(pluginDir, 'node_modules/@playwright/test/index.js');
-const finalHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
+// Use .mjs extension (plugin's index.js has been renamed to index.mjs)
+const finalHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.mjs');
 
 // Verify we can find the plugin helpers (will throw clear error if path is wrong)
 // Check if the file exists before trying to import
@@ -83,25 +84,42 @@ if (!existsSync(finalHelpersPath)) {
 }
 
 // Load plugin helpers and Playwright (to ensure single instance)
-// Use file:// URL for absolute path imports in ES modules
-const helpersUrl = finalHelpersPath.startsWith('/')
-    ? `file://${finalHelpersPath}`
-    : finalHelpersPath;
-
+// Try relative import from plugin directory (avoids file:// URL strictness)
 let pluginHelpers;
+const originalCwd = process.cwd();
 try {
-    pluginHelpers = await import(helpersUrl);
+    // Change to plugin directory to use relative import
+    process.chdir(pluginDir);
+    // Use relative path with .mjs extension (explicit ES module)
+    pluginHelpers = await import('./tests/playwright/helpers/index.mjs');
+    if (process.env.CI || process.env.DEBUG) {
+        console.log(`  ✓ Imported plugin helpers using relative path from plugin directory`);
+    }
 } catch (error) {
-    throw new Error(
-        `Failed to import plugin helpers from ${helpersUrl}.\n` +
-        `Resolved path: ${finalHelpersPath}\n` +
-        `Plugin directory: ${pluginDir}\n` +
-        `Module __dirname: ${__dirname}\n` +
-        `PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}\n` +
-        `Current working directory: ${process.cwd()}\n` +
-        `Error: ${error.message}\n` +
-        `Stack: ${error.stack}`
-    );
+    // Fall back to file:// URL if relative import fails
+    const helpersUrl = pathToFileURL(finalHelpersPath).href;
+    try {
+        pluginHelpers = await import(helpersUrl);
+        if (process.env.CI || process.env.DEBUG) {
+            console.log(`  ✓ Imported plugin helpers using file:// URL`);
+        }
+    } catch (error2) {
+        throw new Error(
+            `Failed to import plugin helpers using both strategies.\n` +
+            `Strategy 1 (relative): ${error.message}\n` +
+            `Strategy 2 (file:// URL): ${error2.message}\n` +
+            `Resolved path: ${finalHelpersPath}\n` +
+            `Plugin directory: ${pluginDir}\n` +
+            `Module __dirname: ${__dirname}\n` +
+            `PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}\n` +
+            `Current working directory: ${process.cwd()}\n` +
+            `\nNote: Plugin helpers use ES module syntax. Consider adding "type": "module" to package.json\n` +
+            `or renaming helper files to .mjs extension.`
+        );
+    }
+} finally {
+    // Always restore original working directory
+    process.chdir(originalCwd);
 }
 
 // Check what we actually got
@@ -210,21 +228,21 @@ if (process.env.CI || process.env.DEBUG) {
     console.log(`  'expect' in root: ${'expect' in playwrightModule}`);
 }
 
-// Check if default export exists and has test/expect
-// Note: default export can be a function (which can have properties) or an object
-if (playwrightModule.default && ('test' in playwrightModule.default && 'expect' in playwrightModule.default)) {
-    // Dynamic import wrapped it in a default export (could be function or object)
+// Check for test and expect - dynamic import() provides both named exports AND a default export
+// Prefer named exports (mod.test) if available, fall back to default export properties (mod.default.test)
+if ('test' in playwrightModule && 'expect' in playwrightModule) {
+    // Named exports directly available (preferred - cleaner)
+    test = playwrightModule.test;
+    expect = playwrightModule.expect;
+    if (process.env.CI || process.env.DEBUG) {
+        console.log(`  ✓ Extracted test and expect from named exports`);
+    }
+} else if (playwrightModule.default && ('test' in playwrightModule.default && 'expect' in playwrightModule.default)) {
+    // Fall back to default export properties (dynamic import with file:// URL wraps it)
     test = playwrightModule.default.test;
     expect = playwrightModule.default.expect;
     if (process.env.CI || process.env.DEBUG) {
         console.log(`  ✓ Extracted test and expect from default export (type: ${typeof playwrightModule.default})`);
-    }
-} else if ('test' in playwrightModule && 'expect' in playwrightModule) {
-    // Named exports directly available
-    test = playwrightModule.test;
-    expect = playwrightModule.expect;
-    if (process.env.CI || process.env.DEBUG) {
-        console.log(`  ✓ Extracted test and expect from root exports`);
     }
 } else {
     throw new Error(
