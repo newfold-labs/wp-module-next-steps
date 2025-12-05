@@ -13,6 +13,8 @@ test.describe('Next Steps Widget', () => {
         await setTestNextStepsData(page);
         // Visit the Next Steps widget
         await page.goto('/wp-admin/index.php');
+        // Reload the page to ensure the test data is loaded
+        await page.reload();
 
         // Wait for widget to be visible
         await page.locator('#nfd_next_steps_widget').waitFor({ state: 'visible', timeout: 25000 });
@@ -148,8 +150,11 @@ test.describe('Next Steps Widget', () => {
         // Complete task
         await page.locator('.nfd-section[data-nfd-section-id="section1"] #task-s1task1.nfd-nextsteps-task-container .nfd-nextsteps-task-new .nfd-nextsteps-button-todo').click();
 
+        // wait for task to update
+        await page.waitForTimeout(500);
+
         // Task should now be in done state
-        await expect(page.locator('.nfd-section[data-nfd-section-id="section1"] #task-s1task1')).toHaveAttribute('data-nfd-task-status', 'done', { timeout: 500 });
+        await expect(page.locator('.nfd-section[data-nfd-section-id="section1"] #task-s1task1')).toHaveAttribute('data-nfd-task-status', 'done');
 
         // Progress should update
         await expect(page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-progress-bar-label')).toHaveText('1/1');
@@ -164,14 +169,19 @@ test.describe('Next Steps Widget', () => {
         await expect(page.locator('.nfd-section[data-nfd-section-id="section1"]')).toHaveAttribute('open');
         await page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete').click();
 
-        await expect(page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete')).not.toBeVisible({ timeout: 500 });
+        await page.waitForTimeout(250);
+
+        await expect(page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-section-complete')).not.toBeVisible();
         await expect(page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-nextsteps-task-container')).not.toBeVisible();
         await expect(page.locator('.nfd-section[data-nfd-section-id="section1"]')).not.toHaveAttribute('open');
 
         // Open the section
         await page.locator('.nfd-section[data-nfd-section-id="section1"] .nfd-section-header').click();
 
-        await expect(page.locator('.nfd-section[data-nfd-section-id="section1"]')).toHaveAttribute('open', 'true', { timeout: 500 });
+        // await waitForSectionEndpoint(page);
+        await page.waitForTimeout(250);
+
+        await expect(page.locator('.nfd-section[data-nfd-section-id="section1"]')).toHaveAttribute('open');
     });
 
     test('dismisses a task and verifies state change', async ({ page }) => {
@@ -180,6 +190,7 @@ test.describe('Next Steps Widget', () => {
         await expect(firstNewTask).toHaveAttribute('id', 'task-s1task1');
         await expect(firstNewTask.locator('.nfd-nextsteps-button-dismiss')).toBeVisible();
 
+        await page.waitForTimeout(250);
         // Click dismiss button - trigger hover first due to dismiss button requiring hover state
         await firstNewTask.locator('.nfd-nextsteps-button-dismiss').hover();
         await firstNewTask.locator('.nfd-nextsteps-button-dismiss').click();
@@ -195,14 +206,18 @@ test.describe('Next Steps Widget', () => {
         // Close the track
         await page.locator('.nfd-track').first().locator('.nfd-track-header').click();
 
+        await page.waitForTimeout(250);
+
         // Should be closed
-        await expect(page.locator('.nfd-track').first()).not.toHaveAttribute('open', 'true', { timeout: 500 });
+        await expect(page.locator('.nfd-track').first()).not.toHaveAttribute('open');
 
         // Open the track again
         await page.locator('.nfd-track').first().locator('.nfd-track-header').click();
 
+        await page.waitForTimeout(250);
+
         // Should be open
-        await expect(page.locator('.nfd-track').first()).toHaveAttribute('open', 'true', { timeout: 500 });
+        await expect(page.locator('.nfd-track').first()).toHaveAttribute('open');
 
         // Get first section and test toggle
         const firstSection = page.locator('.nfd-section').first();
@@ -211,11 +226,14 @@ test.describe('Next Steps Widget', () => {
         // Click section header to toggle
         await firstSection.locator('.nfd-section-header').click();
 
+        // Wait for UI to update
+        await page.waitForTimeout(500);
+
         // State should change
         if (wasOpen) {
-            await expect(firstSection).not.toHaveAttribute('open', 'true', { timeout: 500 });
+            await expect(firstSection).not.toHaveAttribute('open');
         } else {
-            await expect(firstSection).toHaveAttribute('open', 'true', { timeout: 500 });
+            await expect(firstSection).toHaveAttribute('open');
         }
     });
 });

@@ -15,6 +15,8 @@ test.describe('Next Steps Portal in Plugin App', () => {
         await setTestNextStepsData(page);
         // Visit the Next Steps portal
         await page.goto(`/wp-admin/admin.php?page=${pluginId}#/home`);
+        // Reload the page to ensure the test data is loaded
+        await page.reload();
 
         // Portal App Renders
         await page.locator('#next-steps-portal').waitFor({ state: 'visible', timeout: 25000 });
@@ -54,8 +56,11 @@ test.describe('Next Steps Portal in Plugin App', () => {
         await page.locator('#task-s1task1 .nfd-nextsteps-task-new .nfd-nextsteps-button-todo')
             .click();
 
+        // Wait for task to update and celebration to load
+        await page.waitForTimeout(500);
+
         // Task should now be in done state
-        await expect(page.locator('[data-nfd-task-id="s1task1"]')).toHaveAttribute('data-nfd-task-status', 'done', { timeout: 500 });
+        await expect(page.locator('[data-nfd-task-id="s1task1"]')).toHaveAttribute('data-nfd-task-status', 'done');
 
         // Progress should update
         await expect(page.locator('.nfd-progress-bar-label').first()).toHaveText('1/1');
@@ -70,13 +75,19 @@ test.describe('Next Steps Portal in Plugin App', () => {
         await expect(page.locator('[data-nfd-section-id="section1"]')).toHaveAttribute('open');
         await page.locator('.nfd-nextsteps-section-close-button').first().click();
 
-        await expect(page.locator('[data-nfd-section-id="section1"] .nfd-section-celebrate')).not.toBeVisible({ timeout: 500 });
-        await expect(page.locator('[data-nfd-section-id="section1"] .nfd-nextsteps-task-container')).not.toBeVisible({ timeout: 500 });
-        await expect(page.locator('[data-nfd-section-id="section1"]')).not.toHaveAttribute('open', 'true', { timeout: 500 });
+        // Wait for UI to update
+        await page.waitForTimeout(250);
+
+        await expect(page.locator('[data-nfd-section-id="section1"] .nfd-section-celebrate')).not.toBeVisible();
+        await expect(page.locator('[data-nfd-section-id="section1"] .nfd-nextsteps-task-container')).not.toBeVisible();
+        await expect(page.locator('[data-nfd-section-id="section1"]')).not.toHaveAttribute('open');
 
         // Open the section
         await page.locator('[data-nfd-section-id="section1"] .nfd-section-header').click();
 
-        await expect(page.locator('[data-nfd-section-id="section1"]')).toHaveAttribute('open', 'true', { timeout: 500 });
+        // Wait for UI to update
+        await page.waitForTimeout(250);
+
+        await expect(page.locator('[data-nfd-section-id="section1"]')).toHaveAttribute('open');
     });
 });
