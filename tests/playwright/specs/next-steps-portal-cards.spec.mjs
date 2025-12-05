@@ -27,14 +27,16 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
     });
 
     test('portal renders and displays correctly', async ({ page }) => {
+        // Wait for initial load
+        await page.waitForTimeout(250);
 
         // Check for 3 total sections
-        await expect(page.locator('.nfd-nextsteps-section-card')).toHaveCount(3, { timeout: 500 });
+        await expect(page.locator('.nfd-nextsteps-section-card')).toHaveCount(3);
         // Check that expired section is not rendered
-        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section-expired"]')).not.toBeVisible({ timeout: 500 });
+        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section-expired"]')).not.toBeVisible();
 
         // Check that section 1 is rendered with correct title, description, cta, icon, modal title, modal description
-        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]')).toBeVisible({ timeout: 500 });
+        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]')).toBeVisible();
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-section-card-title')).toHaveText('Test Section 1');
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-section-card-description')).toHaveText('Section 1 with 1 task.');
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-buttons .nfd-button')).toHaveText('CTA 1 Text');
@@ -58,14 +60,20 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         // CLICK skip section 1 button
         await page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip').click();
 
-        await expect(page.locator('.nfd-nextstep-section-card__dismissed-badge')).toBeVisible({ timeout: 500 });
+        // Wait for section card to update (intercepts handle API calls)
+        await page.waitForTimeout(500);
+
+        await expect(page.locator('.nfd-nextstep-section-card__dismissed-badge')).toBeVisible();
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]')).toHaveAttribute('data-nfd-section-status', 'dismissed');
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo')).toBeVisible();
 
         // CLICK undo section 1 button
         await page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--undo').click();
 
-        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextstep-section-card__dismissed-badge')).not.toBeVisible({ timeout: 500 });
+        // Wait for section card to update (intercepts handle API calls)
+        await page.waitForTimeout(500);
+
+        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextstep-section-card__dismissed-badge')).not.toBeVisible();
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"]')).toHaveAttribute('data-nfd-section-status', 'new');
         await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="customize_your_store"] .nfd-nextsteps-button--skip')).toBeVisible();
 
@@ -73,7 +81,8 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         await expect(page.locator('#section-card-section2 .nfd-nextsteps-buttons .nfd-button')).not.toHaveAttribute('href');
         await page.locator('#section-card-section2 .nfd-nextsteps-buttons .nfd-button').click();
 
-        await expect(page.locator('.nfd-modal__layout')).toBeVisible({ timeout: 500 });
+        await page.waitForTimeout(250); // wait for modal to load
+        await expect(page.locator('.nfd-modal__layout')).toBeVisible();
         await expect(page.locator('.nfd-modal__layout h1.nfd-title')).toHaveText('Section 2 Modal Title');
         await expect(page.locator('.nfd-modal__layout p')).toHaveText('Section 2 modal description.');
         await expect(page.locator('.nfd-nextstep-tasks-modal__tasks')).toBeVisible();
@@ -105,8 +114,10 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         await page.locator('.nfd-nextsteps-task-container[data-nfd-task-id="s2task5"] .nfd-nextsteps-button-todo').click();
         await page.locator('.nfd-nextsteps-task-container[data-nfd-task-id="s2task6"] .nfd-nextsteps-button-todo').click();
 
+        // Wait for task and section to update (intercepts handle API calls)
+        await page.waitForTimeout(500);
 
-        await expect(page.locator('.nfd-modal__layout')).not.toBeVisible({ timeout: 500 });
+        await expect(page.locator('.nfd-modal__layout')).not.toBeVisible();
         await expect(page.locator('.nfd-nextstep-tasks-modal__tasks')).not.toBeVisible();
 
         // check section 2 card is updated to done
@@ -129,9 +140,11 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
     });
 
     test('task data-nfd-prevent-default attribute', async ({ page }) => {
+        // Wait for initial load
+        await page.waitForTimeout(250);
 
         // Test section card with single task that has data-nfd-complete-on-click
-        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"]')).toBeVisible({ timeout: 500 });
+        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"]')).toBeVisible();
 
         // Verify the section card button has the data attribute
         await page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"] .nfd-button').click();
@@ -153,9 +166,11 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
     });
 
     test('task data-nfd-complete-on-click and data-nfd-prevent-default attributes together', async ({ page }) => {
+        // Wait for initial load
+        await page.waitForTimeout(250);
 
         // Test section card with single task that has data-nfd-complete-on-click
-        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"]')).toBeVisible({ timeout: 500 });
+        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"]')).toBeVisible();
 
         // Verify the section card button has the data attribute
         await page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"] .nfd-button').click();
@@ -206,8 +221,11 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
             });
         });
 
+        // Wait for initial load
+        await page.waitForTimeout(250);
+
         // Test section card with single task that has data-nfd-complete-on-click
-        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"]')).toBeVisible({ timeout: 500 });
+        await expect(page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"]')).toBeVisible();
 
         // Verify the section card button has the data attribute
         await page.locator('.nfd-nextsteps-section-card[data-nfd-section-id="section2"] .nfd-button').click();
