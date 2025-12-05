@@ -1,6 +1,5 @@
+import { test, expect } from '@playwright/test';
 import {
-    test,
-    expect,
     auth,
     setTestCardsNextStepsData,
     resetNextStepsData,

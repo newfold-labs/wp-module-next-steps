@@ -96,19 +96,8 @@ if (!wpCli) {
     );
 }
 
-// Import Playwright from plugin to avoid double-loading
-// Import from the package directly - Node.js will resolve from plugin's node_modules
-// since we're running in the plugin's context
-const playwrightModule = await import('@playwright/test');
-
-if (!playwrightModule || !playwrightModule.test) {
-    throw new Error(
-        `Playwright imported but 'test' is undefined.\n` +
-        `Available exports: ${Object.keys(playwrightModule).join(', ')}`
-    );
-}
-
-const { test, expect } = playwrightModule;
+// Note: Playwright (test, expect) should be imported directly in spec files from '@playwright/test'
+// We don't re-export it here to avoid double-loading issues
 
 // Test data fixtures
 const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
@@ -326,9 +315,6 @@ async function waitForTrackEndpoint(page) {
 }
 
 export {
-    // Re-export Playwright from plugin to ensure single instance
-    test,
-    expect,
     // Plugin helpers (re-exported for convenience)
     auth,
     wordpress,
