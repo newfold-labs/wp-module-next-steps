@@ -7,9 +7,6 @@
 import { join, dirname } from 'path';
 import { readFileSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
-// Test data fixtures
-const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
-const testCardsPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-cards-plan.json'), 'utf8'));
 
 // ES module equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +25,10 @@ const pluginHelpers = await import(helpersUrl);
 let { auth, wordpress, newfold, a11y, utils } = pluginHelpers;
 // destructure wpCli from wordpress
 const { wpCli } = wordpress;
+
+// Test data fixtures
+const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
+const testCardsPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-cards-plan.json'), 'utf8'));
 
 /**
  * Set next steps test fixture to database option
