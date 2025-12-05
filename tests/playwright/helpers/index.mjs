@@ -24,21 +24,45 @@ const initialHelpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
 
 // If the primary path doesn't have what we need, try to find it by looking for playwright.config.mjs
 if (!existsSync(initialPlaywrightPath) || !existsSync(initialHelpersPath)) {
+    // Debug: log what we tried
+    if (process.env.CI || process.env.DEBUG) {
+        console.log('[Module Helpers] Primary paths not found, searching...');
+        console.log(`  Initial Playwright path: ${initialPlaywrightPath} (exists: ${existsSync(initialPlaywrightPath)})`);
+        console.log(`  Initial helpers path: ${initialHelpersPath} (exists: ${existsSync(initialHelpersPath)})`);
+    }
+
     // Walk up from the module's location to find the plugin root (where playwright.config.mjs lives)
     let currentDir = __dirname;
+    const triedPaths = [];
     for (let i = 0; i < 10; i++) {
+        triedPaths.push(currentDir);
         const testConfigPath = join(currentDir, 'playwright.config.mjs');
         if (existsSync(testConfigPath)) {
             const testPlaywrightPath = join(currentDir, 'node_modules/@playwright/test/index.js');
             const testHelpersPath = join(currentDir, 'tests/playwright/helpers/index.js');
+            if (process.env.CI || process.env.DEBUG) {
+                console.log(`  Checking: ${currentDir}`);
+                console.log(`    Config exists: ${existsSync(testConfigPath)}`);
+                console.log(`    Playwright exists: ${existsSync(testPlaywrightPath)}`);
+                console.log(`    Helpers exist: ${existsSync(testHelpersPath)}`);
+            }
             if (existsSync(testPlaywrightPath) && existsSync(testHelpersPath)) {
                 pluginDir = currentDir;
+                if (process.env.CI || process.env.DEBUG) {
+                    console.log(`  ✓ Found plugin directory: ${pluginDir}`);
+                }
                 break;
             }
         }
         const parent = resolve(currentDir, '..');
         if (parent === currentDir) break; // Reached root
         currentDir = parent;
+    }
+
+    if (process.env.CI || process.env.DEBUG) {
+        if (pluginDir === (process.env.PLUGIN_DIR || process.cwd())) {
+            console.log(`  ✗ Plugin directory not found after searching. Tried ${triedPaths.length} paths.`);
+        }
     }
 }
 
@@ -70,10 +94,11 @@ try {
 } catch (error) {
     throw new Error(
         `Failed to import plugin helpers from ${helpersUrl}.\n` +
-        `Resolved path: ${helpersPath}\n` +
+        `Resolved path: ${finalHelpersPath}\n` +
         `Plugin directory: ${pluginDir}\n` +
         `Module __dirname: ${__dirname}\n` +
         `PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}\n` +
+        `Current working directory: ${process.cwd()}\n` +
         `Error: ${error.message}\n` +
         `Stack: ${error.stack}`
     );
@@ -169,17 +194,35 @@ try {
     );
 }
 
-// Verify we got the expected exports
-if (!playwrightModule || !playwrightModule.test || !playwrightModule.expect) {
+// Handle both named exports and default export wrapping (common with dynamic imports)
+let test, expect;
+
+if (playwrightModule.default && typeof playwrightModule.default === 'object') {
+    // Dynamic import wrapped it in a default export
+    ({ test, expect } = playwrightModule.default);
+} else if (playwrightModule.test && playwrightModule.expect) {
+    // Named exports directly available
+    ({ test, expect } = playwrightModule);
+} else {
     throw new Error(
         `Playwright module imported but missing expected exports.\n` +
         `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
+        `Default export keys: ${playwrightModule.default ? Object.keys(playwrightModule.default).join(', ') : 'none'}\n` +
         `Expected: test, expect\n` +
         `Import path: ${finalPlaywrightPath}`
     );
 }
 
-const { test, expect } = playwrightModule;
+// Verify we actually got test and expect
+if (!test || !expect) {
+    throw new Error(
+        `Playwright module imported but test or expect is undefined.\n` +
+        `test: ${typeof test}, expect: ${typeof expect}\n` +
+        `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
+        `Default export keys: ${playwrightModule.default ? Object.keys(playwrightModule.default).join(', ') : 'none'}\n` +
+        `Import path: ${finalPlaywrightPath}`
+    );
+}
 
 // Test data fixtures
 const testPlan = JSON.parse(readFileSync(join(__dirname, '../fixtures/test-plan.json'), 'utf8'));
