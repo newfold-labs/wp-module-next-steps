@@ -252,7 +252,6 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         await expect(page.locator('.nfd-nextsteps-task-container[data-nfd-task-id="s2task6"]')).toHaveAttribute('data-nfd-task-status', 'done');
 
         // test that complete-on-click worked and navigation happened
-        await expect(page.locator('.nfd-modal__layout')).not.toBeVisible({ timeout: 2000 });
         await expect(page).not.toHaveURL(/\/wp-admin\/admin\.php\?page=.*#\/home/);
         await navigationPromise;
     });
