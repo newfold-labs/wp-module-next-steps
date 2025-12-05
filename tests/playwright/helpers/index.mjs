@@ -197,16 +197,33 @@ try {
 // Handle both named exports and default export wrapping (common with dynamic imports)
 let test, expect;
 
+// Check if default export exists and has test/expect
 if (playwrightModule.default && typeof playwrightModule.default === 'object') {
-    // Dynamic import wrapped it in a default export
-    ({ test, expect } = playwrightModule.default);
-} else if (playwrightModule.test && playwrightModule.expect) {
+    // Check if properties exist (using 'in' operator to be more robust)
+    if ('test' in playwrightModule.default && 'expect' in playwrightModule.default) {
+        // Dynamic import wrapped it in a default export
+        test = playwrightModule.default.test;
+        expect = playwrightModule.default.expect;
+    } else {
+        throw new Error(
+            `Playwright default export exists but missing test or expect.\n` +
+            `Default export has 'test' key: ${'test' in playwrightModule.default}\n` +
+            `Default export has 'expect' key: ${'expect' in playwrightModule.default}\n` +
+            `test value: ${typeof playwrightModule.default.test}\n` +
+            `expect value: ${typeof playwrightModule.default.expect}\n` +
+            `Default export keys: ${Object.keys(playwrightModule.default).join(', ')}\n` +
+            `Import path: ${finalPlaywrightPath}`
+        );
+    }
+} else if ('test' in playwrightModule && 'expect' in playwrightModule) {
     // Named exports directly available
-    ({ test, expect } = playwrightModule);
+    test = playwrightModule.test;
+    expect = playwrightModule.expect;
 } else {
     throw new Error(
         `Playwright module imported but missing expected exports.\n` +
         `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
+        `Default export exists: ${!!playwrightModule.default}\n` +
         `Default export keys: ${playwrightModule.default ? Object.keys(playwrightModule.default).join(', ') : 'none'}\n` +
         `Expected: test, expect\n` +
         `Import path: ${finalPlaywrightPath}`
@@ -216,7 +233,7 @@ if (playwrightModule.default && typeof playwrightModule.default === 'object') {
 // Verify we actually got test and expect
 if (!test || !expect) {
     throw new Error(
-        `Playwright module imported but test or expect is undefined.\n` +
+        `Playwright module imported but test or expect is undefined after extraction.\n` +
         `test: ${typeof test}, expect: ${typeof expect}\n` +
         `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
         `Default export keys: ${playwrightModule.default ? Object.keys(playwrightModule.default).join(', ') : 'none'}\n` +
