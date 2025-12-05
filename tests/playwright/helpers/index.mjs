@@ -15,8 +15,45 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Use environment variable to resolve plugin helpers (set by playwright.config.mjs)
-// but if it's not set, use fallback path
-const pluginDir = process.env.PLUGIN_DIR || resolve(__dirname, '../../../../../../');
+// If not set, try multiple fallback strategies to find the plugin directory
+let pluginDir = process.env.PLUGIN_DIR;
+
+if (!pluginDir) {
+    // Try multiple possible paths based on common CI/local structures
+    const possiblePaths = [
+        resolve(__dirname, '../../../../../../'), // From vendor/newfold-labs/wp-module-next-steps/tests/playwright/helpers (7 levels)
+        resolve(__dirname, '../../../../../'),   // Alternative structure (6 levels)
+        process.cwd(),                            // Current working directory (might be plugin root in CI)
+    ];
+
+    // Also try to find playwright.config.mjs by walking up the directory tree
+    let currentDir = __dirname;
+    for (let i = 0; i < 10; i++) {
+        const configPath = join(currentDir, 'playwright.config.mjs');
+        if (existsSync(configPath)) {
+            possiblePaths.push(currentDir);
+            break;
+        }
+        const parent = resolve(currentDir, '..');
+        if (parent === currentDir) break; // Reached root
+        currentDir = parent;
+    }
+
+    // Find the first path that contains both node_modules/@playwright/test and tests/playwright/helpers
+    for (const possiblePath of possiblePaths) {
+        const playwrightPath = join(possiblePath, 'node_modules/@playwright/test/index.js');
+        const helpersPath = join(possiblePath, 'tests/playwright/helpers/index.js');
+        if (existsSync(playwrightPath) && existsSync(helpersPath)) {
+            pluginDir = possiblePath;
+            break;
+        }
+    }
+
+    // If still not found, use the first fallback and let the error handling catch it
+    if (!pluginDir) {
+        pluginDir = possiblePaths[0];
+    }
+}
 
 // Verify we can find the plugin helpers (will throw clear error if path is wrong)
 const helpersPath = join(pluginDir, 'tests/playwright/helpers/index.js');
@@ -99,8 +136,68 @@ if (!wpCli) {
 // Import Playwright from plugin's node_modules to ensure single instance
 // This prevents "Requiring @playwright/test second time" errors
 const playwrightPath = join(pluginDir, 'node_modules/@playwright/test/index.js');
+
+// Debug logging (only in CI or when DEBUG is set)
+if (process.env.CI || process.env.DEBUG) {
+    console.log('[Module Helpers] Debug Info:');
+    console.log(`  Module __dirname: ${__dirname}`);
+    console.log(`  Plugin directory: ${pluginDir}`);
+    console.log(`  PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}`);
+    console.log(`  Playwright path: ${playwrightPath}`);
+    console.log(`  Playwright exists: ${existsSync(playwrightPath)}`);
+    console.log(`  Current working directory: ${process.cwd()}`);
+}
+
+// Check if Playwright exists at the expected path
+if (!existsSync(playwrightPath)) {
+    // Try to find Playwright in alternative locations for better error message
+    const altPaths = [
+        join(process.cwd(), 'node_modules/@playwright/test/index.js'),
+        join(__dirname, '../../../node_modules/@playwright/test/index.js'),
+    ];
+
+    const foundPaths = altPaths.filter(p => existsSync(p));
+
+    throw new Error(
+        `Playwright not found at: ${playwrightPath}\n` +
+        `Plugin directory: ${pluginDir}\n` +
+        `Module __dirname: ${__dirname}\n` +
+        `PLUGIN_DIR env var: ${process.env.PLUGIN_DIR || 'not set'}\n` +
+        `Current working directory: ${process.cwd()}\n` +
+        (foundPaths.length > 0
+            ? `Found Playwright at alternative location(s): ${foundPaths.join(', ')}\n`
+            : '') +
+        `Please ensure @playwright/test is installed in the plugin's node_modules.`
+    );
+}
+
 const playwrightUrl = `file://${playwrightPath}`;
-const playwrightModule = await import(playwrightUrl);
+
+let playwrightModule;
+try {
+    playwrightModule = await import(playwrightUrl);
+} catch (error) {
+    throw new Error(
+        `Failed to import Playwright from ${playwrightUrl}.\n` +
+        `Resolved path: ${playwrightPath}\n` +
+        `Plugin directory: ${pluginDir}\n` +
+        `Module __dirname: ${__dirname}\n` +
+        `PLUGIN_DIR env: ${process.env.PLUGIN_DIR || 'not set'}\n` +
+        `Error: ${error.message}\n` +
+        `Stack: ${error.stack}`
+    );
+}
+
+// Verify we got the expected exports
+if (!playwrightModule || !playwrightModule.test || !playwrightModule.expect) {
+    throw new Error(
+        `Playwright module imported but missing expected exports.\n` +
+        `Available keys: ${Object.keys(playwrightModule || {}).join(', ')}\n` +
+        `Expected: test, expect\n` +
+        `Import path: ${playwrightPath}`
+    );
+}
+
 const { test, expect } = playwrightModule;
 
 // Test data fixtures
