@@ -15,6 +15,8 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         await setTestCardsNextStepsData(page);
         // Visit the Next Steps portal
         await page.goto(`/wp-admin/admin.php?page=${pluginId}#/home`);
+        // Reload the page to ensure the intercepts are working and updated test content is loaded
+        await page.reload();
 
         // Portal App Renders
         await page.locator('#next-steps-portal').waitFor({ state: 'visible', timeout: 25000 });
