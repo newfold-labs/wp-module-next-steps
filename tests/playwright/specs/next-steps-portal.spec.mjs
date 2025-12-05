@@ -12,7 +12,7 @@ test.describe('Next Steps Portal in Plugin App', () => {
     test.beforeEach(async ({ page }) => {
         await auth.loginToWordPress(page);
         // Set test Next Steps data
-        await setTestNextStepsData(page);
+        await setTestNextStepsData();
         // Visit the Next Steps portal
         await page.goto(`/wp-admin/admin.php?page=${pluginId}#/home`);
         // Reload the page to ensure the test data is loaded
@@ -23,9 +23,9 @@ test.describe('Next Steps Portal in Plugin App', () => {
         await page.locator('.next-steps-fill #nfd-nextsteps').waitFor({ state: 'visible', timeout: 25000 });
     });
 
-    test.afterEach(async ({ page }) => {
+    test.afterEach(async () => {
         // Reset test data
-        await resetNextStepsData(page);
+        await resetNextStepsData();
     });
 
     test('portal renders and displays correctly', async ({ page }) => {

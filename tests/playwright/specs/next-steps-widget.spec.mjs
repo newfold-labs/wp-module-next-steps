@@ -10,7 +10,7 @@ test.describe('Next Steps Widget', () => {
     test.beforeEach(async ({ page }) => {
         await auth.loginToWordPress(page);
         // Set test Next Steps data
-        await setTestNextStepsData(page);
+        await setTestNextStepsData();
         // Visit the Next Steps widget
         await page.goto('/wp-admin/index.php');
         // Reload the page to ensure the test data is loaded
@@ -28,9 +28,9 @@ test.describe('Next Steps Widget', () => {
         });
     });
 
-    test.afterEach(async ({ page }) => {
+    test.afterEach(async () => {
         // Reset test data
-        await resetNextStepsData(page);
+        await resetNextStepsData();
     });
 
     test('renders the widget structure correctly', async ({ page }) => {

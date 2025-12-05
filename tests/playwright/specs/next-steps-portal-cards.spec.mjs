@@ -12,7 +12,7 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
     test.beforeEach(async ({ page }) => {
         await auth.loginToWordPress(page);
         // Set test Next Steps data
-        await setTestCardsNextStepsData(page);
+        await setTestCardsNextStepsData();
         // Visit the Next Steps portal
         await page.goto(`/wp-admin/admin.php?page=${pluginId}#/home`);
         // Reload the page to ensure the test data is loaded
@@ -23,9 +23,9 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         await page.locator('.next-steps-fill #nfd-nextsteps').waitFor({ state: 'visible', timeout: 25000 });
     });
 
-    test.afterEach(async ({ page }) => {
+    test.afterEach(async () => {
         // Reset test data
-        await resetNextStepsData(page);
+        await resetNextStepsData();
     });
 
     test('portal renders and displays correctly', async ({ page }) => {
@@ -256,3 +256,47 @@ test.describe('Next Steps Portal in Plugin App with Cards', () => {
         await navigationPromise;
     });
 });
+
+
+1. Hardcoded Timeouts
+    - This was tried but made the tests fail, so leaving them in for now.
+2. Missing API Interception
+    - Cypress needed these intercepts since the interactions and api didn't work in the runner, but it does for playwright so they are not needed (we're testing in a wordpress environment).
+3. Inconsistent Error Handling
+    - Added a comment to explain.
+4. Complex Module Resolution(Maintainability)
+
+helpers / index.mjs: 16 - 77 has extensive logic for finding and importing plugin helpers
+Lines: 16 - 77 contain defensive checks, multiple fallback paths, detailed error messages
+Problem: While thorough, this suggests fragile coupling to plugin structure
+Recommendation: Consider:
+Documenting the expected plugin helper structure in a comment
+Simplifying to a single import pattern if possible
+Moving error messages to a separate documentation file
+Unused Function Parameters
+
+helpers / index.mjs functions accept page parameter but don't use it:
+setTestNextStepsData(page) - line 88
+setTestCardsNextStepsData(page) - line 99
+resetNextStepsData(page) - line 110
+Problem: Misleading API signature
+Recommendation: Remove the unused parameter or document why it's kept for future use
+Selector Fragility
+
+Heavy reliance on CSS selectors like.nfd - nextsteps - section - card[data - nfd - section - id="customize_your_store"]
+Recommendation: Consider adding data - testid attributes to critical elements for more stable selectors
+Test Isolation Concerns
+
+portal - cards.spec.mjs: 244 sets up navigation promise before click
+Line 245: const navigationPromise = page.waitForURL(/bluehost\.com/, { timeout: 1000 }).catch(() => 'navigated');
+Problem: The catch returns string instead of proper error handling
+Recommendation: Use proper assertion or handle navigation expectation more explicitly
+Testing Best Practices
+Magic Numbers
+
+Timeout values(250, 500, 1500) lack explanation
+toHaveCount(3), toHaveCount(2) could use constants with descriptive names
+Recommendation: Extract to named constants:
+const TASK_UPDATE_DELAY = 500; // Time for task status to update in UI
+const EXPECTED_SECTION_COUNT = 3;
+Inconsistent Navigation Verification
