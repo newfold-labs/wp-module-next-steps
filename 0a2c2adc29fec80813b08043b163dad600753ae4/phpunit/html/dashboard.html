@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/runner/work/wp-module-next-steps/wp-module-next-steps/includes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="I18nService.php.html#8">NewfoldLabs\WP\Module\NextSteps\I18nService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextSteps.php.html#28">NewfoldLabs\WP\Module\NextSteps\NextSteps</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextStepsWidget.php.html#18">NewfoldLabs\WP\Module\NextSteps\NextStepsWidget</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StepsApi.php.html#29">NewfoldLabs\WP\Module\NextSteps\StepsApi</a></td><td class="text-right">27%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#36">NewfoldLabs\WP\Module\NextSteps\RedirectHelper</a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#36">NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers</a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="PlanSwitchTriggers.php.html#18">NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers</a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#10">NewfoldLabs\WP\Module\NextSteps\DTOs\Task</a></td><td class="text-right">59%</td></tr>
+       <tr><td><a href="PlanFactory.php.html#23">NewfoldLabs\WP\Module\NextSteps\PlanFactory</a></td><td class="text-right">62%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#10">NewfoldLabs\WP\Module\NextSteps\DTOs\Track</a></td><td class="text-right">65%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#10">NewfoldLabs\WP\Module\NextSteps\DTOs\Section</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#10">NewfoldLabs\WP\Module\NextSteps\DTOs\Plan</a></td><td class="text-right">76%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#18">NewfoldLabs\WP\Module\NextSteps\PlanRepository</a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="TaskStateValidator.php.html#19">NewfoldLabs\WP\Module\NextSteps\TaskStateValidator</a></td><td class="text-right">89%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="TaskCompletionTriggers.php.html#36">NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers</a></td><td class="text-right">3395</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#36">NewfoldLabs\WP\Module\NextSteps\RedirectHelper</a></td><td class="text-right">1729</td></tr>
+       <tr><td><a href="StepsApi.php.html#29">NewfoldLabs\WP\Module\NextSteps\StepsApi</a></td><td class="text-right">1641</td></tr>
+       <tr><td><a href="NextSteps.php.html#28">NewfoldLabs\WP\Module\NextSteps\NextSteps</a></td><td class="text-right">380</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#10">NewfoldLabs\WP\Module\NextSteps\DTOs\Plan</a></td><td class="text-right">186</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#10">NewfoldLabs\WP\Module\NextSteps\DTOs\Track</a></td><td class="text-right">152</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#10">NewfoldLabs\WP\Module\NextSteps\DTOs\Section</a></td><td class="text-right">139</td></tr>
+       <tr><td><a href="PlanFactory.php.html#23">NewfoldLabs\WP\Module\NextSteps\PlanFactory</a></td><td class="text-right">82</td></tr>
+       <tr><td><a href="PlanRepository.php.html#18">NewfoldLabs\WP\Module\NextSteps\PlanRepository</a></td><td class="text-right">64</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#10">NewfoldLabs\WP\Module\NextSteps\DTOs\Task</a></td><td class="text-right">53</td></tr>
+       <tr><td><a href="PlanSwitchTriggers.php.html#18">NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers</a></td><td class="text-right">43</td></tr>
+       <tr><td><a href="I18nService.php.html#8">NewfoldLabs\WP\Module\NextSteps\I18nService</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="TaskStateValidator.php.html#19">NewfoldLabs\WP\Module\NextSteps\TaskStateValidator</a></td><td class="text-right">15</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="DTOs/Plan.php.html#158"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::add_track">add_track</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanSwitchTriggers.php.html#120"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers::resync_next_steps_data">resync_next_steps_data</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#101"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StepsApi.php.html#882"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::add_task_to_section">add_task_to_section</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StepsApi.php.html#79"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::register_routes">register_routes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#260"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::check_plugin">check_plugin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#217"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::handle_template_redirect">handle_template_redirect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#176"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::handle_plugin_redirect">handle_plugin_redirect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#142"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::check_redirect">check_redirect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#106"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::add_redirect_page">add_redirect_page</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#51"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::get_partner_plugins">get_partner_plugins</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#331"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::add_task">add_task</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#138"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_payment_hooks_and_validators">register_payment_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#176"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::remove_track">remove_track</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#84"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::reset_next_steps_data">reset_next_steps_data</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanFactory.php.html#210"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::get_current_plan_type">get_current_plan_type</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PlanFactory.php.html#52"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextStepsWidget.php.html#75"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextStepsWidget::add_utm_params">add_utm_params</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextStepsWidget.php.html#63"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextStepsWidget::assets">assets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextStepsWidget.php.html#53"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextStepsWidget::widget_render">widget_render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextStepsWidget.php.html#34"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextStepsWidget::init">init</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextStepsWidget.php.html#27"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextStepsWidget::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#121"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_product_hooks_and_validators">register_product_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#190"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_blog_hooks_and_validators">register_blog_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextSteps.php.html#104"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::nextsteps_widget">nextsteps_widget</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#470"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_payment_gateway_updated">on_payment_gateway_updated</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskStateValidator.php.html#119"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskStateValidator::clear_validators">clear_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskStateValidator.php.html#110"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskStateValidator::get_registered_validators">get_registered_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#946"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_yoast_premium_state">validate_yoast_premium_state</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#895"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::is_jetpack_stats_ready">is_jetpack_stats_ready</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#878"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::is_jetpack_performance_ready">is_jetpack_performance_ready</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#847"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::is_jetpack_connected">is_jetpack_connected</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#836"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_jetpack_stats_state">validate_jetpack_stats_state</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#827"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_jetpack_performance_state">validate_jetpack_performance_state</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#687"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::check_template_for_logo">check_template_for_logo</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#441"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_payment_setup_state">validate_payment_setup_state</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#206"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_gift_card_hooks_and_validators">register_gift_card_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#411"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_payment_gateway_hooks">register_payment_gateway_hooks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#385"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_product_creation_state">validate_product_creation_state</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#345"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_email_templates_hooks_and_validators">register_email_templates_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#330"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_affiliates_hooks_and_validators">register_affiliates_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#315"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_advanced_reviews_hooks_and_validators">register_advanced_reviews_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#293"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_yoast_hooks_and_validators">register_yoast_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#254"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_jetpack_hooks_and_validators">register_jetpack_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#236"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_logo_hooks_and_validators">register_logo_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#221"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_welcome_popup_hooks_and_validators">register_welcome_popup_hooks_and_validators</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextSteps.php.html#169"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::nextsteps_portal">nextsteps_portal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskStateValidator.php.html#128"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskStateValidator::get_validator_count">get_validator_count</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextSteps.php.html#97"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::render_next_steps_page">render_next_steps_page</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#557"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::toggle_open">toggle_open</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#147"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::add_section">add_section</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#238"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::get_completion_percentage">get_completion_percentage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#205"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::get_formatted_data_attributes">get_formatted_data_attributes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextSteps.php.html#81"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::add_nfd_subnav">add_nfd_subnav</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#186"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::add_data_attribute">add_data_attribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#175"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::set_data_attributes">set_data_attributes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#134"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#567"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#548"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::is_open">is_open</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#197"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::get_all_tasks">get_all_tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#423"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::sort_tasks">sort_tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#341"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::clear_completed_date">clear_completed_date</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#253"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::remove_task">remove_task</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#234"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::add_task">add_task</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#580"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#390"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::update_section_open_state">update_section_open_state</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#283"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::is_completed">is_completed</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#252"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::get_all_tasks">get_all_tasks</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#239"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::get_all_sections">get_all_sections</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#165"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::remove_section">remove_section</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#196"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::remove_data_attribute">remove_data_attribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#307"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::update_section_open_state">update_section_open_state</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextSteps.php.html#71"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::init_steps_apis">init_steps_apis</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NextSteps.php.html#48"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="I18nService.php.html#72"><abbr title="NewfoldLabs\WP\Module\NextSteps\I18nService::load_script_translation_file">load_script_translation_file</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="I18nService.php.html#47"><abbr title="NewfoldLabs\WP\Module\NextSteps\I18nService::add_js_i18n">add_js_i18n</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#323"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::update_section_status">update_section_status</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="I18nService.php.html#31"><abbr title="NewfoldLabs\WP\Module\NextSteps\I18nService::add_php_i18n">add_php_i18n</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="I18nService.php.html#15"><abbr title="NewfoldLabs\WP\Module\NextSteps\I18nService::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#382"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#372"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::toggle_open">toggle_open</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#363"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::is_open">is_open</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#163"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::has_enabled_payment_gateways">has_enabled_payment_gateways</abbr></a></td><td class="text-right">28%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#732"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_jetpack_connected">on_jetpack_connected</abbr></a></td><td class="text-right">28%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#810"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_jetpack_boost_activated">on_jetpack_boost_activated</abbr></a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="PlanFactory.php.html#62"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::load_default_steps">load_default_steps</abbr></a></td><td class="text-right">44%</td></tr>
+       <tr><td><a href="StepsApi.php.html#405"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::add_steps">add_steps</abbr></a></td><td class="text-right">45%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#233"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::check_new_plan">check_new_plan</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#368"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_product_creation">on_product_creation</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="PlanFactory.php.html#139"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::determine_site_type">determine_site_type</abbr></a></td><td class="text-right">53%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#390"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::sync_section_status_with_tasks">sync_section_status_with_tasks</abbr></a></td><td class="text-right">53%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#754"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_jetpack_boost_activation">on_jetpack_boost_activation</abbr></a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="PlanFactory.php.html#88"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::detect_site_type">detect_site_type</abbr></a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#415"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::get_active_template_part_slug">get_active_template_part_slug</abbr></a></td><td class="text-right">64%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#779"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_jetpack_module_activated">on_jetpack_module_activated</abbr></a></td><td class="text-right">64%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1033"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_email_templates_activation">on_email_templates_activation</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1003"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_affiliates_activation">on_affiliates_activation</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#973"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_advanced_reviews_activation">on_advanced_reviews_activation</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="PlanSwitchTriggers.php.html#96"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers::on_language_change">on_language_change</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="StepsApi.php.html#704"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::update_track_status">update_track_status</abbr></a></td><td class="text-right">67%</td></tr>
+       <tr><td><a href="StepsApi.php.html#586"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::update_section_state">update_section_state</abbr></a></td><td class="text-right">68%</td></tr>
+       <tr><td><a href="StepsApi.php.html#488"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::update_task_status">update_task_status</abbr></a></td><td class="text-right">68%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#407"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::update_section_status">update_section_status</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#409"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::update_track_status">update_track_status</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#430"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::update_section_open">update_section_open</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1118"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::is_current_plan_for_task">is_current_plan_for_task</abbr></a></td><td class="text-right">72%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#291"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::update_task_status">update_task_status</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#209"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::get_section">get_section</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#315"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::get_task">get_task</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1084"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::mark_task_as_complete">mark_task_as_complete</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#452"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::update_track_open_state">update_track_open_state</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#339"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::get_task">get_task</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#160"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::update_status">update_status</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="StepsApi.php.html#358"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::get_steps">get_steps</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1148"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::get_plan_type_from_task_path">get_plan_type_from_task_path</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#656"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_logo_updated">on_logo_updated</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#393"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::is_block_theme">is_block_theme</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#355"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::get_template_editor_url">get_template_editor_url</abbr></a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#385"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::update_section_state">update_section_state</abbr></a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#305"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::update_status">update_status</abbr></a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#265"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::get_completion_percentage">get_completion_percentage</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#210"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::get_completion_percentage">get_completion_percentage</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#704"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_logo_upload_state">validate_logo_upload_state</abbr></a></td><td class="text-right">85%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#295"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::update_task_status">update_task_status</abbr></a></td><td class="text-right">85%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#286"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::update_task_status">update_task_status</abbr></a></td><td class="text-right">85%</td></tr>
+       <tr><td><a href="PlanRepository.php.html#133"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::get_current_plan">get_current_plan</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#439"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::get_completion_percentage">get_completion_percentage</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#299"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::get_template_part_editor_url">get_template_part_editor_url</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="PlanFactory.php.html#117"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::is_corporate_site">is_corporate_site</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="RedirectHelper.php.html#176"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::handle_plugin_redirect">handle_plugin_redirect</abbr></a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#217"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::handle_template_redirect">handle_template_redirect</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#142"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::check_redirect">check_redirect</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="NextSteps.php.html#104"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::nextsteps_widget">nextsteps_widget</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#260"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::check_plugin">check_plugin</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="StepsApi.php.html#79"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::register_routes">register_routes</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#847"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::is_jetpack_connected">is_jetpack_connected</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="NextSteps.php.html#169"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::nextsteps_portal">nextsteps_portal</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#415"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::get_active_template_part_slug">get_active_template_part_slug</abbr></a></td><td class="text-right">41</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#382"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::validate">validate</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#134"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::validate">validate</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="PlanSwitchTriggers.php.html#120"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers::resync_next_steps_data">resync_next_steps_data</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#580"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::validate">validate</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#567"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::validate">validate</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#411"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_payment_gateway_hooks">register_payment_gateway_hooks</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#687"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::check_template_for_logo">check_template_for_logo</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="StepsApi.php.html#586"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::update_section_state">update_section_state</abbr></a></td><td class="text-right">26</td></tr>
+       <tr><td><a href="StepsApi.php.html#405"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::add_steps">add_steps</abbr></a></td><td class="text-right">25</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#470"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_payment_gateway_updated">on_payment_gateway_updated</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="PlanFactory.php.html#139"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::determine_site_type">determine_site_type</abbr></a></td><td class="text-right">17</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#390"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::sync_section_status_with_tasks">sync_section_status_with_tasks</abbr></a></td><td class="text-right">16</td></tr>
+       <tr><td><a href="StepsApi.php.html#488"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::update_task_status">update_task_status</abbr></a></td><td class="text-right">16</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#895"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::is_jetpack_stats_ready">is_jetpack_stats_ready</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#158"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::add_track">add_track</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#176"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::remove_track">remove_track</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="PlanRepository.php.html#331"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::add_task">add_task</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#946"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_yoast_premium_state">validate_yoast_premium_state</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#138"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::register_payment_hooks_and_validators">register_payment_hooks_and_validators</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#385"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_product_creation_state">validate_product_creation_state</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="I18nService.php.html#72"><abbr title="NewfoldLabs\WP\Module\NextSteps\I18nService::load_script_translation_file">load_script_translation_file</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#878"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::is_jetpack_performance_ready">is_jetpack_performance_ready</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#205"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::get_formatted_data_attributes">get_formatted_data_attributes</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#234"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::add_task">add_task</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#147"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::add_section">add_section</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#253"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::remove_task">remove_task</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#165"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::remove_section">remove_section</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="PlanRepository.php.html#133"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::get_current_plan">get_current_plan</abbr></a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="StepsApi.php.html#704"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::update_track_status">update_track_status</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#163"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::has_enabled_payment_gateways">has_enabled_payment_gateways</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="PlanFactory.php.html#62"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::load_default_steps">load_default_steps</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#299"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::get_template_part_editor_url">get_template_part_editor_url</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#732"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_jetpack_connected">on_jetpack_connected</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#355"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::get_template_editor_url">get_template_editor_url</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#779"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_jetpack_module_activated">on_jetpack_module_activated</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="PlanFactory.php.html#210"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::get_current_plan_type">get_current_plan_type</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#238"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::get_completion_percentage">get_completion_percentage</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#197"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::get_all_tasks">get_all_tasks</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="StepsApi.php.html#882"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::add_task_to_section">add_task_to_section</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#368"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_product_creation">on_product_creation</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#390"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::update_section_open_state">update_section_open_state</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#252"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::get_all_tasks">get_all_tasks</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#239"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::get_all_sections">get_all_sections</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#307"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::update_section_open_state">update_section_open_state</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#323"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::update_section_status">update_section_status</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="NextSteps.php.html#48"><abbr title="NewfoldLabs\WP\Module\NextSteps\NextSteps::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1084"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::mark_task_as_complete">mark_task_as_complete</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="RedirectHelper.php.html#393"><abbr title="NewfoldLabs\WP\Module\NextSteps\RedirectHelper::is_block_theme">is_block_theme</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="PlanRepository.php.html#385"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::update_section_state">update_section_state</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#305"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::update_status">update_status</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1118"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::is_current_plan_for_task">is_current_plan_for_task</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#656"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_logo_updated">on_logo_updated</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#754"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_jetpack_boost_activation">on_jetpack_boost_activation</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="PlanFactory.php.html#88"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::detect_site_type">detect_site_type</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#430"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::update_section_open">update_section_open</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="PlanRepository.php.html#409"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::update_track_status">update_track_status</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#407"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::update_section_status">update_section_status</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#265"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::get_completion_percentage">get_completion_percentage</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#210"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::get_completion_percentage">get_completion_percentage</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#704"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::validate_logo_upload_state">validate_logo_upload_state</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#286"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::update_task_status">update_task_status</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="PlanRepository.php.html#295"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::update_task_status">update_task_status</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="PlanFactory.php.html#117"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanFactory::is_corporate_site">is_corporate_site</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="DTOs/Section.php.html#439"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Section::get_completion_percentage">get_completion_percentage</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#810"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_jetpack_boost_activated">on_jetpack_boost_activated</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="PlanRepository.php.html#233"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::check_new_plan">check_new_plan</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1003"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_affiliates_activation">on_affiliates_activation</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="PlanSwitchTriggers.php.html#96"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanSwitchTriggers::on_language_change">on_language_change</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1033"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_email_templates_activation">on_email_templates_activation</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#973"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::on_advanced_reviews_activation">on_advanced_reviews_activation</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="PlanRepository.php.html#315"><abbr title="NewfoldLabs\WP\Module\NextSteps\PlanRepository::get_task">get_task</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="StepsApi.php.html#358"><abbr title="NewfoldLabs\WP\Module\NextSteps\StepsApi::get_steps">get_steps</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#339"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::get_task">get_task</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="DTOs/Track.php.html#291"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Track::update_task_status">update_task_status</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="DTOs/Task.php.html#160"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Task::update_status">update_status</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#452"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::update_track_open_state">update_track_open_state</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="DTOs/Plan.php.html#209"><abbr title="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan::get_section">get_section</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="TaskCompletionTriggers.php.html#1148"><abbr title="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers::get_plan_type_from_task_path">get_plan_type_from_task_path</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.32</a> using <a href="https://secure.php.net/" target="_top">PHP 7.3.33</a> at Fri Dec 5 14:12:49 UTC 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([3,0,0,1,1,1,2,2,2,2,0,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([82,0,0,2,0,3,5,10,12,15,9,79], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[76.37362637362637,87,"<a href=\"DTOs\/Plan.php.html#10\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan<\/a>"],[75.13812154696133,68,"<a href=\"DTOs\/Section.php.html#10\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section<\/a>"],[59.57446808510638,22,"<a href=\"DTOs\/Task.php.html#10\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task<\/a>"],[65.51724137931035,50,"<a href=\"DTOs\/Track.php.html#10\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track<\/a>"],[0,6,"<a href=\"I18nService.php.html#8\">NewfoldLabs\\WP\\Module\\NextSteps\\I18nService<\/a>"],[0,19,"<a href=\"NextSteps.php.html#28\">NewfoldLabs\\WP\\Module\\NextSteps\\NextSteps<\/a>"],[0,5,"<a href=\"NextStepsWidget.php.html#18\">NewfoldLabs\\WP\\Module\\NextSteps\\NextStepsWidget<\/a>"],[62.264150943396224,31,"<a href=\"PlanFactory.php.html#23\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory<\/a>"],[81.45161290322581,49,"<a href=\"PlanRepository.php.html#18\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository<\/a>"],[57.14285714285714,18,"<a href=\"PlanSwitchTriggers.php.html#18\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanSwitchTriggers<\/a>"],[33.5,75,"<a href=\"RedirectHelper.php.html#36\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper<\/a>"],[27.24867724867725,64,"<a href=\"StepsApi.php.html#29\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi<\/a>"],[40.625,125,"<a href=\"TaskCompletionTriggers.php.html#36\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers<\/a>"],[89.28571428571429,15,"<a href=\"TaskStateValidator.php.html#19\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskStateValidator<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[90.9090909090909,6,"<a href=\"DTOs\/Plan.php.html#59\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::__construct<\/a>"],[100,1,"<a href=\"DTOs\/Plan.php.html#84\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::to_array<\/a>"],[100,5,"<a href=\"DTOs\/Plan.php.html#108\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::merge_with<\/a>"],[100,1,"<a href=\"DTOs\/Plan.php.html#147\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::from_array<\/a>"],[0,3,"<a href=\"DTOs\/Plan.php.html#158\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::add_track<\/a>"],[0,3,"<a href=\"DTOs\/Plan.php.html#176\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::remove_track<\/a>"],[100,3,"<a href=\"DTOs\/Plan.php.html#193\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_track<\/a>"],[75,2,"<a href=\"DTOs\/Plan.php.html#209\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_section<\/a>"],[100,2,"<a href=\"DTOs\/Plan.php.html#225\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_task<\/a>"],[0,2,"<a href=\"DTOs\/Plan.php.html#239\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_all_sections<\/a>"],[0,2,"<a href=\"DTOs\/Plan.php.html#252\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_all_tasks<\/a>"],[83.33333333333334,3,"<a href=\"DTOs\/Plan.php.html#265\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_completion_percentage<\/a>"],[0,1,"<a href=\"DTOs\/Plan.php.html#283\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::is_completed<\/a>"],[100,2,"<a href=\"DTOs\/Plan.php.html#292\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_completed_tasks_count<\/a>"],[100,2,"<a href=\"DTOs\/Plan.php.html#305\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_total_tasks_count<\/a>"],[100,1,"<a href=\"DTOs\/Plan.php.html#318\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_completed_tracks_count<\/a>"],[100,1,"<a href=\"DTOs\/Plan.php.html#334\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_total_tracks_count<\/a>"],[100,2,"<a href=\"DTOs\/Plan.php.html#343\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_completed_sections_count<\/a>"],[100,2,"<a href=\"DTOs\/Plan.php.html#356\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::get_total_sections_count<\/a>"],[100,2,"<a href=\"DTOs\/Plan.php.html#373\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::update_task_status<\/a>"],[0,2,"<a href=\"DTOs\/Plan.php.html#390\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::update_section_open_state<\/a>"],[71.42857142857143,3,"<a href=\"DTOs\/Plan.php.html#407\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::update_section_status<\/a>"],[71.42857142857143,3,"<a href=\"DTOs\/Plan.php.html#430\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::update_section_open<\/a>"],[75,2,"<a href=\"DTOs\/Plan.php.html#452\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::update_track_open_state<\/a>"],[100,3,"<a href=\"DTOs\/Plan.php.html#466\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::is_version_outdated<\/a>"],[100,1,"<a href=\"DTOs\/Plan.php.html#479\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::has_track<\/a>"],[100,5,"<a href=\"DTOs\/Plan.php.html#490\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::has_section<\/a>"],[90.47619047619048,14,"<a href=\"DTOs\/Plan.php.html#514\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::has_task<\/a>"],[100,3,"<a href=\"DTOs\/Plan.php.html#561\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::has_exact_task<\/a>"],[0,5,"<a href=\"DTOs\/Plan.php.html#580\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Plan::validate<\/a>"],[94.73684210526315,5,"<a href=\"DTOs\/Section.php.html#115\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::__construct<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#148\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::to_array<\/a>"],[95.83333333333334,8,"<a href=\"DTOs\/Section.php.html#180\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::merge_with<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#224\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::from_array<\/a>"],[0,3,"<a href=\"DTOs\/Section.php.html#234\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::add_task<\/a>"],[0,3,"<a href=\"DTOs\/Section.php.html#253\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::remove_task<\/a>"],[100,3,"<a href=\"DTOs\/Section.php.html#270\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::get_task<\/a>"],[85.71428571428571,3,"<a href=\"DTOs\/Section.php.html#286\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::update_task_status<\/a>"],[81.81818181818183,5,"<a href=\"DTOs\/Section.php.html#305\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::update_status<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#332\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::set_completed_now<\/a>"],[0,1,"<a href=\"DTOs\/Section.php.html#341\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::clear_completed_date<\/a>"],[100,4,"<a href=\"DTOs\/Section.php.html#353\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::mark_all_active_tasks_complete<\/a>"],[100,3,"<a href=\"DTOs\/Section.php.html#371\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::mark_all_active_tasks_dismissed<\/a>"],[53.84615384615385,9,"<a href=\"DTOs\/Section.php.html#390\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::sync_section_status_with_tasks<\/a>"],[0,1,"<a href=\"DTOs\/Section.php.html#423\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::sort_tasks<\/a>"],[88.23529411764706,3,"<a href=\"DTOs\/Section.php.html#439\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::get_completion_percentage<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#471\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::is_completed<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#480\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::get_completed_tasks_count<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#496\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::get_total_tasks_count<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#506\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::set_open<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#517\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::set_status<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#527\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::set_date_completed<\/a>"],[100,1,"<a href=\"DTOs\/Section.php.html#538\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::set_completed_by<\/a>"],[0,1,"<a href=\"DTOs\/Section.php.html#548\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::is_open<\/a>"],[0,1,"<a href=\"DTOs\/Section.php.html#557\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::toggle_open<\/a>"],[0,5,"<a href=\"DTOs\/Section.php.html#567\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Section::validate<\/a>"],[100,1,"<a href=\"DTOs\/Task.php.html#73\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::__construct<\/a>"],[100,1,"<a href=\"DTOs\/Task.php.html#89\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::to_array<\/a>"],[100,2,"<a href=\"DTOs\/Task.php.html#110\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::merge_with<\/a>"],[100,1,"<a href=\"DTOs\/Task.php.html#125\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::from_array<\/a>"],[0,5,"<a href=\"DTOs\/Task.php.html#134\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::validate<\/a>"],[75,2,"<a href=\"DTOs\/Task.php.html#160\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::update_status<\/a>"],[0,1,"<a href=\"DTOs\/Task.php.html#175\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::set_data_attributes<\/a>"],[0,1,"<a href=\"DTOs\/Task.php.html#186\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::add_data_attribute<\/a>"],[0,1,"<a href=\"DTOs\/Task.php.html#196\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::remove_data_attribute<\/a>"],[0,3,"<a href=\"DTOs\/Task.php.html#205\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::get_formatted_data_attributes<\/a>"],[100,1,"<a href=\"DTOs\/Task.php.html#220\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::is_completed<\/a>"],[100,1,"<a href=\"DTOs\/Task.php.html#229\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::is_dismissed<\/a>"],[0,2,"<a href=\"DTOs\/Task.php.html#238\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Task::get_completion_percentage<\/a>"],[90,5,"<a href=\"DTOs\/Track.php.html#52\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::__construct<\/a>"],[100,1,"<a href=\"DTOs\/Track.php.html#76\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::to_array<\/a>"],[95,6,"<a href=\"DTOs\/Track.php.html#99\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::merge_with<\/a>"],[100,1,"<a href=\"DTOs\/Track.php.html#137\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::from_array<\/a>"],[0,3,"<a href=\"DTOs\/Track.php.html#147\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::add_section<\/a>"],[0,3,"<a href=\"DTOs\/Track.php.html#165\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::remove_section<\/a>"],[100,3,"<a href=\"DTOs\/Track.php.html#182\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::get_section<\/a>"],[0,2,"<a href=\"DTOs\/Track.php.html#197\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::get_all_tasks<\/a>"],[83.33333333333334,3,"<a href=\"DTOs\/Track.php.html#210\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::get_completion_percentage<\/a>"],[100,1,"<a href=\"DTOs\/Track.php.html#228\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::is_completed<\/a>"],[100,2,"<a href=\"DTOs\/Track.php.html#237\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::get_completed_tasks_count<\/a>"],[100,2,"<a href=\"DTOs\/Track.php.html#250\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::get_total_tasks_count<\/a>"],[100,1,"<a href=\"DTOs\/Track.php.html#263\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::get_completed_sections_count<\/a>"],[100,1,"<a href=\"DTOs\/Track.php.html#279\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::get_total_sections_count<\/a>"],[75,2,"<a href=\"DTOs\/Track.php.html#291\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::update_task_status<\/a>"],[0,2,"<a href=\"DTOs\/Track.php.html#307\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::update_section_open_state<\/a>"],[0,2,"<a href=\"DTOs\/Track.php.html#323\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::update_section_status<\/a>"],[75,2,"<a href=\"DTOs\/Track.php.html#339\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::get_task<\/a>"],[100,1,"<a href=\"DTOs\/Track.php.html#353\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::set_open<\/a>"],[0,1,"<a href=\"DTOs\/Track.php.html#363\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::is_open<\/a>"],[0,1,"<a href=\"DTOs\/Track.php.html#372\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::toggle_open<\/a>"],[0,5,"<a href=\"DTOs\/Track.php.html#382\">NewfoldLabs\\WP\\Module\\NextSteps\\DTOs\\Track::validate<\/a>"],[0,1,"<a href=\"I18nService.php.html#15\">NewfoldLabs\\WP\\Module\\NextSteps\\I18nService::__construct<\/a>"],[0,1,"<a href=\"I18nService.php.html#31\">NewfoldLabs\\WP\\Module\\NextSteps\\I18nService::add_php_i18n<\/a>"],[0,1,"<a href=\"I18nService.php.html#47\">NewfoldLabs\\WP\\Module\\NextSteps\\I18nService::add_js_i18n<\/a>"],[0,3,"<a href=\"I18nService.php.html#72\">NewfoldLabs\\WP\\Module\\NextSteps\\I18nService::load_script_translation_file<\/a>"],[0,2,"<a href=\"NextSteps.php.html#48\">NewfoldLabs\\WP\\Module\\NextSteps\\NextSteps::__construct<\/a>"],[0,1,"<a href=\"NextSteps.php.html#71\">NewfoldLabs\\WP\\Module\\NextSteps\\NextSteps::init_steps_apis<\/a>"],[0,1,"<a href=\"NextSteps.php.html#81\">NewfoldLabs\\WP\\Module\\NextSteps\\NextSteps::add_nfd_subnav<\/a>"],[0,1,"<a href=\"NextSteps.php.html#97\">NewfoldLabs\\WP\\Module\\NextSteps\\NextSteps::render_next_steps_page<\/a>"],[0,8,"<a href=\"NextSteps.php.html#104\">NewfoldLabs\\WP\\Module\\NextSteps\\NextSteps::nextsteps_widget<\/a>"],[0,6,"<a href=\"NextSteps.php.html#169\">NewfoldLabs\\WP\\Module\\NextSteps\\NextSteps::nextsteps_portal<\/a>"],[0,1,"<a href=\"NextStepsWidget.php.html#27\">NewfoldLabs\\WP\\Module\\NextSteps\\NextStepsWidget::__construct<\/a>"],[0,1,"<a href=\"NextStepsWidget.php.html#34\">NewfoldLabs\\WP\\Module\\NextSteps\\NextStepsWidget::init<\/a>"],[0,1,"<a href=\"NextStepsWidget.php.html#53\">NewfoldLabs\\WP\\Module\\NextSteps\\NextStepsWidget::widget_render<\/a>"],[0,1,"<a href=\"NextStepsWidget.php.html#63\">NewfoldLabs\\WP\\Module\\NextSteps\\NextStepsWidget::assets<\/a>"],[0,1,"<a href=\"NextStepsWidget.php.html#75\">NewfoldLabs\\WP\\Module\\NextSteps\\NextStepsWidget::add_utm_params<\/a>"],[0,1,"<a href=\"PlanFactory.php.html#52\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::__construct<\/a>"],[44.44444444444444,5,"<a href=\"PlanFactory.php.html#62\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::load_default_steps<\/a>"],[60,3,"<a href=\"PlanFactory.php.html#88\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::detect_site_type<\/a>"],[100,2,"<a href=\"PlanFactory.php.html#108\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::is_ecommerce_site<\/a>"],[88.88888888888889,3,"<a href=\"PlanFactory.php.html#117\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::is_corporate_site<\/a>"],[53.333333333333336,9,"<a href=\"PlanFactory.php.html#139\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::determine_site_type<\/a>"],[100,5,"<a href=\"PlanFactory.php.html#174\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::create_plan<\/a>"],[100,1,"<a href=\"PlanFactory.php.html#200\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::load_default_plan<\/a>"],[0,2,"<a href=\"PlanFactory.php.html#210\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanFactory::get_current_plan_type<\/a>"],[100,2,"<a href=\"PlanRepository.php.html#51\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::is_cache_valid<\/a>"],[100,1,"<a href=\"PlanRepository.php.html#62\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::cache_plan<\/a>"],[100,1,"<a href=\"PlanRepository.php.html#73\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::invalidate_cache<\/a>"],[0,1,"<a href=\"PlanRepository.php.html#84\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::reset_next_steps_data<\/a>"],[100,3,"<a href=\"PlanRepository.php.html#94\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::get_plan_data<\/a>"],[88.23529411764706,11,"<a href=\"PlanRepository.php.html#133\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::get_current_plan<\/a>"],[100,4,"<a href=\"PlanRepository.php.html#205\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::save_plan<\/a>"],[50,2,"<a href=\"PlanRepository.php.html#233\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::check_new_plan<\/a>"],[100,1,"<a href=\"PlanRepository.php.html#255\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::is_new_plan<\/a>"],[100,4,"<a href=\"PlanRepository.php.html#267\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::switch_plan<\/a>"],[85.71428571428571,3,"<a href=\"PlanRepository.php.html#295\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::update_task_status<\/a>"],[75,2,"<a href=\"PlanRepository.php.html#315\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::get_task<\/a>"],[0,3,"<a href=\"PlanRepository.php.html#331\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::add_task<\/a>"],[100,1,"<a href=\"PlanRepository.php.html#348\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::reset_plan<\/a>"],[91.66666666666666,2,"<a href=\"PlanRepository.php.html#360\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::get_plan_stats<\/a>"],[81.81818181818183,5,"<a href=\"PlanRepository.php.html#385\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::update_section_state<\/a>"],[71.42857142857143,3,"<a href=\"PlanRepository.php.html#409\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanRepository::update_track_status<\/a>"],[100,1,"<a href=\"PlanSwitchTriggers.php.html#26\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanSwitchTriggers::__construct<\/a>"],[90.9090909090909,7,"<a href=\"PlanSwitchTriggers.php.html#45\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanSwitchTriggers::on_sitetype_change<\/a>"],[100,2,"<a href=\"PlanSwitchTriggers.php.html#80\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanSwitchTriggers::on_woocommerce_activation<\/a>"],[66.66666666666666,2,"<a href=\"PlanSwitchTriggers.php.html#96\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanSwitchTriggers::on_language_change<\/a>"],[100,1,"<a href=\"PlanSwitchTriggers.php.html#109\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanSwitchTriggers::on_locale_switch<\/a>"],[0,5,"<a href=\"PlanSwitchTriggers.php.html#120\">NewfoldLabs\\WP\\Module\\NextSteps\\PlanSwitchTriggers::resync_next_steps_data<\/a>"],[100,1,"<a href=\"RedirectHelper.php.html#41\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::init<\/a>"],[0,1,"<a href=\"RedirectHelper.php.html#51\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::get_partner_plugins<\/a>"],[0,1,"<a href=\"RedirectHelper.php.html#106\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::add_redirect_page<\/a>"],[0,8,"<a href=\"RedirectHelper.php.html#142\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::check_redirect<\/a>"],[0,9,"<a href=\"RedirectHelper.php.html#176\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::handle_plugin_redirect<\/a>"],[0,8,"<a href=\"RedirectHelper.php.html#217\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::handle_template_redirect<\/a>"],[0,7,"<a href=\"RedirectHelper.php.html#260\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::check_plugin<\/a>"],[88.88888888888889,8,"<a href=\"RedirectHelper.php.html#299\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::get_template_part_editor_url<\/a>"],[81.25,6,"<a href=\"RedirectHelper.php.html#355\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::get_template_editor_url<\/a>"],[80,5,"<a href=\"RedirectHelper.php.html#393\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::is_block_theme<\/a>"],[64.1025641025641,21,"<a href=\"RedirectHelper.php.html#415\">NewfoldLabs\\WP\\Module\\NextSteps\\RedirectHelper::get_active_template_part_slug<\/a>"],[100,1,"<a href=\"StepsApi.php.html#57\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::__construct<\/a>"],[0,7,"<a href=\"StepsApi.php.html#79\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::register_routes<\/a>"],[100,1,"<a href=\"StepsApi.php.html#337\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::set_data<\/a>"],[75,2,"<a href=\"StepsApi.php.html#358\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::get_steps<\/a>"],[45.83333333333333,10,"<a href=\"StepsApi.php.html#405\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::add_steps<\/a>"],[68.57142857142857,12,"<a href=\"StepsApi.php.html#488\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::update_task_status<\/a>"],[68.08510638297872,17,"<a href=\"StepsApi.php.html#586\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::update_section_state<\/a>"],[67.74193548387096,8,"<a href=\"StepsApi.php.html#704\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::update_track_status<\/a>"],[100,1,"<a href=\"StepsApi.php.html#788\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::get_plan_stats<\/a>"],[100,2,"<a href=\"StepsApi.php.html#815\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::switch_plan<\/a>"],[100,1,"<a href=\"StepsApi.php.html#845\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::reset_plan<\/a>"],[0,2,"<a href=\"StepsApi.php.html#882\">NewfoldLabs\\WP\\Module\\NextSteps\\StepsApi::add_task_to_section<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#101\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::__construct<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#121\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_product_hooks_and_validators<\/a>"],[0,3,"<a href=\"TaskCompletionTriggers.php.html#138\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_payment_hooks_and_validators<\/a>"],[28.57142857142857,4,"<a href=\"TaskCompletionTriggers.php.html#163\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::has_enabled_payment_gateways<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#190\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_blog_hooks_and_validators<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#206\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_gift_card_hooks_and_validators<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#221\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_welcome_popup_hooks_and_validators<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#236\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_logo_hooks_and_validators<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#254\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_jetpack_hooks_and_validators<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#293\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_yoast_hooks_and_validators<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#315\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_advanced_reviews_hooks_and_validators<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#330\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_affiliates_hooks_and_validators<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#345\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_email_templates_hooks_and_validators<\/a>"],[50,4,"<a href=\"TaskCompletionTriggers.php.html#368\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_product_creation<\/a>"],[0,3,"<a href=\"TaskCompletionTriggers.php.html#385\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_product_creation_state<\/a>"],[0,5,"<a href=\"TaskCompletionTriggers.php.html#411\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::register_payment_gateway_hooks<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#441\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_payment_setup_state<\/a>"],[100,3,"<a href=\"TaskCompletionTriggers.php.html#455\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_product_published<\/a>"],[0,4,"<a href=\"TaskCompletionTriggers.php.html#470\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_payment_gateway_updated<\/a>"],[100,4,"<a href=\"TaskCompletionTriggers.php.html#496\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_blog_post_published<\/a>"],[93.75,4,"<a href=\"TaskCompletionTriggers.php.html#514\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_blog_post_creation_state<\/a>"],[100,3,"<a href=\"TaskCompletionTriggers.php.html#553\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::is_hello_world_post<\/a>"],[100,3,"<a href=\"TaskCompletionTriggers.php.html#578\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_gift_card_published<\/a>"],[100,1,"<a href=\"TaskCompletionTriggers.php.html#591\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_gift_card_creation_state<\/a>"],[100,3,"<a href=\"TaskCompletionTriggers.php.html#618\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_welcome_popup_published<\/a>"],[100,1,"<a href=\"TaskCompletionTriggers.php.html#631\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_welcome_popup_creation_state<\/a>"],[80,4,"<a href=\"TaskCompletionTriggers.php.html#656\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_logo_updated<\/a>"],[0,5,"<a href=\"TaskCompletionTriggers.php.html#687\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::check_template_for_logo<\/a>"],[85.71428571428571,3,"<a href=\"TaskCompletionTriggers.php.html#704\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_logo_upload_state<\/a>"],[28.57142857142857,3,"<a href=\"TaskCompletionTriggers.php.html#732\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_jetpack_connected<\/a>"],[57.14285714285714,3,"<a href=\"TaskCompletionTriggers.php.html#754\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_jetpack_boost_activation<\/a>"],[64.28571428571429,5,"<a href=\"TaskCompletionTriggers.php.html#779\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_jetpack_module_activated<\/a>"],[40,2,"<a href=\"TaskCompletionTriggers.php.html#810\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_jetpack_boost_activated<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#827\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_jetpack_performance_state<\/a>"],[0,1,"<a href=\"TaskCompletionTriggers.php.html#836\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_jetpack_stats_state<\/a>"],[0,6,"<a href=\"TaskCompletionTriggers.php.html#847\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::is_jetpack_connected<\/a>"],[0,3,"<a href=\"TaskCompletionTriggers.php.html#878\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::is_jetpack_performance_ready<\/a>"],[0,3,"<a href=\"TaskCompletionTriggers.php.html#895\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::is_jetpack_stats_ready<\/a>"],[100,2,"<a href=\"TaskCompletionTriggers.php.html#921\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_yoast_premium_activation<\/a>"],[0,3,"<a href=\"TaskCompletionTriggers.php.html#946\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_yoast_premium_state<\/a>"],[66.66666666666666,2,"<a href=\"TaskCompletionTriggers.php.html#973\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_advanced_reviews_activation<\/a>"],[100,1,"<a href=\"TaskCompletionTriggers.php.html#988\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_advanced_reviews_state<\/a>"],[66.66666666666666,2,"<a href=\"TaskCompletionTriggers.php.html#1003\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_affiliates_activation<\/a>"],[100,1,"<a href=\"TaskCompletionTriggers.php.html#1018\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_affiliates_state<\/a>"],[66.66666666666666,2,"<a href=\"TaskCompletionTriggers.php.html#1033\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::on_email_templates_activation<\/a>"],[100,1,"<a href=\"TaskCompletionTriggers.php.html#1048\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::validate_email_templates_state<\/a>"],[100,2,"<a href=\"TaskCompletionTriggers.php.html#1062\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::mark_task_as_complete_by_path<\/a>"],[75,5,"<a href=\"TaskCompletionTriggers.php.html#1084\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::mark_task_as_complete<\/a>"],[72.72727272727273,4,"<a href=\"TaskCompletionTriggers.php.html#1118\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::is_current_plan_for_task<\/a>"],[80,2,"<a href=\"TaskCompletionTriggers.php.html#1148\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::get_plan_type_from_task_path<\/a>"],[100,2,"<a href=\"TaskCompletionTriggers.php.html#1169\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskCompletionTriggers::mark_task_complete_if_plan_matches<\/a>"],[100,1,"<a href=\"TaskStateValidator.php.html#37\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskStateValidator::register_validator<\/a>"],[100,11,"<a href=\"TaskStateValidator.php.html#50\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskStateValidator::validate_existing_state<\/a>"],[0,1,"<a href=\"TaskStateValidator.php.html#110\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskStateValidator::get_registered_validators<\/a>"],[0,1,"<a href=\"TaskStateValidator.php.html#119\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskStateValidator::clear_validators<\/a>"],[0,1,"<a href=\"TaskStateValidator.php.html#128\">NewfoldLabs\\WP\\Module\\NextSteps\\TaskStateValidator::get_validator_count<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
