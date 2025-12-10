@@ -1,10 +1,9 @@
-name: Build and Test Module Updates in Brand Plugins
+name: Build and Test Module Updates in Brand Plugins (Playwright tests)
 on:
   pull_request:
     types: [ opened, reopened, ready_for_review, synchronize ]
     branches:
       - main
-      - develop
   workflow_dispatch:
 
 concurrency:
@@ -24,12 +23,13 @@ jobs:
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
 
-  bluehost-main:
-    name: Bluehost (main) Build and Test
+  bluehost:
+    name: Bluehost Build and Test Playwright
     needs: setup
-    uses: newfold-labs/workflows/.github/workflows/module-plugin-test.yml@main
+    uses: newfold-labs/workflows/.github/workflows/module-plugin-test-playwright.yml@main
     with:
       module-repo: ${{ github.repository }}
       module-branch: ${{ needs.setup.outputs.branch }}
       plugin-repo: 'newfold-labs/wp-plugin-bluehost'
+      plugin-branch: 'release/4.10.0'
     secrets: inherit
