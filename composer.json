@@ -39,7 +39,7 @@
         "yoast/phpunit-polyfills": "^1.1"
     },
     "require": {
-        "newfold-labs/wp-module-data": "^2.9.1",
+        "newfold-labs/wp-module-data": "^2.9.2",
         "newfold-labs/wp-module-loader": "^1.0.12"
     },
     "config": {
