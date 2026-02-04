@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1769550483">
-  <project timestamp="1769550483">
+<coverage generated="1770222932">
+  <project timestamp="1770222932">
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Plan.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan" namespace="global">
         <metrics complexity="87" methods="30" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="182" coveredstatements="139" elements="212" coveredelements="155"/>
@@ -1714,7 +1714,7 @@
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/TaskCompletionTriggers.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\TaskCompletionTriggers" namespace="global">
-        <metrics complexity="125" methods="51" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="320" coveredstatements="130" elements="371" coveredelements="143"/>
+        <metrics complexity="125" methods="51" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="320" coveredstatements="137" elements="371" coveredelements="151"/>
       </class>
       <line num="101" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="103" type="stmt" count="0"/>
@@ -1745,14 +1745,14 @@
       <line num="153" type="stmt" count="0"/>
       <line num="154" type="stmt" count="0"/>
       <line num="155" type="stmt" count="0"/>
-      <line num="163" type="method" name="has_enabled_payment_gateways" visibility="private" complexity="4" crap="9.83" count="2"/>
+      <line num="163" type="method" name="has_enabled_payment_gateways" visibility="private" complexity="4" crap="4.37" count="2"/>
       <line num="165" type="stmt" count="2"/>
-      <line num="166" type="stmt" count="2"/>
-      <line num="172" type="stmt" count="0"/>
-      <line num="173" type="stmt" count="0"/>
+      <line num="166" type="stmt" count="0"/>
+      <line num="172" type="stmt" count="2"/>
+      <line num="173" type="stmt" count="2"/>
       <line num="174" type="stmt" count="0"/>
-      <line num="178" type="stmt" count="0"/>
-      <line num="181" type="stmt" count="0"/>
+      <line num="178" type="stmt" count="2"/>
+      <line num="181" type="stmt" count="2"/>
       <line num="190" type="method" name="register_blog_hooks_and_validators" visibility="private" complexity="1" crap="2" count="0"/>
       <line num="192" type="stmt" count="0"/>
       <line num="194" type="stmt" count="0"/>
@@ -1831,11 +1831,11 @@
       <line num="350" type="stmt" count="0"/>
       <line num="351" type="stmt" count="0"/>
       <line num="352" type="stmt" count="0"/>
-      <line num="368" type="method" name="on_product_creation" visibility="public" complexity="4" crap="6.00" count="1"/>
-      <line num="370" type="stmt" count="1"/>
-      <line num="371" type="stmt" count="1"/>
-      <line num="374" type="stmt" count="0"/>
-      <line num="376" type="stmt" count="0"/>
+      <line num="368" type="method" name="on_product_creation" visibility="public" complexity="4" crap="4.25" count="2"/>
+      <line num="370" type="stmt" count="2"/>
+      <line num="371" type="stmt" count="0"/>
+      <line num="374" type="stmt" count="2"/>
+      <line num="376" type="stmt" count="2"/>
       <line num="385" type="method" name="validate_product_creation_state" visibility="public" complexity="3" crap="12" count="0"/>
       <line num="387" type="stmt" count="0"/>
       <line num="388" type="stmt" count="0"/>
@@ -1858,15 +1858,15 @@
       <line num="426" type="stmt" count="0"/>
       <line num="427" type="stmt" count="0"/>
       <line num="428" type="stmt" count="0"/>
-      <line num="441" type="method" name="validate_payment_setup_state" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="442" type="stmt" count="0"/>
+      <line num="441" type="method" name="validate_payment_setup_state" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="442" type="stmt" count="2"/>
       <line num="455" type="method" name="on_product_published" visibility="public" complexity="3" crap="3" count="2"/>
       <line num="457" type="stmt" count="2"/>
       <line num="459" type="stmt" count="1"/>
-      <line num="470" type="method" name="on_payment_gateway_updated" visibility="public" complexity="4" crap="20" count="0"/>
-      <line num="472" type="stmt" count="0"/>
+      <line num="470" type="method" name="on_payment_gateway_updated" visibility="public" complexity="4" crap="6.00" count="1"/>
+      <line num="472" type="stmt" count="1"/>
       <line num="473" type="stmt" count="0"/>
-      <line num="477" type="stmt" count="0"/>
+      <line num="477" type="stmt" count="1"/>
       <line num="479" type="stmt" count="0"/>
       <line num="496" type="method" name="on_blog_post_published" visibility="public" complexity="4" crap="4" count="2"/>
       <line num="498" type="stmt" count="2"/>
@@ -2087,7 +2087,7 @@
       <line num="1170" type="stmt" count="1"/>
       <line num="1171" type="stmt" count="1"/>
       <line num="1174" type="stmt" count="1"/>
-      <metrics loc="1177" ncloc="662" classes="1" methods="51" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="320" coveredstatements="130" elements="371" coveredelements="143"/>
+      <metrics loc="1177" ncloc="662" classes="1" methods="51" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="320" coveredstatements="137" elements="371" coveredelements="151"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/TaskStateValidator.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\TaskStateValidator" namespace="global">
@@ -2142,6 +2142,6 @@
       <line num="27" type="stmt" count="0"/>
       <metrics loc="58" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="11" coveredelements="0"/>
     </file>
-    <metrics files="15" loc="5784" ncloc="3431" classes="14" methods="217" coveredmethods="79" conditionals="0" coveredconditionals="0" statements="1837" coveredstatements="858" elements="2054" coveredelements="937"/>
+    <metrics files="15" loc="5784" ncloc="3431" classes="14" methods="217" coveredmethods="80" conditionals="0" coveredconditionals="0" statements="1837" coveredstatements="865" elements="2054" coveredelements="945"/>
   </project>
 </coverage>
