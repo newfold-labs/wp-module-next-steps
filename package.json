@@ -23,7 +23,7 @@
     "@wordpress/scripts": "^31.4.0",
     "classnames": "^2.5.1",
     "mini-css-extract-plugin": "^2.10.0",
-    "tailwindcss": "^4.1.18",
+    "tailwindcss": "^4.2.0",
     "webpack": "^5.105.2",
     "webpack-cli": "^6.0.1",
     "webpack-merge": "^6.0.1"
