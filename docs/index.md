@@ -13,6 +13,7 @@ Documentation for wp-module-next-steps, for **humans** and **AI agents**. Start 
 | [api.md](api.md) | REST API endpoints table. |
 | [development.md](development.md) | Lint, test, and workflow. |
 | [dependencies.md](dependencies.md) | Composer and npm dependencies. |
+| [release.md](release.md) | Release process: use the Newfold Prepare Release workflow. |
 
 ## Quick links
 
