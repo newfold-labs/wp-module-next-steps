@@ -1,3 +1,10 @@
+---
+name: wp-module-next-steps
+title: Dependencies
+description: Composer and npm dependencies.
+updated: 2025-03-16
+---
+
 # Dependencies
 
 ## Runtime (Composer)

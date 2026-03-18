@@ -43,4 +43,9 @@ composer i18n
 
 ## Keeping documentation current
 
-When you change code, features, or workflows, update the docs. When adding or changing REST routes, update **docs/api.md**. When changing dependencies, update **docs/dependencies.md**. When cutting a release, update **docs/changelog.md**.
+When you change code, features, or workflows, update the docs. Keep all docs current, not only the ones listed here.
+
+- **docs/index.md** – Keep the table of contents current. When you add a new doc file to **docs/**, add a row for it in the index table and in Quick links if relevant. When you remove or rename a doc, update the index accordingly.
+- When adding or changing REST routes, update **docs/api.md**.
+- When changing dependencies, update **docs/dependencies.md**.
+- When cutting a release, update **docs/changelog.md**.

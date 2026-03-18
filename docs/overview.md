@@ -1,3 +1,10 @@
+---
+name: wp-module-next-steps
+title: Overview
+description: What the module does and who maintains it.
+updated: 2025-03-16
+---
+
 # Overview
 
 ## What the module does

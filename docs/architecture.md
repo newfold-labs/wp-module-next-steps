@@ -1,3 +1,10 @@
+---
+name: wp-module-next-steps
+title: Architecture
+description: Core design, plans, DTOs, smart task completion, hooks, and options.
+updated: 2025-03-16
+---
+
 # Architecture
 
 ## Core System Design

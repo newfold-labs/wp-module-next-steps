@@ -1,3 +1,10 @@
+---
+name: wp-module-next-steps
+title: Development
+description: Lint, test, and day-to-day workflow.
+updated: 2025-03-16
+---
+
 # Development
 
 ## Linting
@@ -6,8 +13,10 @@
 
 ## Testing
 
-- **PHPUnit/WPUnit:** `composer test`, `composer test-coverage`, `composer test-coverage-html`. Uses Codeception; requires wp-env for local runs. See `.env.testing` and `codeception.yml`.
+- **PHPUnit/WPUnit:** `composer test`, `composer test-coverage`. Uses Codeception; requires wp-env for local runs. See `.env.testing` and `codeception.yml`.
 - **Playwright E2E:** `npx playwright test`. Requires WordPress (e.g. `wp-env start`).
+
+For full details (commands, CI workflows, PR expectations), see [testing.md](testing.md).
 
 ## Workflow
 

@@ -1,3 +1,10 @@
+---
+name: wp-module-next-steps
+title: Getting started
+description: Prerequisites, install, build, and tests.
+updated: 2025-03-16
+---
+
 # Getting started
 
 ## Prerequisites

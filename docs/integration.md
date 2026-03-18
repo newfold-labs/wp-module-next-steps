@@ -1,3 +1,10 @@
+---
+name: wp-module-next-steps
+title: Integration
+description: How the module registers and integrates with onboarding/solutions.
+updated: 2025-03-16
+---
+
 # Integration
 
 ## How the module registers
