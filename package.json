@@ -20,7 +20,7 @@
     "@tailwindcss/postcss": "^4.2.2",
     "@wordpress/dom-ready": "^4.42.0",
     "@wordpress/env": "^11.1.0",
-    "@wordpress/scripts": "^31.6.0",
+    "@wordpress/scripts": "^31.7.0",
     "classnames": "^2.5.1",
     "mini-css-extract-plugin": "^2.10.1",
     "tailwindcss": "^4.2.1",
