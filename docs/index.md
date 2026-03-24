@@ -1,0 +1,32 @@
+---
+name: wp-module-next-steps
+title: Documentation index
+description: Table of contents and quick links for wp-module-next-steps docs.
+updated: 2025-03-16
+---
+
+# wp-module-next-steps – Documentation index
+
+Documentation for wp-module-next-steps, for **humans** and **AI agents**. Start here.
+
+## Table of contents
+
+| Document | Description |
+|----------|-------------|
+| [overview.md](overview.md) | What the module does and who maintains it. |
+| [getting-started.md](getting-started.md) | Prerequisites, install, build, and tests. |
+| [integration.md](integration.md) | How the module registers and integrates with onboarding/solutions. |
+| [architecture.md](architecture.md) | Core design, plans, DTOs, smart task completion, hooks, options. |
+| [api.md](api.md) | REST API endpoints table. |
+| [development.md](development.md) | Lint, test, and workflow. |
+| [testing.md](testing.md) | E2E and unit tests, commands, CI workflows, and PR expectations. |
+| [dependencies.md](dependencies.md) | Composer and npm dependencies. |
+| [release.md](release.md) | Release process: use the Newfold Prepare Release workflow. |
+
+## Quick links
+
+- **New to the repo:** [overview.md](overview.md) then [getting-started.md](getting-started.md).
+- **Changing behavior:** [architecture.md](architecture.md), [api.md](api.md).
+- **Adding or running tests:** [testing.md](testing.md).
+
+Root **AGENTS.md** gives a short agent summary and points here.
