@@ -47,6 +47,7 @@ class NextSteps {
 	 */
 	public function __construct( Container $container ) {
 		$this->container = $container;
+		PlanRepository::register_cache_invalidation_hooks();
 		new PlanFactory();
 		new PlanSwitchTriggers( $container );
 		new TaskCompletionTriggers( $container );
