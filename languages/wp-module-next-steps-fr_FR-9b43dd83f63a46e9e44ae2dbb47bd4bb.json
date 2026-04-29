@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "translation-revision-date": "2026-04-29T17:22:37+00:00",
     "generator": "WP-CLI\/2.12.0",
     "source": "build\/next-steps-portal\/bundle.js",
     "domain": "messages",
@@ -22,20 +22,26 @@
             "Unskip": [
                 "D\u00e9sencha\u00eener"
             ],
-            "Hide skipped tasks": [
-                "Masquer les t\u00e2ches ignor\u00e9es"
+            "Completed": [
+                "Termin\u00e9"
             ],
-            "View skipped tasks": [
-                "Afficher les t\u00e2ches ignor\u00e9es"
+            "Skipped": [
+                "Saut\u00e9"
             ],
-            "Loading next steps...": [
-                "Chargement des \u00e9tapes suivantes..."
+            "Skip it": [
+                "Sautez-le"
             ],
-            "All complete!": [
-                "Tout est termin\u00e9\u00a0!"
+            "Undo": [
+                "D\u00e9faire"
             ],
-            "Close": [
-                "Fermer"
+            "No Pending tasks": [
+                "Aucune t\u00e2che en attente"
+            ],
+            "Hooray!": [
+                "Hourra!"
+            ],
+            "You don\u2019t have any pending tasks today": [
+                "Vous n\u2019avez aucune t\u00e2che en attente aujourd\u2019hui"
             ],
             "We encountered a connection error. Please check your internet connection and try again.": [
                 "Nous avons rencontr\u00e9 une erreur de connexion. Veuillez v\u00e9rifier votre connexion Internet et r\u00e9essayer."
@@ -67,26 +73,20 @@
             "Task temporarily unavailable": [
                 "T\u00e2che temporairement indisponible"
             ],
-            "No Pending tasks": [
-                "Aucune t\u00e2che en attente"
+            "Close": [
+                "Fermer"
             ],
-            "Hooray!": [
-                "Hourra!"
+            "All complete!": [
+                "Tout est termin\u00e9\u00a0!"
             ],
-            "You don\u2019t have any pending tasks today": [
-                "Vous n\u2019avez aucune t\u00e2che en attente aujourd\u2019hui"
+            "Loading next steps...": [
+                "Chargement des \u00e9tapes suivantes..."
             ],
-            "Completed": [
-                "Termin\u00e9"
+            "Hide skipped tasks": [
+                "Masquer les t\u00e2ches ignor\u00e9es"
             ],
-            "Skipped": [
-                "Saut\u00e9"
-            ],
-            "Skip it": [
-                "Sautez-le"
-            ],
-            "Undo": [
-                "D\u00e9faire"
+            "View skipped tasks": [
+                "Afficher les t\u00e2ches ignor\u00e9es"
             ]
         }
     }

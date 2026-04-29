@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "translation-revision-date": "2026-04-29T17:22:37+00:00",
     "generator": "WP-CLI\/2.12.0",
     "source": "build\/next-steps-widget\/bundle.js",
     "domain": "messages",
@@ -21,21 +21,6 @@
             ],
             "Unskip": [
                 "D\u00e9sencha\u00eener"
-            ],
-            "Hide skipped tasks": [
-                "Masquer les t\u00e2ches ignor\u00e9es"
-            ],
-            "View skipped tasks": [
-                "Afficher les t\u00e2ches ignor\u00e9es"
-            ],
-            "Loading next steps...": [
-                "Chargement des \u00e9tapes suivantes..."
-            ],
-            "All complete!": [
-                "Tout est termin\u00e9\u00a0!"
-            ],
-            "Close": [
-                "Fermer"
             ],
             "We encountered a connection error. Please check your internet connection and try again.": [
                 "Nous avons rencontr\u00e9 une erreur de connexion. Veuillez v\u00e9rifier votre connexion Internet et r\u00e9essayer."
@@ -66,6 +51,21 @@
             ],
             "Task temporarily unavailable": [
                 "T\u00e2che temporairement indisponible"
+            ],
+            "Close": [
+                "Fermer"
+            ],
+            "All complete!": [
+                "Tout est termin\u00e9\u00a0!"
+            ],
+            "Loading next steps...": [
+                "Chargement des \u00e9tapes suivantes..."
+            ],
+            "Hide skipped tasks": [
+                "Masquer les t\u00e2ches ignor\u00e9es"
+            ],
+            "View skipped tasks": [
+                "Afficher les t\u00e2ches ignor\u00e9es"
             ]
         }
     }

@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "translation-revision-date": "2026-04-29T17:22:37+00:00",
     "generator": "WP-CLI\/2.12.0",
     "source": "build\/next-steps-portal\/bundle.js",
     "domain": "messages",
@@ -22,20 +22,26 @@
             "Unskip": [
                 "Niet overslaan"
             ],
-            "Hide skipped tasks": [
-                "Overgeslagen taken verbergen"
+            "Completed": [
+                "Volbracht"
             ],
-            "View skipped tasks": [
-                "Overgeslagen taken weergeven"
+            "Skipped": [
+                "Overgeslagen"
             ],
-            "Loading next steps...": [
-                "Volgende stappen laden..."
+            "Skip it": [
+                "Sla het over"
             ],
-            "All complete!": [
-                "Helemaal compleet!"
+            "Undo": [
+                "Ongedaan maken"
             ],
-            "Close": [
-                "Sluiten"
+            "No Pending tasks": [
+                "Geen taken in behandeling"
+            ],
+            "Hooray!": [
+                "Hoera!"
+            ],
+            "You don\u2019t have any pending tasks today": [
+                "Je hebt vandaag geen openstaande taken"
             ],
             "We encountered a connection error. Please check your internet connection and try again.": [
                 "Er is een verbindingsfout opgetreden. Controleer uw internetverbinding en probeer het opnieuw."
@@ -67,26 +73,20 @@
             "Task temporarily unavailable": [
                 "Taak tijdelijk niet beschikbaar"
             ],
-            "No Pending tasks": [
-                "Geen taken in behandeling"
+            "Close": [
+                "Sluiten"
             ],
-            "Hooray!": [
-                "Hoera!"
+            "All complete!": [
+                "Helemaal compleet!"
             ],
-            "You don\u2019t have any pending tasks today": [
-                "Je hebt vandaag geen openstaande taken"
+            "Loading next steps...": [
+                "Volgende stappen laden..."
             ],
-            "Completed": [
-                "Volbracht"
+            "Hide skipped tasks": [
+                "Overgeslagen taken verbergen"
             ],
-            "Skipped": [
-                "Overgeslagen"
-            ],
-            "Skip it": [
-                "Sla het over"
-            ],
-            "Undo": [
-                "Ongedaan maken"
+            "View skipped tasks": [
+                "Overgeslagen taken weergeven"
             ]
         }
     }
