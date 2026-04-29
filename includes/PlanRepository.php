@@ -77,6 +77,36 @@ class PlanRepository {
 	}
 
 	/**
+	 * Keep static caches coherent without comparing full option blobs on every read.
+	 *
+	 * - Option hooks: same PHP process (e.g. REST saves plan) invalidates immediately.
+	 * - Shutdown: clears caches at end of each web request so the next request reloads from the DB.
+	 *   Updates from other processes (WP-CLI, another server) do not run these hooks in this worker,
+	 *   but they also do not reset PHP statics—shutdown avoids stale cross-request caches in PHP-FPM.
+	 *
+	 * @return void
+	 */
+	public static function register_cache_invalidation_hooks(): void {
+		static $registered = false;
+		if ( $registered ) {
+			return;
+		}
+		$registered = true;
+
+		$on_option_changed = static function ( $option ) {
+			if ( self::OPTION !== $option ) {
+				return;
+			}
+			self::invalidate_cache();
+		};
+
+		\add_action( 'added_option', $on_option_changed, 10, 1 );
+		\add_action( 'updated_option', $on_option_changed, 10, 1 );
+		\add_action( 'deleted_option', $on_option_changed, 10, 1 );
+		\add_action( 'shutdown', array( self::class, 'invalidate_cache' ), 999 );
+	}
+
+	/**
 	 * Reset Next Steps Data
 	 *
 	 * @return void
@@ -92,15 +122,14 @@ class PlanRepository {
 	 * @return array The plan data array
 	 */
 	private static function get_plan_data(): array {
-		// self::reset_next_steps_data(); // manual reset - for debugging
-		// Return cached data if available
 		if ( null !== self::$cached_option_data ) {
 			return self::$cached_option_data;
 		}
-		// Get from database and cache it
+
 		$plan_data                = get_option( self::OPTION, array() );
 		$plan_data                = is_array( $plan_data ) ? $plan_data : array();
 		self::$cached_option_data = $plan_data;
+
 		return $plan_data;
 	}
 
@@ -131,11 +160,10 @@ class PlanRepository {
 	 * @return Plan|null The current plan or null if none exists
 	 */
 	public static function get_current_plan(): ?Plan {
-		// Return cached plan if available
 		if ( self::is_cache_valid() ) {
 			return self::$cached_plan;
 		}
-		// Get plan data (from cache or database)
+
 		$plan_data = self::get_plan_data();
 		$plan      = ! empty( $plan_data ) ? Plan::from_array( $plan_data ) : null;
 
