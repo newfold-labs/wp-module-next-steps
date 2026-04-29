@@ -137,16 +137,12 @@ class TaskCompletionTriggers {
 	 */
 	private function register_payment_hooks_and_validators(): void {
 
-		// Payment method configuration - hook into payment gateway settings updates
-		if ( class_exists( '\WC_Payment_Gateways' ) ) {
-			$gateways = \WC_Payment_Gateways::instance()->get_payment_gateway_ids();
-
-			foreach ( $gateways as $gateway_id ) {
-				add_action( "update_option_woocommerce_{$gateway_id}_settings", array( __CLASS__, 'on_payment_gateway_updated' ) );
-			}
-		}
-
-		// Also hook into individual payment gateway updates for better coverage
+		// Defer all gateway hook registration to init priority 20, which is safely
+		// after woocommerce_init (init priority 0). Calling WC_Payment_Gateways::instance()
+		// any earlier forces WooCommerce to freeze its gateway list before third-party
+		// gateway plugins (e.g. Stripe, Braintree) have registered via the
+		// woocommerce_payment_gateways filter, causing those gateways to be permanently
+		// excluded. See PRESS0-4235.
 		\add_action( 'init', array( __CLASS__, 'register_payment_gateway_hooks' ), 20 );
 
 		TaskStateValidator::register_validator(
@@ -424,8 +420,8 @@ class TaskCompletionTriggers {
 
 		// Register hooks for each individual payment gateway
 		foreach ( $available_gateways as $gateway_id => $gateway ) {
-			$hook_name = "woocommerce_update_options_payment_gateways_{$gateway_id}";
-			\add_action( $hook_name, array( __CLASS__, 'on_payment_gateway_updated' ), 10 );
+			\add_action( "woocommerce_update_options_payment_gateways_{$gateway_id}", array( __CLASS__, 'on_payment_gateway_updated' ), 10 );
+			\add_action( "update_option_woocommerce_{$gateway_id}_settings", array( __CLASS__, 'on_payment_gateway_updated' ) );
 		}
 	}
 

@@ -679,6 +679,93 @@ class TaskCompletionTriggersWPUnitTest extends \Codeception\TestCase\WPTestCase 
 	}
 
 
+	/**
+	 * Test that register_payment_gateway_hooks registers both hook types for each gateway.
+	 *
+	 * Verifies that after calling register_payment_gateway_hooks(), both
+	 * woocommerce_update_options_payment_gateways_{id} and
+	 * update_option_woocommerce_{id}_settings hooks are registered
+	 * for each available gateway.
+	 *
+	 * @covers ::register_payment_gateway_hooks
+	 */
+	public function test_register_payment_gateway_hooks_registers_both_hook_types() {
+		$woocommerce_installed = $this->installWooCommerceForTest();
+
+		if ( ! $woocommerce_installed ) {
+			$this->markTestSkipped( 'Failed to install WooCommerce for testing.' );
+		}
+
+		if ( ! function_exists( 'WC' ) || ! WC() ) {
+			$this->markTestSkipped( 'WooCommerce is not available after installation.' );
+		}
+
+		// Call the method under test
+		TaskCompletionTriggers::register_payment_gateway_hooks();
+
+		// Get the list of registered gateways
+		$gateways = WC()->payment_gateways()->payment_gateways();
+		$this->assertNotEmpty( $gateways, 'WooCommerce should have at least one gateway registered.' );
+
+		// Verify both hook types are registered for each gateway
+		foreach ( $gateways as $gateway_id => $gateway ) {
+			$this->assertGreaterThan(
+				0,
+				has_action( "woocommerce_update_options_payment_gateways_{$gateway_id}", array( TaskCompletionTriggers::class, 'on_payment_gateway_updated' ) ),
+				"woocommerce_update_options_payment_gateways_{$gateway_id} hook should be registered."
+			);
+
+			$this->assertGreaterThan(
+				0,
+				has_action( "update_option_woocommerce_{$gateway_id}_settings", array( TaskCompletionTriggers::class, 'on_payment_gateway_updated' ) ),
+				"update_option_woocommerce_{$gateway_id}_settings hook should be registered."
+			);
+		}
+
+		$this->deactivateWooCommerceAfterTest();
+	}
+
+	/**
+	 * Test that the constructor does not force WC_Payment_Gateways to instantiate.
+	 *
+	 * This prevents the plugin from freezing WooCommerce's gateway list before
+	 * third-party gateway plugins have registered via the woocommerce_payment_gateways
+	 * filter. See PRESS0-4235.
+	 *
+	 * @covers ::__construct
+	 */
+	public function test_constructor_does_not_instantiate_payment_gateways_early() {
+		$woocommerce_installed = $this->installWooCommerceForTest();
+
+		if ( ! $woocommerce_installed ) {
+			$this->markTestSkipped( 'Failed to install WooCommerce for testing.' );
+		}
+
+		if ( ! class_exists( '\WC_Payment_Gateways' ) ) {
+			$this->markTestSkipped( 'WC_Payment_Gateways class is not available.' );
+		}
+
+		// Reset the WC_Payment_Gateways singleton so we can detect if it gets created
+		$ref  = new \ReflectionClass( '\WC_Payment_Gateways' );
+		$prop = $ref->getProperty( '_instance' );
+		$prop->setAccessible( true );
+		$prop->setValue( null );
+
+		// Construct TaskCompletionTriggers — this must NOT instantiate WC_Payment_Gateways
+		$container = new \stdClass();
+		new TaskCompletionTriggers( $container );
+
+		// Verify the singleton was NOT created during construction
+		$instance = $prop->getValue();
+		$this->assertNull(
+			$instance,
+			'TaskCompletionTriggers constructor must not instantiate WC_Payment_Gateways. '
+			. 'Doing so freezes the gateway list before third-party plugins can register.'
+		);
+
+		$this->deactivateWooCommerceAfterTest();
+	}
+
 	// ========================================
 	// # Logo Upload Tasks Tests
 	// ========================================
