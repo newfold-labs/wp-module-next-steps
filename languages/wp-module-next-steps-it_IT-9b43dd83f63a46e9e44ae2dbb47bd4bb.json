@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "translation-revision-date": "2026-04-29T17:22:37+00:00",
     "generator": "WP-CLI\/2.12.0",
     "source": "build\/next-steps-portal\/bundle.js",
     "domain": "messages",
@@ -22,20 +22,26 @@
             "Unskip": [
                 "Unskip"
             ],
-            "Hide skipped tasks": [
-                "Nascondi le attivit\u00e0 saltate"
+            "Completed": [
+                "Finito"
             ],
-            "View skipped tasks": [
-                "Visualizzare le attivit\u00e0 ignorate"
+            "Skipped": [
+                "Saltato"
             ],
-            "Loading next steps...": [
-                "Caricamento dei prossimi passi..."
+            "Skip it": [
+                "Salta"
             ],
-            "All complete!": [
-                "Tutto completo!"
+            "Undo": [
+                "Disfare"
             ],
-            "Close": [
-                "Chiudere"
+            "No Pending tasks": [
+                "Nessuna attivit\u00e0 in sospeso"
+            ],
+            "Hooray!": [
+                "Evviva!"
+            ],
+            "You don\u2019t have any pending tasks today": [
+                "Oggi non hai attivit\u00e0 in sospeso"
             ],
             "We encountered a connection error. Please check your internet connection and try again.": [
                 "Abbiamo riscontrato un errore di connessione. Controlla la tua connessione Internet e riprova."
@@ -67,26 +73,20 @@
             "Task temporarily unavailable": [
                 "Attivit\u00e0 temporaneamente non disponibile"
             ],
-            "No Pending tasks": [
-                "Nessuna attivit\u00e0 in sospeso"
+            "Close": [
+                "Chiudere"
             ],
-            "Hooray!": [
-                "Evviva!"
+            "All complete!": [
+                "Tutto completo!"
             ],
-            "You don\u2019t have any pending tasks today": [
-                "Oggi non hai attivit\u00e0 in sospeso"
+            "Loading next steps...": [
+                "Caricamento dei prossimi passi..."
             ],
-            "Completed": [
-                "Finito"
+            "Hide skipped tasks": [
+                "Nascondi le attivit\u00e0 saltate"
             ],
-            "Skipped": [
-                "Saltato"
-            ],
-            "Skip it": [
-                "Salta"
-            ],
-            "Undo": [
-                "Disfare"
+            "View skipped tasks": [
+                "Visualizzare le attivit\u00e0 ignorate"
             ]
         }
     }

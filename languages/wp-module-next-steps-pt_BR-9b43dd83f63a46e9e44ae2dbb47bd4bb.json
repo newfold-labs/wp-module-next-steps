@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "translation-revision-date": "2026-04-29T17:22:37+00:00",
     "generator": "WP-CLI\/2.12.0",
     "source": "build\/next-steps-portal\/bundle.js",
     "domain": "messages",
@@ -22,20 +22,26 @@
             "Unskip": [
                 "Cancelar pular"
             ],
-            "Hide skipped tasks": [
-                "Ocultar tarefas ignoradas"
+            "Completed": [
+                "Conclu\u00eddo"
             ],
-            "View skipped tasks": [
-                "Exibir tarefas ignoradas"
+            "Skipped": [
+                "Ignorada"
             ],
-            "Loading next steps...": [
-                "Carregando pr\u00f3ximos passos..."
+            "Skip it": [
+                "Pule isso"
             ],
-            "All complete!": [
-                "Tudo completo!"
+            "Undo": [
+                "Desfazer"
             ],
-            "Close": [
-                "Fechar"
+            "No Pending tasks": [
+                "Sem tarefas pendentes"
+            ],
+            "Hooray!": [
+                "Viva!"
+            ],
+            "You don\u2019t have any pending tasks today": [
+                "Voc\u00ea n\u00e3o tem nenhuma tarefa pendente hoje"
             ],
             "We encountered a connection error. Please check your internet connection and try again.": [
                 "Encontramos um erro de conex\u00e3o. Verifique sua conex\u00e3o com a Internet e tente novamente."
@@ -67,26 +73,20 @@
             "Task temporarily unavailable": [
                 "Tarefa temporariamente indispon\u00edvel"
             ],
-            "No Pending tasks": [
-                "Sem tarefas pendentes"
+            "Close": [
+                "Fechar"
             ],
-            "Hooray!": [
-                "Viva!"
+            "All complete!": [
+                "Tudo completo!"
             ],
-            "You don\u2019t have any pending tasks today": [
-                "Voc\u00ea n\u00e3o tem nenhuma tarefa pendente hoje"
+            "Loading next steps...": [
+                "Carregando pr\u00f3ximos passos..."
             ],
-            "Completed": [
-                "Conclu\u00eddo"
+            "Hide skipped tasks": [
+                "Ocultar tarefas ignoradas"
             ],
-            "Skipped": [
-                "Ignorada"
-            ],
-            "Skip it": [
-                "Pule isso"
-            ],
-            "Undo": [
-                "Desfazer"
+            "View skipped tasks": [
+                "Exibir tarefas ignoradas"
             ]
         }
     }

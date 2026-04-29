@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "translation-revision-date": "2026-04-29T17:22:37+00:00",
     "generator": "WP-CLI\/2.12.0",
     "source": "build\/next-steps-widget\/bundle.js",
     "domain": "messages",
@@ -21,21 +21,6 @@
             ],
             "Unskip": [
                 "\u00dcberspringen"
-            ],
-            "Hide skipped tasks": [
-                "\u00dcbersprungene Aufgaben ausblenden"
-            ],
-            "View skipped tasks": [
-                "\u00dcbersprungene Aufgaben anzeigen"
-            ],
-            "Loading next steps...": [
-                "N\u00e4chste Schritte werden geladen..."
-            ],
-            "All complete!": [
-                "Alles komplett!"
-            ],
-            "Close": [
-                "Schlie\u00dfen"
             ],
             "We encountered a connection error. Please check your internet connection and try again.": [
                 "Es ist ein Verbindungsfehler aufgetreten. Bitte \u00fcberpr\u00fcfen Sie Ihre Internetverbindung und versuchen Sie es erneut."
@@ -66,6 +51,21 @@
             ],
             "Task temporarily unavailable": [
                 "Aufgabe vor\u00fcbergehend nicht verf\u00fcgbar"
+            ],
+            "Close": [
+                "Schlie\u00dfen"
+            ],
+            "All complete!": [
+                "Alles komplett!"
+            ],
+            "Loading next steps...": [
+                "N\u00e4chste Schritte werden geladen..."
+            ],
+            "Hide skipped tasks": [
+                "\u00dcbersprungene Aufgaben ausblenden"
+            ],
+            "View skipped tasks": [
+                "\u00dcbersprungene Aufgaben anzeigen"
             ]
         }
     }

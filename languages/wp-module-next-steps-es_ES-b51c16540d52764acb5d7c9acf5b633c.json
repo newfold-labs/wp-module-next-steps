@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "translation-revision-date": "2026-04-29T17:22:37+00:00",
     "generator": "WP-CLI\/2.12.0",
     "source": "build\/next-steps-widget\/bundle.js",
     "domain": "messages",
@@ -21,21 +21,6 @@
             ],
             "Unskip": [
                 "Omitir"
-            ],
-            "Hide skipped tasks": [
-                "Ocultar tareas omitidas"
-            ],
-            "View skipped tasks": [
-                "Ver tareas omitidas"
-            ],
-            "Loading next steps...": [
-                "Cargando los pr\u00f3ximos pasos..."
-            ],
-            "All complete!": [
-                "\u00a1Todo completo!"
-            ],
-            "Close": [
-                "Cerrar"
             ],
             "We encountered a connection error. Please check your internet connection and try again.": [
                 "Encontramos un error de conexi\u00f3n. Verifique su conexi\u00f3n a Internet e int\u00e9ntelo de nuevo."
@@ -66,6 +51,21 @@
             ],
             "Task temporarily unavailable": [
                 "Tarea temporalmente no disponible"
+            ],
+            "Close": [
+                "Cerrar"
+            ],
+            "All complete!": [
+                "\u00a1Todo completo!"
+            ],
+            "Loading next steps...": [
+                "Cargando los pr\u00f3ximos pasos..."
+            ],
+            "Hide skipped tasks": [
+                "Ocultar tareas omitidas"
+            ],
+            "View skipped tasks": [
+                "Ver tareas omitidas"
             ]
         }
     }

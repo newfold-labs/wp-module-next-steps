@@ -8,34 +8,42 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-06-06T06:30:00+00:00\n"
-"PO-Revision-Date: 2025-01-21 17:05:00+0000\n"
+"PO-Revision-Date: 2026-04-29T17:22:37+00:00\n"
 "Language: fr_FR\n"
 "X-Domain: wp-module-next-steps\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
 #: bootstrap.php:30
-#: includes/NextSteps.php:83
+#: includes/NextSteps.php:84
 #: includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr "Prochaines étapes"
 
-#: includes/Data/Plans/StorePlan.php:31
-msgid "Store Setup"
-msgstr "Configuration de la boutique"
+#: includes/Data/Plans/BlogPlan.php:47
+msgid "Blog Setup"
+msgstr "Configuration du blog"
 
-#: includes/Data/Plans/StorePlan.php:32
-msgid "Complete your ecommerce store setup with these essential steps:"
-msgstr "Complétez la configuration de votre boutique en ligne en suivant ces étapes essentielles :"
+#: includes/Data/Plans/BlogPlan.php:48
+msgid "Get your blog up and running with these essential steps:"
+msgstr "Mettez votre blog en ligne avec ces étapes essentielles :"
 
 #: includes/Data/Plans/BlogPlan.php:52
 #: includes/Data/Plans/CorporatePlan.php:71
 msgid "Build"
 msgstr "Construire"
 
+#: includes/Data/Plans/BlogPlan.php:57
+msgid "Basic blog setup"
+msgstr "Configuration de base du blog"
+
 #: includes/Data/Plans/BlogPlan.php:62
 #: includes/Data/Plans/CorporatePlan.php:81
 msgid "Quick Setup"
 msgstr "Configuration rapide"
+
+#: includes/Data/Plans/BlogPlan.php:77
+msgid "Customize your blog"
+msgstr "Personnalisez votre blog"
 
 #: includes/Data/Plans/BlogPlan.php:82
 #: includes/Data/Plans/StorePlan.php:53
@@ -59,31 +67,9 @@ msgstr "Personnaliser l’en-tête"
 msgid "Customize Footer"
 msgstr "Personnaliser le pied de page"
 
-#: includes/Data/Plans/StorePlan.php:101
-msgid "Customize Homepage"
-msgstr "Personnaliser la page d’accueil"
-
-#: includes/Data/Plans/BlogPlan.php:247
-#: includes/Data/Plans/CorporatePlan.php:238
-msgid "Brand"
-msgstr "Marque"
-
-#: includes/Data/Plans/BlogPlan.php:345
-msgid "Submit Site to Google Search Console"
-msgstr "Soumettre le site à Google Search Console"
-
-#: includes/Data/Plans/BlogPlan.php:371
-#: includes/Data/Plans/CorporatePlan.php:383
-msgid "Grow"
-msgstr "Grandir"
-
-#: includes/Data/Plans/BlogPlan.php:47
-msgid "Blog Setup"
-msgstr "Configuration du blog"
-
-#: includes/Data/Plans/BlogPlan.php:48
-msgid "Get your blog up and running with these essential steps:"
-msgstr "Mettez votre blog en ligne avec ces étapes essentielles :"
+#: includes/Data/Plans/BlogPlan.php:128
+msgid "Create content"
+msgstr "Créer du contenu"
 
 #: includes/Data/Plans/BlogPlan.php:132
 msgid "Add Your First Blog Post"
@@ -96,6 +82,10 @@ msgstr "Créer une page « À propos »"
 #: includes/Data/Plans/BlogPlan.php:154
 msgid "Set a Featured Image for One Post"
 msgstr "Définir une image en vedette pour une publication"
+
+#: includes/Data/Plans/BlogPlan.php:167
+msgid "Set up navigation"
+msgstr "Configurer la navigation"
 
 #: includes/Data/Plans/BlogPlan.php:171
 #: includes/Data/Plans/CorporatePlan.php:162
@@ -110,6 +100,10 @@ msgstr "Création d’un menu principal"
 #: includes/Data/Plans/BlogPlan.php:193
 msgid "Create a Footer Menu"
 msgstr "Création d’un menu de pied de page"
+
+#: includes/Data/Plans/BlogPlan.php:206
+msgid "Set up essential pages"
+msgstr "Configurer les pages essentielles"
 
 #: includes/Data/Plans/BlogPlan.php:210
 #: includes/Data/Plans/CorporatePlan.php:201
@@ -126,6 +120,11 @@ msgstr "Ajouter les conditions générales"
 msgid "Add an Accessibility Statement"
 msgstr "Ajouter une déclaration d’accessibilité"
 
+#: includes/Data/Plans/BlogPlan.php:247
+#: includes/Data/Plans/CorporatePlan.php:238
+msgid "Brand"
+msgstr "Marque"
+
 #: includes/Data/Plans/BlogPlan.php:251
 msgid "First Audience-Building Steps"
 msgstr "Premières étapes de la création d’un auditoire"
@@ -134,17 +133,62 @@ msgstr "Premières étapes de la création d’un auditoire"
 msgid "Add a Welcome-Subscribe Popup"
 msgstr "Ajouter une fenêtre contextuelle de bienvenue"
 
+#: includes/Data/Plans/BlogPlan.php:256
+msgid "Convert visitors to email subscribers."
+msgstr "Convertissez les visiteurs en abonnés aux e-mails."
+
+#: includes/Data/Plans/BlogPlan.php:267
+msgid "Customize Notification Emails"
+msgstr "Personnaliser les e-mails de notification"
+
+#: includes/Data/Plans/BlogPlan.php:278
+msgid "Connect Jetpack Stats (or Google Analytics 4)"
+msgstr "Connectez Jetpack Stats (ou Google Analytics 4)"
+
+#: includes/Data/Plans/BlogPlan.php:291
+msgid "Social presence"
+msgstr "Présence sociale"
+
+#: includes/Data/Plans/BlogPlan.php:295
+msgid "Connect Facebook Page Auto-Sharing"
+msgstr "Partage automatique de la page Facebook Connect"
+
+#: includes/Data/Plans/BlogPlan.php:306
+msgid "Add Social-Sharing Buttons"
+msgstr "Ajouter des boutons de partage social"
+
 #: includes/Data/Plans/BlogPlan.php:317
 msgid "Embed a Social Media Feed on Homepage"
 msgstr "Intégrer un flux de médias sociaux sur la page d’accueil"
+
+#: includes/Data/Plans/BlogPlan.php:330
+msgid "SEO & visibility"
+msgstr "SEO et visibilité"
 
 #: includes/Data/Plans/BlogPlan.php:334
 msgid "Optimize On-Page SEO"
 msgstr "Optimiser le référencement sur la page"
 
+#: includes/Data/Plans/BlogPlan.php:345
+msgid "Submit Site to Google Search Console"
+msgstr "Soumettre le site à Google Search Console"
+
 #: includes/Data/Plans/BlogPlan.php:356
 msgid "Generate & Submit XML Sitemap"
 msgstr "Générer et soumettre un plan de site XML"
+
+#: includes/Data/Plans/BlogPlan.php:371
+#: includes/Data/Plans/CorporatePlan.php:383
+msgid "Grow"
+msgstr "Grandir"
+
+#: includes/Data/Plans/BlogPlan.php:375
+msgid "Enhance reader experience"
+msgstr "Améliorez l’expérience du lecteur"
+
+#: includes/Data/Plans/BlogPlan.php:379
+msgid "Enable & Style Comments Section"
+msgstr "Section Activer et styliser les commentaires"
 
 #: includes/Data/Plans/BlogPlan.php:390
 msgid "Customize Author/Profile Boxes"
@@ -158,6 +202,10 @@ msgstr "Afficher des témoignages ou des commentaires mis en évidence"
 msgid "Create a Favicon"
 msgstr "Créer un favicon"
 
+#: includes/Data/Plans/BlogPlan.php:425
+msgid "Advanced social & influencer marketing"
+msgstr "Marketing social et d’influence avancé"
+
 #: includes/Data/Plans/BlogPlan.php:429
 msgid "Build an Email Newsletter"
 msgstr "Créer une newsletter par e-mail"
@@ -166,9 +214,17 @@ msgstr "Créer une newsletter par e-mail"
 msgid "Draft an Influencer/Guest-Post Outreach List"
 msgstr "Rédigez une liste de sensibilisation d’influenceurs ou de messages invités"
 
+#: includes/Data/Plans/BlogPlan.php:451
+msgid "Run pillar article promotion on social ad"
+msgstr "Exécuter la promotion d’un article pilier sur une publicité sociale"
+
 #: includes/Data/Plans/BlogPlan.php:462
 msgid "Track Campaigns with UTM Links"
 msgstr "Suivre les campagnes avec des liens UTM"
+
+#: includes/Data/Plans/BlogPlan.php:475
+msgid "Content & traffic strategy"
+msgstr "Stratégie de contenu et de trafic"
 
 #: includes/Data/Plans/BlogPlan.php:479
 msgid "Plan a Content Series or Editorial Calendar"
@@ -182,13 +238,46 @@ msgstr "Mettre en œuvre une stratégie de maillage interne"
 msgid "Install Yoast Premium for Advanced Schemas"
 msgstr "Installer Yoast Premium pour les schémas avancés"
 
+#: includes/Data/Plans/BlogPlan.php:514
+msgid "Performance & security"
+msgstr "Performance et sécurité"
+
+#: includes/Data/Plans/BlogPlan.php:518
+msgid "Speed-up Site with Jetpack Boost"
+msgstr "Accélérez le site avec Jetpack Boost"
+
+#: includes/Data/Plans/BlogPlan.php:529
+#: includes/Data/Plans/CorporatePlan.php:519
+msgid "Enable Automatic Backups & Update Alerts"
+msgstr "Activer les sauvegardes automatiques et les alertes de mise à jour"
+
 #: includes/Data/Plans/BlogPlan.php:540
 msgid "Create a Staging Site"
 msgstr "Création d’un site de transit"
 
+#: includes/Data/Plans/BlogPlan.php:553
+msgid "Blog analytics"
+msgstr "Analyse du blog"
+
+#: includes/Data/Plans/BlogPlan.php:557
+msgid "Monitor Traffic & Engagement"
+msgstr "Surveillez le trafic et l’engagement"
+
+#: includes/Data/Plans/CorporatePlan.php:66
+msgid "Corporate setup"
+msgstr "Configuration d’entreprise"
+
 #: includes/Data/Plans/CorporatePlan.php:67
 msgid "Set up your corporate website with these essential steps:"
 msgstr "Configurez votre site web d’entreprise en suivant ces étapes essentielles :"
+
+#: includes/Data/Plans/CorporatePlan.php:76
+msgid "Basic site setup"
+msgstr "Configuration de base du site"
+
+#: includes/Data/Plans/CorporatePlan.php:96
+msgid "Customize your website"
+msgstr "Personnalisez votre site web"
 
 #: includes/Data/Plans/CorporatePlan.php:101
 msgid "Upload Company Logo"
@@ -202,13 +291,29 @@ msgstr "Choisissez les couleurs et les polices de la marque"
 msgid "Customize Homepage Layout"
 msgstr "Personnaliser la mise en page de la page d’accueil"
 
+#: includes/Data/Plans/CorporatePlan.php:158
+msgid "Configure navigation"
+msgstr "Configurer la navigation"
+
 #: includes/Data/Plans/CorporatePlan.php:184
 msgid "Add a Footer Menu"
 msgstr "Ajouter un menu de pied de page"
 
+#: includes/Data/Plans/CorporatePlan.php:197
+msgid "Add legal & trust content"
+msgstr "Ajouter du contenu juridique et de fiducie"
+
+#: includes/Data/Plans/CorporatePlan.php:242
+msgid "Establish your brand online"
+msgstr "Établissez votre marque en ligne"
+
 #: includes/Data/Plans/CorporatePlan.php:246
 msgid "Set Up a Custom Domain"
 msgstr "Configurer un domaine personnalisé"
+
+#: includes/Data/Plans/CorporatePlan.php:257
+msgid "Create a favicon"
+msgstr "Créer un favicon"
 
 #: includes/Data/Plans/CorporatePlan.php:268
 msgid "Connect Your Google Business Profile"
@@ -218,9 +323,33 @@ msgstr "Associer votre fiche d’établissement Google"
 msgid "Create a Branded Email Address"
 msgstr "Créer une adresse e-mail de marque"
 
+#: includes/Data/Plans/CorporatePlan.php:292
+msgid "Launch essential marketing tools"
+msgstr "Lancez les outils marketing essentiels"
+
+#: includes/Data/Plans/CorporatePlan.php:296
+msgid "Set Up Jetpack Stats"
+msgstr "Configurer les statistiques de Jetpack"
+
 #: includes/Data/Plans/CorporatePlan.php:307
 msgid "Connect Google Search Console"
 msgstr "Connecter Google Search Console"
+
+#: includes/Data/Plans/CorporatePlan.php:318
+msgid "Explore SEO Plugin"
+msgstr "Explorer le plugin SEO"
+
+#: includes/Data/Plans/CorporatePlan.php:329
+msgid "Add Social Sharing Settings"
+msgstr "Ajouter des paramètres de partage sur les réseaux sociaux"
+
+#: includes/Data/Plans/CorporatePlan.php:342
+msgid "Set up contact & engagement"
+msgstr "Configurer le contact et l’engagement"
+
+#: includes/Data/Plans/CorporatePlan.php:346
+msgid "Add a Contact Form with email routing"
+msgstr "Ajouter un formulaire de contact avec routage des e-mails"
 
 #: includes/Data/Plans/CorporatePlan.php:357
 msgid "Embed a Map or Location"
@@ -230,9 +359,21 @@ msgstr "Intégrer une carte ou un lieu"
 msgid "Link to Social Media Profiles"
 msgstr "Lien vers les profils de médias sociaux"
 
+#: includes/Data/Plans/CorporatePlan.php:387
+msgid "Strengthen online presence"
+msgstr "Renforcer la présence en ligne"
+
+#: includes/Data/Plans/CorporatePlan.php:391
+msgid "Add Client Logos or Testimonials or Reviews"
+msgstr "Ajouter des logos, des témoignages ou des avis de clients"
+
 #: includes/Data/Plans/CorporatePlan.php:402
 msgid "Add Certifications, Memberships, or Awards"
 msgstr "Ajouter des certifications, des adhésions ou des récompenses"
+
+#: includes/Data/Plans/CorporatePlan.php:415
+msgid "Build content for SEO & trust"
+msgstr "Créez du contenu pour le référencement et la confiance"
 
 #: includes/Data/Plans/CorporatePlan.php:419
 msgid "Publish Your First Company Blog Post"
@@ -250,6 +391,10 @@ msgstr "Optimisez vos pages clés pour les mots-clés"
 msgid "Generate and Submit XML Sitemap"
 msgstr "Générer et soumettre un sitemap XML"
 
+#: includes/Data/Plans/CorporatePlan.php:465
+msgid "Marketing & lead generation"
+msgstr "Marketing et génération de leads"
+
 #: includes/Data/Plans/CorporatePlan.php:469
 msgid "Set Up an Email Capture Form"
 msgstr "Configurer un formulaire de capture d’e-mail"
@@ -262,6 +407,14 @@ msgstr "Se connecter à un outil CRM ou à un outil de messagerie"
 msgid "Add a Call-to-Action Section to Homepage"
 msgstr "Ajouter une section d’appel à l’action à la page d’accueil"
 
+#: includes/Data/Plans/CorporatePlan.php:504
+msgid "Site performance & security"
+msgstr "Performance et sécurité du site"
+
+#: includes/Data/Plans/CorporatePlan.php:508
+msgid "Install Jetpack Boost or Caching Plugin"
+msgstr "Installer Jetpack Boost ou le plugin de mise en cache"
+
 #: includes/Data/Plans/CorporatePlan.php:530
 msgid "Install a Security Plugin"
 msgstr "Installer un plugin de sécurité"
@@ -269,6 +422,14 @@ msgstr "Installer un plugin de sécurité"
 #: includes/Data/Plans/CorporatePlan.php:541
 msgid "Set Up a Staging Site"
 msgstr "Configurer un site de staging"
+
+#: includes/Data/Plans/CorporatePlan.php:554
+msgid "Monitor & improve"
+msgstr "Surveiller et améliorer"
+
+#: includes/Data/Plans/CorporatePlan.php:558
+msgid "Review Traffic & Engagement"
+msgstr "Examiner le trafic et l’engagement"
 
 #: includes/Data/Plans/CorporatePlan.php:569
 msgid "Run a Speed Test"
@@ -278,215 +439,21 @@ msgstr "Exécuter un test de vitesse"
 msgid "Plan Your Next Content or Campaign Update"
 msgstr "Planifier la prochaine mise à jour de votre contenu ou de votre campagne"
 
-#: includes/StepsApi.php:362
-#: includes/StepsApi.php:410
-msgid "No plan found."
-msgstr "Aucun plan n’a été trouvé."
+#: includes/Data/Plans/StorePlan.php:31
+msgid "Store Setup"
+msgstr "Configuration de la boutique"
 
-#: includes/StepsApi.php:416
-msgid "No tracks found in plan."
-msgstr "Aucune trace trouvée dans le plan."
+#: includes/Data/Plans/StorePlan.php:32
+msgid "Complete your ecommerce store setup with these essential steps:"
+msgstr "Complétez la configuration de votre boutique en ligne en suivant ces étapes essentielles :"
 
-#: includes/StepsApi.php:422
-msgid "No sections found in track."
-msgstr "Aucune section trouvée dans la piste."
+#: includes/Data/Plans/StorePlan.php:36
+msgid "Next Steps for your store"
+msgstr "Prochaines étapes pour votre boutique"
 
-#: includes/StepsApi.php:497
-#: includes/StepsApi.php:595
-#: includes/StepsApi.php:711
-msgid "Invalid parameters provided."
-msgstr "Paramètres non valides fournis."
-
-#: includes/StepsApi.php:500
-msgid "Invalid status provided."
-msgstr "Statut non valide fourni."
-
-#: includes/StepsApi.php:529
-msgid "Step not found."
-msgstr "Étape introuvable."
-
-#: includes/StepsApi.php:606
-#: includes/StepsApi.php:645
-msgid "Section not found."
-msgstr "Section non trouvée."
-
-#: includes/StepsApi.php:821
-msgid "Invalid plan type provided."
-msgstr "Type de plan non valide fourni."
-
-#: includes/StepsApi.php:892
-msgid "Failed to add task to section."
-msgstr "Impossible d’ajouter la tâche à la section."
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Mark Complete"
-msgstr "Marquer comme terminé"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Skip"
-msgstr "Sautiller"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Restart"
-msgstr "Redémarrer"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Unskip"
-msgstr "Désenchaîner"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Hide skipped tasks"
-msgstr "Masquer les tâches ignorées"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "View skipped tasks"
-msgstr "Afficher les tâches ignorées"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Loading next steps..."
-msgstr "Chargement des étapes suivantes..."
-
-#: includes/Data/Plans/BlogPlan.php:256
-msgid "Convert visitors to email subscribers."
-msgstr "Convertissez les visiteurs en abonnés aux e-mails."
-
-#: includes/Data/Plans/BlogPlan.php:451
-msgid "Run pillar article promotion on social ad"
-msgstr "Exécuter la promotion d’un article pilier sur une publicité sociale"
-
-#: includes/Data/Plans/CorporatePlan.php:318
-msgid "Explore SEO Plugin"
-msgstr "Explorer le plugin SEO"
-
-#: includes/Data/Plans/CorporatePlan.php:346
-msgid "Add a Contact Form with email routing"
-msgstr "Ajouter un formulaire de contact avec routage des e-mails"
-
-#: includes/Data/Plans/CorporatePlan.php:391
-msgid "Add Client Logos or Testimonials or Reviews"
-msgstr "Ajouter des logos, des témoignages ou des avis de clients"
-
-#: includes/StepsApi.php:722
-#: includes/StepsApi.php:740
-#: includes/StepsApi.php:751
-msgid "Track not found."
-msgstr "Piste introuvable."
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "All complete!"
-msgstr "Tout est terminé !"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Close"
-msgstr "Fermer"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "We encountered a connection error. Please check your internet connection and try again."
-msgstr "Nous avons rencontré une erreur de connexion. Veuillez vérifier votre connexion Internet et réessayer."
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists."
-msgstr "Nous avons rencontré une erreur inattendue. Essayez de rafraîchir la page ou contactez l’assistance si le problème persiste."
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Connection Error"
-msgstr "Erreur de connexion"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Something went wrong"
-msgstr "Quelque chose s’est mal passé"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Try Again"
-msgstr "Réessayez"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Refresh Page"
-msgstr "Actualiser la page"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Technical Details"
-msgstr "Détails techniques"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Next Steps Unavailable"
-msgstr "Prochaines étapes Indisponible"
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "The Next Steps module encountered an error and cannot be displayed right now."
-msgstr "Le module Étapes suivantes a rencontré une erreur et ne peut pas être affiché pour le moment."
-
-#: build/next-steps-portal/bundle.js:1
-#: build/next-steps-widget/bundle.js:1
-msgid "Task temporarily unavailable"
-msgstr "Tâche temporairement indisponible"
-
-#: includes/Data/Plans/BlogPlan.php:267
-msgid "Customize Notification Emails"
-msgstr "Personnaliser les e-mails de notification"
-
-#: includes/Data/Plans/BlogPlan.php:278
-msgid "Connect Jetpack Stats (or Google Analytics 4)"
-msgstr "Connectez Jetpack Stats (ou Google Analytics 4)"
-
-#: includes/Data/Plans/BlogPlan.php:295
-msgid "Connect Facebook Page Auto-Sharing"
-msgstr "Partage automatique de la page Facebook Connect"
-
-#: includes/Data/Plans/BlogPlan.php:306
-msgid "Add Social-Sharing Buttons"
-msgstr "Ajouter des boutons de partage social"
-
-#: includes/Data/Plans/BlogPlan.php:379
-msgid "Enable & Style Comments Section"
-msgstr "Section Activer et styliser les commentaires"
-
-#: includes/Data/Plans/BlogPlan.php:518
-msgid "Speed-up Site with Jetpack Boost"
-msgstr "Accélérez le site avec Jetpack Boost"
-
-#: includes/Data/Plans/BlogPlan.php:529
-#: includes/Data/Plans/CorporatePlan.php:519
-msgid "Enable Automatic Backups & Update Alerts"
-msgstr "Activer les sauvegardes automatiques et les alertes de mise à jour"
-
-#: includes/Data/Plans/BlogPlan.php:557
-msgid "Monitor Traffic & Engagement"
-msgstr "Surveillez le trafic et l’engagement"
-
-#: includes/Data/Plans/CorporatePlan.php:296
-msgid "Set Up Jetpack Stats"
-msgstr "Configurer les statistiques de Jetpack"
-
-#: includes/Data/Plans/CorporatePlan.php:329
-msgid "Add Social Sharing Settings"
-msgstr "Ajouter des paramètres de partage sur les réseaux sociaux"
-
-#: includes/Data/Plans/CorporatePlan.php:508
-msgid "Install Jetpack Boost or Caching Plugin"
-msgstr "Installer Jetpack Boost ou le plugin de mise en cache"
-
-#: includes/Data/Plans/CorporatePlan.php:558
-msgid "Review Traffic & Engagement"
-msgstr "Examiner le trafic et l’engagement"
+#: includes/Data/Plans/StorePlan.php:41
+msgid "Step 1: Build your store"
+msgstr "Étape 1 : Créez votre boutique"
 
 #: includes/Data/Plans/StorePlan.php:42
 msgid "Congrats — you’ve built your store! Now it’s time to make it yours. Customize the header, footer, and homepage to give your site a personal touch."
@@ -504,6 +471,10 @@ msgstr "Personnalisez votre Store"
 msgid "Customize the header, footer, and homepage — just few steps to give your site a personal touch."
 msgstr "Personnalisez l’en-tête, le pied de page et la page d’accueil - quelques étapes suffisent pour donner à votre site une touche personnelle."
 
+#: includes/Data/Plans/StorePlan.php:101
+msgid "Customize Homepage"
+msgstr "Personnaliser la page d’accueil"
+
 #: includes/Data/Plans/StorePlan.php:115
 msgid "Step 2: Add your first product"
 msgstr "Étape 2 : Ajoutez votre premier produit"
@@ -518,6 +489,10 @@ msgstr "Commencez à donner vie à votre boutique en ajoutant un produit en quel
 msgid "Add product"
 msgstr "Ajouter un produit"
 
+#: includes/Data/Plans/StorePlan.php:141
+msgid "Step 3: Set up payments"
+msgstr "Étape 3 : Configurer les paiements"
+
 #: includes/Data/Plans/StorePlan.php:142
 msgid "Set up payments to start selling — choose your preferred payment methods and connect them in just a few clicks."
 msgstr "Configurez les paiements pour commencer à vendre : choisissez vos modes de paiement préférés et associez-les en quelques clics."
@@ -526,6 +501,15 @@ msgstr "Configurez les paiements pour commencer à vendre : choisissez vos modes
 msgid "Set up Payments"
 msgstr "Configurer les paiements"
 
+#: includes/Data/Plans/StorePlan.php:150
+msgid "Set up payments"
+msgstr "Configurer les paiements"
+
+#: includes/Data/Plans/StorePlan.php:164
+#: includes/Data/Plans/StorePlan.php:168
+msgid "Setup the shopping experience"
+msgstr "Configurer l’expérience d’achat"
+
 #: includes/Data/Plans/StorePlan.php:165
 msgid "Personalize your cart and checkout to match your brand and give customers a seamless shopping experience"
 msgstr "Personnalisez votre panier et votre caisse pour qu’ils correspondent à votre marque et offrez aux clients une expérience d’achat sans faille"
@@ -533,11 +517,6 @@ msgstr "Personnalisez votre panier et votre caisse pour qu’ils correspondent �
 #: includes/Data/Plans/StorePlan.php:166
 msgid "Start Now"
 msgstr "Commencer maintenant"
-
-#: includes/Data/Plans/StorePlan.php:164
-#: includes/Data/Plans/StorePlan.php:168
-msgid "Setup the shopping experience"
-msgstr "Configurer l’expérience d’achat"
 
 #: includes/Data/Plans/StorePlan.php:169
 msgid "Personalize your cart and checkout experience, and configure taxes and shipping options"
@@ -627,17 +606,92 @@ msgstr "Configurez Yoast Premium pour générer du trafic vers votre magasin"
 msgid "Optimize your content for search engines to improve rankings, attract more visitors, and boost your store’s visibility online."
 msgstr "Optimisez votre contenu pour les moteurs de recherche afin d’améliorer le classement, d’attirer plus de visiteurs et d’augmenter la visibilité de votre boutique en ligne."
 
-#: build/next-steps-portal/bundle.js:1
-msgid "No Pending tasks"
-msgstr "Aucune tâche en attente"
+#: includes/StepsApi.php:362
+#: includes/StepsApi.php:410
+msgid "No plan found."
+msgstr "Aucun plan n’a été trouvé."
+
+#: includes/StepsApi.php:416
+msgid "No tracks found in plan."
+msgstr "Aucune trace trouvée dans le plan."
+
+#: includes/StepsApi.php:422
+msgid "No sections found in track."
+msgstr "Aucune section trouvée dans la piste."
+
+#: includes/StepsApi.php:497
+#: includes/StepsApi.php:595
+#: includes/StepsApi.php:711
+msgid "Invalid parameters provided."
+msgstr "Paramètres non valides fournis."
+
+#: includes/StepsApi.php:500
+msgid "Invalid status provided."
+msgstr "Statut non valide fourni."
+
+#: includes/StepsApi.php:506
+#: includes/StepsApi.php:535
+#: includes/StepsApi.php:601
+#: includes/StepsApi.php:651
+#: includes/StepsApi.php:717
+#: includes/StepsApi.php:746
+msgid "Plan not found."
+msgstr "Plan introuvable."
+
+#: includes/StepsApi.php:511
+msgid "Task not found."
+msgstr "Tâche introuvable."
+
+#: includes/StepsApi.php:529
+msgid "Step not found."
+msgstr "Étape introuvable."
+
+#: includes/StepsApi.php:540
+msgid "Updated task not found."
+msgstr "Tâche mise à jour introuvable."
+
+#: includes/StepsApi.php:606
+#: includes/StepsApi.php:645
+msgid "Section not found."
+msgstr "Section non trouvée."
+
+#: includes/StepsApi.php:656
+msgid "Updated section not found."
+msgstr "Section mise à jour introuvable."
+
+#: includes/StepsApi.php:722
+#: includes/StepsApi.php:740
+#: includes/StepsApi.php:751
+msgid "Track not found."
+msgstr "Piste introuvable."
+
+#: includes/StepsApi.php:821
+msgid "Invalid plan type provided."
+msgstr "Type de plan non valide fourni."
+
+#: includes/StepsApi.php:892
+msgid "Failed to add task to section."
+msgstr "Impossible d’ajouter la tâche à la section."
 
 #: build/next-steps-portal/bundle.js:1
-msgid "Hooray!"
-msgstr "Hourra!"
+#: build/next-steps-widget/bundle.js:1
+msgid "Mark Complete"
+msgstr "Marquer comme terminé"
 
 #: build/next-steps-portal/bundle.js:1
-msgid "You don’t have any pending tasks today"
-msgstr "Vous n’avez aucune tâche en attente aujourd’hui"
+#: build/next-steps-widget/bundle.js:1
+msgid "Skip"
+msgstr "Sautiller"
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Restart"
+msgstr "Redémarrer"
+
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Unskip"
+msgstr "Désenchaîner"
 
 #: build/next-steps-portal/bundle.js:1
 msgid "Completed"
@@ -655,143 +709,89 @@ msgstr "Sautez-le"
 msgid "Undo"
 msgstr "Défaire"
 
-#: includes/StepsApi.php:506
-#: includes/StepsApi.php:535
-#: includes/StepsApi.php:601
-#: includes/StepsApi.php:651
-#: includes/StepsApi.php:717
-#: includes/StepsApi.php:746
-msgid "Plan not found."
-msgstr "Plan introuvable."
+#: build/next-steps-portal/bundle.js:1
+msgid "No Pending tasks"
+msgstr "Aucune tâche en attente"
 
-#: includes/StepsApi.php:511
-msgid "Task not found."
-msgstr "Tâche introuvable."
+#: build/next-steps-portal/bundle.js:1
+msgid "Hooray!"
+msgstr "Hourra!"
 
-#: includes/StepsApi.php:540
-msgid "Updated task not found."
-msgstr "Tâche mise à jour introuvable."
+#: build/next-steps-portal/bundle.js:1
+msgid "You don’t have any pending tasks today"
+msgstr "Vous n’avez aucune tâche en attente aujourd’hui"
 
-#: includes/StepsApi.php:656
-msgid "Updated section not found."
-msgstr "Section mise à jour introuvable."
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "We encountered a connection error. Please check your internet connection and try again."
+msgstr "Nous avons rencontré une erreur de connexion. Veuillez vérifier votre connexion Internet et réessayer."
 
-#: includes/Data/Plans/StorePlan.php:36
-msgid "Next Steps for your store"
-msgstr "Prochaines étapes pour votre boutique"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "We encountered an unexpected error. Please try refreshing the page or contact support if the problem persists."
+msgstr "Nous avons rencontré une erreur inattendue. Essayez de rafraîchir la page ou contactez l’assistance si le problème persiste."
 
-#: includes/Data/Plans/BlogPlan.php:57
-msgid "Basic blog setup"
-msgstr "Configuration de base du blog"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Connection Error"
+msgstr "Erreur de connexion"
 
-#: includes/Data/Plans/BlogPlan.php:77
-msgid "Customize your blog"
-msgstr "Personnalisez votre blog"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Something went wrong"
+msgstr "Quelque chose s’est mal passé"
 
-#: includes/Data/Plans/BlogPlan.php:128
-msgid "Create content"
-msgstr "Créer du contenu"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Try Again"
+msgstr "Réessayez"
 
-#: includes/Data/Plans/BlogPlan.php:167
-msgid "Set up navigation"
-msgstr "Configurer la navigation"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Refresh Page"
+msgstr "Actualiser la page"
 
-#: includes/Data/Plans/BlogPlan.php:206
-msgid "Set up essential pages"
-msgstr "Configurer les pages essentielles"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Technical Details"
+msgstr "Détails techniques"
 
-#: includes/Data/Plans/BlogPlan.php:291
-msgid "Social presence"
-msgstr "Présence sociale"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Next Steps Unavailable"
+msgstr "Prochaines étapes Indisponible"
 
-#: includes/Data/Plans/BlogPlan.php:330
-msgid "SEO & visibility"
-msgstr "SEO et visibilité"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "The Next Steps module encountered an error and cannot be displayed right now."
+msgstr "Le module Étapes suivantes a rencontré une erreur et ne peut pas être affiché pour le moment."
 
-#: includes/Data/Plans/BlogPlan.php:375
-msgid "Enhance reader experience"
-msgstr "Améliorez l’expérience du lecteur"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Task temporarily unavailable"
+msgstr "Tâche temporairement indisponible"
 
-#: includes/Data/Plans/BlogPlan.php:425
-msgid "Advanced social & influencer marketing"
-msgstr "Marketing social et d’influence avancé"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Close"
+msgstr "Fermer"
 
-#: includes/Data/Plans/BlogPlan.php:475
-msgid "Content & traffic strategy"
-msgstr "Stratégie de contenu et de trafic"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "All complete!"
+msgstr "Tout est terminé !"
 
-#: includes/Data/Plans/BlogPlan.php:514
-msgid "Performance & security"
-msgstr "Performance et sécurité"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Loading next steps..."
+msgstr "Chargement des étapes suivantes..."
 
-#: includes/Data/Plans/BlogPlan.php:553
-msgid "Blog analytics"
-msgstr "Analyse du blog"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "Hide skipped tasks"
+msgstr "Masquer les tâches ignorées"
 
-#: includes/Data/Plans/CorporatePlan.php:66
-msgid "Corporate setup"
-msgstr "Configuration d’entreprise"
-
-#: includes/Data/Plans/CorporatePlan.php:76
-msgid "Basic site setup"
-msgstr "Configuration de base du site"
-
-#: includes/Data/Plans/CorporatePlan.php:96
-msgid "Customize your website"
-msgstr "Personnalisez votre site web"
-
-#: includes/Data/Plans/CorporatePlan.php:158
-msgid "Configure navigation"
-msgstr "Configurer la navigation"
-
-#: includes/Data/Plans/CorporatePlan.php:197
-msgid "Add legal & trust content"
-msgstr "Ajouter du contenu juridique et de fiducie"
-
-#: includes/Data/Plans/CorporatePlan.php:242
-msgid "Establish your brand online"
-msgstr "Établissez votre marque en ligne"
-
-#: includes/Data/Plans/CorporatePlan.php:257
-msgid "Create a favicon"
-msgstr "Créer un favicon"
-
-#: includes/Data/Plans/CorporatePlan.php:292
-msgid "Launch essential marketing tools"
-msgstr "Lancez les outils marketing essentiels"
-
-#: includes/Data/Plans/CorporatePlan.php:342
-msgid "Set up contact & engagement"
-msgstr "Configurer le contact et l’engagement"
-
-#: includes/Data/Plans/CorporatePlan.php:387
-msgid "Strengthen online presence"
-msgstr "Renforcer la présence en ligne"
-
-#: includes/Data/Plans/CorporatePlan.php:415
-msgid "Build content for SEO & trust"
-msgstr "Créez du contenu pour le référencement et la confiance"
-
-#: includes/Data/Plans/CorporatePlan.php:465
-msgid "Marketing & lead generation"
-msgstr "Marketing et génération de leads"
-
-#: includes/Data/Plans/CorporatePlan.php:504
-msgid "Site performance & security"
-msgstr "Performance et sécurité du site"
-
-#: includes/Data/Plans/CorporatePlan.php:554
-msgid "Monitor & improve"
-msgstr "Surveiller et améliorer"
-
-#: includes/Data/Plans/StorePlan.php:41
-msgid "Step 1: Build your store"
-msgstr "Étape 1 : Créez votre boutique"
-
-#: includes/Data/Plans/StorePlan.php:141
-msgid "Step 3: Set up payments"
-msgstr "Étape 3 : Configurer les paiements"
-
-#: includes/Data/Plans/StorePlan.php:150
-msgid "Set up payments"
-msgstr "Configurer les paiements"
+#: build/next-steps-portal/bundle.js:1
+#: build/next-steps-widget/bundle.js:1
+msgid "View skipped tasks"
+msgstr "Afficher les tâches ignorées"

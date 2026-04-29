@@ -13,7 +13,7 @@ msgstr ""
 "X-Domain: wp-module-next-steps\n"
 
 #: bootstrap.php:30
-#: includes/NextSteps.php:83
+#: includes/NextSteps.php:84
 #: includes/NextStepsWidget.php:39
 msgid "Next Steps"
 msgstr ""

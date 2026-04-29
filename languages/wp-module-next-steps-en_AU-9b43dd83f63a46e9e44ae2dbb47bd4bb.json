@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2025-01-21 17:05:00+0000",
+    "translation-revision-date": "2026-04-29T17:22:37+00:00",
     "generator": "WP-CLI\/2.12.0",
     "source": "build\/next-steps-portal\/bundle.js",
     "domain": "messages",
@@ -22,20 +22,26 @@
             "Unskip": [
                 "Unskip"
             ],
-            "Hide skipped tasks": [
-                "Hide skipped tasks"
+            "Completed": [
+                "Completed"
             ],
-            "View skipped tasks": [
-                "View skipped tasks"
+            "Skipped": [
+                "Skipped"
             ],
-            "Loading next steps...": [
-                "Loading next steps..."
+            "Skip it": [
+                "Skip it"
             ],
-            "All complete!": [
-                "All complete!"
+            "Undo": [
+                "Undo"
             ],
-            "Close": [
-                "Close"
+            "No Pending tasks": [
+                "No Pending tasks"
+            ],
+            "Hooray!": [
+                "Hooray!"
+            ],
+            "You don\u2019t have any pending tasks today": [
+                "You don\u2019t have any pending tasks today"
             ],
             "We encountered a connection error. Please check your internet connection and try again.": [
                 "We encountered a connection error. Please check your internet connection and try again."
@@ -67,26 +73,20 @@
             "Task temporarily unavailable": [
                 "Task temporarily unavailable"
             ],
-            "No Pending tasks": [
-                "No Pending tasks"
+            "Close": [
+                "Close"
             ],
-            "Hooray!": [
-                "Hooray!"
+            "All complete!": [
+                "All complete!"
             ],
-            "You don\u2019t have any pending tasks today": [
-                "You don\u2019t have any pending tasks today"
+            "Loading next steps...": [
+                "Loading next steps..."
             ],
-            "Completed": [
-                "Completed"
+            "Hide skipped tasks": [
+                "Hide skipped tasks"
             ],
-            "Skipped": [
-                "Skipped"
-            ],
-            "Skip it": [
-                "Skip it"
-            ],
-            "Undo": [
-                "Undo"
+            "View skipped tasks": [
+                "View skipped tasks"
             ]
         }
     }
