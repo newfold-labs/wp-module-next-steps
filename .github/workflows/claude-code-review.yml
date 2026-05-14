@@ -10,6 +10,10 @@ on:
     #   - "src/**/*.js"
     #   - "src/**/*.jsx"
 
+# Disable permissions for all available scopes by default.
+# Any needed permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   claude-review:
     # Optional: Filter by PR author
@@ -21,10 +25,10 @@ jobs:
     
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pull-requests: read
-      issues: read
-      id-token: write
+      contents: read       # Required to clone the repo.
+      pull-requests: write # Required for gh pr comment in the review prompt.
+      issues: read         # Required for optional gh issue read commands allowed in claude_args.
+      id-token: write      # Required for OIDC token exchange when using Claude Code OAuth.
     
     steps:
       - name: Checkout repository
