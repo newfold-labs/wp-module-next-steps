@@ -28,6 +28,7 @@ jobs:
       issues: write        # Required for Claude Code issue comment tooling.
       id-token: write      # Required for OIDC token exchange when using Claude Code OAuth.
       actions: read        # Required for Claude to read CI results on PRs.
+    timeout-minutes: 60
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6.0.2

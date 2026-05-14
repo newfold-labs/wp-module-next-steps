@@ -29,6 +29,7 @@ jobs:
       pull-requests: write # Required for gh pr comment in the review prompt.
       issues: read         # Required for optional gh issue read commands allowed in claude_args.
       id-token: write      # Required for OIDC token exchange when using Claude Code OAuth.
+    timeout-minutes: 60
     
     steps:
       - name: Checkout repository
