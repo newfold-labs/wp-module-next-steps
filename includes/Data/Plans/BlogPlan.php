@@ -1,8 +1,9 @@
 <?php
-
+error_log('blogplan FILE included');
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
+use NewfoldLabs\WP\Module\NextSteps\Data\Plans\PlanBrandUrls;
 use NewfoldLabs\WP\Module\NextSteps\RedirectHelper;
 
 /**
@@ -254,7 +255,7 @@ class BlogPlan {
 										'id'              => 'blog_welcome_subscribe_popup',
 										'title'           => __( 'Add a Welcome-Subscribe Popup', 'wp-module-next-steps' ),
 										'description'     => __( 'Convert visitors to email subscribers.', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
+										'href'            => PlanBrandUrls::href( 'blog_welcome_subscribe_popup' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -315,7 +316,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_embed_social_feed',
 										'title'           => __( 'Embed a Social Media Feed on Homepage', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-incorporate-a-social-media-marketing-strategy-with-your-wordpress-website/',
+										'href'            => PlanBrandUrls::href( 'blog_embed_social_feed' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -343,7 +344,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_submit_search_console',
 										'title'           => __( 'Submit Site to Google Search Console', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-submit-your-website-to-search-engines/',
+										'href'            => PlanBrandUrls::href( 'blog_submit_search_console' ),
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -354,7 +355,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_generate_sitemap',
 										'title'           => __( 'Generate & Submit XML Sitemap', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/what-is-a-sitemap-how-it-helps-seo-and-navigation/',
+										'href'            => PlanBrandUrls::href( 'blog_generate_sitemap' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -399,7 +400,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_display_testimonials',
 										'title'           => __( 'Display Testimonials or Highlighted Comments', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/customer-testimonials/',
+										'href'            => PlanBrandUrls::href( 'blog_display_testimonials' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -427,7 +428,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_build_newsletter',
 										'title'           => __( 'Build an Email Newsletter', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-create-an-email-newsletter/',
+										'href'            => PlanBrandUrls::href( 'blog_build_newsletter' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -438,7 +439,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_draft_outreach_list',
 										'title'           => __( 'Draft an Influencer/Guest-Post Outreach List', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/guest-blogging/',
+										'href'            => PlanBrandUrls::href( 'blog_draft_outreach_list' ),
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -449,7 +450,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_run_first_ad',
 										'title'           => __( 'Run pillar article promotion on social ad', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/social-media-advertising-tips/',
+										'href'            => PlanBrandUrls::href( 'blog_run_first_ad' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -460,7 +461,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_track_utm_campaigns',
 										'title'           => __( 'Track Campaigns with UTM Links', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-create-a-content-calendar/',
+										'href'            => PlanBrandUrls::href( 'blog_track_utm_campaigns' ),
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -477,7 +478,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_plan_content_series',
 										'title'           => __( 'Plan a Content Series or Editorial Calendar', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-create-a-content-calendar/',
+										'href'            => PlanBrandUrls::href( 'blog_plan_content_series' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -488,7 +489,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_implement_internal_linking',
 										'title'           => __( 'Implement Internal-Linking Strategy', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/internal-linking-guide/',
+										'href'            => PlanBrandUrls::href( 'blog_implement_internal_linking' ),
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -538,7 +539,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_create_staging_site',
 										'title'           => __( 'Create a Staging Site', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/what-is-a-staging-site-and-how-to-create-a-bluehost-staging-site-for-your-wordpress-website/',
+										'href'            => PlanBrandUrls::href( 'blog_create_staging_site' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',

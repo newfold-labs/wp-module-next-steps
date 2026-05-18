@@ -1,9 +1,10 @@
 <?php
 
+error_log('corporateplan FILE included');
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
-use NewfoldLabs\WP\Module\NextSteps\RedirectHelper;
+use NewfoldLabs\WP\Module\NextSteps\Data\Plans\PlanBrandUrls;
 
 /**
  * CorporatePlan - Defines the structured plan for corporate/business website setup
@@ -244,7 +245,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_setup_custom_domain',
 										'title'           => __( 'Set Up a Custom Domain', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/my-account/domain-center-update/list',
+										'href'            => PlanBrandUrls::href( 'corporate_setup_custom_domain' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -266,7 +267,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_google_business',
 										'title'           => __( 'Connect Your Google Business Profile', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/transfer-google-business-profile-free-website-bluehost/',
+										'href'            => PlanBrandUrls::href( 'corporate_connect_google_business' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -277,7 +278,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_create_branded_email',
 										'title'           => __( 'Create a Branded Email Address', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-create-a-business-email-for-free/',
+										'href'            => PlanBrandUrls::href( 'corporate_create_branded_email' ),
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -305,7 +306,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_search_console',
 										'title'           => __( 'Connect Google Search Console', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-submit-your-website-to-search-engines/',
+										'href'            => PlanBrandUrls::href( 'corporate_connect_search_console' ),
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -344,7 +345,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_add_contact_form',
 										'title'           => __( 'Add a Contact Form with email routing', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/create-contact-form-wordpress-guide/',
+										'href'            => PlanBrandUrls::href( 'corporate_add_contact_form' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -355,7 +356,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_embed_map',
 										'title'           => __( 'Embed a Map or Location', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/top-wordpress-store-locator-plugins/',
+										'href'            => PlanBrandUrls::href( 'corporate_embed_map' ),
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -439,7 +440,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_optimize_key_pages',
 										'title'           => __( 'Optimize Your Key Pages for Keywords', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/content-optimization-guide/',
+										'href'            => PlanBrandUrls::href( 'corporate_optimize_key_pages' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -450,7 +451,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_generate_submit_sitemap',
 										'title'           => __( 'Generate and Submit XML Sitemap', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/what-is-a-sitemap-how-it-helps-seo-and-navigation/',
+										'href'            => PlanBrandUrls::href( 'corporate_generate_submit_sitemap' ),
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -467,7 +468,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_setup_email_capture',
 										'title'           => __( 'Set Up an Email Capture Form', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-add-an-email-opt-in-form-to-your-website/',
+										'href'            => PlanBrandUrls::href( 'corporate_setup_email_capture' ),
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -478,7 +479,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_crm',
 										'title'           => __( 'Connect to CRM or Email Tool', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/marketing-automation-tools/',
+										'href'            => PlanBrandUrls::href( 'corporate_connect_crm' ),
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -489,7 +490,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_add_cta_section',
 										'title'           => __( 'Add a Call-to-Action Section to Homepage', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/call-to-action-tips/',
+										'href'            => PlanBrandUrls::href( 'corporate_add_cta_section' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -528,7 +529,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_install_security_plugin',
 										'title'           => __( 'Install a Security Plugin', 'wp-module-next-steps' ),
-										'href'            => '{siteUrl}/wp-admin/admin.php?page=bluehost#/marketplace/security',
+										'href'            => PlanBrandUrls::href( 'corporate_install_security_plugin' ),
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -567,7 +568,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_run_speed_test',
 										'title'           => __( 'Run a Speed Test', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/what-is-my-page-speed/',
+										'href'            => PlanBrandUrls::href( 'corporate_run_speed_test' ),
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -578,7 +579,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_plan_next_content',
 										'title'           => __( 'Plan Your Next Content or Campaign Update', 'wp-module-next-steps' ),
-										'href'            => 'https://www.bluehost.com/blog/how-to-create-a-content-calendar/',
+										'href'            => PlanBrandUrls::href( 'corporate_plan_next_content' ),
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
