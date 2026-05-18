@@ -13,17 +13,17 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@newfold/ui-component-library": "^2.1.1",
-    "@wordpress/api-fetch": "^7.44.0"
+    "@wordpress/api-fetch": "^7.46.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.11",
-    "@tailwindcss/postcss": "^4.2.2",
-    "@wordpress/dom-ready": "^4.43.0",
-    "@wordpress/env": "^11.3.0",
-    "@wordpress/scripts": "^32.0.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@wordpress/dom-ready": "^4.46.0",
+    "@wordpress/env": "^11.6.0",
+    "@wordpress/scripts": "^32.2.0",
     "classnames": "^2.5.1",
     "mini-css-extract-plugin": "^2.10.2",
-    "tailwindcss": "^4.2.1",
+    "tailwindcss": "^4.3.0",
     "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2",
     "webpack-merge": "^6.0.1"
