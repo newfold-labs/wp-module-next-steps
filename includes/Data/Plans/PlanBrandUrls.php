@@ -1,6 +1,7 @@
 <?php
-error_log('PlanBrandUrls FILE included');
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
+
+error_log('PlanBrandUrls FILE included');
 
 use function NewfoldLabs\WP\ModuleLoader\container;
 

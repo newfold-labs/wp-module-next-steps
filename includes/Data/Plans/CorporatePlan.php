@@ -1,7 +1,7 @@
 <?php
 
-error_log('corporateplan FILE included');
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
+error_log('corporateplan FILE included');
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\Data\Plans\PlanBrandUrls;

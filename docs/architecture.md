@@ -33,6 +33,8 @@ Plans are PHP classes instead of markdown files:
 
 Each plan returns a structured Plan DTO with tracks → sections → tasks hierarchy.
 
+**Brand-specific task URLs:** External help links and some admin deep links for blog/corporate tasks are resolved at plan build time by `includes/Data/Plans/PlanBrandUrls.php`, using `container()->plugin()->id` from the host plugin. Known ids `web`, `crazy-domain`, and `vodien` receive placeholder URLs until replaced; other ids fall back to the historical Bluehost destinations defined in `PlanBrandUrls::FALLBACK_URLS`.
+
 ## DTOs (Data Transfer Objects)
 
 Located in `includes/DTOs/`:

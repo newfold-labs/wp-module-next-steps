@@ -1,6 +1,6 @@
 <?php
-error_log('blogplan FILE included');
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
+error_log('blogplan FILE included');
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\Data\Plans\PlanBrandUrls;
