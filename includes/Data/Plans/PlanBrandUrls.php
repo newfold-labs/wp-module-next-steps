@@ -166,6 +166,8 @@ class PlanBrandUrls {
 	}
 
 	/**
+	 * Resolve the host plugin id from the module loader container.
+	 *
 	 * @return string Plugin id from container, or empty string if unavailable.
 	 */
 	private static function resolve_plugin_id(): string {
@@ -189,6 +191,12 @@ class PlanBrandUrls {
 		return (string) apply_filters( 'newfold/next-steps/brand-plugin-id', $plugin_id );
 	}
 
+	/**
+	 * Whether the plugin id has an explicit brand URL map.
+	 *
+	 * @param string $plugin_id Host plugin id.
+	 * @return bool
+	 */
 	private static function has_brand_map( string $plugin_id ): bool {
 		return in_array( $plugin_id, self::BRAND_PLUGIN_IDS, true )
 			&& array_key_exists( $plugin_id, self::BRAND_TASK_URLS );
