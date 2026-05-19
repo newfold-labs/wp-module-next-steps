@@ -1,4 +1,5 @@
 <?php
+
 namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\ModuleLoader\Container;
