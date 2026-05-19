@@ -18,7 +18,7 @@ class PlanBrandUrls {
 	private const BRAND_PLUGIN_IDS = array(
 		'bluehost',
 		'web',
-		'crazy-domain',
+		'crazy-domains',
 		'vodien',
 	);
 
