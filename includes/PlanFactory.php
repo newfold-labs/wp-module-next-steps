@@ -141,6 +141,7 @@ class PlanFactory {
 		$onboarding_data = \get_option( self::ONBOARDING_SITE_INFO_OPTION, array() );
 		$onboarding_data = is_array( $onboarding_data ) ? $onboarding_data : array();
 		$site_type       = $onboarding_data['site_type'] ?? '';
+
 		if ( ! empty( $site_type ) && \array_key_exists( $site_type, self::PLAN_TYPES ) ) {
 			return self::PLAN_TYPES[ $site_type ];
 		}
@@ -158,6 +159,7 @@ class PlanFactory {
 					return 'blog';
 			}
 		}
+
 		// Fall back to detection
 		return self::detect_site_type();
 	}

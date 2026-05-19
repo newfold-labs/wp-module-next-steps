@@ -1,8 +1,6 @@
 <?php
 namespace NewfoldLabs\WP\Module\NextSteps;
 
-error_log('nextsteps FILE included');
-
 use NewfoldLabs\WP\ModuleLoader\Container;
 use NewfoldLabs\WP\Module\NextSteps\RedirectHelper;
 use NewfoldLabs\WP\Module\NextSteps\PlanFactory;
