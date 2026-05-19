@@ -97,8 +97,7 @@ class PlanFactory {
 		}
 
 		// Default to blog/personal
-		// return 'blog';
-		return 'corporate';
+		return 'blog';
 	}
 
 	/**
