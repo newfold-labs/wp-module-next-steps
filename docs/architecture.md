@@ -33,7 +33,7 @@ Plans are PHP classes instead of markdown files:
 
 Each plan returns a structured Plan DTO with tracks → sections → tasks hierarchy.
 
-**Brand-specific task URLs:** External help links and some admin deep links for blog/corporate tasks are resolved at plan build time by `includes/Data/Plans/PlanBrandUrls.php`, using `container()->plugin()->id` from the host plugin (overridable in tests via the `newfold/next-steps/brand-plugin-id` filter). URLs are stored in `PlanBrandUrls::BRAND_TASK_URLS` keyed by plugin id (`bluehost`, `web`, `crazy-domain`, `vodien`). If a brand has no URL for a task, `resolve_task_link()` returns `#`. Unrecognized plugin ids fall back to the Bluehost map. Admin deep links such as `corporate_install_security_plugin` are defined per brand in `BRAND_TASK_URLS` (e.g. `page=web`, `page=crazy-domains`).
+**Brand-specific task URLs:** External help links and some admin deep links for blog/corporate tasks are resolved at plan build time by `includes/Data/Plans/PlanBrandUrls.php`, using `container()->plugin()->id` from the host plugin (overridable in tests via the `newfold/next-steps/brand-plugin-id` filter). URLs are stored in `PlanBrandUrls::BRAND_TASK_URLS` keyed by plugin id (`bluehost`, `web`, `crazy-domains`, `vodien`). If a brand has no URL for a task, `resolve_task_link()` returns `#`. Unrecognized plugin ids fall back to the Bluehost map. Admin deep links such as `corporate_install_security_plugin` are defined per brand in `BRAND_TASK_URLS` (e.g. `page=web`, `page=crazy-domains`).
 
 ## DTOs (Data Transfer Objects)
 

@@ -64,18 +64,18 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$url = PlanBrandUrls::resolve_task_link( 'blog_welcome_subscribe_popup' );
 
 		$this->assertSame(
-			'https://www.networksolutions.com/help/improverate-website-pop-ups/',
+			'https://www.networksolutions.com/blog/how-to-improve-cro-rate-website/',
 			$url
 		);
 	}
 
 	/**
-	 * Test web returns hash for an unmapped task.
+	 * Test web returns hash for a task with no entry in the web URL map.
 	 */
 	public function test_web_returns_hash_for_unmapped_task() {
 		$this->set_brand_plugin_id( 'web' );
 
-		$url = PlanBrandUrls::resolve_task_link( 'blog_embed_social_feed' );
+		$url = PlanBrandUrls::resolve_task_link( 'blog_nonexistent_task' );
 
 		$this->assertSame( '#', $url );
 	}
@@ -109,12 +109,12 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	}
 
 	/**
-	 * Test crazy-domain returns hash for an unmapped task.
+	 * Test crazy-domains returns hash for a task mapped to placeholder.
 	 */
-	public function test_crazy_domain_returns_hash_for_unmapped_task() {
-		$this->set_brand_plugin_id( 'crazy-domain' );
+	public function test_crazy_domains_returns_hash_for_placeholder_task() {
+		$this->set_brand_plugin_id( 'crazy-domains' );
 
-		$url = PlanBrandUrls::resolve_task_link( 'blog_welcome_subscribe_popup' );
+		$url = PlanBrandUrls::resolve_task_link( 'blog_display_testimonials' );
 
 		$this->assertSame( '#', $url );
 	}
