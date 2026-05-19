@@ -1,6 +1,7 @@
 <?php
 
 namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
+
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\Data\Plans\PlanBrandUrls;
 
