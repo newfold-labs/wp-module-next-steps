@@ -95,6 +95,23 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	}
 
 	/**
+	 * Test empty plugin id falls back to Bluehost URLs.
+	 *
+	 * Simulates resolve_plugin_id() returning '' when the container is unavailable
+	 * (no brand filter is registered beyond forcing an empty id).
+	 */
+	public function test_empty_plugin_id_falls_back_to_bluehost() {
+		$this->set_brand_plugin_id( '' );
+
+		$url = PlanBrandUrls::resolve_task_link( 'blog_welcome_subscribe_popup' );
+
+		$this->assertSame(
+			'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
+			$url
+		);
+	}
+
+	/**
 	 * Test web security plugin task uses the web admin marketplace URL.
 	 */
 	public function test_web_security_plugin_uses_brand_admin_page() {

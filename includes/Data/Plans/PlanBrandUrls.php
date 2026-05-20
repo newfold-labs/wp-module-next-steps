@@ -6,24 +6,14 @@ use function NewfoldLabs\WP\ModuleLoader\container;
 /**
  * Resolves external / brand-specific task URLs by host plugin id (`container()->plugin()->id`).
  *
- * Blog and corporate task ids are unique (`blog_*`, `corporate_*`). Each brand in
- * BRAND_TASK_URLS may define only the tasks it has content for; missing entries resolve to `#`.
- * Unrecognized plugin ids fall back to the Bluehost map.
+ * Blog and corporate task ids are unique (`blog_*`, `corporate_*`). Top-level keys of
+ * BRAND_TASK_URLS are host plugin ids; each brand may define only the tasks it has content
+ * for; missing entries resolve to `#`. Unrecognized plugin ids fall back to the Bluehost map.
  */
 class PlanBrandUrls {
 
 	/**
-	 * Plugin ids with explicit brand URL maps.
-	 */
-	private const BRAND_PLUGIN_IDS = array(
-		'bluehost',
-		'web',
-		'crazy-domains',
-		'vodien',
-	);
-
-	/**
-	 * Per-brand task URLs. Keys must match task `id` in BlogPlan / CorporatePlan.
+	 * Per-brand task URLs. Top-level keys are host plugin ids; nested keys must match task `id` in BlogPlan / CorporatePlan.
 	 *
 	 * @var array<string, array<string, string>>
 	 */
@@ -198,7 +188,6 @@ class PlanBrandUrls {
 	 * @return bool
 	 */
 	private static function has_brand_map( string $plugin_id ): bool {
-		return in_array( $plugin_id, self::BRAND_PLUGIN_IDS, true )
-			&& array_key_exists( $plugin_id, self::BRAND_TASK_URLS );
+		return array_key_exists( $plugin_id, self::BRAND_TASK_URLS );
 	}
 }
