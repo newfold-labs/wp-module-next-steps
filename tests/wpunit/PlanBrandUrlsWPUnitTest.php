@@ -26,6 +26,7 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 			remove_filter( 'newfold/next-steps/brand-plugin-id', $this->filter_callback );
 			$this->filter_callback = null;
 		}
+		PlanBrandUrls::clear_resolved_plugin_id_cache();
 		parent::tearDown();
 	}
 

@@ -13,6 +13,13 @@ use function NewfoldLabs\WP\ModuleLoader\container;
 class PlanBrandUrls {
 
 	/**
+	 * Cached host plugin id for the current request (plan build calls resolve_task_link many times).
+	 *
+	 * @var string|null
+	 */
+	private static $resolved_plugin_id = null;
+
+	/**
 	 * Per-brand task URLs. Top-level keys are host plugin ids; nested keys must match task `id` in BlogPlan / CorporatePlan.
 	 *
 	 * @var array<string, array<string, string>>
@@ -139,7 +146,11 @@ class PlanBrandUrls {
 	 * @return string URL (may contain `{siteUrl}` for replacement elsewhere in the module).
 	 */
 	public static function resolve_task_link( string $task_id ): string {
-		$plugin_id = self::resolve_plugin_id();
+		if ( null === self::$resolved_plugin_id ) {
+			self::$resolved_plugin_id = self::resolve_plugin_id();
+		}
+
+		$plugin_id = self::$resolved_plugin_id;
 
 		if ( '' !== $plugin_id && self::has_brand_map( $plugin_id ) ) {
 			$brand_urls = self::BRAND_TASK_URLS[ $plugin_id ];
@@ -164,13 +175,7 @@ class PlanBrandUrls {
 		$plugin_id = '';
 
 		if ( function_exists( 'NewfoldLabs\WP\ModuleLoader\container' ) ) {
-			$c = container();
-			if ( is_object( $c ) && method_exists( $c, 'plugin' ) ) {
-				$plugin = $c->plugin();
-				if ( is_object( $plugin ) && isset( $plugin->id ) ) {
-					$plugin_id = (string) $plugin->id;
-				}
-			}
+			$plugin_id = container()->plugin()->id;
 		}
 
 		/**
@@ -189,5 +194,14 @@ class PlanBrandUrls {
 	 */
 	private static function has_brand_map( string $plugin_id ): bool {
 		return array_key_exists( $plugin_id, self::BRAND_TASK_URLS );
+	}
+
+	/**
+	 * Clear cached plugin id (used by tests when simulating different host plugins).
+	 *
+	 * @return void
+	 */
+	public static function clear_resolved_plugin_id_cache(): void {
+		self::$resolved_plugin_id = null;
 	}
 }
