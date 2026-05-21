@@ -23,7 +23,7 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 */
 	public function tearDown(): void {
 		if ( null !== $this->filter_callback ) {
-			remove_filter( 'newfold/next-steps/brand-plugin-id', $this->filter_callback );
+			remove_filter( 'newfold_next_steps_brand_plugin_id', $this->filter_callback );
 			$this->filter_callback = null;
 		}
 		PlanBrandUrls::clear_resolved_plugin_id_cache();
@@ -39,7 +39,7 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$this->filter_callback = function () use ( $plugin_id ) {
 			return $plugin_id;
 		};
-		add_filter( 'newfold/next-steps/brand-plugin-id', $this->filter_callback );
+		add_filter( 'newfold_next_steps_brand_plugin_id', $this->filter_callback );
 	}
 
 	/**
@@ -113,6 +113,17 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	}
 
 	/**
+	 * Test empty plugin id returns hash for an unknown task.
+	 */
+	public function test_empty_plugin_id_returns_hash_for_unknown_task() {
+		$this->set_brand_plugin_id( '' );
+
+		$url = PlanBrandUrls::resolve_task_link( 'blog_nonexistent_task' );
+
+		$this->assertSame( '#', $url );
+	}
+
+	/**
 	 * Test web security plugin task uses the web admin marketplace URL.
 	 */
 	public function test_web_security_plugin_uses_brand_admin_page() {
@@ -135,5 +146,44 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$url = PlanBrandUrls::resolve_task_link( 'blog_display_testimonials' );
 
 		$this->assertSame( '#', $url );
+	}
+
+	/**
+	 * Test vodien returns the mapped URL for a known task.
+	 */
+	public function test_vodien_returns_mapped_url_for_known_task() {
+		$this->set_brand_plugin_id( 'vodien' );
+
+		$url = PlanBrandUrls::resolve_task_link( 'blog_welcome_subscribe_popup' );
+
+		$this->assertSame(
+			'https://www.vodien.com/learn/how-to-track-website-visitors-and-improve-conversions/',
+			$url
+		);
+	}
+
+	/**
+	 * Test vodien returns hash for a task mapped to placeholder.
+	 */
+	public function test_vodien_returns_hash_for_placeholder_task() {
+		$this->set_brand_plugin_id( 'vodien' );
+
+		$url = PlanBrandUrls::resolve_task_link( 'corporate_setup_email_capture' );
+
+		$this->assertSame( '#', $url );
+	}
+
+	/**
+	 * Test vodien security plugin task uses the vodien admin marketplace URL.
+	 */
+	public function test_vodien_security_plugin_uses_brand_admin_page() {
+		$this->set_brand_plugin_id( 'vodien' );
+
+		$url = PlanBrandUrls::resolve_task_link( 'corporate_install_security_plugin' );
+
+		$this->assertSame(
+			'{siteUrl}/wp-admin/admin.php?page=vodien#/marketplace/security',
+			$url
+		);
 	}
 }

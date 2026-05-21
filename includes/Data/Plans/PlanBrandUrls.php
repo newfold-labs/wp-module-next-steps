@@ -183,7 +183,7 @@ class PlanBrandUrls {
 		 *
 		 * @param string $plugin_id Plugin id from the module loader container.
 		 */
-		return (string) apply_filters( 'newfold/next-steps/brand-plugin-id', $plugin_id );
+		return (string) apply_filters( 'newfold_next_steps_brand_plugin_id', $plugin_id );
 	}
 
 	/**
