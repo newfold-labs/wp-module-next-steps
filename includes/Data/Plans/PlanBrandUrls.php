@@ -176,7 +176,7 @@ class PlanBrandUrls {
 
 		if ( function_exists( 'NewfoldLabs\WP\ModuleLoader\container' ) ) {
 			$c = container();
-			if ( is_object( $c ) && method_exists( $c, 'plugin' ) ) {
+			if ( is_object( $c ) && method_exists( $c, 'has' ) && $c->has( 'plugin' ) ) {
 				$plugin = $c->plugin();
 				if ( is_object( $plugin ) && isset( $plugin->id ) ) {
 					$plugin_id = (string) $plugin->id;
