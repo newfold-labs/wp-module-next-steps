@@ -153,7 +153,7 @@ class PlanBrandUrls {
 
 		$plugin_id = self::$resolved_plugin_id;
 
-		if ( '' !== $plugin_id && self::has_brand_map( $plugin_id ) ) {
+		if ( '' !== $plugin_id && array_key_exists( $plugin_id, self::BRAND_TASK_URLS ) ) {
 			$brand_urls = self::BRAND_TASK_URLS[ $plugin_id ];
 			if ( isset( $brand_urls[ $task_id ] ) ) {
 				return $brand_urls[ $task_id ];
@@ -203,16 +203,6 @@ class PlanBrandUrls {
 		 * @param string $plugin_id Plugin id from the module loader container.
 		 */
 		return (string) apply_filters( 'newfold_next_steps_brand_plugin_id', $plugin_id );
-	}
-
-	/**
-	 * Whether the plugin id has an explicit brand URL map.
-	 *
-	 * @param string $plugin_id Host plugin id.
-	 * @return bool
-	 */
-	private static function has_brand_map( string $plugin_id ): bool {
-		return array_key_exists( $plugin_id, self::BRAND_TASK_URLS );
 	}
 
 	/**
