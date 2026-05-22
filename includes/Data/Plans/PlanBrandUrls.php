@@ -176,7 +176,7 @@ class PlanBrandUrls {
 			return '{siteUrl}/wp-admin/';
 		}
 
-		return '{siteUrl}/wp-admin/admin.php?page=' . rawurlencode( $plugin_id );
+		return '{siteUrl}/wp-admin/admin.php?page=' . rawurlencode( $plugin_id ) . '#/home';
 	}
 
 	/**
