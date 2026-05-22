@@ -8,7 +8,8 @@ use function NewfoldLabs\WP\ModuleLoader\container;
  *
  * Blog and corporate task ids are unique (`blog_*`, `corporate_*`). Top-level keys of
  * BRAND_TASK_URLS are host plugin ids; each brand may define only the tasks it has content
- * for; missing entries resolve to `#`. Unrecognized plugin ids fall back to the Bluehost map.
+ * for; missing entries resolve to `#`. When the host plugin id is empty or has no brand
+ * URL map, task links fall back to the WordPress dashboard or the brand plugin home page.
  */
 class PlanBrandUrls {
 
@@ -160,10 +161,22 @@ class PlanBrandUrls {
 
 			return '#';
 		}
-		// Fallback to Bluehost map if no brand map is found.
-		$bluehost_urls = self::BRAND_TASK_URLS['bluehost'];
 
-		return $bluehost_urls[ $task_id ] ?? '#';
+		return self::fallback_admin_url( $plugin_id );
+	}
+
+	/**
+	 * Admin URL when the host plugin id is empty or has no brand task URL map.
+	 *
+	 * @param string $plugin_id Host plugin id, or empty string when unavailable.
+	 * @return string URL (contains `{siteUrl}` for replacement elsewhere in the module).
+	 */
+	private static function fallback_admin_url( string $plugin_id ): string {
+		if ( '' === $plugin_id ) {
+			return '{siteUrl}/wp-admin/';
+		}
+
+		return '{siteUrl}/wp-admin/admin.php?page=' . rawurlencode( $plugin_id );
 	}
 
 	/**

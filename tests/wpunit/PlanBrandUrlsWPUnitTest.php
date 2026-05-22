@@ -82,45 +82,42 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	}
 
 	/**
-	 * Test unknown plugin id falls back to Bluehost URLs.
+	 * Test unknown plugin id falls back to the brand plugin home page.
 	 */
-	public function test_unknown_plugin_id_falls_back_to_bluehost() {
+	public function test_unknown_plugin_id_falls_back_to_brand_home() {
 		$this->set_brand_plugin_id( 'unknown-brand' );
 
 		$url = PlanBrandUrls::resolve_task_link( 'blog_welcome_subscribe_popup' );
 
 		$this->assertSame(
-			'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
+			'{siteUrl}/wp-admin/admin.php?page=unknown-brand#/home',
 			$url
 		);
 	}
 
 	/**
-	 * Test empty plugin id falls back to Bluehost URLs.
+	 * Test empty plugin id falls back to the WordPress dashboard.
 	 *
 	 * Simulates resolve_plugin_id() returning '' when the container is unavailable
 	 * (no brand filter is registered beyond forcing an empty id).
 	 */
-	public function test_empty_plugin_id_falls_back_to_bluehost() {
+	public function test_empty_plugin_id_falls_back_to_wp_admin() {
 		$this->set_brand_plugin_id( '' );
 
 		$url = PlanBrandUrls::resolve_task_link( 'blog_welcome_subscribe_popup' );
 
-		$this->assertSame(
-			'https://www.bluehost.com/blog/improve-conversion-rate-website-pop-ups/',
-			$url
-		);
+		$this->assertSame( '{siteUrl}/wp-admin/', $url );
 	}
 
 	/**
-	 * Test empty plugin id returns hash for an unknown task.
+	 * Test empty plugin id returns dashboard URL for any task.
 	 */
-	public function test_empty_plugin_id_returns_hash_for_unknown_task() {
+	public function test_empty_plugin_id_returns_dashboard_for_unknown_task() {
 		$this->set_brand_plugin_id( '' );
 
 		$url = PlanBrandUrls::resolve_task_link( 'blog_nonexistent_task' );
 
-		$this->assertSame( '#', $url );
+		$this->assertSame( '{siteUrl}/wp-admin/', $url );
 	}
 
 	/**
