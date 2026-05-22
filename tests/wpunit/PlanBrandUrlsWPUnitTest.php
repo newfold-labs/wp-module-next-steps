@@ -19,6 +19,14 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	private $filter_callback;
 
 	/**
+	 * Clear cached plugin id before each test (other suites may build plans first).
+	 */
+	public function setUp(): void {
+		parent::setUp();
+		PlanBrandUrls::clear_resolved_plugin_id_cache();
+	}
+
+	/**
 	 * Remove brand plugin id filter after each test.
 	 */
 	public function tearDown(): void {
@@ -36,7 +44,9 @@ class PlanBrandUrlsWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 * @param string $plugin_id Plugin id to simulate.
 	 */
 	private function set_brand_plugin_id( string $plugin_id ): void {
-		$this->filter_callback = function () use ( $plugin_id ) {
+		PlanBrandUrls::clear_resolved_plugin_id_cache();
+
+		$this->filter_callback = function ( $filtered_id ) use ( $plugin_id ) {
 			return $plugin_id;
 		};
 		add_filter( 'newfold_next_steps_brand_plugin_id', $this->filter_callback );
