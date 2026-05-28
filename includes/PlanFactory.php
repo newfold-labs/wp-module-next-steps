@@ -8,11 +8,7 @@
 namespace NewfoldLabs\WP\Module\NextSteps;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
-use NewfoldLabs\WP\Module\NextSteps\Data\Plans\StorePlan;
-use NewfoldLabs\WP\Module\NextSteps\Data\Plans\BlogPlan;
-use NewfoldLabs\WP\Module\NextSteps\Data\Plans\CorporatePlan;
 use function NewfoldLabs\WP\ModuleLoader\container;
-use function NewfoldLabs\WP\Context\getContext;
 
 /**
  * PlanFactory
@@ -173,23 +169,120 @@ class PlanFactory {
 	 */
 	public static function create_plan( string $plan_type, array $custom_plan_data = array() ): Plan {
 
-		// ecommerce plan
-		if ( 'ecommerce' === $plan_type ) {
-			return StorePlan::get_plan();
-		}
-
-		// corporate plan
-		if ( 'corporate' === $plan_type ) {
-			return CorporatePlan::get_plan();
-		}
-
 		// custom plan
 		if ( 'custom' === $plan_type && ! empty( $custom_plan_data ) ) {
 			return new Plan( $custom_plan_data );
 		}
 
-		// if blog type or anything else (blog is default)
-		return BlogPlan::get_plan();
+		$plan_class = self::plan_class_for_type( $plan_type );
+
+		return self::resolve_brand_plan( $plan_class );
+	}
+
+	/**
+	 * Map internal plan type to plan class name.
+	 *
+	 * @param string $plan_type Plan type to create.
+	 * @return string Plan class name (BlogPlan, CorporatePlan, or StorePlan).
+	 */
+	private static function plan_class_for_type( string $plan_type ): string {
+		if ( 'ecommerce' === $plan_type ) {
+			return 'StorePlan';
+		}
+
+		if ( 'corporate' === $plan_type ) {
+			return 'CorporatePlan';
+		}
+
+		return 'BlogPlan';
+	}
+
+	/**
+	 * Load a plan class for the current host plugin brand, falling back to the root plan class.
+	 *
+	 * @param string $plan_class_name Plan class name (BlogPlan, CorporatePlan, or StorePlan).
+	 * @return Plan The created plan.
+	 */
+	private static function resolve_brand_plan( string $plan_class_name ): Plan {
+		$brand_id = self::resolve_brand_plugin_id();
+
+		if ( '' !== $brand_id ) {
+			$plan_file = __DIR__ . '/Data/Plans/' . $brand_id . '/' . $plan_class_name . '.php';
+
+			if ( is_readable( $plan_file ) ) {
+				require_once $plan_file;
+
+				$namespace = self::plugin_id_to_namespace( $brand_id );
+				$class     = 'NewfoldLabs\\WP\\Module\\NextSteps\\Data\\Plans\\' . $namespace . '\\' . $plan_class_name;
+
+				if ( class_exists( $class ) && method_exists( $class, 'get_plan' ) ) {
+					return $class::get_plan();
+				}
+			}
+		}
+
+		$fallback_class = 'NewfoldLabs\\WP\\Module\\NextSteps\\Data\\Plans\\' . $plan_class_name;
+
+		return $fallback_class::get_plan();
+	}
+
+	/**
+	 * Resolve the host plugin id from the module loader container.
+	 *
+	 * @return string Plugin id from container, or empty string if unavailable.
+	 */
+	public static function resolve_brand_plugin_id(): string {
+		$plugin_id = '';
+
+		if ( function_exists( 'NewfoldLabs\WP\ModuleLoader\container' ) ) {
+			$c = container();
+			if ( is_object( $c ) && method_exists( $c, 'has' ) && $c->has( 'plugin' ) ) {
+				$plugin = $c->plugin();
+				if ( is_object( $plugin ) && isset( $plugin->id ) ) {
+					$plugin_id = (string) $plugin->id;
+				}
+			}
+		}
+
+		/**
+		 * Filter the host plugin id used to select brand-scoped plan data.
+		 *
+		 * @param string $plugin_id Plugin id from the module loader container.
+		 */
+		return (string) apply_filters( 'newfold_next_steps_brand_plugin_id', $plugin_id );
+	}
+
+	/**
+	 * Map a host plugin id to a PHP namespace segment for brand plan classes.
+	 *
+	 * @param string $plugin_id Host plugin id (e.g. bluehost, crazy-domains).
+	 * @return string PascalCase namespace segment.
+	 */
+	public static function plugin_id_to_namespace( string $plugin_id ): string {
+		$map = array(
+			'bluehost'      => 'Bluehost',
+			'web'           => 'Web',
+			'hostgator'     => 'Hostgator',
+			'crazy-domains' => 'CrazyDomains',
+			'vodien'        => 'Vodien',
+		);
+
+		if ( isset( $map[ $plugin_id ] ) ) {
+			return $map[ $plugin_id ];
+		}
+
+		$parts = preg_split( '/[-_]+/', $plugin_id );
+		$parts = is_array( $parts ) ? $parts : array( $plugin_id );
+
+		return implode(
+			'',
+			array_map(
+				static function ( $part ) {
+					return ucfirst( strtolower( (string) $part ) );
+				},
+				$parts
+			)
+		);
 	}
 
 	/**

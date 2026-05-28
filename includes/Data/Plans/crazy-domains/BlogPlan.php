@@ -1,6 +1,6 @@
 <?php
 
-namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
+namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans\CrazyDomains;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 use NewfoldLabs\WP\Module\NextSteps\RedirectHelper;
@@ -254,7 +254,7 @@ class BlogPlan {
 										'id'              => 'blog_welcome_subscribe_popup',
 										'title'           => __( 'Add a Welcome-Subscribe Popup', 'wp-module-next-steps' ),
 										'description'     => __( 'Convert visitors to email subscribers.', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/tips-optimise-site-conversions/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -315,7 +315,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_embed_social_feed',
 										'title'           => __( 'Embed a Social Media Feed on Homepage', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/right-social-media-platforms/',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -343,7 +343,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_submit_search_console',
 										'title'           => __( 'Submit Site to Google Search Console', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.com/learn/submitting-site-to-search-engines/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -354,7 +354,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_generate_sitemap',
 										'title'           => __( 'Generate & Submit XML Sitemap', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/courses/creating-branded-website/',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -427,7 +427,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_build_newsletter',
 										'title'           => __( 'Build an Email Newsletter', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/elements-of-email-newsletter/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -438,7 +438,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_draft_outreach_list',
 										'title'           => __( 'Draft an Influencer/Guest-Post Outreach List', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/guest-posting/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -449,7 +449,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_run_first_ad',
 										'title'           => __( 'Run pillar article promotion on social ad', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/right-social-media-platforms/',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -460,7 +460,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_track_utm_campaigns',
 										'title'           => __( 'Track Campaigns with UTM Links', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/content-marketing-tips-small-business-website/',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -477,7 +477,7 @@ class BlogPlan {
 									array(
 										'id'              => 'blog_plan_content_series',
 										'title'           => __( 'Plan a Content Series or Editorial Calendar', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/content-marketing-tips-small-business-website/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',

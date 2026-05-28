@@ -1,6 +1,6 @@
 <?php
 
-namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
+namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans\Vodien;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 
@@ -243,7 +243,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_setup_custom_domain',
 										'title'           => __( 'Set Up a Custom Domain', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/custom-domain-name/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -265,7 +265,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_google_business',
 										'title'           => __( 'Connect Your Google Business Profile', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/how-to-add-google-my-business-reviews-to-website/',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -276,7 +276,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_create_branded_email',
 										'title'           => __( 'Create a Branded Email Address', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/free-business-email/',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -304,7 +304,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_search_console',
 										'title'           => __( 'Connect Google Search Console', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/search-engines-and-how-to-do-it/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -343,7 +343,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_add_contact_form',
 										'title'           => __( 'Add a Contact Form with email routing', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/how-to-stop-contact-form-spam-wordpress/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -354,7 +354,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_embed_map',
 										'title'           => __( 'Embed a Map or Location', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/creative-advertising-with-street-view-on-google-maps/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -438,7 +438,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_optimize_key_pages',
 										'title'           => __( 'Optimize Your Key Pages for Keywords', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/seo-audit-process-in-17-simple-steps-boost-your-content-visibility-on-search-engines/',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -449,7 +449,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_generate_submit_sitemap',
 										'title'           => __( 'Generate and Submit XML Sitemap', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/xml-sitemap-for-seo/',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -477,7 +477,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_crm',
 										'title'           => __( 'Connect to CRM or Email Tool', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/customer-relationship-management-integration/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -527,7 +527,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_install_security_plugin',
 										'title'           => __( 'Install a Security Plugin', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=vodien#/marketplace/security',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -566,7 +566,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_run_speed_test',
 										'title'           => __( 'Run a Speed Test', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/do-not-ignore-page-speed/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -577,7 +577,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_plan_next_content',
 										'title'           => __( 'Plan Your Next Content or Campaign Update', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.vodien.com/learn/social-media-content-calendar/',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',

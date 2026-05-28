@@ -27,13 +27,14 @@ The module follows a Factory/Repository pattern for plan management with smart t
 
 Plans are PHP classes instead of markdown files:
 
-- `includes/data/plans/BlogPlan.php` – Personal/blog site plan
-- `includes/data/plans/CorporatePlan.php` – Business/corporate site plan
-- `includes/data/plans/StorePlan.php` – Ecommerce/WooCommerce site plan
+- `includes/Data/Plans/BlogPlan.php` – Personal/blog site plan (generic fallback)
+- `includes/Data/Plans/CorporatePlan.php` – Business/corporate site plan (generic fallback)
+- `includes/Data/Plans/StorePlan.php` – Ecommerce/WooCommerce site plan (generic fallback)
+- `includes/Data/Plans/{plugin_id}/` – Brand-scoped plan classes (e.g. `bluehost/BlogPlan.php`)
 
 Each plan returns a structured Plan DTO with tracks → sections → tasks hierarchy.
 
-**Brand-specific task URLs:** External help links and some admin deep links for blog/corporate tasks are resolved at plan build time by `includes/Data/Plans/PlanBrandUrls.php`, using `container()->plugin()->id` from the host plugin (overridable in tests via the `newfold_next_steps_brand_plugin_id` filter). URLs are stored in `PlanBrandUrls::BRAND_TASK_URLS` keyed by plugin id (`bluehost`, `web`, `crazy-domains`, `vodien`). If a brand has no URL for a task, `resolve_task_link()` returns `#`. When the host plugin id is empty or unrecognized (no entry in `BRAND_TASK_URLS`), links fall back to `{siteUrl}/wp-admin/` or `{siteUrl}/wp-admin/admin.php?page={plugin_id}#/home`. Admin deep links such as `corporate_install_security_plugin` are defined per brand in `BRAND_TASK_URLS` (e.g. `page=web`, `page=crazy-domains`).
+**Brand-scoped plan data:** At plan creation time, `PlanFactory::create_plan()` reads the host plugin id from `container()->plugin()->id` (overridable in tests via the `newfold_next_steps_brand_plugin_id` filter) and loads the full plan for that brand + plan type from `includes/Data/Plans/{plugin_id}/` when a matching file exists (e.g. `bluehost/BlogPlan.php`, `web/CorporatePlan.php`, `crazy-domains/StorePlan.php`). Brand plan classes live under a PascalCase namespace segment mapped from the plugin id (`bluehost` → `Bluehost`, `crazy-domains` → `CrazyDomains`). If no brand folder exists for the current plugin, `PlanFactory` falls back to the root plan classes (`BlogPlan.php`, `CorporatePlan.php`, `StorePlan.php`). Each brand owns a complete plan document (URLs, copy, and eventually images/tasks) rather than a shared plan plus URL overlay. Implemented brands: `bluehost`, `web`, `crazy-domains`, `vodien`.
 
 ## DTOs (Data Transfer Objects)
 
