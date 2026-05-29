@@ -30,11 +30,11 @@ Plans are PHP classes instead of markdown files:
 - `includes/Data/Plans/BlogPlan.php` – Personal/blog site plan (generic fallback)
 - `includes/Data/Plans/CorporatePlan.php` – Business/corporate site plan (generic fallback)
 - `includes/Data/Plans/StorePlan.php` – Ecommerce/WooCommerce site plan (generic fallback)
-- `includes/Data/Plans/{plugin_id}/` – Brand-scoped plan classes (e.g. `bluehost/BlogPlan.php`)
+- `includes/Data/Plans/{Brand}/` – Brand-scoped plan classes (e.g. `Bluehost/BlogPlan.php`; folder name matches the PascalCase namespace segment)
 
 Each plan returns a structured Plan DTO with tracks → sections → tasks hierarchy.
 
-**Brand-scoped plan data:** At plan creation time, `PlanFactory::create_plan()` reads the host plugin id from `container()->plugin()->id` (overridable in tests via the `newfold_next_steps_brand_plugin_id` filter) and loads the full plan for that brand + plan type from `includes/Data/Plans/{plugin_id}/` when a matching file exists (e.g. `bluehost/BlogPlan.php`, `web/CorporatePlan.php`, `crazy-domains/StorePlan.php`). Brand plan classes live under a PascalCase namespace segment mapped from the plugin id (`bluehost` → `Bluehost`, `crazy-domains` → `CrazyDomains`). If no brand folder exists for the current plugin, `PlanFactory` falls back to the root plan classes (`BlogPlan.php`, `CorporatePlan.php`, `StorePlan.php`). Each brand owns a complete plan document (URLs, copy, and eventually images/tasks) rather than a shared plan plus URL overlay. Implemented brands: `bluehost`, `web`, `crazy-domains`, `vodien`.
+**Brand-scoped plan data:** At plan creation time, `PlanFactory::create_plan()` reads the host plugin id from `container()->plugin()->id` (overridable in tests via the `newfold_next_steps_brand_plugin_id` filter) and loads the full plan for that brand + plan type from `includes/Data/Plans/{Brand}/` when a matching class exists (e.g. `Bluehost/BlogPlan.php`, `Web/CorporatePlan.php`, `CrazyDomains/StorePlan.php`). The directory name must match the PascalCase namespace segment mapped from the plugin id (`bluehost` → `Bluehost`, `crazy-domains` → `CrazyDomains`) for PSR-4 autoloading on case-sensitive filesystems. If no brand class exists for the current plugin, `PlanFactory` falls back to the root plan classes (`BlogPlan.php`, `CorporatePlan.php`, `StorePlan.php`). Each brand owns a complete plan document (URLs, copy, and eventually images/tasks) rather than a shared plan plus URL overlay. Implemented brands: `bluehost`, `web`, `crazy-domains`, `vodien`.
 
 ## DTOs (Data Transfer Objects)
 
