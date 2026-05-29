@@ -35,7 +35,7 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	 * @param string $plugin_id Plugin id to simulate.
 	 */
 	private function set_brand_plugin_id( string $plugin_id ): void {
-		$this->filter_callback = function ( $filtered_id ) use ( $plugin_id ) {
+		$this->filter_callback = function () use ( $plugin_id ) {
 			return $plugin_id;
 		};
 		add_filter( 'newfold_next_steps_brand_plugin_id', $this->filter_callback );
@@ -63,6 +63,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Bluehost blog plan resolves brand-specific task URLs.
+	 *
 	 * @covers ::create_plan
 	 * @covers ::resolve_brand_plugin_id
 	 */
@@ -79,6 +81,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Bluehost corporate plan uses brand-scoped security marketplace link.
+	 *
 	 * @covers ::create_plan
 	 */
 	public function test_bluehost_corporate_security_plugin_link() {
@@ -94,6 +98,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Web blog plan resolves brand-specific task URLs.
+	 *
 	 * @covers ::create_plan
 	 */
 	public function test_web_blog_plan_uses_brand_urls() {
@@ -109,6 +115,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Web corporate plan uses brand-scoped security marketplace link.
+	 *
 	 * @covers ::create_plan
 	 */
 	public function test_web_corporate_security_plugin_link() {
@@ -124,6 +132,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Crazy Domains unmapped tasks fall back to placeholder href.
+	 *
 	 * @covers ::create_plan
 	 */
 	public function test_crazy_domains_unmapped_task_uses_placeholder() {
@@ -136,6 +146,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Vodien corporate plan uses brand-scoped security marketplace link.
+	 *
 	 * @covers ::create_plan
 	 */
 	public function test_vodien_corporate_security_plugin_link() {
@@ -151,6 +163,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Unknown brand blog plan falls back to generic plan URLs.
+	 *
 	 * @covers ::create_plan
 	 */
 	public function test_unknown_brand_blog_plan_falls_back_to_generic() {
@@ -163,6 +177,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Bluehost ecommerce plan loads brand-specific store plan.
+	 *
 	 * @covers ::create_plan
 	 */
 	public function test_bluehost_ecommerce_loads_brand_store_plan() {
@@ -176,6 +192,8 @@ class PlanBrandResolutionWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestC
 	}
 
 	/**
+	 * Plugin id to namespace maps hyphenated brand ids correctly.
+	 *
 	 * @covers ::plugin_id_to_namespace
 	 */
 	public function test_plugin_id_to_namespace_maps_hyphenated_ids() {

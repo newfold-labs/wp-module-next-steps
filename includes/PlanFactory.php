@@ -204,25 +204,19 @@ class PlanFactory {
 	 * @return Plan The created plan.
 	 */
 	private static function resolve_brand_plan( string $plan_class_name ): Plan {
-		$brand_id = self::resolve_brand_plugin_id();
+		$brand_id  = self::resolve_brand_plugin_id();
+		$base_ns   = 'NewfoldLabs\\WP\\Module\\NextSteps\\Data\\Plans\\';
 
 		if ( '' !== $brand_id ) {
-			$plan_file = __DIR__ . '/Data/Plans/' . $brand_id . '/' . $plan_class_name . '.php';
+			$namespace   = self::plugin_id_to_namespace( $brand_id );
+			$brand_class = $base_ns . $namespace . '\\' . $plan_class_name;
 
-			if ( is_readable( $plan_file ) ) {
-				require_once $plan_file;
-
-				$namespace = self::plugin_id_to_namespace( $brand_id );
-				$class     = 'NewfoldLabs\\WP\\Module\\NextSteps\\Data\\Plans\\' . $namespace . '\\' . $plan_class_name;
-
-				if ( class_exists( $class ) && method_exists( $class, 'get_plan' ) ) {
-					return $class::get_plan();
-				}
+			if ( class_exists( $brand_class ) ) {
+				return $brand_class::get_plan();
 			}
 		}
 
-		$fallback_class = 'NewfoldLabs\\WP\\Module\\NextSteps\\Data\\Plans\\' . $plan_class_name;
-
+		$fallback_class = $base_ns . $plan_class_name;
 		return $fallback_class::get_plan();
 	}
 
