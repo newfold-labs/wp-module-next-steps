@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1779892675">
-  <project timestamp="1779892675">
+<coverage generated="1780556178">
+  <project timestamp="1780556178">
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/DTOs/Plan.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\DTOs\Plan" namespace="global">
         <metrics complexity="87" methods="30" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="182" coveredstatements="139" elements="212" coveredelements="155"/>
@@ -840,71 +840,114 @@
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/PlanFactory.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\PlanFactory" namespace="global">
-        <metrics complexity="31" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="33" elements="62" coveredelements="36"/>
+        <metrics complexity="45" methods="13" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="92" coveredstatements="54" elements="105" coveredelements="58"/>
       </class>
-      <line num="52" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="62" type="method" name="load_default_steps" visibility="public" complexity="5" crap="9.29" count="3"/>
-      <line num="64" type="stmt" count="3"/>
-      <line num="65" type="stmt" count="0"/>
-      <line num="69" type="stmt" count="3"/>
-      <line num="70" type="stmt" count="3"/>
-      <line num="71" type="stmt" count="3"/>
-      <line num="75" type="stmt" count="0"/>
-      <line num="76" type="stmt" count="0"/>
-      <line num="77" type="stmt" count="0"/>
-      <line num="78" type="stmt" count="0"/>
-      <line num="88" type="method" name="detect_site_type" visibility="public" complexity="3" crap="3.58" count="13"/>
-      <line num="90" type="stmt" count="13"/>
-      <line num="91" type="stmt" count="0"/>
-      <line num="95" type="stmt" count="13"/>
-      <line num="96" type="stmt" count="0"/>
-      <line num="100" type="stmt" count="13"/>
-      <line num="108" type="method" name="is_ecommerce_site" visibility="private" complexity="2" crap="2" count="13"/>
-      <line num="109" type="stmt" count="13"/>
-      <line num="117" type="method" name="is_corporate_site" visibility="private" complexity="3" crap="3.01" count="13"/>
+      <line num="48" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="50" type="stmt" count="0"/>
+      <line num="58" type="method" name="load_default_steps" visibility="public" complexity="5" crap="9.29" count="3"/>
+      <line num="60" type="stmt" count="3"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="65" type="stmt" count="3"/>
+      <line num="66" type="stmt" count="3"/>
+      <line num="67" type="stmt" count="3"/>
+      <line num="71" type="stmt" count="0"/>
+      <line num="72" type="stmt" count="0"/>
+      <line num="73" type="stmt" count="0"/>
+      <line num="74" type="stmt" count="0"/>
+      <line num="84" type="method" name="detect_site_type" visibility="public" complexity="3" crap="3.58" count="13"/>
+      <line num="86" type="stmt" count="13"/>
+      <line num="87" type="stmt" count="0"/>
+      <line num="91" type="stmt" count="13"/>
+      <line num="92" type="stmt" count="0"/>
+      <line num="96" type="stmt" count="13"/>
+      <line num="104" type="method" name="is_ecommerce_site" visibility="private" complexity="2" crap="2" count="13"/>
+      <line num="105" type="stmt" count="13"/>
+      <line num="113" type="method" name="is_corporate_site" visibility="private" complexity="3" crap="3.01" count="13"/>
+      <line num="115" type="stmt" count="13"/>
+      <line num="116" type="stmt" count="13"/>
+      <line num="117" type="stmt" count="13"/>
+      <line num="118" type="stmt" count="13"/>
       <line num="119" type="stmt" count="13"/>
-      <line num="120" type="stmt" count="13"/>
       <line num="121" type="stmt" count="13"/>
       <line num="122" type="stmt" count="13"/>
-      <line num="123" type="stmt" count="13"/>
-      <line num="125" type="stmt" count="13"/>
-      <line num="126" type="stmt" count="13"/>
-      <line num="127" type="stmt" count="0"/>
-      <line num="131" type="stmt" count="13"/>
-      <line num="139" type="method" name="determine_site_type" visibility="public" complexity="9" crap="17.23" count="14"/>
+      <line num="123" type="stmt" count="0"/>
+      <line num="127" type="stmt" count="13"/>
+      <line num="135" type="method" name="determine_site_type" visibility="public" complexity="9" crap="17.23" count="14"/>
+      <line num="137" type="stmt" count="14"/>
+      <line num="138" type="stmt" count="14"/>
+      <line num="139" type="stmt" count="14"/>
       <line num="141" type="stmt" count="14"/>
-      <line num="142" type="stmt" count="14"/>
-      <line num="143" type="stmt" count="14"/>
-      <line num="145" type="stmt" count="14"/>
-      <line num="146" type="stmt" count="1"/>
-      <line num="150" type="stmt" count="13"/>
-      <line num="151" type="stmt" count="13"/>
+      <line num="142" type="stmt" count="1"/>
+      <line num="146" type="stmt" count="13"/>
+      <line num="147" type="stmt" count="13"/>
+      <line num="148" type="stmt" count="0"/>
+      <line num="150" type="stmt" count="0"/>
+      <line num="151" type="stmt" count="0"/>
       <line num="152" type="stmt" count="0"/>
+      <line num="153" type="stmt" count="0"/>
       <line num="154" type="stmt" count="0"/>
       <line num="155" type="stmt" count="0"/>
-      <line num="156" type="stmt" count="0"/>
-      <line num="157" type="stmt" count="0"/>
-      <line num="158" type="stmt" count="0"/>
-      <line num="159" type="stmt" count="0"/>
-      <line num="164" type="stmt" count="13"/>
-      <line num="174" type="method" name="create_plan" visibility="public" complexity="5" crap="5" count="91"/>
-      <line num="177" type="stmt" count="91"/>
-      <line num="178" type="stmt" count="9"/>
-      <line num="182" type="stmt" count="86"/>
-      <line num="183" type="stmt" count="4"/>
-      <line num="187" type="stmt" count="84"/>
-      <line num="188" type="stmt" count="21"/>
-      <line num="192" type="stmt" count="65"/>
-      <line num="200" type="method" name="load_default_plan" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="201" type="stmt" count="2"/>
-      <line num="202" type="stmt" count="2"/>
-      <line num="210" type="method" name="get_current_plan_type" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="160" type="stmt" count="13"/>
+      <line num="170" type="method" name="create_plan" visibility="public" complexity="3" crap="3" count="99"/>
+      <line num="173" type="stmt" count="99"/>
+      <line num="174" type="stmt" count="21"/>
+      <line num="177" type="stmt" count="80"/>
+      <line num="179" type="stmt" count="80"/>
+      <line num="188" type="method" name="plan_class_for_type" visibility="private" complexity="3" crap="3" count="72"/>
+      <line num="189" type="stmt" count="72"/>
+      <line num="190" type="stmt" count="9"/>
+      <line num="193" type="stmt" count="67"/>
+      <line num="194" type="stmt" count="4"/>
+      <line num="197" type="stmt" count="65"/>
+      <line num="206" type="method" name="resolve_brand_plan" visibility="private" complexity="3" crap="3.79" count="72"/>
+      <line num="207" type="stmt" count="72"/>
+      <line num="208" type="stmt" count="72"/>
+      <line num="210" type="stmt" count="72"/>
       <line num="211" type="stmt" count="0"/>
       <line num="212" type="stmt" count="0"/>
-      <line num="213" type="stmt" count="0"/>
+      <line num="214" type="stmt" count="0"/>
       <line num="215" type="stmt" count="0"/>
-      <metrics loc="218" ncloc="133" classes="1" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="33" elements="62" coveredelements="36"/>
+      <line num="219" type="stmt" count="72"/>
+      <line num="220" type="stmt" count="72"/>
+      <line num="228" type="method" name="resolve_brand_plugin_id" visibility="public" complexity="7" crap="9.58" count="73"/>
+      <line num="229" type="stmt" count="73"/>
+      <line num="231" type="stmt" count="73"/>
+      <line num="232" type="stmt" count="73"/>
+      <line num="233" type="stmt" count="73"/>
+      <line num="234" type="stmt" count="0"/>
+      <line num="235" type="stmt" count="0"/>
+      <line num="236" type="stmt" count="0"/>
+      <line num="246" type="stmt" count="73"/>
+      <line num="255" type="method" name="plugin_id_to_namespace" visibility="public" complexity="3" crap="4.50" count="1"/>
+      <line num="256" type="stmt" count="1"/>
+      <line num="257" type="stmt" count="1"/>
+      <line num="258" type="stmt" count="1"/>
+      <line num="259" type="stmt" count="1"/>
+      <line num="260" type="stmt" count="1"/>
+      <line num="261" type="stmt" count="1"/>
+      <line num="262" type="stmt" count="1"/>
+      <line num="264" type="stmt" count="1"/>
+      <line num="265" type="stmt" count="1"/>
+      <line num="268" type="stmt" count="0"/>
+      <line num="269" type="stmt" count="0"/>
+      <line num="271" type="stmt" count="0"/>
+      <line num="272" type="stmt" count="0"/>
+      <line num="273" type="stmt" count="0"/>
+      <line num="274" type="stmt" count="0"/>
+      <line num="275" type="stmt" count="0"/>
+      <line num="276" type="stmt" count="0"/>
+      <line num="277" type="stmt" count="0"/>
+      <line num="278" type="stmt" count="0"/>
+      <line num="279" type="stmt" count="0"/>
+      <line num="287" type="method" name="load_default_plan" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="288" type="stmt" count="2"/>
+      <line num="289" type="stmt" count="2"/>
+      <line num="297" type="method" name="get_current_plan_type" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="298" type="stmt" count="0"/>
+      <line num="299" type="stmt" count="0"/>
+      <line num="300" type="stmt" count="0"/>
+      <line num="302" type="stmt" count="0"/>
+      <metrics loc="305" ncloc="195" classes="1" methods="13" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="92" coveredstatements="54" elements="105" coveredelements="58"/>
     </file>
     <file name="/home/runner/work/wp-module-next-steps/wp-module-next-steps/includes/PlanRepository.php">
       <class name="NewfoldLabs\WP\Module\NextSteps\PlanRepository" namespace="global">
@@ -2153,6 +2196,6 @@
       <line num="27" type="stmt" count="0"/>
       <metrics loc="58" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="11" coveredelements="0"/>
     </file>
-    <metrics files="15" loc="5809" ncloc="3447" classes="14" methods="218" coveredmethods="81" conditionals="0" coveredconditionals="0" statements="1847" coveredstatements="883" elements="2065" coveredelements="964"/>
+    <metrics files="15" loc="5896" ncloc="3509" classes="14" methods="222" coveredmethods="82" conditionals="0" coveredconditionals="0" statements="1886" coveredstatements="904" elements="2108" coveredelements="986"/>
   </project>
 </coverage>
