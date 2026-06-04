@@ -1,6 +1,6 @@
 <?php
 
-namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans;
+namespace NewfoldLabs\WP\Module\NextSteps\Data\Plans\CrazyDomains;
 
 use NewfoldLabs\WP\Module\NextSteps\DTOs\Plan;
 
@@ -243,7 +243,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_setup_custom_domain',
 										'title'           => __( 'Set Up a Custom Domain', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/domain-names/products/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -265,7 +265,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_google_business',
 										'title'           => __( 'Connect Your Google Business Profile', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/google-workspace-crazy-domains/',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -276,7 +276,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_create_branded_email',
 										'title'           => __( 'Create a Branded Email Address', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/email-seo-marketing/',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
@@ -304,7 +304,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_search_console',
 										'title'           => __( 'Connect Google Search Console', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.com/learn/submitting-site-to-search-engines/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -343,7 +343,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_add_contact_form',
 										'title'           => __( 'Add a Contact Form with email routing', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/high-converting-lead-capture-forms/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -438,7 +438,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_optimize_key_pages',
 										'title'           => __( 'Optimize Your Key Pages for Keywords', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/seo-content-marketing/',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -466,7 +466,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_setup_email_capture',
 										'title'           => __( 'Set Up an Email Capture Form', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/high-converting-lead-capture-forms/',
 										'status'          => 'new',
 										'priority'        => 1,
 										'source'          => 'wp-module-next-steps',
@@ -477,7 +477,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_connect_crm',
 										'title'           => __( 'Connect to CRM or Email Tool', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/email-marketing-campaign-tools/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -488,7 +488,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_add_cta_section',
 										'title'           => __( 'Add a Call-to-Action Section to Homepage', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/how-to-create-irresistible-ctas/',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -527,7 +527,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_install_security_plugin',
 										'title'           => __( 'Install a Security Plugin', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => '{siteUrl}/wp-admin/admin.php?page=crazy-domains#/marketplace/security',
 										'status'          => 'new',
 										'priority'        => 3,
 										'source'          => 'wp-module-next-steps',
@@ -566,7 +566,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_run_speed_test',
 										'title'           => __( 'Run a Speed Test', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/website-speed-optimisation-tips/',
 										'status'          => 'new',
 										'priority'        => 2,
 										'source'          => 'wp-module-next-steps',
@@ -577,7 +577,7 @@ class CorporatePlan {
 									array(
 										'id'              => 'corporate_plan_next_content',
 										'title'           => __( 'Plan Your Next Content or Campaign Update', 'wp-module-next-steps' ),
-										'href'            => '#',
+										'href'            => 'https://www.crazydomains.in/learn/content-marketing-tips-small-business-website/',
 										'status'          => 'new',
 										'priority'        => 4,
 										'source'          => 'wp-module-next-steps',
