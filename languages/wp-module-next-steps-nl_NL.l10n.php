@@ -5,7 +5,7 @@ return [
 	'language' => 'nl_NL',
 	'project-id-version' => '',
 	'pot-creation-date' => '2025-06-06T06:30:00+00:00',
-	'po-revision-date' => '2026-04-29T17:22:37+00:00',
+	'po-revision-date' => '2026-06-09T17:14:07+00:00',
 	'x-generator' => 'WP-CLI 2.12.0',
 	'messages' => [
 		'Next Steps' => 'Volgende stappen',
