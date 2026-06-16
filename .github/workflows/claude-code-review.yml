@@ -12,6 +12,10 @@ on:
 
 jobs:
   claude-review:
+    # Disabled: automated PR reviews use `.github/workflows/ai-code-review.yml` (Cloudflare AI Gateway).
+    # Set to `true` to re-enable this job as a fallback.
+    if: false
+
     # Optional: Filter by PR author
     if: |
       github.actor != 'dependabot[bot]'
