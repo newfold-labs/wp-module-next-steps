@@ -10,6 +10,10 @@ on:
   pull_request_review:
     types: [submitted]
 
+# Disable permissions for all available scopes by default.
+# Any needed permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   claude:
     if: |
@@ -19,11 +23,12 @@ jobs:
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pull-requests: read
-      issues: read
-      id-token: write
-      actions: read # Required for Claude to read CI results on PRs
+      contents: write      # Required to clone and for Claude Code file edits/commits.
+      pull-requests: write # Required for Claude Code pull request comment tooling.
+      issues: write        # Required for Claude Code issue comment tooling.
+      id-token: write      # Required for OIDC token exchange when using Claude Code OAuth.
+      actions: read        # Required for Claude to read CI results on PRs.
+    timeout-minutes: 60
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6.0.3
