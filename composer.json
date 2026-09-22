@@ -31,7 +31,7 @@
     },
     "require-dev": {
         "lucatume/wp-browser": "^3.1",
-        "johnpbloch/wordpress": "^6.9",
+        "johnpbloch/wordpress": "^7.1",
         "newfold-labs/wp-php-standards": "^2.0",
         "phpunit/phpcov": "^8.2.1",
         "phpunit/phpunit": "^9.6",
